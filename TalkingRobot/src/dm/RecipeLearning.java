@@ -1,0 +1,31 @@
+package dm;
+enum RecipeLearning implements DialogStates {
+
+  ASK_RECIPE_NAME,
+
+  ASK_COUNTRY_OF_ORIGIN,
+
+  ASK_FIRST_INGREDIENT,
+
+  ASK_NEXT_INGREDIENT,
+
+  AKS_INGREDIENT_RIGHT,
+
+  ASK_FIRST_TOOL,
+
+  ASK_NEXT_TOOL,
+
+  ASK_TOOL_RIGHT,
+
+  ASK_FIRST_STEP,
+
+  ASK_NEXT_STEP,
+
+  ASK_LAST_STEP,
+
+  ASK_STEP_RIGHT,
+
+  EXIT;
+
+  
+}

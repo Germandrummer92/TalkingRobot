@@ -1,0 +1,29 @@
+package dm;
+enum RecipeAssistance implements DialogStates {
+
+  RECIPE_NOT_FOUND,
+
+  TELL_INGREDIENTS,
+
+  TELL_TOOLS,
+
+  TELL_STEPS,
+
+  TELL_COUNTRY_OF_ORIGIN,
+
+  TELL_CREATOR,
+
+  TELL_NUM_OF_STEPS,
+
+  TELL_INGREDIENT_FOUND,
+
+  TELL_INGFREDIENT_NOT_FOUND,
+
+  TELL_TOOL_FOUND,
+
+  TELL_TOOL_NOT_FOUND,
+
+  TELL_WHOLE_RECIPE;
+
+  
+}
