@@ -14,7 +14,7 @@ import com.google.gson.*;
  * 
  * @author Daniel Draper
  * @version 1.0
- * This Class represents the data for each user of the system. 
+ * This Class represents the data for one user of the system. 
  * @see Data
  */
 public class UserData implements Data {
