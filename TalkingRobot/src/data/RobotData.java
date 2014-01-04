@@ -9,16 +9,17 @@ import com.google.gson.*;
 
 
 public class RobotData implements Data {
-	private int RobotID;
+	private int robotID;
 	private String robotName;
 	private boolean isInKitchen; 
 	
 	public RobotData(int robotID, String robotName, boolean isInKitchen) {
-		this.RobotID = robotID;
+		this.robotID = robotID;
 		this.isInKitchen = isInKitchen;
 		this.robotName = robotName;
 	}
 	
+	//Should this be private?
 	public RobotData() {
 		
 	}
@@ -31,18 +32,18 @@ public class RobotData implements Data {
 	}
 	
 	@Override
-	public void createFromJSONText(String text) {
+	public void createFromJSONText(String jsonString) {
 		Gson creator; 
 		creator = new Gson();
-		RobotData newData = creator.fromJson(text, this.getClass());
-		RobotID = newData.getRobotID();
+		RobotData newData = creator.fromJson(jsonString, this.getClass());
+		robotID = newData.getRobotID();
 		isInKitchen = newData.isInKitchen();
 		robotName = newData.getRobotName();
 	}
 	
 	@Override
 	public void writeFile() {
-		String pathname = "JsonResources/RobotData/" + RobotID + ".json";
+		String pathname = "JsonResources/RobotData/" + robotID + ".json";
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathname, "UTF-8");
@@ -66,7 +67,7 @@ public class RobotData implements Data {
 	}
 
 	public int getRobotID() {
-		return RobotID;
+		return robotID;
 	}
 
 	public String getRobotName() {
@@ -78,7 +79,7 @@ public class RobotData implements Data {
 	}
 
 	public void setRobotID(int robotID) {
-		RobotID = robotID;
+		this.robotID = robotID;
 	}
 
 	public void setRobotName(String robotName) {
