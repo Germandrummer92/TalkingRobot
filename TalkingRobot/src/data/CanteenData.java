@@ -1,8 +1,14 @@
 package data;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.google.gson.Gson;
 
 /**
 *
@@ -30,7 +36,7 @@ public class CanteenData implements Data {
 	public CanteenData(int canteenID, String canteenName, String address, ArrayList<LineData> lines) {
 		this.canteenID = canteenID;
 		this.canteenName = canteenName;
-		this.address = adress;
+		this.address = address;
 		this.lines = lines;
 	}
 
@@ -55,7 +61,7 @@ public class CanteenData implements Data {
 	        CanteenData newData = creator.fromJson(jsonString, this.getClass());
 	        canteenID = newData.getCanteenID();
 	        canteenName = newData.getCanteenName();
-	        adress = newData.getAdress();
+	        address = newData.getAddress();
 	        lines = newData.getLines();
 	}
 
@@ -107,7 +113,7 @@ public class CanteenData implements Data {
          * @return the adress
          */
         public String getAddress() {
-        	return adress;
+        	return address;
         }
   
   	/**
@@ -135,7 +141,7 @@ public class CanteenData implements Data {
          * @param adress the adress to set
          */
 	public void setAddress (String address) {
-		this.adress = adress;
+		this.address = address;
 	}
 	
 	/**
