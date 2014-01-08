@@ -1,6 +1,10 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -73,7 +77,7 @@ public class UserData implements Data {
 	 * @see Data#writeFile()
 	 */
 	public void writeFile() {
-		String pathname = "JsonResources/UserData/" + userID + ".json";
+		String pathname = "resources/files/UserData/" + userID + ".json";
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathname, "UTF-8");
@@ -182,5 +186,37 @@ public class UserData implements Data {
 	public void setUserJSON(JSONObject userJSON) {
 		this.userJSON = userJSON;
 	}
+	
+	 
+	 /* Test:
+	    public static void main (String args[]) {
+	  	UserData u = new UserData(0, "Daniel", true);
+	  	ArrayList<RecipeDatePair> rd = u.getRequestedRecipes();
+	  	rd.add(new RecipeDatePair(new Date(), new RecipeData()));
+	  	u.setRequestedRecipes(rd);
+	  	u.writeFile();
+	  	Gson loader = new Gson();
+	  	BufferedReader br = null;
+	  	try {
+			br = new BufferedReader(new FileReader("resources/files/UserData/0.json"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	  	UserData read = null;
+	  		try {
+				read = loader.fromJson(br.readLine(), UserData.class);
+			} catch (JsonSyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	  	System.out.println(read.getUserID());
+	  	System.out.println(read.getLastAccess());
+	  	System.out.println(read.getRequestedRecipes().get(0).toString());
+	  	
+	  	}*/
+	 
 
 }
