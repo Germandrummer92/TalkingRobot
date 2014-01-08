@@ -1,6 +1,13 @@
 package data;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.google.gson.Gson;
 
 /**
 * @author Meng Meng Yan
@@ -59,7 +66,7 @@ public class MealData implements Data {
 	* @see Data#writeFile()
 	*/
         public void writeFile() {
-                 String pathname = "resources/files/MealData/" + canteenID + ".json";
+                 String pathname = "resources/files/MealData/" + mealID + ".json";
 	         PrintWriter writer;
 	         try {
 		         writer = new PrintWriter(pathname, "UTF-8");
@@ -88,7 +95,7 @@ public class MealData implements Data {
 	* @return the mealID
 	*/
         public Integer getMealID() {
-                return MealID;
+                return mealID;
         }
         
         /**
