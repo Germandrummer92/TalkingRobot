@@ -98,13 +98,10 @@ public String generateJSON() {
 public void createFromJSONText(String jsonString) {
 	Gson creator;
 	creator = new Gson();
-	UserData newData = creator.fromJson(jsonString, this.getClass());
-	userID = newData.getUserID();
-	userName = newData.getUserName();
-	isStudent = newData.isStudent();
-	lastAccess = newData.getLastAccess();
-	requestedRecipes = newData.getRequestedRecipes();
-	acceptedSuggestions = newData.getAcceptedSuggestions();
+	LineData newData = creator.fromJson(jsonString, this.getClass());
+	lineID = newData.getLineID();
+	lineName = newData.getLineName();
+	todayMeals = newData.getTodayMeals();
 }
 
 @Override
