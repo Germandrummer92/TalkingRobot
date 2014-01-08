@@ -9,6 +9,6 @@ public class RecipeDatePair {
 
   private RecipeData data;
 
-    public Vector  myUserData;
+  public Vector  myUserData;
 
 }

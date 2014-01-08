@@ -43,7 +43,7 @@ public class RobotData implements Data {
 	
 	@Override
 	public void writeFile() {
-		String pathname = "JsonResources/RobotData/" + robotID + ".json";
+		String pathname = "resources/files/RobotData/" + robotID + ".json";
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathname, "UTF-8");
