@@ -2,6 +2,11 @@ package data;
 
 import org.json.JSONObject;
 
+/*
+ * @author Xizhe Lian
+ * @version 1.0
+ * This class represents the data for an ingredient 
+ */
 public class IngredientData implements Data {
 
   private Integer ingredientID;
