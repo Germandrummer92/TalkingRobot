@@ -14,7 +14,7 @@ import org.json.JSONObject;
  * @version 1.0
  * This class represents the data about a line at a canteen.
  * @see Data
- * /
+ */
 
 public class LineData implements Data {
 
@@ -32,7 +32,7 @@ public class LineData implements Data {
    * @param lineID the ID of the relevant line. 
    * @param lineName the name of the line.
    * @param todayMeals the meals offered at that day at the relevant line.
-   * /
+   */
   public LineData(Integer lineID, String lineName, ArrayList<MealData> todayMeals) {
   	this.lineID = lineID;
   	this.lineName = lineName;
@@ -41,42 +41,42 @@ public class LineData implements Data {
   
   /**
    * @return lineID
-   * /
+   */
   public Integer getLineID() {
   	return lineID;
   }
   
   /**
    * @return lineName
-   * /
+   */
   public String getLineName() {
   	return lineName;
   }
   
   /**
    * @return todayMeals
-   * /
+   */
   public ArrayList<MealData> getTodayMeals() {
   	return todayMeals;
   }
   
   /**
    * @param lineID the lineID to set
-   * /
+   */
   public void setLineID(Integer lineID) {
   	this.lineID = lineID;
   }
   
   /**
    * @param lineName the lineName to set
-   * /
+   */
   public void setLineName(String lineName) {
   	this.lineName = lineName;
   }
   
   /**
    * @param todayMeals the todayMeals to set
-   * /
+   */
   public void setTodayMeals(ArrayList<MealData> todayMeals) {
   	this.todayMeals = todayMeals;
   }
@@ -84,7 +84,7 @@ public class LineData implements Data {
 @Override
 /**
  * @see Data#generateJSON()
- * /
+ */
 public String generateJSON() {
 	Gson creator;
 	creator = new Gson();
@@ -94,7 +94,7 @@ public String generateJSON() {
 @Override
 /**
  * @see Data#createFromJSONText(String jsonString)
- * /
+ */
 public void createFromJSONText(String jsonString) {
 	Gson creator;
 	creator = new Gson();
@@ -107,7 +107,7 @@ public void createFromJSONText(String jsonString) {
 @Override
 /**
  * @see Data#writeFile()
- * /
+ */
 public void writeFile() {
 	String pathname = "resources/files/LineData/" + lineID + ".json";
 	PrintWriter writer;
@@ -123,7 +123,7 @@ public void writeFile() {
 @Override
 /**
  * @see Data#getJson()
- * /
+ */
 public JSONObject getJson() {
 	JSONObject object = null;
 	try {
