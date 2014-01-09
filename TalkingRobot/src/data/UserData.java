@@ -17,7 +17,7 @@ import com.google.gson.*;
 /**
  * 
  * @author Daniel Draper
- * @version 1.0
+ * @version 1.1
  * This Class represents the data for one user of the system. 
  * @see Data
  */
@@ -29,23 +29,25 @@ public class UserData implements Data {
   private ArrayList <RecipeDatePair>requestedRecipes;
   private ArrayList <MealDatePair> acceptedSuggestions;
   private Date lastAccess;
+  private String userPreference;
   private JSONObject userJSON;
 
   /**
    * Creates a new UserData object for a new User.
-   * @param userID ID of the new User
    * @param userName Name of the new User
    * @param isStudent if the new User is a Student.
    */
-  public UserData(int userID, String userName, boolean isStudent) {
-	  this.userID = userID;
+  public UserData(String userName, boolean isStudent) {
+	  this.userID = nextID();
 	  this.userName = userName;
 	  this.isStudent = isStudent;
 	  lastAccess = new Date();
 	  requestedRecipes = new ArrayList<RecipeDatePair>();
 	  acceptedSuggestions = new ArrayList<MealDatePair>();
+	  userPreference = null;
   }
   
+
 	@Override
     /**
      * @see Data#generateJSON()
@@ -70,6 +72,7 @@ public class UserData implements Data {
 		lastAccess =  newData.getLastAccess();
 		requestedRecipes = newData.getRequestedRecipes();
 		acceptedSuggestions = newData.getAcceptedSuggestions();
+		userPreference = newData.getUserPreference();
 	}
 		
 	@Override
@@ -100,6 +103,14 @@ public class UserData implements Data {
 		}
 		
 		return object;
+	}
+	
+	/**
+	 * @return the next unique ID
+	 */
+	private int nextID() {
+		File f = new File("resources/files/UserData/");
+		return f.listFiles().length;
 	}
 	
 	/**
@@ -150,6 +161,14 @@ public class UserData implements Data {
 	public void setUserID(Integer userID) {
 		this.userID = userID;
 	}
+	
+	/**
+	 * @return the User's preference
+	 */
+	public String getUserPreference() {
+		return userPreference;
+	}
+	
 	/**
 	 * @param userName the userName to set
 	 */
@@ -186,35 +205,50 @@ public class UserData implements Data {
 	public void setUserJSON(JSONObject userJSON) {
 		this.userJSON = userJSON;
 	}
-	
-	 
-	 /* Test:
-	    public static void main (String args[]) {
-	  	UserData u = new UserData(0, "Daniel", true);
-	  	ArrayList<RecipeDatePair> rd = u.getRequestedRecipes();
-	  	rd.add(new RecipeDatePair(new Date(), new RecipeData()));
-	  	u.setRequestedRecipes(rd);
-	  	u.writeFile();
-	  	Gson loader = new Gson();
-	  	BufferedReader br = null;
-	  	try {
-			br = new BufferedReader(new FileReader("resources/files/UserData/0.json"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	  	UserData read = null;
-	  		try {
-				read = loader.fromJson(br.readLine(), UserData.class);
-			} catch (JsonSyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
+	/**
+	 * @param userPreference the userPreference to set
+	 */
+	public void setUserPreference(String userPreference) {
+		this.userPreference = userPreference;
+	}
+
+	/**
+	 * This static method returns a List of all existing UserData files.
+	 * @return a list of all existing UserData files
+	 */
+	public static ArrayList <UserData> loadData() {
+		File load = new File("resources/files/UserData/");
+		Gson loader = new Gson();
+		ArrayList <UserData> res = new ArrayList <UserData>();
+		for (File f : load.listFiles()) {
+			BufferedReader br = null;
+			try {
+				br = new BufferedReader(new FileReader(f));
+			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-	  	System.out.println(read.getUserID());
-	  	System.out.println(read.getLastAccess());
-	  	System.out.println(read.getRequestedRecipes().get(0).toString());
+		  	UserData read = null;
+		  		try {
+					read = loader.fromJson(br.readLine(), UserData.class);
+				} catch (JsonSyntaxException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		  	res.add(read);
+		}
+		return res;
+	}
+
+	 
+
+	    /*Test: 
+	     * public static void main (String args[]) {
+	  	
+	  	System.out.println(UserData.loadData().get(0).getUserName());
+	  	System.out.println(UserData.loadData().get(0).getLastAccess());
+	  	System.out.println(UserData.loadData().get(0).getRequestedRecipes().get(0).toString());
 	  	
 	  	}*/
 	 
