@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -24,11 +25,10 @@ public class IngredientData implements Data {
 
 /**
  * constructs an ingredient  
- * @param id holds the ID of ingredient
  * @param name holds the name of ingredient
  */
-public IngredientData(int id, String name) {
-	this.ingredientID = id;
+public IngredientData(String name) {
+	this.ingredientID = nextID();
 	this.ingredientName = name;
 }
 
@@ -110,5 +110,25 @@ public JSONObject getIngredientJSON() {
 	return ingredientJSON;
 }
 
+/**
+ * A help method to get unique ID of the ingredient
+ * @return the unique ID of the ingredient
+ */
+private int nextID() {
+	File f = new File("resources/files/IngredientData/");
+	return f.listFiles().length;
+}
+
+public void setIngredientID(Integer ingredientID) {
+	this.ingredientID = ingredientID;
+}
+
+public void setIngredientName(String ingredientName) {
+	this.ingredientName = ingredientName;
+}
+
+public void setIngredientJSON(JSONObject ingredientJSON) {
+	this.ingredientJSON = ingredientJSON;
+}
 
 }
