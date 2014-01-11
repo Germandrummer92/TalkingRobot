@@ -7,14 +7,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.google.gson.*;
 
-
+/**
+ * This class represents the data which should be stored for the robot.
+ * 	@author Aleksandar Andonov
+ *	@version 1.0
+ * 
+ */
 public class RobotData implements Data {
 	private int robotID;
 	private String robotName;
 	private boolean isInKitchen; 
 	
-	public RobotData(int robotID, String robotName, boolean isInKitchen) {
-		this.robotID = robotID;
+	/**
+	 * Creates a new RobotData object with the given name and information
+	 * if the robot is in the kitchen.
+	 * @param robotName the name of the robot
+	 * @param isInKitchen true if the robot is in the kitchen
+	 */
+	public RobotData(String robotName, boolean isInKitchen) {
 		this.isInKitchen = isInKitchen;
 		this.robotName = robotName;
 	}
@@ -25,6 +35,9 @@ public class RobotData implements Data {
 	}
 	
 	@Override
+	 /**
+     * @see Data#generateJSON()
+     */
 	public String generateJSON() {
 		Gson creator; 
 		creator = new Gson();
@@ -32,6 +45,9 @@ public class RobotData implements Data {
 	}
 	
 	@Override
+	/**
+	 * @see Data#createFromJSONText(String jsonString)
+	 */
 	public void createFromJSONText(String jsonString) {
 		Gson creator; 
 		creator = new Gson();
@@ -42,6 +58,9 @@ public class RobotData implements Data {
 	}
 	
 	@Override
+	/**
+	 * @see Data#writeFile()
+	 */
 	public void writeFile() {
 		String pathname = "resources/files/RobotData/" + robotID + ".json";
 		PrintWriter writer;
@@ -55,6 +74,9 @@ public class RobotData implements Data {
 	}
 	
 	@Override
+	/**
+	 * @see Data#getJson()
+	 */
 	public JSONObject getJson() {
 		JSONObject object = null;
 		try {

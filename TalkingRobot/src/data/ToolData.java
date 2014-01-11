@@ -10,6 +10,11 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
+/**
+ * This class represents the data which the system should save about every tool.
+ * @author Aleksandar Andonov
+ * @version 1.0
+ */
 public class ToolData implements Data {
 
   private int toolID;
@@ -18,15 +23,23 @@ public class ToolData implements Data {
 
   private String location;
 
-  private ArrayList <RecipeData> recipes;
+  private ArrayList <RecipeData> recipes; //the recipes where this tool is used
   
-  public ToolData(String toolName, String location, ArrayList<RecipeData> recipes) {
+  /**
+   * Creates a new ToolData object with the given name abd location.
+   * @param toolName
+   * @param location
+   * @param recipes
+   */
+  public ToolData(String toolName, String location) {
 	  this.toolName = toolName;
 	  this.location = location;
-	  this.recipes = recipes;
   }
 
 	@Override
+	/**
+     * @see Data#generateJSON()
+     */
 	public String generateJSON() {
 		Gson creator; 
 		creator = new Gson();
@@ -34,6 +47,9 @@ public class ToolData implements Data {
 	}
 	
 	@Override
+	 /**
+     * @see Data#createFromJSONText()
+     */
 	public void createFromJSONText(String jsonString) {
 		Gson creator; 
 		creator = new Gson();
@@ -45,6 +61,9 @@ public class ToolData implements Data {
 	}
 	
 	@Override
+	/**
+     * @see Data#writeFile()
+     */
 	public void writeFile() {
 		String pathname = "resources/files/RobotData/" + toolID + ".json";
 		PrintWriter writer;
@@ -58,6 +77,9 @@ public class ToolData implements Data {
 	}
 	
 	@Override
+	/**
+     * @see Data#getJSON()
+     */
 	public JSONObject getJson() {
 		JSONObject object = null;
 		try {
