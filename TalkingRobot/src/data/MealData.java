@@ -92,6 +92,14 @@ public class MealData implements Data {
         }
         
         /**
+         * @return the next unique ID
+         */
+        private int nextID() {
+                File f = new File("resources/files/MealData/");
+                return f.listFiles().length;
+        }
+        
+        /**
 	* @return the mealID
 	*/
         public Integer getMealID() {
