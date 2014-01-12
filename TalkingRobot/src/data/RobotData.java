@@ -1,4 +1,5 @@
 package data;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -27,12 +28,16 @@ public class RobotData implements Data {
 	public RobotData(String robotName, boolean isInKitchen) {
 		this.isInKitchen = isInKitchen;
 		this.robotName = robotName;
+		robotID = nextID();
 	}
 	
-	//Should this be private?
-	public RobotData() {
-		
-	}
+	 /**
+	   * Create the object directly from a jsonString
+	   * @param jsonString
+	   */
+	public RobotData(String jsonString) {
+		this.createFromJSONText(jsonString);
+	 }
 	
 	@Override
 	 /**
@@ -112,5 +117,11 @@ public class RobotData implements Data {
 		this.isInKitchen = isInKitchen;
 	}
 	
-	
+	/**
+	 * @return the next unique ID
+	 */
+	private int nextID() {
+		File f = new File("resources/files/UserData/");
+		return f.listFiles().length;
+	}
 }

@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -27,13 +28,24 @@ public class ToolData implements Data {
   
   /**
    * Creates a new ToolData object with the given name abd location.
-   * @param toolName
-   * @param location
-   * @param recipes
+   * @param toolName the name of the tool
+   * @param location the locaton of the tool
+   * @param recipes the recipes where this tool is used
    */
-  public ToolData(String toolName, String location) {
+  public ToolData(String toolName, String location, ArrayList<RecipeData> recipes) {
 	  this.toolName = toolName;
 	  this.location = location;
+	  this.recipes = recipes;
+	  toolID = nextID();
+
+  }
+  
+  /**
+   * Create the object directly from a jsonString
+   * @param jsonString
+   */
+  public ToolData(String jsonString) {
+	  this.createFromJSONText(jsonString);
   }
 
 	@Override
@@ -123,7 +135,11 @@ public void setRecipes(ArrayList<RecipeData> recipes) {
 	this.recipes = recipes;
 }
 
-
-
-
+/**
+ * @return the next unique ID
+ */
+private int nextID() {
+	File f = new File("resources/files/UserData/");
+	return f.listFiles().length;
+}
 }
