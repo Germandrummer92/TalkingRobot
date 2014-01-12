@@ -94,6 +94,14 @@ public class CanteenData implements Data {
 	        }
 	        return object;
 	}
+	
+	/**
+         * @return the next unique ID
+         */
+        private int nextID() {
+                File f = new File("resources/files/CanteenData/");
+                return f.listFiles().length;
+        }
 
 	/**
          * @return the canteenID
