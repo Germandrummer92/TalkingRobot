@@ -77,7 +77,7 @@ public class ToolData implements Data {
      * @see Data#writeFile()
      */
 	public void writeFile() {
-		String pathname = "resources/files/RobotData/" + toolID + ".json";
+		String pathname = "resources/files/ToolData/" + toolID + ".json";
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(pathname, "UTF-8");
@@ -181,7 +181,7 @@ public boolean equals(Object obj) {
  * @return the next unique ID
  */
 private int nextID() {
-	File f = new File("resources/files/UserData/");
+	File f = new File("resources/files/ToolData/");
 	return f.listFiles().length;
 }
 }

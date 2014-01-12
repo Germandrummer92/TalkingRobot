@@ -12,6 +12,7 @@ public class RobotDataComponentTest extends DataComponentTest {
 	public static void setUpBeforeClass() throws Exception {
 		testData = new RobotData("harry potter", true);
 		testDataPath = "resources/files/RobotData/";
+		testDataClone = new RobotData(testData.generateJSON());
 	}
 	
 	@AfterClass
