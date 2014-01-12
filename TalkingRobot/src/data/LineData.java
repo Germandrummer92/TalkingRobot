@@ -135,4 +135,12 @@ public JSONObject getJson() {
 	return object;
 }
 
+/**
+         * @return the next unique ID
+         */
+        private int nextID() {
+                File f = new File("resources/files/LineData/");
+                return f.listFiles().length;
+        }
+
 }
