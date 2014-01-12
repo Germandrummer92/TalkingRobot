@@ -47,7 +47,13 @@ public class UserData implements Data {
 	  userPreference = null;
   }
   
-
+  /**
+   * Create the object directly from a jsonString
+   * @param jsonString
+   */
+  public UserData(String jsonString) {
+	  this.createFromJSONText(jsonString);
+  }
 	@Override
     /**
      * @see Data#generateJSON()
@@ -213,6 +219,28 @@ public class UserData implements Data {
 		this.userPreference = userPreference;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (this.getClass() != obj.getClass()) {
+			return false;
+		}
+		UserData other = (UserData) obj;
+		if (userID == other.getUserID() && userName == other.getUserName() 
+				&& isStudent == other.isStudent() && lastAccess.equals(other.getLastAccess())
+				&& userPreference == other.getUserPreference() && requestedRecipes.equals(other.getRequestedRecipes()) 
+				&& acceptedSuggestions.equals(other.getAcceptedSuggestions())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	/**
 	 * This static method returns a List of all existing UserData files.
 	 * @return a list of all existing UserData files

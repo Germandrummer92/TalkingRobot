@@ -15,7 +15,7 @@ public abstract class DataComponentTest {
 	 * test if the two objects are identical.
 	 */
 	@Test
-	public void testRobotData() {
+	public void testData() {
 		testData.writeFile();
 		assertTrue(testData.equals(testDataClone));
 	}
