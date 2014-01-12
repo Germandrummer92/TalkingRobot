@@ -135,6 +135,48 @@ public void setRecipes(ArrayList<RecipeData> recipes) {
 	this.recipes = recipes;
 }
 
+
+
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((location == null) ? 0 : location.hashCode());
+	result = prime * result + ((recipes == null) ? 0 : recipes.hashCode());
+	result = prime * result + toolID;
+	result = prime * result + ((toolName == null) ? 0 : toolName.hashCode());
+	return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	ToolData other = (ToolData) obj;
+	if (location == null) {
+		if (other.location != null)
+			return false;
+	} else if (!location.equals(other.location))
+		return false;
+	if (recipes == null) {
+		if (other.recipes != null)
+			return false;
+	} else if (!recipes.equals(other.recipes))
+		return false;
+	if (toolID != other.toolID)
+		return false;
+	if (toolName == null) {
+		if (other.toolName != null)
+			return false;
+	} else if (!toolName.equals(other.toolName))
+		return false;
+	return true;
+}
+
 /**
  * @return the next unique ID
  */

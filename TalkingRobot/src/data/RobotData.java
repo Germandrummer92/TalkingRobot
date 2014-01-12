@@ -117,11 +117,44 @@ public class RobotData implements Data {
 		this.isInKitchen = isInKitchen;
 	}
 	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (isInKitchen ? 1231 : 1237);
+		result = prime * result + robotID;
+		result = prime * result
+				+ ((robotName == null) ? 0 : robotName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RobotData other = (RobotData) obj;
+		if (isInKitchen != other.isInKitchen)
+			return false;
+		if (robotID != other.robotID)
+			return false;
+		if (robotName == null) {
+			if (other.robotName != null)
+				return false;
+		} else if (!robotName.equals(other.robotName))
+			return false;
+		return true;
+	}
+
 	/**
 	 * @return the next unique ID
 	 */
 	private int nextID() {
-		File f = new File("resources/files/UserData/");
+		File f = new File("resources/files/RobotData/");
 		return f.listFiles().length;
 	}
 }
