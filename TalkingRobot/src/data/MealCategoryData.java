@@ -114,4 +114,12 @@ public JSONObject getJson() {
         return object;
 }
 
+/**
+         * @return the next unique ID
+         */
+        private int nextID() {
+                File f = new File("resources/files/MealCategoryData/");
+                return f.listFiles().length;
+        }
+
 }
