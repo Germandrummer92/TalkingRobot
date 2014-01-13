@@ -126,4 +126,24 @@ public void setIngredientName(String ingredientName) {
 	this.ingredientName = ingredientName;
 }
 
+@Override
+public boolean equals(Object obj) {
+	if (obj == null) {
+		return false;
+	}
+	if (this == obj) {
+		return true;
+	}
+	
+	if (obj.getClass() != this.getClass()) {
+		return false;
+	}
+	
+	IngredientData other = (IngredientData) obj;
+	
+	if (this.ingredientID == other.getIngredientID() 
+			&& this.ingredientName == other.getIngredientName()) {
+		return true;
+	} else return false;
+}
 }
