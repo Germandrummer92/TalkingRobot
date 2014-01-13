@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import org.json.JSONException;
@@ -184,10 +185,15 @@ public class RecipeData implements Data {
 	 * id numeration.
 	 */
 	public void deleteFile() {
-
+		String dirPath = "resources/files/RecipeData/" + recipeID + ".json";
+		File currFile = new File(dirPath + recipeID + ".json");
+		if (!currFile.exists()) {
+			return; //there is nothing to delete
+		}
+		
 		String jsonString = ""; //the json String representation of the last File
 		RecipeData lastRecipeData;
-		File f = new File("resources/files/RecipeData/");
+		File f = new File(dirPath);
 		int lastID = f.listFiles().length - 1; //with 2 files, last ID 1 -> -1
 		File lastFile = new File("resources/files/RecipeData/" + lastID + ".json");
 		try {
@@ -273,11 +279,13 @@ public class RecipeData implements Data {
 		File f = new File("resources/files/RecipeData/");
 		return f.listFiles().length;
 	}
-	/* TEST:
+	/* //TEST:
 	public static void main (String args[]) {
 	  	
 	  	RecipeData spags = new RecipeData("spags", null, null, null, null, "Italy", null);
-		spags.writeFile();
+		//spags.writeFile();
+	  	//File newFile = new File("resources/files/RecipeData/0.json");
+	  	//System.out.println(newFile.exists());
 		RecipeData reis = new RecipeData("rice", null, null, null, null, "China", null);
 		reis.writeFile();
 		
