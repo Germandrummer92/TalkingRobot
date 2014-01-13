@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -21,7 +22,6 @@ public class MealData implements Data {
 	private String mealName;
 	private MealCategoryData mealCategory;
 	private Float price;
-	private JSONObject mealJSON;
 	
 	/**
         * Creates a new MealData object.
@@ -30,13 +30,21 @@ public class MealData implements Data {
         * @param mealCategory mealCategory of the new Meal
         * @param price Price of the new Meal
         */
-	public MealData(int mealID, String mealName, MealCategoryData mealCategory, float price) {
-		this.mealID = mealID;
+	public MealData(String mealName, MealCategoryData mealCategory, float price) {
+		this.mealID = nextID();
 		this.mealName = mealName;
 		this.mealCategory = mealCategory;
 		this.price = price;
 	}
 
+	 /**
+		 *  Create the object directly from a jsonString
+		 * @param jsonString the json String
+		 */
+		public MealData(String jsonString) {
+			this.createFromJSONText(jsonString);
+		}
+		
 	@Override
 	/**
         * @see Data#generateJSON()
@@ -153,13 +161,6 @@ public class MealData implements Data {
 	*/
         public void setPrice (float price) {
                 this.price = price;
-        }
-        
-        /**
-	* @param mealJSON the mealJSON to set
-	*/
-        public void setJSON (JSONObject mealJSON) {
-                this.mealJSON = mealJSON;
         }
 
 }

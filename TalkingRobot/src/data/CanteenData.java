@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -23,7 +24,6 @@ public class CanteenData implements Data {
   	private String canteenName;
 	private String address;
   	private ArrayList<LineData> lines;
-	private JSONObject canteenJSON;
   
   
 	/**
@@ -33,13 +33,16 @@ public class CanteenData implements Data {
 	* @param address Adress of the new Canteen
 	* @param lines Lines of the new Canteen
 	*/
-	public CanteenData(int canteenID, String canteenName, String address, ArrayList<LineData> lines) {
-		this.canteenID = canteenID;
+	public CanteenData(String canteenName, String address, ArrayList<LineData> lines) {
+		this.canteenID = nextID();
 		this.canteenName = canteenName;
 		this.address = address;
 		this.lines = lines;
 	}
-
+	
+	public CanteenData(String jsonString) {
+		this.createFromJSONText(jsonString);
+	}
 
 	@Override
 	 /**
@@ -159,10 +162,4 @@ public class CanteenData implements Data {
 		this.lines = lines;
 	}
 	
-	/**
-         * @param canteenJSON the canteenJSON to set
-         */
-	public void setJSON (JSONObject canteenJSON) {
-		this.canteenJSON = canteenJSON;
-	}
 }

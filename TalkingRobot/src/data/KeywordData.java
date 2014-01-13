@@ -1,4 +1,5 @@
 package data;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -20,17 +21,31 @@ import dm.DialogState;
  */
 public class KeywordData implements Data {
 
-	private Integer wordID;
+	private int wordID;
 
   	private String word;
 
   	private DialogState dialogState;
 
-  	private JSONObject keywordJSON;
-
-  	private Integer priority;
+  	private int priority;
 
   	private Data dataReference;
+  	
+  	public KeywordData(String word, DialogState state, int priority, Data dataRef) {
+  		wordID = nextID();
+  		this.word = word;
+  		this.dialogState = state;
+  		this.priority = priority;
+  		this.dataReference = dataRef;
+  	}
+  	
+  	/**
+  	 *  Create the object directly from a jsonString
+  	 * @param jsonString the json String
+  	 */
+  	public KeywordData(String jsonString) {
+  		this.createFromJSONText(jsonString);
+  	}
 
 	@Override
 	public String generateJSON() {
@@ -125,22 +140,6 @@ public class KeywordData implements Data {
 	
 	/**
 	 * 
-	 * @return the Keyword's JSONObject.
-	 */
-	public JSONObject getKeywordJSON() {
-		return keywordJSON;
-	}
-	
-	/**
-	 * 
-	 * @param keywordJSON the Keyword's JSONObject to be set.
-	 */
-	public void setKeywordJSON(JSONObject keywordJSON) {
-		this.keywordJSON = keywordJSON;
-	}
-	
-	/**
-	 * 
 	 * @return the keyword's priority.
 	 */
 	public Integer getPriority() {
@@ -166,6 +165,14 @@ public class KeywordData implements Data {
 	 */
 	public void setDataReference(Data dataReference) {
 		this.dataReference = dataReference;
+	}
+	
+	/**
+	 * @return the next unique ID
+	 */
+	private int nextID() {
+		File f = new File("resources/files/KeywordData/");
+		return f.listFiles().length;
 	}
 
 }

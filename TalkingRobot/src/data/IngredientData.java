@@ -21,8 +21,6 @@ public class IngredientData implements Data {
 
   private String ingredientName;
 
-  private JSONObject ingredientJSON;
-
 /**
  * constructs an ingredient  
  * @param name holds the name of ingredient
@@ -30,6 +28,15 @@ public class IngredientData implements Data {
 public IngredientData(String name) {
 	this.ingredientID = nextID();
 	this.ingredientName = name;
+}
+
+/**
+ *  Create the object directly from a jsonString
+ * @param jsonString the json String
+ * @param constNum to differ from constructor one, type any int
+ */
+public IngredientData(String jsonString, int constNum) {
+	this.createFromJSONText(jsonString);
 }
 
 @Override
@@ -103,14 +110,6 @@ public String getIngredientName() {
 }
 
 /**
- * to get JSON data of the ingredient
- * @return JSON data of the ingredient
- */
-public JSONObject getIngredientJSON() {
-	return ingredientJSON;
-}
-
-/**
  * A help method to get unique ID of the ingredient
  * @return the unique ID of the ingredient
  */
@@ -125,10 +124,6 @@ public void setIngredientID(Integer ingredientID) {
 
 public void setIngredientName(String ingredientName) {
 	this.ingredientName = ingredientName;
-}
-
-public void setIngredientJSON(JSONObject ingredientJSON) {
-	this.ingredientJSON = ingredientJSON;
 }
 
 }

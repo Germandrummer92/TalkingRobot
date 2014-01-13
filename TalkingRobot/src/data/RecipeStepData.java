@@ -24,8 +24,6 @@ public class RecipeStepData implements Data {
 
   private ArrayList<IngredientData> ingredients;
 
-  private JSONObject stepJSON;
-
 /**
  * The constructor constructs the class with one parameter
  * @param descri description of a recipe step
@@ -141,20 +139,6 @@ public ArrayList<IngredientData> getIngredients() {
  */
 public void setIngredients(ArrayList<IngredientData> ingredients) {
 	this.ingredients = ingredients;
-}
-
-/**
- * @return the JSON object of this step
- */
-public JSONObject getStepJSON() {
-	return stepJSON;
-}
-
-/**
- * @param stepJSON the JSON object of this step
- */
-public void setStepJSON(JSONObject stepJSON) {
-	this.stepJSON = stepJSON;
 }
 
 }

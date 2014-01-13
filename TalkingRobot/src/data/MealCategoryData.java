@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -22,16 +23,23 @@ public class MealCategoryData implements Data {
 
   private String mealCategoryName;
 
-  private JSONObject mealCategoryJSON;
-
 /**
  * creates a new MealCategoryData object.
  * @param mealCategoryID the ID of the relevant mealCategory
  * @param mealCategoryName the name of a meal's category
  */
-public MealCategoryData(Integer mealCategoryID, String mealCategoryName) {
-	this.mealCategoryID = mealCategoryID;
+public MealCategoryData(String mealCategoryName) {
+	this.mealCategoryID = nextID();
 	this.mealCategoryName = mealCategoryName;
+}
+
+/**
+ *  Create the object directly from a jsonString
+ * @param jsonString the json String
+ * @param constNum to differ from constructor one, type any int
+ */
+public MealCategoryData(String jsonString, int constNum) {
+	this.createFromJSONText(jsonString);
 }
 
 /**

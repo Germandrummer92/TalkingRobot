@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -19,14 +20,11 @@ import com.google.gson.*;
 
 public class LineData implements Data {
 
-  private Integer lineID;
+  private int lineID;
 
   private String lineName;
 
   private ArrayList<MealData> todayMeals;
-
-  private JSONObject lineJSON;
-
 
   /**
    * Creates a new LineData object.
@@ -34,11 +32,19 @@ public class LineData implements Data {
    * @param lineName the name of the line.
    * @param todayMeals the meals offered at that day at the relevant line.
    */
-  public LineData(Integer lineID, String lineName, ArrayList<MealData> todayMeals) {
-  	this.lineID = lineID;
+  public LineData(String lineName, ArrayList<MealData> todayMeals) {
+  	this.lineID = nextID();
   	this.lineName = lineName;
   	this.todayMeals = todayMeals;
   }
+  
+  /**
+	 *  Create the object directly from a jsonString
+	 * @param jsonString the json String
+	 */
+	public LineData(String jsonString) {
+		this.createFromJSONText(jsonString);
+	}
   
   /**
    * @return lineID
