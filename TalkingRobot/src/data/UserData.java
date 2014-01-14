@@ -218,9 +218,8 @@ public class UserData implements Data {
 	public void setUserPreference(String userPreference) {
 		this.userPreference = userPreference;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
+/*
+	public boolean equal(Object obj) {
 		if (obj == this) {
 			return true;
 		}
@@ -241,6 +240,44 @@ public class UserData implements Data {
 			return false;
 		}
 	}
+*/	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserData other = (UserData) obj;
+		if (acceptedSuggestions == null) {
+			if (other.acceptedSuggestions != null)
+				return false;
+		} else if (!acceptedSuggestions.equals(other.acceptedSuggestions))
+			return false;
+		if (isStudent != other.isStudent)
+			return false;
+		if (requestedRecipes == null) {
+			if (other.requestedRecipes != null)
+				return false;
+		} else if (!requestedRecipes.equals(other.requestedRecipes))
+			return false;
+		if (userID != other.userID)
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		if (userPreference == null) {
+			if (other.userPreference != null)
+				return false;
+		} else if (!userPreference.equals(other.userPreference))
+			return false;
+		return true;
+	}
+
 	/**
 	 * This static method returns a List of all existing UserData files.
 	 * @return a list of all existing UserData files
