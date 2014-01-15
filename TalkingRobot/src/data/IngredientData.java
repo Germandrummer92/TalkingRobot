@@ -146,4 +146,16 @@ public boolean equals(Object obj) {
 		return true;
 	} else return false;
 }
+
+/*
+public static void main (String args[]) {
+  	
+  	IngredientData salt = new IngredientData("salt");
+	
+  	salt.writeFile();
+  	
+  	File newFile = new File("resources/files/IngredientData/0.json");
+  	System.out.println(newFile.exists());
+  	}
+*/
 }
