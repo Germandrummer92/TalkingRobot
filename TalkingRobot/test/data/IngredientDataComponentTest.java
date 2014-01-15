@@ -10,7 +10,7 @@ public class IngredientDataComponentTest extends DataComponentTest{
 	public static void setUpBeforeClass() throws Exception {
 		testData = new IngredientData("salt");
 		testDataPath = "resources/files/IngredinetData/";
-		testDataClone = new IngredientData(testData.generateJSON());
+		testDataClone = new IngredientData(testData.generateJSON(), 2);
 	}
 	
 	@AfterClass

@@ -125,7 +125,7 @@ public void setIngredientID(Integer ingredientID) {
 public void setIngredientName(String ingredientName) {
 	this.ingredientName = ingredientName;
 }
-
+/*
 @Override
 public boolean equals(Object obj) {
 	if (obj == null) {
@@ -146,6 +146,31 @@ public boolean equals(Object obj) {
 		return true;
 	} else return false;
 }
+*/
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	IngredientData other = (IngredientData) obj;
+	if (ingredientID == null) {
+		if (other.ingredientID != null)
+			return false;
+	} else if (!ingredientID.equals(other.ingredientID))
+		return false;
+	if (ingredientName == null) {
+		if (other.ingredientName != null)
+			return false;
+	} else if (!ingredientName.equals(other.ingredientName))
+		return false;
+	return true;
+}
+
+
 
 
 }
