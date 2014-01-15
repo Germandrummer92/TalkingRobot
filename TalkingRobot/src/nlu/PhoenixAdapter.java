@@ -1,5 +1,7 @@
 package nlu;
 
+import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PhoenixAdapter {
@@ -7,7 +9,7 @@ public class PhoenixAdapter {
   private File frames;
 
           
-  public List<String> operatePhoenix(File grammarFile) {
+  public LinkedList<String> operatePhoenix(File grammarFile) {
   return null;
   }
 
