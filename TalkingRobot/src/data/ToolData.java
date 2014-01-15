@@ -1,7 +1,10 @@
 package data;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * This class represents the data which the system should save about every tool.
@@ -175,6 +179,34 @@ public boolean equals(Object obj) {
 	} else if (!toolName.equals(other.toolName))
 		return false;
 	return true;
+}
+
+/**
+ * This static method returns a List of all existing ToolData files.
+ * @return a list of all existing ToolData files
+ */
+public static ArrayList <ToolData> loadData() {
+	File load = new File("resources/files/ToolData/");
+	Gson loader = new Gson();
+	ArrayList <ToolData> res = new ArrayList <ToolData>();
+	for (File f : load.listFiles()) {
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(f));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	  	ToolData read = null;
+	  		try {
+				read = loader.fromJson(br.readLine(), ToolData.class);
+			} catch (JsonSyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	  	res.add(read);
+	}
+	return res;
 }
 
 /**

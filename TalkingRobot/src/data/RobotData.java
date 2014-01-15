@@ -1,8 +1,12 @@
 package data;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -150,6 +154,34 @@ public class RobotData implements Data {
 		return true;
 	}
 
+	/**
+	 * This static method returns a List of all existing RobotData files.
+	 * @return a list of all existing RobotData files
+	 */
+	public static ArrayList <RobotData> loadData() {
+		File load = new File("resources/files/RobotData/");
+		Gson loader = new Gson();
+		ArrayList <RobotData> res = new ArrayList <RobotData>();
+		for (File f : load.listFiles()) {
+			BufferedReader br = null;
+			try {
+				br = new BufferedReader(new FileReader(f));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		  	RobotData read = null;
+		  		try {
+					read = loader.fromJson(br.readLine(), RobotData.class);
+				} catch (JsonSyntaxException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		  	res.add(read);
+		}
+		return res;
+	}
+	
 	/**
 	 * @return the next unique ID
 	 */

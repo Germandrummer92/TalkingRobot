@@ -1,14 +1,19 @@
 package data;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * @author Xizhe Lian
@@ -109,15 +114,6 @@ public String getIngredientName() {
 	return ingredientName;
 }
 
-/**
- * A help method to get unique ID of the ingredient
- * @return the unique ID of the ingredient
- */
-private int nextID() {
-	File f = new File("resources/files/IngredientData/");
-	return f.listFiles().length;
-}
-
 public void setIngredientID(Integer ingredientID) {
 	this.ingredientID = ingredientID;
 }
@@ -171,6 +167,42 @@ public boolean equals(Object obj) {
 }
 
 
+/**
+ * This static method returns a List of all existing IngredientData files.
+ * @return a list of all existing IngredientData files
+ */
+public static ArrayList <IngredientData> loadData() {
+	File load = new File("resources/files/IngredientData/");
+	Gson loader = new Gson();
+	ArrayList <IngredientData> res = new ArrayList <IngredientData>();
+	for (File f : load.listFiles()) {
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(f));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	  	IngredientData read = null;
+	  		try {
+				read = loader.fromJson(br.readLine(), IngredientData.class);
+			} catch (JsonSyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	  	res.add(read);
+	}
+	return res;
+}
+
+/**
+ * A help method to get unique ID of the ingredient
+ * @return the unique ID of the ingredient
+ */
+private int nextID() {
+	File f = new File("resources/files/IngredientData/");
+	return f.listFiles().length;
+}
 
 
 }

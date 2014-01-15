@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * 
@@ -271,6 +272,35 @@ public class RecipeData implements Data {
 		return true;
 	}
 
+	
+	/**
+	 * This static method returns a List of all existing RecipeData files.
+	 * @return a list of all existing RecipeData files
+	 */
+	public static ArrayList <RecipeData> loadData() {
+		File load = new File("resources/files/RecipeData/");
+		Gson loader = new Gson();
+		ArrayList <RecipeData> res = new ArrayList <RecipeData>();
+		for (File f : load.listFiles()) {
+			BufferedReader br = null;
+			try {
+				br = new BufferedReader(new FileReader(f));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		  	RecipeData read = null;
+		  		try {
+					read = loader.fromJson(br.readLine(), RecipeData.class);
+				} catch (JsonSyntaxException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		  	res.add(read);
+		}
+		return res;
+	}
+	
 	/**
 	 * @return the next unique ID
 	 */
