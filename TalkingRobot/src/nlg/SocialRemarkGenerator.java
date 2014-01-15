@@ -7,7 +7,9 @@ public class SocialRemarkGenerator extends Generator {
 
 @Override
 public String generateSentence(List<Phrase> phrases) {
-	// TODO Auto-generated method stub
+	
+	//TODO call simpleNLG
+	
 	return null;
 }
 

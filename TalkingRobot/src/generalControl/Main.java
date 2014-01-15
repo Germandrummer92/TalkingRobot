@@ -37,4 +37,15 @@ public class Main {
   return null;
   }
 
+  public DialogState getDmResult() {
+	  return dmResult;
+  }
+
+  	public String getNlgResult() {
+  		return nlgResult;
+  	}
+
+  	public void setNlgResult(String nlgResult) {
+  		this.nlgResult = nlgResult;
+  	}
 }

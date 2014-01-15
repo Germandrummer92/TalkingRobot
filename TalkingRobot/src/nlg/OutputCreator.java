@@ -14,15 +14,27 @@ public class OutputCreator {
   private SocialComponent socialComponent;
   
   public String createOutput(DialogState dialogState) {
-  return null;
+	  
+	  Phrase phrase = getOutputKeyword(dialogState);
+	  //TODO Check for SocialComponent (if yes, addSocialComponent())
+	  
+	  return null;
   }
 
   private Phrase getOutputKeyword(DialogState dialogState) {
-  return null;
+	  String keyword = dialogState.getOutputKeyword();
+	  //TODO String to Phrase
+	  
+	  return null;
   }
 
   private String addSocialComponent(DialogState dialogState) {
-  return null;
+	  String keyword = dialogState.getOutputKeyword();
+	  ///TODO Sth
+	  Phrase phrase = this.getOutputKeyword(dialogState);
+	  String socialRemark = socialComponent.createSocialRemark(phrase);
+	  
+  return socialRemark;
   }
 
 }
