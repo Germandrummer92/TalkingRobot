@@ -278,11 +278,11 @@ public class RecipeData implements Data {
 		File f = new File("resources/files/RecipeData/");
 		return f.listFiles().length;
 	}
-	/* //TEST:
+	/*//TEST:
 	public static void main (String args[]) {
 	  	
 	  	RecipeData spags = new RecipeData("spags", null, null, null, null, "Italy", null);
-		//spags.writeFile();
+		spags.writeFile();
 	  	//File newFile = new File("resources/files/RecipeData/0.json");
 	  	//System.out.println(newFile.exists());
 		RecipeData reis = new RecipeData("rice", null, null, null, null, "China", null);
@@ -290,5 +290,5 @@ public class RecipeData implements Data {
 		
 		spags.deleteFile();
 	  	}
-	*/	
+	*/
 }

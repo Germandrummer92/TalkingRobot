@@ -134,28 +134,18 @@ public boolean equals(Object obj) {
 	if (this == obj) {
 		return true;
 	}
-	
+	 
 	if (obj.getClass() != this.getClass()) {
 		return false;
 	}
 	
 	IngredientData other = (IngredientData) obj;
 	
-	if (this.ingredientID == other.getIngredientID() 
-			&& this.ingredientName == other.getIngredientName()) {
+	if ((this.ingredientID == other.getIngredientID())
+			&& (this.ingredientName == other.getIngredientName())) {
 		return true;
 	} else return false;
 }
 
-/*
-public static void main (String args[]) {
-  	
-  	IngredientData salt = new IngredientData("salt");
-	
-  	salt.writeFile();
-  	
-  	File newFile = new File("resources/files/IngredientData/0.json");
-  	System.out.println(newFile.exists());
-  	}
-*/
+
 }
