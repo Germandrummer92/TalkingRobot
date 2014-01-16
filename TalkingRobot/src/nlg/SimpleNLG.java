@@ -10,7 +10,7 @@ import simplenlg.features.*;
 /**
  * 
  * @author Xizhe Lian, Luiz Henrique. Soares Silva
- * @version 1.1
+ * @version 1.0
  *
  */
 public class SimpleNLG {

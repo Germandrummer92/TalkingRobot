@@ -1,4 +1,4 @@
-package nlu;
+package nlg;
 
 import java.util.List;
 
