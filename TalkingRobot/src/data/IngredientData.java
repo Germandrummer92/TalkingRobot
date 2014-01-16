@@ -17,7 +17,7 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author Xizhe Lian
- * @version 1.0
+ * @version 1.1
  * This class represents the data for an ingredient 
  */
 public class IngredientData implements Data {
