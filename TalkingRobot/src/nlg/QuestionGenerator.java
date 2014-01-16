@@ -9,7 +9,7 @@ public class QuestionGenerator extends Generator {
 
 @Override
 public String generateSentence(List<Phrase> phrases) {
-	// TODO Auto-generated method stub
+	
 	return null;
 }
 
