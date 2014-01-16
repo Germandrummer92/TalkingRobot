@@ -4,47 +4,51 @@ package nlg;
 import simplenlg.framework.*;
 import simplenlg.lexicon.*;
 import simplenlg.realiser.english.*;
-import simplenlg.phrasespec.*;
-import simplenlg.features.*;
 
 
 /**
+ * Class SimpleNLG is a Singleton. Gives access to further features of the library simplenlg.
  * 
- * @author Xizhe Lian, Luiz Henrique. Soares Silva
- * @version 1.0
+ * @author Xizhe Lian, Luiz Henrique Soares Silva
+ * @version 1.1
  *
  */
 public class SimpleNLG {
 
-  //private Lexicon lexicon;
+  private Lexicon lexicon;
 
-  //private NLGFactory nlgFactory; 
+  private NLGFactory nlgFactory; 
 
-  //private Realiser realiser; 
-  
-  //alle 3 nicht im Klassendiagramm 
+  private Realiser realiser; 
 
-  private SimpleNLG uniqueSimpleNLG;
+  private static SimpleNLG uniqueSimpleNLG;
 
- /**
-  * ich dachte hier sollte ne konstruktor sein oder? Xixi   
-  * sollen wir mit attributen machen oder eher so?
+  /**
+  * Private constructor assures that no other class will create a new instance of SimpleNLG 
   */
   private SimpleNLG() {
-	  Lexicon lexicon = Lexicon.getDefaultLexicon();
-      NLGFactory nlgFactory = new NLGFactory(lexicon);
-      Realiser realiser = new Realiser(lexicon);
+	  this.lexicon = Lexicon.getDefaultLexicon();
+	  this.nlgFactory = new NLGFactory(lexicon);
+      this.realiser = new Realiser(lexicon);
   }
 
   /**
-   * singleton method, ensure that just one simpleNlg available to be used
+   * Singleton method ensures that only one SimpleNLG (Singleton) exists.
    * @return the uniqueSimpleNLG
    */
-  public SimpleNLG getSimpleNLG() {
+  public static SimpleNLG getSimpleNLG() {
 	  if (uniqueSimpleNLG == null) {
 		  uniqueSimpleNLG = new SimpleNLG();
 	  }
 	  return uniqueSimpleNLG;
+  }
+  
+  public Realiser getRealiser() {
+	  return this.realiser;
+  }
+  
+  public NLGFactory getNlgFactory() {
+	  return this.nlgFactory;
   }
 
 }

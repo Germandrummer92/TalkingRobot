@@ -8,7 +8,8 @@ public class SocialRemarkGenerator extends Generator {
 @Override
 public String generateSentence(List<Phrase> phrases) {
 	
-	//TODO call simpleNLG
+	SimpleNLG simplenlg = SimpleNLG.getSimpleNLG();
+	//TODO generate the sentence
 	
 	return null;
 }
