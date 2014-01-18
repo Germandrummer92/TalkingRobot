@@ -1,10 +1,15 @@
 package dm;
 
-import java.util.Vector;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
+/**
+ * Represents a started Session of a User with the robot.
+ * @author Daniel Draper
+ * @version 1.0
+ *
+ */
 public class Session {
 
   private User currentUser;
@@ -13,7 +18,7 @@ public class Session {
 
   private Date date;
 
- private SimpleDateFormat dateFormat;
+  private SimpleDateFormat dateFormat;
 
   private String currentLocation;
 
