@@ -17,11 +17,18 @@ import dm.Keyword;
  */
 public class PossibleKeywordAnalyzer extends InputAnalyzer {
 
-	  protected File grammarFile = new File("resources/files/NLUGrammar/possibleKwGrammar.gra/");//possibleGrammar.gra
+	protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/possibleKw.gra/");//possibleGrammar.gra
 	
-	  private Levenshtein levenshtein = new Levenshtein();
+	private Levenshtein levenshtein = new Levenshtein();
 	
-	  private Dictionary dictionary;
+	private Dictionary dictionary;
+	  
+	/**
+	 * Creates a new PossibleKeywordAnalyzer object.
+	 */
+	public PossibleKeywordAnalyzer() {
+	
+	}
 	  
 	/**
 	 * @see InputAdapter#analyze()
@@ -74,7 +81,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	   * @return the most probable keyword if the Levenshtein distance is smaller than 10
 	   */
 	  private String compareToAll(String possibleKw) {
-		  LinkedList<Keyword> keywordList = null; //TODO benötigt Liste aller Keywords
+		  LinkedList<Keyword> keywordList = null; //TODO benï¿½tigt Liste aller Keywords
 		  
 		  String mostProbableKeyword = "";
 		  int shortestDistance = 100;
