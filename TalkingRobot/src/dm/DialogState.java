@@ -10,9 +10,12 @@ public abstract class DialogState {
   public abstract String getOutputKeyword();
 
   public DialogStates getCurrentState() {
-  return null;
+  	return currentState;
   }
 
   public abstract Boolean isQuestion();
 
+  public void setCurrentState(DialogStates currentState) {
+	  	this.currentState = currentState;
+	  }
 }

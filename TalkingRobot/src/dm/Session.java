@@ -21,25 +21,66 @@ public class Session {
   private SimpleDateFormat dateFormat;
 
   private String currentLocation;
+  
+  /**
+   * Creates a new Session, with the specified parameters.
+   * @param currentUser
+   * @param currentRobot
+   * @param currentLocation
+   */
+  public Session(User currentUser, Robot currentRobot) {
+	  this.currentUser = currentUser;
+	  this.currentRobot = currentRobot;
+	  if (currentRobot.getRobotData().isInKitchen()) {
+		  currentLocation = "Kitchen";
+	  }
+	  else {
+		  currentLocation = "Canteen";
+	  }
+	  date = new Date();
+	  dateFormat = new SimpleDateFormat();
+  }
 
+  /**
+   * 
+   * @return the current User
+   */
   public User getCurrentUser() {
-  return null;
+	  return currentUser;
   }
 
+  /**
+   * 
+   * @return the current Robot
+   */
   public Robot getCurrentRobot() {
-  return null;
+  	return currentRobot;
   }
 
+  /**
+   * 
+   * @return the current Date formatted
+   */
   public String getCurrentDateFormatted() {
-  return null;
+  		return dateFormat.format(date);
   }
 
+  /**
+   * 
+   * @return the current Location
+   */
   public String getCurrentLocation() {
-  return null;
+	  return currentLocation;
   }
 
-  private User createNewUser(String userName, Integer employeeStatus) {
-  return null;
+  /**
+   * Creates a new User and saves it.
+   * @param userName the User's name
+   * @param employeeStatus if the User is a student
+   * @return the User created
+   */
+  private User createNewUser(String userName, Boolean employeeStatus) {
+  		return new User(userName, employeeStatus);
   }
 
 }

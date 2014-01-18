@@ -23,9 +23,19 @@ public class DialogManager {
 
   private ErrorStrategy[] errorStrategy;
 
+  /**
+   * Updates the current Dialog to switch it's state, according to the User's input.
+   * @param keywords
+   * @param terms
+   */
   public void updateDialog(List<String> keywords, List<String> terms) {
+	  currentDialog.updateState(keywords, terms);
   }
 
+  /**
+   * Handles Errors, from the NLU Phase.
+   * @param possibleKeywords possibly wrongly written keywords.
+   */
   public void handleError(List<String> possibleKeywords) {
   }
 
@@ -98,6 +108,69 @@ public class DialogManager {
  */
 public Dialog getCurrentDialog() {
 	return currentDialog;
+}
+
+/**
+ * @return the errorState
+ */
+public ErrorState getErrorState() {
+	return errorState;
+}
+
+/**
+ * @return the userList
+ */
+public List<User> getUserList() {
+	return userList;
+}
+
+/**
+ * @return the previousDialog
+ */
+public Dialog getPreviousDialog() {
+	return previousDialog;
+}
+
+/**
+ * @return the errorStrategy
+ */
+public ErrorStrategy[] getErrorStrategy() {
+	return errorStrategy;
+}
+
+/**
+ * @param errorState the errorState to set
+ */
+public void setErrorState(ErrorState errorState) {
+	this.errorState = errorState;
+}
+
+/**
+ * @param currentDialog the currentDialog to set
+ */
+public void setCurrentDialog(Dialog currentDialog) {
+	this.currentDialog = currentDialog;
+}
+
+/**
+ * @param userList the userList to set
+ */
+public void setUserList(List<User> userList) {
+	this.userList = userList;
+}
+
+/**
+ * @param previousDialog the previousDialog to set
+ */
+public void setPreviousDialog(Dialog previousDialog) {
+	this.previousDialog = previousDialog;
+}
+
+/**
+ * @param errorStrategy the errorStrategy to set
+ */
+public void setErrorStrategy(ErrorStrategy[] errorStrategy) {
+	this.errorStrategy = errorStrategy;
 }
 
 }

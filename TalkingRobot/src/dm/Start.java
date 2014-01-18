@@ -1,5 +1,4 @@
 package dm;
-import java.util.Vector;
 
 enum Start implements DialogStates {
 
@@ -21,6 +20,5 @@ enum Start implements DialogStates {
 
   USER_DOESNT_WANT_TO_BE_SAVED;
 
-    public Vector  myStartState;
   
 }
