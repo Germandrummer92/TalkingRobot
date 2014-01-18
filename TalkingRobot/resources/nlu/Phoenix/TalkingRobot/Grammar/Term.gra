@@ -1,0 +1,9 @@
+# optional comment
+[token_name]
+(<pattern a>)
+(<pattern b>)
+<Macro1>
+(<rewrite rule for Macro1>)
+<Macro2>
+(<rewrite rule for Macro2)
+;
