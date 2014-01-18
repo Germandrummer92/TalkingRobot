@@ -307,14 +307,20 @@ public class UserData implements Data {
 	}
 
 	 
-
-	    /*Test: 
-	     * public static void main (String args[]) {
+	/*    public static void main (String args[]) {
 	  	
-	  	System.out.println(UserData.loadData().get(0).getUserName());
-	  	System.out.println(UserData.loadData().get(0).getLastAccess());
-	  	System.out.println(UserData.loadData().get(0).getRequestedRecipes().get(0).toString());
-	  	
+	  	UserData u = new UserData("Daniel", true);
+	  	u.writeFile();
+	  	u = new UserData("Luiz", true);
+	  	u.writeFile();
+	  	u = new UserData("Bettina", true);
+	  	u.writeFile();
+	  	u = new UserData("Meng Meng", true);
+	  	u.writeFile();
+	  	u = new UserData("Alex", true);
+	  	u.writeFile();
+	  	u = new UserData("Xizhe", true);
+	  	u.writeFile();
 	  	}*/
 	 
 
