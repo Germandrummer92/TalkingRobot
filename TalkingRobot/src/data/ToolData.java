@@ -15,6 +15,8 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import data.RecipeData;
+
 /**
  * This class represents the data which the system should save about every tool.
  * @author Aleksandar Andonov
@@ -34,12 +36,12 @@ public class ToolData implements Data {
    * Creates a new ToolData object with the given name abd location.
    * @param toolName the name of the tool
    * @param location the locaton of the tool
-   * @param recipes the recipes where this tool is used
+   * @param arrayList the recipes where this tool is used
    */
-  public ToolData(String toolName, String location, ArrayList<RecipeData> recipes) {
+  public ToolData(String toolName, String location, ArrayList<RecipeData> arrayList) {
 	  this.toolName = toolName;
 	  this.location = location;
-	  this.recipes = recipes;
+	  this.recipes = arrayList;
 	  toolID = nextID();
 
   }
@@ -51,6 +53,7 @@ public class ToolData implements Data {
   public ToolData(String jsonString) {
 	  this.createFromJSONText(jsonString);
   }
+
 
 	@Override
 	/**
