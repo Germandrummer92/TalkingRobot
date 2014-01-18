@@ -15,7 +15,14 @@ public class TermAnalyzer extends InputAnalyzer {
 	/**
 	 * @see InputAnalyzer#grammarFile
 	 */
-	protected File grammarFile = new File("resources/files/NLUGrammar/termGrammar.gra/");
+	protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/term.gra");
+	
+	/**
+	 * Creates a new TermAnalyzer object.
+	 */
+	public TermAnalyzer() {
+	
+	}
 
 	/**
 	 * @see InputAnalyzer#analyze()
