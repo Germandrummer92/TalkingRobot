@@ -18,8 +18,9 @@ public class NLUPhase extends Phase {
   public void setPhaseResult(Main main) {
   }
 
+  //Das bitte nicht aendern, die DmPhase sollte immer geoffnet sein, sonst muessten wir die Daten immer wieder laden, das ist glaub ich nicht so gut.
   protected Phase nextPhase(Main main) {
-  return null;
+  		return main.getDmPhase();
   }
 
   private List<String> operateAnalyzer(String input, InputAnalyzer analyzer) {
