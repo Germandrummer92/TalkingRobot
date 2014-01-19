@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ApprovalAnalyzer extends InputAnalyzer {
 
-  grammarFile  = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/approval.gra/"); //approvalGrammar.gra
+	protected File grammarFile  = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/approval.gra/"); //approvalGrammar.gra
   
   /**
 	 * Creates a new ApprovalAnalyzer object.

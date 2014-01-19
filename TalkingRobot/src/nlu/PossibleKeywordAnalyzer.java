@@ -19,8 +19,6 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 
 	protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/possibleKw.gra/");//possibleGrammar.gra
 	
-	private Levenshtein levenshtein = new Levenshtein();
-	
 	private Dictionary dictionary;
 	  
 	/**
@@ -45,7 +43,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 				  notPossibleKeywords.add(result.get(i));
 			  } else {
 				  
-				  Levenshtein levenDistance = levenshtein.Levenshtein(result.get(i), actualKeyword);
+				  Levenshtein levenDistance = new Levenshtein(result.get(i), actualKeyword);
 				  int distance = levenDistance.getDistance();
 				  
 				  result.set(i, concatenateWords(result.get(i), actualKeyword, distance));
@@ -88,7 +86,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		  
 		  for(int i = 0; i < keywordList.size(); i++) {
 			  
-			  Levenshtein levenDistance = levenshtein.Levenshtein(possibleKw, keywordList.get(i).toString());
+			  Levenshtein levenDistance = new Levenshtein(possibleKw, keywordList.get(i).toString());
 			  int distance = levenDistance.getDistance();
 			  
 			  if(distance < shortestDistance) {

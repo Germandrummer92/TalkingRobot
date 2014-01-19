@@ -16,7 +16,7 @@ public class KeywordAnalyzer extends InputAnalyzer {
 
   private Dictionary currentDictionary;
 
-  grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/keyword.gra/"); //keywordGrammar.gra
+  protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/keyword.gra/"); //keywordGrammar.gra
 
   /**
 	 * Creates a new KeywordAnalyzer object.
