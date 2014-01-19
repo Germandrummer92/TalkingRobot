@@ -22,7 +22,8 @@ public class OutputCreator {
   }
 
   private Phrase getOutputKeyword(DialogState dialogState) {
-	  String keyword = dialogState.getOutputKeyword();
+	  String keywords = dialogState.getOutputKeyword();
+	  
 	  //TODO String to Phrase
 	  
 	  return null;

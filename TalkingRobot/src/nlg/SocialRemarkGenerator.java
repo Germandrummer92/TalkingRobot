@@ -9,6 +9,7 @@ public class SocialRemarkGenerator extends Generator {
 public String generateSentence(List<Phrase> phrases) {
 	
 	SimpleNLG simplenlg = SimpleNLG.getSimpleNLG();
+	
 	//TODO generate the sentence
 	
 	return null;

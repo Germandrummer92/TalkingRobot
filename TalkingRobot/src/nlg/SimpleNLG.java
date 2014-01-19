@@ -43,11 +43,19 @@ public class SimpleNLG {
 	  return uniqueSimpleNLG;
   }
   
+  /**
+   * 
+   * @return the simplenlg realiser.
+   */
   public Realiser getRealiser() {
 	  return this.realiser;
   }
   
-  public NLGFactory getNlgFactory() {
+  /**
+   * 
+   * @return the NLGFactory
+   */
+  public NLGFactory getNLGFactory() {
 	  return this.nlgFactory;
   }
 
