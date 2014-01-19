@@ -79,7 +79,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	   * @return the most probable keyword if the Levenshtein distance is smaller than 10
 	   */
 	  private String compareToAll(String possibleKw) {
-		  LinkedList<Keyword> keywordList = null; //TODO ben�tigt Liste aller Keywords
+		  LinkedList<Keyword> keywordList = (LinkedList<Keyword>) dictionary.getKeywordList();
 		  
 		  String mostProbableKeyword = "";
 		  int shortestDistance = 100;

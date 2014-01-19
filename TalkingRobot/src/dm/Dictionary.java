@@ -48,5 +48,13 @@ public class Dictionary {
 	  }
 	  return res;
   }
+  
+  /**
+   * Getter-Method for the list of keywords.
+   * @return keywordList, a list of keywords
+   */
+  public List<Keyword> getKeywordList(){
+	  return keywordList;
+  }
 
 }
