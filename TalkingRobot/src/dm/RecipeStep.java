@@ -1,13 +1,32 @@
 package dm;
-import java.util.Vector;
+
 
 import data.RecipeStepData;
 
+/**
+ * This Class models a step in a recipe learned by the robot.
+ * @author Daniel Draper
+ * @version 1.0
+ *
+ */
 public class RecipeStep {
 
   private RecipeStepData recipeStepData;
 
-  public void getRecipeStepData() {
+  /**
+   * Creates a new Robot and saves its data.
+   * @param robotName
+   */
+  public RecipeStep(String description) {
+	  recipeStepData = new RecipeStepData(description);
+  }
+  
+  /**
+  /**
+   * @return the RecipeStepData
+   */
+  public RecipeStepData getRecipeStepData() {
+	  return recipeStepData;
   }
 
 }
