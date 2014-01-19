@@ -1,0 +1,188 @@
+# @author Meng Meng Yan
+# @version 1.0
+
+#info: for the examples: the words between slashes (/ /) are to be imagined as written
+#wrong, so the keywordAnalyzer would not be able to find the keyword. E.g. "I just want to say helo"
+
+#General Mode
+
+#possible keyword: "hello", "bye", "good bye"
+#e.g. "i just want to say /hello/"
+[greeting]
+	(*[want] *[say])
+;
+
+#special case: "see you later"
+[greeting2]
+	(*[then] *see you later)
+	(*[then] see *you later)
+	(*[then] see you *later)
+;
+	
+#Main Mode
+
+#possible keyword: canteen
+#e.g. "i would like to go to the /canteen/"
+[canteen]
+	(*[want] *[eat] *[time])
+	(*[time] *[want] *[eat])
+;
+
+#possible keyword: recipe, cooking, kitchen tool
+#e.g. "could you assist me with /cooking/"
+[kitchen]
+	(*please *[can] *[you] *[help] *[i] *with *[a])
+	(*[can] *[you] *[help] *[i] *with *[a] *please)
+	(*please *[can] *[you] *[say] *[a])
+	(*[can] *[you] *[say] *[a] *please)
+	(*please *[get] *[i] *[a])
+;
+
+#possible keyword: how ... make, what ... need
+#e.g. "what do you /need/ for lasagna"
+[kitchen2]
+	(how *do *[you])
+	(*do *[you] make)
+	(what *do *[you] *for *[recipe])
+	(*do *[you] need *for *[recipe])
+;
+
+#Kitchen Assistance Mode
+
+#Recipe Assistance Mode
+
+#possible keyword: ingredients, (kitchen) tools, steps
+#e.g. "which /ingredients/ do i need for chicken salad"
+[recipe]
+	(*[what] *[need] *for *[recipes])
+	(*tell *[i] *[a] *for *[recipes])
+;
+
+#possible keyword: next, after, previous, prior, before, repeat
+#e.g. "What is the /next/ tool"
+[direction]
+	(*[what] *is *[a] *COMPONENT)
+	(*[what] *comes *COMPONENT)
+	(COMPONENT *please)
+	(*please *[a] *COMPONENT)
+	(*[a] *COMPONENT *please)
+COMPONENT
+	(ingredient)
+	(tool)
+	(kitchen tool)
+	(step)
+	(recipe step)
+	#import ingredient
+	#import tool
+	#import step
+;
+
+#possible keyword: what was it, once again
+[repetition]
+	(*[can] *[you] *[say] *[a] *COMPONENT *please)
+	(what was *it)
+	(what *was it)
+	(*what was it)
+COMPONENT
+	(ingredient)
+	(tool)
+	(kitchen tool)
+	(step)
+	(recipe step)
+;
+
+[want]
+	( *[i] *JUST WANT *to )
+JUST
+	(just)
+	(simply)
+	(only)
+WANT
+	(want)
+	(wants)
+	(need)
+	(needs)
+	(would like)
+;
+
+[i]
+	(i)
+	(we)
+	(us)
+	(*the me)
+;
+
+[say]
+	(say *something *about)
+	(tell *[you] *about)
+;
+
+[you]
+	(you *to)
+	(*the robot)
+;
+
+[then]
+	(then)
+	(ok)
+	(so)
+;
+
+[eat]
+	(eat *in *the)
+	(go *to *the)
+;
+
+[time]
+	(now)
+	(immediately)
+	(today)
+;
+
+[can]
+	(can)
+	(could)
+	(might)
+;
+
+[help]
+	(help)
+	(support)
+	(aid)
+	(assist)
+;
+
+[a]
+	(a)
+	(the)
+;
+
+[get]
+	(get)
+	(bring)
+;
+
+[what]
+	(what)
+	(which)
+;
+
+[need]
+	( *do *I NEED *to)
+I
+	(i)
+	(we)
+	(*for you)
+	(*the me)
+NEED
+	(need)
+	(needs)
+	(*is needed)
+	(*are needed)
+	(*is necessary)
+	(*are necessary)
+;
+
+#recipes
+[recipe]
+#import recipe

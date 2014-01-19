@@ -18,11 +18,15 @@
 ;
 
 [want]
-	( *I WANT)
+	( *I *JUST WANT *to)
 I
 	(i)
 	(we)
 	(*the me)
+JUST
+	(just)
+	(simply)
+	(only)
 WANT
 	(want)
 	(wants)
@@ -32,12 +36,16 @@ WANT
 ;
 
 [need]
-	( *I NEED)
+	( *I *JUST NEED *to)
 I
 	(i)
 	(we)
 	(*for you)
 	(*the me)
+JUST
+	(just)
+	(simply)
+	(only)
 NEED
 	(need)
 	(needs)
@@ -53,4 +61,5 @@ NEED
 [time]
 	(now)
 	(immediately)
+	(today)
 ;
