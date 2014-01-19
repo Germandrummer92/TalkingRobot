@@ -1,0 +1,56 @@
+# @author Meng Meng Yan
+# @version 1.0
+
+#Recipe Name
+[recipe_name]
+	(*[time] *[want] *[teach] *[you])
+	( *[want] *[teach] *[you] *[time])
+;
+
+#Recipe Ingredient
+[recipe_ingredient]
+	(*[need])
+;
+
+#Recipe Tool
+[recipe_tool]
+	(*[need])
+;
+
+[want]
+	( *I WANT)
+I
+	(i)
+	(we)
+	(*the me)
+WANT
+	(want)
+	(wants)
+	(need)
+	(needs)
+	(would like)
+;
+
+[need]
+	( *I NEED)
+I
+	(i)
+	(we)
+	(*for you)
+	(*the me)
+NEED
+	(need)
+	(needs)
+	(*is needed)
+	(*is necessary)
+;
+
+[you]
+	(you)
+	(*the robot)
+;
+
+[time]
+	(now)
+	(immediately)
+;
