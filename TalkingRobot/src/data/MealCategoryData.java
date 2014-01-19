@@ -1,9 +1,13 @@
 package data;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -120,6 +124,34 @@ public JSONObject getJson() {
                 e.printStackTrace();
         }
         return object;
+}
+
+/**
+ * This static method returns a List of all existing MealCategoryData files.
+ * @return a list of all existing MealCategoryData files
+ */
+public static ArrayList <MealCategoryData> loadData() {
+	File load = new File("resources/files/MealCategoryData/");
+	Gson loader = new Gson();
+	ArrayList <MealCategoryData> res = new ArrayList <MealCategoryData>();
+	for (File f : load.listFiles()) {
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(f));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	  	MealCategoryData read = null;
+	  		try {
+				read = loader.fromJson(br.readLine(), MealCategoryData.class);
+			} catch (JsonSyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	  	res.add(read);
+	}
+	return res;
 }
 
 /**
