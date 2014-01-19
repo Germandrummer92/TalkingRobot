@@ -4,6 +4,8 @@ enum PhraseClass {
   SUBJECT,
 
   VERB,
+  
+  VERB_HOW,
 
   OBJECT,
 
@@ -14,6 +16,5 @@ enum PhraseClass {
   MODIFIER,
 
   DETERMINER;
-
   
 }
