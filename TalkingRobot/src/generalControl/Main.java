@@ -24,7 +24,7 @@ public class Main {
 
   private String asrResult;
 
-  private List<String>[] nluResult;
+  private List<List<String>> nluResult;
 
   private DialogState dmResult;
 
@@ -186,7 +186,7 @@ private void checkFiles() {
 	/**
 	 * @return the nluResult
 	 */
-	public List<String>[] getNluResult() {
+	public List<List<String>> getNluResult() {
 		return nluResult;
 	}
 
@@ -228,7 +228,7 @@ private void checkFiles() {
 	/**
 	 * @param nluResult the nluResult to set
 	 */
-	public void setNluResult(List<String>[] nluResult) {
+	public void setNluResult(List<List<String>> nluResult) {
 		this.nluResult = nluResult;
 	}
 
