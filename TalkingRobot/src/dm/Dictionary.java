@@ -41,7 +41,7 @@ public class Dictionary {
 	  ArrayList<Keyword> res = new ArrayList<Keyword>();
 	  for (String s: kwInput) {
 		  for (Keyword kw: keywordList) {
-			  if (kw.toString().equals(s)) {
+			  if (kw.getWord().equals(s)) {
 				  res.add(kw);
 			  }
 		  }
