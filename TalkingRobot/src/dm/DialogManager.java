@@ -3,6 +3,8 @@ package dm;
 import java.util.List;
 import java.util.Vector;
 
+import data.CanteenData;
+
 /**
  * The DialogManager class, responsible for the switching of DialogStates for a certain input.
  * @author Daniel Draper
@@ -18,6 +20,8 @@ public class DialogManager {
   private Dialog currentDialog;
 
   private List<User> userList;
+  
+  private Dictionary dictionary;
 
   public Dialog previousDialog;
 
@@ -28,8 +32,27 @@ public class DialogManager {
    * @param keywords
    * @param terms
    */
-  public void updateDialog(List<String> keywords, List<String> terms) {
-	  currentDialog.updateState(keywords, terms);
+  public void updateDialog(List<Keyword> keywords, List<String> terms) {
+	  do 
+	  {
+	  try {
+		currentDialog.updateState(keywords, terms);
+		break;
+	} catch (WrongStateClassException e) {
+		DialogState cur = currentDialog.getCurrentDialogState();
+		Session curSess = currentDialog.getCurrentSession();
+		switch (currentDialog.getCurrentDialogState().getClass().getName()) {
+			case "dm.RecipeAssistanceState" : currentDialog = new RecipeAssistanceDialog(curSess); currentDialog.setCurrentDialogState(cur); break;
+			case "dm.RecipeLearningState" : currentDialog = new RecipeLearningDialog(curSess); currentDialog.setCurrentDialogState(cur); break;
+			case "dm.KitchenAssistanceState" : currentDialog = new KitchenAssistanceDialog(curSess); currentDialog.setCurrentDialogState(cur); break;
+		//NEEDS TO BE ADDED LATER:	case "dm.CanteenInformationState" : currentDialog = new CanteenInformationDialog(curSess, Canteen); currentDialog.setCurrentDialogState(cur); break;
+		//SAME:	case "dm.CanteenRecommendationState" : currentDialog = new CanteenRecommendationDialog(curSess, Canteen); currentDialog.setCurrentDialogState(cur); break;
+			default: break;
+			}
+		}
+	  }
+	  while(true);
+	  
   }
 
   /**
@@ -43,11 +66,12 @@ public class DialogManager {
    * private Constructor, just used by giveDialogManager()
    */
   private DialogManager() {
-	  currentDialog = null;
+	  currentDialog = new StartDialog(new Session(User.loadUsers().get(0), Robot.loadRobots().get(0)));
 	  loadUsers();
 	  previousDialog = null;
 	  errorStrategy = null;
 	  errorState = ErrorState.ZERO;
+	  dictionary = new Dictionary();
   }
 
   /**
@@ -171,6 +195,20 @@ public void setPreviousDialog(Dialog previousDialog) {
  */
 public void setErrorStrategy(ErrorStrategy[] errorStrategy) {
 	this.errorStrategy = errorStrategy;
+}
+
+/**
+ * @return the dictionary
+ */
+public Dictionary getDictionary() {
+	return dictionary;
+}
+
+/**
+ * @param dictionary the dictionary to set
+ */
+public void setDictionary(Dictionary dictionary) {
+	this.dictionary = dictionary;
 }
 
 }

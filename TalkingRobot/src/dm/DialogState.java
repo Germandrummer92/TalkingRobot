@@ -7,7 +7,7 @@ package dm;
  * @version 1.0
  *
  */
-public abstract class DialogState {
+public class DialogState {
 
 
   private Boolean question;
@@ -16,7 +16,9 @@ public abstract class DialogState {
    * Creates and returns the keyword responsible for the NLG creation of an output.
    * @return the keyword
    */
-  public abstract String getOutputKeyword();
+  public String getOutputKeyword() {
+	  return null;
+  }
 
   /**
    * Creates a new DialogState

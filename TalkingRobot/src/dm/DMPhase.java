@@ -1,4 +1,7 @@
 package dm;
+
+import java.util.List;
+
 import generalControl.Main;
 import generalControl.Phase;
 
@@ -24,7 +27,15 @@ public class DMPhase extends Phase {
    * @See {@link Phase#setPhaseResult(Main)}
    */
   public void setPhaseResult(Main main) {
-	  dialogManager.updateDialog(main.getNluResult().get(0), main.getNluResult().get(1));
+	  //If nothing has been parsed, handle Error
+	  if (main.getNluResult().get(0).isEmpty() && main.getNluResult().get(1).isEmpty() && main.getNluResult().get(3).isEmpty()) {
+		  dialogManager.handleError(main.getNluResult().get(2));
+	  }
+	  //Convert List<String> to List<Keyword>
+	  List<Keyword> kws = dialogManager.getDictionary().findKeywords(main.getNluResult().get(0));
+	  //update the current Dialog
+	  dialogManager.updateDialog(kws, main.getNluResult().get(1));
+	  //set the Result
 	  main.setDmResult(dialogManager.getCurrentDialog().getCurrentDialogState());
   }
 

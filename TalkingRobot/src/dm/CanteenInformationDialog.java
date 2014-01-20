@@ -14,7 +14,7 @@ public class CanteenInformationDialog extends CanteenDialog {
 	}
 
 @Override
-public void updateState(List<String> keywords, List<String> terms) {
+public void updateState(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }

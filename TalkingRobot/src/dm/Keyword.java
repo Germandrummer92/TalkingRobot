@@ -3,6 +3,7 @@ package dm;
 
 import data.Data;
 import data.KeywordData;
+import data.UserData;
 
 /**
  * A keyword known to the robot.
@@ -49,5 +50,11 @@ public DialogState getReference() {
   		return keywordData.getWord();
   }
 
-
+/**
+ * @return
+ */
+public KeywordData getKeywordData() {
+	return keywordData;
+}
+  
 }

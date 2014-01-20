@@ -16,7 +16,7 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 private AssistanceState stateOfAssistance;
 
 @Override
-public void updateState(List<String> keywords, List<String> terms) {
+public void updateState(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }

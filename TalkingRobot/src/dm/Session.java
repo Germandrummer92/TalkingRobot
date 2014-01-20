@@ -83,4 +83,11 @@ public class Session {
   		return new User(userName, employeeStatus);
   }
 
+/**
+ * @param user the User to be set
+ */
+public void setCurrentUser(User user) {
+	currentUser = user;
+}
+
 }
