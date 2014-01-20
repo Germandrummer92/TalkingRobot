@@ -21,7 +21,7 @@ public abstract class Dialog {
   public Dialog(Session currentSession) {
 	  this.currentSession = currentSession;
 	  currentState = new StartState();
-	  currentState.setCurrentState(Start.ENTRY);
+	  ((StartState)currentState).setCurrentState(Start.ENTRY);
   }
   
   /**
@@ -46,8 +46,9 @@ public abstract class Dialog {
    * Updates the State of the current Dialog according to the User's input.
    * @param keywords the keywords input by the user
    * @param terms the terms input by the user
+ * @throws WrongStateClassException if the DialogState isn't compatible with the current Dialog
    */
-  public abstract void updateState(List<String> keywords, List<String> terms);
+  public abstract void updateState(List<String> keywords, List<String> terms) throws WrongStateClassException;
 
   /**
    * 

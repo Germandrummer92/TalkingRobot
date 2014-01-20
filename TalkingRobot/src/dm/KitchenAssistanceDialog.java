@@ -5,7 +5,15 @@ import java.util.List;
 
 public class KitchenAssistanceDialog extends KitchenDialog {
 
-  private AssistanceState stateOfAssistance;
+  /**
+	 * @param session
+	 */
+	public KitchenAssistanceDialog(Session session) {
+		super(session);
+		// TODO Auto-generated constructor stub
+	}
+
+private AssistanceState stateOfAssistance;
 
 @Override
 public void updateState(List<String> keywords, List<String> terms) {

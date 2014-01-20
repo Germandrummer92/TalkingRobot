@@ -1,6 +1,8 @@
 package dm;
-enum RecipeLearning implements DialogStates {
+enum RecipeLearning  {
 
+  ENTRY,
+  
   ASK_RECIPE_NAME,
 
   ASK_COUNTRY_OF_ORIGIN,

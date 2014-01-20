@@ -1,21 +1,45 @@
 package dm;
 
 
+/**
+ * This class represents a DialogState taken by one of the Dialogs in the system.
+ * @author Daniel Draper
+ * @version 1.0
+ *
+ */
 public abstract class DialogState {
 
-  private DialogStates currentState;
 
   private Boolean question;
 
+  /**
+   * Creates and returns the keyword responsible for the NLG creation of an output.
+   * @return the keyword
+   */
   public abstract String getOutputKeyword();
 
-  public DialogStates getCurrentState() {
-  	return currentState;
+  /**
+   * Creates a new DialogState
+   */
+  public DialogState() {
+	  
+  }
+ 
+
+  /**
+   * Returns if the output is a question or an answer to a question.
+   * @return
+   */
+  public Boolean isQuestion() {
+	  return question;
   }
 
-  public abstract Boolean isQuestion();
+/**
+ * @param question the question to set
+ */
+public void setQuestion(Boolean question) {
+	this.question = question;
+}
 
-  public void setCurrentState(DialogStates currentState) {
-	  	this.currentState = currentState;
-	  }
+  
 }

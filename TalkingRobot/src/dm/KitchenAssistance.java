@@ -1,6 +1,8 @@
 package dm;
-enum KitchenAssistance implements DialogStates {
-
+enum KitchenAssistance {
+	
+  ENTRY,
+  
   TELL_TOOL_FOUND,
 
   TELL_TOOL_NOT_FOUND,

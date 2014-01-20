@@ -1,3 +1,0 @@
-package dm;
-interface DialogStates {
-}

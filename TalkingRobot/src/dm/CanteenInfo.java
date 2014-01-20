@@ -1,5 +1,7 @@
 package dm;
-enum CanteenInfo implements DialogStates {
+enum CanteenInfo {
+	
+  ENTRY,
 
   ADEN_LINE_1_PRICE,
 

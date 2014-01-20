@@ -1,6 +1,8 @@
 package dm;
-enum RecipeAssistance implements DialogStates {
+enum RecipeAssistance  {
 
+  ENTRY,
+  
   RECIPE_NOT_FOUND,
 
   TELL_INGREDIENTS,
@@ -23,7 +25,9 @@ enum RecipeAssistance implements DialogStates {
 
   TELL_TOOL_NOT_FOUND,
 
-  TELL_WHOLE_RECIPE;
+  TELL_WHOLE_RECIPE,
+  
+  EXIT;
 
   
 }

@@ -1,6 +1,8 @@
 package dm;
-enum CanteenRecom implements DialogStates {
+enum CanteenRecom {
 
+  ENTRY,
+  
   ADEN_LINE_1_DISH,
 
   ADEN_LINE_2_DISH,

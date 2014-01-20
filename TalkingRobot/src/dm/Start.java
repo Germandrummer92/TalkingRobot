@@ -1,6 +1,6 @@
 package dm;
 
-enum Start implements DialogStates {
+enum Start {
 
   ENTRY,
 

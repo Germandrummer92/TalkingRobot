@@ -4,7 +4,15 @@ import java.util.List;
 
 public class RecipeAssistanceDialog extends KitchenDialog {
 
-  private Recipe currRecipe;
+  /**
+	 * @param session
+	 */
+	public RecipeAssistanceDialog(Session session) {
+		super(session);
+		// TODO Auto-generated constructor stub
+	}
+
+private Recipe currRecipe;
 
   public Recipe getCurrRecipe() {
   return null;

@@ -5,7 +5,15 @@ import data.UserData;
 
 public class RecipeLearningDialog extends KitchenDialog {
 
-  private UserData creator;
+  /**
+	 * @param session
+	 */
+	public RecipeLearningDialog(Session session) {
+		super(session);
+		// TODO Auto-generated constructor stub
+	}
+
+private UserData creator;
 
   private String countryOfOrigin;
 
