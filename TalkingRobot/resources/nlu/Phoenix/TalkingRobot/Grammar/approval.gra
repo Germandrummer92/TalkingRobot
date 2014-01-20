@@ -1,0 +1,135 @@
+# @author Bettina Weller
+# @version 1.0
+
+# approval
+[approval]
+	([_yes])
+	
+[_yes]
+	(sure)
+	(yes)
+	(*THATIS FINE)
+	(I *do THINK *SO)
+	(certainly)
+	(exactly)
+	(of course)
+	(yep)
+	(do SO)
+	(indeed)
+	(THAT WOULDNOT be *so BAD)
+
+THAT
+	(that)
+	(this)
+	
+WOULDNOT
+	(would not)
+	(wouldnt)
+	
+BAD
+	(bad)
+
+FINE
+	(ok)
+	(fine)
+	(good)
+	(okay)
+	
+THATIS
+	(that is)
+	(thats)	
+	(sounds)
+	(want)
+
+I
+	(i)
+	(we)
+	
+SO
+	(so)
+	(this)
+	(that)
+	
+THINK
+	(think)
+	(want)
+;
+
+# disapproval
+[disapproval]
+	([_no])
+	
+[_no]
+	(no)
+	(never)
+	(I DONOT THINK *SO)
+	(nope)
+	(no way)
+	(absolutely not)
+	(on the contrary)
+	(DONOT)
+	(THATIS NOT FINE)
+	(THAT WOULDNOT be FINE)
+	(THAT would be so BAD)
+	
+BAD
+	(bad)
+
+THAT
+	(that)
+	(this)
+
+WOULDNOT
+	(would not)
+	(wouldnt)
+	
+FINE
+	(good)
+	(okay)
+	(ok)
+	(fine)
+
+THATIS
+	(that is)
+	(thats)
+	(this)
+	
+
+	
+I
+	(i)
+	(we)
+	
+DONOT
+	(do not)
+	(dont)
+
+THINK
+	(think)
+	(want)
+	
+SO
+	(so)
+	(that)
+	(this)
+;
+
+#first_choice
+[first_choice]
+	([_first])
+	
+([_first])
+	(the first *one)
+	(number one)
+	(first)
+
+#second_choice
+[second_choice]
+	([_second])
+	
+([_second])
+	(the second *one)
+	(number two)
+	(the last *one)
+	
+;

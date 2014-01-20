@@ -40,6 +40,7 @@ public class NLUPhase extends Phase {
       main.setNluResult(nluResult);
   }
 
+  //eventuell public
   /**
    * returns the next phase the system must enter.
    * The DM-phase always follows after the NLU-phase
