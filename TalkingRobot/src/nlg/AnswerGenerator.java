@@ -2,7 +2,6 @@ package nlg;
 import java.util.ArrayList;
 import java.util.List;
 
-import simplenlg.features.*;
 import simplenlg.framework.PhraseElement;
 import simplenlg.phrasespec.*;
 
