@@ -52,6 +52,9 @@ public class QuestionGenerator extends Generator {
 			case INDIRECT_OBJECT:
 				indirectObjects.add(simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString()));
 				break;
+			case VERB_WHAT:
+				verbs.add(simplenlg.getNLGFactory().createVerbPhrase(phrase.getPhraseString()));
+				p.setFeature(Feature.INTERROGATIVE_TYPE, InterrogativeType.WHAT_SUBJECT);
 			default: break;
 			}
 		}

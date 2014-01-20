@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-public class QuestionGeneratorComponentTest {
+public class AnswerGeneratorComponentTest {
 
-	QuestionGenerator qgenerator;
+	AnswerGenerator agenerator;
 	ArrayList<Phrase> phrases;
 	
 	@Before
 	public void setUpNewPhraseArray() {
-		qgenerator = new QuestionGenerator();
+		agenerator = new AnswerGenerator();
 		phrases = new ArrayList<Phrase>();
 	}
 	
@@ -28,7 +28,7 @@ public class QuestionGeneratorComponentTest {
 		p1.setPhraseClass(PhraseClass.SUBJECT);
 		
 		p2.setPhraseString("cook");
-		p2.setPhraseClass(PhraseClass.VERB_HOW);
+		p2.setPhraseClass(PhraseClass.VERB);
 		
 		p3.setPhraseString("this recipe");
 		p3.setPhraseClass(PhraseClass.OBJECT);
@@ -38,9 +38,9 @@ public class QuestionGeneratorComponentTest {
 		phrases.add(p3);
 		
 		
-		String output = qgenerator.generateSentence(phrases);
+		String output = agenerator.generateSentence(phrases);
 		
-		assertEquals("How do I cook this recipe?", output);
+		assertEquals("I cook this recipe.", output);
 	}
 	
 	@Test
@@ -67,9 +67,9 @@ public class QuestionGeneratorComponentTest {
 		phrases.add(p3);
 		phrases.add(p4);
 		
-		String output = qgenerator.generateSentence(phrases);
+		String output = agenerator.generateSentence(phrases);
 		
-		assertEquals("Can you teach me this recipe?", output);
+		assertEquals("You teach me this recipe.", output);
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ public class QuestionGeneratorComponentTest {
 		p1.setPhraseClass(PhraseClass.SUBJECT);
 		
 		p2.setPhraseString("like");
-		p2.setPhraseClass(PhraseClass.VERB_HOW);
+		p2.setPhraseClass(PhraseClass.VERB);
 		
 		p3.setPhraseString("shoe");
 		p3.setPhraseClass(PhraseClass.OBJECT);
@@ -97,28 +97,28 @@ public class QuestionGeneratorComponentTest {
 		phrases.add(p3);
 		phrases.add(p4);
 		
-		String output = qgenerator.generateSentence(phrases);
+		String output = agenerator.generateSentence(phrases);
 		
-		assertEquals("How does the boy like red shoe?", output);
+		assertEquals("The boy likes red shoe.", output);
 	}
 	
 	@Test
-	public void testWHWord() {
+	public void test4() {
 		Phrase p1 = new Phrase();
 		Phrase p2 = new Phrase();
 		
 		p1.setPhraseString("the next step");
-		p1.setPhraseClass(PhraseClass.OBJECT);
+		p1.setPhraseClass(PhraseClass.SUBJECT);
 		
 		p2.setPhraseString("be");
-		p2.setPhraseClass(PhraseClass.VERB_WHAT);
+		p2.setPhraseClass(PhraseClass.VERB);
 
 		phrases.add(p1);
 		phrases.add(p2);
 		
-		String output = qgenerator.generateSentence(phrases);
+		String output = agenerator.generateSentence(phrases);
 		
-		assertEquals("What is the next step?", output);
+		assertEquals("The next step is.", output);
 	}
 
 }

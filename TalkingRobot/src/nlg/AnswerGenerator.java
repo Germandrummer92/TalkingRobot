@@ -10,52 +10,46 @@ import simplenlg.phrasespec.*;
 /**
  * 
  * @author Luiz Henrique Soares Silva, Xizhe Lian
- * @version 0.5
+ * @version 0.8
  *
  */
 public class AnswerGenerator extends Generator {
 	
-	/*
-	private static final String DS = "dummy_subject";
-	private static final String DV = "dummy_verb";
-	private static final String DO = "dummy_object";
-	*/
 	ArrayList<NPPhraseSpec> objects = new ArrayList<NPPhraseSpec>();
 	ArrayList<NPPhraseSpec> subjects = new ArrayList<NPPhraseSpec>();
-	ArrayList<NPPhraseSpec> ind_objects = new ArrayList<NPPhraseSpec>();
+	ArrayList<NPPhraseSpec> indirectObjects = new ArrayList<NPPhraseSpec>();
 	ArrayList<VPPhraseSpec> verbs = new ArrayList<VPPhraseSpec>();
 
 	
-@SuppressWarnings("deprecation")
-@Override
+	@SuppressWarnings("deprecation")
+	@Override
 	public String generateSentence(List<Phrase> phrases) {
 		
 		SimpleNLG simplenlg = SimpleNLG.getSimpleNLG();
-		SPhraseSpec p = simplenlg.getNLGFactory().createClause();
 		
+		SPhraseSpec p = simplenlg.getNLGFactory().createClause();
+		/* Iterates in the given phrases and find Subject, Objects, VErbs and Indirect Objects
+		 * Since they have their attribute connection as null, they can/should be indexed firstly.
+		 */
 		for(Phrase phrase: phrases) {
 			switch(phrase.getPhraseClass()) {
 			case SUBJECT:
-				NPPhraseSpec subj = simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString());
-				subjects.add(subj);
+				subjects.add(simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString()));
 				break;
 			case OBJECT:
-				NPPhraseSpec obj = simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString());
-				objects.add(obj);
+				objects.add(simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString()));
 				break;
 			case VERB:
-				VPPhraseSpec verb = simplenlg.getNLGFactory().createVerbPhrase(phrase.getPhraseString());
-				//verb.setFeature(Feature.MODAL, "can");
-				verbs.add(verb);
+				verbs.add(simplenlg.getNLGFactory().createVerbPhrase(phrase.getPhraseString()));
 				break;
 			case INDIRECT_OBJECT:
-				NPPhraseSpec ind_obj = simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString());
-				ind_objects.add(ind_obj);
+				indirectObjects.add(simplenlg.getNLGFactory().createNounPhrase(phrase.getPhraseString()));
 				break;
 			default: break;
 			}
 		}
 		
+		/* Analyzing Complements, Modifiers and Determiners for their connections. */
 		for (Phrase phrase: phrases) {
 			switch(phrase.getPhraseClass()) {
 			case COMPLEMENT: 
@@ -67,7 +61,7 @@ public class AnswerGenerator extends Generator {
 					element.addModifier(phrase.getPhraseString());
 				}
 				catch(NullPointerException e){
-					//TODO HAndle exception - no connection for modifier!!!
+					//TODO Handle exception - no connection for modifier!!!
 					e.printStackTrace();
 				}
 				break;
@@ -91,6 +85,9 @@ public class AnswerGenerator extends Generator {
 		for (NPPhraseSpec obj: objects) {
 			p.setObject(obj);
 		}
+		for (NPPhraseSpec indirectObj: indirectObjects) {
+			p.setIndirectObject(indirectObj);
+		}
 		for (VPPhraseSpec verb: verbs) {
 			p.setVerb(verb);
 		}
@@ -101,16 +98,22 @@ public class AnswerGenerator extends Generator {
 	}
 
 	/**
+	 * Looks for the right connection. For example, in the sentence "I have a red car", the
+	 * connection in the phrase "red" is the phrase "car", because "red" is modifying "car".
+	 * The list of PhraseElements already exist (this.subjects, this.objects, etc), so now
+	 * the PhraseElement representation of the connectionPhrase attribute in class Phrase must
+	 * be found.
 	 * 
 	 * @param connection
 	 * @return
 	 */
 	private PhraseElement findConnection(Phrase connectionPhrase) {
 		SimpleNLG simplenlg = SimpleNLG.getSimpleNLG();
+		/* Looks for the right connection. */
 		switch (connectionPhrase.getPhraseClass()) {
 		case SUBJECT:
 			for(NPPhraseSpec subject: subjects) {
-				///////// DON'T FREAK OUT HERE!!!! EXPLANATION LATER///////
+				//Create a placeholder 'connect' and give it the information from connectionPhrase.
 				NPPhraseSpec connect = simplenlg.getNLGFactory().createNounPhrase(connectionPhrase.getPhraseString());
 				if (subject.getNoun().equals(connect.getNoun())) {
 					return subject;
@@ -119,7 +122,6 @@ public class AnswerGenerator extends Generator {
 			break;
 		case OBJECT:
 			for(NPPhraseSpec object: objects) {
-				///////// DON'T FREAK OUT HERE!!!! EXPLANATION LATER///////
 				NPPhraseSpec connect = simplenlg.getNLGFactory().createNounPhrase(connectionPhrase.getPhraseString());
 				if (object.getNoun().equals(connect.getNoun())) {
 					return object;
@@ -127,68 +129,27 @@ public class AnswerGenerator extends Generator {
 			}
 			break;
 		case INDIRECT_OBJECT:
-			for(NPPhraseSpec ind_object: ind_objects) {
-				///////// DON'T FREAK OUT HERE!!!! EXPLANATION LATER///////
+			for(NPPhraseSpec indirectObj: indirectObjects) {
 				NPPhraseSpec connect = simplenlg.getNLGFactory().createNounPhrase(connectionPhrase.getPhraseString());
-				if (ind_object.getNoun().equals(connect.getNoun())) {
-					return ind_object;
+				if (indirectObj.getNoun().equals(connect.getNoun())) {
+					return indirectObj;
 				}
 			}
 			break;
 		case VERB:
+		case VERB_HOW:
 			for(VPPhraseSpec verb: verbs) {
-				///////// DON'T FREAK OUT HERE!!!! EXPLANATION LATER///////
 				VPPhraseSpec connect = simplenlg.getNLGFactory().createVerbPhrase(connectionPhrase.getPhraseString());
 				if (verb.getVerb().equals(connect.getVerb())) {
 					return verb;
 				}
 			}
 			break;
+			
 		default: return null;
 		}
 		return null;
 	}
 
-	public static void main (String args[]) {
-		ArrayList<Phrase> phrases = new ArrayList<Phrase>();
-		AnswerGenerator agenerator = new AnswerGenerator();
-		
-		Phrase p1 = new Phrase();
-		p1.setPhraseString("Jurema");
-		p1.setPhraseClass(PhraseClass.SUBJECT);
-		phrases.add(p1);
-		
-		Phrase p2 = new Phrase();
-		p2.setPhraseString("get");
-		p2.setPhraseClass(PhraseClass.VERB);
-		phrases.add(p2);
-		
-		Phrase p4 = new Phrase();
-		p4.setPhraseString("day");
-		p4.setPhraseClass(PhraseClass.OBJECT);
-		phrases.add(p4);
-		
-		Phrase p3 = new Phrase();
-		p3.setPhraseString("good");
-		p3.setPhraseClass(PhraseClass.MODIFIER);
-		p3.setConnection(p4);
-		phrases.add(p3);
-		
-//		Phrase p5 = new Phrase();
-//		p5.setPhraseString("super");
-//		p5.setPhraseClass(PhraseClass.MODIFIER);
-//		p5.setConnection(p2);
-//		phrases.add(p5);
-		
-		Phrase p6 = new Phrase();
-		p6.setPhraseString("me");
-		p6.setPhraseClass(PhraseClass.INDIRECT_OBJECT);
-		p6.setConnection(p4);
-		phrases.add(p6);
-		
-		String output = agenerator.generateSentence(phrases);
-		
-		System.out.println(output);
-	}
 
 }

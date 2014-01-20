@@ -3,7 +3,11 @@ import dm.DialogState;
 import generalControl.Main;
 import generalControl.Phase;
 
-
+/**
+ * 
+ * @author Luiz Henrique Soares Silva
+ *
+ */
 public class NLGPhase extends Phase {
 
   private OutputCreator outputCreator;
@@ -15,7 +19,7 @@ public class NLGPhase extends Phase {
   }
 
   protected Phase nextPhase(Main main) {
-  return null;
+	  return main.getDmPhase();
   }
 
 }

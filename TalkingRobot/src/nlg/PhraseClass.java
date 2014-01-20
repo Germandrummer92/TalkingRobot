@@ -5,6 +5,7 @@ enum PhraseClass {
 
   VERB,
   
+  //Verb linked to a 'how' word
   VERB_HOW,
 
   OBJECT,
@@ -14,6 +15,9 @@ enum PhraseClass {
   COMPLEMENT,
 
   MODIFIER,
+  
+  //Verb linked to a 'what' word
+  VERB_WHAT,
 
   DETERMINER;
   
