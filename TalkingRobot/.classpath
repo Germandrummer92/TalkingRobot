@@ -7,6 +7,5 @@
 	<classpathentry exported="true" kind="lib" path="resources/libraries/google-gson-2.2.4/gson-2.2.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="resources/libraries/simplenlg-v4.4.jar"/>
-	<classpathentry kind="lib" path="/Users/Gee/Desktop/simplenlg-v44/simplenlg-v4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
