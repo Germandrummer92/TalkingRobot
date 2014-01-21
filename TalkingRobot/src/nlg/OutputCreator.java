@@ -9,6 +9,7 @@ package nlg;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import dm.CanteenInformationState;
 import dm.CanteenRecommendationState;
@@ -26,6 +27,14 @@ public class OutputCreator {
 	private List<Phrase> outputPhrases;
 
 	private SocialComponent socialComponent;
+
+	private final String   BUNDLE_NAME = "nlgOutput";
+
+	private ResourceBundle RESOURCE_BUNDLE;
+	
+	public OutputCreator() {
+		RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+	}
   
 	public String createOutput(DialogState dialogState) {
 		generators = new ArrayList<Generator>();
@@ -34,13 +43,23 @@ public class OutputCreator {
 		//First idea of how it should be. High probability of changing.
 		/*================*/
 		
-		File sentencesFile = new File(""); //Import files with sentences
-		String output = dialogState.getOutputKeyword();
+		// maybe make this file in properties like in SWT? that we don't have to load it every time
+		// Xizhe
+		//File sentencesFile = new File(""); //Import files with sentences
+		//String output = dialogState.getOutputKeyword();
 	  
+		String key = null;
+		int index = -1;
 		if(dialogState.getClass().equals(StartState.class)) {
 			StartState startState = (StartState) dialogState;
+			index = startState.getCurrentState().getIndex();
+			
+			
+			
+			// should we make the switch in a private method?  Xizhe
 			switch(startState.getCurrentState()) {
 			case ENTRY:
+				key = "startState." + "ENTRY.";
 				break;
 			case EXIT:
 				break;
@@ -257,23 +276,23 @@ public class OutputCreator {
 			}
 		}
 	  
+		key = key + "."+index;
+		
+		
 		/*================*/
 		//Phrase phrase = getOutputKeyword(dialogState);
 		//TODO Check for SocialComponent (if yes, addSocialComponent()) (How can we check?)
 	  
-		return null;
+		return RESOURCE_BUNDLE.getString(key);
 	}
 
 	/**
-	 * I dont know how to decide which type belongs a token to
-	 * for example: 'give me spagetti', then the string[] tokens will be {give, me, spagetti}
-	 * I think if we can set the phrase type in dialogstate.getOutputKeywords will be nice
-	 * Xizhe
 	 * @param dialogState
 	 */
 	private void toPhrase(DialogState dialogState) {
 		String keywords = dialogState.getOutputKeyword();
 	  
+		//TODO need to be changed when the parameter changed
 		String delims = " "; // assume that exactly one space between each word
 		String[] tokens = keywords.split(delims);
 	  
