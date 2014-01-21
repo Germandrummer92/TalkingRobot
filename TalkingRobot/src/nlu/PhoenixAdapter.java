@@ -10,7 +10,7 @@ public class PhoenixAdapter {
 
           
   public LinkedList<String> operatePhoenix(File grammarFile) {
-  return null;
+  return new LinkedList<String>();
   }
 
 }

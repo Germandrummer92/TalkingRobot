@@ -24,7 +24,8 @@ public class DMPhase extends Phase {
    * @See {@link Phase#setPhaseResult(Main)}
    */
   public void setPhaseResult(Main main) {
-	  dialogManager.updateDialog(main.getNluResult().get(0), main.getNluResult().get(1));
+	  dialogManager.updateDialog(main.getNluResult().get(0), main.getNluResult().get(1),
+			  main.getNluResult().get(2));
 	  main.setDmResult(dialogManager.getCurrentDialog().getCurrentDialogState());
   }
 

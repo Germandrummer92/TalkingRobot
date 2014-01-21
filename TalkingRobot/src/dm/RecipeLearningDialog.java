@@ -5,14 +5,6 @@ import data.UserData;
 
 public class RecipeLearningDialog extends KitchenDialog {
 
-  /**
-	 * @param session
-	 */
-	public RecipeLearningDialog(Session session) {
-		super(session);
-		// TODO Auto-generated constructor stub
-	}
-
 private UserData creator;
 
   private String countryOfOrigin;
@@ -30,8 +22,18 @@ private UserData creator;
   private void createRecipe() {
   }
 
+  /**
+ 	 * @param session
+ 	 * @param dialogState
+ 	 */
+ 	public RecipeLearningDialog(Session session, DialogState dialogState) {
+ 		super(session, dialogState);
+ 		// TODO Auto-generated constructor stub
+ 	}
+ 	
 @Override
-public void updateState(List<String> keywords, List<String> terms) {
+public void updateState(List<String> keywords, List<String> terms,
+		List<String> approval) throws WrongStateClassException {
 	// TODO Auto-generated method stub
 	
 }

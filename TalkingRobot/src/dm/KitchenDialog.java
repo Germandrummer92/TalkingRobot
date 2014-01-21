@@ -16,11 +16,12 @@ public abstract class KitchenDialog extends Dialog {
   private List<Recipe> recipeDatabase;
   
   /**
-   * Creates a new Kitchen Dialog object in the given session
-   * @param session the current session (The session which this dialog is part ofs)
+   * Creates a new Kitchen Dialog object in the given session and at the defined state.
+   * @param session the current session (The session which this dialog is part of)
+   * @param currState the state of the dialog
    */
-  public KitchenDialog(Session session) {
-	  super(session);
+  public KitchenDialog(Session session, DialogState currState) {
+	  super(session, currState);
 	  loadLists();
   }
   

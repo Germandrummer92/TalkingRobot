@@ -13,15 +13,10 @@ import java.util.List;
 public class TermAnalyzer extends InputAnalyzer {
 
 	/**
-	 * @see InputAnalyzer#grammarFile
-	 */
-	protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/term.gra");
-	
-	/**
 	 * Creates a new TermAnalyzer object.
 	 */
 	public TermAnalyzer() {
-	
+		this.grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/term.gra");
 	}
 
 	/**
