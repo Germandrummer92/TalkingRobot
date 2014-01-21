@@ -1,5 +1,5 @@
 package dm;
-enum CanteenRecom {
+public enum CanteenRecom {
 
   ENTRY,
   

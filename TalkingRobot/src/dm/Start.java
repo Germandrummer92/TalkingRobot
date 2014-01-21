@@ -1,6 +1,6 @@
 package dm;
 
-enum Start {
+public enum Start {
 
   ENTRY,
 

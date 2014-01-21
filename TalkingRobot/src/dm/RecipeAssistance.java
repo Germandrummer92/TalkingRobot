@@ -1,5 +1,5 @@
 package dm;
-enum RecipeAssistance  {
+public enum RecipeAssistance  {
 
   ENTRY,
   

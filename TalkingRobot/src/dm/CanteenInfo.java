@@ -1,5 +1,5 @@
 package dm;
-enum CanteenInfo {
+public enum CanteenInfo {
 	
   ENTRY,
 

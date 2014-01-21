@@ -1,5 +1,5 @@
 package dm;
-enum RecipeLearning  {
+public enum RecipeLearning  {
 
   ENTRY,
   
