@@ -14,7 +14,7 @@ public enum Start {
 		  @Override 
 		  public int getIndex(){
 			  Random rn = new Random();
-			  return rn.nextInt(4); // generator a random int between 0 to 5
+			  return rn.nextInt(5); // generator a random int between 0 to 4
 		  }
 	  },
 
@@ -22,7 +22,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -30,7 +30,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -38,7 +38,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -46,7 +46,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -54,7 +54,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -62,7 +62,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -70,7 +70,7 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 },
 
@@ -78,10 +78,22 @@ public enum Start {
 	@Override
 	public int getIndex() {
 		Random rn = new Random();
-		  return rn.nextInt(4); // generator a random int between 0 to 5
+		  return rn.nextInt(5); // generator a random int between 0 to 4
 	}
 };
 
   abstract public int getIndex();
+  
+  /*
+  public static void main (String args[]) {
+	  	System.out.println(ENTRY.getIndex());
+	  	System.out.println(WAITING_FOR_USERNAME.getIndex());
+	  	System.out.println(USER_FOUND.getIndex());
+	  	System.out.println(USER_NOT_FOUND.getIndex());
+	  	System.out.println(USER_SAVED.getIndex());
+	  	System.out.println(EXIT.getIndex());
+	  	System.out.println(USER_WANTS_TO_BE_SAVED.getIndex());
+	  	System.out.println(USER_DOESNT_WANT_TO_BE_SAVED.getIndex());
+	  	}*/
 }
 
