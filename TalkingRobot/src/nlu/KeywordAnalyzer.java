@@ -16,13 +16,11 @@ public class KeywordAnalyzer extends InputAnalyzer {
 
   private Dictionary currentDictionary;
 
-  protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/keyword.gra/"); //keywordGrammar.gra
-
   /**
 	 * Creates a new KeywordAnalyzer object.
 	 */
 	public KeywordAnalyzer() {
-	
+		this.grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/keyword.gra/");
 	}
 
   /**

@@ -17,7 +17,7 @@ import dm.Keyword;
  */
 public class PossibleKeywordAnalyzer extends InputAnalyzer {
 
-	protected File grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/possibleKw.gra/");//possibleGrammar.gra
+	
 	
 	private Dictionary dictionary;
 	  
@@ -25,7 +25,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	 * Creates a new PossibleKeywordAnalyzer object.
 	 */
 	public PossibleKeywordAnalyzer() {
-	
+		this.grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/possibleKw.gra/");
 	}
 	  
 	/**

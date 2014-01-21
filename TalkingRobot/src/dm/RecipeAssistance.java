@@ -1,5 +1,5 @@
 package dm;
-enum RecipeAssistance  {
+public enum RecipeAssistance  {
 
   ENTRY,
   
@@ -19,7 +19,7 @@ enum RecipeAssistance  {
 
   TELL_INGREDIENT_FOUND,
 
-  TELL_INGFREDIENT_NOT_FOUND,
+  TELL_INGREDIENT_NOT_FOUND,
 
   TELL_TOOL_FOUND,
 

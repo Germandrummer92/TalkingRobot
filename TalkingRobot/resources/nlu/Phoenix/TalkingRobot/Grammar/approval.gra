@@ -4,6 +4,7 @@
 # approval
 [approval]
 	([_yes])
+;
 	
 [_yes]
 	(sure)
@@ -17,6 +18,7 @@
 	(do SO)
 	(indeed)
 	(THAT WOULDNOT be *so BAD)
+	(right)
 
 THAT
 	(that)
@@ -34,6 +36,7 @@ FINE
 	(fine)
 	(good)
 	(okay)
+	(right)
 	
 THATIS
 	(that is)
@@ -58,6 +61,7 @@ THINK
 # disapproval
 [disapproval]
 	([_no])
+;
 	
 [_no]
 	(no)
@@ -67,6 +71,7 @@ THINK
 	(no way)
 	(absolutely not)
 	(on the contrary)
+	(wrong)
 	(DONOT)
 	(THATIS NOT FINE)
 	(THAT WOULDNOT be FINE)
@@ -74,6 +79,7 @@ THINK
 	
 BAD
 	(bad)
+	(wrong)
 
 THAT
 	(that)
@@ -88,13 +94,12 @@ FINE
 	(okay)
 	(ok)
 	(fine)
+	(right)
 
 THATIS
 	(that is)
 	(thats)
 	(this)
-	
-
 	
 I
 	(i)
@@ -117,16 +122,19 @@ SO
 #first_choice
 [first_choice]
 	([_first])
+;
 	
 ([_first])
 	(the first *one)
 	(number one)
 	(first)
+;
 
 #second_choice
 [second_choice]
 	([_second])
-	
+;
+
 ([_second])
 	(the second *one)
 	(number two)

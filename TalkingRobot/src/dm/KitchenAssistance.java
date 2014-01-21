@@ -1,5 +1,5 @@
 package dm;
-enum KitchenAssistance {
+public enum KitchenAssistance {
 	
   ENTRY,
   

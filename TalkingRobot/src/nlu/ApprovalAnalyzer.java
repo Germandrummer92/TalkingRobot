@@ -10,14 +10,12 @@ import java.util.List;
  * decision. The latest one is only needes for errorhandling.
  */
 public class ApprovalAnalyzer extends InputAnalyzer {
-
-	protected File grammarFile  = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/approval.gra/"); //approvalGrammar.gra
   
   /**
 	 * Creates a new ApprovalAnalyzer object.
 	 */
 	public ApprovalAnalyzer() {
-	
+		this.grammarFile  = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/approval.gra/");
 	}
 
   /**
