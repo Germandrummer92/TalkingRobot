@@ -1,12 +1,11 @@
 package dm;
 
 import java.util.List;
-import java.util.Vector;
 
 /**
  * The DialogManager class, responsible for the switching of DialogStates for a certain input.
- * @author Daniel Draper
- * @version 1.0
+ * @author Daniel Draper, Aleksandar Andonov
+ * @version 1.1
  *
  */
 public class DialogManager {
@@ -27,9 +26,16 @@ public class DialogManager {
    * Updates the current Dialog to switch it's state, according to the User's input.
    * @param keywords
    * @param terms
+   * @param approval
+ * @throws WrongStateClassException 
    */
-  public void updateDialog(List<String> keywords, List<String> terms) {
-	  currentDialog.updateState(keywords, terms);
+  public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
+	  try {
+		currentDialog.updateState(keywords, terms, approval);
+	} catch (WrongStateClassException e) {
+		// TODO
+		e.printStackTrace();
+	}
   }
 
   /**

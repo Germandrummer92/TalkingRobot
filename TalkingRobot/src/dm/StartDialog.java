@@ -23,7 +23,8 @@ public class StartDialog extends Dialog {
 	 * @see dm.Dialog#updateState(java.util.List, java.util.List)
 	 */
 	@Override
-	public void updateState(List<String> keywords, List<String> terms) throws WrongStateClassException {
+	public void updateState(List<String> keywords, List<String> terms, List<String> approval)
+			throws WrongStateClassException {
 		StartState currentStateStart;
 		if (getCurrentDialogState().getClass() != StartState.class) {
 			throw new WrongStateClassException();

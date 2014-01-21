@@ -46,9 +46,11 @@ public abstract class Dialog {
    * Updates the State of the current Dialog according to the User's input.
    * @param keywords the keywords input by the user
    * @param terms the terms input by the user
+   * @param approval the answer of an approval question
  * @throws WrongStateClassException if the DialogState isn't compatible with the current Dialog
    */
-  public abstract void updateState(List<String> keywords, List<String> terms) throws WrongStateClassException;
+  public abstract void updateState(List<String> keywords, List<String> terms, List<String> approval)
+		  throws WrongStateClassException;
 
   /**
    * 
