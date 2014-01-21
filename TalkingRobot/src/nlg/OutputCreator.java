@@ -6,9 +6,19 @@ package nlg;
  * @author Xizhe Lian, Luiz Henrique Soares Silva
  * @version 0.1
  */
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import dm.CanteenInformationState;
 import dm.CanteenRecommendationState;
@@ -17,7 +27,6 @@ import dm.KitchenAssistanceState;
 import dm.RecipeAssistanceState;
 import dm.RecipeLearningState;
 import dm.StartState;
-import dm.Start;
 
 
 public class OutputCreator {
@@ -31,235 +40,26 @@ public class OutputCreator {
 		generators = new ArrayList<Generator>();
 		outputPhrases = new ArrayList<Phrase>();
 	  
-		//First idea of how it should be. High probability of changing.
-		/*================*/
+		// Maybe implementing 'DialogStates' and making all the enumerations extend it would be better.
+		// Then it's not necessary to implement the following if-else conditions.
 		
-		File sentencesFile = new File(""); //Import files with sentences
-		String output = dialogState.getOutputKeyword();
-	  
-		if(dialogState.getClass().equals(StartState.class)) {
+//		String output = dialogState.getOutputKeyword();
+//		findInFile(dialogState.getClass().getName(), output);
+		if (dialogState.getClass().equals(StartState.class)) {
 			StartState startState = (StartState) dialogState;
-			switch(startState.getCurrentState()) {
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			case USER_DOESNT_WANT_TO_BE_SAVED:
-				break;
-			case USER_FOUND:
-				break;
-			case USER_NOT_FOUND:
-				break;
-			case USER_SAVED:
-				break;
-			case USER_WANTS_TO_BE_SAVED:
-				break;
-			case WAITING_FOR_EMPLOYEE_STATUS:
-				break;
-			case WAITING_FOR_USERNAME:
-				break;
-			default:
-				break;	
-			}
-		} else if(dialogState.getClass().equals(RecipeAssistanceState.class)) {
-			switch(((RecipeAssistanceState) dialogState).getCurrentState()){
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			case RECIPE_NOT_FOUND:
-				break;
-			case TELL_COUNTRY_OF_ORIGIN:
-				break;
-			case TELL_CREATOR:
-				break;
-			case TELL_INGFREDIENT_NOT_FOUND:
-				break;
-			case TELL_INGREDIENTS:
-				break;
-			case TELL_INGREDIENT_FOUND:
-				break;
-			case TELL_NUM_OF_STEPS:
-				break;
-			case TELL_STEPS:
-				break;
-			case TELL_TOOLS:
-				break;
-			case TELL_TOOL_FOUND:
-				break;
-			case TELL_TOOL_NOT_FOUND:
-				break;
-			case TELL_WHOLE_RECIPE:
-				break;
-			default:
-				break;
-			
-			}
+		} else if (dialogState.getClass().equals(RecipeAssistanceState.class)) {
+			RecipeAssistanceState recipeAssistanceState = (RecipeAssistanceState) dialogState;
 		} else if (dialogState.getClass().equals(RecipeLearningState.class)) {
-			switch(((RecipeLearningState) dialogState).getCurrentState()) {
-			case AKS_INGREDIENT_RIGHT:
-				break;
-			case ASK_COUNTRY_OF_ORIGIN:
-				break;
-			case ASK_FIRST_INGREDIENT:
-				break;
-			case ASK_FIRST_STEP:
-				break;
-			case ASK_FIRST_TOOL:
-				break;
-			case ASK_LAST_STEP:
-				break;
-			case ASK_NEXT_INGREDIENT:
-				break;
-			case ASK_NEXT_STEP:
-				break;
-			case ASK_NEXT_TOOL:
-				break;
-			case ASK_RECIPE_NAME:
-				break;
-			case ASK_STEP_RIGHT:
-				break;
-			case ASK_TOOL_RIGHT:
-				break;
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			default:
-				break;
-			
-			}
+			RecipeLearningState recipeLearningState = (RecipeLearningState) dialogState;
 		} else if (dialogState.getClass().equals(KitchenAssistanceState.class)) {
-			switch(((KitchenAssistanceState) dialogState).getCurrentState()) {
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			case TELL_INGREDIENT_FOUND:
-				break;
-			case TELL_INGREDIENT_NOT_FOUND:
-				break;
-			case TELL_TOOL_FOUND:
-				break;
-			case TELL_TOOL_NOT_FOUND:
-				break;
-			default:
-				break;
-			}
+			KitchenAssistanceState kitchenAssistanceState = (KitchenAssistanceState) dialogState;
 		} else if (dialogState.getClass().equals(CanteenInformationState.class)) {
-			switch(((CanteenInformationState) dialogState).getCurrentState()) {
-			case ADEN_CAFE_DISH:
-				break;
-			case ADEN_CAFE_PRICE:
-				break;
-			case ADEN_CURRYQ_DISH:
-				break;
-			case ADEN_CURRYQ_PRICE:
-				break;
-			case ADEN_LINE_1_DISH:
-				break;
-			case ADEN_LINE_1_PRICE:
-				break;
-			case ADEN_LINE_2_DISH:
-				break;
-			case ADEN_LINE_2_PRICE:
-				break;
-			case ADEN_LINE_3_DISH:
-				break;
-			case ADEN_LINE_3_PRICE:
-				break;
-			case ADEN_LINE_45_DISH:
-				break;
-			case ADEN_LINE_45_PRICE:
-				break;
-			case ADEN_LINE_6_DISH:
-				break;
-			case ADEN_LINE_6_PRICE:
-				break;
-			case ADEN_SCHNITBAR_DISH:
-				break;
-			case ADEN_SCHNITBAR_PRICE:
-				break;
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			case MOLTKE_ACTTHEK_DISH:
-				break;
-			case MOLTKE_ACTTHEK_PRICE:
-				break;
-			case MOLTKE_BUFFET_DISH:
-				break;
-			case MOLTKE_BUFFET_PRICE:
-				break;
-			case MOLTKE_CHOICE_1_DISH:
-				break;
-			case MOLTKE_CHOICE_1_PRICE:
-				break;
-			case MOLTKE_CHOICE_2_DISH:
-				break;
-			case MOLTKE_CHOICE_2_PRICE:
-				break;
-			case MOLTKE_GG_DISH:
-				break;
-			case MOLTKE_GG_PRICE:
-				break;
-			case MOLTKE_SCHNITBAR_DISH:
-				break;
-			case MOLTKE_SCHNITBAR_PRICE:
-				break;
-			case TELL_LINE_NOT_EXIST:
-				break;
-			case TELL_MEAL_NOT_EXIST:
-				break;
-			default:
-				break;
-			}
+			CanteenInformationState canteenInformationState = (CanteenInformationState) dialogState;
 		} else if (dialogState.getClass().equals(CanteenRecommendationState.class)) {
-			switch(((CanteenRecommendationState) dialogState).getCurrentState()) {
-			case ADEN_CAFE_DISH:
-				break;
-			case ADEN_CURRYQ_DISH:
-				break;
-			case ADEN_LINE_1_DISH:
-				break;
-			case ADEN_LINE_2_DISH:
-				break;
-			case ADEN_LINE_3_DISH:
-				break;
-			case ADEN_LINE_45_DISH:
-				break;
-			case ADEN_LINE_6_DISH:
-				break;
-			case ADEN_SCHNITBAR_DISH:
-				break;
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			case MOLTKE_BUFFET_DISH:
-				break;
-			case MOLTKE_CAFE_DISH:
-				break;
-			case MOLTKE_CHOICE_1_DISH:
-				break;
-			case MOLTKE_CHOICE_2_DISH:
-				break;
-			case MOLTKE_GG_DISH:
-				break;
-			case MOLTKE_SCHNITBAR_DISH:
-				break;
-			case TELL_MEAL_NOT_EXIST:
-				break;
-			default:
-				break;
-			
-			}
+			CanteenRecommendationState canteenRecommendationState = (CanteenRecommendationState) dialogState;
 		}
-	  
-		/*================*/
-		//Phrase phrase = getOutputKeyword(dialogState);
-		//TODO Check for SocialComponent (if yes, addSocialComponent()) (How can we check?)
+		
+		findInFile(dialogState);
 	  
 		return null;
 	}
@@ -294,8 +94,8 @@ public class OutputCreator {
 	private String addSocialComponent(DialogState dialogState) {
 		String keyword = dialogState.getOutputKeyword();
 		///TODO Sth
-		// Phrase phrase = this.toPhrase(dialogState);
-		//  String socialRemark = socialComponent.createSocialRemark(phrase);
+		//Phrase phrase = this.toPhrase(dialogState);
+		//String socialRemark = socialComponent.createSocialRemark(phrase);
 	  
 		return null;
 	}
@@ -306,4 +106,42 @@ public class OutputCreator {
 	  	creator.createOutput(startState);
   	}
 
+  	private String findInFile(DialogState dialogState) {
+  		String sentence = "empty";
+  		
+  		JSONParser parser = new JSONParser();
+  		 
+  		try {
+  	 
+  			Object obj = parser.parse(new FileReader("resources/nlg/sentences.json"));
+  	 
+  			JSONObject jsonObject = (JSONObject) obj;
+  			JSONObject jsonState = (JSONObject) jsonObject.get(dialogState.getClass().getName());
+  			
+  			System.out.println(((JSONObject) jsonState.get("ENTRY")).get("answer2"));
+  			
+  			/*
+  			String name = (String) jsonObject.get("name");
+  			System.out.println(name);
+  	 
+  			long age = (Long) jsonObject.get("age");
+  			System.out.println(age);
+  	 
+  			// loop array
+  			JSONArray msg = (JSONArray) jsonObject.get("messages");
+  			Iterator<String> iterator = msg.iterator();
+  			while (iterator.hasNext()) {
+  				System.out.println(iterator.next());
+  			} */
+  	 
+  		} catch (FileNotFoundException e) {
+  			e.printStackTrace();
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		} catch (ParseException e) {
+  			e.printStackTrace();
+  		}
+  		
+  		return sentence;
+  	}
 }
