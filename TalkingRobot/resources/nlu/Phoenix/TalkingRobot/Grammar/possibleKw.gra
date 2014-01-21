@@ -91,6 +91,97 @@ COMPONENT
 	(recipe step)
 ;
 
+#possible keyword: teach you, instruct you, add
+[recipe_learning]
+	(*[want] *to *you *[recipe])
+;
+
+#possible keyword: next, then, after that
+[recipe_learning2]
+	(*the *COMPONENT *[is])
+COMPONENT
+	(step)
+	(recipe step)
+	(ingredient)
+	(tool)
+;
+
+#possible keyword: save, finished
+[save_recipe]
+	(*please)
+	(*[i] *have *[time])
+;
+
+#possible keyword: that is all
+[save_recipe2]
+	(*that is all)
+	(that *is all)
+	(that is *all)
+;
+
+#possible keywords: bring, get, give
+[cooking_assistance]
+	(*please *[i] *the *COMPONENT)
+	(*[i] *the *COMPONENT *please)
+COMPONENT
+	(tool)
+	(kitchen tool)
+	(ingredient)
+	([tool])
+	([ingredient])
+;
+
+#possible keyword: recommend
+[canteen_recommendation]
+	(*please *[i] *[a] *[meal] *[canteen])
+	(*[i] *[a] *[meal] *[canteen] *please)
+;
+
+possible keyword: recommendation
+[canteen_recommendation2]
+	(*please *give *[i] *[a])
+	(*give *[i] *[a] *please)
+;
+
+#possible keyword: offer[ed], what ... food/meal/dish
+[canteen_information]
+	([what] *is *[canteen] *[time_extend])
+	(FOOD *is *[canteen] *[time_extend])
+FOOD
+	(food)
+	(meal)
+	(dish)
+;
+
+#possible keyword: list
+[canteen_information2]
+	(*please *all the *[meal])
+	(*all the *[meal] *please)
+;
+
+#possible keyword: line <valid line number>, (help, ) 
+#find <valid line number>, where is ... <valid line number>
+[line_location]
+	(*please *[help] *find line *[number])	
+	(*[is] *line *[number])
+	
+;
+
+#possible keyword: price [...] <valid line number>, how much is ... <valid linenumber>
+[price_information]
+	(*please *[say] *[i] *at *line *[number])
+	(*please *[say] *[i] price *at *line)
+	(*at *line *[number])
+	(*how *much *is)
+;
+	
+#possible keyword: which line + canteen menu
+[line_information]
+	(*please *[say] *[i] *at *[menu])
+;
+
+#########################################
+
 [want]
 	( *[i] *JUST WANT *to )
 JUST
@@ -139,6 +230,24 @@ WANT
 	(today)
 ;
 
+[time_extend]
+	(now)
+	(immediately)
+	(today)
+	(tomorrow)
+	(day after tomorrow)
+	(next week)
+	(WEEKDAY)
+WEEKDAY
+	(monday)
+	(tuesday)
+	(wednesday)
+	(thursday)
+	(friday)
+	(saturday)
+	(sunday)
+;
+
 [can]
 	(can)
 	(could)
@@ -183,6 +292,161 @@ NEED
 	(*are necessary)
 ;
 
+[meal]
+	(meal)
+	(dish)
+	(food)
+;
+
+[canteen]
+	(*at CANTEEN)
+CANTEEN
+	(canteen)
+	(mensa)
+	(cafeteria)
+	(dining hall)
+	(*canteen *at adenauerring)
+	(*mensa *at adenauerring)
+	(*canteen moltke)
+	(*mensa moltke)
+	(*mensa *in *the HOLZGARTENSTRASSE)
+	(*canteen *in *the HOLZGARTENSTRASSE)
+	(*mensa *in *the TIEFENBRONNERSTRASSE)
+	(*canteen *at SCHLOSSGOTTESAUE)
+	(*mensa *at SCHLOSSGOTTESAUE)
+	(*canteen *in *the ERZBERGERSTRASSE)
+	(*mensa *in *the ERZBERGERSTRASSE)
+HOLZGARTENSTRASSE
+	(holzgartenstrasse)
+	(holzgartenstrase)
+	(woodgardenstreet)
+	(holcegartenshtrahse)
+	(holzgartenstreet)
+TIEFENBRONNERSTRASSE
+	(tiefenbronnerstrasse)
+	(tiefenbronnerstrase)
+	(teevenbronnershtrahse)
+	(depthfountainstreet)
+	(tiefenbronnerstreet)
+SCHLOSSGOTTESAUE
+	(schloss gottesaue)
+	(castle gottesaue)
+	(castle gods meadow)
+	(shloce goddessowe)
+ERZBERGERSTRASSE
+	(erzbergerstrasse)
+	(erzbergerstrase)
+	(oremountainstreet)
+	(ercebergershtrase)
+	(erzbergerstreet)
+;
+
+[number]
+	(MIL *THOU *HUN *BASE)
+	(THOU *HUN *BASE)
+	(HUN *BASE)
+	(BASE)
+	(ORDINAL)
+	(+DIGIT)
+MIL
+	(BASE million)
+THOU
+	(BASE thousand)
+	(DIGIT hundred *BASE thousand)
+HUN
+	(DIGIT hundred)
+BASE
+	(DIGIT)
+	(TEEN)
+	(DECADE *DIGIT)
+DIGIT
+	(zero)
+	(one)
+	(two)
+	(three)
+	(four)
+	(five)
+	(six)
+	(seven)
+	(eight)
+	(nine)
+TEEN
+	(ten)
+	(eleven)
+	(twelve)
+	(thirteen)
+	(fourteen)
+	(fifteen)
+	(sixteen)
+	(seventeen)
+	(eighteen)
+	(nineteen)
+ORDINAL
+	(ORDINAL_DIGIT)
+	(ORDINAL_TEEN)
+	(ORDINAL_DECADE)
+	(DECADE ORDINAL_DIGIT)
+ORDINAL_DIGIT
+	(first)
+	(second)
+	(third)
+	(fourth)
+	(fifth)
+	(sixth)
+	(seventh)
+	(eighth)
+	(ninth)
+ORDINAL_TEEN
+	(tenth)
+	(eleventh)
+	(twelfth)
+	(thirteenth)
+	(fourteenth)
+	(fifteenth)
+	(sixteenth)
+	(seventeenth)
+	(eighteenth)
+	(nineteenth)
+ORDINAL_DECADE
+	(twentieth)
+	(thirtieth)
+	(fortieth)
+	(fiftieth)
+	(sixtieth)
+	(seventieth)
+	(eightieth)
+	(ninetieth)
+	(*one hundredth)
+DECADE
+	(twenty)
+	(thirty)
+	(forty)
+	(fifty)
+	(sixty)
+	(seventy)
+	(eighty)
+	(ninety)
+;
+
+
+	
+
 #recipes
 [recipe]
 #import recipe
+;
+
+#tools
+[tool]
+#import tool
+;
+
+#ingredients
+[ingredient]
+#import ingredient
+;
+
+#canteen menus
+[menu]
+#import menu
+;
