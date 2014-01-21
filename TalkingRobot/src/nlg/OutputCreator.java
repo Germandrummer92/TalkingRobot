@@ -51,87 +51,13 @@ public class OutputCreator {
 	  
 		// Maybe implementing 'DialogStates' and making all the enumerations extend it would be better.
 		// Then it's not necessary to implement the following if-else conditions.
-		
-<<<<<<< HEAD
-		// maybe make this file in properties like in SWT? that we don't have to load it every time
-		// Xizhe
-		//File sentencesFile = new File(""); //Import files with sentences
-		//String output = dialogState.getOutputKeyword();
 	  
-		String key = null;
-		int index = -1;
-		if(dialogState.getClass().equals(StartState.class)) {
-			StartState startState = (StartState) dialogState;
-			index = startState.getCurrentState().getIndex();
-			
-			
-			
-			// should we make the switch in a private method?  Xizhe
-			switch(startState.getCurrentState()) {
-			case ENTRY:
-				key = "startState." + "ENTRY.";
-				break;
-			case EXIT:
-				break;
-			case USER_DOESNT_WANT_TO_BE_SAVED:
-				break;
-			case USER_FOUND:
-				break;
-			case USER_NOT_FOUND:
-				break;
-			case USER_SAVED:
-				break;
-			case USER_WANTS_TO_BE_SAVED:
-				break;
-			case WAITING_FOR_EMPLOYEE_STATUS:
-				break;
-			case WAITING_FOR_USERNAME:
-				break;
-			default:
-				break;	
-			}
-		} else if(dialogState.getClass().equals(RecipeAssistanceState.class)) {
-			switch(((RecipeAssistanceState) dialogState).getCurrentState()){
-			case ENTRY:
-				break;
-			case EXIT:
-				break;
-			case RECIPE_NOT_FOUND:
-				break;
-			case TELL_COUNTRY_OF_ORIGIN:
-				break;
-			case TELL_CREATOR:
-				break;
-			case TELL_INGFREDIENT_NOT_FOUND:
-				break;
-			case TELL_INGREDIENTS:
-				break;
-			case TELL_INGREDIENT_FOUND:
-				break;
-			case TELL_NUM_OF_STEPS:
-				break;
-			case TELL_STEPS:
-				break;
-			case TELL_TOOLS:
-				break;
-			case TELL_TOOL_FOUND:
-				break;
-			case TELL_TOOL_NOT_FOUND:
-				break;
-			case TELL_WHOLE_RECIPE:
-				break;
-			default:
-				break;
-			
-			}
-=======
 //		String output = dialogState.getOutputKeyword();
 //		findInFile(dialogState.getClass().getName(), output);
 		if (dialogState.getClass().equals(StartState.class)) {
 			StartState startState = (StartState) dialogState;
 		} else if (dialogState.getClass().equals(RecipeAssistanceState.class)) {
 			RecipeAssistanceState recipeAssistanceState = (RecipeAssistanceState) dialogState;
->>>>>>> 40a813ebb2a8773a11100311ffc642720849910f
 		} else if (dialogState.getClass().equals(RecipeLearningState.class)) {
 			RecipeLearningState recipeLearningState = (RecipeLearningState) dialogState;
 		} else if (dialogState.getClass().equals(KitchenAssistanceState.class)) {
@@ -141,20 +67,10 @@ public class OutputCreator {
 		} else if (dialogState.getClass().equals(CanteenRecommendationState.class)) {
 			CanteenRecommendationState canteenRecommendationState = (CanteenRecommendationState) dialogState;
 		}
-<<<<<<< HEAD
-	  
-		key = key + "."+index;
-		
-		
-		/*================*/
-		//Phrase phrase = getOutputKeyword(dialogState);
-		//TODO Check for SocialComponent (if yes, addSocialComponent()) (How can we check?)
-=======
 		
 		findInFile(dialogState);
->>>>>>> 40a813ebb2a8773a11100311ffc642720849910f
-	  
-		return RESOURCE_BUNDLE.getString(key);
+		
+		return null;
 	}
 
 	/**
