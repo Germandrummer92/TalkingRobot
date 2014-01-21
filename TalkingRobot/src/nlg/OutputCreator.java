@@ -37,13 +37,6 @@ public class OutputCreator {
 
 	private SocialComponent socialComponent;
 
-	private final String   BUNDLE_NAME = "nlgOutput";
-
-	private ResourceBundle RESOURCE_BUNDLE;
-	
-	public OutputCreator() {
-		RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
-	}
   
 	public String createOutput(DialogState dialogState) {
 		generators = new ArrayList<Generator>();
