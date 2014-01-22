@@ -32,10 +32,7 @@ private UserData creator;
  	}
  	
 @Override
-<<<<<<< HEAD
-public void updateState(List<Keyword> keywords, List<String> terms) {
-=======
-public void updateState(List<String> keywords, List<String> terms,
+public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	RecipeLearningState currState;
 	if (getCurrentDialogState().getClass() != RecipeLearningState.class) {
@@ -44,7 +41,7 @@ public void updateState(List<String> keywords, List<String> terms,
 	else {
 		currState = ((RecipeLearningState)getCurrentDialogState());
 	}
-	switch (currState.getCurrentState()) {
+	switch ((RecipeLearning)getCurrentDialogState().getCurrentState()) {
 	case ENTRY:
 		updateStateEntry(keywords, terms);
 	case ASK_RECIPE_NAME:
@@ -91,73 +88,72 @@ public void updateState(List<String> keywords, List<String> terms,
 	
 }
 
-private void updateStateExit(List<String> keywords, List<String> terms) {
+private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateStepRight(List<String> keywords, List<String> terms) {
+private void updateStateStepRight(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateLastStep(List<String> keywords, List<String> terms) {
+private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateNextStep(List<String> keywords, List<String> terms) {
+private void updateStateNextStep(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateFirstStep(List<String> keywords, List<String> terms) {
+private void updateStateFirstStep(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateToolRight(List<String> keywords, List<String> terms) {
+private void updateStateToolRight(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateNextTool(List<String> keywords, List<String> terms) {
+private void updateStateNextTool(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateFirstTool(List<String> keywords, List<String> terms) {
+private void updateStateFirstTool(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateAskOrigin(List<String> keywords, List<String> terms) {
+private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 	
 	
 }
 
-private void updateStateIngredRight(List<String> keywords, List<String> terms) {
+private void updateStateIngredRight(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateNextIngred(List<String> keywords, List<String> terms) {
+private void updateStateNextIngred(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateFirstIngred(List<String> keywords, List<String> terms) {
+private void updateStateFirstIngred(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateRecipeName(List<String> keywords, List<String> terms) {
+private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateEntry(List<String> keywords, List<String> terms) {
->>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
+private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
