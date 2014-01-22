@@ -33,6 +33,13 @@ public class User {
   }
   
   /**
+ * Creates a new User without any saved Data. Needed to create new empty session.
+ */
+public User() {
+	
+}
+
+/**
    * 
    * @return the user's data
    */

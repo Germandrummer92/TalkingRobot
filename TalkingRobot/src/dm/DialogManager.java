@@ -58,7 +58,7 @@ public class DialogManager {
    * private Constructor, just used by giveDialogManager()
    */
   private DialogManager() {
-	  currentDialog = new StartDialog(new Session(User.loadUsers().get(0), Robot.loadRobots().get(0)));
+	  currentDialog = new StartDialog(new Session(new User(), Robot.loadRobots().get(0)));
 	  loadUsers();
 	  previousDialog = null;
 	  errorStrategy = null;
