@@ -1,15 +1,14 @@
 package dm;
 
-import java.util.Random;
-
 /**
- * nur zum wissen ob bei NLG funktionier 
+ * 
  * @author Xizhe
  *
  */
 public enum Start {
 
 	
+<<<<<<< HEAD
   ENTRY{
 		  @Override 
 		  public int getIndex(){
@@ -95,5 +94,24 @@ public enum Start {
 	  	System.out.println(USER_WANTS_TO_BE_SAVED.getIndex());
 	  	System.out.println(USER_DOESNT_WANT_TO_BE_SAVED.getIndex());
 	  	}*/
+=======
+  ENTRY,
+
+  WAITING_FOR_USERNAME,
+
+  USER_FOUND,
+
+  WAITING_FOR_EMPLOYEE_STATUS,
+
+  USER_NOT_FOUND,
+
+  USER_SAVED,
+
+  EXIT,
+
+  USER_WANTS_TO_BE_SAVED,
+
+  USER_DOESNT_WANT_TO_BE_SAVED;
+>>>>>>> 4c2480331647dd7f0a4b860a2e7f4690026590c6
 }
 

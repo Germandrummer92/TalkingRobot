@@ -6,15 +6,12 @@ package nlg;
  * @author Xizhe Lian, Luiz Henrique Soares Silva
  * @version 0.1
  */
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ResourceBundle;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -29,110 +26,111 @@ import dm.RecipeAssistanceState;
 import dm.RecipeLearningState;
 import dm.StartState;
 
-
+/**
+ * 
+ * @author Luiz Henrique Soares Silva, Xizhe Lian
+ *
+ */
 public class OutputCreator {
+	
+	//TODO Still to be decided if following attributes will be needed.
 	private List<Generator> generators;
 
 	private List<Phrase> outputPhrases;
 
 	private SocialComponent socialComponent;
+<<<<<<< HEAD
 
+=======
+	
+	public OutputCreator() {
+	}
+>>>>>>> 4c2480331647dd7f0a4b860a2e7f4690026590c6
   
+	/**
+	 * Generates final output for the Robot, in the current Dialog.
+	 * 
+	 * @param dialogState the current system's dialog state
+	 * @return output as String
+	 */
 	public String createOutput(DialogState dialogState) {
 		generators = new ArrayList<Generator>();
 		outputPhrases = new ArrayList<Phrase>();
-	  
-		// Maybe implementing 'DialogStates' and making all the enumerations extend it would be better.
-		// Then it's not necessary to implement the following if-else conditions.
-	  
-//		String output = dialogState.getOutputKeyword();
-//		findInFile(dialogState.getClass().getName(), output);
+		String output = "empty";
+		
+		//Ugly implementation! Note: It works so far!
+		//Certifies in which dialogState the system is, in order to generate the correct Sub-state.
+		//Too bad this is only need because access to the state-enums is needed!!!! Otherwise no if-else
+		//would be needed....
 		if (dialogState.getClass().equals(StartState.class)) {
+			
 			StartState startState = (StartState) dialogState;
+			output = findInFile(startState.getClass().getName(), startState.getCurrentState().toString());
+			
 		} else if (dialogState.getClass().equals(RecipeAssistanceState.class)) {
+			
 			RecipeAssistanceState recipeAssistanceState = (RecipeAssistanceState) dialogState;
+			output = findInFile(recipeAssistanceState.getClass().getName(), recipeAssistanceState.getCurrentState().toString());
+			
 		} else if (dialogState.getClass().equals(RecipeLearningState.class)) {
+			
 			RecipeLearningState recipeLearningState = (RecipeLearningState) dialogState;
+			output = findInFile(recipeLearningState.getClass().getName(), recipeLearningState.getCurrentState().toString());
+			
 		} else if (dialogState.getClass().equals(KitchenAssistanceState.class)) {
+			
 			KitchenAssistanceState kitchenAssistanceState = (KitchenAssistanceState) dialogState;
+			output = findInFile(kitchenAssistanceState.getClass().getName(), kitchenAssistanceState.getCurrentState().toString());
+			
 		} else if (dialogState.getClass().equals(CanteenInformationState.class)) {
+			
 			CanteenInformationState canteenInformationState = (CanteenInformationState) dialogState;
+			output = findInFile(canteenInformationState.getClass().getName(), canteenInformationState.getCurrentState().toString());
+			
 		} else if (dialogState.getClass().equals(CanteenRecommendationState.class)) {
+			
 			CanteenRecommendationState canteenRecommendationState = (CanteenRecommendationState) dialogState;
+			output = findInFile(canteenRecommendationState.getClass().getName(), canteenRecommendationState.getCurrentState().toString());
 		}
 		
-		findInFile(dialogState);
+		//TODO Still have to add the keywords into the output!!!
 		
-		return null;
+		return output;
 	}
 
 	/**
-	 * @param dialogState
+	 * Searches in the sentences.json file, for the specified parameters.
+	 *  
+	 * @param className the class Name of which DialogState implement is the currentState in the DMPhase
+	 * @param stateName the Sub-state name (e.g. ENTRY, WAITING_FOR_ANSWER) represented by an enum.
+	 * @param num a random generated number to retrieve one of the possible options of sentence.
+	 * @return the matching String
 	 */
-	private void toPhrase(DialogState dialogState) {
-		String keywords = dialogState.getOutputKeyword();
-	  
-		//TODO need to be changed when the parameter changed
-		String delims = " "; // assume that exactly one space between each word
-		String[] tokens = keywords.split(delims);
-	  
-		for(int i = 0; i < tokens.length; i++) {
-			Phrase phrase = new Phrase();
-			phrase.setPhraseString(tokens[i]);
-			outputPhrases.add(phrase);
-		}	  
-	
-	}
-
-  /**
-   * When should we add social component?
-   * we need so database for social components // Xizhe  
-   * @param dialogState
-   * @return
-   */
-	private String addSocialComponent(DialogState dialogState) {
-		String keyword = dialogState.getOutputKeyword();
-		///TODO Sth
-		//Phrase phrase = this.toPhrase(dialogState);
-		//String socialRemark = socialComponent.createSocialRemark(phrase);
-	  
-		return null;
-	}
-  
-  	public static void main (String args[]) {
-	  	OutputCreator creator = new OutputCreator();
-	  	StartState startState = new StartState();
-	  	creator.createOutput(startState);
-  	}
-
-  	private String findInFile(DialogState dialogState) {
-  		String sentence = "empty";
+  	private String findInFile(String className, String stateName) {
+  		//String sentence = "empty";
   		
   		JSONParser parser = new JSONParser();
   		 
   		try {
   	 
+  			//Location of sentences.json file
+  			//TODO Sentences.json still has to be completely fullfiled... adieus time!
   			Object obj = parser.parse(new FileReader("resources/nlg/sentences.json"));
   	 
+  			//Access to a sentence
   			JSONObject jsonObject = (JSONObject) obj;
-  			JSONObject jsonState = (JSONObject) jsonObject.get(dialogState.getClass().getName());
+  			JSONObject jsonState = (JSONObject) jsonObject.get(className);
+  			JSONArray jsonSentences = (JSONArray) jsonState.get(stateName);
+  			Integer size = jsonSentences.size();
   			
-  			System.out.println(((JSONObject) jsonState.get("ENTRY")).get("answer2"));
-  			
-  			/*
-  			String name = (String) jsonObject.get("name");
-  			System.out.println(name);
-  	 
-  			long age = (Long) jsonObject.get("age");
-  			System.out.println(age);
-  	 
-  			// loop array
-  			JSONArray msg = (JSONArray) jsonObject.get("messages");
-  			Iterator<String> iterator = msg.iterator();
-  			while (iterator.hasNext()) {
-  				System.out.println(iterator.next());
-  			} */
-  	 
+  			//Generates random number based on array size (number of sentences)
+  			Random rn = new Random();
+			Integer randomNum = rn.nextInt(size - 1);
+			
+			//sentence = (String) jsonSentences.get(randomNum);
+			
+			return (String) jsonSentences.get(randomNum);
+  		
   		} catch (FileNotFoundException e) {
   			e.printStackTrace();
   		} catch (IOException e) {
@@ -141,6 +139,28 @@ public class OutputCreator {
   			e.printStackTrace();
   		}
   		
-  		return sentence;
+  		return null;
+  	}
+  	
+  	 /**
+     * When should we add social component?
+     * we need so database for social components // Xizhe  
+     * @param dialogState
+     * @return
+     */
+  	private String addSocialComponent(DialogState dialogState) {
+  		String keyword = dialogState.getOutputKeyword();
+  		///TODO this sweet method
+  		//Phrase phrase = this.toPhrase(dialogState);
+  		//String socialRemark = socialComponent.createSocialRemark(phrase);
+  	  
+  		return null;
+  	}
+  	
+  	//Testing
+  	public static void main (String args[]) {
+	  	OutputCreator creator = new OutputCreator();
+	  	StartState startState = new StartState();
+	  	System.out.println(creator.createOutput(startState));
   	}
 }
