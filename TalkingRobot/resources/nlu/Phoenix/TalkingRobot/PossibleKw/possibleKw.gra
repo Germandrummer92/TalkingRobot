@@ -305,9 +305,9 @@ CANTEEN
 	(mensa)
 	(cafeteria)
 	(dining hall)
-	(*canteen *at adenauerring)
-	(*mensa *at adenauerring)
-	(*canteen moltke)
+	(*canteen *at ADENAUERRING)
+	(*mensa *at ADENAUERRING)
+	(*canteen MOLTKE)
 	(*mensa moltke)
 	(*mensa *in *the HOLZGARTENSTRASSE)
 	(*canteen *in *the HOLZGARTENSTRASSE)
@@ -316,6 +316,15 @@ CANTEEN
 	(*mensa *at SCHLOSSGOTTESAUE)
 	(*canteen *in *the ERZBERGERSTRASSE)
 	(*mensa *in *the ERZBERGERSTRASSE)
+ADENAUERRING
+	(adenauerring)
+	(adenauering)
+	(adenauring)
+	(adenaurring)
+MOLTKE
+	(molke)
+	(moltke)
+	(moke)
 HOLZGARTENSTRASSE
 	(holzgartenstrasse)
 	(holzgartenstrase)
@@ -329,10 +338,10 @@ TIEFENBRONNERSTRASSE
 	(depthfountainstreet)
 	(tiefenbronnerstreet)
 SCHLOSSGOTTESAUE
-	(schloss gottesaue)
-	(castle gottesaue)
-	(castle gods meadow)
-	(shloce goddessowe)
+	(*schloss gottesaue)
+	(*castle gottesaue)
+	(*castle gods meadow)
+	(*shloce goddessowe)
 ERZBERGERSTRASSE
 	(erzbergerstrasse)
 	(erzbergerstrase)
