@@ -11,7 +11,7 @@ public enum RecipeLearning  {
 
   ASK_NEXT_INGREDIENT,
 
-  AKS_INGREDIENT_RIGHT,
+  ASK_INGREDIENT_RIGHT,
 
   ASK_FIRST_TOOL,
 
