@@ -1,5 +1,5 @@
 verbose:1
-extract:1
+extract:0
 dir: PossibleKw
 grammar: EX.net
 PROFILE:0
