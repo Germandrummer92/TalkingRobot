@@ -1,0 +1,12 @@
+# @author Meng Meng Yan
+# @version 1.0
+
+
+#	the different terms (words which the robot might need to learn) which can occur
+	FRAME: Term
+	NETS: 
+		[recipe_name]
+		[recipe_ingredient]
+		[recipe_tool]
+		[recipe_step]
+;

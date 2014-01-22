@@ -1,0 +1,17 @@
+# @author Meng Meng Yan
+# @version 1.0
+
+#	the possible types of keywords
+	FRAME: PossibleKeyword
+	NETS: 
+		[canteen_assistance]
+		[canteen_information]
+		[canteen_recommendation]
+		[kitchen_assistance]		#kitchen_assistance: general kitchen assistance
+		[recipe_assistance]
+		[recipe_learning]
+		[cooking_assistance]		#cooking_assistance: getting tools etc.
+		[main]
+		[login]
+		[logout]
+;

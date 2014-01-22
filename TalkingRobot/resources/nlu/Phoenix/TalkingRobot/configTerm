@@ -1,0 +1,5 @@
+verbose:1
+extract:1
+dir: Term
+grammar: EX.net
+PROFILE:0
