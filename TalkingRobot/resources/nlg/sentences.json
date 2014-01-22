@@ -1,25 +1,25 @@
 {
     "dm.StartState" : {
 			"ENTRY": [
-				"[Hello]",
-				"[Welcome]",
-				"[Hi]",
+				"Hello",
+				"Welcome",
+				"Hi",
 				// So long no see belongs to social component
 				// happy to see you belongs to social component
 			],
 			"EXIT": [
-				"[Adieu]",
-				"(See) <you>"
+				"Adieu",
+				"See you"
 			],
 			"USER_DOESNT_WANT_TO_BE_SAVED": [
-				"[what] <a pity>"
+				"what a pity"
 			],
 			"USER_FOUND": [
 				""
 			],
 			"USER_NOT_FOUND": [
-				"[we] (don't have) <your usage record> . 
-					[you] (would like) {to save your usage history} ?"
+				"we don't have your usage record . 
+					would you like to save your usage history ?"
 			],
 			"USER_SAVED": [
 				

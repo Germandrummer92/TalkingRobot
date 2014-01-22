@@ -54,6 +54,7 @@ public class OutputCreator {
 		outputPhrases = new ArrayList<Phrase>();
 		String output = "empty";
 		String temp = null;
+	   
 		
 		//Ugly implementation! Note: It works so far!
 		//Certifies in which dialogState the system is, in order to generate the correct Sub-state.
@@ -90,9 +91,8 @@ public class OutputCreator {
 			temp = findInFile(canteenRecommendationState.getClass().getName(), canteenRecommendationState.getCurrentState().toString());
 		}
 		
-		//TODO Still have to add the keywords into the output!!!
-		toPhraseList(temp, dialogState.getOutputKeyword());
 		
+		output = addKeyword(temp, dialogState.getOutputKeyword());
 		
 		return output;
 	}
@@ -157,14 +157,53 @@ public class OutputCreator {
   	}
   	
   	/**
-  	 * convert string into phrase list
-  	 * @param sentences
-  	 * @param keyword
-  	 * @return
+  	 * Add keyword to sentences from template
+  	 * @param text text from template
+  	 * @param keyword keyword from dialogStates
+  	 * @return a complete answer as string
   	 */
-  	private List<Phrase> toPhraseList(String sentences, String keyword){
-  		List<Phrase> answer = new ArrayList<Phrase>();
-  		//TODO convert stuff
+  	private String addKeyword(String text, String keyword){
+  		String answer = null;
+  		String evaluationObj = "[o]";
+  		String evaluationCompl = "{c}";
+  		
+  		//String[] tokens = sentences.split(" "); 
+  		if(keyword != null) {
+  		    
+	  		String[] sentences = null;
+	  		String[] keywords = keyword.split(" "); 
+	  		String obj = null;
+	  		String compl = null;
+	  		if(text.contains(".")) {
+	  			sentences = text.split(".");
+	  		}
+	  		
+	  		for(int i = 0; i < keywords.length; i++) {
+	  			if(keywords[i].contains("[.*]")) {
+	  				obj = keywords[i].substring(1, keywords[i].length() - 2);
+	  			}
+	  			if(keywords[i].contains("{.*}")) {
+	  				compl = keywords[i].substring(1, keywords[i].length() - 2);
+	  			}
+	  			
+	  		}
+	  		
+	  		for(int i = 0; i < sentences.length; i++) {
+	  			if(sentences[i].contains(evaluationObj)) {
+	  				sentences[i].replace(evaluationObj, obj);
+	  			}
+	  			if(sentences[i].contains(evaluationCompl)) {
+	  				sentences[i].replace(evaluationCompl, compl);
+	  			}	  
+	  			sentences[i] = sentences[i] + ". "; // blank between 2 sentences
+	  		}
+	  		
+	  		for(int i = 0; i < sentences.length; i++) {
+	  			answer = answer + sentences[i];
+	  		}
+  		} else {answer = text;} // don't need to add keywords
+  		
+  		
   		return answer;
   	}
   	
