@@ -39,13 +39,9 @@ public class OutputCreator {
 	private List<Phrase> outputPhrases;
 
 	private SocialComponent socialComponent;
-<<<<<<< HEAD
-
-=======
 	
 	public OutputCreator() {
 	}
->>>>>>> 4c2480331647dd7f0a4b860a2e7f4690026590c6
   
 	/**
 	 * Generates final output for the Robot, in the current Dialog.
