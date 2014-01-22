@@ -124,7 +124,7 @@ SO
 	([_first])
 ;
 	
-([_first])
+[_first]
 	(the first *one)
 	(number one)
 	(first)
@@ -135,7 +135,7 @@ SO
 	([_second])
 ;
 
-([_second])
+[_second]
 	(the second *one)
 	(number two)
 	(the last *one)
