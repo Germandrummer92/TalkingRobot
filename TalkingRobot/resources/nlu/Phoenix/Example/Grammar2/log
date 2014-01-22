@@ -1,0 +1,141 @@
+WARNING: In <[Childrenallowed_Name]> NonTerm <Childrenallowed_Name> not rewritten
+[Childrenallowed_Name]  2 states  0 arcs
+WARNING: In <[Phone_Name]> NonTerm <Phone_Name> not rewritten
+[Phone_Name]  2 states  0 arcs
+[Hastv_Name]  4 states  4 arcs
+[Hasparking_Name]  4 states  4 arcs
+WARNING: In <[Entity_Name]> NonTerm <Entity_Name> not rewritten
+[Entity_Name]  2 states  0 arcs
+[entity_value]  2 states  1 arcs
+[Entity_Value]  2 states  1 arcs
+[Entity_Dontcare_Value]  6 states  6 arcs
+[Entity_Negated_Value]  3 states  2 arcs
+WARNING: In <[Type_Name]> NonTerm <Type_Name> not rewritten
+[Type_Name]  2 states  0 arcs
+[type_value]  2 states  10 arcs
+[Type_Value]  2 states  1 arcs
+[Type_Dontcare_Value]  6 states  6 arcs
+[Type_Negated_Value]  3 states  2 arcs
+WARNING: In <[Pricerange_Name]> NonTerm <Pricerange_Name> not rewritten
+[Pricerange_Name]  2 states  0 arcs
+[pricerange_value]  2 states  3 arcs
+[Pricerange_Value]  2 states  1 arcs
+[Pricerange_Dontcare_Value]  6 states  6 arcs
+[Pricerange_Negated_Value]  3 states  2 arcs
+WARNING: In <[Decor_Name]> NonTerm <Decor_Name> not rewritten
+[Decor_Name]  2 states  0 arcs
+[decor_value]  3 states  3 arcs
+[Decor_Value]  2 states  1 arcs
+[Decor_Dontcare_Value]  6 states  6 arcs
+[Decor_Negated_Value]  3 states  2 arcs
+WARNING: In <[Staytype_Name]> NonTerm <Staytype_Name> not rewritten
+[Staytype_Name]  2 states  0 arcs
+[staytype_value]  2 states  2 arcs
+[Staytype_Value]  2 states  1 arcs
+[Staytype_Dontcare_Value]  6 states  6 arcs
+[Staytype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Area_Name]> NonTerm <Area_Name> not rewritten
+[Area_Name]  2 states  0 arcs
+[area_value]  2 states  15 arcs
+[Area_Value]  2 states  1 arcs
+[Area_Dontcare_Value]  6 states  6 arcs
+[Area_Negated_Value]  3 states  2 arcs
+WARNING: In <[Name_Name]> NonTerm <Name_Name> not rewritten
+[Name_Name]  2 states  0 arcs
+[name_value]  3 states  2 arcs
+[Name_Value]  2 states  1 arcs
+[Name_Dontcare_Value]  6 states  6 arcs
+[Name_Negated_Value]  3 states  2 arcs
+WARNING: In <[Drinktype_Name]> NonTerm <Drinktype_Name> not rewritten
+[Drinktype_Name]  2 states  0 arcs
+[drinktype_value]  2 states  3 arcs
+[Drinktype_Value]  2 states  1 arcs
+[Drinktype_Dontcare_Value]  6 states  6 arcs
+[Drinktype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Entstype_Name]> NonTerm <Entstype_Name> not rewritten
+[Entstype_Name]  2 states  0 arcs
+[entstype_value]  2 states  6 arcs
+[Entstype_Value]  2 states  1 arcs
+[Entstype_Dontcare_Value]  6 states  6 arcs
+[Entstype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Openhours_Name]> NonTerm <Openhours_Name> not rewritten
+[Openhours_Name]  2 states  0 arcs
+[Hasmusic_Name]  4 states  4 arcs
+[Hasfood_Name]  4 states  4 arcs
+WARNING: In <[Seetype_Name]> NonTerm <Seetype_Name> not rewritten
+[Seetype_Name]  2 states  0 arcs
+[seetype_value]  2 states  3 arcs
+[Seetype_Value]  2 states  1 arcs
+[Seetype_Dontcare_Value]  6 states  6 arcs
+[Seetype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Music_Name]> NonTerm <Music_Name> not rewritten
+[Music_Name]  2 states  0 arcs
+[music_value]  2 states  1 arcs
+[Music_Value]  2 states  1 arcs
+[Music_Dontcare_Value]  6 states  6 arcs
+[Music_Negated_Value]  3 states  2 arcs
+WARNING: In <[Transtype_Name]> NonTerm <Transtype_Name> not rewritten
+[Transtype_Name]  2 states  0 arcs
+[transtype_value]  2 states  3 arcs
+[Transtype_Value]  2 states  1 arcs
+[Transtype_Dontcare_Value]  6 states  6 arcs
+[Transtype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Sport_Name]> NonTerm <Sport_Name> not rewritten
+[Sport_Name]  2 states  0 arcs
+[sport_value]  2 states  3 arcs
+[Sport_Value]  2 states  1 arcs
+[Sport_Dontcare_Value]  6 states  6 arcs
+[Sport_Negated_Value]  3 states  2 arcs
+[Hasinternet_Name]  4 states  4 arcs
+WARNING: In <[Postcode_Name]> NonTerm <Postcode_Name> not rewritten
+[Postcode_Name]  2 states  0 arcs
+WARNING: In <[Price_Name]> NonTerm <Price_Name> not rewritten
+[Price_Name]  2 states  0 arcs
+WARNING: In <[Near_Name]> NonTerm <Near_Name> not rewritten
+[Near_Name]  2 states  0 arcs
+WARNING: In <[Address_Name]> NonTerm <Address_Name> not rewritten
+[Address_Name]  2 states  0 arcs
+WARNING: In <[Shoptype_Name]> NonTerm <Shoptype_Name> not rewritten
+[Shoptype_Name]  2 states  0 arcs
+[shoptype_value]  2 states  2 arcs
+[Shoptype_Value]  2 states  1 arcs
+[Shoptype_Dontcare_Value]  6 states  6 arcs
+[Shoptype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Food_Name]> NonTerm <Food_Name> not rewritten
+[Food_Name]  2 states  0 arcs
+[food_value]  2 states  16 arcs
+[Food_Value]  2 states  1 arcs
+[Food_Dontcare_Value]  6 states  6 arcs
+[Food_Negated_Value]  3 states  2 arcs
+WARNING: In <[Stars_Name]> NonTerm <Stars_Name> not rewritten
+[Stars_Name]  2 states  0 arcs
+WARNING: In <[Unitype_Name]> NonTerm <Unitype_Name> not rewritten
+[Unitype_Name]  2 states  0 arcs
+[unitype_value]  2 states  3 arcs
+[Unitype_Value]  2 states  1 arcs
+[Unitype_Dontcare_Value]  6 states  6 arcs
+[Unitype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Eattype_Name]> NonTerm <Eattype_Name> not rewritten
+[Eattype_Name]  2 states  0 arcs
+[eattype_value]  2 states  1 arcs
+[Eattype_Value]  2 states  1 arcs
+[Eattype_Dontcare_Value]  6 states  6 arcs
+[Eattype_Negated_Value]  3 states  2 arcs
+WARNING: In <[Amtype_Name]> NonTerm <Amtype_Name> not rewritten
+[Amtype_Name]  2 states  0 arcs
+[amtype_value]  2 states  5 arcs
+[Amtype_Value]  2 states  1 arcs
+[Amtype_Dontcare_Value]  6 states  6 arcs
+[Amtype_Negated_Value]  3 states  2 arcs
+[Hello]  2 states  3 arcs
+[Inform]  4 states  7 arcs
+[Request]  2 states  2 arcs
+[Reqalts]  4 states  6 arcs
+[Reqmore]  2 states  1 arcs
+[Confirm]  5 states  6 arcs
+[Confreq]  2 states  1 arcs
+[Select]  2 states  1 arcs
+[Affirm]  2 states  1 arcs
+[Negate]  2 states  1 arcs
+[Deny]  4 states  4 arcs
+[Bye]  2 states  1 arcs
