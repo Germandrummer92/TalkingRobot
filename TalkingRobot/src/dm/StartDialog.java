@@ -2,6 +2,8 @@ package dm;
 
 import java.util.List;
 
+import data.UserData;
+
 /**
  * @author Daniel Draper
  * @version 1.0
@@ -23,8 +25,12 @@ public class StartDialog extends Dialog {
 	 * @see dm.Dialog#updateState(java.util.List, java.util.List)
 	 */
 	@Override
+<<<<<<< HEAD
+	public void updateState(List<Keyword> keywords, List<String> terms) throws WrongStateClassException {
+=======
 	public void updateState(List<String> keywords, List<String> terms, List<String> approval)
 			throws WrongStateClassException {
+>>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
 		StartState currentStateStart;
 		if (getCurrentDialogState().getClass() != StartState.class) {
 			throw new WrongStateClassException();
@@ -51,7 +57,7 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateExit(List<String> keywords, List<String> terms) {
+	private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -60,7 +66,7 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateNoSave(List<String> keywords, List<String> terms) {
+	private void updateStateNoSave(List<Keyword> keywords, List<String> terms) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -69,7 +75,7 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateWantsSave(List<String> keywords, List<String> terms) {
+	private void updateStateWantsSave(List<Keyword> keywords, List<String> terms) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -78,7 +84,7 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateSaved(List<String> keywords, List<String> terms) {
+	private void updateStateSaved(List<Keyword> keywords, List<String> terms) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -87,7 +93,7 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateNotFound(List<String> keywords, List<String> terms) {
+	private void updateStateNotFound(List<Keyword> keywords, List<String> terms) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -96,8 +102,15 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateFound(List<String> keywords, List<String> terms) {
-		// TODO Auto-generated method stub
+	private void updateStateFound(List<Keyword> keywords, List<String> terms) {
+		for (Keyword kw: keywords) {
+			if (kw.getReference() instanceof RecipeAssistanceState) {
+				if (((RecipeAssistanceState)kw.getReference()).getCurrentState() == RecipeAssistance.ENTRY) {
+					((StartState)getCurrentDialogState()).setCurrentState(Start.EXIT);
+					return;
+				}
+			}
+		}
 		
 	}
 
@@ -105,8 +118,16 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateWaiting(List<String> keywords, List<String> terms) {
-		// TODO Auto-generated method stub
+	private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
+		for (Keyword kw: keywords) {
+			if (kw.getReference() instanceof StartState) {
+				if (((StartState)kw.getReference()).getCurrentState() == Start.USER_FOUND) {
+					((StartState)getCurrentDialogState()).setCurrentState(Start.USER_FOUND);
+					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference())));
+					return;
+				}
+			}
+		}
 		
 	}
 
@@ -114,8 +135,18 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
-	private void updateStateEntry(List<String> keywords, List<String> terms) {
-		// TODO Auto-generated method stub
+	private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
+		for (Keyword kw: keywords) {
+			if (kw.getReference() instanceof StartState) {
+				if (((StartState)kw.getReference()).getCurrentState() == Start.WAITING_FOR_USERNAME) {
+					((StartState)getCurrentDialogState()).setCurrentState(Start.WAITING_FOR_USERNAME);
+					return;
+				}
+			}
+		}
+		/*for (Keyword kw: keywords) {
+			((kw.getReference().getClass())getCurrentDialogState()).setCurrentState(kw.getReference().getClass().getName().)
+		}*/
 		
 	}
 

@@ -26,6 +26,9 @@ public class RecipeAssistanceDialog extends KitchenDialog {
   }
 
 @Override
+<<<<<<< HEAD
+public void updateState(List<Keyword> keywords, List<String> terms) {
+=======
 public void updateState(List<String> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	// TODO Auto-generated method stub
@@ -139,6 +142,7 @@ private void updateStateTellIngredients(List<String> keywords,
 }
 
 private void updateStateRNF(List<String> keywords, List<String> terms) {
+>>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
 	// TODO Auto-generated method stub
 	
 }

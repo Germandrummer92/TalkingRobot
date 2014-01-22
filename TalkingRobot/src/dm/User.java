@@ -28,7 +28,7 @@ public class User {
    * Creates a new User from already saved UserData. Only accessible, by loadUsers().
    * @param d the UserData of the new User
    */
-  private User(UserData d) {
+  protected User(UserData d) {
 	  userData = d;
   }
   

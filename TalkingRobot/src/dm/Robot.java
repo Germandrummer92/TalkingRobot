@@ -17,9 +17,10 @@ public class Robot {
   /**
    * Creates a new Robot and saves its data.
    * @param robotName
+   * @param isInKitchen if the Robot is currently situated in the Kitchen
    */
-  public Robot(String robotName) {
-	  robotData = new RobotData(robotName);
+  public Robot(String robotName, Boolean isInKitchen) {
+	  robotData = new RobotData(robotName, isInKitchen);
 	  robotData.writeFile();
   }
   
@@ -49,6 +50,5 @@ public class Robot {
 	  }
 	  return res;
   }
-  
 
 }

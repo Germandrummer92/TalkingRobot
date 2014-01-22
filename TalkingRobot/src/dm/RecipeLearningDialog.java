@@ -32,6 +32,9 @@ private UserData creator;
  	}
  	
 @Override
+<<<<<<< HEAD
+public void updateState(List<Keyword> keywords, List<String> terms) {
+=======
 public void updateState(List<String> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	RecipeLearningState currState;
@@ -154,6 +157,7 @@ private void updateStateRecipeName(List<String> keywords, List<String> terms) {
 }
 
 private void updateStateEntry(List<String> keywords, List<String> terms) {
+>>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
 	// TODO Auto-generated method stub
 	
 }

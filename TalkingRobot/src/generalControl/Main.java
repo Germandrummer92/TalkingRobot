@@ -295,3 +295,17 @@ private void checkFiles() {
 		 while(true);
 	  }
 }
+	
+/*Test:
+ 	public static void main(String args[]) {
+		Main m = giveMain();
+		m.setNluResult(new ArrayList<List<String>>());
+		m.getNluResult().add(new ArrayList<String>());
+		m.getNluResult().get(0).add("Hello");
+		m.getNluResult().add(new ArrayList<String>());
+		m.getNluResult().add(new ArrayList<String>());
+		m.getNluResult().add(new ArrayList<String>());
+		m.dmPhase = new DMPhase();
+		m.dmPhase.setPhaseResult(m);
+		System.out.println(m.getDmResult().getClass().getName());
+	}*/
