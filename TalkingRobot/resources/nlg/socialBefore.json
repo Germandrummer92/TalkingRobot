@@ -240,8 +240,7 @@
 	},
 	"dm.CanteenRecommendationState" : {
 			"ADEN_CAFE_DISH" : [
-				"",
-				""
+			
 			],
 			"ADEN_CURRYQ_DISH" : [
 				
@@ -265,7 +264,8 @@
 				
 			],
 			"ENTRY" : [
-				
+				"I guess you're pretty hungry right?";
+				"I can hear your stomach drumming";
 			],
 			"EXIT" : [
 				
@@ -289,10 +289,14 @@
 				
 			],
 			"TELL_MEAL_NOT_EXIST" : [
-				
+				"Sorry",
+				"Oops",
+				"Well"
 			],
-			"WAITING_FOR_USERNAME" : [
-				
+			"TELL_LINE_NOT_EXIST" : [
+				"Sorry",
+				"Oops",
+				"Well"
 			]
 	}
 }

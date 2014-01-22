@@ -168,7 +168,7 @@ public class OutputCreator {
   	 */
   	private String addKeyword(String text, String keyword){
   		String answer = null;
-  		String evaluationObj = "[o]";
+  		String evaluationObj = "<o>";
   		String evaluationCompl = "{c}";
   		
   		//String[] tokens = sentences.split(" "); 
@@ -183,7 +183,7 @@ public class OutputCreator {
 	  		} else sentences[0] = text;  // nothing to split
 	  		
 	  		for(int i = 0; i < keywords.length; i++) {
-	  			if(keywords[i].contains("[") && keywords[i].contains("]")) {
+	  			if(keywords[i].contains("<") && keywords[i].contains(">")) {
 	  				obj = keywords[i].substring(1, keywords[i].length() - 2);
 	  			}
 	  			if(keywords[i].contains("{") && keywords[i].contains("}")) {

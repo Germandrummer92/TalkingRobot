@@ -251,59 +251,124 @@
 	},
 	"dm.CanteenRecommendationState" : {
 			"ADEN_CAFE_DISH" : [
-				"",
-				""
+				"In cafeteria there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided in cafeteria",
+				"{c} in cafeteria there's <o>",
+				"you can get <o> in cafeteria {c}"
 			],
 			"ADEN_CURRYQ_DISH" : [
-				
+				"In curry queen there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided in curry queen",
+				"{c} in curry queen there's <o>",
+				"you can get <o> in curry queen {c}"
 			],
 			"ADEN_LINE_1_DISH" : [
-				
+				"At line one there's <o> {c}",
+				"You can find <o> {c}",
+				"{c} <o> will be provided at line one",
+				"{c} at line one there's <o>",
+				"you can get <o> at line one {c}"
 			],
 			"ADEN_LINE_2_DISH" : [
-				
+				"At line two there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line two",
+				"{c} at line two there's <o>",
+				"you can get <o> at line two {c}"
 			],
 			"ADEN_LINE_3_DISH" : [
-				
+				"At line three there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line three",
+				"{c} at line three there's <o>",
+				"you can get <o> at line three {c}"
 			],
-			"ADEN_LINE_45_DISH" : [
-				
+			"ADEN_LINE_4_AND_5_DISH" : [
+				"At line four and five there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line four and five",
+				"{c} at line four and five there's <o>",
+				"you can get <o> at line four and five {c}"
 			],
 			"ADEN_LINE_6_DISH" : [
-				
+				"At line six there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line six",
+				"{c} at line six there's <o>",
+				"you can get <o> at line six {c}"
 			],
 			"ADEN_SCHNITBAR_DISH" : [
-				
+				"At schnitzel bar there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at schnitzel bar",
+				"{c} at schnitzel bar there's <o>",
+				"you can get <o> at schnitzel bar {c}"
 			],
 			"ENTRY" : [
-				
+				"So, what do you want to eat?",
+				"What do you prefer to eat?",
+				"Do you have some special preferences?"
 			],
 			"EXIT" : [
-				
+				"Have a good meal"
 			],
 			"MOLTKE_BUFFET_DISH" : [
-				
+				"At buffet there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at buffet",
+				"{c} at buffet there's <o>",
+				"you can get <o> at buffet {c}"
 			],
 			"MOLTKE_CAFE_DISH" : [
-				
+				"In cafeteria there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided in cafeteria",
+				"{c} in cafeteria there's <o>",
+				"you can get <o> in cafeteria {c}"
 			],
 			"MOLTKE_CHOICE_1_DISH" : [
-				
+				"At choice one there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at choice one",
+				"{c} at choice one there's <o>",
+				"you can get <o> at choice two {c}"
 			],
 			"MOLTKE_CHOICE_2_DISH" : [
-				
+				"At choice two there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at choice two",
+				"{c} at choice two there's <o>",
+				"you can get <o> at choice two {c}"
 			],
 			"MOLTKE_GG_DISH" : [
-				
+				"At good and cheap there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at good and cheap",
+				"{c} at good and cheap there's <o>",
+				"you can get <o> at good and cheap {c}"
 			],
 			"MOLTKE_SCHNITBAR_DISH" : [
-				
+				"At schnitzel bar there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at schnitzel bar",
+				"{c} at schnitzel bar there's <o>",
+				"you can get <o> at schnitzel bar {c}"
 			],
 			"TELL_MEAL_NOT_EXIST" : [
-				
+				"The meal wanted is not found. Do you want to know what else are provided?",
+				"I can't find the wanted meal. Maybe try some other meals?",
+				"There's no such meal provided at your wished canteen and wished date. Do you want to know what else are provided?",
+				"The meal wanted is not found. Maybe try some other meals?",
+				"There's no such meal provided at your wished canteen and wished date. Maybe try some other meals?"
 			],
-			"WAITING_FOR_USERNAME" : [
-				
+			"TELL_LINE_NOT_EXIST" : [
+				"The given line doesn't exist. Are you sure about the line number?",
+				"There's no such line. Do you want information about other lines?",
+				"I can't find the information about wished line. Are you sure about the line number?",
+				"The given line doesn't exist. Do you want information about other lines?",
+				"I can't find the information about wished line. Do you want information about other lines?"	
 			]
 	}
 }
