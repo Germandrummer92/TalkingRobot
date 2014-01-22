@@ -34,8 +34,8 @@ public class StartDialog extends Dialog {
 		case ENTRY : updateStateEntry(keywords, terms); break;
 		case WAITING_FOR_USERNAME : updateStateWaiting(keywords, terms); break;
 		case USER_FOUND : updateStateFound(keywords, terms); break;
-		case WAITING_FOR_EMPLOYEE_STATUS : updateStateWaiting(keywords, terms); break;
-		case USER_NOT_FOUND : updateStateNotFound(keywords, terms); break;
+		case WAITING_FOR_EMPLOYEE_STATUS : updateStateWaitingEmployee(keywords, terms, approval); break;
+		case USER_NOT_FOUND : updateStateNotFound(keywords, terms, approval); break;
 		case USER_SAVED : updateStateSaved(keywords, terms); break;
 		case USER_WANTS_TO_BE_SAVED : updateStateWantsSave(keywords, terms); break;
 		case USER_DOESNT_WANT_TO_BE_SAVED : updateStateNoSave(keywords, terms); break;
@@ -43,6 +43,28 @@ public class StartDialog extends Dialog {
 		default: break;
 		}
 
+	}
+
+	/**
+	 * @param keywords
+	 * @param terms
+	 */
+	private void updateStateWaitingEmployee(List<Keyword> keywords,
+			List<String> terms, List<String> approval) {
+		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
+			if (approval.get(0).equals("Yes")) {
+				getCurrentDialogState().setCurrentState(Start.USER_SAVED);
+				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
+				getCurrentSession().getCurrentUser().getUserData().writeFile();
+			}
+			else {
+				getCurrentDialogState().setCurrentState(Start.USER_SAVED);
+				getCurrentSession().getCurrentUser().getUserData().setStudent(false);
+				getCurrentSession().getCurrentUser().getUserData().writeFile();
+			}
+		}
+		
+		
 	}
 
 	/**
@@ -59,7 +81,7 @@ public class StartDialog extends Dialog {
 	 * @param terms
 	 */
 	private void updateStateNoSave(List<Keyword> keywords, List<String> terms) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -77,30 +99,27 @@ public class StartDialog extends Dialog {
 	 * @param terms
 	 */
 	private void updateStateSaved(List<Keyword> keywords, List<String> terms) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * @param keywords
-	 * @param terms
-	 */
-	private void updateStateNotFound(List<Keyword> keywords, List<String> terms) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * @param keywords
-	 * @param terms
-	 */
-	private void updateStateFound(List<Keyword> keywords, List<String> terms) {
-		for (Keyword kw: keywords) {
-			if (kw.getReference() instanceof RecipeAssistanceState) {
-				if (kw.getReference().getCurrentState() == RecipeAssistance.ENTRY) {
-					getCurrentDialogState().setCurrentState(Start.EXIT);
+		if (keywords.size() == 1 && terms.size() == 0) {
+			for (Keyword kw: keywords) {
+					getCurrentDialogState().setCurrentState(kw.getReference().getCurrentState());
 					return;
 				}
+			}
+		}
+		
+
+	/**
+	 * @param keywords
+	 * @param terms
+	 */
+	private void updateStateNotFound(List<Keyword> keywords, List<String> terms, List<String> approval) {
+		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
+			if (approval.get(0).equals("Yes")) {
+				getCurrentDialogState().setCurrentState(Start.WAITING_FOR_EMPLOYEE_STATUS);
+			}
+			else {
+				getCurrentDialogState().setCurrentState(Start.USER_DOESNT_WANT_TO_BE_SAVED);
+				getCurrentSession().setCurrentUser(new User());
 			}
 		}
 		
@@ -110,15 +129,38 @@ public class StartDialog extends Dialog {
 	 * @param keywords
 	 * @param terms
 	 */
+	private void updateStateFound(List<Keyword> keywords, List<String> terms) {
+		if (keywords.size() == 1 && terms.size() == 0) {
+			for (Keyword kw: keywords) {
+					getCurrentDialogState().setCurrentState(kw.getReference().getCurrentState());
+					return;
+				}
+			}
+		}
+
+		
+
+	/**
+	 * @param keywords
+	 * @param terms
+	 */
 	private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
-		for (Keyword kw: keywords) {
+		if (keywords.size() == 1); {
+			for (Keyword kw: keywords) {
 				if (kw.getReference().getCurrentState() == Start.USER_FOUND) {
 					getCurrentDialogState().setCurrentState(Start.USER_FOUND);
 					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference())));
 					return;
 				}
+			}
 		}
-		
+		if (terms.size() == 1) {
+			for (String s : terms) {
+				getCurrentDialogState().setCurrentState(Start.USER_NOT_FOUND);
+				getCurrentSession().getCurrentUser().getUserData().setUserName(s);
+				
+			}
+		}
 	}
 
 	/**
