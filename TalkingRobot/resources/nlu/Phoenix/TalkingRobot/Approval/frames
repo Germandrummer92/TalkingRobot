@@ -6,6 +6,6 @@
 	NETS: 
 		[approval]
 		[disapproval]
-		[first_choice]
-		[second_choice]
+		[_first]
+		[_second]
 ;

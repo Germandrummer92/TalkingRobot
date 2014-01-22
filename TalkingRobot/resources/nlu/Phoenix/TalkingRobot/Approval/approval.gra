@@ -117,13 +117,13 @@ SO
 	(so)
 	(that)
 	(this)
+
+NOT
+	(not)
 ;
 
 #first choice
-[first_choice]
-	([_first])
-;
-	
+
 [_first]
 	(the first *one)
 	(number one)
@@ -131,9 +131,6 @@ SO
 ;
 
 #second choice
-[second_choice]
-	([_second])
-;
 
 [_second]
 	(the second *one)
