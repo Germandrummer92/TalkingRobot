@@ -61,7 +61,8 @@ public class OutputCreator {
 		Integer toAdd = socialRandom.nextInt(2);  // 0 for no, 1 for yes
 		
 		if(toAdd == 1) {
-			output = output + addSocialComponent(dialogState);
+			
+			output = addSocialComponent(dialogState, output);
 		}
 		
 		return output;
@@ -113,13 +114,50 @@ public class OutputCreator {
      * @param dialogState
      * @return
      */
-  	private String addSocialComponent(DialogState dialogState) {
-  		String keyword = dialogState.getOutputKeyword();
-  		///TODO this sweet method
-  		//Phrase phrase = this.toPhrase(dialogState);
-  		//String socialRemark = socialComponent.createSocialRemark(phrase);
+  	private String addSocialComponent(DialogState dialogState, String output) {
+  		//String keyword = dialogState.getOutputKeyword();
+  		JSONParser parser = new JSONParser();
+ 		boolean addBefore = true;
+  		try {
+  	 
+  			//Location of sentences.json file
+  			Object obj = parser.parse(new FileReader("resources/nlg/socialBefore.json"));
+  	 
+  			//Access to a sentence
+  			JSONObject jsonObject = (JSONObject) obj;
+  			JSONObject jsonState = (JSONObject) jsonObject.get(dialogState.getClass().getName());
+  			JSONArray jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
+  			Integer size = jsonSentences.size();
+  			
+  			if(size == 0) {
+  				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
+  				addBefore = false;
+  				jsonObject = (JSONObject) obj;
+  	  			jsonState = (JSONObject) jsonObject.get(dialogState.getClass().getName());
+  	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
+  	  			size = jsonSentences.size();
+  			}
+  			//Generates random number based on array size (number of sentences)
+  			Random rn = new Random();
+			Integer randomNum = rn.nextInt(size - 1);
+			
+			String temp =  (String) jsonSentences.get(randomNum);
+			
+			if(addBefore) { // add social component before the 
+				output = temp + ". " + output; 
+			} else {
+				output = output + ". " + temp;
+			}
+  		
+  		} catch (FileNotFoundException e) {
+  			e.printStackTrace();
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		} catch (ParseException e) {
+  			e.printStackTrace();
+  		}
   	  
-  		return null;
+  		return output;
   	}
   	
   	/**
@@ -175,9 +213,10 @@ public class OutputCreator {
   	}
   	
   	//Testing
+  	/*
   	public static void main (String args[]) {
 	  	OutputCreator creator = new OutputCreator();
 	  	StartState startState = new StartState();
 	  	System.out.println(creator.createOutput(startState));
-  	}
+  	}*/
 }
