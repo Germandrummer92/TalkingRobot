@@ -119,7 +119,7 @@ SO
 	(this)
 ;
 
-#first_choice
+#first choice
 [first_choice]
 	([_first])
 ;
@@ -130,7 +130,7 @@ SO
 	(first)
 ;
 
-#second_choice
+#second choice
 [second_choice]
 	([_second])
 ;
@@ -139,5 +139,5 @@ SO
 	(the second *one)
 	(number two)
 	(the last *one)
-	
+		
 ;
