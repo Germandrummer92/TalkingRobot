@@ -3,19 +3,16 @@
 
 #Recipe Name
 [recipe_name]
-	(*[time] *[want] *[teach] *[you])
-	( *[want] *[teach] *[you] *[time])
+	(*[time] *[want] [teach] *[you])
+	( *[want] [teach] *[you] *[time])
 ;
 
-#Recipe Ingredient
-[recipe_ingredient]
-	(*[need])
+#Recipe Ingredient or Tool
+[recipe_ingredient_or_tool]
+	(*[person] [need] *[a])
+	(and *also *[a])
 ;
 
-#Recipe Tool
-[recipe_tool]
-	(*[need])
-;
 
 [want]
 	( *I *JUST WANT *to)
@@ -56,6 +53,25 @@ NEED
 [you]
 	(you)
 	(*the robot)
+;
+
+[teach]
+	(teach)
+	(show)
+	(present)
+;
+
+[person]
+	(you)
+	(me)
+	(i)
+	(everyone)
+	(anyone)
+;
+
+[a]
+	(a)
+	(the)
 ;
 
 [time]
