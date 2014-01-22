@@ -54,7 +54,6 @@ public class OutputCreator {
 		outputPhrases = new ArrayList<Phrase>();
 		String output = "empty";
 		String temp = null;
-	   
 		
 		//Ugly implementation! Note: It works so far!
 		//Certifies in which dialogState the system is, in order to generate the correct Sub-state.
@@ -93,6 +92,14 @@ public class OutputCreator {
 		
 		
 		output = addKeyword(temp, dialogState.getOutputKeyword());
+
+		// random decide whether to add a social component or not
+		Random social = new Random();
+		Integer toAdd = social.nextInt(2);  // 0 for no, 1 for yes
+		
+		if(toAdd == 1) {
+			output = output + addSocialComponent(dialogState);
+		}
 		
 		return output;
 	}
@@ -142,8 +149,7 @@ public class OutputCreator {
   	}
   	
   	 /**
-     * When should we add social component?
-     * we need so database for social components // Xizhe  
+  	 *  
      * @param dialogState
      * @return
      */

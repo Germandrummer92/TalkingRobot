@@ -1,61 +1,48 @@
 {
     "dm.StartState" : {
 			"ENTRY": [
-				"Hello",
-				"Welcome",
-				"Hi",
-				// So long no see belongs to social component
-				// happy to see you belongs to social component
+				
 			],
 			"EXIT": [
-				"Adieu",
-				"See you"
-				"Bye bye"
-				"See you next time",
+				
 			],
 			"USER_DOESNT_WANT_TO_BE_SAVED": [
-				"What a pity",
+				
 			],
 			"USER_FOUND": [
-				"I've found your user history",
-				"Your user history is found",
-				"Your usage record is found",
+				
 			],
 			"USER_NOT_FOUND": [
-				"I don't have your usage record . Would you like to save your usage history ?",
+				"Sorry"
+				"Oops",
 			],
 			"USER_SAVED": [
-				"Your usage is saved under your name",
+				
 			],
 			"USER_WANTS_TO_BE_SAVED": [
-				"Nice choice",
+				
 			],
 			"WAITING_FOR_EMPLOYEE_STATUS": [
-				"Are you a student or employee",
-				"Do you study here",
-				"Are you a student",
+				
 			],
 			"WAITING_FOR_USERNAME": [
-				"Can you tell me your name",
-				"What's your name",
-				"May I have your name",
-				"I need your name for getting user history, can you tell me",
+				
 			]
 	},
 	"dm.RecipeAssistanceState" : {
 			"ENTRY" : [
-				"Now I'm going to help you in cooking",
-				"Now I'm working as a recipe Assistance",
-				"So now I will help you to cook some delicious thing",
+				"Blabla",
+				"Bleble"
 			],
 			"EXIT" : [
-				"We have just cooked something delicious",
+				"Good appetite",
+				"Enjoy your meal",
 			],
 			"RECIPE_NOT_FOUND" : [
 				
 			],
 			"TELL_COUNTRY_OF_ORIGIN" : [
-				
+				"Wow, I haven't been there",
 			],
 			"TELL_CREATOR" : [
 				

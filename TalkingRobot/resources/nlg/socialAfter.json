@@ -1,23 +1,29 @@
 {
     "dm.StartState" : {
 			"ENTRY": [
-				"{So long no see}",
-				"{happy to see you}"
+				"So long no see",// nicht bei erst mal oder?
+				"Happy to see you",
+				"Nice to meet you",
 			],
 			"EXIT": [
-				"(have) <a good day>"
+				"Have a good day",
+				"Enjoy your day",
 			],
 			"USER_DOESNT_WANT_TO_BE_SAVED": [
-				
+				"You still have a chance to save your usage data . Are you sure that you don't want to be saved",
 			],
 			"USER_FOUND": [
-				
+				"You know me already"
 			],
 			"USER_NOT_FOUND": [
 				
 			],
 			"USER_SAVED": [
-				
+				"I hope we will have s good time together",
+				"I hope you will like my assistance",
+				"I hope I can help you later",
+				"I'm glad to help you",
+				"I'm glad that I can help you",
 			],
 			"USER_WANTS_TO_BE_SAVED": [
 				
@@ -31,17 +37,17 @@
 	},
 	"dm.RecipeAssistanceState" : {
 			"ENTRY" : [
-				"Blabla",
-				"Bleble"
+				
 			],
 			"EXIT" : [
-				
+				"Good appetite",
+				"Enjoy your meal",
 			],
 			"RECIPE_NOT_FOUND" : [
 				
 			],
 			"TELL_COUNTRY_OF_ORIGIN" : [
-				
+				"Wow, I haven't been there",
 			],
 			"TELL_CREATOR" : [
 				
