@@ -1,5 +1,5 @@
 verbose:1
-extract:1
+extract:0
 dir: Term
 grammar: EX.net
 PROFILE:0
