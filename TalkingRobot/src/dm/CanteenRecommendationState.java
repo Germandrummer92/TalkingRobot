@@ -9,14 +9,14 @@ package dm;
  */
 public class CanteenRecommendationState extends DialogState {
 
-    private CanteenRecom currentState;
+
     
     /**
      * Creates a new CanteenRecommendationState in the ENTRY state.
      */
     public CanteenRecommendationState() {
     	super();
-    	currentState = CanteenRecom.ENTRY;
+    	setCurrentState(CanteenRecom.ENTRY);
     }
     
     /**
@@ -25,7 +25,7 @@ public class CanteenRecommendationState extends DialogState {
      */
     public CanteenRecommendationState(CanteenRecom currentState) {
     	super();
-    	this.currentState = currentState;
+    	setCurrentState(currentState);
     }
    /**
     * @see DialogState#getOutputKeyword()
@@ -34,19 +34,6 @@ public class CanteenRecommendationState extends DialogState {
 	  return null;
   }
 
-/**
- * @return the currentState
- */
-public CanteenRecom getCurrentState() {
-	return currentState;
-}
-
-/**
- * @param currentState the currentState to set
- */
-public void setCurrentState(CanteenRecom currentState) {
-	this.currentState = currentState;
-}
 
 
 }

@@ -8,14 +8,13 @@ package dm;
  */
 public class RecipeAssistanceState extends DialogState {
 
-  private RecipeAssistance currentState;
 	
   /**
    * Creates a new Recipe Assistance State in the ENTRY state.
    */
   public RecipeAssistanceState() {
 	  super();
-	  currentState = RecipeAssistance.ENTRY;
+	 setCurrentState(RecipeAssistance.ENTRY);
   }
   
   /**
@@ -24,7 +23,7 @@ public class RecipeAssistanceState extends DialogState {
    */
   public RecipeAssistanceState(RecipeAssistance currentState) {
 	  super();
-	  this.currentState = currentState;
+	  setCurrentState(currentState);
   }
 	
   /**
@@ -35,18 +34,5 @@ public class RecipeAssistanceState extends DialogState {
   }
 
 
-/**
- * @return the currentState
- */
-public RecipeAssistance getCurrentState() {
-	return currentState;
-}
-
-/**
- * @param currentState the currentState to set
- */
-public void setCurrentState(RecipeAssistance currentState) {
-	this.currentState = currentState;
-}
 
 }

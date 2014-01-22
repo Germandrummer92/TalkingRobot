@@ -11,6 +11,7 @@ public class DialogState {
 
 
   private Boolean question;
+  private Enum<?> currentState;
 
   /**
    * Creates and returns the keyword responsible for the NLG creation of an output.
@@ -41,6 +42,20 @@ public class DialogState {
  */
 public void setQuestion(Boolean question) {
 	this.question = question;
+}
+
+/**
+ * @return the currentState
+ */
+public Enum<?> getCurrentState() {
+	return currentState;
+}
+
+/**
+ * @param currentState the currentState to set
+ */
+public void setCurrentState(Enum<?> currentState) {
+	this.currentState = currentState;
 }
 
   

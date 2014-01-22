@@ -8,14 +8,14 @@ package dm;
  */
 public class StartState extends DialogState {
 
-	private Start currentState;
+
 	
 	/**
 	 * Creates a new StartState in the ENTRY state.
 	 */
   public StartState() {
 	  super();
-	  currentState = Start.ENTRY;
+	  setCurrentState(Start.ENTRY);
   }
   /**
    * Creates a new StartState in the state specified.
@@ -23,7 +23,7 @@ public class StartState extends DialogState {
    */
   public StartState(Start currentState) {
 	  super();
-	  this.currentState = currentState;
+	  setCurrentState(currentState);
   }
   /**
    * @see DialogState#getOutputKeyword()
@@ -32,19 +32,7 @@ public class StartState extends DialogState {
   return null;
   }
   
-  
-/**
- * @return the currentState
- */
-public Start getCurrentState() {
-	return currentState;
-}
-/**
- * @param currentState the currentState to set
- */
-public void setCurrentState(Start currentState) {
-	this.currentState = currentState;
-}
+ 
 
 
 }

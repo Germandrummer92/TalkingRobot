@@ -9,14 +9,14 @@ package dm;
  */
 public class CanteenInformationState extends DialogState {
 
-    private CanteenInfo currentState;
+ 
 
     /**
      * Creates a new CanteenInformationState in the ENTRY state.
      */
     public CanteenInformationState() {
     	super();
-    	currentState = CanteenInfo.ENTRY;
+    	setCurrentState(CanteenInfo.ENTRY);
     }
     
     /**
@@ -25,7 +25,7 @@ public class CanteenInformationState extends DialogState {
      */
     public CanteenInformationState(CanteenInfo currentState) {
     	super();
-    	this.currentState = currentState;
+    	setCurrentState(currentState);
     }
   /**
    * @see DialogState#getOutputKeyword()
@@ -33,19 +33,5 @@ public class CanteenInformationState extends DialogState {
   public String getOutputKeyword() {
   return null;
   }
-
-/**
- * @return the currentState
- */
-public CanteenInfo getCurrentState() {
-	return currentState;
-}
-
-/**
- * @param currentState the currentState to set
- */
-public void setCurrentState(CanteenInfo currentState) {
-	this.currentState = currentState;
-}
 
 }

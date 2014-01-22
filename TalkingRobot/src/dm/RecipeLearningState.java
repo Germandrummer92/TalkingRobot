@@ -8,14 +8,13 @@ package dm;
  */
 public class RecipeLearningState extends DialogState {
 
-	private RecipeLearning currentState;
 
 	/**
 	 * Creates a new RecipeLearningState in the ENTRY state.
 	 */
 	public RecipeLearningState() {
 		super();
-		currentState = RecipeLearning.ENTRY;
+		setCurrentState(RecipeLearning.ENTRY);
 	}
 	
 	/**
@@ -24,29 +23,16 @@ public class RecipeLearningState extends DialogState {
 	 */
 	public RecipeLearningState(RecipeLearning currentState) {
 		super();
-		this.currentState = currentState;
+		setCurrentState(currentState);
 	}
 	
   /**
    * @see DialogState#getOutputKeyword()
    */
+	@Override
   public String getOutputKeyword() {
   return null;
   }
-
-/**
- * @return the currentState
- */
-public RecipeLearning getCurrentState() {
-	return currentState;
-}
-
-/**
- * @param currentState the currentState to set
- */
-public void setCurrentState(RecipeLearning currentState) {
-	this.currentState = currentState;
-}
 
 
 }

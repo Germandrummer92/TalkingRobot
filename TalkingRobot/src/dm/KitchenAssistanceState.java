@@ -8,14 +8,13 @@ package dm;
  */
 public class KitchenAssistanceState extends DialogState {
 
-	private KitchenAssistance currentState;
 
 	/**
 	 * Creates a new KitchenAssistanceState in the ENTRY state.
 	 */
   public KitchenAssistanceState() {
 	  super();
-	  currentState = KitchenAssistance.ENTRY;
+	  setCurrentState(KitchenAssistance.ENTRY);
   }
   /**
    * Creates a new KitchenAssistanceState in the state specified.
@@ -23,7 +22,7 @@ public class KitchenAssistanceState extends DialogState {
    */
   public KitchenAssistanceState(KitchenAssistance currentState) {
 	  super();
-	  this.currentState = currentState;
+	  setCurrentState(currentState);
   }
   
   /**
@@ -32,17 +31,6 @@ public class KitchenAssistanceState extends DialogState {
   public String getOutputKeyword() {
   return null;
   }
-/**
- * @return the currentState
- */
-public KitchenAssistance getCurrentState() {
-	return currentState;
-}
-/**
- * @param currentState the currentState to set
- */
-public void setCurrentState(KitchenAssistance currentState) {
-	this.currentState = currentState;
-}
+
 
 }

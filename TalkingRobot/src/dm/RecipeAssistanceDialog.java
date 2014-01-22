@@ -26,20 +26,16 @@ public class RecipeAssistanceDialog extends KitchenDialog {
   }
 
 @Override
-<<<<<<< HEAD
-public void updateState(List<Keyword> keywords, List<String> terms) {
-=======
-public void updateState(List<String> keywords, List<String> terms,
+
+public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	// TODO Auto-generated method stub
 	RecipeAssistanceState currState;
 	if (getCurrentDialogState().getClass() != RecipeAssistanceState.class) {
 		throw new WrongStateClassException();
 	}
-	else {
-		currState = ((RecipeAssistanceState)getCurrentDialogState());
-	}
-	switch (currState.getCurrentState()) {
+	
+	switch ((RecipeAssistance)getCurrentDialogState().getCurrentState()) {
 	//case ENTRY,
 	case RECIPE_NOT_FOUND:
 		updateStateRNF(keywords, terms);
@@ -82,67 +78,66 @@ public void updateState(List<String> keywords, List<String> terms,
 	
 }
 
-private void updateStateExit(List<String> keywords, List<String> terms) {
+private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellWholeRecipe(List<String> keywords,
+private void updateStateTellWholeRecipe(List<Keyword> keywords,
 		List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellToolNotFound(List<String> keywords,
+private void updateStateTellToolNotFound(List<Keyword> keywords,
 		List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellToolFound(List<String> keywords, List<String> terms) {
+private void updateStateTellToolFound(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellIngredientNotFound(List<String> keywords,
+private void updateStateTellIngredientNotFound(List<Keyword> keywords,
 		List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellNumOfSteps(List<String> keywords, List<String> terms) {
+private void updateStateTellNumOfSteps(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellCreator(List<String> keywords, List<String> terms) {
+private void updateStateTellCreator(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellOrigin(List<String> keywords, List<String> terms) {
+private void updateStateTellOrigin(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellSteps(List<String> keywords, List<String> terms) {
+private void updateStateTellSteps(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellTools(List<String> keywords, List<String> terms) {
+private void updateStateTellTools(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateTellIngredients(List<String> keywords,
+private void updateStateTellIngredients(List<Keyword> keywords,
 		List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }
 
-private void updateStateRNF(List<String> keywords, List<String> terms) {
->>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
+private void updateStateRNF(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
 }

@@ -21,7 +21,7 @@ public abstract class Dialog {
   public Dialog(Session currentSession) {
 	  this.currentSession = currentSession;
 	  currentState = new StartState();
-	  ((StartState)currentState).setCurrentState(Start.ENTRY);
+	  currentState.setCurrentState(Start.ENTRY);
   }
   
   /**
@@ -49,12 +49,10 @@ public abstract class Dialog {
    * @param approval the answer of an approval question
  * @throws WrongStateClassException if the DialogState isn't compatible with the current Dialog
    */
-<<<<<<< HEAD
-  public abstract void updateState(List<Keyword> keywords, List<String> terms) throws WrongStateClassException;
-=======
-  public abstract void updateState(List<String> keywords, List<String> terms, List<String> approval)
+
+  public abstract void updateState(List<Keyword> keywords, List<String> terms, List<String> approval)
 		  throws WrongStateClassException;
->>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
+
 
   /**
    * 

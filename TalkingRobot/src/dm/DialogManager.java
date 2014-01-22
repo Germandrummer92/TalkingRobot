@@ -1,5 +1,6 @@
 package dm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import data.CanteenData;
@@ -33,37 +34,17 @@ public class DialogManager {
    * @param approval
  * @throws WrongStateClassException 
    */
-<<<<<<< HEAD
-  public void updateDialog(List<Keyword> keywords, List<String> terms) {
-	  do 
-	  {
-	  try {
-		currentDialog.updateState(keywords, terms);
-		break;
-	} catch (WrongStateClassException e) {
-		DialogState cur = currentDialog.getCurrentDialogState();
-		Session curSess = currentDialog.getCurrentSession();
-		switch (currentDialog.getCurrentDialogState().getClass().getName()) {
-			case "dm.RecipeAssistanceState" : currentDialog = new RecipeAssistanceDialog(curSess); currentDialog.setCurrentDialogState(cur); break;
-			case "dm.RecipeLearningState" : currentDialog = new RecipeLearningDialog(curSess); currentDialog.setCurrentDialogState(cur); break;
-			case "dm.KitchenAssistanceState" : currentDialog = new KitchenAssistanceDialog(curSess); currentDialog.setCurrentDialogState(cur); break;
-		//NEEDS TO BE ADDED LATER:	case "dm.CanteenInformationState" : currentDialog = new CanteenInformationDialog(curSess, Canteen); currentDialog.setCurrentDialogState(cur); break;
-		//SAME:	case "dm.CanteenRecommendationState" : currentDialog = new CanteenRecommendationDialog(curSess, Canteen); currentDialog.setCurrentDialogState(cur); break;
-			default: break;
-			}
-		}
-	  }
-	  while(true);
-	  
-=======
+
+
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
+	   List<Keyword> kws = dictionary.findKeywords(keywords);
 	  try {
-		currentDialog.updateState(keywords, terms, approval);
+		currentDialog.updateState(kws, terms, approval);
 	} catch (WrongStateClassException e) {
 		// TODO
 		e.printStackTrace();
 	}
->>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
+
   }
 
   /**

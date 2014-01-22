@@ -25,20 +25,12 @@ public class StartDialog extends Dialog {
 	 * @see dm.Dialog#updateState(java.util.List, java.util.List)
 	 */
 	@Override
-<<<<<<< HEAD
-	public void updateState(List<Keyword> keywords, List<String> terms) throws WrongStateClassException {
-=======
-	public void updateState(List<String> keywords, List<String> terms, List<String> approval)
+	public void updateState(List<Keyword> keywords, List<String> terms, List<String> approval)
 			throws WrongStateClassException {
->>>>>>> 72949fa36c389ac1d4c9ebf712cdfc771014857a
-		StartState currentStateStart;
 		if (getCurrentDialogState().getClass() != StartState.class) {
 			throw new WrongStateClassException();
 		}
-		else {
-			currentStateStart = ((StartState)getCurrentDialogState());
-		}
-		switch (currentStateStart.getCurrentState()) {
+		switch ((Start)getCurrentDialogState().getCurrentState()) {
 		case ENTRY : updateStateEntry(keywords, terms); break;
 		case WAITING_FOR_USERNAME : updateStateWaiting(keywords, terms); break;
 		case USER_FOUND : updateStateFound(keywords, terms); break;
@@ -105,8 +97,8 @@ public class StartDialog extends Dialog {
 	private void updateStateFound(List<Keyword> keywords, List<String> terms) {
 		for (Keyword kw: keywords) {
 			if (kw.getReference() instanceof RecipeAssistanceState) {
-				if (((RecipeAssistanceState)kw.getReference()).getCurrentState() == RecipeAssistance.ENTRY) {
-					((StartState)getCurrentDialogState()).setCurrentState(Start.EXIT);
+				if (kw.getReference().getCurrentState() == RecipeAssistance.ENTRY) {
+					getCurrentDialogState().setCurrentState(Start.EXIT);
 					return;
 				}
 			}
@@ -120,13 +112,11 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
 		for (Keyword kw: keywords) {
-			if (kw.getReference() instanceof StartState) {
-				if (((StartState)kw.getReference()).getCurrentState() == Start.USER_FOUND) {
-					((StartState)getCurrentDialogState()).setCurrentState(Start.USER_FOUND);
+				if (kw.getReference().getCurrentState() == Start.USER_FOUND) {
+					getCurrentDialogState().setCurrentState(Start.USER_FOUND);
 					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference())));
 					return;
 				}
-			}
 		}
 		
 	}
@@ -137,9 +127,8 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 		for (Keyword kw: keywords) {
-			if (kw.getReference() instanceof StartState) {
-				if (((StartState)kw.getReference()).getCurrentState() == Start.WAITING_FOR_USERNAME) {
-					((StartState)getCurrentDialogState()).setCurrentState(Start.WAITING_FOR_USERNAME);
+				if (kw.getReference().getCurrentState() == Start.WAITING_FOR_USERNAME) {
+					getCurrentDialogState().setCurrentState(Start.WAITING_FOR_USERNAME);
 					return;
 				}
 			}
@@ -150,4 +139,4 @@ public class StartDialog extends Dialog {
 		
 	}
 
-}
+
