@@ -142,17 +142,18 @@ public class OutputCreator {
 	  		String compl = null;
 	  		if(text.contains(".")) {
 	  			sentences = text.split(".");
-	  		}
+	  		} else sentences[0] = text;  // nothing to split
 	  		
 	  		for(int i = 0; i < keywords.length; i++) {
-	  			if(keywords[i].contains("[.*]")) {
+	  			if(keywords[i].contains("[") && keywords[i].contains("]")) {
 	  				obj = keywords[i].substring(1, keywords[i].length() - 2);
 	  			}
-	  			if(keywords[i].contains("{.*}")) {
+	  			if(keywords[i].contains("{") && keywords[i].contains("}")) {
 	  				compl = keywords[i].substring(1, keywords[i].length() - 2);
 	  			}
 	  			
 	  		}
+	  		
 	  		
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			if(sentences[i].contains(evaluationObj)) {
