@@ -1,296 +1,301 @@
 {
-	"dm.StartState" : {
-			"ENTRY": {
-				"answer1": "Hello!",
-				"answer2": "Welcome!"	
-			},
-			"EXIT": {
+    "dm.StartState" : {
+			"ENTRY": [
+				"Hello!",
+				"Welcome!",
+				"Hi!",
+				"Hello! So long no see!",
+				"Hi! I'm happy to see you!"
+			],
+			"EXIT": [
+				"Adieu!",
+				"Thank you! See you!"
+			],
+			"USER_DOESNT_WANT_TO_BE_SAVED": [
 				
-			},
-			"USER_DOESNT_WANT_TO_BE_SAVED": {
+			],
+			"USER_FOUND": [
 				
-			},
-			"USER_FOUND": {
+			],
+			"USER_NOT_FOUND": [
 				
-			},
-			"USER_NOT_FOUND": {
+			],
+			"USER_SAVED": [
 				
-			},
-			"USER_SAVED": {
+			],
+			"USER_WANTS_TO_BE_SAVED": [
 				
-			},
-			"USER_WANTS_TO_BE_SAVED": {
+			],
+			"WAITING_FOR_EMPLOYEE_STATUS": [
 				
-			},
-			"WAITING_FOR_EMPLOYEE_STATUS": {
+			],
+			"WAITING_FOR_USERNAME": [
 				
-			},
-			"WAITING_FOR_USERNAME": {
-				
-			}
+			]
 	},
 	"dm.RecipeAssistanceState" : {
-			"ENTRY" : {
-				"answer1" : "",
-				"answer2" : ""
-			},
-			"EXIT" : {
+			"ENTRY" : [
+				"Blabla",
+				"Bleble"
+			],
+			"EXIT" : [
 				
-			},
-			"RECIPE_NOT_FOUND" : {
+			],
+			"RECIPE_NOT_FOUND" : [
 				
-			},
-			"TELL_COUNTRY_OF_ORIGIN" : {
+			],
+			"TELL_COUNTRY_OF_ORIGIN" : [
 				
-			},
-			"TELL_CREATOR" : {
+			],
+			"TELL_CREATOR" : [
 				
-			},
-			"TELL_INGREDIENTS" : {
+			],
+			"TELL_INGREDIENTS" : [
 				
-			},
-			"TELL_INGREDIENT_FOUND" : {
+			],
+			"TELL_INGREDIENT_FOUND" : [
 				
-			},
-			"TELL_NUM_OF_STEPS" : {
+			],
+			"TELL_NUM_OF_STEPS" : [
 				
-			},
-			"TELL_STEPS" : {
+			],
+			"TELL_STEPS" : [
 				
-			},
-			"TELL_TOOLS" : {
+			],
+			"TELL_TOOLS" : [
 				
-			},
-			"TELL_TOOL_FOUND" : {
+			],
+			"TELL_TOOL_FOUND" : [
 				
-			},
-			"TELL_TOOL_NOT_FOUND" : {
+			],
+			"TELL_TOOL_NOT_FOUND" : [
 				
-			},
-			"TELL_WHOLE_RECIPE" : {
+			],
+			"TELL_WHOLE_RECIPE" : [
 				
-			}
+			]
 	},
 	"dm.RecipeLearningState" : {
-			"AKS_INGREDIENT_RIGHT" : {
-				"answer1" : "",
-				"answer2" : ""
-			},
-			"ASK_COUNTRY_OF_ORIGIN" : {
+			"AKS_INGREDIENT_RIGHT" : [
+				"Blablabla",
+				"Bleblebleble",
+				"Bliblibli"
+			],
+			"ASK_COUNTRY_OF_ORIGIN" : [
 				
-			},
-			"ASK_FIRST_INGREDIENT" : {
+			],
+			"ASK_FIRST_INGREDIENT" : [
 				
-			},
-			"ASK_FIRST_STEP" : {
+			],
+			"ASK_FIRST_STEP" : [
 				
-			},
-			"ASK_FIRST_TOOL" : {
+			],
+			"ASK_FIRST_TOOL" : [
 				
-			},
-			"ASK_LAST_STEP" : {
+			],
+			"ASK_LAST_STEP" : [
 				
-			},
-			"ASK_NEXT_INGREDIENT" : {
+			],
+			"ASK_NEXT_INGREDIENT" : [
 				
-			},
-			"ASK_NEXT_STEP" : {
+			],
+			"ASK_NEXT_STEP" : [
 				
-			},
-			"ASK_NEXT_TOOL" : {
+			],
+			"ASK_NEXT_TOOL" : [
 				
-			},
-			"ASK_RECIPE_NAME" : {
+			],
+			"ASK_RECIPE_NAME" : [
 				
-			},
-			"ASK_STEP_RIGHT" : {
+			],
+			"ASK_STEP_RIGHT" : [
 				
-			},
-			"ASK_TOOL_RIGHT" : {
+			],
+			"ASK_TOOL_RIGHT" : [
 				
-			},
-			"ENTRY" : {
+			],
+			"ENTRY" : [
 				
-			},
-			"EXIT" : {
+			],
+			"EXIT" : [
 				
-			}
+			]
 	},
 	"dm.KitchenAssistanceState" : {
-			"ENTRY" : {
-				"answer1" : "",
-				"answer2" : ""
-			},
-			"EXIT" : {
+			"ENTRY" : [
+				"",
+				""
+			],
+			"EXIT" : [
 				
-			},
-			"TELL_INGREDIENT_FOUND" : {
+			],
+			"TELL_INGREDIENT_FOUND" : [
 				
-			},
-			"TELL_INGREDIENT_NOT_FOUND" : {
+			],
+			"TELL_INGREDIENT_NOT_FOUND" : [
 				
-			},
-			"TELL_TOOL_FOUND" : {
+			],
+			"TELL_TOOL_FOUND" : [
 				
-			},
-			"TELL_TOOL_NOT_FOUND" : {
+			],
+			"TELL_TOOL_NOT_FOUND" : [
 				
-			}
+			]
 	},
 	"dm.CanteenInformationState" : {
-			"ADEN_CAFE_DISH" : {
-				"answer1" : "",
-				"answer2" : ""
-			},
-			"ADEN_CAFE_PRICE" : {
+			"ADEN_CAFE_DISH" : [
+				"",
+				""
+			],
+			"ADEN_CAFE_PRICE" : [
 				
-			},
-			"ADEN_CURRYQ_DISH" : {
+			],
+			"ADEN_CURRYQ_DISH" : [
 				
-			},
-			"ADEN_CURRYQ_PRICE" : {
+			],
+			"ADEN_CURRYQ_PRICE" : [
 				
-			},
-			"ADEN_LINE_1_DISH" : {
+			],
+			"ADEN_LINE_1_DISH" : [
 				
-			},
-			"ADEN_LINE_1_PRICE" : {
+			],
+			"ADEN_LINE_1_PRICE" : [
 				
-			},
-			"ADEN_LINE_2_DISH" : {
+			],
+			"ADEN_LINE_2_DISH" : [
 				
-			},
-			"ADEN_LINE_2_PRICE" : {
+			],
+			"ADEN_LINE_2_PRICE" : [
 				
-			},
-			"ADEN_LINE_3_DISH" : {
+			],
+			"ADEN_LINE_3_DISH" : [
 				
-			},
-			"ADEN_LINE_3_PRICE" : {
+			],
+			"ADEN_LINE_3_PRICE" : [
 				
-			},
-			"ADEN_LINE_45_DISH" : {
+			],
+			"ADEN_LINE_45_DISH" : [
 				
-			},
-			"ADEN_LINE_45_PRICE" : {
+			],
+			"ADEN_LINE_45_PRICE" : [
 				
-			},
-			"ADEN_LINE_6_DISH" : {
+			],
+			"ADEN_LINE_6_DISH" : [
 				
-			},
-			"ADEN_LINE_6_PRICE" : {
+			],
+			"ADEN_LINE_6_PRICE" : [
 				
-			},
-			"ADEN_SCHNITBAR_DISH" : {
+			],
+			"ADEN_SCHNITBAR_DISH" : [
 				
-			},
-			"ADEN_SCHNITBAR_PRICE" : {
+			],
+			"ADEN_SCHNITBAR_PRICE" : [
 				
-			},
-			"ENTRY" : {
+			],
+			"ENTRY" : [
 				
-			},
-			"EXIT" : {
+			],
+			"EXIT" : [
 				
-			},
-			"MOLTKE_ACTTHEK_DISH" : {
+			],
+			"MOLTKE_ACTTHEK_DISH" : [
 				
-			},
-			"MOLTKE_ACTTHEK_PRICE" : {
+			],
+			"MOLTKE_ACTTHEK_PRICE" : [
 				
-			},
-			"MOLTKE_BUFFET_DISH" : {
+			],
+			"MOLTKE_BUFFET_DISH" : [
 				
-			},
-			"MOLTKE_BUFFET_PRICE" : {
+			],
+			"MOLTKE_BUFFET_PRICE" : [
 				
-			},
-			"MOLTKE_CHOICE_1_DISH" : {
+			],
+			"MOLTKE_CHOICE_1_DISH" : [
 				
-			},
-			"MOLTKE_CHOICE_1_PRICE" : {
+			],
+			"MOLTKE_CHOICE_1_PRICE" : [
 
-			},
-			"MOLTKE_CHOICE_2_DISH" : {
+			],
+			"MOLTKE_CHOICE_2_DISH" : [
 				
-			},
-			"MOLTKE_CHOICE_2_PRICE" : {
+			],
+			"MOLTKE_CHOICE_2_PRICE" : [
 				
-			},
-			"MOLTKE_GG_DISH" : {
+			],
+			"MOLTKE_GG_DISH" : [
 				
-			},
-			"MOLTKE_GG_PRICE" : {
+			],
+			"MOLTKE_GG_PRICE" : [
 				
-			},
-			"MOLTKE_SCHNITBAR_DISH" : {
+			],
+			"MOLTKE_SCHNITBAR_DISH" : [
 				
-			},
-			"MOLTKE_SCHNITBAR_PRICE" : {
+			],
+			"MOLTKE_SCHNITBAR_PRICE" : [
 				
-			},
-			"TELL_LINE_NOT_EXIST" : {
+			],
+			"TELL_LINE_NOT_EXIST" : [
 				
-			},
-			"TELL_MEAL_NOT_EXIST" : {
+			],
+			"TELL_MEAL_NOT_EXIST" : [
 				
-			}
+			]
 	},
 	"dm.CanteenRecommendationState" : {
-			"ADEN_CAFE_DISH" : {
-				"answer1" : "",
-				"answer2" : ""
-			},
-			"ADEN_CURRYQ_DISH" : {
+			"ADEN_CAFE_DISH" : [
+				"",
+				""
+			],
+			"ADEN_CURRYQ_DISH" : [
 				
-			},
-			"ADEN_LINE_1_DISH" : {
+			],
+			"ADEN_LINE_1_DISH" : [
 				
-			},
-			"ADEN_LINE_2_DISH" : {
+			],
+			"ADEN_LINE_2_DISH" : [
 				
-			},
-			"ADEN_LINE_3_DISH" : {
+			],
+			"ADEN_LINE_3_DISH" : [
 				
-			},
-			"ADEN_LINE_45_DISH" : {
+			],
+			"ADEN_LINE_45_DISH" : [
 				
-			},
-			"ADEN_LINE_6_DISH" : {
+			],
+			"ADEN_LINE_6_DISH" : [
 				
-			},
-			"ADEN_SCHNITBAR_DISH" : {
+			],
+			"ADEN_SCHNITBAR_DISH" : [
 				
-			},
-			"ENTRY" : {
+			],
+			"ENTRY" : [
 				
-			},
-			"EXIT" : {
+			],
+			"EXIT" : [
 				
-			},
-			"MOLTKE_BUFFET_DISH" : {
+			],
+			"MOLTKE_BUFFET_DISH" : [
 				
-			},
-			"MOLTKE_CAFE_DISH" : {
+			],
+			"MOLTKE_CAFE_DISH" : [
 				
-			},
-			"MOLTKE_CHOICE_1_DISH" : {
+			],
+			"MOLTKE_CHOICE_1_DISH" : [
 				
-			},
-			"MOLTKE_CHOICE_2_DISH" : {
+			],
+			"MOLTKE_CHOICE_2_DISH" : [
 				
-			},
-			"MOLTKE_GG_DISH" : {
+			],
+			"MOLTKE_GG_DISH" : [
 				
-			},
-			"MOLTKE_SCHNITBAR_DISH" : {
+			],
+			"MOLTKE_SCHNITBAR_DISH" : [
 				
-			},
-			"TELL_MEAL_NOT_EXIST" : {
+			],
+			"TELL_MEAL_NOT_EXIST" : [
 				
-			},
-			"WAITING_FOR_USERNAME" : {
+			],
+			"WAITING_FOR_USERNAME" : [
 				
-			}
+			]
 	}
 }
