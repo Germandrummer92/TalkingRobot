@@ -52,50 +52,13 @@ public class OutputCreator {
 	public String createOutput(DialogState dialogState) {
 		generators = new ArrayList<Generator>();
 		outputPhrases = new ArrayList<Phrase>();
-		String output = "empty";
-		String temp = null;
 		
-		//Ugly implementation! Note: It works so far!
-		//Certifies in which dialogState the system is, in order to generate the correct Sub-state.
-		//Too bad this is only need because access to the state-enums is needed!!!! Otherwise no if-else
-		//would be needed....
-		if (dialogState.getClass().equals(StartState.class)) {
-			
-			StartState startState = (StartState) dialogState;
-			temp = findInFile(startState.getClass().getName(), startState.getCurrentState().toString());
-			
-		} else if (dialogState.getClass().equals(RecipeAssistanceState.class)) {
-			
-			RecipeAssistanceState recipeAssistanceState = (RecipeAssistanceState) dialogState;
-			temp = findInFile(recipeAssistanceState.getClass().getName(), recipeAssistanceState.getCurrentState().toString());
-			
-		} else if (dialogState.getClass().equals(RecipeLearningState.class)) {
-			
-			RecipeLearningState recipeLearningState = (RecipeLearningState) dialogState;
-			temp = findInFile(recipeLearningState.getClass().getName(), recipeLearningState.getCurrentState().toString());
-			
-		} else if (dialogState.getClass().equals(KitchenAssistanceState.class)) {
-			
-			KitchenAssistanceState kitchenAssistanceState = (KitchenAssistanceState) dialogState;
-			temp = findInFile(kitchenAssistanceState.getClass().getName(), kitchenAssistanceState.getCurrentState().toString());
-			
-		} else if (dialogState.getClass().equals(CanteenInformationState.class)) {
-			
-			CanteenInformationState canteenInformationState = (CanteenInformationState) dialogState;
-			temp = findInFile(canteenInformationState.getClass().getName(), canteenInformationState.getCurrentState().toString());
-			
-		} else if (dialogState.getClass().equals(CanteenRecommendationState.class)) {
-			
-			CanteenRecommendationState canteenRecommendationState = (CanteenRecommendationState) dialogState;
-			temp = findInFile(canteenRecommendationState.getClass().getName(), canteenRecommendationState.getCurrentState().toString());
-		}
-		
-		
-		output = addKeyword(temp, dialogState.getOutputKeyword());
-
+		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
+		String output = addKeyword(temp, dialogState.getOutputKeyword());
+	
 		// random decide whether to add a social component or not
-		Random social = new Random();
-		Integer toAdd = social.nextInt(2);  // 0 for no, 1 for yes
+		Random socialRandom = new Random();
+		Integer toAdd = socialRandom.nextInt(2);  // 0 for no, 1 for yes
 		
 		if(toAdd == 1) {
 			output = output + addSocialComponent(dialogState);
@@ -113,7 +76,6 @@ public class OutputCreator {
 	 * @return the matching String
 	 */
   	private String findInFile(String className, String stateName) {
-  		//String sentence = "empty";
   		
   		JSONParser parser = new JSONParser();
   		 
@@ -132,8 +94,6 @@ public class OutputCreator {
   			//Generates random number based on array size (number of sentences)
   			Random rn = new Random();
 			Integer randomNum = rn.nextInt(size - 1);
-			
-			//sentence = (String) jsonSentences.get(randomNum);
 			
 			return (String) jsonSentences.get(randomNum);
   		

@@ -1,16 +1,16 @@
 {
     "dm.StartState" : {
 			"ENTRY": [
-				"So long no see",// nicht bei erst mal oder?
+				"So long no see",
 				"Happy to see you",
-				"Nice to meet you",
+				"Nice to meet you"
 			],
 			"EXIT": [
 				"Have a good day",
-				"Enjoy your day",
+				"Enjoy your day"
 			],
 			"USER_DOESNT_WANT_TO_BE_SAVED": [
-				"You still have a chance to save your usage data . Are you sure that you don't want to be saved",
+				"You still have a chance to save your usage data . Are you sure that you don't want to be saved"
 			],
 			"USER_FOUND": [
 				"You know me already"
@@ -23,7 +23,7 @@
 				"I hope you will like my assistance",
 				"I hope I can help you later",
 				"I'm glad to help you",
-				"I'm glad that I can help you",
+				"I'm glad that I can help you"
 			],
 			"USER_WANTS_TO_BE_SAVED": [
 				
@@ -41,13 +41,13 @@
 			],
 			"EXIT" : [
 				"Good appetite",
-				"Enjoy your meal",
+				"Enjoy your meal"
 			],
 			"RECIPE_NOT_FOUND" : [
 				
 			],
 			"TELL_COUNTRY_OF_ORIGIN" : [
-				"Wow, I haven't been there",
+				"Wow, I haven't been there"
 			],
 			"TELL_CREATOR" : [
 				

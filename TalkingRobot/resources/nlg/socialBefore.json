@@ -13,8 +13,8 @@
 				
 			],
 			"USER_NOT_FOUND": [
-				"Sorry"
-				"Oops",
+				"Sorry",
+				"Oops"
 			],
 			"USER_SAVED": [
 				
@@ -36,13 +36,13 @@
 			],
 			"EXIT" : [
 				"Good appetite",
-				"Enjoy your meal",
+				"Enjoy your meal"
 			],
 			"RECIPE_NOT_FOUND" : [
 				
 			],
 			"TELL_COUNTRY_OF_ORIGIN" : [
-				"Wow, I haven't been there",
+				"Wow, I haven't been there"
 			],
 			"TELL_CREATOR" : [
 				
