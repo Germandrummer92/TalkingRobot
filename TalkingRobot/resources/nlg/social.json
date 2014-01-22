@@ -1,25 +1,20 @@
 {
     "dm.StartState" : {
 			"ENTRY": [
-				"[Hello]",
-				"[Welcome]",
-				"[Hi]",
-				// So long no see belongs to social component
-				// happy to see you belongs to social component
+				"{So long no see}",
+				"{happy to see you}"
 			],
 			"EXIT": [
-				"[Adieu]",
-				"(See) <you>"
+				"(have) <a good day>"
 			],
 			"USER_DOESNT_WANT_TO_BE_SAVED": [
-				"[what] <a pity>"
+				
 			],
 			"USER_FOUND": [
-				""
+				
 			],
 			"USER_NOT_FOUND": [
-				"[we] (don't have) <your usage record> . 
-					[you] (would like) {to save your usage history} ?"
+				
 			],
 			"USER_SAVED": [
 				

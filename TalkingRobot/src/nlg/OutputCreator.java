@@ -53,6 +53,7 @@ public class OutputCreator {
 		generators = new ArrayList<Generator>();
 		outputPhrases = new ArrayList<Phrase>();
 		String output = "empty";
+		String temp = null;
 		
 		//Ugly implementation! Note: It works so far!
 		//Certifies in which dialogState the system is, in order to generate the correct Sub-state.
@@ -61,35 +62,37 @@ public class OutputCreator {
 		if (dialogState.getClass().equals(StartState.class)) {
 			
 			StartState startState = (StartState) dialogState;
-			output = findInFile(startState.getClass().getName(), startState.getCurrentState().toString());
+			temp = findInFile(startState.getClass().getName(), startState.getCurrentState().toString());
 			
 		} else if (dialogState.getClass().equals(RecipeAssistanceState.class)) {
 			
 			RecipeAssistanceState recipeAssistanceState = (RecipeAssistanceState) dialogState;
-			output = findInFile(recipeAssistanceState.getClass().getName(), recipeAssistanceState.getCurrentState().toString());
+			temp = findInFile(recipeAssistanceState.getClass().getName(), recipeAssistanceState.getCurrentState().toString());
 			
 		} else if (dialogState.getClass().equals(RecipeLearningState.class)) {
 			
 			RecipeLearningState recipeLearningState = (RecipeLearningState) dialogState;
-			output = findInFile(recipeLearningState.getClass().getName(), recipeLearningState.getCurrentState().toString());
+			temp = findInFile(recipeLearningState.getClass().getName(), recipeLearningState.getCurrentState().toString());
 			
 		} else if (dialogState.getClass().equals(KitchenAssistanceState.class)) {
 			
 			KitchenAssistanceState kitchenAssistanceState = (KitchenAssistanceState) dialogState;
-			output = findInFile(kitchenAssistanceState.getClass().getName(), kitchenAssistanceState.getCurrentState().toString());
+			temp = findInFile(kitchenAssistanceState.getClass().getName(), kitchenAssistanceState.getCurrentState().toString());
 			
 		} else if (dialogState.getClass().equals(CanteenInformationState.class)) {
 			
 			CanteenInformationState canteenInformationState = (CanteenInformationState) dialogState;
-			output = findInFile(canteenInformationState.getClass().getName(), canteenInformationState.getCurrentState().toString());
+			temp = findInFile(canteenInformationState.getClass().getName(), canteenInformationState.getCurrentState().toString());
 			
 		} else if (dialogState.getClass().equals(CanteenRecommendationState.class)) {
 			
 			CanteenRecommendationState canteenRecommendationState = (CanteenRecommendationState) dialogState;
-			output = findInFile(canteenRecommendationState.getClass().getName(), canteenRecommendationState.getCurrentState().toString());
+			temp = findInFile(canteenRecommendationState.getClass().getName(), canteenRecommendationState.getCurrentState().toString());
 		}
 		
 		//TODO Still have to add the keywords into the output!!!
+		toPhraseList(temp, dialogState.getOutputKeyword());
+		
 		
 		return output;
 	}
@@ -151,6 +154,18 @@ public class OutputCreator {
   		//String socialRemark = socialComponent.createSocialRemark(phrase);
   	  
   		return null;
+  	}
+  	
+  	/**
+  	 * convert string into phrase list
+  	 * @param sentences
+  	 * @param keyword
+  	 * @return
+  	 */
+  	private List<Phrase> toPhraseList(String sentences, String keyword){
+  		List<Phrase> answer = new ArrayList<Phrase>();
+  		//TODO convert stuff
+  		return answer;
   	}
   	
   	//Testing

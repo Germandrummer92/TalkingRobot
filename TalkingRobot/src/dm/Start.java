@@ -1,10 +1,6 @@
 package dm;
 
-/**
- * 
- * @author Xizhe
- *
- */
+
 public enum Start {
 
 	
