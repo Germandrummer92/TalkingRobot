@@ -31,8 +31,6 @@ public class StartState extends DialogState {
   public String getOutputKeyword() {
   return null;
   }
-  
- 
 
 
 }
