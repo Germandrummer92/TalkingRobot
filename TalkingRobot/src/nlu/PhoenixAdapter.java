@@ -24,7 +24,7 @@ public class PhoenixAdapter {
 		  BufferedWriter output = new BufferedWriter(new FileWriter(file));
 		  output.write(input);
 		  output.close();
-		  rt.exec("/bin/tcsh " + runParse + " < input");
+		  rt.exec("/bin/tcsh " + runParse + " < input", null, new File("resources/nlu/Phoenix"));
 	  } catch (IOException e) {
 		  e.printStackTrace();
 	  }
