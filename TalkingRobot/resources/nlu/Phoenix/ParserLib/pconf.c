@@ -11,7 +11,9 @@
 extern void quit ();
 void pusage ();
 
-
+#if _WIN32 // LGZHANG
+#define strcasecmp stricmp
+#endif
 
 #define	TRUE	1
 #define	FALSE	0
@@ -21,7 +23,6 @@ void pusage ();
 static int SetVal();
 static void SPrintVal();
 
-
 /* PCONF
  *------------------------------------------------------------*
  */

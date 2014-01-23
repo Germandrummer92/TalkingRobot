@@ -123,8 +123,8 @@ NOT
 ;
 
 #first choice
-	
-([_first])
+
+[_first]
 	(the first *one)
 	(number one)
 	(first)
@@ -132,7 +132,7 @@ NOT
 
 #second choice
 
-([_second])
+[_second]
 	(the second *one)
 	(number two)
 	(the last *one)

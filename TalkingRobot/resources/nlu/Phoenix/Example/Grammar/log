@@ -14,7 +14,7 @@
 [Arrive_Time]  2 states  1 arcs
 [_anytime]  6 states  10 arcs
 [_am]  3 states  3 arcs
-[anyday]  13 states  36 arcs
+[anyday]  6 states  10 arcs
 [_aprx_time]  23 states  64 arcs
 [_before]  2 states  1 arcs
 [before]  10 states  21 arcs
@@ -25,8 +25,8 @@
 [Day_Ordinal]  4 states  25 arcs
 [Day_Name]  2 states  21 arcs
 [Today_Relative]  2 states  7 arcs
-[Date_Time]  14 states  27 arcs
-[_earliest]  18 states  39 arcs
+[Date_Time]  10 states  20 arcs
+[_earliest]  18 states  37 arcs
 [End_Time]  2 states  2 arcs
 [Start_Time]  2 states  2 arcs
 [est]  5 states  12 arcs
@@ -43,7 +43,6 @@
 [_supper]  2 states  1 arcs
 [_dinner]  3 states  4 arcs
 [Minute]  4 states  44 arcs
-[minute_res]  4 states  36 arcs
 [Month_Name]  5 states  18 arcs
 [month_number]  2 states  12 arcs
 [periodofday]  9 states  17 arcs
@@ -76,8 +75,8 @@
 [TwentyFour]  7 states  10 arcs
 [Time_Duration]  11 states  19 arcs
 [time_int]  2 states  2 arcs
-[weekday]  17 states  41 arcs
-[weekend]  2 states  2 arcs
+[weekday]  19 states  46 arcs
+[weekend]  4 states  5 arcs
 [_earlier]  25 states  53 arcs
 [_later]  21 states  46 arcs
 [Earlier]  5 states  9 arcs
@@ -97,5 +96,5 @@
 [_after]  2 states  1 arcs
 [after]  10 states  24 arcs
 [Number]  32 states  487 arcs
-[_previous]  2 states  4 arcs
-[_next]  2 states  4 arcs
+[_previous]  2 states  3 arcs
+[_next]  2 states  2 arcs

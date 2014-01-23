@@ -9,6 +9,9 @@
 #define _PCONF_
 
 #include <sys/types.h>
+#if _WIN32
+#include "posixwin32.h"
+#endif
 
 typedef enum {NOTYPE,
 	      BYTE, SHORT, INT, LONG,

@@ -13,13 +13,13 @@ CANTEEN
 ;
 
 [Canteen]
-	[_moltke]
-	*am [_adenauerring]
-	*at [_adenauerring]
-	*in *the [_erzbergerstrasse]
-	*in *the [_schloss gottesaue]
-	*in *the [_tiefenbronner strasse]
-	*in *the [holzgartenstrasse]
+	([_moltke])
+	(*am [_adenauerring])
+	(*at [_adenauerring])
+	(*in *the [_erzbergerstrasse])
+	(*in *the [_schloss_gottesaue])
+	(*in *the [_tiefenbronner_strasse])
+	(*in *the [holzgartenstrasse])
 ;
 
 [_moltke]
@@ -43,14 +43,14 @@ CANTEEN
 	(erzbergerstreet)
 ;
 
-[_schloss gottesaue]
+[_schloss_gottesaue]
 	(*schloss gottesaue)
 	(*castle gottesaue)
 	(*castle gods meadow)
 	(*shloce goddessowe)
 ;
 
-[_tiefenbronner strasse]
+[_tiefenbronner_strasse]
 	(tiefenbronnerstrasse)
 	(tiefenbronnerstrase)
 	(teevenbronnershtrahse)
@@ -68,13 +68,13 @@ CANTEEN
 
 #canteen information
 [canteen_information]
-	(what kind of food OFFER *at [Canteen] *[Time])
-	(offer *at [Canteen] *[Time])
-	(what kind of food OFFER canteen *[Time])
-	(offer *at [Canteen] canteen *[Time])
-	(what [Canteen] *[Time])
-	(what food *[Canteen] *[Time])
-	(list
+	(what kind of food OFFER *at [Canteen] *[Time_extend])
+	(offer *at [Canteen] *[Time_extend])
+	(what kind of food OFFER canteen *[Time_extend])
+	(offer *at [Canteen] canteen *[Time_extend])
+	(what [Canteen] *[Time_extend])
+	(what food *[Canteen] *[Time_extend])
+	(list)
 	([Where_is])
 	(PRICE *line [number] *at *[Canteen])
 	
@@ -102,14 +102,14 @@ OFFER
 #canteen recommendation
 [canteen_recommendation]
 	(recommendation)
-	(give me a recommendation *[Canteen] *line *[number] *[Time])
-	(recommend me *[Canteen] *line *[number] *[Time])
-	(suggest [meal] *at *[Canteen] *line *[number] *[Time])
-	(suggestion [meal] *at *[Canteen] *line *[number] *[Time])
-	(give me a recommendation *[Time] *[Canteen] *line *[number])
-	(recommend me *[Time] *[Canteen] *line *[number])
-	(suggest [meal] *[Time] *at *[Canteen] *line *[number])
-	(suggestion [meal] *[Time] *at *[Canteen] *line *[number])
+	(give me a recommendation *[Canteen] *line *[number] *[Time_extend])
+	(recommend me *[Canteen] *line *[number] *[Time_extend])
+	(suggest [meal] *at *[Canteen] *line *[number] *[Time_extend])
+	(suggestion [meal] *at *[Canteen] *line *[number] *[Time_extend])
+	(give me a recommendation *[Time_extend] *[Canteen] *line *[number])
+	(recommend me *[Time_extend] *[Canteen] *line *[number])
+	(suggest [meal] *[Time_extend] *at *[Canteen] *line *[number])
+	(suggestion [meal] *[Time_extend] *at *[Canteen] *line *[number])
 	([Country] at *the [Canteen] *line *[number])
 	(eat something from [Country] *line *[number])
 ;
@@ -150,19 +150,19 @@ OFFER
 ;	
 
 [Recipe]
-	#import recipe
+	#include recipe
 ;
 
 [Tool]
-	#import tool
+#include tool
 ;
 
 [Ingredient]
-	#import ingredient
+#include ingredient
 ;
 
 [Menu]
-#import menu
+#include menu
 ;
 
 [meal]
@@ -297,7 +297,7 @@ THIS
 ;
 
 [User]
-	#import users
+#include user
 ;
 
 [_hello]
@@ -328,7 +328,7 @@ THIS
 	(sunday)
 ;
 
-[Time]
+[Time_extend]
 	(now)
 	(immediately)
 	(today)
@@ -351,9 +351,6 @@ MEAT
 ;
 
 [Country]
-	#import country
+#include country
 ;
 
-[Number]
-	#import number
-;

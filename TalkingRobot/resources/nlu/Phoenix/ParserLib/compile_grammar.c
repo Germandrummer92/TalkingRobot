@@ -12,6 +12,23 @@
 #include "grammar.h"
 #include "pconf.h"
 
+#if _WIN32 // LGZHANG
+// index() is a deprecated POSIX function. source: http://stackoverflow.com/questions/4091864/c-differences-between-strchr-and-index
+#define index(a,b) strchr((a),(b))
+//#define index strchr
+//char *index(char *str, int ch)
+//{
+//	char *p;
+//	for (p=str; *p!='\0'; p++) {
+//		if (*p == ch)
+//			break;
+//	}
+//	if (*p == '\0') 
+//		p = NULL;
+//	return (p);
+//}
+#endif
+
 
 /* command line parameters, with defaults */
 char	*grammar = ".",

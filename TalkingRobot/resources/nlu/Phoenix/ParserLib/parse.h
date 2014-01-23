@@ -96,7 +96,9 @@ typedef struct frame_node {
 
 
 /* functions */
+#if !defined(_WIN32) // LGZHANG
 void exit();
+#endif
 void parse();
 void read_script();
 void copy_chart();
