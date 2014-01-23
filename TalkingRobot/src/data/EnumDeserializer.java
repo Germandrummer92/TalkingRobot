@@ -34,8 +34,9 @@ public class EnumDeserializer implements JsonDeserializer<Enum<?>> {
 		if (arg1.equals(dm.Start.class)) {
 			Start[] start = Start.values();
 			for (Start s : start)
-			{	
-				if (s.equals(arg0.get))
+			{	//TODO Meng Meng: ich hab das hier ein bischen geändert damit da kein Error kommt. 
+				//Wir können sonst nicht die NLU testen irgendwie ..
+				if (s.toString().equals((arg0.getAsString())))
 					return s;
 			}
 		}

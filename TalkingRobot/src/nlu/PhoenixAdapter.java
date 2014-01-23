@@ -17,15 +17,14 @@ public class PhoenixAdapter {
           
   public LinkedList<String> operatePhoenix(String input, String runParse, int extractFlag, File compile) {
 	  try {
-		  Runtime.getRuntime().exec("tcsh");
-		  Runtime.getRuntime().exec("tcsh cd " + compile.getAbsolutePath());
-		  Runtime.getRuntime().exec("tcsh compile");
-		  Runtime.getRuntime().exec("tcsh cd ..");
+		  Runtime rt = Runtime.getRuntime();
+		  rt.exec("/bin/tcsh compile", null, compile.getAbsoluteFile());
+
 		  File file = new File("input");
 		  BufferedWriter output = new BufferedWriter(new FileWriter(file));
 		  output.write(input);
 		  output.close();
-		  Runtime.getRuntime().exec("tcsh " + runParse + " < input");
+		  rt.exec("/bin/tcsh " + runParse + " < input");
 	  } catch (IOException e) {
 		  e.printStackTrace();
 	  }
