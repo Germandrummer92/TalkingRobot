@@ -75,7 +75,7 @@ public class EnumDeserializer implements JsonDeserializer<Enum<?>> {
 			RecipeAssistance[] e111 = RecipeAssistance.values();
 			for (RecipeAssistance c : e111)
 			{	
-				if (c.name().equals(((JsonPrimitive)arg0).toString().substring(1, ((JsonPrimitive)arg0).toString().length()-1))) {
+				if (c.name().equals(((JsonObject)arg0).get("name").toString().subSequence(1, ((JsonObject)arg0).get("name").toString().length()-1))) {
 					return c;
 				}
 			}
