@@ -1,5 +1,7 @@
 package dm;
 
+import generalControl.Main;
+
 import java.util.List;
 
 import data.UserData;
@@ -63,7 +65,7 @@ public class StartDialog extends Dialog {
 				getCurrentSession().getCurrentUser().getUserData().writeFile();
 			}
 		}
-		
+		Main.giveMain().setUserLoggedIn(true);
 		
 	}
 
@@ -150,6 +152,7 @@ public class StartDialog extends Dialog {
 				if (kw.getReference().getCurrentState() == Start.USER_FOUND) {
 					getCurrentDialogState().setCurrentState(Start.USER_FOUND);
 					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference())));
+					Main.giveMain().setUserLoggedIn(true);
 					return;
 				}
 			}

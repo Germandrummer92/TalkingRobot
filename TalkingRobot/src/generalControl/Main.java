@@ -9,6 +9,7 @@ import asr.ASRPhase;
 
 import dm.DMPhase;
 import dm.DialogState;
+import dm.Start;
 
 /**
  * 
@@ -296,8 +297,8 @@ private void checkFiles() {
 	  }
 }
 	
-/*Test:
- 	public static void main(String args[]) {
+
+ /*	public static void main(String args[]) {
 		Main m = giveMain();
 		m.setNluResult(new ArrayList<List<String>>());
 		m.getNluResult().add(new ArrayList<String>());
@@ -308,4 +309,5 @@ private void checkFiles() {
 		m.dmPhase = new DMPhase();
 		m.dmPhase.setPhaseResult(m);
 		System.out.println(m.getDmResult().getClass().getName());
-	}*/
+	}
+}*/
