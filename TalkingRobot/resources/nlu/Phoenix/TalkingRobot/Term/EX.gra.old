@@ -10,7 +10,7 @@
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
 	(*[person] [need] *[a])
-	(and also)
+	(and *also *[a])
 ;
 
 
