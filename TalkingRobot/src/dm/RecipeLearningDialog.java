@@ -42,45 +42,45 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		currState = ((RecipeLearningState)getCurrentDialogState());
 	}
 	switch ((RecipeLearning)getCurrentDialogState().getCurrentState()) {
-	case ENTRY:
+	case RL_ENTRY:
 		updateStateEntry(keywords, terms);
-	case ASK_RECIPE_NAME:
+	case RL_ASK_RECIPE_NAME:
 		updateStateRecipeName(keywords, terms);
 		break;
-	case ASK_FIRST_INGREDIENT:
+	case RL_ASK_FIRST_INGREDIENT:
 		updateStateFirstIngred(keywords, terms);
 		break;
-	case ASK_NEXT_INGREDIENT:
+	case RL_ASK_NEXT_INGREDIENT:
 		updateStateNextIngred(keywords, terms);
 		break;
-	case ASK_INGREDIENT_RIGHT:
+	case RL_ASK_INGREDIENT_RIGHT:
 		updateStateIngredRight(keywords, terms);
 		break;
-	case ASK_COUNTRY_OF_ORIGIN:
+	case RL_ASK_COUNTRY_OF_ORIGIN:
 		updateStateAskOrigin(keywords, terms);
 		break;
-	case ASK_FIRST_TOOL:
+	case RL_ASK_FIRST_TOOL:
 		updateStateFirstTool(keywords, terms);
 		break;
-	case ASK_NEXT_TOOL:
+	case RL_ASK_NEXT_TOOL:
 		updateStateNextTool(keywords, terms);
 		break;
-	case ASK_TOOL_RIGHT:
+	case RL_ASK_TOOL_RIGHT:
 		updateStateToolRight(keywords, terms);
 		break;
-	case ASK_FIRST_STEP:
+	case RL_ASK_FIRST_STEP:
 		updateStateFirstStep(keywords, terms);
 		break;
-	case ASK_NEXT_STEP:
+	case RL_ASK_NEXT_STEP:
 		updateStateNextStep(keywords, terms);
 		break;
-	case ASK_LAST_STEP:
+	case RL_ASK_LAST_STEP:
 		updateStateLastStep(keywords, terms);
 		break;
-	case ASK_STEP_RIGHT:
+	case RL_ASK_STEP_RIGHT:
 		updateStateStepRight(keywords, terms);
 		break;
-	case EXIT:
+	case RL_EXIT:
 		updateStateExit(keywords, terms);
 		break;
 	default:	

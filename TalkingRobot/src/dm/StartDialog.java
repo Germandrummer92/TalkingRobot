@@ -33,15 +33,15 @@ public class StartDialog extends Dialog {
 			throw new WrongStateClassException();
 		}
 		switch ((Start)getCurrentDialogState().getCurrentState()) {
-		case ENTRY : updateStateEntry(keywords, terms); break;
-		case WAITING_FOR_USERNAME : updateStateWaiting(keywords, terms); break;
-		case USER_FOUND : updateStateFound(keywords, terms); break;
-		case WAITING_FOR_EMPLOYEE_STATUS : updateStateWaitingEmployee(keywords, terms, approval); break;
-		case USER_NOT_FOUND : updateStateNotFound(keywords, terms, approval); break;
-		case USER_SAVED : updateStateSaved(keywords, terms); break;
-		case USER_WANTS_TO_BE_SAVED : updateStateWantsSave(keywords, terms); break;
-		case USER_DOESNT_WANT_TO_BE_SAVED : updateStateNoSave(keywords, terms); break;
-		case EXIT : updateStateExit(keywords, terms); break;
+		case S_ENTRY : updateStateEntry(keywords, terms); break;
+		case S_WAITING_FOR_USERNAME : updateStateWaiting(keywords, terms); break;
+		case S_USER_FOUND : updateStateFound(keywords, terms); break;
+		case S_WAITING_FOR_EMPLOYEE_STATUS : updateStateWaitingEmployee(keywords, terms, approval); break;
+		case S_USER_NOT_FOUND : updateStateNotFound(keywords, terms, approval); break;
+		case S_USER_SAVED : updateStateSaved(keywords, terms); break;
+		case S_USER_WANTS_TO_BE_SAVED : updateStateWantsSave(keywords, terms); break;
+		case S_USER_DOESNT_WANT_TO_BE_SAVED : updateStateNoSave(keywords, terms); break;
+		case S_EXIT : updateStateExit(keywords, terms); break;
 		default: break;
 		}
 
@@ -55,12 +55,12 @@ public class StartDialog extends Dialog {
 			List<String> terms, List<String> approval) {
 		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
 			if (approval.get(0).equals("Yes")) {
-				getCurrentDialogState().setCurrentState(Start.USER_SAVED);
+				getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
 				getCurrentSession().getCurrentUser().getUserData().writeFile();
 			}
 			else {
-				getCurrentDialogState().setCurrentState(Start.USER_SAVED);
+				getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
 				getCurrentSession().getCurrentUser().getUserData().setStudent(false);
 				getCurrentSession().getCurrentUser().getUserData().writeFile();
 			}
@@ -117,10 +117,10 @@ public class StartDialog extends Dialog {
 	private void updateStateNotFound(List<Keyword> keywords, List<String> terms, List<String> approval) {
 		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
 			if (approval.get(0).equals("Yes")) {
-				getCurrentDialogState().setCurrentState(Start.WAITING_FOR_EMPLOYEE_STATUS);
+				getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_EMPLOYEE_STATUS);
 			}
 			else {
-				getCurrentDialogState().setCurrentState(Start.USER_DOESNT_WANT_TO_BE_SAVED);
+				getCurrentDialogState().setCurrentState(Start.S_USER_DOESNT_WANT_TO_BE_SAVED);
 				getCurrentSession().setCurrentUser(new User());
 			}
 		}
@@ -149,8 +149,8 @@ public class StartDialog extends Dialog {
 	private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
 		if (keywords.size() == 1); {
 			for (Keyword kw: keywords) {
-				if (kw.getReference().getCurrentState() == Start.USER_FOUND) {
-					getCurrentDialogState().setCurrentState(Start.USER_FOUND);
+				if (kw.getReference().getCurrentState() == Start.S_USER_FOUND) {
+					getCurrentDialogState().setCurrentState(Start.S_USER_FOUND);
 					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference())));
 					Main.giveMain().setUserLoggedIn(true);
 					return;
@@ -159,7 +159,7 @@ public class StartDialog extends Dialog {
 		}
 		if (terms.size() == 1) {
 			for (String s : terms) {
-				getCurrentDialogState().setCurrentState(Start.USER_NOT_FOUND);
+				getCurrentDialogState().setCurrentState(Start.S_USER_NOT_FOUND);
 				getCurrentSession().getCurrentUser().getUserData().setUserName(s);
 				
 			}
@@ -172,8 +172,8 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 		for (Keyword kw: keywords) {
-				if (kw.getReference().getCurrentState() == Start.WAITING_FOR_USERNAME) {
-					getCurrentDialogState().setCurrentState(Start.WAITING_FOR_USERNAME);
+				if (kw.getReference().getCurrentState() == Start.S_WAITING_FOR_USERNAME) {
+					getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
 					return;
 				}
 			}

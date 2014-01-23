@@ -37,40 +37,40 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 	switch ((RecipeAssistance)getCurrentDialogState().getCurrentState()) {
 	//case ENTRY,
-	case RECIPE_NOT_FOUND:
+	case RA_RECIPE_NOT_FOUND:
 		updateStateRNF(keywords, terms);
 		break;
-	case TELL_INGREDIENTS:
+	case RA_TELL_INGREDIENTS:
 		updateStateTellIngredients(keywords, terms);
 		break;
-	case TELL_TOOLS:
+	case RA_TELL_TOOLS:
 		updateStateTellTools(keywords, terms);
 		break;
-	case TELL_STEPS:
+	case RA_TELL_STEPS:
 		updateStateTellSteps(keywords, terms);
 		break;
-	case TELL_COUNTRY_OF_ORIGIN:
+	case RA_TELL_COUNTRY_OF_ORIGIN:
 		updateStateTellOrigin(keywords, terms);
 		break;
-	case TELL_CREATOR:
+	case RA_TELL_CREATOR:
 		updateStateTellCreator(keywords, terms);
 		break;
-	case TELL_NUM_OF_STEPS:
+	case RA_TELL_NUM_OF_STEPS:
 		updateStateTellNumOfSteps(keywords, terms);
 		break;
-	case TELL_INGREDIENT_NOT_FOUND:
+	case RA_TELL_INGREDIENT_NOT_FOUND:
 		updateStateTellIngredientNotFound(keywords, terms);
 		break;
-	case TELL_TOOL_FOUND:
+	case RA_TELL_TOOL_FOUND:
 		updateStateTellToolFound(keywords, terms);
 		break;
-	case TELL_TOOL_NOT_FOUND:
+	case RA_TELL_TOOL_NOT_FOUND:
 		updateStateTellToolNotFound(keywords, terms);
 		break;
-	case TELL_WHOLE_RECIPE:
+	case RA_TELL_WHOLE_RECIPE:
 		updateStateTellWholeRecipe(keywords, terms);
 		break;
-	case EXIT:
+	case RA_EXIT:
 		updateStateExit(keywords, terms);
 		break;
 	default:	

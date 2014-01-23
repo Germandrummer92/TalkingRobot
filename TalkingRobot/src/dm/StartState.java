@@ -15,7 +15,7 @@ public class StartState extends DialogState {
 	 */
   public StartState() {
 	  super();
-	  setCurrentState(Start.ENTRY);
+	  setCurrentState(Start.S_ENTRY);
   }
   /**
    * Creates a new StartState in the state specified.

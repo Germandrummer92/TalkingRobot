@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import dm.DialogState;
+import dm.Start;
 import dm.StartState;
 
 /**
@@ -56,7 +57,9 @@ public class KeywordData implements Data {
 
 	@Override
 	public String generateJSON() {
-		Gson creator = new Gson();
+		Gson creator = new GsonBuilder().
+			    registerTypeAdapter(java.lang.Enum.class, new EnumSerializer()).create();
+
 		//switch (dialogState.getCurrentState().getDeclaringClass().toString()) {
 	//	case "dm.Start" : dialogState.setCurrentState();
 		//}
@@ -66,8 +69,10 @@ public class KeywordData implements Data {
 	
 	@Override
 	public void createFromJSONText(String jsonString) {
-		Gson creator;
-		creator =  new Gson();
+		//Needed for Generic Enum Deserialization
+				EnumDeserializer des = new EnumDeserializer();
+				
+				Gson creator = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).create();
 		KeywordData newData = creator.fromJson(jsonString, this.getClass());
 		this.wordID = newData.getWordID();
 		this.word = newData.getWord();
@@ -185,6 +190,7 @@ public class KeywordData implements Data {
 	 */
 	public static ArrayList <KeywordData> loadData() {
 		File load = new File("resources/files/KeywordData/");
+		//Needed for Generic Enum Deserialization
 		EnumDeserializer des = new EnumDeserializer();
 		
 		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).create();
@@ -217,8 +223,10 @@ public class KeywordData implements Data {
 		return f.listFiles().length;
 	}
 	
-	public static void main(String[] args) {
-		new KeywordData("Hi", new StartState(), 0 , null).writeFile();
-		System.out.println(loadData().get(1).dialogState.getCurrentState().toString());
-	}
+/*	public static void main(String[] args) {
+		DialogState d = new DialogState();
+		d.setCurrentState(Start.S_ENTRY);
+		new KeywordData("Goodbye", d, 0, null).writeFile();
+		System.out.println(loadData().get(0).dialogState.getCurrentState().toString());
+	}*/
 }
