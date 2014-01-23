@@ -21,7 +21,7 @@ public abstract class Dialog {
   public Dialog(Session currentSession) {
 	  this.currentSession = currentSession;
 	  currentState = new StartState();
-	  currentState.setCurrentState(Start.ENTRY);
+	  currentState.setCurrentState(Start.S_ENTRY);
   }
   
   /**
