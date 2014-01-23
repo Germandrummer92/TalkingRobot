@@ -13,10 +13,16 @@ import java.util.List;
 public abstract class InputAnalyzer {
 
 	/**
-	 * a gra-File needed to use Phoenix in order to provide it with a grammar.
+	 * the perl-script which phonix has to use
 	 */
-	protected File grammarFile;
-
+	protected String runParse;
+	
+	/**
+	 * a flag which decides if phoenix is using extracted form or not.
+	 * 0 means no; 1 means yes
+	 */
+	protected int extractFlag;
+	
 	/**
 	 * an instance of PhoenixAdapter so InputAnalyzer can
 	 * use Phoenix to analyze the input String.

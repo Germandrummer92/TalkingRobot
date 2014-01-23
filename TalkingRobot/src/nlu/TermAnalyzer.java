@@ -16,14 +16,15 @@ public class TermAnalyzer extends InputAnalyzer {
 	 * Creates a new TermAnalyzer object.
 	 */
 	public TermAnalyzer() {
-		this.grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/term.gra");
+		this.runParse = "run_parse_term";
+		this.extractFlag = 0;
 	}
 
 	/**
 	 * @see InputAnalyzer#analyze()
 	 */
 	public List<String> analyze(String input) {
-		List<String> result = phoenix.operatePhoenix(grammarFile);
+		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag);
 		return result;
 	}
 

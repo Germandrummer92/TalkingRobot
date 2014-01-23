@@ -15,14 +15,15 @@ public class ApprovalAnalyzer extends InputAnalyzer {
 	 * Creates a new ApprovalAnalyzer object.
 	 */
 	public ApprovalAnalyzer() {
-		this.grammarFile  = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/approval.gra/");
+		this.runParse = "run_parse_approval";
+		this.extractFlag = 1;
 	}
 
   /**
      * @see InputAdapter#analyze()
      */
 	public List<String> analyze(String input) {
-		List<String> result = phoenix.operatePhoenix(grammarFile);
+		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag);
 		return result;
 	}
 

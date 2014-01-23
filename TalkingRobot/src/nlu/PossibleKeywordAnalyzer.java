@@ -25,14 +25,15 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	 * Creates a new PossibleKeywordAnalyzer object.
 	 */
 	public PossibleKeywordAnalyzer() {
-		this.grammarFile = new File("resources/nlu/Phoenix/TalkingRobot/Grammar/possibleKw.gra/");
+		this.runParse = "run_parse_possiblekw";
+		this.extractFlag = 0;
 	}
 	  
 	/**
 	 * @see InputAdapter#analyze()
 	 */
 	public List<String> analyze(String input) {
-		  LinkedList<String> result = phoenix.operatePhoenix(grammarFile);
+		  LinkedList<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag);
 		  
 		  LinkedList<String> notPossibleKeywords = new LinkedList<String>();
 		  

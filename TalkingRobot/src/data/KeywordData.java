@@ -12,9 +12,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import dm.DialogState;
+import dm.StartState;
 
 /**
  * 
@@ -55,6 +57,10 @@ public class KeywordData implements Data {
 	@Override
 	public String generateJSON() {
 		Gson creator = new Gson();
+		//switch (dialogState.getCurrentState().getDeclaringClass().toString()) {
+	//	case "dm.Start" : dialogState.setCurrentState();
+		//}
+		
 		return creator.toJson(this);
 	}
 	
@@ -179,7 +185,9 @@ public class KeywordData implements Data {
 	 */
 	public static ArrayList <KeywordData> loadData() {
 		File load = new File("resources/files/KeywordData/");
-		Gson loader = new Gson();
+		EnumDeserializer des = new EnumDeserializer();
+		
+		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).create();
 		ArrayList <KeywordData> res = new ArrayList <KeywordData>();
 		for (File f : load.listFiles()) {
 			BufferedReader br = null;
@@ -208,5 +216,9 @@ public class KeywordData implements Data {
 		File f = new File("resources/files/KeywordData/");
 		return f.listFiles().length;
 	}
-
+	
+	public static void main(String[] args) {
+		new KeywordData("Hi", new StartState(), 0 , null).writeFile();
+		System.out.println(loadData().get(1).dialogState.getCurrentState().toString());
+	}
 }

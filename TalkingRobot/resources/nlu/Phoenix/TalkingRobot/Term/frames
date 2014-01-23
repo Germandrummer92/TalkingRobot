@@ -6,7 +6,5 @@
 	FRAME: Term
 	NETS: 
 		[recipe_name]
-		[recipe_ingredient]
-		[recipe_tool]
-		[recipe_step]
+		[recipe_ingredient_or_tool]
 ;

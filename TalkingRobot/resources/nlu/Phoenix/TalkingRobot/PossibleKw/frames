@@ -4,14 +4,24 @@
 #	the possible types of keywords
 	FRAME: PossibleKeyword
 	NETS: 
-		[canteen_assistance]
-		[canteen_information]
-		[canteen_recommendation]
-		[kitchen_assistance]		#kitchen_assistance: general kitchen assistance
+		[greeting]
+		[greeting2]
+		[canteenLoc]
+		[kitchen]
+		[kitchen2]
 		[recipe_assistance]
+		[direction]
+		[repetition]
 		[recipe_learning]
-		[cooking_assistance]		#cooking_assistance: getting tools etc.
-		[main]
-		[login]
-		[logout]
+		[recipe_learning2]
+		[save_recipe]
+		[save_recipe2]
+		[cooking_assistance]
+		[canteen_recommendation]
+		[canteen_recommendation2]
+		[canteen_information]
+		[canteen_information2]
+		[line_location]
+		[price_information]
+		[line_information]
 ;

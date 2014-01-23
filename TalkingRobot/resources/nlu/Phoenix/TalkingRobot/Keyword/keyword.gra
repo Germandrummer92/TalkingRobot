@@ -1,22 +1,359 @@
 # @author Bettina Weller
 # @version 1.0
 
+#canteen assistance
 [canteen_assistance]
+	(CANTEEN *[Canteen])
+	
+CANTEEN
+	(canteen)
+	(mensa)
+	(dining hall)
+	(cafeteria)
+;
 
+[Canteen]
+	[_moltke]
+	*am [_adenauerring]
+	*at [_adenauerring]
+	*in *the [_erzbergerstrasse]
+	*in *the [_schloss gottesaue]
+	*in *the [_tiefenbronner strasse]
+	*in *the [holzgartenstrasse]
+;
+
+[_moltke]
+	(molke)
+	(moltke)
+	(moke)
+;
+
+[_adenauerring]
+	(adenauerring)
+	(adenauering)
+	(adenauring)
+	(adenaurring)
+;
+
+[_erzbergerstrasse]
+	(erzbergerstrasse)
+	(erzbergerstrase)
+	(oremountainstreet)
+	(ercebergershtrase)
+	(erzbergerstreet)
+;
+
+[_schloss gottesaue]
+	(*schloss gottesaue)
+	(*castle gottesaue)
+	(*castle gods meadow)
+	(*shloce goddessowe)
+;
+
+[_tiefenbronner strasse]
+	(tiefenbronnerstrasse)
+	(tiefenbronnerstrase)
+	(teevenbronnershtrahse)
+	(depthfountainstreet)
+	(tiefenbronnerstreet)
+;
+
+[_holzgartenstrasse]
+	(holzgartenstrasse)
+	(holzgartenstrase)
+	(woodgardenstreet)
+	(holcegartenshtrahse)
+	(holzgartenstreet)
+;
+
+#canteen information
 [canteen_information]
+	(what kind of food OFFER *at [Canteen] *[Time])
+	(offer *at [Canteen] *[Time])
+	(what kind of food OFFER canteen *[Time])
+	(offer *at [Canteen] canteen *[Time])
+	(what [Canteen] *[Time])
+	(what food *[Canteen] *[Time])
+	(list
+	([Where_is])
+	(PRICE *line [number] *at *[Canteen])
+	
+PRICE
+	(price)
+	(how much is *[Menu])
+	(how much costs *[Menu])
+	(how much money *[Menu])
+	
+OFFER
+	(is offered)
+	(is served)
+	(is available)
+	(can [i] get)
+	(can [i] eat)
+;
 
+[Where_is]
+	(help me finding *line [number])
+	(show me where *line [number])
+	(where is *line [number])
+	(tell me where *line [number])
+;
+
+#canteen recommendation
 [canteen_recommendation]
+	(recommendation)
+	(give me a recommendation *[Canteen] *line *[number] *[Time])
+	(recommend me *[Canteen] *line *[number] *[Time])
+	(suggest [meal] *at *[Canteen] *line *[number] *[Time])
+	(suggestion [meal] *at *[Canteen] *line *[number] *[Time])
+	(give me a recommendation *[Time] *[Canteen] *line *[number])
+	(recommend me *[Time] *[Canteen] *line *[number])
+	(suggest [meal] *[Time] *at *[Canteen] *line *[number])
+	(suggestion [meal] *[Time] *at *[Canteen] *line *[number])
+	([Country] at *the [Canteen] *line *[number])
+	(eat something from [Country] *line *[number])
+;
 
+#kitchen assistance
 [kitchen_assistance]
+	(recipe)
+	(cooking)
+	(kitchen tool)
+	([How])
+	([What])
+	[which] [Kitchen
+;
 
+[What]
+	(what do you need for)
+	(what do i need for)
+;
+
+[How]
+	(how do you make)
+	(how do i make)
+;
+
+#recipe assistance
 [recipe_assistance]
+	([How] [recipe_name])
+	([What] [recipe_name])
+	([_next] *step)
+	([_next] *ingredient)
+	([_next] *kitchen *tool)
+	([_previous] *step)
+	([_previous] *ingredient)
+	([_previous] *kitchen *tool)
+	([_current] *step)
+	([_current] *ingredient)
+	([_current] *kitchen *tool)
+;	
 
+[Recipe]
+	#import recipe
+;
+
+[Tool]
+	#import tool
+;
+
+[Ingredient]
+	#import ingredient
+;
+
+[Menu]
+#import menu
+;
+
+[meal]
+	(meal)
+	(dish)
+	(food)
+;
+
+#kitchen assistance
+[kitchen assistance] 
+	(BRING me *the *ingredient [Ingredient])
+	(BRING me *the *kitchen *tool [Tool])
+	(BRING *the *kitchen *tool [Tool] *to *me)
+	(BRING *the *kitchen *tool [Ingredient] *to *me)
+	(BRING [Ingredient] from PLACES)
+	(BRING [Tool] from PLACES)
+	(PLACES)
+	
+PLACES
+	(fridge)
+	(refrigerator)
+	(cupboard)
+	(kitchen unit)
+	(kitchen cabinet)
+	(top drawer)
+	(drawer)
+	(bottom drawer)
+	(lower drawer)
+	(upper drawer)
+	(centre drawer)
+	(center drawer)
+	
+BRING
+	(bring)
+	(get)
+	(give)
+	(fetch)
+	(take)
+	(grab)
+;
+
+#recipe learning
 [recipe_learning]
+	([_next] *COMPONENT *COMPONENT)
+	([_next] *COMPONENT)
+	([_next] *COMPONENT)
+	([_last] *COMPONENT)
+	([_end])
+	([_teach_you] [Ingredient])
+	
+	
+COMPONENT
+	(step)
+	(*kitchen tool)
+	(ingredient)
+	(*kitchen *tool [Tool])
+	([Recipe])
+	(*ingredient [Ingredient])
+;
 
+[_teach_you]
+	(*[i] want to teach you)
+	(*[i] want to show you how to make)
+	(*[i] want to teach you how to make)
+	(add)
+	(*[i] *will instruct you how to make)
+	(*[i] *want *to instruct you how to make)
+	(*[i] will show you how to make)
+	(*[i] will tell you how to make)
+	(*[i] will tell you about *making)
+	(teach you)
+	(instruct you)
+;
+
+[i]
+ 	(i)
+ 	(we)
+;
+
+[_end]
+	(save)
+	(finished)
+	(that is all)
+	(that was the last *one)
+;
+
+[_last]
+	(last)
+	(final)
+	(to finish)
+;
+
+[_current]
+	(current)
+	(repeat THIS)
+	(what was it *again)
+	
+THIS
+	(this)
+	(the last)
+	(the current)
+;
+
+[_previous]
+	(previous)
+	(before)
+	(prior)
+;
+
+[_next]
+	(next)
+	(after)
+;
+
+#cooking assistance
 [cooking_assistance]
+;
 
+#main
 [main]
+	(restart)
+;
 
 [login]
+	([_hello] *[_name])
+;
+
+[_name]
+	(my name is *[User])
+	(i am *[User])
+	(im *[User])
+;
+
+[User]
+	#import users
+;
+
+[_hello]
+	(hi)
+	(hello)
+	(good morning)
+	(how do you do)
+;
 
 [logout]
+	([_bye])
+;
+
+[_bye]
+	(*good bye)
+	(see you later)
+	(until next time)
+	(have a nice day)
+;
+
+[Weekday]
+	(monday)
+	(tuesday)
+	(wednesday)
+	(thursday)
+	(friday)
+	(saturday)
+	(sunday)
+;
+
+[Time]
+	(now)
+	(immediately)
+	(today)
+	(tomorrow)
+	(day after tomorrow)
+	(next week)
+	([Weekday])
+;
+
+[Category]
+	(MEAT)
+	(vegetarian)
+	(vegan)
+	(fish)
+	
+MEAT
+	(pork)
+	(chicken)
+	(beef)
+;
+
+[Country]
+	#import country
+;
+
+[Number]
+	#import number
+;

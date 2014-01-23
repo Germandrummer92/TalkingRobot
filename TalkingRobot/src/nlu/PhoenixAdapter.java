@@ -5,11 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PhoenixAdapter {
-
-  private File frames;
-
           
-  public LinkedList<String> operatePhoenix(File grammarFile) {
+  public LinkedList<String> operatePhoenix(String runParse, int extractFlag) {
   return new LinkedList<String>();
   }
 

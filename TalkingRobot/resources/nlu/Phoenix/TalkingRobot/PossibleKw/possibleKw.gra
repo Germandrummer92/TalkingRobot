@@ -9,7 +9,7 @@
 #possible keyword: "hello", "bye", "good bye"
 #e.g. "i just want to say /hello/"
 [greeting]
-	(*[want] *[say])
+	(*[want] [say])
 ;
 
 #special case: "see you later"
@@ -23,19 +23,19 @@
 
 #possible keyword: canteen
 #e.g. "i would like to go to the /canteen/"
-[canteen]
-	(*[want] *[eat] *[time])
-	(*[time] *[want] *[eat])
+[canteenLoc]
+	([want] [eat] *[time])
+	(*[time] [want] [eat])
 ;
 
 #possible keyword: recipe, cooking, kitchen tool
 #e.g. "could you assist me with /cooking/"
 [kitchen]
-	(*please *[can] *[you] *[help] *[i] *with *[a])
-	(*[can] *[you] *[help] *[i] *with *[a] *please)
-	(*please *[can] *[you] *[say] *[a])
-	(*[can] *[you] *[say] *[a] *please)
-	(*please *[get] *[i] *[a])
+	(*please [can] [you] [help] ]i] *with [a])
+	([can] [you] [help] [i] with *[a] *please)
+	(please [can] [you] [say] [a])
+	([can] [you] [say] [a] please)
+	(please [get] [i] [a])
 ;
 
 #possible keyword: how ... make, what ... need
@@ -53,33 +53,32 @@
 
 #possible keyword: ingredients, (kitchen) tools, steps
 #e.g. "which /ingredients/ do i need for chicken salad"
-[recipe]
-	(*[what] *[need] *for *[recipes])
-	(*tell *[i] *[a] *for *[recipes])
+[recipe_assistance]
+	([what] [need] *for *[recipe])
+	(tell [i] *[a] *for [recipe])
 ;
 
 #possible keyword: next, after, previous, prior, before, repeat
 #e.g. "What is the /next/ tool"
 [direction]
-	(*[what] *is *[a] *COMPONENT)
-	(*[what] *comes *COMPONENT)
+	([what] *is [a] COMPONENT)
+	([what] *comes COMPONENT)
 	(COMPONENT *please)
-	(*please *[a] *COMPONENT)
-	(*[a] *COMPONENT *please)
+	(*please [a] COMPONENT)
+	([a] COMPONENT *please)
 COMPONENT
 	(ingredient)
 	(tool)
 	(kitchen tool)
 	(step)
 	(recipe step)
-	#import ingredient
-	#import tool
-	#import step
+	([recipe])
+	([tool])
 ;
 
 #possible keyword: what was it, once again
 [repetition]
-	(*[can] *[you] *[say] *[a] *COMPONENT *please)
+	([can] [you] [say] [a] COMPONENT *please)
 	(what was *it)
 	(what *was it)
 	(*what was it)
@@ -93,12 +92,12 @@ COMPONENT
 
 #possible keyword: teach you, instruct you, add
 [recipe_learning]
-	(*[want] *to *you *[recipe])
+	([want] *to you [recipe])
 ;
 
 #possible keyword: next, then, after that
 [recipe_learning2]
-	(*the *COMPONENT *[is])
+	(*the *COMPONENT [is])
 COMPONENT
 	(step)
 	(recipe step)
@@ -108,8 +107,7 @@ COMPONENT
 
 #possible keyword: save, finished
 [save_recipe]
-	(*please)
-	(*[i] *have *[time])
+	([i] have *[time])
 ;
 
 #possible keyword: that is all
@@ -121,8 +119,8 @@ COMPONENT
 
 #possible keywords: bring, get, give
 [cooking_assistance]
-	(*please *[i] *the *COMPONENT)
-	(*[i] *the *COMPONENT *please)
+	(*please [i] *the COMPONENT)
+	([i] *the COMPONENT *please)
 COMPONENT
 	(tool)
 	(kitchen tool)
@@ -133,14 +131,14 @@ COMPONENT
 
 #possible keyword: recommend
 [canteen_recommendation]
-	(*please *[i] *[a] *[meal] *[canteen])
-	(*[i] *[a] *[meal] *[canteen] *please)
+	(*please [i] *[a] [meal] *[canteen])
+	([i] *[a] [meal] *[canteen] *please)
 ;
 
-possible keyword: recommendation
+#possible keyword: recommendation
 [canteen_recommendation2]
-	(*please *give *[i] *[a])
-	(*give *[i] *[a] *please)
+	(*please give [i] *[a])
+	(give [i] *[a] *please)
 ;
 
 #possible keyword: offer[ed], what ... food/meal/dish
@@ -155,29 +153,29 @@ FOOD
 
 #possible keyword: list
 [canteen_information2]
-	(*please *all the *[meal])
-	(*all the *[meal] *please)
+	(*please *all the [meal])
+	(*all the [meal] *please)
+	(*please everything *please)
 ;
 
 #possible keyword: line <valid line number>, (help, ) 
 #find <valid line number>, where is ... <valid line number>
 [line_location]
-	(*please *[help] *find line *[number])	
-	(*[is] *line *[number])
+	(*please *[help] find line *[Number])	
+	([is] line *[Number])
 	
 ;
 
 #possible keyword: price [...] <valid line number>, how much is ... <valid linenumber>
 [price_information]
-	(*please *[say] *[i] *at *line *[number])
-	(*please *[say] *[i] price *at *line)
-	(*at *line *[number])
-	(*how *much *is)
+	(*please [say] [i] *at line *[Number])
+	(*please [say] [i] price *at *line)
+	(*at line *[Number])
 ;
 	
 #possible keyword: which line + canteen menu
 [line_information]
-	(*please *[say] *[i] *at *[menu])
+	(*please [say] [i] *at *[menu])
 ;
 
 #########################################
@@ -305,9 +303,9 @@ CANTEEN
 	(mensa)
 	(cafeteria)
 	(dining hall)
-	(*canteen *at ADENAUERRING)
-	(*mensa *at ADENAUERRING)
-	(*canteen MOLTKE)
+	(*canteen *at adenauerring)
+	(*mensa *at adenauerring)
+	(*canteen moltke)
 	(*mensa moltke)
 	(*mensa *in *the HOLZGARTENSTRASSE)
 	(*canteen *in *the HOLZGARTENSTRASSE)
@@ -317,14 +315,14 @@ CANTEEN
 	(*canteen *in *the ERZBERGERSTRASSE)
 	(*mensa *in *the ERZBERGERSTRASSE)
 ADENAUERRING
-	(adenauerring)
-	(adenauering)
-	(adenauring)
-	(adenaurring)
+        (adenauerring)
+        (adenauering)
+        (adenauring)
+        (adenaurring)
 MOLTKE
-	(molke)
-	(moltke)
-	(moke)
+        (molke)
+        (moltke)
+        (moke)
 HOLZGARTENSTRASSE
 	(holzgartenstrasse)
 	(holzgartenstrase)
@@ -338,10 +336,10 @@ TIEFENBRONNERSTRASSE
 	(depthfountainstreet)
 	(tiefenbronnerstreet)
 SCHLOSSGOTTESAUE
-	(*schloss gottesaue)
-	(*castle gottesaue)
-	(*castle gods meadow)
-	(*shloce goddessowe)
+	(schloss gottesaue)
+	(castle gottesaue)
+	(castle gods meadow)
+	(shloce goddessowe)
 ERZBERGERSTRASSE
 	(erzbergerstrasse)
 	(erzbergerstrase)
@@ -350,112 +348,27 @@ ERZBERGERSTRASSE
 	(erzbergerstreet)
 ;
 
-[number]
-	(MIL *THOU *HUN *BASE)
-	(THOU *HUN *BASE)
-	(HUN *BASE)
-	(BASE)
-	(ORDINAL)
-	(+DIGIT)
-MIL
-	(BASE million)
-THOU
-	(BASE thousand)
-	(DIGIT hundred *BASE thousand)
-HUN
-	(DIGIT hundred)
-BASE
-	(DIGIT)
-	(TEEN)
-	(DECADE *DIGIT)
-DIGIT
-	(zero)
-	(one)
-	(two)
-	(three)
-	(four)
-	(five)
-	(six)
-	(seven)
-	(eight)
-	(nine)
-TEEN
-	(ten)
-	(eleven)
-	(twelve)
-	(thirteen)
-	(fourteen)
-	(fifteen)
-	(sixteen)
-	(seventeen)
-	(eighteen)
-	(nineteen)
-ORDINAL
-	(ORDINAL_DIGIT)
-	(ORDINAL_TEEN)
-	(ORDINAL_DECADE)
-	(DECADE ORDINAL_DIGIT)
-ORDINAL_DIGIT
-	(first)
-	(second)
-	(third)
-	(fourth)
-	(fifth)
-	(sixth)
-	(seventh)
-	(eighth)
-	(ninth)
-ORDINAL_TEEN
-	(tenth)
-	(eleventh)
-	(twelfth)
-	(thirteenth)
-	(fourteenth)
-	(fifteenth)
-	(sixteenth)
-	(seventeenth)
-	(eighteenth)
-	(nineteenth)
-ORDINAL_DECADE
-	(twentieth)
-	(thirtieth)
-	(fortieth)
-	(fiftieth)
-	(sixtieth)
-	(seventieth)
-	(eightieth)
-	(ninetieth)
-	(*one hundredth)
-DECADE
-	(twenty)
-	(thirty)
-	(forty)
-	(fifty)
-	(sixty)
-	(seventy)
-	(eighty)
-	(ninety)
-;
-
-
-	
+[is]
+	(is)
+	(are)
+;	
 
 #recipes
 [recipe]
-#import recipe
+#include recipe
 ;
 
 #tools
 [tool]
-#import tool
+#include tool
 ;
 
 #ingredients
 [ingredient]
-#import ingredient
+#include ingredient
 ;
 
 #canteen menus
 [menu]
-#import menu
+#include menu
 ;
