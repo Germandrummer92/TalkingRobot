@@ -223,7 +223,7 @@ public class KeywordData implements Data {
 		return f.listFiles().length;
 	}
 	
-/*	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		DialogState d = new DialogState();
 		d.setCurrentState(Start.S_ENTRY);
 		new KeywordData("Goodbye", d, 0, null).writeFile();
