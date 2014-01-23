@@ -43,35 +43,35 @@ public class EnumDeserializer implements JsonDeserializer<Enum<?>> {
 				}
 			}
 		}
-		if (((JsonPrimitive)arg0).toString().contains("CI_")) {
+		if (((JsonObject)arg0).get("name").toString().contains("CI_")) {
 		
 			CanteenInfo[] e = CanteenInfo.values();
 			for (CanteenInfo c : e)
 			{	
-				if (c.name().equals(((JsonPrimitive)arg0).toString().substring(1, ((JsonPrimitive)arg0).toString().length()-1))) {
+				if (c.name().equals(((JsonObject)arg0).get("name").toString().subSequence(1, ((JsonObject)arg0).get("name").toString().length()-1))) {
 					return c;
 				}
 			}
 		}
-		if (((JsonPrimitive)arg0).toString().contains("CR_")) {
+		if (((JsonObject)arg0).get("name").toString().contains("CR_")) {
 			CanteenRecom[] e1 = CanteenRecom.values();
 			for (CanteenRecom c : e1)
 			{	
-				if (c.name().equals(((JsonPrimitive)arg0).toString().substring(1, ((JsonPrimitive)arg0).toString().length()-1))) {
+				if (c.name().equals(((JsonObject)arg0).get("name").toString().subSequence(1, ((JsonObject)arg0).get("name").toString().length()-1))) {
 					return c;
 				}
 			}
 		}
-		if (((JsonPrimitive)arg0).toString().contains("KA_")) {
+		if (((JsonObject)arg0).get("name").toString().contains("KA_")) {
 			KitchenAssistance[] e11 = KitchenAssistance.values();
 			for (KitchenAssistance c : e11)
 			{	
-				if (c.name().equals(((JsonPrimitive)arg0).toString().substring(1, ((JsonPrimitive)arg0).toString().length()-1))) {
+				if (c.name().equals(((JsonObject)arg0).get("name").toString().subSequence(1, ((JsonObject)arg0).get("name").toString().length()-1))) {
 					return c;
 				}
 			}
 		}
-		if (((JsonPrimitive)arg0).toString().contains("RA_")) {
+		if (((JsonObject)arg0).get("name").toString().contains("RA_")) {
 			RecipeAssistance[] e111 = RecipeAssistance.values();
 			for (RecipeAssistance c : e111)
 			{	
@@ -80,11 +80,11 @@ public class EnumDeserializer implements JsonDeserializer<Enum<?>> {
 				}
 			}
 		}
-		if (((JsonPrimitive)arg0).toString().contains("RL_")) {
+		if (((JsonObject)arg0).get("name").toString().contains("RL_")) {
 			RecipeLearning[] e1111 = RecipeLearning.values();
 			for (RecipeLearning c : e1111)
 			{	
-				if (c.name().equals(((JsonPrimitive)arg0).toString().substring(1, ((JsonPrimitive)arg0).toString().length()-1))) {
+				if (c.name().equals(((JsonObject)arg0).get("name").toString().subSequence(1, ((JsonObject)arg0).get("name").toString().length()-1))) {
 					return c;
 				}
 			}
