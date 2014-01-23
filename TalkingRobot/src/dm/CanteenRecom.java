@@ -9,7 +9,7 @@ public enum CanteenRecom {
 
   ADEN_LINE_3_DISH,
 
-  ADEN_LINE_4_AND_5_DISH,
+  ADEN_LINE_45_DISH,
 
   ADEN_LINE_6_DISH,
 

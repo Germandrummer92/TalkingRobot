@@ -141,8 +141,7 @@
 	},
 	"dm.CanteenInformationState" : {
 			"ADEN_CAFE_DISH" : [
-				"",
-				""
+				
 			],
 			"ADEN_CAFE_PRICE" : [
 				
@@ -232,15 +231,20 @@
 				
 			],
 			"TELL_LINE_NOT_EXIST" : [
-				
+				"Sorry",
+				"Oops",
+				"Well"
 			],
 			"TELL_MEAL_NOT_EXIST" : [
-				
+				"Sorry",
+				"Oops",
+				"Well"
 			]
 	},
 	"dm.CanteenRecommendationState" : {
 			"ADEN_CAFE_DISH" : [
-			
+				"If you want something quick and light",
+				"If you don't have big hunger"
 			],
 			"ADEN_CURRYQ_DISH" : [
 				
@@ -258,10 +262,12 @@
 				
 			],
 			"ADEN_LINE_6_DISH" : [
-				
+				"If you want to spend some money",
+				"The fancy line six would be a good choice if you want to spend more money"
 			],
 			"ADEN_SCHNITBAR_DISH" : [
-				
+				"If you want a lot of meat",
+				"As you're a meat lover"
 			],
 			"ENTRY" : [
 				"I guess you're pretty hungry right?";
@@ -271,10 +277,12 @@
 				
 			],
 			"MOLTKE_BUFFET_DISH" : [
-				
+				"If you want to pick it yourself",
+				"If you want more choices"
 			],
 			"MOLTKE_CAFE_DISH" : [
-				
+				"If you want something quick and light",
+				"If you don't have big hunger"
 			],
 			"MOLTKE_CHOICE_1_DISH" : [
 				

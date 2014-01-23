@@ -150,161 +150,223 @@
 				
 			]
 	},
-	"dm.CanteenInformationState" : {
-			"ADEN_CAFE_DISH" : [
-				"",
-				""
-			],
-			"ADEN_CAFE_PRICE" : [
-				
-			],
-			"ADEN_CURRYQ_DISH" : [
-				
-			],
-			"ADEN_CURRYQ_PRICE" : [
-				
-			],
-			"ADEN_LINE_1_DISH" : [
-				
-			],
-			"ADEN_LINE_1_PRICE" : [
-				
-			],
-			"ADEN_LINE_2_DISH" : [
-				
-			],
-			"ADEN_LINE_2_PRICE" : [
-				
-			],
-			"ADEN_LINE_3_DISH" : [
-				
-			],
-			"ADEN_LINE_3_PRICE" : [
-				
-			],
-			"ADEN_LINE_45_DISH" : [
-				
-			],
-			"ADEN_LINE_45_PRICE" : [
-				
-			],
-			"ADEN_LINE_6_DISH" : [
-				
-			],
-			"ADEN_LINE_6_PRICE" : [
-				
-			],
-			"ADEN_SCHNITBAR_DISH" : [
-				
-			],
-			"ADEN_SCHNITBAR_PRICE" : [
-				
-			],
-			"ENTRY" : [
-				
-			],
-			"EXIT" : [
-				
-			],
-			"MOLTKE_ACTTHEK_DISH" : [
-				
-			],
-			"MOLTKE_ACTTHEK_PRICE" : [
-				
-			],
-			"MOLTKE_BUFFET_DISH" : [
-				
-			],
-			"MOLTKE_BUFFET_PRICE" : [
-				
-			],
-			"MOLTKE_CHOICE_1_DISH" : [
-				
-			],
-			"MOLTKE_CHOICE_1_PRICE" : [
-
-			],
-			"MOLTKE_CHOICE_2_DISH" : [
-				
-			],
-			"MOLTKE_CHOICE_2_PRICE" : [
-				
-			],
-			"MOLTKE_GG_DISH" : [
-				
-			],
-			"MOLTKE_GG_PRICE" : [
-				
-			],
-			"MOLTKE_SCHNITBAR_DISH" : [
-				
-			],
-			"MOLTKE_SCHNITBAR_PRICE" : [
-				
-			],
-			"TELL_LINE_NOT_EXIST" : [
-				
-			],
-			"TELL_MEAL_NOT_EXIST" : [
-				
-			]
-	},
 	"dm.CanteenRecommendationState" : {
 			"ADEN_CAFE_DISH" : [
-				"In cafeteria there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided in cafeteria",
-				"{c} in cafeteria there's <o>",
-				"you can get <o> in cafeteria {c}"
+				"I will suggest to try <o> in cafeteria, if you want {c}",
+				"<o> sounds nice from cafeteria, do you want to have it?",
+				"In cafeteria there's <o>, maybe you can try it",
+				"Do you want to have <o> in cafeteria?",
+				"If you want {c}, there's <o> in cafeteria"
 			],
 			"ADEN_CURRYQ_DISH" : [
-				"In curry queen there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided in curry queen",
-				"{c} in curry queen there's <o>",
-				"you can get <o> in curry queen {c}"
+				"I will suggest to try <o> in curry queen, if you want {c}",
+				"<o> sounds nice from curry queen, do you want to have it?",
+				"In curry queen there's <o>, maybe you can try it",
+				"Do you want to have <o> in curry queen?",
+				"If you want {c}, there's <o> in curry queen"
 			],
 			"ADEN_LINE_1_DISH" : [
-				"At line one there's <o> {c}",
-				"You can find <o> {c}",
-				"{c} <o> will be provided at line one",
-				"{c} at line one there's <o>",
-				"you can get <o> at line one {c}"
+				"I will suggest to try <o> at line one, if you want {c}",
+				"<o> sounds nice from line one, do you want to have it?",
+				"At line one there's <o>, maybe you can try it",
+				"Do you want to have <o> from line one?",
+				"If you want {c}, there's <o> at line one"
 			],
 			"ADEN_LINE_2_DISH" : [
-				"At line two there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at line two",
-				"{c} at line two there's <o>",
-				"you can get <o> at line two {c}"
+				"I will suggest to try <o> at line two, if you want {c}",
+				"<o> sounds nice from line two, do you want to have it?",
+				"At line two there's <o>, maybe you can try it",
+				"Do you want to have <o> from line two?",
+				"If you want {c}, there's <o> at line two"
 			],
 			"ADEN_LINE_3_DISH" : [
-				"At line three there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at line three",
-				"{c} at line three there's <o>",
-				"you can get <o> at line three {c}"
+				"I will suggest to try <o> at line three, if you want {c}",
+				"<o> sounds nice from line three, do you want to have it?",
+				"At line three there's <o>, maybe you can try it",
+				"Do you want to have <o> from line three?",
+				"If you want {c}, there's <o> at line three"
 			],
-			"ADEN_LINE_4_AND_5_DISH" : [
-				"At line four and five there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at line four and five",
-				"{c} at line four and five there's <o>",
-				"you can get <o> at line four and five {c}"
+			"ADEN_LINE_45_DISH" : [
+				"I will suggest to try <o> at line four and five, if you want {c}",
+				"<o> sounds nice from line four and five, do you want to have it?",
+				"At line four and five there's <o>, maybe you can try it",
+				"Do you want to have <o> from line four and five?",
+				"If you want {c}, there's <o> at line four and five"
 			],
 			"ADEN_LINE_6_DISH" : [
-				"At line six there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at line six",
-				"{c} at line six there's <o>",
-				"you can get <o> at line six {c}"
+				"I will suggest to try <o> at fancy line six, if you want {c}",
+				"<o> sounds nice from line six, do you want to have it?",
+				"At line six there's <o>, maybe you can try it",
+				"Do you want to have <o> from line six?",
+				"If you want {c}, there's <o> at line six"
 			],
 			"ADEN_SCHNITBAR_DISH" : [
-				"At schnitzel bar there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at schnitzel bar",
-				"{c} at schnitzel bar there's <o>",
-				"you can get <o> at schnitzel bar {c}"
+				"I will suggest to try <o> at schnitzel bar, if you want {c}",
+				"<o> sounds nice from schnitzel bar, do you want to have it?",
+				"At schnitzel bar there's <o>, maybe you can try it",
+				"Do you want to have <o> from schnitzel bar?",
+				"If you want {c}, there's <o> at schnitzel bar"
+			],
+			"ENTRY" : [
+				"Do you need some suggestion for canteen meals?",
+				"Do you want me to suggest what to have?",
+				"When you don't know what to have. I can suggest some meals"
+			],
+			"EXIT" : [
+				""
+			],
+			"MOLTKE_ACTTHEK_DISH" : [
+				"I will suggest to try <o> at action counter, if you want {c}",
+				"<o> sounds nice from action counter, do you want to have it?",
+				"At action counter there's <o>, maybe you can try it",
+				"Do you want to have <o> from action counter?",
+				"If you want {c}, there's <o> at action counter"
+			],
+			"MOLTKE_BUFFET_DISH" : [
+				"I will suggest to try <o> at the buffet, if you want {c}",
+				"<o> sounds nice from buffet, do you want to have it?",
+				"In buffet there's <o>, maybe you can try it",
+				"Do you want to have <o> from buffet?",
+				"If you want {c}, there's <o> at buffet"
+			],
+			"MOLTKE_CAFE_DISH" : [
+				"I will suggest to try <o> in cafeteria, if you want {c}",
+				"<o> sounds nice from cafeteria, do you want to have it?",
+				"In cafeteria there's <o>, maybe you can try it",
+				"Do you want to have <o> in cafeteria?",
+				"If you want {c}, there's <o> in cafeteria"
+			],
+			"MOLTKE_CHOICE_1_DISH" : [
+				"I will suggest to try <o> from choice one, if you want {c}",
+				"<o> sounds nice from choice one, do you want to have it?",
+				"In choice one there's <o>, maybe you can try it",
+				"Do you want to have <o> in choice one?",
+				"If you want {c}, there's <o> in choice one"
+			],
+			"MOLTKE_CHOICE_2_DISH" : [
+				"I will suggest to try <o> from choice two, if you want {c}",
+				"<o> sounds nice from choice two, do you want to have it?",
+				"In choice two there's <o>, maybe you can try it",
+				"Do you want to have <o> in choice two?",
+				"If you want {c}, there's <o> in choice two"
+			],
+			"MOLTKE_GG_DISH" : [
+				"I will suggest to try <o> from good and cheap, if you want {c}",
+				"<o> sounds nice from good and cheap, do you want to have it?",
+				"In good and cheap there's <o>, maybe you can try it",
+				"Do you want to have <o> in good and cheap?",
+				"If you want {c}, there's <o> in good and cheap"
+			],
+			"MOLTKE_SCHNITBAR_DISH" : [
+				"I will suggest to try <o> at schnitzel bar, if you want {c}",
+				"<o> sounds nice from schnitzel bar, do you want to have it?",
+				"At schnitzel bar there's <o>, maybe you can try it",
+				"Do you want to have <o> from schnitzel bar?",
+				"If you want {c}, there's <o> at schnitzel bar"
+			],
+			"TELL_LINE_NOT_EXIST" : [
+				"The given line doesn't exist. Are you sure about the line number?",
+				"There's no such line. Do you want information about other lines?",
+				"I can't find the information about wished line. Are you sure about the line number?",
+				"The given line doesn't exist. Do you want information about other lines?",
+				"I can't find the information about wished line. Do you want information about other lines?"	
+			],
+			"TELL_MEAL_NOT_EXIST" : [
+				"The meal wanted is not found. Do you want to know what else are provided?",
+				"I can't find the wanted meal. Maybe try some other meals?",
+				"There's no such meal provided at your wished canteen and wished date. Do you want to know what else are provided?",
+				"The meal wanted is not found. Maybe try some other meals?",
+				"There's no such meal provided at your wished canteen and wished date. Maybe try some other meals?"
+			]
+	},
+	"dm.CanteenInformationState" : {
+			"ADEN_CAFE_DISH" : [
+				"In cafeteria there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided in cafeteria",
+				"{time} in cafeteria there's <o>",
+				"you can get <o> in cafeteria {time}"
+			],
+			"ADEN_CAFE_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_CURRYQ_DISH" : [
+				"In curry queen there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided in curry queen",
+				"{time} in curry queen there's <o>",
+				"you can get <o> in curry queen {time}"
+			],
+			"ADEN_CURRYQ_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_LINE_1_DISH" : [
+				"At line one there's <o> {time}",
+				"You can find <o> {time}",
+				"{time} <o> will be provided at line one",
+				"{time} at line one there's <o>",
+				"you can get <o> at line one {time}"
+			],
+			"ADEN_LINE_1_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_LINE_2_DISH" : [
+				"At line two there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at line two",
+				"{time} at line two there's <o>",
+				"you can get <o> at line two {time}"
+			],
+			"ADEN_LINE_2_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_LINE_3_DISH" : [
+				"At line three there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at line three",
+				"{time} at line three there's <o>",
+				"you can get <o> at line three {time}"
+			],
+			"ADEN_LINE_3_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_LINE_45_DISH" : [
+				"At line four and five there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at line four and five",
+				"{time} at line four and five there's <o>",
+				"you can get <o> at line four and five {time}"
+			],
+			"ADEN_LINE_45_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_LINE_6_DISH" : [
+				"At line six there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at line six",
+				"{time} at line six there's <o>",
+				"you can get <o> at line six {time}"
+			],
+			"ADEN_LINE_6_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
+			"ADEN_SCHNITBAR_DISH" : [
+				"At schnitzel bar there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at schnitzel bar",
+				"{time} at schnitzel bar there's <o>",
+				"you can get <o> at schnitzel bar {time}"
+			],
+			"ADEN_SCHNITBAR_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"ENTRY" : [
 				"So, what do you want to eat?",
@@ -314,47 +376,82 @@
 			"EXIT" : [
 				"Have a good meal"
 			],
+			"MOLTKE_ACTTHEK_DISH" : [
+				"At action counter there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at action counter",
+				"{time} at action counter there's <o>",
+				"you can get <o> at action counter {time}"
+			],
+			"MOLTKE_ACTTHEK_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
+			],
 			"MOLTKE_BUFFET_DISH" : [
-				"At buffet there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at buffet",
-				"{c} at buffet there's <o>",
-				"you can get <o> at buffet {c}"
+				"At buffet there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at buffet",
+				"{time} at buffet there's <o>",
+				"you can get <o> at buffet {time}"
+			],
+			"MOLTKE_BUFFET_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"MOLTKE_CAFE_DISH" : [
-				"In cafeteria there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided in cafeteria",
-				"{c} in cafeteria there's <o>",
-				"you can get <o> in cafeteria {c}"
+				"In cafeteria there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided in cafeteria",
+				"{time} in cafeteria there's <o>",
+				"you can get <o> in cafeteria {time}"
+			],
+			"MOLTKE_CAFE_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"MOLTKE_CHOICE_1_DISH" : [
-				"At choice one there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at choice one",
-				"{c} at choice one there's <o>",
-				"you can get <o> at choice two {c}"
+				"At choice one there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at choice one",
+				"{time} at choice one there's <o>",
+				"you can get <o> at choice two {time}"
+			],
+			"MOLTKE_CHOICE_1_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"MOLTKE_CHOICE_2_DISH" : [
-				"At choice two there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at choice two",
-				"{c} at choice two there's <o>",
-				"you can get <o> at choice two {c}"
+				"At choice two there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at choice two",
+				"{time} at choice two there's <o>",
+				"you can get <o> at choice two {time}"
+			],
+			"MOLTKE_CHOICE_2_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"MOLTKE_GG_DISH" : [
-				"At good and cheap there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at good and cheap",
-				"{c} at good and cheap there's <o>",
-				"you can get <o> at good and cheap {c}"
+				"At good and cheap there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at good and cheap",
+				"{time} at good and cheap there's <o>",
+				"you can get <o> at good and cheap {time}"
+			],
+			"MOLTKE_GG_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"MOLTKE_SCHNITBAR_DISH" : [
-				"At schnitzel bar there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided at schnitzel bar",
-				"{c} at schnitzel bar there's <o>",
-				"you can get <o> at schnitzel bar {c}"
+				"At schnitzel bar there's <o> {time}",
+				"You can find <o> {time} there",
+				"{time} <o> will be provided at schnitzel bar",
+				"{time} at schnitzel bar there's <o>",
+				"you can get <o> at schnitzel bar {time}"
+			],
+			"MOLTKE_SCHNITBAR_PRICE" : [
+				"The price for <o> it's {price}",
+				"The price for wanted meal it's {price}"
 			],
 			"TELL_MEAL_NOT_EXIST" : [
 				"The meal wanted is not found. Do you want to know what else are provided?",
