@@ -5,7 +5,13 @@
 #include <ctype.h>
 #include <math.h>
 #include <malloc.h>
+
+#if _WIN32 //LGZHANG
+#include <time.h>
+#include <stdlib.h>
+#else
 #include <sys/time.h>
+#endif
 
 #include "parse.h"
 #include "functions.h"

@@ -18,13 +18,14 @@ public class TermAnalyzer extends InputAnalyzer {
 	public TermAnalyzer() {
 		this.runParse = "run_parse_term";
 		this.extractFlag = 0;
+		this.compile = new File ("resources/nlu/Phoenix/TalkingRobot/Term/");
 	}
 
 	/**
 	 * @see InputAnalyzer#analyze()
 	 */
 	public List<String> analyze(String input) {
-		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag);
+		List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
 		return result;
 	}
 

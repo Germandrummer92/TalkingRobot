@@ -5,6 +5,10 @@
 #include <malloc.h>
 #include "parse.h"
 
+#if _WIN32 // LGZHANG
+#include <stdlib.h>
+#endif
+
 extern int	SymBufSize;	/* buffer size to hold char strings */
 
 int read_dict(dir, dict_file, gram, sb_start, sym_buf_end)

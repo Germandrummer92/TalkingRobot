@@ -38,7 +38,7 @@ public class EnumDeserializer implements JsonDeserializer<Enum<?>> {
 			for (Start s : start)
 			{	
 				if (s.name().equals(((JsonObject)arg0).get("name").toString().subSequence(1, ((JsonObject)arg0).get("name").toString().length()-1))) {
-					
+				
 					return s;
 				}
 			}

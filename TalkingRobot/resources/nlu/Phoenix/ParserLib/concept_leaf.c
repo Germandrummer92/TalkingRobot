@@ -8,6 +8,10 @@
 #include "parse.h"
 #include "pconf.h"
 
+#if _WIN32 //LGZHANG
+#include <stdlib.h>
+#endif
+
 char is_leaf();
 Gram *read_grammar();
 void write_net();
@@ -54,7 +58,7 @@ int main( argc, argv)
     int	netid;
 
     /* set command line parms */
-    if (pconf(argc,argv,conf,NULL,NULL,NULL))
+	if (pconf(argc,argv,conf,NULL,NULL,NULL)) 
 	pusage(argv[0],conf),exit(-1);
 
     /* malloc space for symbol buffer */

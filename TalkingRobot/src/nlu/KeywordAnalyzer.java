@@ -22,13 +22,14 @@ public class KeywordAnalyzer extends InputAnalyzer {
 	public KeywordAnalyzer() {
 		this.runParse = "run_parse_keyword";
 		this.extractFlag = 1;
+		this.compile = new File ("resources/nlu/Phoenix/TalkingRobot/Keyword/");
 	}
 
   /**
    * @see InputAdapter#analyze()
    */
   public List<String> analyze(String input) {
-    List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag);
+    List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
 		return result;
   }
 

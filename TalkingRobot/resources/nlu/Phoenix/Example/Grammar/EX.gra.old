@@ -197,9 +197,7 @@ TIME
 
 
 [anyday]
-	(*IN_ON *the *FIRST_LAST WEEK_MONTH *OF_MONTH)
 	(any DAY *OF_WEEK)
-
 DAY
 	(date)
 	(dates)
@@ -208,35 +206,6 @@ DAY
 
 OF_WEEK
 	(of *the week)
-
-FIRST_LAST
-	(first)
-	(previous)
-	(next)
-	(last)
-	(following)
-	(coming)
-
-WEEK_MONTH
-	(week)
-	(month)
-
-IN_ON
-	(in)
-	(on)
-
-OF_MONTH
-	(*IN_OF [Month_Name])
-	(*IN_OF THIS_NEXT month)
-
-IN_OF
-	(in)
-	(of)
-
-THIS_NEXT
-	(this)
-	(last)
-	(next)
 ;
 
 
@@ -528,9 +497,6 @@ SMALL_ORD
 	([Period_Mod] DATE *[Time_Range])
 	(*[Period_Mod] [Today_Relative])
 	(*[Time_Range] *the [Date_Relative] *[Time_Range])
-	(that [Day_Of_Week])
-	(that [Time_Range])
-	([Time_Range] is fine)
 DATE
 	([Date])
 	([Day_Name])
@@ -552,7 +518,6 @@ EARLIEST
 ONE
 	(one)
 	(thing)
-	(flight)
 ;
 
 
@@ -679,20 +644,6 @@ DAY
 	(ten)
 	(eleven)
 	(twelve)
-#	(thirteen)
-#	(fourteen)
-#	(fifteen)
-#	(sixteen)
-#	(seventeen)
-#	(eighteen)
-#	(nineteen)
-#	(twenty *ONE)
-
-ONE
-	(one)
-	(two)
-	(three)
-	(four)
 ;
 
 
@@ -771,48 +722,6 @@ SOMETIME
 	(T_TEN *T_ONE)
 	(TEEN)
 	(ZERO T_ONE)
-
-
-T_ONE
-	(one)
-	(two)
-	(three)
-	(four)
-	(five)
-	(six)
-	(seven)
-	(eight)
-	(nine)
-
-T_TEN
-	(twenty)
-	(thirty)
-	(forty)
-	(fifty)
-
-TEEN
-	(ten)
-	(eleven)
-	(twelve)
-	(thirteen)
-	(fourteen)
-	(fifteen)
-	(sixteen)
-	(seventeen)
-	(eighteen)
-	(nineteen)
-
-ZERO
-	(zero)
-	(oh)
-
-;
-
-
-[minute_res]
-	(T_TEN *T_ONE)
-	(TEEN)
-	(*ZERO T_ONE)
 
 
 T_ONE
@@ -1186,6 +1095,7 @@ HOURS
 	(midweek)
 	(weekday)
 	(weekdays)
+	(MONDAY through FRIDAY)
 	(MONDAY *AND TUESDAY *AND WEDNESDAY *AND THURSDAY *AND FRIDAY)
 
 THE
@@ -1225,6 +1135,7 @@ AND
 [weekend]
 	(weekend)
 	(weekends)
+	(saturday and sunday)
 ;
 
 [_earlier]
@@ -1515,13 +1426,10 @@ DECADE
 	(previous)
 	(preceeding)
 	(prior)
-	(last)
 ;
 
 [_next]
 	(next)
 	(following)
-	(other)
-	(coming)
 ;
 

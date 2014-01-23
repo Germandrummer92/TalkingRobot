@@ -8,7 +8,13 @@
 #include <ctype.h>
 #include <math.h>
 #include <malloc.h>
+
+#if _WIN32 //LGZHANG
+#include <stdlib.h>
+#include <time.h>
+#else
 #include <sys/time.h>
+#endif
 
 #include "parse.h"
 #include "functions.h"
@@ -200,12 +206,14 @@ char	print_line[LINE_LEN],
 
 /*** profile variables ***/
 
+#if (!_WIN32) // LGZHANG
 struct timeval	start_tp,
 		end_tp,
 		match_start_tp,
 		match_end_tp;
 struct timezone	start_tzp,
 		end_tzp;
+#endif
 
 long	msec;
 
@@ -214,17 +222,21 @@ SeqNode		*get_new_slot();
 FrameNode	*get_new_frame();
 Edge 		*copy_tree();
 
+#if _WIN32 // Krassimir
+void parse2(const char *line)
+{
+	parse(line, gram);
+}
+#endif
 
 void parse(char *line, Gram *gram)
 {
-
-    int		word_pos,
-		slot_num,
-		result,
-    		i, j, best_wp;
+    int		word_pos, slot_num, result, i, j, best_wp;
     SeqNode	*best_seq;
 
+#if (!_WIN32) // LGZHANG
     if( PROFILE ) gettimeofday( &start_tp, &start_tzp );
+#endif
 
 
     /* if cur_nets not set, create from frames in grammar */
@@ -252,8 +264,9 @@ void parse(char *line, Gram *gram)
     /* convert word strings to numbers and put in script array */
     read_script( line, gram );
 
+#if (!_WIN32) // LGZHANG
     if( PROFILE ) gettimeofday( &match_start_tp, &start_tzp );
-
+#endif
 
     /* to parse, for each word position in input try to match each slot 
        this creates chart and tree of slot seqs */
@@ -286,7 +299,9 @@ void parse(char *line, Gram *gram)
     /* copy final set */
     copy_chart(brk_pt, word_pos-1);
 
+#if (!_WIN32) // LGZHANG
     if( PROFILE ) gettimeofday( &match_end_tp, &end_tzp );
+#endif
 
     /* find best scoring seq end */
     best_wp= 0;
@@ -603,7 +618,8 @@ int append_slot( net, edge, prev_word_pos, gram)
     int nf, prev_nf,
 	num_extended,
 	i, j;
-    int new_nf;
+ // int new_nf;
+	int new_nf = 0; // TODO: not initializing leads to a jna error [Krassimir]
     char	prune;
 
     /* compute score for extending path with slot */
@@ -1224,6 +1240,7 @@ Edge *copy_tree(Edge *edge)
 
 void print_profile()
 {
+#if (!_WIN32) // LGZHANG
 	gettimeofday( &end_tp, &end_tzp );
 	msec= (match_end_tp.tv_sec - match_start_tp.tv_sec) * 1000;
 	msec += (match_end_tp.tv_usec - match_start_tp.tv_usec) / 1000;
@@ -1233,6 +1250,7 @@ void print_profile()
 	printf("parse time %ld  milliseconds\n", msec);
 	printf("Number of parses= %d\n", num_seqs);
 	printf("Number of slots in parse= %d\n", n_slots);
+#endif
 
 	if( PROFILE > 1 ) {
 	    printf("EdgeBufSize= %d  \tused= %d \t%4.2fM\n",
@@ -1267,10 +1285,16 @@ void print_profile()
 
 }
 
+#if _WIN32 // Krassimir
+void print_parse2(int parse_num, char *out_str, int extract)
+{
+	print_parse(parse_num, out_str, extract, gram);
+}
+#endif
+
 void print_parse(int parse_num, char *out_str, int extract, Gram *gram)
 {
-    int	j,
-	frame;
+    int	j, frame;
     SeqNode	*fptr;
     char	*out_ptr;
 

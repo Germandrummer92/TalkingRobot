@@ -10,6 +10,9 @@
 #include "pconf.h"
 #include "globals_parse.h"
 
+#if _WIN32 //LGZHANG
+#include <stdlib.h>
+#endif
 
 void strip_line();
 

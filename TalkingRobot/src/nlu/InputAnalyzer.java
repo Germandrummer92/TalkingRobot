@@ -24,6 +24,11 @@ public abstract class InputAnalyzer {
 	protected int extractFlag;
 	
 	/**
+	 * the file where the data needed to compile is stored. 
+	 */
+	protected File compile;
+	
+	/**
 	 * an instance of PhoenixAdapter so InputAnalyzer can
 	 * use Phoenix to analyze the input String.
 	 */
