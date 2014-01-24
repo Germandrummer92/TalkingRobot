@@ -20,7 +20,8 @@ import com.google.gson.Gson;
 *
 * @author Aleksandar Andonov, Meng Meng Yan
 * @version 2.5
-* This Class represents the data for a canteen.
+* This Class represents the data of a canteen of a canteen and offers means to automatically load data for the canteens from
+* there json representation.
 * @see Data
 */
 public class CanteenData implements Data{
@@ -46,13 +47,12 @@ public class CanteenData implements Data{
 		this.lines = lines;
 	}
 	
-	//not sure about the seven
 	/**
-	 * 
+	 * Constructs
 	 * @param canteenName
 	 * @param timeOffset The time offset from the current time in days. For example
 	 * 1 for tommorow, -1 for yesterday and so on. Must be an integer between -3 and
-	 * 6 
+	 * 7
 	 */
 	public CanteenData(CanteenNames canteenName, int timeOffset) {
 		String dirPath = "resources/files/CanteenMenu/";
@@ -202,6 +202,11 @@ public class CanteenData implements Data{
 		this.lines = lines;
 	}
 	
+	/**
+	 * Sets the lines of an Adenauerring type mensa (where the lines are named the same way as in the Adenauerring canteen).
+	 * @param jsonString The json String containing the description of the Adenauerring canteen.
+	 * @param timeOffset The time offset from the current time.
+	 */
 	private void setAdenauerringLines(String jsonString, int timeOffset) {
 		try {
 			lines = new ArrayList<LineData>();
@@ -382,7 +387,7 @@ public class CanteenData implements Data{
 		// TODO Auto-generated method stub
 		Iterator iterator = canteen.keys();
 		DateTime now = new DateTime(new Date());
-		if (timeOffset > 0 && timeOffset < 7) {
+		if (timeOffset > 0 && timeOffset <= 7) {
 			now = now.plusDays(timeOffset);
 		}
 		else if (timeOffset < 0 && timeOffset > -3) {
@@ -454,7 +459,6 @@ public class CanteenData implements Data{
 			return new ArrayList<MealData>(); //noData:true
 		}
 		ArrayList<MealData> meals = new ArrayList<MealData>();
-		JSONObject meal;
 		for(int i = 0; i < mealsArray.length(); i++) {
 			JSONObject meal1 = mealsArray.getJSONObject(i);
 			MealData meal1Data = getMeal(meal1);
