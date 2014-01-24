@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 /**
 *
 * @author Aleksandar Andonov, Meng Meng Yan
-* @version 2.0
+* @version 2.5
 * This Class represents the data for a canteen.
 * @see Data
 */
@@ -69,15 +69,29 @@ public class CanteenData implements Data{
 				this.canteenName = canteenName;
 				address = ""; //unknown
 				break;
-		}
-		
-		
-		
-		
-		
+			case  ERZBERGERSTRASSE:
+				setErzbergerLines(jsonString, timeOffset);
+				this.canteenName = canteenName;
+				address = "";//unknown
+				break;
+			case SCHLOSS_GOTTESAUE:
+				setGottesaueLines(jsonString, timeOffset);
+				this.canteenName = canteenName;
+				address = "";//unknown
+				break;
+			case TIEFENBRONNER_STRASSE:
+				setTiefenbronnerLines(jsonString, timeOffset);
+				this.canteenName = canteenName;
+				address = "";//unknown
+				break;
+			case HOLZGARTEN:
+				setHolzgartenLines(jsonString, timeOffset);
+				this.canteenName = canteenName;
+				address ="";//unknown
+				break;
+		}	
 	}
 	
-
 	@Override
 	 /**
 	* @see Data#generateJSON()
@@ -229,7 +243,6 @@ public class CanteenData implements Data{
 	}
 
 	private void setMoltkeLines(String jsonString, int timeOffset) {
-		// TODO Auto-generated method stub
 		try {
 			lines = new ArrayList<LineData>();
 			JSONObject obj = new JSONObject(jsonString);
@@ -263,7 +276,102 @@ public class CanteenData implements Data{
 			e.printStackTrace();
 		}
 	}
+	
+	private void setErzbergerLines(String jsonString, int timeOffset) {
+		try {
+			lines = new ArrayList<LineData>();
+			JSONObject obj = new JSONObject(jsonString);
+			JSONObject canteen = obj.getJSONObject("erzberger");
+			String unixTime = manageTime(canteen, timeOffset);
+			if (unixTime == null) {
+				return; //canteen is closed, now + offset = Saturday or Sunday
+			}
+			JSONObject day = canteen.getJSONObject(unixTime);
+			//Wahlessen 1
+			JSONArray mealArray = day.getJSONArray("wahl1");
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
+			//Wahlessen 2
+			mealArray = day.getJSONArray("wahl2");
+			lines.add(new LineData("line two", getMeals(mealArray)));
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	private void setGottesaueLines(String jsonString, int timeOffset) {
+		try {
+			lines = new ArrayList<LineData>();
+			JSONObject obj = new JSONObject(jsonString);
+			JSONObject canteen = obj.getJSONObject("gottesaue");
+			String unixTime = manageTime(canteen, timeOffset);
+			if (unixTime == null) {
+				return; //canteen is closed, now + offset = Saturday or Sunday
+			}
+			JSONObject day = canteen.getJSONObject(unixTime);
+			//Wahlessen 1
+			JSONArray mealArray = day.getJSONArray("wahl1");
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
+			//Wahlessen 2
+			mealArray = day.getJSONArray("wahl2");
+			lines.add(new LineData("line two", getMeals(mealArray)));
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	private void setTiefenbronnerLines(String jsonString, int timeOffset) {
+		try {
+			lines = new ArrayList<LineData>();
+			JSONObject obj = new JSONObject(jsonString);
+			JSONObject canteen = obj.getJSONObject("tiefenbronner");
+			String unixTime = manageTime(canteen, timeOffset);
+			if (unixTime == null) {
+				return; //canteen is closed, now + offset = Saturday or Sunday
+			}
+			JSONObject day = canteen.getJSONObject(unixTime);
+			//Wahlessen 1
+			JSONArray mealArray = day.getJSONArray("wahl1");
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
+			//Wahlessen 2
+			mealArray = day.getJSONArray("wahl2");
+			lines.add(new LineData("line two", getMeals(mealArray)));
+			//Gut und günstig
+			mealArray = day.getJSONArray("gut");
+			lines.add(new LineData("Gut und günstig", getMeals(mealArray)));
+			//Buffet
+			mealArray = day.getJSONArray("buffet");
+			lines.add(new LineData("buffet", getMeals(mealArray)));
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+	}
 
+	private void setHolzgartenLines(String jsonString, int timeOffset) {
+		try {
+			lines = new ArrayList<LineData>();
+			JSONObject obj = new JSONObject(jsonString);
+			JSONObject canteen = obj.getJSONObject("holzgarten");
+			String unixTime = manageTime(canteen, timeOffset);
+			if (unixTime == null) {
+				return; //canteen is closed, now + offset = Saturday or Sunday
+			}
+			JSONObject day = canteen.getJSONObject(unixTime);
+			
+			//Gut und günstig
+			JSONArray mealArray = day.getJSONArray("gut");
+			lines.add(new LineData("Gut und günstig", getMeals(mealArray)));
+			//Gut und Günstig 2
+			mealArray = day.getJSONArray("gut2");
+			lines.add(new LineData("Gut und günstig two", getMeals(mealArray)));
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Get the unixTime stamp from the JSONObject Canteen with the given offset, if mensa is closed on that day (now+offset) return null
 	 * @param canteen
@@ -285,7 +393,7 @@ public class CanteenData implements Data{
 		}
 		
 		String currWeekDay = now.dayOfWeek().getAsText(); //1 for Monday
-		int currHour = now.hourOfDay().get();// from 0 to 23
+		//int currHour = now.hourOfDay().get();// from 0 to 23
 		if (currWeekDay.equals("Saturday") || currWeekDay.equals("Sunday")) {
 			isOpen = false;
 			return null;
@@ -313,7 +421,6 @@ public class CanteenData implements Data{
 	 * @throws FileNotFoundException 
 	 */
 	private String getJsonString(String path) {
-		// TODO Auto-generated method stub
 		File currFile = new File(path);
 		String jsonString = ""; //the json String representation of the File
 		
