@@ -26,9 +26,10 @@ import com.google.gson.Gson;
 public class CanteenData implements Data{
 
   	private Integer canteenID;
-  	private String canteenName;
+  	private CanteenNames canteenName;
 	private String address;
   	private ArrayList<LineData> lines;
+  	boolean isOpen; //mensa is open when one of it lines is open
   
   
 	/**
@@ -38,23 +39,71 @@ public class CanteenData implements Data{
 	* @param address Adress of the new Canteen
 	* @param lines Lines of the new Canteen
 	*/
-	public CanteenData(String canteenName, String address, ArrayList<LineData> lines) {
+	public CanteenData(CanteenNames canteenName, String address, ArrayList<LineData> lines) {
 		this.canteenID = nextID();
 		this.canteenName = canteenName;
 		this.address = address;
 		this.lines = lines;
 	}
 	
-	public CanteenData(String jsonString) {
-		//this.createFromJSONText(jsonString);
+	//not sure about the seven
+	/**
+	 * 
+	 * @param canteenName
+	 * @param timeOffset The time offset from the current time in days. For example
+	 * 1 for tommorow, -1 for yesterday and so on. Must be an integer between -3 and
+	 * 6 
+	 */
+	public CanteenData(CanteenNames canteenName, int timeOffset) {
+		String dirPath = "resources/files/CanteenMenu/";
+		String jsonString = getJsonString(dirPath + canteenName.toString() + ".json");
+		System.out.println(jsonString); //TEST
+		switch(canteenName) {
+			case ADENAUERRING:
+				setAdenauerringLines(jsonString, timeOffset);
+				this.canteenName = canteenName;
+				address = "Adenauerring 7";
+				break;
+			case MOLTKE:
+				//setMoltkeLines(jsonString, timeOffset);
+				this.canteenName = canteenName;
+				address = ""; //unknown
+		}
+		
+		
+		
+		
+		
+	}
+	
+	private void setAdenauerringLines(String jsonString, int timeOffset) {
 		try {
-			//delete time stamp with shift
 			lines = new ArrayList<LineData>();
 			JSONObject obj = new JSONObject(jsonString);
 			JSONObject canteen = obj.getJSONObject("adenauerring");
-			
+			System.out.println(canteen.toString()); //TEST
 			Iterator iterator = canteen.keys();
-			Date now = new Date();
+			DateTime now = new DateTime(new Date());
+			if (timeOffset > 0 && timeOffset < 7) {
+				now = now.plusDays(timeOffset);
+			}
+			else if (timeOffset < 0 && timeOffset > -3) {
+				now = now.minusDays(timeOffset);
+			}
+			else {
+				//will not work correctly -> Exception??? when time offset is unacceptable
+			}
+			
+			String currWeekDay = now.dayOfWeek().getAsText(); //1 for Monday
+			int currHour = now.hourOfDay().get();// from 0 to 23
+			if (currWeekDay.equals("Saturday") || currWeekDay.equals("Sunday")) {
+				isOpen = false;
+				return;
+			}
+			//else if (currHour < 11 || currHour >= 14) {
+			//	
+			//} it's complicated, when are differentLines open ...
+			
 			Date time = null;
 			String unixTime;
 			do {
@@ -63,7 +112,7 @@ public class CanteenData implements Data{
 				time = new java.util.Date((long)timeStamp*1000);
 				
 			}
-			while(Days.daysBetween(new DateTime(now), new DateTime(time)).getDays() != 0);
+			while(Days.daysBetween(now, new DateTime(time)).getDays() != 0 && iterator.hasNext());
 			
 			JSONObject day = canteen.getJSONObject(unixTime);
 			//Line1
@@ -94,10 +143,48 @@ public class CanteenData implements Data{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-	
+
+	/**
+	 * Get the jsons String from file with path specified by parameter
+	 * @param path The path of the file
+	 * @return the read string
+	 * @throws FileNotFoundException 
+	 */
+	private String getJsonString(String path) {
+		// TODO Auto-generated method stub
+		File currFile = new File(path);
+		String jsonString = ""; //the json String representation of the File
+		
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(currFile));
+			
+			String lastReadLine = reader.readLine();
+			while (lastReadLine != null) {
+				jsonString += lastReadLine;
+				lastReadLine = reader.readLine();
+			} //Get the json String representation of the File
+			reader.close();
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+		return jsonString;
+	}
+
+	/**
+	 * Extracts the list of meals from an JSONArray containing meals descriptions
+	 * @param mealsArray
+	 * @return
+	 * @throws JSONException when array is not formated accordingly to mensa style
+	 */
 	private ArrayList<MealData> getMeals(JSONArray mealsArray) throws JSONException {
+		if (mealsArray.length() <= 1) {
+			return new ArrayList<MealData>(); //noData:true
+		}
 		ArrayList<MealData> meals = new ArrayList<MealData>();
 		JSONObject meal;
 		for(int i = 0; i < mealsArray.length(); i++) {
@@ -108,13 +195,18 @@ public class CanteenData implements Data{
 		return meals;
 	}
 
-	private MealData getMeal(JSONObject mealArray) {
+	/**
+	 * Extract the MealData from a meal mensa JSON object
+	 * @param meal
+	 * @return
+	 */
+	private MealData getMeal(JSONObject meal) {
 		MealData result = null;
 		try {
-			float price = (float) mealArray.getDouble("price_1");//for students
-			String name = mealArray.getString("meal"); //dish???
+			float price = (float) meal.getDouble("price_1");//for students
+			String name = meal.getString("meal"); //dish???
 			result = new MealData(name, null, price);
-			//category classes
+			//->category classes!!!
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -193,7 +285,7 @@ public class CanteenData implements Data{
         /**
          * @return the canteenName
          */
-        public String getCanteenName() {
+        public CanteenNames getCanteenName() {
                 return canteenName;
         }
         
@@ -221,7 +313,7 @@ public class CanteenData implements Data{
 	/**
          * @param canteenName the canteenName to set
          */
-	public void setCanteenName (String canteenName) {
+	public void setCanteenName (CanteenNames canteenName) {
 		this.canteenName = canteenName;
 	}
 	
@@ -241,33 +333,8 @@ public class CanteenData implements Data{
 	
 	//TEST
 	public static void main(String[] args) {
-		String dirPath = "resources/files/CanteenData/adenauer.json";
-		File currFile = new File(dirPath);
-		if (!currFile.exists()) {
-			return; //there is nothing to delete
-		}
-		
-		String jsonString = ""; //the json String representation of the last File
-		CanteenData Cantee;
-		
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(currFile));
-			
-			String lastReadLine = reader.readLine();
-			while (lastReadLine != null) {
-				jsonString += lastReadLine;
-				lastReadLine = reader.readLine();
-			} //Get the json String representation of the last File
-			Cantee = new CanteenData(jsonString); //load the last recipe
-			reader.close();
-			System.out.println(Cantee.generateJSON());
-		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e){
-			e.printStackTrace();
-		}
+		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 1);
+		System.out.println(aden.generateJSON());
 	}
 	
 }
