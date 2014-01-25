@@ -11,4 +11,7 @@ and each phrase will have and ONLY have 1 blank in between
 
 Between 2 sentences there's a "."
 
+For the keyword: between two keyword phrases ",", between each words ' '
+                 for example : chicken, at the day after tomorrow
+
  

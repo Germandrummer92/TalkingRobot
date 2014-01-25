@@ -170,24 +170,28 @@ public class OutputCreator {
   		String answer = null;
   		String evaluationObj = "<o>";
   		String evaluationCompl = "{c}";
+  		//String evaluationTime = "{time}";
   		
   		//String[] tokens = sentences.split(" "); 
   		if(keyword != null) {
   		    
 	  		String[] sentences = null;
-	  		String[] keywords = keyword.split(" "); 
+	  		String[] keywordPhrases = keyword.split(","); 
 	  		String obj = null;
 	  		String compl = null;
 	  		if(text.contains(".")) {
 	  			sentences = text.split(".");
 	  		} else sentences[0] = text;  // nothing to split
 	  		
-	  		for(int i = 0; i < keywords.length; i++) {
-	  			if(keywords[i].contains("<") && keywords[i].contains(">")) {
-	  				obj = keywords[i].substring(1, keywords[i].length() - 2);
-	  			}
-	  			if(keywords[i].contains("{") && keywords[i].contains("}")) {
-	  				compl = keywords[i].substring(1, keywords[i].length() - 2);
+	  		for(int i = 0; i < keywordPhrases.length; i++) {
+	  			String[] keywords = keywordPhrases[i].split(" ");
+	  			for (int j = 0; j < keywords.length; j++){
+		  			if(keywords[j].contains("<") && keywords[j].contains(">")) {
+		  				obj = keywords[j].substring(1, keywords[j].length() - 2);
+		  			}
+		  			if(keywords[j].contains("{") && keywords[j].contains("}")) {
+		  				compl = keywords[j].substring(1, keywords[j].length() - 2);
+		  			}
 	  			}
 	  			
 	  		}

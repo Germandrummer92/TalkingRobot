@@ -281,92 +281,92 @@
 	},
 	"dm.CanteenInformationState" : {
 			"ADEN_CAFE_DISH" : [
-				"In cafeteria there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided in cafeteria",
-				"{time} in cafeteria there's <o>",
-				"you can get <o> in cafeteria {time}"
+				"In cafeteria there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided in cafeteria",
+				"{c} in cafeteria there's <o>",
+				"you can get <o> in cafeteria {c}"
 			],
 			"ADEN_CAFE_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_CURRYQ_DISH" : [
-				"In curry queen there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided in curry queen",
-				"{time} in curry queen there's <o>",
-				"you can get <o> in curry queen {time}"
+				"In curry queen there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided in curry queen",
+				"{c} in curry queen there's <o>",
+				"you can get <o> in curry queen {c}"
 			],
 			"ADEN_CURRYQ_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_LINE_1_DISH" : [
-				"At line one there's <o> {time}",
-				"You can find <o> {time}",
-				"{time} <o> will be provided at line one",
-				"{time} at line one there's <o>",
-				"you can get <o> at line one {time}"
+				"At line one there's <o> {c}",
+				"You can find <o> {c}",
+				"{c} <o> will be provided at line one",
+				"{c} at line one there's <o>",
+				"you can get <o> at line one {c}"
 			],
 			"ADEN_LINE_1_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_LINE_2_DISH" : [
-				"At line two there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at line two",
-				"{time} at line two there's <o>",
-				"you can get <o> at line two {time}"
+				"At line two there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line two",
+				"{c} at line two there's <o>",
+				"you can get <o> at line two {c}"
 			],
 			"ADEN_LINE_2_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_LINE_3_DISH" : [
-				"At line three there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at line three",
-				"{time} at line three there's <o>",
-				"you can get <o> at line three {time}"
+				"At line three there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line three",
+				"{c} at line three there's <o>",
+				"you can get <o> at line three {c}"
 			],
 			"ADEN_LINE_3_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_LINE_45_DISH" : [
-				"At line four and five there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at line four and five",
-				"{time} at line four and five there's <o>",
-				"you can get <o> at line four and five {time}"
+				"At line four and five there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line four and five",
+				"{c} at line four and five there's <o>",
+				"you can get <o> at line four and five {c}"
 			],
 			"ADEN_LINE_45_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_LINE_6_DISH" : [
-				"At line six there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at line six",
-				"{time} at line six there's <o>",
-				"you can get <o> at line six {time}"
+				"At line six there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at line six",
+				"{c} at line six there's <o>",
+				"you can get <o> at line six {c}"
 			],
 			"ADEN_LINE_6_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ADEN_SCHNITBAR_DISH" : [
-				"At schnitzel bar there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at schnitzel bar",
-				"{time} at schnitzel bar there's <o>",
-				"you can get <o> at schnitzel bar {time}"
+				"At schnitzel bar there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at schnitzel bar",
+				"{c} at schnitzel bar there's <o>",
+				"you can get <o> at schnitzel bar {c}"
 			],
 			"ADEN_SCHNITBAR_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"ENTRY" : [
 				"So, what do you want to eat?",
@@ -377,81 +377,81 @@
 				"Have a good meal"
 			],
 			"MOLTKE_ACTTHEK_DISH" : [
-				"At action counter there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at action counter",
-				"{time} at action counter there's <o>",
-				"you can get <o> at action counter {time}"
+				"At action counter there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at action counter",
+				"{c} at action counter there's <o>",
+				"you can get <o> at action counter {c}"
 			],
 			"MOLTKE_ACTTHEK_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"MOLTKE_BUFFET_DISH" : [
-				"At buffet there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at buffet",
-				"{time} at buffet there's <o>",
-				"you can get <o> at buffet {time}"
+				"At buffet there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at buffet",
+				"{c} at buffet there's <o>",
+				"you can get <o> at buffet {c}"
 			],
 			"MOLTKE_BUFFET_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"MOLTKE_CAFE_DISH" : [
-				"In cafeteria there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided in cafeteria",
-				"{time} in cafeteria there's <o>",
-				"you can get <o> in cafeteria {time}"
+				"In cafeteria there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided in cafeteria",
+				"{c} in cafeteria there's <o>",
+				"you can get <o> in cafeteria {c}"
 			],
 			"MOLTKE_CAFE_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"MOLTKE_CHOICE_1_DISH" : [
-				"At choice one there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at choice one",
-				"{time} at choice one there's <o>",
-				"you can get <o> at choice two {time}"
+				"At choice one there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at choice one",
+				"{c} at choice one there's <o>",
+				"you can get <o> at choice two {c}"
 			],
 			"MOLTKE_CHOICE_1_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"MOLTKE_CHOICE_2_DISH" : [
-				"At choice two there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at choice two",
-				"{time} at choice two there's <o>",
-				"you can get <o> at choice two {time}"
+				"At choice two there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at choice two",
+				"{c} at choice two there's <o>",
+				"you can get <o> at choice two {c}"
 			],
 			"MOLTKE_CHOICE_2_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"MOLTKE_GG_DISH" : [
-				"At good and cheap there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at good and cheap",
-				"{time} at good and cheap there's <o>",
-				"you can get <o> at good and cheap {time}"
+				"At good and cheap there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at good and cheap",
+				"{c} at good and cheap there's <o>",
+				"you can get <o> at good and cheap {c}"
 			],
 			"MOLTKE_GG_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"MOLTKE_SCHNITBAR_DISH" : [
-				"At schnitzel bar there's <o> {time}",
-				"You can find <o> {time} there",
-				"{time} <o> will be provided at schnitzel bar",
-				"{time} at schnitzel bar there's <o>",
-				"you can get <o> at schnitzel bar {time}"
+				"At schnitzel bar there's <o> {c}",
+				"You can find <o> {c} there",
+				"{c} <o> will be provided at schnitzel bar",
+				"{c} at schnitzel bar there's <o>",
+				"you can get <o> at schnitzel bar {c}"
 			],
 			"MOLTKE_SCHNITBAR_PRICE" : [
-				"The price for <o> it's {price}",
-				"The price for wanted meal it's {price}"
+				"The price for <o> it's {c}",
+				"The price for wanted meal it's {c}"
 			],
 			"TELL_MEAL_NOT_EXIST" : [
 				"The meal wanted is not found. Do you want to know what else are provided?",
