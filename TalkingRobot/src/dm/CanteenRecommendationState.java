@@ -16,7 +16,7 @@ public class CanteenRecommendationState extends DialogState {
      */
     public CanteenRecommendationState() {
     	super();
-    	setCurrentState(CanteenRecom.ENTRY);
+    	setCurrentState(CanteenRecom.CR_ENTRY);
     }
     
     /**

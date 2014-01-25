@@ -16,7 +16,7 @@ public class CanteenInformationState extends DialogState {
      */
     public CanteenInformationState() {
     	super();
-    	setCurrentState(CanteenInfo.ENTRY);
+    	setCurrentState(CanteenInfo.CI_ENTRY);
     }
     
     /**
@@ -31,7 +31,9 @@ public class CanteenInformationState extends DialogState {
    * @see DialogState#getOutputKeyword()
    */
   public String getOutputKeyword() {
-  return null;
+	  String keywords = null;
+	  
+  return keywords;
   }
 
 }
