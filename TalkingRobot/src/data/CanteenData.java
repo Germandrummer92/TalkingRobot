@@ -195,6 +195,15 @@ public class CanteenData implements Data{
 		return lines;
 	}
 	
+	
+	public ArrayList<MealCategoryData> getCategories() {
+		return categories;
+	}
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
 	/**
          * @param canteenID the canteenID to set
          */
