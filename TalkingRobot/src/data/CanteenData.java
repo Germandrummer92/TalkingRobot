@@ -57,7 +57,7 @@ public class CanteenData implements Data{
 	public CanteenData(CanteenNames canteenName, int timeOffset) {
 		String dirPath = "resources/files/CanteenMenu/www.studentenwerk-karlsruhe.de/json_external" +
 				"/kit_edu/canteen/";
-		String jsonString = getJsonString(dirPath + canteenName.toString() + ".json");
+		String jsonString = getJsonString(dirPath + canteenName.toString().toLowerCase() + ".json");
 		switch(canteenName) {
 			case ADENAUERRING:
 				updateMenu("adenauerring");
@@ -71,19 +71,19 @@ public class CanteenData implements Data{
 				this.canteenName = canteenName;
 				address = ""; //unknown
 				break;
-			case  ERZBERGERSTRASSE:
+			case  ERZBERGER:
 				updateMenu("erzberger");
 				setErzbergerLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = "";//unknown
 				break;
-			case SCHLOSS_GOTTESAUE:
+			case GOTTESAUE:
 				updateMenu("gottesaue");
 				setGottesaueLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = "";//unknown
 				break;
-			case TIEFENBRONNER_STRASSE:
+			case TIEFENBRONNER:
 				updateMenu("tiefenbronner");
 				setTiefenbronnerLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
