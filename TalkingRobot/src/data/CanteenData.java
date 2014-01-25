@@ -514,9 +514,9 @@ public class CanteenData implements Data{
 	
 	//TEST
 	public static void main(String[] args) {
-		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 1);
+		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 3);
 		System.out.println(aden.generateJSON());
-		CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 0);
+		CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 3);
 		System.out.println(moltke.generateJSON());
 	}
 	
