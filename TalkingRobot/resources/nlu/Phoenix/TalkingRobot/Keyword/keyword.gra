@@ -19,7 +19,7 @@ CANTEEN
 	(*in *the [_erzbergerstrasse])
 	(*in *the [_schloss_gottesaue])
 	(*in *the [_tiefenbronner_strasse])
-	(*in *the [holzgartenstrasse])
+	(*in *the [_holzgartenstrasse])
 ;
 
 [_moltke]
@@ -68,15 +68,15 @@ CANTEEN
 
 #canteen information
 [canteen_information]
-	(what kind of food OFFER *at [Canteen] *[Time_extend])
-	(offer *at [Canteen] *[Time_extend])
-	(what kind of food OFFER canteen *[Time_extend])
-	(offer *at [Canteen] canteen *[Time_extend])
+	(what food OFFER [Canteen] *[Time_extend])
+	(offer [Canteen] *[Time_extend])
+	(what food OFFER canteen *[Time_extend])
+	(offer [Canteen] canteen *[Time_extend])
 	(what [Canteen] *[Time_extend])
 	(what food *[Canteen] *[Time_extend])
 	(list)
 	([Where_is])
-	(PRICE *line [number] *at *[Canteen])
+	(PRICE *line [Number] *[Canteen])
 	
 PRICE
 	(price)
@@ -93,25 +93,25 @@ OFFER
 ;
 
 [Where_is]
-	(help me finding *line [number])
-	(show me where *line [number])
-	(where is *line [number])
-	(tell me where *line [number])
+	(help me finding *line [Number])
+	(show me where *line [Number])
+	(where is *line [Number])
+	(tell me where *line [Number])
 ;
 
 #canteen recommendation
 [canteen_recommendation]
 	(recommendation)
-	(give me a recommendation *[Canteen] *line *[number] *[Time_extend])
-	(recommend me *[Canteen] *line *[number] *[Time_extend])
-	(suggest [meal] *at *[Canteen] *line *[number] *[Time_extend])
-	(suggestion [meal] *at *[Canteen] *line *[number] *[Time_extend])
-	(give me a recommendation *[Time_extend] *[Canteen] *line *[number])
-	(recommend me *[Time_extend] *[Canteen] *line *[number])
-	(suggest [meal] *[Time_extend] *at *[Canteen] *line *[number])
-	(suggestion [meal] *[Time_extend] *at *[Canteen] *line *[number])
-	([Country] at *the [Canteen] *line *[number])
-	(eat something from [Country] *line *[number])
+	(give me a recommendation *[Canteen] *line *[Number] *[Time_extend])
+	(recommend me *[Canteen] *line *[Number] *[Time_extend])
+	(suggest [meal] *at *[Canteen] *line *[Number] *[Time_extend])
+	(suggestion [meal] *at *[Canteen] *line *[Number] *[Time_extend])
+	(give me a recommendation *[Time_extend] *[Canteen] *line *[Number])
+	(recommend me *[Time_extend] *[Canteen] *line *[Number])
+	(suggest [meal] *[Time_extend] *at *[Canteen] *line *[Number])
+	(suggestion [meal] *[Time_extend] *at *[Canteen] *line *[Number])
+	([Country] at *the [Canteen] *line *[Number])
+	(eat something from [Country] *line *[Number])
 ;
 
 #kitchen assistance
@@ -121,7 +121,6 @@ OFFER
 	(kitchen tool)
 	([How])
 	([What])
-	[which] [Kitchen
 ;
 
 [What]
@@ -136,8 +135,8 @@ OFFER
 
 #recipe assistance
 [recipe_assistance]
-	([How] [recipe_name])
-	([What] [recipe_name])
+	([How] [Recipe])
+	([What] [Recipe])
 	([_next] *step)
 	([_next] *ingredient)
 	([_next] *kitchen *tool)
@@ -150,7 +149,7 @@ OFFER
 ;	
 
 [Recipe]
-	#include recipe
+#include recipe
 ;
 
 [Tool]
@@ -171,47 +170,13 @@ OFFER
 	(food)
 ;
 
-#kitchen assistance
-[kitchen assistance] 
-	(BRING me *the *ingredient [Ingredient])
-	(BRING me *the *kitchen *tool [Tool])
-	(BRING *the *kitchen *tool [Tool] *to *me)
-	(BRING *the *kitchen *tool [Ingredient] *to *me)
-	(BRING [Ingredient] from PLACES)
-	(BRING [Tool] from PLACES)
-	(PLACES)
-	
-PLACES
-	(fridge)
-	(refrigerator)
-	(cupboard)
-	(kitchen unit)
-	(kitchen cabinet)
-	(top drawer)
-	(drawer)
-	(bottom drawer)
-	(lower drawer)
-	(upper drawer)
-	(centre drawer)
-	(center drawer)
-	
-BRING
-	(bring)
-	(get)
-	(give)
-	(fetch)
-	(take)
-	(grab)
-;
-
 #recipe learning
 [recipe_learning]
 	([_next] *COMPONENT *COMPONENT)
 	([_next] *COMPONENT)
-	([_next] *COMPONENT)
 	([_last] *COMPONENT)
 	([_end])
-	([_teach_you] [Ingredient])
+	([_teach_you] *[Recipe])
 	
 	
 COMPONENT
@@ -224,15 +189,15 @@ COMPONENT
 ;
 
 [_teach_you]
-	(*[i] want to teach you)
-	(*[i] want to show you how to make)
-	(*[i] want to teach you how to make)
+	(want teach you)
+	(*want show you how make)
+	(*want teach you how make)
 	(add)
-	(*[i] *will instruct you how to make)
-	(*[i] *want *to instruct you how to make)
-	(*[i] will show you how to make)
-	(*[i] will tell you how to make)
-	(*[i] will tell you about *making)
+	(*will instruct you how to make)
+	(*want *to instruct you how to make)
+	(will show you how make)
+	(will tell you how make)
+	(will tell you about *making)
 	(teach you)
 	(instruct you)
 ;
@@ -278,7 +243,33 @@ THIS
 ;
 
 #cooking assistance
-[cooking_assistance]
+[cooking_assistance]	
+	(BRING [Ingredient])
+	(BRING [Tool])
+	(BRING [Ingredient] PLACES)
+	(BRING [Tool] PLACES)
+	(PLACES)
+PLACES
+	(fridge)
+	(refrigerator)
+	(cupboard)
+	(kitchen unit)
+	(kitchen cabinet)
+	(top drawer)
+	(drawer)
+	(bottom drawer)
+	(lower drawer)
+	(upper drawer)
+	(centre drawer)
+	(center drawer)
+	
+BRING
+	(bring)
+	(get)
+	(give)
+	(fetch)
+	(take)
+	(grab)
 ;
 
 #main

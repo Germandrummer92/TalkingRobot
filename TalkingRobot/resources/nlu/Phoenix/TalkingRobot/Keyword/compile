@@ -8,7 +8,7 @@
 # if SingleFile == 0, then compiles all files in dir with extension .gra
 
 set TASK="EX"
-set LIBS="date_time.gra number.gra next.gra"
+set LIBS="date_time.gra number.gra"
 set PHOENIX="../../../Phoenix"
 @ SingleFile = 0
 
