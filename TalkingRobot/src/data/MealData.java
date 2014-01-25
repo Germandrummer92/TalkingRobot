@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +21,7 @@ public class MealData implements Data {
 
 	private Integer mealID;
 	private String mealName;
-	private MealCategoryData mealCategory;
+	private ArrayList<MealCategoryData> mealCategory;
 	private Float price;
 	
 	/**
@@ -30,7 +31,7 @@ public class MealData implements Data {
         * @param mealCategory mealCategory of the new Meal
         * @param price Price of the new Meal
         */
-	public MealData(String mealName, MealCategoryData mealCategory, float price) {
+	public MealData(String mealName, ArrayList<MealCategoryData> mealCategory, float price) {
 		this.mealID = nextID();
 		this.mealName = mealName;
 		this.mealCategory = mealCategory;
@@ -124,7 +125,7 @@ public class MealData implements Data {
         /**
 	* @return the mealCategory
 	*/
-        public MealCategoryData getMealCategory() {
+        public ArrayList<MealCategoryData> getMealCategory() {
                 return mealCategory;
         }
   
@@ -152,7 +153,7 @@ public class MealData implements Data {
         /**
 	* @param mealCategory the mealCategory to set
 	*/
-        public void setMealCategory (MealCategoryData mealCategory) {
+        public void setMealCategory (ArrayList<MealCategoryData> mealCategory) {
                 this.mealCategory = mealCategory;
         }
         

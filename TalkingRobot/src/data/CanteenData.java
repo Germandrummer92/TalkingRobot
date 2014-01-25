@@ -30,8 +30,9 @@ public class CanteenData implements Data{
   	private CanteenNames canteenName;
 	private String address;
   	private ArrayList<LineData> lines;
+  	private ArrayList<MealCategoryData> categories;
   	boolean isOpen; //mensa is open when one of it lines is open
-  
+  	
   
 	/**
 	* Creates a new CanteenData object.
@@ -45,6 +46,7 @@ public class CanteenData implements Data{
 		this.canteenName = canteenName;
 		this.address = address;
 		this.lines = lines;
+		categories = MealCategoryData.loadData();
 	}
 	
 	/**
@@ -55,6 +57,7 @@ public class CanteenData implements Data{
 	 * 7
 	 */
 	public CanteenData(CanteenNames canteenName, int timeOffset) {
+		categories = MealCategoryData.loadData();
 		String dirPath = "resources/files/CanteenMenu/www.studentenwerk-karlsruhe.de/json_external" +
 				"/kit_edu/canteen/";
 		String jsonString = getJsonString(dirPath + canteenName.toString().toLowerCase() + ".json");
@@ -495,15 +498,80 @@ public class CanteenData implements Data{
 		try {
 			float price = (float) meal.getDouble("price_1");//for students
 			String name = meal.getString("meal"); //dish???
-			result = new MealData(name, null, price);
-			//->category classes!!!
+			result = new MealData(name, getCategories(meal), price);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch 
 			e.printStackTrace();
 		} 
 		return result;
 	}
 	
+	/**
+	 * Returns a list with the categories to which the meal described by
+	 * the JSONObject is part of.
+	 * @param meal
+	 * @return
+	 */
+	private ArrayList<MealCategoryData> getCategories(JSONObject meal) {
+		ArrayList<MealCategoryData> mealCat = new ArrayList<MealCategoryData>();
+		try {
+			boolean bio = meal.getBoolean("bio");
+			boolean fish = meal.getBoolean("fish");
+			boolean pork = meal.getBoolean("pork");
+			boolean cow = meal.getBoolean("cow");
+			boolean vegan = meal.getBoolean("vegan");
+			boolean veg = meal.getBoolean("veg");
+			if(bio) {
+				addCategory(mealCat, "bio");
+			}
+			else if(fish) {
+				addCategory(mealCat, "fish");
+			}
+			else if(pork) {
+				addCategory(mealCat, "pork");
+			}
+			else if(cow) {
+				addCategory(mealCat, "cow");
+			}
+			else if (vegan) {
+				addCategory(mealCat, "vegan");
+			}
+			else if (veg) {
+				addCategory(mealCat, "veg");
+			}
+		}
+		catch(JSONException e) {
+			
+		}
+		return mealCat;
+	}
+
+	/**
+	 * Adds a category with the given name to the given list. If category already
+	 * exists in the system, it is added. If this is not the case a new category
+	 * with the given name is created and written in the database. 
+	 * @param mealCat the list of categories
+	 * @param mealCatName the category name
+	 */
+	private void addCategory(ArrayList<MealCategoryData> mealCat, String mealCatName) {
+		if (!categoryExists(mealCatName, mealCat)) {
+			MealCategoryData cat = new MealCategoryData(mealCatName);
+			cat.writeFile();
+			mealCat.add(cat); //add to the local list (the one of the current meal)
+			categories.add(cat); //add to the global list(the one of the canteen)
+		}
+	}
+
+	private boolean categoryExists(String categoryName, ArrayList<MealCategoryData> mealCat) {
+		for (MealCategoryData category : categories) {
+			if (category.getMealCategoryName().equals(categoryName)) {
+				mealCat.add(category);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
      * @return the next unique ID
      */
