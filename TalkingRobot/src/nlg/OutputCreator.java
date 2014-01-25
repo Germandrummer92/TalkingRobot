@@ -1,11 +1,6 @@
 package nlg;
 
 
-/**
- * 
- * @author Xizhe Lian, Luiz Henrique Soares Silva
- * @version 0.1
- */
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,9 +22,9 @@ import dm.RecipeLearningState;
 import dm.StartState;
 
 /**
- * 
+ * This class represents a creator of output 
  * @author Luiz Henrique Soares Silva, Xizhe Lian
- *
+ * @version 1.0
  */
 public class OutputCreator {
 	
@@ -83,7 +78,6 @@ public class OutputCreator {
   		try {
   	 
   			//Location of sentences.json file
-  			//TODO Sentences.json still has to be completely fullfiled... adieus time!
   			Object obj = parser.parse(new FileReader("resources/nlg/sentences.json"));
   	 
   			//Access to a sentence
