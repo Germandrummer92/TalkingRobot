@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,12 +20,19 @@ public class PhoenixAdapter {
 	  try {
 		  Runtime rt = Runtime.getRuntime();
 		  rt.exec("/bin/tcsh compile", null, compile.getAbsoluteFile());
-
-		  File file = new File("input");
-		  BufferedWriter output = new BufferedWriter(new FileWriter(file));
-		  output.write(input);
-		  output.close();
+		  
+		  System.out.println("exec done \n");
+		  
+		  File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
+		  PrintWriter writer = new PrintWriter(file, "UTF-8");
+		  writer.println(input);
+		  writer.close();
+		  
+//		  BufferedWriter output = new BufferedWriter(new FileWriter(file));
+//		  output.write(input);
+//		  output.close();
 		  rt.exec("/bin/tcsh " + runParse + " < input", null, new File("resources/nlu/Phoenix"));
+		  
 	  } catch (IOException e) {
 		  e.printStackTrace();
 	  }

@@ -30,6 +30,10 @@ public class KeywordAnalyzer extends InputAnalyzer {
    */
   public List<String> analyze(String input) {
     List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
+    System.out.println(result.size());
+    for(int i = 0; i < result.size(); i++){
+    	System.out.println(result.get(i) + "\n");
+    }
 		return result;
   }
 
