@@ -8,7 +8,7 @@ import data.UserData;
 
 /**
  * @author Daniel Draper
- * @version 1.0
+ * @version 1.5
  * Represents the Dialog started at the start of any conversation with a certain User.
  */
 public class StartDialog extends Dialog {
@@ -21,6 +21,14 @@ public class StartDialog extends Dialog {
 		super(currentSession);
 		
 	}
+	/**
+	 * Creates a new Start Dialog using the current Session and State parameters
+	 * @param currentSession the Session of the new Dialog
+	 * @param currentState the State of the new Dialog
+	 */
+	public StartDialog(Session currentSession, DialogState currentState) {
+		super(currentSession, currentState);
+	}
 
 	/** 
 	 * @throws WrongStateClassException if the state class doesn't fit the dialog
@@ -30,7 +38,7 @@ public class StartDialog extends Dialog {
 	public void updateState(List<Keyword> keywords, List<String> terms, List<String> approval)
 			throws WrongStateClassException {
 		if (getCurrentDialogState().getClass() != StartState.class) {
-			throw new WrongStateClassException();
+			throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 		}
 		switch ((Start)getCurrentDialogState().getCurrentState()) {
 		case S_ENTRY : updateStateEntry(keywords, terms); break;
@@ -83,6 +91,8 @@ public class StartDialog extends Dialog {
 	 * @param terms
 	 */
 	private void updateStateNoSave(List<Keyword> keywords, List<String> terms) {
+			getCurrentDialogState().setCurrentState(Start.S_ENTRY);
+			getCurrentSession().setCurrentUser(new User());
 		
 		
 	}
@@ -121,7 +131,7 @@ public class StartDialog extends Dialog {
 			}
 			else {
 				getCurrentDialogState().setCurrentState(Start.S_USER_DOESNT_WANT_TO_BE_SAVED);
-				getCurrentSession().setCurrentUser(new User());
+				//getCurrentSession().setCurrentUser(new User());
 			}
 		}
 		

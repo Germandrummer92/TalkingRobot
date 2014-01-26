@@ -1,277 +1,283 @@
 {
     "dm.StartState" : {
-			"ENTRY": [
-				"Hello",
-				"Welcome",
-				"Hi"
+			"S_ENTRY": [
+				"Hello, I'm <o>",
+				"Welcome, I'm the KIT's own Robot called <o>",
+				"Hi, I'm <o>"
 			],
-			"EXIT": [
+			"S_EXIT": [
 				"Adieu",
 				"See you",
 				"Bye bye",
 				"See you next time"
 			],
-			"USER_DOESNT_WANT_TO_BE_SAVED": [
+			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
 				"What a pity"
+				"Okay, see you around!"
+				"That's okay"
 			],
-			"USER_FOUND": [
-				"I've found your user history",
-				"Your user history is found",
-				"Your usage record is found"
+			"S_USER_FOUND": [
+				"I've found your user history, <o>, how may I help you",
+				"Your user history was found, <o>, what can I do for you",
+				"Your usage record was found, <o>, can I help you"
 			],
-			"USER_NOT_FOUND": [
-				"I don't have your usage record . Would you like to save your usage history ?"
+			"S_USER_NOT_FOUND": [
+				"I don't have your usage record . Would you like to save your usage history"
 			],
-			"USER_SAVED": [
-				"Your usage is saved under your name"
+			"S_USER_SAVED": [
+				"Your profile has been saved under the name <o>, how can I help you"
+				"Now I know your name, what can I do for you"
+				"I will know you when you talk to me again now, <o>, what do you need"
 			],
-			"USER_WANTS_TO_BE_SAVED": [
-				"Nice choice"
+			"S_USER_WANTS_TO_BE_SAVED": [
+				"Nice choice <o>, so are you a Student here",
+				"Okay <o>, so are you a student"
+				"Alright <o>, so do you study here"
 			],
-			"WAITING_FOR_EMPLOYEE_STATUS": [
+			"S_WAITING_FOR_EMPLOYEE_STATUS": [
 				"Are you a student or employee",
 				"Do you study here",
 				"Are you a student"
 			],
-			"WAITING_FOR_USERNAME": [
-				"Can you tell me your name",
-				"What's your name",
-				"May I have your name",
-				"I need your name for getting user history, can you tell me"
+			"S_WAITING_FOR_USERNAME": [
+				"Hello, can you tell me your name",
+				"Hi, what's your name",
+				"Hey you, may I have your name",
+				"I need your name for getting your user history"
 			]
 	},
 	"dm.RecipeAssistanceState" : {
-			"ENTRY" : [
+			"S_ENTRY" : [
 				"Now I'm going to help you in cooking",
 				"Now I'm working as a recipe Assistance",
 				"So now I will help you to cook some delicious thing"
 			],
-			"EXIT" : [
+			"RA_EXIT" : [
 				"We have just cooked something delicious"
 			],
-			"RECIPE_NOT_FOUND" : [
+			"RA_RECIPE_NOT_FOUND" : [
 				
 			],
-			"TELL_COUNTRY_OF_ORIGIN" : [
+			"RA_TELL_COUNTRY_OF_ORIGIN" : [
 				
 			],
-			"TELL_CREATOR" : [
+			"RA_TELL_CREATOR" : [
 				
 			],
-			"TELL_INGREDIENTS" : [
+			"RA_TELL_INGREDIENTS" : [
 				
 			],
-			"TELL_INGREDIENT_FOUND" : [
+			"RA_TELL_INGREDIENT_FOUND" : [
 				
 			],
-			"TELL_NUM_OF_STEPS" : [
+			"RA_TELL_NUM_OF_STEPS" : [
 				
 			],
-			"TELL_STEPS" : [
+			"RA_TELL_STEPS" : [
 				
 			],
-			"TELL_TOOLS" : [
+			"RA_TELL_TOOLS" : [
 				
 			],
-			"TELL_TOOL_FOUND" : [
+			"RA_TELL_TOOL_FOUND" : [
 				
 			],
-			"TELL_TOOL_NOT_FOUND" : [
+			"RA_TELL_TOOL_NOT_FOUND" : [
 				
 			],
-			"TELL_WHOLE_RECIPE" : [
+			"RA_TELL_WHOLE_RECIPE" : [
 				
 			]
 	},
 	"dm.RecipeLearningState" : {
-			"AKS_INGREDIENT_RIGHT" : [
+			"RL_ASK_INGREDIENT_RIGHT" : [
 				"Blablabla",
 				"Bleblebleble",
 				"Bliblibli"
 			],
-			"ASK_COUNTRY_OF_ORIGIN" : [
+			"RL_ASK_COUNTRY_OF_ORIGIN" : [
 				
 			],
-			"ASK_FIRST_INGREDIENT" : [
+			"RL_ASK_FIRST_INGREDIENT" : [
 				
 			],
-			"ASK_FIRST_STEP" : [
+			"RL_ASK_FIRST_STEP" : [
 				
 			],
-			"ASK_FIRST_TOOL" : [
+			"RL_ASK_FIRST_TOOL" : [
 				
 			],
-			"ASK_LAST_STEP" : [
+			"RL_ASK_LAST_STEP" : [
 				
 			],
-			"ASK_NEXT_INGREDIENT" : [
+			"RL_ASK_NEXT_INGREDIENT" : [
 				
 			],
-			"ASK_NEXT_STEP" : [
+			"RL_ASK_NEXT_STEP" : [
 				
 			],
-			"ASK_NEXT_TOOL" : [
+			"RL_ASK_NEXT_TOOL" : [
 				
 			],
-			"ASK_RECIPE_NAME" : [
+			"RL_ASK_RECIPE_NAME" : [
 				
 			],
-			"ASK_STEP_RIGHT" : [
+			"RL_ASK_STEP_RIGHT" : [
 				
 			],
-			"ASK_TOOL_RIGHT" : [
+			"RL_ASK_TOOL_RIGHT" : [
 				
 			],
-			"ENTRY" : [
+			"RL_ENTRY" : [
 				
 			],
-			"EXIT" : [
+			"RL_EXIT" : [
 				
 			]
 	},
 	"dm.KitchenAssistanceState" : {
-			"ENTRY" : [
+			"KA_ENTRY" : [
 				"",
 				""
 			],
-			"EXIT" : [
+			"KA_EXIT" : [
 				
 			],
-			"TELL_INGREDIENT_FOUND" : [
+			"KA_TELL_INGREDIENT_FOUND" : [
 				
 			],
-			"TELL_INGREDIENT_NOT_FOUND" : [
+			"KA_TELL_INGREDIENT_NOT_FOUND" : [
 				
 			],
-			"TELL_TOOL_FOUND" : [
+			"KA_TELL_TOOL_FOUND" : [
 				
 			],
-			"TELL_TOOL_NOT_FOUND" : [
+			"KA_TELL_TOOL_NOT_FOUND" : [
 				
 			]
 	},
 	"dm.CanteenRecommendationState" : {
-			"ADEN_CAFE_DISH" : [
+			"CR_ADEN_CAFE_DISH" : [
 				"I will suggest to try <o> in cafeteria, if you want {c}",
 				"<o> sounds nice from cafeteria, do you want to have it?",
 				"In cafeteria there's <o>, maybe you can try it",
 				"Do you want to have <o> in cafeteria?",
 				"If you want {c}, there's <o> in cafeteria"
 			],
-			"ADEN_CURRYQ_DISH" : [
+			"CR_ADEN_CURRYQ_DISH" : [
 				"I will suggest to try <o> in curry queen, if you want {c}",
 				"<o> sounds nice from curry queen, do you want to have it?",
 				"In curry queen there's <o>, maybe you can try it",
 				"Do you want to have <o> in curry queen?",
 				"If you want {c}, there's <o> in curry queen"
 			],
-			"ADEN_LINE_1_DISH" : [
+			"CR_ADEN_LINE_1_DISH" : [
 				"I will suggest to try <o> at line one, if you want {c}",
 				"<o> sounds nice from line one, do you want to have it?",
 				"At line one there's <o>, maybe you can try it",
 				"Do you want to have <o> from line one?",
 				"If you want {c}, there's <o> at line one"
 			],
-			"ADEN_LINE_2_DISH" : [
+			"CR_ADEN_LINE_2_DISH" : [
 				"I will suggest to try <o> at line two, if you want {c}",
 				"<o> sounds nice from line two, do you want to have it?",
 				"At line two there's <o>, maybe you can try it",
 				"Do you want to have <o> from line two?",
 				"If you want {c}, there's <o> at line two"
 			],
-			"ADEN_LINE_3_DISH" : [
+			"CR_ADEN_LINE_3_DISH" : [
 				"I will suggest to try <o> at line three, if you want {c}",
 				"<o> sounds nice from line three, do you want to have it?",
 				"At line three there's <o>, maybe you can try it",
 				"Do you want to have <o> from line three?",
 				"If you want {c}, there's <o> at line three"
 			],
-			"ADEN_LINE_45_DISH" : [
+			"CR_ADEN_LINE_45_DISH" : [
 				"I will suggest to try <o> at line four and five, if you want {c}",
 				"<o> sounds nice from line four and five, do you want to have it?",
 				"At line four and five there's <o>, maybe you can try it",
 				"Do you want to have <o> from line four and five?",
 				"If you want {c}, there's <o> at line four and five"
 			],
-			"ADEN_LINE_6_DISH" : [
+			"CR_ADEN_LINE_6_DISH" : [
 				"I will suggest to try <o> at fancy line six, if you want {c}",
 				"<o> sounds nice from line six, do you want to have it?",
 				"At line six there's <o>, maybe you can try it",
 				"Do you want to have <o> from line six?",
 				"If you want {c}, there's <o> at line six"
 			],
-			"ADEN_SCHNITBAR_DISH" : [
+			"CR_ADEN_SCHNITBAR_DISH" : [
 				"I will suggest to try <o> at schnitzel bar, if you want {c}",
 				"<o> sounds nice from schnitzel bar, do you want to have it?",
 				"At schnitzel bar there's <o>, maybe you can try it",
 				"Do you want to have <o> from schnitzel bar?",
 				"If you want {c}, there's <o> at schnitzel bar"
 			],
-			"ENTRY" : [
+			"CR_ENTRY" : [
 				"Do you need some suggestion for canteen meals?",
 				"Do you want me to suggest what to have?",
 				"When you don't know what to have. I can suggest some meals"
 			],
-			"EXIT" : [
+			"CR_EXIT" : [
 				""
 			],
-			"MOLTKE_ACTTHEK_DISH" : [
+			"CR_MOLTKE_ACTTHEK_DISH" : [
 				"I will suggest to try <o> at action counter, if you want {c}",
 				"<o> sounds nice from action counter, do you want to have it?",
 				"At action counter there's <o>, maybe you can try it",
 				"Do you want to have <o> from action counter?",
 				"If you want {c}, there's <o> at action counter"
 			],
-			"MOLTKE_BUFFET_DISH" : [
+			"CR_MOLTKE_BUFFET_DISH" : [
 				"I will suggest to try <o> at the buffet, if you want {c}",
 				"<o> sounds nice from buffet, do you want to have it?",
 				"In buffet there's <o>, maybe you can try it",
 				"Do you want to have <o> from buffet?",
 				"If you want {c}, there's <o> at buffet"
 			],
-			"MOLTKE_CAFE_DISH" : [
+			"CR_MOLTKE_CAFE_DISH" : [
 				"I will suggest to try <o> in cafeteria, if you want {c}",
 				"<o> sounds nice from cafeteria, do you want to have it?",
 				"In cafeteria there's <o>, maybe you can try it",
 				"Do you want to have <o> in cafeteria?",
 				"If you want {c}, there's <o> in cafeteria"
 			],
-			"MOLTKE_CHOICE_1_DISH" : [
+			"CR_MOLTKE_CHOICE_1_DISH" : [
 				"I will suggest to try <o> from choice one, if you want {c}",
 				"<o> sounds nice from choice one, do you want to have it?",
 				"In choice one there's <o>, maybe you can try it",
 				"Do you want to have <o> in choice one?",
 				"If you want {c}, there's <o> in choice one"
 			],
-			"MOLTKE_CHOICE_2_DISH" : [
+			"CR_MOLTKE_CHOICE_2_DISH" : [
 				"I will suggest to try <o> from choice two, if you want {c}",
 				"<o> sounds nice from choice two, do you want to have it?",
 				"In choice two there's <o>, maybe you can try it",
 				"Do you want to have <o> in choice two?",
 				"If you want {c}, there's <o> in choice two"
 			],
-			"MOLTKE_GG_DISH" : [
+			"CR_MOLTKE_GG_DISH" : [
 				"I will suggest to try <o> from good and cheap, if you want {c}",
 				"<o> sounds nice from good and cheap, do you want to have it?",
 				"In good and cheap there's <o>, maybe you can try it",
 				"Do you want to have <o> in good and cheap?",
 				"If you want {c}, there's <o> in good and cheap"
 			],
-			"MOLTKE_SCHNITBAR_DISH" : [
+			"CR_MOLTKE_SCHNITBAR_DISH" : [
 				"I will suggest to try <o> at schnitzel bar, if you want {c}",
 				"<o> sounds nice from schnitzel bar, do you want to have it?",
 				"At schnitzel bar there's <o>, maybe you can try it",
 				"Do you want to have <o> from schnitzel bar?",
 				"If you want {c}, there's <o> at schnitzel bar"
 			],
-			"TELL_LINE_NOT_EXIST" : [
+			"CR_TELL_LINE_NOT_EXIST" : [
 				"The given line doesn't exist. Are you sure about the line number?",
 				"There's no such line. Do you want information about other lines?",
 				"I can't find the information about wished line. Are you sure about the line number?",
 				"The given line doesn't exist. Do you want information about other lines?",
 				"I can't find the information about wished line. Do you want information about other lines?"	
 			],
-			"TELL_MEAL_NOT_EXIST" : [
+			"CR_TELL_MEAL_NOT_EXIST" : [
 				"The meal wanted is not found. Do you want to know what else are provided?",
 				"I can't find the wanted meal. Maybe try some other meals?",
 				"There's no such meal provided at your wished canteen and wished date. Do you want to know what else are provided?",
@@ -280,187 +286,187 @@
 			]
 	},
 	"dm.CanteenInformationState" : {
-			"ADEN_CAFE_DISH" : [
+			"CI_ADEN_CAFE_DISH" : [
 				"In cafeteria there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided in cafeteria",
 				"{c} in cafeteria there's <o>",
 				"you can get <o> in cafeteria {c}"
 			],
-			"ADEN_CAFE_PRICE" : [
+			"CI_ADEN_CAFE_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_CURRYQ_DISH" : [
+			"CI_ADEN_CURRYQ_DISH" : [
 				"In curry queen there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided in curry queen",
 				"{c} in curry queen there's <o>",
 				"you can get <o> in curry queen {c}"
 			],
-			"ADEN_CURRYQ_PRICE" : [
+			"CI_ADEN_CURRYQ_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_LINE_1_DISH" : [
+			"CI_ADEN_LINE_1_DISH" : [
 				"At line one there's <o> {c}",
 				"You can find <o> {c}",
 				"{c} <o> will be provided at line one",
 				"{c} at line one there's <o>",
 				"you can get <o> at line one {c}"
 			],
-			"ADEN_LINE_1_PRICE" : [
+			"CI_ADEN_LINE_1_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_LINE_2_DISH" : [
+			"CI_ADEN_LINE_2_DISH" : [
 				"At line two there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at line two",
 				"{c} at line two there's <o>",
 				"you can get <o> at line two {c}"
 			],
-			"ADEN_LINE_2_PRICE" : [
+			"CI_ADEN_LINE_2_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_LINE_3_DISH" : [
+			"CI_ADEN_LINE_3_DISH" : [
 				"At line three there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at line three",
 				"{c} at line three there's <o>",
 				"you can get <o> at line three {c}"
 			],
-			"ADEN_LINE_3_PRICE" : [
+			"CI_ADEN_LINE_3_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_LINE_45_DISH" : [
+			"CI_ADEN_LINE_45_DISH" : [
 				"At line four and five there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at line four and five",
 				"{c} at line four and five there's <o>",
 				"you can get <o> at line four and five {c}"
 			],
-			"ADEN_LINE_45_PRICE" : [
+			"CI_ADEN_LINE_45_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_LINE_6_DISH" : [
+			"CI_ADEN_LINE_6_DISH" : [
 				"At line six there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at line six",
 				"{c} at line six there's <o>",
 				"you can get <o> at line six {c}"
 			],
-			"ADEN_LINE_6_PRICE" : [
+			"CI_ADEN_LINE_6_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ADEN_SCHNITBAR_DISH" : [
+			"CI_ADEN_SCHNITBAR_DISH" : [
 				"At schnitzel bar there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at schnitzel bar",
 				"{c} at schnitzel bar there's <o>",
 				"you can get <o> at schnitzel bar {c}"
 			],
-			"ADEN_SCHNITBAR_PRICE" : [
+			"CI_ADEN_SCHNITBAR_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"ENTRY" : [
+			"CI_ENTRY" : [
 				"So, what do you want to eat?",
 				"What do you prefer to eat?",
 				"Do you have some special preferences?"
 			],
-			"EXIT" : [
+			"CI_EXIT" : [
 				"Have a good meal"
 			],
-			"MOLTKE_ACTTHEK_DISH" : [
+			"CI_MOLTKE_ACTTHEK_DISH" : [
 				"At action counter there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at action counter",
 				"{c} at action counter there's <o>",
 				"you can get <o> at action counter {c}"
 			],
-			"MOLTKE_ACTTHEK_PRICE" : [
+			"CI_MOLTKE_ACTTHEK_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"MOLTKE_BUFFET_DISH" : [
+			"CI_MOLTKE_BUFFET_DISH" : [
 				"At buffet there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at buffet",
 				"{c} at buffet there's <o>",
 				"you can get <o> at buffet {c}"
 			],
-			"MOLTKE_BUFFET_PRICE" : [
+			"CI_MOLTKE_BUFFET_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"MOLTKE_CAFE_DISH" : [
+			"CI_MOLTKE_CAFE_DISH" : [
 				"In cafeteria there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided in cafeteria",
 				"{c} in cafeteria there's <o>",
 				"you can get <o> in cafeteria {c}"
 			],
-			"MOLTKE_CAFE_PRICE" : [
+			"CI_MOLTKE_CAFE_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"MOLTKE_CHOICE_1_DISH" : [
+			"CI_MOLTKE_CHOICE_1_DISH" : [
 				"At choice one there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at choice one",
 				"{c} at choice one there's <o>",
 				"you can get <o> at choice two {c}"
 			],
-			"MOLTKE_CHOICE_1_PRICE" : [
+			"CI_MOLTKE_CHOICE_1_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"MOLTKE_CHOICE_2_DISH" : [
+			"CI_MOLTKE_CHOICE_2_DISH" : [
 				"At choice two there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at choice two",
 				"{c} at choice two there's <o>",
 				"you can get <o> at choice two {c}"
 			],
-			"MOLTKE_CHOICE_2_PRICE" : [
+			"CI_MOLTKE_CHOICE_2_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"MOLTKE_GG_DISH" : [
+			"CI_MOLTKE_GG_DISH" : [
 				"At good and cheap there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at good and cheap",
 				"{c} at good and cheap there's <o>",
 				"you can get <o> at good and cheap {c}"
 			],
-			"MOLTKE_GG_PRICE" : [
+			"CI_MOLTKE_GG_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"MOLTKE_SCHNITBAR_DISH" : [
+			"CI_MOLTKE_SCHNITBAR_DISH" : [
 				"At schnitzel bar there's <o> {c}",
 				"You can find <o> {c} there",
 				"{c} <o> will be provided at schnitzel bar",
 				"{c} at schnitzel bar there's <o>",
 				"you can get <o> at schnitzel bar {c}"
 			],
-			"MOLTKE_SCHNITBAR_PRICE" : [
+			"CI_MOLTKE_SCHNITBAR_PRICE" : [
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"TELL_MEAL_NOT_EXIST" : [
+			"CI_TELL_MEAL_NOT_EXIST" : [
 				"The meal wanted is not found. Do you want to know what else are provided?",
 				"I can't find the wanted meal. Maybe try some other meals?",
 				"There's no such meal provided at your wished canteen and wished date. Do you want to know what else are provided?",
 				"The meal wanted is not found. Maybe try some other meals?",
 				"There's no such meal provided at your wished canteen and wished date. Maybe try some other meals?"
 			],
-			"TELL_LINE_NOT_EXIST" : [
+			"CI_TELL_LINE_NOT_EXIST" : [
 				"The given line doesn't exist. Are you sure about the line number?",
 				"There's no such line. Do you want information about other lines?",
 				"I can't find the information about wished line. Are you sure about the line number?",

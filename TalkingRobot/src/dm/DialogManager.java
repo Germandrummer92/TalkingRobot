@@ -1,14 +1,13 @@
 package dm;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
-import data.CanteenData;
 
 /**
  * The DialogManager class, responsible for the switching of DialogStates for a certain input.
  * @author Daniel Draper, Aleksandar Andonov
- * @version 1.1
+ * @version 1.2
  *
  */
 public class DialogManager {
@@ -38,12 +37,30 @@ public class DialogManager {
 
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
 	   List<Keyword> kws = dictionary.findKeywords(keywords);
+	   do {
 	  try {
 		currentDialog.updateState(kws, terms, approval);
+		break;
+	//Make Sure current Class is right for the current StateClass
 	} catch (WrongStateClassException e) {
-		// TODO
-		e.printStackTrace();
+		DialogState currentDialogState = currentDialog.getCurrentDialogState();
+		Session currentSession = currentDialog.getCurrentSession();
+		Canteen currentCanteen = null;
+		if (e.getNewClassName().contains("Canteen")) {
+			currentCanteen = ((CanteenDialog)currentDialog).getCurrentCanteen();
+		}
+		switch (e.getNewClassName()) {
+		case "dm.StartState" : currentDialog = new StartDialog(currentSession, currentDialogState); break;
+		case "dm.CanteenInformationState" : currentDialog = new CanteenInformationDialog(currentSession, currentDialogState, currentCanteen); break;
+		case "dm.CanteenRecommendationState" : currentDialog = new CanteenRecommendationDialog(currentSession, currentDialogState, currentCanteen); break;
+		case "dm.KitchenAssistanceState" : currentDialog = new KitchenAssistanceDialog(currentSession, currentDialogState);
+		case "dm.RecipeAssistanceState" : currentDialog = new RecipeAssistanceDialog(currentSession, currentDialogState);
+		case "dm.RecipeLearningState" : currentDialog = new RecipeLearningDialog(currentSession, currentDialogState);
+		default: break;
+			
+		}
 	}
+	   } while(true);
 
   }
 

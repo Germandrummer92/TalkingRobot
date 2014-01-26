@@ -7,12 +7,12 @@ import data.RobotData;
 /**
  * Represents the robot the system is currently running on.
  * @author Daniel Draper
- * @version 1.0
+ * @version 1.1
  *
  */
 public class Robot {
 
-  public RobotData robotData;
+  private RobotData robotData;
 
   /**
    * Creates a new Robot and saves its data.

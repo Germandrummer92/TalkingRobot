@@ -10,20 +10,23 @@
 				
 			],
 			"USER_FOUND": [
-				
+				"Yay",
+				"Hooray"
 			],
 			"USER_NOT_FOUND": [
 				"Sorry",
 				"Oops"
 			],
 			"USER_SAVED": [
-				
+				"I'm glad to help you",
+				"I'm glad that I can help you"
 			],
 			"USER_WANTS_TO_BE_SAVED": [
 				
 			],
 			"WAITING_FOR_EMPLOYEE_STATUS": [
-				
+				"I can't call you 'human' all the time, so"
+				"You know my name, so"
 			],
 			"WAITING_FOR_USERNAME": [
 				

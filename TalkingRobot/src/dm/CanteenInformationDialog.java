@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  * This class represents a dialog about canteen information
- * @author Xizhe Lian
- * @version 0.5
+ * @author Xizhe Lian, Daniel Draper
+ * @version 0.6
  */
 public class CanteenInformationDialog extends CanteenDialog {
 
@@ -18,12 +18,13 @@ public class CanteenInformationDialog extends CanteenDialog {
 		super(session, dialogState, currentCanteen);
 	}
 
+
 @Override
 
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	if (getCurrentDialogState().getClass() != CanteenInformationState.class) {
-		throw new WrongStateClassException();
+		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 	}
 	switch ((CanteenInfo)getCurrentDialogState().getCurrentState()) {
 	case CI_ENTRY:

@@ -131,6 +131,10 @@ public class OutputCreator {
   	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
   	  			size = jsonSentences.size();
   			}
+  			//Nothing Changes if both Social parts are empty
+  			if (size == 0) {
+  				return output;
+  			}
   			//Generates random number based on array size (number of sentences)
   			Random rn = new Random();
 			Integer randomNum = rn.nextInt(size - 1);
@@ -175,7 +179,10 @@ public class OutputCreator {
 	  		String compl = null;
 	  		if(text.contains(".")) {
 	  			sentences = text.split(".");
-	  		} else sentences[0] = text;  // nothing to split
+	  		} else {
+	  			sentences = new String[1]; // nothing to split
+	  			sentences[0] = text;
+	  		}
 	  		
 	  		for(int i = 0; i < keywordPhrases.length; i++) {
 	  			String[] keywords = keywordPhrases[i].split(" ");
@@ -210,9 +217,9 @@ public class OutputCreator {
   		return answer;
   	}
   	
-  	//Testing
-  	/*
-  	public static void main (String args[]) {
+  	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
+  	
+  	/*public static void main (String args[]) {
 	  	OutputCreator creator = new OutputCreator();
 	  	StartState startState = new StartState();
 	  	System.out.println(creator.createOutput(startState));

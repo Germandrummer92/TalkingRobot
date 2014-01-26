@@ -16,23 +16,22 @@
 				"You know me already"
 			],
 			"USER_NOT_FOUND": [
-				
+				"I can make better recommendations then"
 			],
 			"USER_SAVED": [
-				"I hope we will have s good time together",
+				"I hope we will have a good time together",
 				"I hope you will like my assistance",
-				"I hope I can help you later",
-				"I'm glad to help you",
-				"I'm glad that I can help you"
 			],
 			"USER_WANTS_TO_BE_SAVED": [
-				
+				"So I can offer the right prices"
 			],
 			"WAITING_FOR_EMPLOYEE_STATUS": [
 				
 			],
 			"WAITING_FOR_USERNAME": [
-				
+				"You know my name after all!",
+				"I have to call you something, right",
+				"I'm not the NSA, it's safe"
 			]
 	},
 	"dm.RecipeAssistanceState" : {
