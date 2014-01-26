@@ -84,6 +84,8 @@ public class DialogManager {
 		  	if(!errorSolved) {
 		  		//error could not be solved; start with repetition/rephrasing again
 		  		this.clearAllStrategies();
+		  	} else {
+		  		return null;
 		  	}
 	  }
 	  
