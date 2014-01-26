@@ -14,7 +14,7 @@ public class RecipeLearningState extends DialogState {
 	 */
 	public RecipeLearningState() {
 		super();
-		setCurrentState(RecipeLearning.ENTRY);
+		setCurrentState(RecipeLearning.RL_ENTRY);
 	}
 	
 	/**

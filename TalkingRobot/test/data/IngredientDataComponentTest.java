@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 public class IngredientDataComponentTest extends DataComponentTest{
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		testData = new IngredientData("salt");
+		testData = new IngredientData("salt", "Cabinet 1");
 		testDataPath = "resources/files/IngredinetData/";
 		testDataClone = new IngredientData(testData.generateJSON(), 2);
 	}

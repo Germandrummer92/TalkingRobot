@@ -74,7 +74,7 @@ public void createFromJSONText(String jsonString) {
 /**
  * @return the Ingredient's ID
  */
-private Integer getIngredientID() {
+public Integer getIngredientID() {
 	return ingredientID;
 }
 

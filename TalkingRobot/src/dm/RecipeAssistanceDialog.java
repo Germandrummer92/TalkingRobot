@@ -32,7 +32,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	// TODO Auto-generated method stub
 	RecipeAssistanceState currState;
 	if (getCurrentDialogState().getClass() != RecipeAssistanceState.class) {
-		throw new WrongStateClassException();
+		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 	}
 	
 	switch ((RecipeAssistance)getCurrentDialogState().getCurrentState()) {

@@ -36,7 +36,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	RecipeLearningState currState;
 	if (getCurrentDialogState().getClass() != RecipeLearningState.class) {
-		throw new WrongStateClassException();
+		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 	}
 	else {
 		currState = ((RecipeLearningState)getCurrentDialogState());

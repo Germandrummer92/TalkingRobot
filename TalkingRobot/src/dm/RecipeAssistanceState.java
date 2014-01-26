@@ -14,7 +14,7 @@ public class RecipeAssistanceState extends DialogState {
    */
   public RecipeAssistanceState() {
 	  super();
-	 setCurrentState(RecipeAssistance.ENTRY);
+	 setCurrentState(RecipeAssistance.RA_ENTRY);
   }
   
   /**
