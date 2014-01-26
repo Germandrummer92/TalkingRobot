@@ -34,7 +34,7 @@ public class DMPhase extends Phase {
 
 
 	  dialogManager.updateDialog(main.getNluResult().get(0), main.getNluResult().get(1),
-			  main.getNluResult().get(2));
+			  main.getNluResult().get(3));
 	  main.setDmResult(dialogManager.getCurrentDialog().getCurrentDialogState());
   }
 
