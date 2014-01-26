@@ -27,15 +27,32 @@ public class DMPhase extends Phase {
    * @See {@link Phase#setPhaseResult(Main)}
    */
   public void setPhaseResult(Main main) {
-	  //If nothing has been parsed, handle Error
-	  if (main.getNluResult().get(0).isEmpty() && main.getNluResult().get(1).isEmpty() && main.getNluResult().get(3).isEmpty()) {
-		  dialogManager.handleError(main.getNluResult().get(2));
-	  }
+	  	//If nothing has been parsed, handle Error
+	  	ErrorHandlingState errorHandlingState = null;
+	  	if (main.getNluResult().get(0).isEmpty() 
+	  			&& main.getNluResult().get(1).isEmpty() 
+	  			&& main.getNluResult().get(3).isEmpty()) {
+	  		errorHandlingState = dialogManager.handleError(main.getNluResult().get(2));
+	  	} else if (dialogManager.getErrorState() != ErrorState.ZERO 
+	  			&& main.getNluResult().get(0).isEmpty() 
+	  			&& main.getNluResult().get(1).isEmpty()
+	  			&& !main.getNluResult().get(3).isEmpty()) {
+	  		/* in this case the system gave the user a choice or used a method of verification
+	  		 * and expects an answer. Though, if the user answers with a sentence which contains
+	  		 * a keyword or a term, this case can be ignored and the system can continue with its
+	  		 * previous task.
+	  		 */
+	  		errorHandlingState = dialogManager.handleError(main.getNluResult().get(3));
+	  	}
 
 
-	  dialogManager.updateDialog(main.getNluResult().get(0), main.getNluResult().get(1),
-			  main.getNluResult().get(3));
-	  main.setDmResult(dialogManager.getCurrentDialog().getCurrentDialogState());
+	  	dialogManager.updateDialog(main.getNluResult().get(0), main.getNluResult().get(1),
+			main.getNluResult().get(3));
+	  	if(errorHandlingState == null) {
+		 	main.setDmResult(dialogManager.getCurrentDialog().getCurrentDialogState());
+	  	} else {
+	  		main.setDmResult(errorHandlingState);
+	  	}
   }
 
   /**

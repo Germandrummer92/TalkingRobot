@@ -56,16 +56,32 @@ public class DialogManager {
   /**
    * Handles Errors, from the NLU Phase.
    * @param possibleKeywords possibly wrongly written keywords.
+ * @return 
    */
-  public void handleError(List<String> possibleKeywords) {
-	  int avg = this.getAverageDistance(possibleKeywords);
+  public ErrorHandlingState handleError(List<String> possibleKeywords) {
+	  
+	  int avg = 10;
+	  
+	  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
+	  		avg = this.getAverageDistance(possibleKeywords);
+	  } else if (!possibleKeywords.isEmpty()) {
+		  	boolean errorSolved = handleResponseToPreviousErrorHandling(possibleKeywords);
+		  	if(!errorSolved) {
+		  		//error could not be solved; start with repetition/rephrasing again
+		  		this.clearAllStrategies();
+		  	}
+	  }
+	  
 	  ErrorHandlingState dmResult;
+	  
 	  //repeat || rephrase: 8 <= avg
 	  if(avg >= 8){
 		  if(errorStrategy[0].getCounter() <= 3) {
 			  dmResult = errorStrategy[0].handleError(possibleKeywords);
+			  return dmResult;
 		  } else if (errorStrategy[1].getCounter() <= 3) {
 			  dmResult = errorStrategy[1].handleError(possibleKeywords);
+			  return dmResult;
 		  } else {
 			  //TODO random?? or just passing down?
 			  avg = 6;
@@ -75,9 +91,13 @@ public class DialogManager {
 	  //explicit verification || choice:  5 <= avg < 8
 	  if(avg >= 5 && avg < 8) {
 		  if(errorStrategy[2].getCounter() <= 3) {
+			  this.errorState = ErrorState.CHOICE;
 			  dmResult = errorStrategy[2].handleError(possibleKeywords);
+			  return dmResult;
 		  } else if(errorStrategy[3].getCounter() <= 3) {
+			  this.errorState = ErrorState.EXPLICIT_VERIFICATION;
 			  dmResult = errorStrategy[3].handleError(possibleKeywords);
+			  return dmResult;
 		  } else {
 			  //if already tried numeral times than try with indirect verification.
 			  avg = 3;
@@ -87,7 +107,9 @@ public class DialogManager {
 	  //indirect verification: 3 <= avg < 5
 	  if(avg >= 3 && avg < 5) {
 		  if(errorStrategy[4].getCounter() <= 3) {
+			  this.errorState = ErrorState.INDIRECT_VERIFICATION;
 			  dmResult = errorStrategy[4].handleError(possibleKeywords);
+			  return dmResult;
 		  } else {
 			  //if already tried numeral times than try with ignoring
 			  avg = 1;
@@ -104,11 +126,48 @@ public class DialogManager {
 		  		}
 		  }
 		  
-		  updateDialog(assumedKeywords, new LinkedList<String>(), new LinkedList<String>());
+		  updateDialog(assumedKeywords, new LinkedList<String>(), new LinkedList<String>());  
 	  }
+	  return null;
   }
 
-  /**
+  private boolean handleResponseToPreviousErrorHandling(List<String> possibleKeywords) {
+	LinkedList<String> keyword = new LinkedList<String>();  
+	  
+	if(this.errorState == ErrorState.CHOICE) {
+		for(int i = 0; i < possibleKeywords.size(); i++) {
+  			if(possibleKeywords.get(i).equals("second")) {	
+  				ChoiceStrategy strategy = (ChoiceStrategy)errorStrategy[2];
+  				keyword.add(strategy.getSecondChoice());
+  				this.updateDialog(keyword, new LinkedList<String>(), new LinkedList<String>());
+  			}
+  		}
+  	} else if(this.errorState == ErrorState.EXPLICIT_VERIFICATION) {
+  		for(int i = 0; i < possibleKeywords.size(); i++) {
+  			if(possibleKeywords.get(i).equals("yes")) {
+  				ExplicitVerificationStrategy strategy = (ExplicitVerificationStrategy)errorStrategy[3];
+  				keyword = (LinkedList<String>) strategy.getQuestionableWords();
+  			}
+  		}
+  	} else if(this.errorState == ErrorState.INDIRECT_VERIFICATION) {
+  		for(int i = 0; i < possibleKeywords.size(); i++) {
+  			if(possibleKeywords.get(i).equals("yes")) {
+  				IndirectVerificationStrategy strategy = (IndirectVerificationStrategy)errorStrategy[3];
+  				keyword = (LinkedList<String>) strategy.getQuestionableWords();
+  			}
+  		}
+  	}
+	
+	if(!keyword.isEmpty()) {
+		this.updateDialog(keyword, new LinkedList<String>(), new LinkedList<String>());
+		return true;
+	} else {
+		return false;
+	}
+	
+}
+
+/**
    * private Constructor, just used by giveDialogManager()
    */
   private DialogManager() {
@@ -180,9 +239,10 @@ public class DialogManager {
    * @return the Levenshtein Distance.
    */
   private Integer getAverageDistance(List<String> possibleKw) {
+	  	
 	  	int overallDistance = 0;
 	  	int counter = 0;
-	  
+	  	
 	  	for(int i = 0; i < possibleKw.size(); i++) {
 	  		if(possibleKw.get(i).matches(".*;.*;[0-9]")){
 	  			counter++;
