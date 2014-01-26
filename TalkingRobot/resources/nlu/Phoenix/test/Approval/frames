@@ -1,0 +1,11 @@
+# @author Meng Meng Yan
+# @version 1.0
+
+#	approval, disapproval or a choice (last one needed for ErrorHandling_Choice)
+	FRAME: Approval
+	NETS: 
+		[approval]
+		[disapproval]
+		[_first]
+		[_second]
+;
