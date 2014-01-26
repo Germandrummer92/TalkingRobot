@@ -64,9 +64,11 @@ public class PhoenixAdapter {
 //		  Runtime rt2 = Runtime.getRuntime();
 //		  Process phoenix = rt2.exec("tcsh " + runParse + " < input", null, new File("resources/nlu/Phoenix/TalkingRobot"));
 		  
-		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", "run_parse_keyword < input");
+		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", "run_parse_keyword");
 		  phoenixBuilder.directory(new File("resources/nlu/Phoenix/TalkingRobot"));
+		  phoenixBuilder.redirectInput(new File("resources/nlu/Phoenix/TalkingRobot/input"));
 		  Process phoenix = phoenixBuilder.start();
+		  
 		  
 		  BufferedReader stdin2 = new BufferedReader(new InputStreamReader(phoenix.getInputStream()));
 		  BufferedReader stderr2 = new BufferedReader(new InputStreamReader(phoenix.getErrorStream()));
@@ -94,4 +96,12 @@ public class PhoenixAdapter {
 	  return phoenixOutput;
   }
 
+/**
+ * 
+ */
+
+public static void main(String[] args) {
+	PhoenixAdapter pa = new PhoenixAdapter();
+	pa.operatePhoenix("Hello,  can you tell me how to make Spaghetti?", null, 1, new File("resources/nlu/Phoenix/TalkingRobot/Keyword"));
+}
 }
