@@ -18,15 +18,15 @@ public class Ingredient {
    * Creates a new Ingredient with the name specified, and saves it to a file.
    * @param name name of the new Ingredient
    */
-  public Ingredient(String name) {
-	  ingredientData =  new IngredientData(name);
+  public Ingredient(String name, String location) {
+	  ingredientData =  new IngredientData(name, location);
 	  ingredientData.writeFile();
   }
   /**
    * Creates an Ingredient from the Data specified, just used by the loadIngredients() method.
  * @param d
  */
-  private Ingredient(IngredientData d) {
+  public Ingredient(IngredientData d) {
 	  ingredientData = d;
  }
 

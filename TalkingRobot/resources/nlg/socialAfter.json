@@ -124,23 +124,27 @@
 	},
 	"dm.KitchenAssistanceState" : {
 			"KA_ENTRY" : [
-				"",
-				""
+				"I like your name",
+				"This Kitchen is looking good!"
 			],
 			"KA_EXIT" : [
-				
+				"I didn't do anything wrong did I"
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
-				
+				"Your recipe will be great now",
+				"Your cooking smells great"
 			],
 			"KA_TELL_INGREDIENT_NOT_FOUND" : [
-				
+				"I'm a failure",
+				"I feel so bad"
 			],
 			"KA_TELL_TOOL_FOUND" : [
-				
+				"Don't hurt yourself with that",
+				"Careful now with that tool"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
-				
+				"I'm a failure",
+				"I feel so bad"	
 			]
 	},
 	"dm.CanteenRecommendationState" : {

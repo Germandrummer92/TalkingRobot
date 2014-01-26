@@ -138,22 +138,32 @@
 	"dm.KitchenAssistanceState" : {
 			"KA_ENTRY" : [
 				"What can I assist you with, <o>",
-				"What can I get for you, <o>"
+				"What can I get for you, <o>,
 			],
 			"KA_EXIT" : [
-				
+				"Bye",
+				"See you soon!",
+				"Ciao"
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
-				
+				"I have found <o> it's located in or on the {c}",
+				"I have found <o> at the location: {c}",
+				"Here you go, it's located here: {c}"
 			],
 			"KA_TELL_INGREDIENT_NOT_FOUND" : [
-				
+				"I can't seem to locate <o>",
+				"I don't know where <o> is",
+				"Sorry, can't find <o>"
 			],
 			"KA_TELL_TOOL_FOUND" : [
-				
+				"I have found <o> it's located in or on the {c}",
+				"I have found <o> at the location: {c}",
+				"Here you go, it's located here: {c}"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
-				
+				"I can't seem to locate <o>"'
+				"I don't know where <o> is",
+				"Sorry, can't find <o>"
 			]
 	},
 	"dm.CanteenRecommendationState" : {
