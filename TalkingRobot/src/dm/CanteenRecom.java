@@ -26,6 +26,8 @@ public enum CanteenRecom {
   CR_MOLTKE_SCHNITBAR_DISH,
 
   CR_MOLTKE_CAFE_DISH,
+  
+  CR_MOLTKE_ACTTHEK_DISH,
 
   CR_MOLTKE_GG_DISH,
 
