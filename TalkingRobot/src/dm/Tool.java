@@ -27,7 +27,7 @@ public class Tool {
    * Creates a new Tool object from a loaded ToolData object.
  * @param d the toolData to be loaded
  */
-  private Tool(ToolData d) {
+  public Tool(ToolData d) {
 	toolData = d;
   }
 

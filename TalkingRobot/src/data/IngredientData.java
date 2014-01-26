@@ -25,14 +25,17 @@ public class IngredientData implements Data {
   private Integer ingredientID;
 
   private String ingredientName;
+  
+  private String ingredientLocation;
 
 /**
  * constructs an ingredient  
  * @param name holds the name of ingredient
  */
-public IngredientData(String name) {
+public IngredientData(String name, String location) {
 	this.ingredientID = nextID();
 	this.ingredientName = name;
+	this.setIngredientLocation(location);
 }
 
 /**
@@ -64,7 +67,15 @@ public void createFromJSONText(String jsonString) {
     IngredientData newData = creator.fromJson(jsonString, this.getClass());
     this.ingredientID = newData.getIngredientID();
     this.ingredientName = newData.getIngredientName();
+    this.ingredientLocation = newData.getIngredientLocation();
 	
+}
+
+/**
+ * @return the Ingredient's ID
+ */
+private Integer getIngredientID() {
+	return ingredientID;
 }
 
 @Override
@@ -98,13 +109,6 @@ public JSONObject getJson() {
     return object;
 }
 
-/**
- * to get ID of the ingredient
- * @return ingredient's ID
- */
-public Integer getIngredientID() {
-	return ingredientID;
-}
 
 /**
  * to get ingredient name
@@ -114,10 +118,10 @@ public String getIngredientName() {
 	return ingredientName;
 }
 
-public void setIngredientID(Integer ingredientID) {
-	this.ingredientID = ingredientID;
-}
 
+/**
+ * 
+ */
 public void setIngredientName(String ingredientName) {
 	this.ingredientName = ingredientName;
 }
@@ -202,6 +206,20 @@ public static ArrayList <IngredientData> loadData() {
 private int nextID() {
 	File f = new File("resources/files/IngredientData/");
 	return f.listFiles().length;
+}
+
+/**
+ * @return the ingredientLocation
+ */
+public String getIngredientLocation() {
+	return ingredientLocation;
+}
+
+/**
+ * @param ingredientLocation the ingredientLocation to set
+ */
+public void setIngredientLocation(String ingredientLocation) {
+	this.ingredientLocation = ingredientLocation;
 }
 
 

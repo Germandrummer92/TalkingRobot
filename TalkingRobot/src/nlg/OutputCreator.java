@@ -219,7 +219,7 @@ public class OutputCreator {
   	
   	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
   	
-  	/*public static void main (String args[]) {
+  /*public static void main (String args[]) {
 	  	OutputCreator creator = new OutputCreator();
 	  	StartState startState = new StartState();
 	  	System.out.println(creator.createOutput(startState));

@@ -130,16 +130,22 @@
 				
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
-				
+				"Yay",
+				"Hooray"
+				"I got it"
 			],
 			"KA_TELL_INGREDIENT_NOT_FOUND" : [
-				
+				"Sorry"
+				"I feel so bad, but"
 			],
 			"KA_TELL_TOOL_FOUND" : [
-				
+				"Yay"
+				"Hooray"
+				"I got it"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
-				
+				"Sorry"
+				"I feel so bad, but"
 			]
 	},
 	"dm.CanteenInformationState" : {
