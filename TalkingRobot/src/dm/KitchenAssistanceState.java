@@ -14,7 +14,7 @@ public class KitchenAssistanceState extends DialogState {
 	 */
   public KitchenAssistanceState() {
 	  super();
-	  setCurrentState(KitchenAssistance.ENTRY);
+	  setCurrentState(KitchenAssistance.KA_ENTRY);
   }
   /**
    * Creates a new KitchenAssistanceState in the state specified.
@@ -29,7 +29,23 @@ public class KitchenAssistanceState extends DialogState {
    * @see DialogState#getOutputKeyword()
    */
   public String getOutputKeyword() {
-  return null;
+	  switch((KitchenAssistance)getCurrentState()) {
+	case KA_ENTRY:
+		break;
+	case KA_EXIT:
+		break;
+	case KA_TELL_INGREDIENT_FOUND:
+		break;
+	case KA_TELL_INGREDIENT_NOT_FOUND:
+		break;
+	case KA_TELL_TOOL_FOUND:
+		break;
+	case KA_TELL_TOOL_NOT_FOUND:
+		break;
+	default:
+		break;
+	  	
+	  }
   }
 
 

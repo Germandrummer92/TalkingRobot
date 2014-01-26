@@ -137,8 +137,8 @@
 	},
 	"dm.KitchenAssistanceState" : {
 			"KA_ENTRY" : [
-				"",
-				""
+				"What can I assist you with, <o>",
+				"What can I get for you, <o>"
 			],
 			"KA_EXIT" : [
 				

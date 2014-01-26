@@ -1,328 +1,328 @@
 {
     "dm.StartState" : {
-			"ENTRY": [
+			"S_ENTRY": [
 				"So long no see",
 				"Happy to see you",
 				"Nice to meet you"
 			],
-			"EXIT": [
+			"S_EXIT": [
 				"Have a good day",
 				"Enjoy your day"
 			],
-			"USER_DOESNT_WANT_TO_BE_SAVED": [
+			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
 				"You still have a chance to save your usage data . Are you sure that you don't want to be saved"
 			],
-			"USER_FOUND": [
+			"S_USER_FOUND": [
 				"You know me already"
 			],
-			"USER_NOT_FOUND": [
+			"S_USER_NOT_FOUND": [
 				"I can make better recommendations then"
 			],
-			"USER_SAVED": [
+			"S_USER_SAVED": [
 				"I hope we will have a good time together",
 				"I hope you will like my assistance",
 			],
-			"USER_WANTS_TO_BE_SAVED": [
+			"S_USER_WANTS_TO_BE_SAVED": [
 				"So I can offer the right prices"
 			],
-			"WAITING_FOR_EMPLOYEE_STATUS": [
+			"S_WAITING_FOR_EMPLOYEE_STATUS": [
 				
 			],
-			"WAITING_FOR_USERNAME": [
+			"S_WAITING_FOR_USERNAME": [
 				"You know my name after all!",
 				"I have to call you something, right",
 				"I'm not the NSA, it's safe"
 			]
 	},
 	"dm.RecipeAssistanceState" : {
-			"ENTRY" : [
+			"RA_ENTRY" : [
 				
 			],
-			"EXIT" : [
+			"RA_EXIT" : [
 				"Good appetite",
 				"Enjoy your meal"
 			],
-			"RECIPE_NOT_FOUND" : [
+			"RA_RECIPE_NOT_FOUND" : [
 				
 			],
-			"TELL_COUNTRY_OF_ORIGIN" : [
+			"RA_TELL_COUNTRY_OF_ORIGIN" : [
 				"Wow, I haven't been there"
 			],
-			"TELL_CREATOR" : [
+			"RA_TELL_CREATOR" : [
 				
 			],
-			"TELL_INGREDIENTS" : [
+			"RA_TELL_INGREDIENTS" : [
 				
 			],
-			"TELL_INGREDIENT_FOUND" : [
+			"RA_TELL_INGREDIENT_FOUND" : [
 				
 			],
-			"TELL_NUM_OF_STEPS" : [
+			"RA_TELL_NUM_OF_STEPS" : [
 				
 			],
-			"TELL_STEPS" : [
+			"RA_TELL_STEPS" : [
 				
 			],
-			"TELL_TOOLS" : [
+			"RA_TELL_TOOLS" : [
 				
 			],
-			"TELL_TOOL_FOUND" : [
+			"RA_TELL_TOOL_FOUND" : [
 				
 			],
-			"TELL_TOOL_NOT_FOUND" : [
+			"RA_TELL_TOOL_NOT_FOUND" : [
 				
 			],
-			"TELL_WHOLE_RECIPE" : [
+			"RA_TELL_WHOLE_RECIPE" : [
 				
 			]
 	},
 	"dm.RecipeLearningState" : {
-			"AKS_INGREDIENT_RIGHT" : [
+			"RL_AKS_INGREDIENT_RIGHT" : [
 				"Blablabla",
 				"Bleblebleble",
 				"Bliblibli"
 			],
-			"ASK_COUNTRY_OF_ORIGIN" : [
+			"RL_ASK_COUNTRY_OF_ORIGIN" : [
 				
 			],
-			"ASK_FIRST_INGREDIENT" : [
+			"RL_ASK_FIRST_INGREDIENT" : [
 				
 			],
-			"ASK_FIRST_STEP" : [
+			"RL_ASK_FIRST_STEP" : [
 				
 			],
-			"ASK_FIRST_TOOL" : [
+			"RL_ASK_FIRST_TOOL" : [
 				
 			],
-			"ASK_LAST_STEP" : [
+			"RL_ASK_LAST_STEP" : [
 				
 			],
-			"ASK_NEXT_INGREDIENT" : [
+			"RL_ASK_NEXT_INGREDIENT" : [
 				
 			],
-			"ASK_NEXT_STEP" : [
+			"RL_ASK_NEXT_STEP" : [
 				
 			],
-			"ASK_NEXT_TOOL" : [
+			"RL_ASK_NEXT_TOOL" : [
 				
 			],
-			"ASK_RECIPE_NAME" : [
+			"RL_ASK_RECIPE_NAME" : [
 				
 			],
-			"ASK_STEP_RIGHT" : [
+			"RL_ASK_STEP_RIGHT" : [
 				
 			],
-			"ASK_TOOL_RIGHT" : [
+			"RL_ASK_TOOL_RIGHT" : [
 				
 			],
-			"ENTRY" : [
+			"RL_ENTRY" : [
 				
 			],
-			"EXIT" : [
+			"RL_EXIT" : [
 				
 			]
 	},
 	"dm.KitchenAssistanceState" : {
-			"ENTRY" : [
+			"KA_ENTRY" : [
 				"",
 				""
 			],
-			"EXIT" : [
+			"KA_EXIT" : [
 				
 			],
-			"TELL_INGREDIENT_FOUND" : [
+			"KA_TELL_INGREDIENT_FOUND" : [
 				
 			],
-			"TELL_INGREDIENT_NOT_FOUND" : [
+			"KA_TELL_INGREDIENT_NOT_FOUND" : [
 				
 			],
-			"TELL_TOOL_FOUND" : [
+			"KA_TELL_TOOL_FOUND" : [
 				
 			],
-			"TELL_TOOL_NOT_FOUND" : [
+			"KA_TELL_TOOL_NOT_FOUND" : [
 				
 			]
 	},
 	"dm.CanteenRecommendationState" : {
-			"ADEN_CAFE_DISH" : [
+			"CR_ADEN_CAFE_DISH" : [
 				"",
 				""
 			],
-			"ADEN_CAFE_PRICE" : [
+			"CR_DEN_CAFE_PRICE" : [
 				
 			],
-			"ADEN_CURRYQ_DISH" : [
+			"CR_ADEN_CURRYQ_DISH" : [
 				
 			],
-			"ADEN_CURRYQ_PRICE" : [
+			"CR_ADEN_CURRYQ_PRICE" : [
 				
 			],
-			"ADEN_LINE_1_DISH" : [
+			"CR_ADEN_LINE_1_DISH" : [
 				
 			],
-			"ADEN_LINE_1_PRICE" : [
+			"CR_ADEN_LINE_1_PRICE" : [
 				
 			],
-			"ADEN_LINE_2_DISH" : [
+			"CR_ADEN_LINE_2_DISH" : [
 				
 			],
-			"ADEN_LINE_2_PRICE" : [
+			"CR_ADEN_LINE_2_PRICE" : [
 				
 			],
-			"ADEN_LINE_3_DISH" : [
+			"CR_ADEN_LINE_3_DISH" : [
 				
 			],
-			"ADEN_LINE_3_PRICE" : [
+			"CR_ADEN_LINE_3_PRICE" : [
 				
 			],
-			"ADEN_LINE_45_DISH" : [
+			"CR_ADEN_LINE_45_DISH" : [
 				
 			],
-			"ADEN_LINE_45_PRICE" : [
+			"CR_ADEN_LINE_45_PRICE" : [
 				
 			],
-			"ADEN_LINE_6_DISH" : [
+			"CR_ADEN_LINE_6_DISH" : [
 				
 			],
-			"ADEN_LINE_6_PRICE" : [
+			"CR_ADEN_LINE_6_PRICE" : [
 				
 			],
-			"ADEN_SCHNITBAR_DISH" : [
+			"CR_ADEN_SCHNITBAR_DISH" : [
 				
 			],
-			"ADEN_SCHNITBAR_PRICE" : [
+			"CR_ADEN_SCHNITBAR_PRICE" : [
 				
 			],
-			"ENTRY" : [
+			"CR_ENTRY" : [
 				
 			],
-			"EXIT" : [
+			"CR_EXIT" : [
 				
 			],
-			"MOLTKE_ACTTHEK_DISH" : [
+			"CR_MOLTKE_ACTTHEK_DISH" : [
 				
 			],
-			"MOLTKE_ACTTHEK_PRICE" : [
+			"CR_MOLTKE_ACTTHEK_PRICE" : [
 				
 			],
-			"MOLTKE_BUFFET_DISH" : [
+			"CR_MOLTKE_BUFFET_DISH" : [
 				
 			],
-			"MOLTKE_BUFFET_PRICE" : [
+			"CR_MOLTKE_BUFFET_PRICE" : [
 				
 			],
-			"MOLTKE_CHOICE_1_DISH" : [
+			"CR_MOLTKE_CHOICE_1_DISH" : [
 				
 			],
-			"MOLTKE_CHOICE_1_PRICE" : [
+			"CR_MOLTKE_CHOICE_1_PRICE" : [
 
 			],
-			"MOLTKE_CHOICE_2_DISH" : [
+			"CR_MOLTKE_CHOICE_2_DISH" : [
 				
 			],
-			"MOLTKE_CHOICE_2_PRICE" : [
+			"CR_MOLTKE_CHOICE_2_PRICE" : [
 				
 			],
-			"MOLTKE_GG_DISH" : [
+			"CR_MOLTKE_GG_DISH" : [
 				
 			],
-			"MOLTKE_GG_PRICE" : [
+			"CR_MOLTKE_GG_PRICE" : [
 				
 			],
-			"MOLTKE_SCHNITBAR_DISH" : [
+			"CR_MOLTKE_SCHNITBAR_DISH" : [
 				
 			],
-			"MOLTKE_SCHNITBAR_PRICE" : [
+			"CR_MOLTKE_SCHNITBAR_PRICE" : [
 				
 			],
-			"TELL_LINE_NOT_EXIST" : [
+			"CR_TELL_LINE_NOT_EXIST" : [
 				
 			],
-			"TELL_MEAL_NOT_EXIST" : [
+			"CR_TELL_MEAL_NOT_EXIST" : [
 				
 			]
 	},
 	"dm.CanteenInformationState" : {
-			"ADEN_CAFE_DISH" : [
+			"CI_ADEN_CAFE_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_CURRYQ_DISH" : [
+			"CI_ADEN_CURRYQ_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_LINE_1_DISH" : [
+			"CI_ADEN_LINE_1_DISH" : [
 				"which sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_LINE_2_DISH" : [
+			"CI_ADEN_LINE_2_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_LINE_3_DISH" : [
+			"CI_ADEN_LINE_3_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_LINE_45_DISH" : [
+			"CI_ADEN_LINE_45_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_LINE_6_DISH" : [
+			"CI_ADEN_LINE_6_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ADEN_SCHNITBAR_DISH" : [
+			"CI_ADEN_SCHNITBAR_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"ENTRY" : [
+			"CI_ENTRY" : [
 				
 			],
-			"EXIT" : [
+			"CI_EXIT" : [
 				
 			],
-			"MOLTKE_BUFFET_DISH" : [
+			"CI_MOLTKE_BUFFET_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"MOLTKE_CAFE_DISH" : [
+			"CI_MOLTKE_CAFE_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"MOLTKE_CHOICE_1_DISH" : [
+			"CI_MOLTKE_CHOICE_1_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"MOLTKE_CHOICE_2_DISH" : [
+			"CI_MOLTKE_CHOICE_2_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"MOLTKE_GG_DISH" : [
+			"CI_MOLTKE_GG_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"MOLTKE_SCHNITBAR_DISH" : [
+			"CI_MOLTKE_SCHNITBAR_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
-			"TELL_MEAL_NOT_EXIST" : [
+			"CI_TELL_MEAL_NOT_EXIST" : [
 				
 			],
-			"TELL_LINE_NOT_EXIST" : [
+			"CI_TELL_LINE_NOT_EXIST" : [
 				
 			]
 	}
