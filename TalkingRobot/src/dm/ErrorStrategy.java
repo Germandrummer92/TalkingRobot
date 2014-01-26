@@ -1,22 +1,28 @@
 package dm;
 
 import java.util.List;
-import java.util.Vector;
 
+/**
+ * 
+ * @author Meng Meng Yan
+ * @version 1.0
+ */
 public abstract class ErrorStrategy {
 
-  private Integer counter;
+  private Integer counter = 0;
 
   public abstract ErrorHandlingState handleError(List<String> errorWords);
 
   public void clearCounter() {
+	  counter = 0;
   }
 
   public Integer getCounter() {
-  return null;
+	  return counter;
   }
 
   protected void riseCounter() {
+	  counter++;
   }
 
 }
