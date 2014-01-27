@@ -1,15 +1,26 @@
 package dm;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import data.Data;
+import data.IngredientData;
 import data.KeywordData;
+import data.RecipeData;
+import data.ToolData;
+import data.UserData;
 
 
 /**
  * The Dictionary of all the current keywords we have.
  * @author Daniel Draper
- * @version 1.0
+ * @version 1.3
  *
  */
 public class Dictionary {
@@ -57,4 +68,51 @@ public class Dictionary {
 	  return keywordList;
   }
 
+  /**
+   * Creates a new Keyword, adds it to the Dictionary and saves it in the corresponding Keyword Grammar file.
+   * @param keyword the actual keyword
+   * @param priority the keyword's priority
+   * @param dialogState the DialogState the keyword will point to
+   * @param ref
+   */
+  
+  public void addKeyword(String keyword, int priority, DialogState dialogState, Data ref) {
+	  Keyword kw = new Keyword(new KeywordData(keyword, dialogState, priority, ref));
+	  kw.getKeywordData().writeFile();
+	  keywordList.add(kw);
+	  String file;
+	  switch (ref.getClass().getName()) {
+	  case "data.UserData" : file = "user"; break;
+	  case "data.ToolData" : file = "tool"; break;
+	  case "data.IngredientData" : file = "ingredient";break;
+	  case "data.RecipeData" : file = "recipe"; break;
+	  default : return;
+	  }
+	  FileWriter pw = null;
+	  try {
+		  pw = new FileWriter(new File("resources/nlu/Phoenix/TalkingRobot/Keyword/" + file), true);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	 if (pw != null) {
+		 try {
+			 pw.append("\n");
+			pw.append("\t\t(" + keyword + ")");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	 try {
+		pw.close();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	 }
+	  
+  }
+  
+ /* Test: public static void main(String[] args) {
+	  Dictionary d = new Dictionary();
+	  for (User u : DialogManager.giveDialogManager().getUserList())
+	  d.addKeyword(u.getUserData().getUserName(), 100, new StartState(Start.S_USER_FOUND), u.getUserData());
+  }*/
 }

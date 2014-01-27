@@ -71,8 +71,8 @@ public class KeywordData implements Data {
 	public void createFromJSONText(String jsonString) {
 		//Needed for Generic Enum Deserialization
 				EnumDeserializer des = new EnumDeserializer();
-				
-				Gson creator = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).create();
+				DataDeserializer d = new DataDeserializer();
+				Gson creator = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(Data.class, d).create();
 		KeywordData newData = creator.fromJson(jsonString, this.getClass());
 		this.wordID = newData.getWordID();
 		this.word = newData.getWord();
@@ -192,8 +192,8 @@ public class KeywordData implements Data {
 		File load = new File("resources/files/KeywordData/");
 		//Needed for Generic Enum Deserialization
 		EnumDeserializer des = new EnumDeserializer();
-		
-		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).create();
+		DataDeserializer d = new DataDeserializer();
+		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
 		ArrayList <KeywordData> res = new ArrayList <KeywordData>();
 		for (File f : load.listFiles()) {
 			BufferedReader br = null;
