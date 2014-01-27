@@ -1,4 +1,4 @@
-{
+﻿{
     "dm.StartState" : {
 			"S_ENTRY": [
 				"Hello, I'm <o>",
@@ -56,12 +56,15 @@
 				"We have just cooked something delicious"
 			],
 			"RA_RECIPE_NOT_FOUND" : [
+				"I have never heard of <o>. Would you like to teach me how to prepare it"
+				"<o> sound like a interesting recipe. Would you tell me how to cook it"
+				"I think <o> sounds delicious, but i don't know how to preapre it. Would you tesch me"
 				
 			],
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
-				“[s] comes from <o> from”
-				“You can find [s] in a lot of restaurants in <o>”
-				“You really do not know that [s] comes from <o>. Good that you have bought me”
+				“{c} comes from <o> from”
+				“You can find {c} in a lot of restaurants in <o>”
+				“You really do not know that {c} comes from <o>. Good that you have bought me”
 				
 			],
 			"RA_TELL_CREATOR" : [
@@ -107,7 +110,7 @@
 				“What a strange request, I do not think anybody uses this tool when preparing <o>”
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
-				“To prepare this recipe you will need the following ingredients <o>. The tools you will need are {c}. When you have them do as follows [s]”
+				“To prepare this recipe you will need the following ingredients and tools <o>. When you have them follow the following steps {c}”
 				
 			]
 	},
