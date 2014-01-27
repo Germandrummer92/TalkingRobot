@@ -23,48 +23,18 @@ public class PhoenixAdapter {
   public LinkedList<String> operatePhoenix(String input, String runParse, int extractFlag, File compile) {
 	  LinkedList<String> phoenixOutput = new LinkedList<String>();
 	  
+	  System.out.println(runParse);
+	  
 	  try {
 		  Runtime rt = Runtime.getRuntime();
-		  Process compileGra = rt.exec("tcsh compile", null, compile.getAbsoluteFile());
-		  
-		  BufferedReader stdin1 = new BufferedReader(new InputStreamReader(compileGra.getInputStream()));
-		  BufferedReader stderr1 = new BufferedReader(new InputStreamReader(compileGra.getErrorStream()));
-		  
-		  String phoenixLine = null;
-		  
-		  System.out.println("compile regular");
-		  while ((phoenixLine = stdin1.readLine()) != null) {
-			  phoenixOutput.add(phoenixLine);
-			  System.out.println(phoenixLine);
-		  }
-		  System.out.println("compile regular end");
-//		  
-		  System.out.println("compile error");
-		  while ((phoenixLine = stderr1.readLine()) != null) {
-			  System.out.println(phoenixLine);
-		  }
-		  System.out.println("compile error end");
-		  
-//		  compileGra.destroy();
-//
-//		  File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
-//		  PrintWriter writer = new PrintWriter(file, "UTF-8");
-//		  writer.println(input);
-//		  writer.close();
-		  
-//		  BufferedWriter output = new BufferedWriter(new FileWriter(file));
-//		  output.write(input);
-//		  output.close();
-		  
-		  
+		  rt.exec("tcsh compile", null, compile.getAbsoluteFile());
 
-//		  @SuppressWarnings("resource")
-//		Scanner sc = new Scanner(System.in);
+		  File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
+		  PrintWriter writer = new PrintWriter(file, "UTF-8");
+		  writer.println(input);
+		  writer.close();
 		  
-//		  Runtime rt2 = Runtime.getRuntime();
-//		  Process phoenix = rt2.exec("tcsh " + runParse + " < input", null, new File("resources/nlu/Phoenix/TalkingRobot"));
-		  
-		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", "run_parse_keyword");
+		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", runParse);
 		  phoenixBuilder.directory(new File("resources/nlu/Phoenix/TalkingRobot"));
 		  phoenixBuilder.redirectInput(new File("resources/nlu/Phoenix/TalkingRobot/input"));
 		  Process phoenix = phoenixBuilder.start();
@@ -77,31 +47,59 @@ public class PhoenixAdapter {
 		  
 		  System.out.println("run error");
 		  while ((phoenixLine2 = stderr2.readLine()) != null) {
+			  
 			  System.out.println(phoenixLine2);
 		  }
 		  System.out.println("run error end");
 
 		  System.out.println("run regular");
 		  while ((phoenixLine2 = stdin2.readLine()) != null) {
-			  phoenixOutput.add(phoenixLine2);
+
+			  phoenixOutput = insertWords(extractFlag, phoenixOutput, phoenixLine2);
 			  System.out.println(phoenixLine2);
 		  }
 		  System.out.println("run regular end");
 		  
 		  
-		  System.out.println("exec done \n");
 	  } catch (IOException e) {
 		  e.printStackTrace();
 	  }
 	  return phoenixOutput;
   }
 
+private LinkedList<String> insertWords(int extractFlag,
+		LinkedList<String> list, String phoenixLine) {
+	if(extractFlag == 0) {
+		if(phoenixLine.matches("Keyword:.+")) {
+			String[] help = phoenixLine.split("Keyword:");
+			String[] keyword = help[help.length - 1].split("[a-z()\\[\\]_]");
+			for(int i = 0; i < keyword.length; i++) {
+				if(!keyword[i].equals(" ")
+						&& !keyword[i].equals("")
+						&& !keyword[i].matches("[A-Z]"))  {
+					System.out.println(keyword [i]);
+					if(!list.contains(keyword[i].trim().toLowerCase())) {
+						list.add(keyword[i].trim().toLowerCase());
+					}
+				}
+			}
+			
+		}
+	} else {		
+		if(phoenixLine.matches("Approval:.+")) {
+			String[] keyword = phoenixLine.split("Approval:");
+			list.add(keyword[keyword.length - 1].trim());
+		}
+	}
+	return list;
+}
+
 /**
  * 
  */
 
-public static void main(String[] args) {
-	PhoenixAdapter pa = new PhoenixAdapter();
-	pa.operatePhoenix("Hello,  can you tell me how to make Spaghetti?", null, 1, new File("resources/nlu/Phoenix/TalkingRobot/Keyword"));
-}
+//public static void main(String[] args) {
+//	PhoenixAdapter pa = new PhoenixAdapter();
+//	pa.operatePhoenix("Hello,  can you tell me how to make Spaghetti?", null, 1, new File("resources/nlu/Phoenix/TalkingRobot/Keyword"));
+//}
 }
