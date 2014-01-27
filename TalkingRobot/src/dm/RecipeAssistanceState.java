@@ -9,8 +9,8 @@ import data.ToolData;
 
 /**
  * This class represents the different States a Recipe Assistance Dialog can have.
- * @author Daniel Draper
- * @version 1.0
+ * @author Aleksandar Andonov
+ * @version 1.2
  *
  */
 public class RecipeAssistanceState extends DialogState {
@@ -95,6 +95,11 @@ public class RecipeAssistanceState extends DialogState {
 		return output;  
   }
 
+  /**
+   * Returns the tools of a recipe as a string with commas
+   * @param recipe the recipe from which the tool should be taken
+   * @return the tools separated by commas
+   */
 private String getTools(RecipeData recipe) {
 	String res = "";
 	ArrayList<ToolData> tools = recipe.getTools();
@@ -110,6 +115,11 @@ private String getTools(RecipeData recipe) {
 	return res;
 }
 
+/**
+ * Returns the steps of a recipe as a single String.
+ * @param recipe the recipe to which the steps belong
+ * @return all steps as a string
+ */
 private String getSteps(RecipeData recipe) {
 	String res = "";
 	ArrayList<RecipeStepData> steps = recipe.getSteps();
@@ -123,6 +133,11 @@ private String getSteps(RecipeData recipe) {
 	return res;
 }
 
+/**
+ * All ingredients of a recipe as a string, separated by commas
+ * @param recipe the recipe with which the ingredients are associated
+ * @return the ingredients of the recipe as a string.
+ */
 private String getIngredients(RecipeData recipe) {
 	String res = "";
 	ArrayList<IngredientData> ingreds = recipe.getIngredients();
