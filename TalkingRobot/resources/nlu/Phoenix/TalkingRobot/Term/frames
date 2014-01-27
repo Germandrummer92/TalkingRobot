@@ -7,4 +7,6 @@
 	NETS: 
 		[recipe_name]
 		[recipe_ingredient_or_tool]
+		[recipe_origin]
+		[user_name]
 ;

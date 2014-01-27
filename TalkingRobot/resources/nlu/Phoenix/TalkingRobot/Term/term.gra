@@ -3,14 +3,30 @@
 
 #Recipe Name
 [recipe_name]
-	(*[time] *[want] [teach] *[you])
-	( *[want] [teach] *[you] *[time])
+	(*[want] [teach] *[you] *[a] *recipe *[named])
+	( *[want] [teach] *[you] *[a] *recipe *[named])
+	(*for [time])
 ;
 
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
-	(*[person] [need] *[a])
+	(*for *[a] *recipe [person]) 
+	([need] *[a])
+	(for now)
 	(and *also *[a])
+;
+
+#Recipe Origin
+[recipe_origin]
+	(*[a] [is] from)
+	(it is from)
+; 
+
+#User Name
+[user_name]
+	(my name is)
+	(is my name)
+	(i am *called)
 ;
 
 
@@ -24,6 +40,7 @@ JUST
 	(just)
 	(simply)
 	(only)
+	(really)
 WANT
 	(want)
 	(wants)
@@ -72,6 +89,15 @@ NEED
 [a]
 	(a)
 	(the)
+	(this)
+	(that)
+	(these)
+	(those)
+;
+
+[named]
+	(named)
+	(called)
 ;
 
 [time]
