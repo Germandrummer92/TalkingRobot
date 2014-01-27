@@ -251,6 +251,9 @@
 			]
 	},
 	"dm.CanteenRecommendationState" : {
+			"CR_ASK_PREFERENCE" : [
+				
+			],
 			"CR_ADEN_CAFE_DISH" : [
 				"If you want something quick and light",
 				"If you don't have big hunger"

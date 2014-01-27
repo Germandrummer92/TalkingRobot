@@ -3,6 +3,8 @@ public enum CanteenRecom {
 
   CR_ENTRY,
   
+  CR_ASK_PREFERENCE,
+  
   CR_ADEN_LINE_1_DISH,
 
   CR_ADEN_LINE_2_DISH,

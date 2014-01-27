@@ -247,6 +247,9 @@
 			]
 	},
 	"dm.CanteenInformationState" : {
+			"CR_ASK_PREFERENCE" : [
+			    "I can hear your stomach drumming "
+			],
 			"CI_ADEN_CAFE_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",

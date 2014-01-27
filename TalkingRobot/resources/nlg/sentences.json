@@ -192,6 +192,12 @@
 			]
 	},
 	"dm.CanteenRecommendationState" : {
+			"CR_ASK_PREFERENCE" :[
+				"Do you have some thing particularly want to have? ",
+				"What do you prefer to have?"
+				
+			],
+	
 			"CR_ADEN_CAFE_DISH" : [
 				"I will suggest to try <o> in cafeteria, if you want {c}",
 				"<o> sounds nice from cafeteria, do you want to have it?",

@@ -29,6 +29,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		case CR_ENTRY:
 			updateStateEntry(keywords, terms);
 			break;
+		case CR_ASK_PREFERENCE:
+			updateStateAskPreference(keywords, terms);
+			break;
 		case CR_ADEN_LINE_1_DISH:
 			updateAdenLine1Dish(keywords, terms);
 			break;
@@ -87,6 +90,11 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 }
 
+
+private void updateStateAskPreference(List<Keyword> keywords, List<String> terms) {
+	// TODO Auto-generated method stub
+	
+}
 
 private void updateMoltkeActthekDish(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub

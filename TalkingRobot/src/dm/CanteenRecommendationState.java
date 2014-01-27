@@ -34,6 +34,9 @@ public class CanteenRecommendationState extends DialogState {
 	  Dialog currentDialog = DialogManager.giveDialogManager().getCurrentDialog();
 	  switch((CanteenRecom)getCurrentState()) {
 	  case CR_ENTRY:
+		  setQuestion(false);
+		  return null;
+	  case CR_ASK_PREFERENCE:
 		  setQuestion(true);
 		  return null;
 	  case CR_ADEN_LINE_1_DISH:
