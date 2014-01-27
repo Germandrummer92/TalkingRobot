@@ -1,5 +1,12 @@
 package dm;
 
+import java.util.ArrayList;
+
+import data.IngredientData;
+import data.RecipeData;
+import data.RecipeStepData;
+import data.ToolData;
+
 /**
  * This class represents the different States a Recipe Assistance Dialog can have.
  * @author Daniel Draper
@@ -30,8 +37,106 @@ public class RecipeAssistanceState extends DialogState {
    * @see DialogState#getOutputKeyword()
    */
   public String getOutputKeyword() {
-  return null;
+		  RecipeAssistanceDialog dialog = (RecipeAssistanceDialog) DialogManager.giveDialogManager().getCurrentDialog();
+		  RecipeData recipe = dialog.getCurrRecipe().getRecipeData();
+		  String output = "";
+		  String recipeName = recipe.getRecipeName();
+		  String ingreds = getIngredients(recipe);
+		  String steps = getSteps(recipe);
+		  String tools = getTools(recipe);
+		  
+	 switch ((RecipeAssistance)getCurrentState()) {
+		case RA_ENTRY:
+			setQuestion(false);
+			break;
+		case RA_EXIT:
+			setQuestion(false);
+			break;
+		case RA_RECIPE_NOT_FOUND:
+			setQuestion(true);
+			return "<" + recipeName + ">";
+		case RA_TELL_COUNTRY_OF_ORIGIN:
+			setQuestion(false);
+			return "<" + recipe.getOriginalCountry() + "> {" + recipeName + "}";
+		case RA_TELL_CREATOR:
+			setQuestion(false);
+			return "<" + recipe.getCreator().getUserName() + "> {" + recipeName + "}";
+		case RA_TELL_INGREDIENTS:
+			setQuestion(false);
+			return "<" + ingreds + ">";
+		case RA_TELL_INGREDIENT_FOUND:
+			setQuestion(false);
+			return "<" + recipeName + ">";
+		case RA_TELL_INGREDIENT_NOT_FOUND:
+			setQuestion(false);
+			return "<" + recipeName + ">";
+		case RA_TELL_NUM_OF_STEPS:
+			setQuestion(false);
+			return "<" + Integer.toString(recipe.getNumOfSteps()) + ">";
+		case RA_TELL_STEPS:
+			setQuestion(false);
+			return "<" + steps + "> {" + recipeName + "}";
+		case RA_TELL_TOOLS:
+			setQuestion(false);
+			return "<" + tools + "> {" + recipeName + "}";
+		case RA_TELL_TOOL_FOUND:
+			setQuestion(false);
+			return "<" +recipeName + ">";
+		case RA_TELL_TOOL_NOT_FOUND:
+			setQuestion(false);
+			return "<" +recipeName + ">";
+		case RA_TELL_WHOLE_RECIPE:
+			setQuestion(false);
+			return "<" + ingreds + ", " + tools +"> {" + steps + "}";
+		default:
+			break;
+		  }
+		  
+		return output;  
   }
+
+private String getTools(RecipeData recipe) {
+	String res = "";
+	ArrayList<ToolData> tools = recipe.getTools();
+	if (tools.size() == 0) {
+		return res;
+	}
+	
+	ToolData last = tools.remove(recipe.getTools().size() - 1);
+	for (ToolData tool : tools) {
+		res += tool.getToolName() + " ,";
+	}
+	res += last.getToolName();
+	return res;
+}
+
+private String getSteps(RecipeData recipe) {
+	String res = "";
+	ArrayList<RecipeStepData> steps = recipe.getSteps();
+	if (steps.size() == 0) {
+		return res;
+	}
+	
+	for (RecipeStepData step : steps) {
+		res += step.getDescription() + " ";
+	}
+	return res;
+}
+
+private String getIngredients(RecipeData recipe) {
+	String res = "";
+	ArrayList<IngredientData> ingreds = recipe.getIngredients();
+	if (ingreds.size() == 0) {
+		return res;
+	}
+	
+	IngredientData last = ingreds.remove(recipe.getIngredients().size() - 1);
+	for (IngredientData ing : ingreds) {
+		res += ing.getIngredientName() + " ,";
+	}
+	res += last.getIngredientName();
+	return res;
+}
 
 
 
