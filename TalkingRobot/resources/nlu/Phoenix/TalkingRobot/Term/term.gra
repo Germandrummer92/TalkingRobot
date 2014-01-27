@@ -4,7 +4,7 @@
 #Recipe Name
 [recipe_name]
 	(*[want] [teach] *[you] *[a] *recipe *[named])
-	( *[want] [teach] *[you] *[a] *recipe *[named])
+	(*[want] [teach] *[you] *[a] *recipe *[named])
 	(*for [time])
 ;
 
@@ -14,6 +14,12 @@
 	([need] *[a])
 	(for now)
 	(and *also *[a])
+	([is] *[a] COMPONENT)
+COMPONENT
+	(ingredient)
+	(ingredients)
+	(*kitchen tool)
+	(*kitchen tools)
 ;
 
 #Recipe Origin
@@ -29,7 +35,11 @@
 	(i am *called)
 ;
 
-
+[is]
+	(is)
+	(are)
+;
+	
 [want]
 	( *I *JUST WANT *to)
 I
