@@ -21,7 +21,7 @@ public class KeywordAnalyzer extends InputAnalyzer {
 	 */
 	public KeywordAnalyzer() {
 		this.runParse = "run_parse_keyword";
-		this.extractFlag = 1;
+		this.extractFlag = 0;
 		this.compile = new File ("resources/nlu/Phoenix/TalkingRobot/Keyword/");
 	}
 
@@ -30,9 +30,14 @@ public class KeywordAnalyzer extends InputAnalyzer {
    */
   public List<String> analyze(String input) {
     List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
-    System.out.println(result.size());
-    for(int i = 0; i < result.size(); i++){
-    	System.out.println(result.get(i) + "\n");
+    if(result == null) {
+    	System.out.println("hi");
+    }
+    if(!result.isEmpty()) {
+	    System.out.println(result.size());
+	    for(int i = 0; i < result.size(); i++){
+	    	System.out.println(result.get(i) + "hi \n");
+	    }
     }
 		return result;
   }
