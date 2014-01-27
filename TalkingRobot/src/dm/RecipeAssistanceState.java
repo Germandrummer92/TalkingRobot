@@ -10,6 +10,7 @@ import data.ToolData;
 /**
  * This class represents the different States a Recipe Assistance Dialog can have.
  * @author Aleksandar Andonov
+ * @author Daniel Draper
  * @version 1.2
  *
  */
