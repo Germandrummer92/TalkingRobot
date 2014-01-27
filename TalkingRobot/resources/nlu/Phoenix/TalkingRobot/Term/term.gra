@@ -14,8 +14,8 @@
 	([is] [need] *for)								# e.g. "____ is needed for (recipe)"
 	(for [need]) 									# e.g. "for (recipe) ______ is needed"
 	(for)
-	(and *also *[a])
 	([is] *[a] COMPONENT *of)
+	(and *also *[a])
 COMPONENT
 	(ingredient)
 	(ingredients)
