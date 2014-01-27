@@ -59,33 +59,55 @@
 				
 			],
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
+				“[s] comes from <o> from”
+				“You can find [s] in a lot of restaurants in <o>”
+				“You really do not know that [s] comes from <o>. Good that you have bought me”
 				
 			],
 			"RA_TELL_CREATOR" : [
-				
+				“I learned preparing {c} from <o>”
+				“{c} used to be a secret recipe which <o> told me about”
+				“<o> told me how to prepare {c}”
 			],
 			"RA_TELL_INGREDIENTS" : [
-				
+				“The ingredients needed for this recipe are <o>”
+				“You should get <o> in order to prepare this recipe”
+				“All that you need for this recipe is <o>”
 			],
 			"RA_TELL_INGREDIENT_FOUND" : [
+				“Yes you will need this ingredient to prepare <o>”
+				“<o> can be prepared properly only when you have this ingredient”
 				
 			],
 			"RA_TELL_NUM_OF_STEPS" : [
+				“This ingredient has <o> steps”
+				“You will have to go through <o> steps to prepare this recipe”
+				“You should finish <o> steps to prepare this meal”
 				
 			],
 			"RA_TELL_STEPS" : [
-				
+				“To prepare {c} you should do as follows <o>”
+				“If you want to cook {c} do the following <o>”
+				“Making some delicious {c} requires you to do as follows <o>”
 			],
 			"RA_TELL_TOOLS" : [
-				
+				“The tools needed to prepare {c} are <o>”
+				“If you want to prepare {c} you should find the following tools <o>”
+				“You need <o> in order to prepare {c}”
+
 			],
 			"RA_TELL_TOOL_FOUND" : [
-				
+				“Yes you need this in order to prepare <o>”
+				“If you want to cook <o>, you should get this tool”
+				“This tool is needed for cooking <o>”
 			],
 			"RA_TELL_TOOL_NOT_FOUND" : [
-				
+				“No, as far as I know this tool is not needed in order to prepare <o>”
+				“Well, I do not really use this when I prepare <o>”
+				“What a strange request, I do not think anybody uses this tool when preparing <o>”
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
+				“To prepare this recipe you will need the following ingredients <o>. The tools you will need are {c}. When you have them do as follows [s]”
 				
 			]
 	},
