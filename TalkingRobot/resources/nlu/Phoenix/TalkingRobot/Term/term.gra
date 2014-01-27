@@ -10,8 +10,9 @@
 
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
-	(for *now *[a] *recipe [person] [need] *[a]) 
-	([person] [need] *[a])
+	(*for *now *[a] *recipe [person] [need] *[a]) 	# e.g. "for (recipe) you need _____"
+	([is] [need] *for)								# e.g. "____ is needed for (recipe)"
+	(for [need]) 									# e.g. "for (recipe) ______ is needed"
 	(for)
 	(and *also *[a])
 	([is] *[a] COMPONENT *of)
@@ -60,12 +61,7 @@ WANT
 ;
 
 [need]
-	( *I *JUST NEED *to)
-I
-	(i)
-	(we)
-	(*for you)
-	(*the me)
+	(*JUST NEED *to)
 JUST
 	(just)
 	(simply)
@@ -73,8 +69,8 @@ JUST
 NEED
 	(need)
 	(needs)
-	(*is needed)
-	(*is necessary)
+	(*[is] needed)
+	(*[is] necessary)
 ;
 
 [you]
