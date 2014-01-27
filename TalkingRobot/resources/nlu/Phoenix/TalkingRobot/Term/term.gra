@@ -10,11 +10,11 @@
 
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
-	(*for *[a] *recipe [person]) 
-	([need] *[a])
-	(for now)
+	(for *now *[a] *recipe [person] [need] *[a]) 
+	([person] [need] *[a])
+	(for)
 	(and *also *[a])
-	([is] *[a] COMPONENT)
+	([is] *[a] COMPONENT *of)
 COMPONENT
 	(ingredient)
 	(ingredients)
