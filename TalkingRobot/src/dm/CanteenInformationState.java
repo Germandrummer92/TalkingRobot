@@ -62,6 +62,7 @@ public class CanteenInformationState extends DialogState {
 		  setQuestion(false);
 		  price = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(2).getTodayMeals().get(0).getPrice();
+		  //FIXME wrong format
 		  output = "<" + String.valueOf(price) + ">";
 		  output = output + " ,{" + time + "}";	
 		  return output;
