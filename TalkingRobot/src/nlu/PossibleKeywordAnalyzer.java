@@ -34,35 +34,72 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	 * @see InputAdapter#analyze()
 	 */
 	public List<String> analyze(String input) {
-		  LinkedList<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
+		 LinkedList<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
 		  
-		  LinkedList<String> notPossibleKeywords = new LinkedList<String>();
+		 LinkedList<String> possibleKeywords = this.cleanInput(input, result);
+		 LinkedList<String> possibleKeywords2 = this.checkForKeywordsConsistingOfSeveralWords(possibleKeywords, result);
+		 possibleKeywords = checkForKeywordsConsistingOfOneWord(possibleKeywords); 
 		  
-		  for(int i = 0; i < result.size(); i++) {
-			  String actualKeyword = compareToAll(result.get(i));
-			  
-			  if(actualKeyword == null) {
-				  notPossibleKeywords.add(result.get(i));
-			  } else {
-				  
-				  Levenshtein levenDistance = new Levenshtein(result.get(i), actualKeyword);
-				  int distance = levenDistance.getDistance();
-				  
-				  result.set(i, concatenateWords(result.get(i), actualKeyword, distance));
-			  }
-			  
-		  }
-		  
-		  if(notPossibleKeywords.isEmpty()) {
-			  return result;
-		  } else {
-			  return cleanOfNotPossibleKeywords(result, notPossibleKeywords);
-		  }
-	  }
-	  
-	  
+		 return cleanOfNotPossibleKeywords(possibleKeywords);
+		 
+	 }
 
-	  /**
+
+	private LinkedList<String> checkForKeywordsConsistingOfOneWord(
+			LinkedList<String> possibleKeywords) {
+		for(int i = 0; i < possibleKeywords.size(); i++) {
+			 String actualKeyword = compareToAll(possibleKeywords.get(i));
+			  
+			 if(actualKeyword != null) {
+				 Levenshtein levenDistance = new Levenshtein(possibleKeywords.get(i), actualKeyword);
+				 int distance = levenDistance.getDistance();
+				 possibleKeywords.set(i, concatenateWords(possibleKeywords.get(i), actualKeyword, distance));
+			 }
+		 }
+		return possibleKeywords;
+	}
+
+	private LinkedList<String> checkForKeywordsConsistingOfSeveralWords(
+			LinkedList<String> possibleKeywords, LinkedList<String> result) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private LinkedList<String> cleanInput(String input,
+			LinkedList<String> result) {
+		  
+		LinkedList<String> output = new LinkedList<String>();
+		output.add(input);
+		
+		for(int i = 0; i < result.size(); i++) {
+			LinkedList<String> nextRound = new LinkedList<String>();
+			for(int j = 0; j < output.size(); j++) {
+			
+				String[] help = output.get(j).split(result.get(i));
+					
+				for(int k = 0; k < help.length; k++) {
+					if(help[k] != "") {
+						nextRound.add(help[k].trim());
+					}
+				}
+				
+			}
+			output = nextRound;
+		}
+		
+		LinkedList<String> singleWords = new LinkedList<String>();
+		for(int i= 0; i < output.size(); i++) {
+			String[] help = output.get(i).split(" ");
+			for(int j = 0; j < help.length; j++) {
+				if(help[j] != "") {
+					singleWords.add(help[j].trim());
+				}
+			}
+		}
+		return singleWords;
+	}
+
+	/**
 	   * concatenates the three arguments to one String.
 	   * 
 	   * @param s1 first String; a possible keyword
@@ -111,18 +148,23 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	   * @param notPossibleKeywords improbable keywords
 	   * @return list which only contains probable keywords
 	   */
-	  private List<String> cleanOfNotPossibleKeywords(List<String> possibleKeywords,
-			  List<String> notPossibleKeywords) {
+	  private List<String> cleanOfNotPossibleKeywords(List<String> possibleKeywords) {
 		  
-		  int j = notPossibleKeywords.size() - 1;
-		  while (j >= 0) {
-			  for(int i = (possibleKeywords.size() - 1); i >= 0; i--) {
-				  if(possibleKeywords.get(i).equals(notPossibleKeywords.get(j))) {
-					  possibleKeywords.remove(i);
-					  j--;
-				  }
-			  }
+		  LinkedList<String> result = new LinkedList<String>();
+		  
+		  for(int i = 0; i < possibleKeywords.size(); i++) {
+			  if(possibleKeywords.get(i).matches(".*;.*;[0-9]+")) { result.add(possibleKeywords.get(i)); }
 		  }
-		  return possibleKeywords;
+		  return result;
 	  }
+	  
+	public static void main(String[] args) {
+		PossibleKeywordAnalyzer pwa = new PossibleKeywordAnalyzer();
+
+		String help = "hi i am a looser";
+		String[] test = help.split("idiot");
+		for(int i = 0; i < test.length; i++) {
+			System.out.println(test[i]);
+		}
+	}
 }
