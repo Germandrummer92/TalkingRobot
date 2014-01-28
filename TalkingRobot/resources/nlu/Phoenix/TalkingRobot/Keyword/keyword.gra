@@ -3,7 +3,8 @@
 
 #canteen assistance
 [canteen_assistance]
-	([_canteen] *[Canteen])
+	([_canteen])
+	([Canteen])
 
 ;
 
@@ -70,14 +71,18 @@
 
 #canteen information
 [canteen_information]
-	([_offer] *[Canteen] *[Time_extend])
-	([_offer]  *[Time_extend] *[Canteen])
-	([_where_is] *line [Number])
-	([_price] *line [Number] *[Canteen])
-	(*[_where] [Menu])
+	([_offer])
+	([Canteen])
+	([Time_extend])
+	([_where_is])
+	(line [Number])
+	([_price])
+	([Canteen])
+	([_where_eat])
+	([Menu])
 ;
 	
-[_where]
+[_where_eat]
 	(where)
 	(which line)
 	(which canteen)
@@ -87,8 +92,8 @@
 	(what is offered)
 	(what is served)
 	(what is available)
-	(what can [i] get)
-	(what can [i] eat)
+	(what can get)
+	(what can eat)
 	(offer)
 	(what [_meal])
 	(list)
@@ -106,14 +111,15 @@
 	(show me where)
 	(where is)
 	(tell me where)
+	(way)
 ;
 
 #canteen recommendation
 [canteen_recommendation]
-	([_recommendation] *[Canteen] *line *[Number] *[Time_extend])
-	([_recommendation] *line *[Number] *[Canteen] *[Time_extend])
-	([_recommendation] *[Time_extend] *[Canteen] *line *[Number])
-	([_recommendation] *[Time_extend] *line *[Number] *[Canteen])
+	([_recommendation])
+	([Canteen])
+	(*line [Number])
+	([Time_extend])
 	([Country])
 	([Category])
 ;
@@ -148,17 +154,33 @@
 
 #recipe assistance
 [recipe_assistance]
-	([How] [Recipe])
-	([What] [Recipe])
+	([_delete])
+	([How])
+	([Recipe])
+	([What])
 	([_next])
 	([_previous])
 	([_current])
-	([Recipe] ingredients)
-	(cooking ingredients)
+	(ingredients)
+	(cooking)
+	([_how_cook])
+	
+	
+	(cook)
+	([Recipe])
+;	
+
+[_how_cook]
 	(how cook)
 	(what need cook)
-	(cook [Recipe])
-;	
+;
+
+[_delete]
+	(delete)
+	(erase)
+	(cancel)
+	(clear)
+;
 
 [Recipe]
 #include recipe
@@ -184,10 +206,12 @@
 
 #recipe learning
 [recipe_learning]
-	([_next] *COMPONENT)
-	([_last] *COMPONENT)
+	([_next])
+	(COMPONENT)
+	([_last])
 	([_end])
-	([_teach_you] *[Recipe])
+	([_teach_you])
+	([Recipe])
 	
 	
 COMPONENT
@@ -203,11 +227,6 @@ COMPONENT
 	(instruct you)
 	(tell you how)
 	(tell you about)
-;
-
-[i]
- 	(i)
- 	(we)
 ;
 
 [_end]
@@ -247,10 +266,9 @@ THIS
 
 #cooking assistance
 [cooking_assistance]	
-	(BRING [Ingredient])
-	(BRING [Tool])
-	(BRING [Ingredient] PLACES)
-	(BRING [Tool] PLACES)
+	([_bring])
+	([Ingredient])
+	([Tool])
 	(PLACES)
 	
 PLACES
@@ -266,8 +284,9 @@ PLACES
 	(upper drawer)
 	(centre drawer)
 	(center drawer)
+;
 	
-BRING
+[_bring]
 	(bring)
 	(get)
 	(give)
@@ -283,9 +302,9 @@ BRING
 ;
 
 [login]
-	([_hi] *[_name] *[User])
 	([_hi])
-	([_name] [User])
+	([_name])
+	([User])
 	(student)
 	(employee)
 ;
@@ -353,4 +372,3 @@ MEAT
 [Country]
 #include country
 ;
-
