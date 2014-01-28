@@ -39,7 +39,7 @@ public class DialogManager {
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
 	  
 	  clearAllStrategies();
-	  
+	  previousDialog = currentDialog;
 	   List<Keyword> kws = dictionary.findKeywords(keywords);
 	   do {
 	  try {

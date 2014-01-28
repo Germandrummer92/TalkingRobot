@@ -1,4 +1,4 @@
-﻿{
+ï»¿{
     "dm.StartState" : {
 			"S_ENTRY": [
 				"Hello, I'm <o>",
@@ -12,9 +12,9 @@
 				"See you next time"
 			],
 			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
-				"What a pity"
-				"Okay, see you around!"
-				"That's okay"
+				"What a pity, please restart the conversation with me!"
+				"Okay, see you around, please restart the conversation!"
+				"That's okay! Please restart the conversation now!"
 			],
 			"S_USER_FOUND": [
 				"I've found your user history, <o>, how may I help you",
@@ -35,7 +35,7 @@
 				"Alright <o>, so do you study here"
 			],
 			"S_WAITING_FOR_EMPLOYEE_STATUS": [
-				"Are you a student or employee",
+				"Are you studying at the KIT",
 				"Do you study here",
 				"Are you a student"
 			],
@@ -62,55 +62,55 @@
 				
 			],
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
-				“{c} comes from <o> from”
-				“You can find {c} in a lot of restaurants in <o>”
-				“You really do not know that {c} comes from <o>. Good that you have bought me”
+				"{c} comes from <o> from"
+				"You can find {c} in a lot of restaurants in <o>"
+				"You really do not know that {c} comes from <o>. Good that you have bought me"
 				
 			],
 			"RA_TELL_CREATOR" : [
-				“I learned preparing {c} from <o>”
-				“{c} used to be a secret recipe which <o> told me about”
-				“<o> told me how to prepare {c}”
+				"I learned preparing {c} from <o>"
+				"{c} used to be a secret recipe which <o> told me about"
+				"<o> told me how to prepare {c}"
 			],
 			"RA_TELL_INGREDIENTS" : [
-				“The ingredients needed for this recipe are <o>”
-				“You should get <o> in order to prepare this recipe”
-				“All that you need for this recipe is <o>”
+				"The ingredients needed for this recipe are <o>"
+				"You should get <o> in order to prepare this recipe"
+				"All that you need for this recipe is <o>"
 			],
 			"RA_TELL_INGREDIENT_FOUND" : [
-				“Yes you will need this ingredient to prepare <o>”
-				“<o> can be prepared properly only when you have this ingredient”
+				"Yes you will need this ingredient to prepare <o>"
+				"<o> can be prepared properly only when you have this ingredient"
 				
 			],
 			"RA_TELL_NUM_OF_STEPS" : [
-				“This ingredient has <o> steps”
-				“You will have to go through <o> steps to prepare this recipe”
-				“You should finish <o> steps to prepare this meal”
+				"This ingredient has <o> steps"
+				"You will have to go through <o> steps to prepare this recipe"
+				"You should finish <o> steps to prepare this meal"
 				
 			],
 			"RA_TELL_STEPS" : [
-				“To prepare {c} you should do as follows <o>”
-				“If you want to cook {c} do the following <o>”
-				“Making some delicious {c} requires you to do as follows <o>”
+				"To prepare {c} you should do as follows <o>"
+				"If you want to cook {c} do the following <o>"
+				"Making some delicious {c} requires you to do as follows <o>"
 			],
 			"RA_TELL_TOOLS" : [
-				“The tools needed to prepare {c} are <o>”
-				“If you want to prepare {c} you should find the following tools <o>”
-				“You need <o> in order to prepare {c}”
+				"The tools needed to prepare {c} are <o>"
+				"If you want to prepare {c} you should find the following tools <o>"
+				"You need <o> in order to prepare {c}"
 
 			],
 			"RA_TELL_TOOL_FOUND" : [
-				“Yes you need this in order to prepare <o>”
-				“If you want to cook <o>, you should get this tool”
-				“This tool is needed for cooking <o>”
+				"Yes you need this in order to prepare <o>"
+				"If you want to cook <o>, you should get this tool"
+				"This tool is needed for cooking <o>"
 			],
 			"RA_TELL_TOOL_NOT_FOUND" : [
-				“No, as far as I know this tool is not needed in order to prepare <o>”
-				“Well, I do not really use this when I prepare <o>”
-				“What a strange request, I do not think anybody uses this tool when preparing <o>”
+				"No, as far as I know this tool is not needed in order to prepare <o>"
+				"Well, I do not really use this when I prepare <o>"
+				"What a strange request, I do not think anybody uses this tool when preparing <o>"
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
-				“To prepare this recipe you will need the following ingredients and tools <o>. When you have them follow the following steps {c}”
+				"To prepare this recipe you will need the following ingredients and tools <o>. When you have them follow the following steps {c}"
 				
 			]
 	},

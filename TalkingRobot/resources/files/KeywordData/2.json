@@ -1,1 +1,1 @@
-{"wordID":2,"word":"Daniel","dialogState":{"currentState":{"name":"S_USER_FOUND"}},"priority":100,"dataReference":{"userID":0,"userName":"Daniel","isStudent":true,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Jan 18, 2014 6:28:12 PM"}}
+{"wordID":2,"word":"daniel","dialogState":{"currentState":{"name":"S_USER_FOUND"}},"priority":100,"dataReference":{"userID":0,"userName":"Daniel","isStudent":true,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Jan 18, 2014 6:28:12 PM"}}
