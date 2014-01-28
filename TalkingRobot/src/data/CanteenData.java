@@ -262,7 +262,7 @@ public class CanteenData implements Data{
 			//SchnitzelBar
 			mealArray = day.getJSONArray("schnitzelbar");
 			lines.add(new LineData("schnitzel bar", getMeals(mealArray)));
-			//
+			//abend
 			mealArray = day.getJSONArray("abend");
 			lines.add(new LineData("dinner", getMeals(mealArray)));
 			//heisstheke
@@ -271,6 +271,12 @@ public class CanteenData implements Data{
 			//nmtisch???
 			mealArray = day.getJSONArray("nmtisch");
 			lines.add(new LineData("nmtisch", getMeals(mealArray)));
+			//update = linie 6
+			mealArray = day.getJSONArray("update");
+			lines.add(new LineData("line six", getMeals(mealArray)));
+			//aktion = curry queen
+			mealArray = day.getJSONArray("aktion");
+			lines.add(new LineData("Curry Queen", getMeals(mealArray)));
 		} catch (JSONException e) {
 			
 			e.printStackTrace();
@@ -296,9 +302,9 @@ public class CanteenData implements Data{
 			//Aktionstheke
 			mealArray = day.getJSONArray("aktion");
 			lines.add(new LineData("aktion", getMeals(mealArray)));
-			//Gut und günstig
+			//Gut und gunstig
 			mealArray = day.getJSONArray("gut");
-			lines.add(new LineData("Gut und günstig", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig", getMeals(mealArray)));
 			//Buffet
 			mealArray = day.getJSONArray("buffet");
 			lines.add(new LineData("buffet", getMeals(mealArray)));
@@ -372,9 +378,9 @@ public class CanteenData implements Data{
 			//Wahlessen 2
 			mealArray = day.getJSONArray("wahl2");
 			lines.add(new LineData("line two", getMeals(mealArray)));
-			//Gut und günstig
+			//Gut und gunstig
 			mealArray = day.getJSONArray("gut");
-			lines.add(new LineData("Gut und günstig", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig", getMeals(mealArray)));
 			//Buffet
 			mealArray = day.getJSONArray("buffet");
 			lines.add(new LineData("buffet", getMeals(mealArray)));
@@ -395,12 +401,12 @@ public class CanteenData implements Data{
 			}
 			JSONObject day = canteen.getJSONObject(unixTime);
 			
-			//Gut und günstig
+			//Gut und gunstig
 			JSONArray mealArray = day.getJSONArray("gut");
-			lines.add(new LineData("Gut und günstig", getMeals(mealArray)));
-			//Gut und Günstig 2
+			lines.add(new LineData("Gut und gunstig", getMeals(mealArray)));
+			//Gut und Gunstig 2
 			mealArray = day.getJSONArray("gut2");
-			lines.add(new LineData("Gut und günstig two", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig two", getMeals(mealArray)));
 		} catch (JSONException e) {
 			
 			e.printStackTrace();
