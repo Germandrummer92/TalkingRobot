@@ -34,7 +34,8 @@ public class CanteenRecommendationState extends DialogState {
     */
   public String getOutputKeyword() {
 	  Dialog currentDialog =(CanteenRecommendationDialog)DialogManager.giveDialogManager().getCurrentDialog();
-	  String time = ((CanteenRecommendationDialog) currentDialog).getWishDate();
+	  //String time = ((CanteenRecommendationDialog) currentDialog).getWishDate();
+	  String wishMeal = ((CanteenRecommendationDialog) currentDialog).getWishmeal();
 	  
 	  switch((CanteenRecom)getCurrentState()) {
 	  case CR_ENTRY:
@@ -48,91 +49,94 @@ public class CanteenRecommendationState extends DialogState {
 		  // we can just get todays meal?
 		  String output = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(0).getTodayMeals().toString() + ">";
-		  output = output +" ,{" + time + "}";	  
+		  output = output +" ,{" + wishMeal + "}";	  
 		  return output;
 	  case CR_ADEN_LINE_2_DISH:
 		  setQuestion(false);
 		  String output1 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(1).getTodayMeals().toString() + ">";
-		  output1 = output1 + " ,{" + time + "}";	
+		  output1 = output1 + " ,{" + wishMeal + "}";	
 		  return output1;
 	  case CR_ADEN_LINE_3_DISH:
 		  setQuestion(false);
 		  String output2 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(2).getTodayMeals().toString() + ">";
-		  output2 = output2 + " ,{" + time + "}";	
+		  output2 = output2 + " ,{" + wishMeal + "}";	
 		  return output2;
 	  case CR_ADEN_LINE_45_DISH:
 		  setQuestion(false);
 		  String output3 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(3).getTodayMeals().toString() + ">";
-		  output3 = output3 + " ,{" + time + "}";	
+		  output3 = output3 + " ,{" + wishMeal + "}";	
 		  return output3;
 	  case CR_ADEN_LINE_6_DISH:
 		  setQuestion(false);
-		  //FIXME there's no line 6 in canteen data?
+		  
 		  String output4 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
-				  .getCanteenData().getLines().get(4).getTodayMeals().toString() + ">";
-		  output4 = output4 + " ,{" + time + "}";	
+				  .getCanteenData().getLines().get(8).getTodayMeals().toString() + ">";
+		  output4 = output4 + " ,{" + wishMeal + "}";	
 		  return output4;
 	  case CR_ADEN_SCHNITBAR_DISH:
 		  setQuestion(false);
 		  String output5 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(4).getTodayMeals().toString() + ">";
-		  output5 = output5 + " ,{" + time + "}";	
+		  output5 = output5 + " ,{" + wishMeal + "}";	
 		  return null;
 	  case CR_ADEN_CURRYQ_DISH:
 		  setQuestion(false);
-		  // maybe directly in template?
+		  String output6 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
+				  .getCanteenData().getLines().get(9).getTodayMeals().toString() + ">";
+		  output6 = output6 + " ,{" + wishMeal + "}";	
+		  
 		  return null;
 	  case CR_ADEN_CAFE_DISH:
 		  setQuestion(false);
 		  String output7 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(6).getTodayMeals().toString() + ">";
-		  output7 = output7 + " ,{" + time + "}";
+		  output7 = output7 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_CHOICE_1_DISH:
 		  setQuestion(false);
 		  String output8 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(0).getTodayMeals().toString() + ">";
-		  output8 = output8 + " ,{" + time + "}";
+		  output8 = output8 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_CHOICE_2_DISH:
 		  setQuestion(false);
 		  String output9 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(1).getTodayMeals().toString() + ">";
-		  output9 = output9 + " ,{" + time + "}";
+		  output9 = output9 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_SCHNITBAR_DISH:
 		  setQuestion(false);
 		  String output10 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(5).getTodayMeals().toString() + ">";
-		  output10 = output10 + " ,{" + time + "}";
+		  output10 = output10 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_CAFE_DISH:
 		  setQuestion(false);
 		  //FIXME cafe in moltke gibts ned
 		  String output11 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(0).getTodayMeals().toString() + ">";
-		  output11 = output11 + " ,{" + time + "}";
+		  output11 = output11 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_ACTTHEK_DISH:
 		  setQuestion(false);
 		  String output12 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(2).getTodayMeals().toString() + ">";
-		  output12 = output12 + " ,{" + time + "}";
+		  output12 = output12 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_GG_DISH:
 		  setQuestion(false);
 		  String output13 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(3).getTodayMeals().toString() + ">";
-		  output13 = output13 + " ,{" + time + "}";
+		  output13 = output13 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_MOLTKE_BUFFET_DISH:
 		  setQuestion(false);
 		  String output14 = "<" + ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(4).getTodayMeals().toString() + ">";
-		  output14 = output14 + " ,{" + time + "}";
+		  output14 = output14 + " ,{" + wishMeal + "}";
 		  return null;
 	  case CR_TELL_MEAL_NOT_EXIST:
 		  setQuestion(false);
