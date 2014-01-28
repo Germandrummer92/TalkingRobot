@@ -6,6 +6,16 @@
 	([_yes])
 ;
 	
+[_indifferent]
+	(do not care)
+	(dont care)
+	(doesnt matter)
+	(does not matter)
+	(whatever)
+	(both fine)
+	(both ok)
+;
+
 [_yes]
 	(sure)
 	(yes)
