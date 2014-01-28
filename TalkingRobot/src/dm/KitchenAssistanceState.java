@@ -44,7 +44,7 @@ public class KitchenAssistanceState extends DialogState {
 		return output;
 	case KA_TELL_INGREDIENT_NOT_FOUND:
 		setQuestion(false);
-		return "<" + ((Ingredient)((KitchenAssistanceDialog)currentDialog).getRequestedObject()).getIngredientData().getIngredientName() + ">";
+		return "<" + ((KitchenAssistanceDialog)currentDialog).getRequestedObjectName() + ">";
 	case KA_TELL_TOOL_FOUND:
 		setQuestion(false);
 		String output2 =  "<" + ((Tool)((KitchenAssistanceDialog)currentDialog).getRequestedObject()).getToolData().getToolName() + ">";
@@ -52,7 +52,7 @@ public class KitchenAssistanceState extends DialogState {
 		return output2;
 	case KA_TELL_TOOL_NOT_FOUND:
 		setQuestion(false);
-		return "<" + ((Tool)((KitchenAssistanceDialog)currentDialog).getRequestedObject()).getToolData().getToolName() + ">";
+		return "<" + ((KitchenAssistanceDialog)currentDialog).getRequestedObjectName() + ">";
 	default:
 		return null;
 	  	

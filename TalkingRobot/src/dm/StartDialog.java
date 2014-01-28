@@ -38,12 +38,10 @@ public class StartDialog extends Dialog {
 	@Override
 	public void updateState(List<Keyword> keywords, List<String> terms, List<String> approval)
 			throws WrongStateClassException {
-		//needed for Cast in switch statement
-		if (getCurrentDialogState().getClass() != StartState.class) {
-			throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
-		}
-		if (!updateStateKeywordJump(keywords)) { 
-		
+		updateStateKeywordJump(keywords);
+			if (getCurrentDialogState().getClass() != StartState.class) {
+				throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
+			}
 		switch ((Start)getCurrentDialogState().getCurrentState()) {
 		case S_ENTRY : updateStateEntry(keywords, terms); break;
 		case S_WAITING_FOR_USERNAME : updateStateWaiting(keywords, terms); break;
@@ -58,10 +56,8 @@ public class StartDialog extends Dialog {
 		}
 		}
 		//needed again to check for possible jumps due to updateStateKeywordJump()
-		if (getCurrentDialogState().getClass() != StartState.class) {
-			throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
-		}
-	}
+		
+	
 
 	/**
 	 * @param keywords

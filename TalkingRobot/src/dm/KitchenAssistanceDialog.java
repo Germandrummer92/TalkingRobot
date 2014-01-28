@@ -15,6 +15,7 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 
 	private AssistanceState stateOfAssistance;
 	private Object requestedObject;
+	private String requestedObjectName;
 	
   /**
 	 * @param session the Current Session
@@ -31,6 +32,11 @@ public class KitchenAssistanceDialog extends KitchenDialog {
  */
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
+	if (getCurrentDialogState().getClass() != StartState.class) {
+		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
+	}
+	if (!updateStateKeywordJump(keywords)) { 
+	
 	switch ((KitchenAssistance)getCurrentDialogState().getCurrentState()) {
 	case KA_ENTRY:
 		updateStateEntry(keywords, terms);
@@ -52,9 +58,31 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		break;
 	default:
 		break;
-	
 	}
-	
+	}
+	if (getCurrentDialogState().getClass() != StartState.class) {
+		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
+	}
+}
+
+/**
+ * @param keywords
+ * @return if the State was changed since all Keywords were pointing to the same State
+ */
+private boolean updateStateKeywordJump(List<Keyword> keywords) {
+	if (keywords.isEmpty()) {
+		return false;
+	}
+	else {
+		Enum<?> ref = keywords.get(0).getReference().getCurrentState();
+		for (Keyword kw : keywords) {
+			if (!ref.equals(kw.getReference().getCurrentState())) {
+				return false;
+			}
+		}
+		getCurrentDialogState().setCurrentState(ref);
+		return true;
+	}
 }
 
 /**
@@ -62,8 +90,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
  * @param terms
  */
 private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
+	if (!terms.isEmpty()) {
+		requestedObjectName = terms.get(0);
+	}
 }
 
 /**
@@ -71,7 +100,13 @@ private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms)
  * @param terms
  */
 private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	for (Keyword kw : keywords) {
+		if (kw.getKeywordData().getDataReference().getClass().getName().equals("data.ToolData")) {
+			requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference());
+			requestedObjectName = ((Tool)requestedObject).getToolData().getToolName();
+			return;
+		}
+	}
 	
 }
 
@@ -80,7 +115,7 @@ private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
  * @param terms
  */
 private void updateStateIngNotFound(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	//Not needed, only one State not found needed
 	
 }
 
@@ -89,7 +124,13 @@ private void updateStateIngNotFound(List<Keyword> keywords, List<String> terms) 
  * @param terms
  */
 private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	for (Keyword kw : keywords) {
+		if (kw.getKeywordData().getDataReference().getClass().getName().equals("data.IngredientData")) {
+			requestedObject = new Ingredient((IngredientData)kw.getKeywordData().getDataReference());
+			requestedObjectName = ((Ingredient)requestedObject).getIngredientData().getIngredientName();
+			return;
+		}
+	}
 	
 }
 
@@ -98,8 +139,7 @@ private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
  * @param terms
  */
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
+	//State should never be reached
 }
 
 /**
@@ -107,26 +147,8 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
  * @param terms
  */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
-	DialogState reference = null;
-	boolean jump = true;
-	for (Keyword kw : keywords) {
-		if (reference != null && !kw.getReference().equals(reference)) {
-			jump = false;
-			break;
-		}
-	}
-	if (jump) {
-			setCurrentDialogState(reference);
-			if (keywords.get(0).getKeywordData().getDataReference() instanceof IngredientData) {
-				requestedObject = new Ingredient(((IngredientData)keywords.get(0).getKeywordData().getDataReference()));
-			}
-			if (keywords.get(0).getKeywordData().getDataReference() instanceof ToolData) {
-				requestedObject = new Tool(((ToolData)keywords.get(0).getKeywordData().getDataReference()));
-			}
-	}
-	if (!terms.isEmpty()) {
-		getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_INGREDIENT_NOT_FOUND);
-	}
+	//only invoked if not already jumped to TOOL_" or ING_FOUND
+	getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_TOOL_NOT_FOUND);
 	
 }
 
@@ -156,6 +178,13 @@ public AssistanceState getStateOfAssistance() {
  */
 public void setStateOfAssistance(AssistanceState stateOfAssistance) {
 	this.stateOfAssistance = stateOfAssistance;
+}
+
+/**
+ * @return the name of the requested Object, needed in case no Object can be created as it wasn't found.
+ */
+public String getRequestedObjectName() {
+	return requestedObjectName;
 }
 
 }
