@@ -34,7 +34,7 @@ public class CanteenRecommendationState extends DialogState {
     */
   public String getOutputKeyword() {
 	  Dialog currentDialog =(CanteenRecommendationDialog)DialogManager.giveDialogManager().getCurrentDialog();
-	  String time = ((CanteenRecommendationDialog) currentDialog).getWishmeal();
+	  String time = ((CanteenRecommendationDialog) currentDialog).getWishDate();
 	  
 	  switch((CanteenRecom)getCurrentState()) {
 	  case CR_ENTRY:

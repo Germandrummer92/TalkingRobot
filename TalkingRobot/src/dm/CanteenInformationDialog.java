@@ -8,7 +8,9 @@ import java.util.List;
  * @version 0.6
  */
 public class CanteenInformationDialog extends CanteenDialog {
-
+	private String wishDate;
+	private String wishMeal;
+	
 /**
 	 * @param session
 	 * @dialogState
@@ -19,8 +21,32 @@ public class CanteenInformationDialog extends CanteenDialog {
 	}
 
 
-@Override
+	
+public String getWishDate() {
+	return wishDate;
+}
 
+
+
+public void setWishDate(String wishDate) {
+	this.wishDate = wishDate;
+}
+
+
+
+public String getWishMeal() {
+	return wishMeal;
+}
+
+
+
+public void setWishMeal(String wishMeal) {
+	this.wishMeal = wishMeal;
+}
+
+
+
+@Override
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	if (getCurrentDialogState().getClass() != CanteenInformationState.class) {
