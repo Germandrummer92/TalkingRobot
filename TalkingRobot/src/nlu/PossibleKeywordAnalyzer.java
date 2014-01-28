@@ -39,12 +39,18 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		 LinkedList<String> possibleKeywords = this.cleanInput(input, result);
 		 LinkedList<String> possibleKeywords2 = this.checkForKeywordsConsistingOfSeveralWords(possibleKeywords, result);
 		 possibleKeywords = checkForKeywordsConsistingOfOneWord(possibleKeywords); 
+		 
+		 possibleKeywords.addAll(possibleKeywords2);
 		  
 		 return cleanOfNotPossibleKeywords(possibleKeywords);
 		 
 	 }
 
-
+	/**
+	 * searches for keywords which can be satisfied with only one word from the user input.
+	 * @param possibleKeywords words from the input which might be keywords
+	 * @return list of words from the input
+	 */
 	private LinkedList<String> checkForKeywordsConsistingOfOneWord(
 			LinkedList<String> possibleKeywords) {
 		for(int i = 0; i < possibleKeywords.size(); i++) {
@@ -58,13 +64,71 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		 }
 		return possibleKeywords;
 	}
-
+	
+	/**
+	 * searches for keywords which can only be satisfied with several words from the user input.
+	 * @param possibleKeywords words from the input which might be keywords
+	 * @param result result from Phoenix; words which were part of the input
+	 * @return list of words from the input
+	 */
 	private LinkedList<String> checkForKeywordsConsistingOfSeveralWords(
 			LinkedList<String> possibleKeywords, LinkedList<String> result) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		LinkedList<String> output = new LinkedList<String>();
+		LinkedList<Keyword> keywordList = (LinkedList<Keyword>) dictionary.getKeywordList();
+		
+		for(int i = 0; i < keywordList.size(); i++) {
+			if(keywordList.get(i).getWord().matches(".+ .+")) {
+				String[] keywordWords = keywordList.get(i).getWord().split(" ");
+				String possibleOutput = keywordList.get(i).getWord() + ";";
+				Integer distance = 0;
+				for(int j = 0; j < keywordWords.length; j++) {
+					String possibleMatch = this.seekMatchingWords(keywordWords[i], result, possibleKeywords);
+					if(possibleMatch.equals("")) {distance = 11;}
+					else if(!possibleMatch.endsWith(keywordWords[i])) {
+						Levenshtein levenshtein = new Levenshtein(possibleMatch, keywordWords[i]);
+						distance = distance + levenshtein.getDistance();
+						possibleOutput = possibleOutput + possibleMatch + " ";
+					} else { possibleOutput = possibleOutput + possibleMatch + " "; }
+				}
+				if(distance <= 10) { 
+					possibleOutput = possibleOutput.trim() + ";" + distance.toString();
+					output.add(possibleOutput);
+				}
+			}
+		}
+		
+		return output;
+	}
+	
+	/**
+	 * seeks for a matching word.
+	 * @param keywordWord a word which is part of a keyword; e.g. "how" in "how much costs"
+	 * @param word a list of words which were part of the input and were found by phoenix
+	 * @param possibleWord words which might be keywords
+	 * @return a matching word; if no matching word than an empty string;
+	 */
+	private String seekMatchingWords(String keywordWord,
+			LinkedList<String> word, LinkedList<String> possibleWord) {
+		for(int j = 0; j < word.size(); j++) {
+			if(keywordWord.equals(word.get(j))) { return word.get(j); }
+		}
+		
+		int shortestDistance = 3;
+		String wordWithShortestDistance = "";
+		for(int j = 0; j < possibleWord.size(); j++) {
+			Levenshtein levenshtein = new Levenshtein(keywordWord, possibleWord.get(j));
+			if(levenshtein.getDistance() < shortestDistance) { wordWithShortestDistance = possibleWord.get(j); }
+		}
+		return wordWithShortestDistance;
 	}
 
+	/**
+	 * removes words which were found by phoenix from the input.
+	 * @param input the user input
+	 * @param result the result of phoenix
+	 * @return a list of words which were not found by phoenix in the input
+	 */
 	private LinkedList<String> cleanInput(String input,
 			LinkedList<String> result) {
 		  
@@ -125,11 +189,11 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		  
 		  for(int i = 0; i < keywordList.size(); i++) {
 			  
-			  Levenshtein levenDistance = new Levenshtein(possibleKw, keywordList.get(i).toString());
+			  Levenshtein levenDistance = new Levenshtein(possibleKw, keywordList.get(i).getWord());
 			  int distance = levenDistance.getDistance();
 			  
 			  if(distance < shortestDistance) {
-				  mostProbableKeyword = keywordList.get(i).toString();
+				  mostProbableKeyword = keywordList.get(i).getWord();
 				  shortestDistance = distance;
 			  }
 		  }
@@ -158,13 +222,8 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		  return result;
 	  }
 	  
-	public static void main(String[] args) {
-		PossibleKeywordAnalyzer pwa = new PossibleKeywordAnalyzer();
-
-		String help = "hi i am a looser";
-		String[] test = help.split("idiot");
-		for(int i = 0; i < test.length; i++) {
-			System.out.println(test[i]);
-		}
-	}
+//	public static void main(String[] args) {
+//		PossibleKeywordAnalyzer pwa = new PossibleKeywordAnalyzer();
+//
+//	}
 }
