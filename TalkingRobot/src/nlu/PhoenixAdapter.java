@@ -64,29 +64,16 @@ private LinkedList<String> insertWords(int extractFlag,
 	if(extractFlag == 1) {
 		if(phoenixLine.matches("Keyword:.+")) {
 			String[] keywords = phoenixLine.split("Keyword:");
-			list.add(keywords[keywords.length - 1].trim());
-			
-			
-//			String[] keyword = help[help.length - 1].split("[a-z()\\[\\]_]");
-//			for(int i = 0; i < keyword.length; i++) {
-//				if(!keyword[i].equals(" ")
-//						&& !keyword[i].equals("")
-//						&& !keyword[i].matches("[A-Z]"))  {
-//					System.out.println(keyword [i]);
-//					if(!list.contains(keyword[i].trim().toLowerCase())) {
-//						list.add(keyword[i].trim().toLowerCase());
-//					}
-//				}
-//			}
-			
-			
-			
-			
+			if(!list.contains(keywords[keywords.length - 1].trim().toLowerCase())) {
+				list.add(keywords[keywords.length - 1].trim().toLowerCase());	
+			}
 		}
 		else{
 			if(phoenixLine.matches("Approval:.+")) {
 				String[] keywords = phoenixLine.split("Approval:");
-				list.add(keywords[keywords.length - 1].trim());
+				if(!list.contains(keywords[keywords.length - 1].trim().toLowerCase())) {
+					list.add(keywords[keywords.length - 1].trim().toLowerCase());
+				}
 			}
 		}
 	}
