@@ -1,16 +1,11 @@
 package nlu;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * 
@@ -26,14 +21,17 @@ public class PhoenixAdapter {
 	  System.out.println(runParse);
 	  
 	  try {
+		  //compile grammar
 		  Runtime rt = Runtime.getRuntime();
 		  rt.exec("tcsh compile", null, compile.getAbsoluteFile());
-
+		  
+		  //write given input in file input
 		  File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
 		  PrintWriter writer = new PrintWriter(file, "UTF-8");
 		  writer.println(input);
 		  writer.close();
 		  
+		  //run parse for file input
 		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", runParse);
 		  phoenixBuilder.directory(new File("resources/nlu/Phoenix/TalkingRobot"));
 		  phoenixBuilder.redirectInput(new File("resources/nlu/Phoenix/TalkingRobot/input"));
@@ -45,22 +43,16 @@ public class PhoenixAdapter {
 		  
 		  String phoenixLine2 = null;
 		  
-		  System.out.println("run error");
 		  while ((phoenixLine2 = stderr2.readLine()) != null) {
 			  
 			  System.out.println(phoenixLine2);
 		  }
-		  System.out.println("run error end");
 
-		  System.out.println("run regular");
 		  while ((phoenixLine2 = stdin2.readLine()) != null) {
 
 			  phoenixOutput = insertWords(extractFlag, phoenixOutput, phoenixLine2);
 			  System.out.println(phoenixLine2);
-		  }
-		  System.out.println("run regular end");
-		  
-		  
+		  }	  
 	  } catch (IOException e) {
 		  e.printStackTrace();
 	  }
@@ -69,37 +61,79 @@ public class PhoenixAdapter {
 
 private LinkedList<String> insertWords(int extractFlag,
 		LinkedList<String> list, String phoenixLine) {
-	if(extractFlag == 0) {
+	if(extractFlag == 1) {
 		if(phoenixLine.matches("Keyword:.+")) {
-			String[] help = phoenixLine.split("Keyword:");
-			String[] keyword = help[help.length - 1].split("[a-z()\\[\\]_]");
-			for(int i = 0; i < keyword.length; i++) {
-				if(!keyword[i].equals(" ")
-						&& !keyword[i].equals("")
-						&& !keyword[i].matches("[A-Z]"))  {
-					System.out.println(keyword [i]);
-					if(!list.contains(keyword[i].trim().toLowerCase())) {
-						list.add(keyword[i].trim().toLowerCase());
+			String[] keywords = phoenixLine.split("Keyword:");
+			list.add(keywords[keywords.length - 1].trim());
+			
+			
+//			String[] keyword = help[help.length - 1].split("[a-z()\\[\\]_]");
+//			for(int i = 0; i < keyword.length; i++) {
+//				if(!keyword[i].equals(" ")
+//						&& !keyword[i].equals("")
+//						&& !keyword[i].matches("[A-Z]"))  {
+//					System.out.println(keyword [i]);
+//					if(!list.contains(keyword[i].trim().toLowerCase())) {
+//						list.add(keyword[i].trim().toLowerCase());
+//					}
+//				}
+//			}
+			
+			
+			
+			
+		}
+		else{
+			if(phoenixLine.matches("Approval:.+")) {
+				String[] keywords = phoenixLine.split("Approval:");
+				list.add(keywords[keywords.length - 1].trim());
+			}
+		}
+	}
+	else {		
+		if(phoenixLine.matches("Term:.+")) {
+			String[] help = phoenixLine.split("Term:");
+			String[] keywords1 = help[help.length - 1].split("[a-z()\\[\\]_]+");
+			String keywords2 = "";
+			for (int i = 0; i < keywords1.length; i++) {
+					if(!keywords1[i].isEmpty()) {
+						keywords2 = keywords2.trim() + " " + keywords1[i].trim().toLowerCase();
+					}
+			}
+			keywords2 = keywords2.trim();
+			boolean containsFor = false;
+			if (keywords2.equals("for")) {
+				for(int i = 0; i < list.size(); i++) {
+					if(list.get(i).matches(".*for.*")) {
+						containsFor = true;
+						break;
 					}
 				}
+				if(containsFor != true) {
+					list.add(keywords2);
+				}
+			}
+			else {
+				list.add(keywords2);
 			}
 			
 		}
-	} else {		
-		if(phoenixLine.matches("Approval:.+")) {
-			String[] keyword = phoenixLine.split("Approval:");
-			list.add(keyword[keyword.length - 1].trim());
+		else {
+			if(phoenixLine.matches("PossibleKeyword:.+")) {
+				String[] help = phoenixLine.split("PossibleKeyword:");
+				String[] keywords = help[help.length - 1].split("[a-z()\\[\\]_ ]+");
+				for(int i = 0; i < keywords.length; i++) {
+					if(keywords[i].equals("[A-Z]")) {
+						keywords[i] = keywords[i].toLowerCase();
+						if(!list.contains(keywords[i])) {
+							list.add(keywords[i]);
+						}
+					}
+				}
+			}
 		}
 	}
 	return list;
 }
-
-/**
- * 
- */
-
-//public static void main(String[] args) {
-//	PhoenixAdapter pa = new PhoenixAdapter();
-//	pa.operatePhoenix("Hello,  can you tell me how to make Spaghetti?", null, 1, new File("resources/nlu/Phoenix/TalkingRobot/Keyword"));
-//}
+ 
 }
