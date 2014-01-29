@@ -12,6 +12,6 @@
 		[recipe_learning]
 		[cooking_assistance]		#cooking_assistance: getting tools etc.
 		[Main]
-		[login]
-		[logout]
+		[Login]
+		[Logout]
 ;
