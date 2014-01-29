@@ -513,6 +513,8 @@ public class CanteenData implements Data{
 		try {
 			float price = (float) meal.getDouble("price_1");//for students
 			String name = meal.getString("meal"); //dish???
+			String dish = meal.getString("dish");
+			name = name + " " + dish;
 			result = new MealData(name, getCategories(meal), price);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch 
@@ -597,9 +599,9 @@ public class CanteenData implements Data{
 	
 	//TEST
 	public static void main(String[] args) {
-		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 3);
+		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 0);
 		System.out.println(aden.generateJSON());
-		CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 3);
+		CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 0);
 		System.out.println(moltke.generateJSON());
 	}
 	
