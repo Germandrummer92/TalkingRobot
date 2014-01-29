@@ -29,7 +29,10 @@ public class DialogManager {
 
   private ErrorStrategy[] errorStrategy;
 
-  /**
+  private boolean isInErrorState; //dialogs set this to true when error handling is needed
+
+
+/**
    * Updates the current Dialog to switch it's state, according to the User's input.
    * @param keywords
    * @param terms
@@ -346,6 +349,14 @@ public Dictionary getDictionary() {
  */
 public void setDictionary(Dictionary dictionary) {
 	this.dictionary = dictionary;
+}
+
+public boolean isInErrorState() {
+		return isInErrorState;
+}
+
+public void setInErrorState(boolean isInErrorState) {
+	this.isInErrorState = isInErrorState;
 }
 
 }
