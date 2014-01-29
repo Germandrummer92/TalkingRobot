@@ -63,9 +63,15 @@ private LinkedList<String> insertWords(int extractFlag,
 		LinkedList<String> list, String phoenixLine) {
 	if(extractFlag == 1) {
 		if(phoenixLine.matches("Keyword:.+")) {
-			String[] keywords = phoenixLine.split("Keyword:");
-			if(!list.contains(keywords[keywords.length - 1].trim().toLowerCase())) {
-				list.add(keywords[keywords.length - 1].trim().toLowerCase());	
+			String[] keywords1 = phoenixLine.split("Keyword:");
+			String[] keywords2 = keywords1[keywords1.length - 1].split("_");
+			String keywords3 = "";
+			for(int i = 0; i < keywords2.length; i++) {
+				keywords3 = keywords3.trim() + " " + keywords2[i].trim().toLowerCase();
+			}
+			keywords3.trim();
+			if(!list.contains(keywords3)) {
+				list.add(keywords3);	
 			}
 		}
 		else{
