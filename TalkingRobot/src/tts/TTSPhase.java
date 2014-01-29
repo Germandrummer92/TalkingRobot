@@ -24,7 +24,7 @@ public class TTSPhase extends Phase {
    * @See {@link Phase#nextPhase(Main)}
    * @return the next Phase for the system.
    */
-  protected Phase nextPhase(Main main) {
+  public Phase nextPhase(Main main) {
 	  	return new ASRPhase();
   }
 
