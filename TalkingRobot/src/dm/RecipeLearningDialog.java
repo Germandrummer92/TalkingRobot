@@ -1,6 +1,8 @@
 package dm;
+import java.util.ArrayList;
 import java.util.List;
 
+import data.IngredientData;
 import data.UserData;
 
 public class RecipeLearningDialog extends KitchenDialog {
@@ -48,13 +50,13 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateRecipeName(keywords, terms);
 		break;
 	case RL_ASK_FIRST_INGREDIENT:
-		updateStateFirstIngred(keywords, terms);
+		updateStateIngred(keywords, terms);
 		break;
 	case RL_ASK_NEXT_INGREDIENT:
-		updateStateNextIngred(keywords, terms);
+		updateStateIngred(keywords, terms);
 		break;
 	case RL_ASK_INGREDIENT_RIGHT:
-		updateStateIngredRight(keywords, terms);
+		updateStateIngredRight(keywords, terms, approval);
 		break;
 	case RL_ASK_COUNTRY_OF_ORIGIN:
 		updateStateAskOrigin(keywords, terms);
@@ -133,19 +135,69 @@ private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 	
 }
 
-private void updateStateIngredRight(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+private void updateStateIngredRight(List<Keyword> keywords, List<String> terms,
+		List<String> approval) {
+	if (approval.isEmpty()) {
+		//TODO
+	}
+	else if (approval.get(0).equals("yes")) {
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_INGREDIENT);
+		setCurrentDialogState(nextState);
+	}
+	else if (approval.get(0).equals("no")) {
+		ingredientsList.remove(ingredientsList.size() - 1);
+		//TODO if terms == 1, if keyword has ingreds ...
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_INGREDIENT);
+		setCurrentDialogState(nextState);
+	}
 	
 }
 
-private void updateStateNextIngred(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+//private void updateStateNextIngred(List<Keyword> keywords, List<String> terms) {
 	
-}
+	
+//}
 
-private void updateStateFirstIngred(List<Keyword> keywords, List<String> terms) {
+private void updateStateIngred(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
-	
+	//red tomatos  where terms where keywords???
+	DialogState nextState;
+	List<Keyword> ingredients = keywordsFromType(IngredientData.class, keywords);
+	if (ingredients.isEmpty()) {
+		if (terms.isEmpty()) {
+			//error TODO
+		}
+		else if (terms.size() == 1) {
+			IngredientData newIngred = new IngredientData(ingredients.get(0).toString(), "");
+			ingredientsList.add(new Ingredient(newIngred));
+			nextState = new DialogState();
+			nextState.setCurrentState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
+			setCurrentDialogState(nextState);
+		}
+		else {
+			// no ingredient found, evt more states? or error handling
+		}
+	}
+	else if (ingredients.size() == 1) {
+		IngredientData newIngred = new IngredientData(ingredients.get(0).toString(), "");
+		ingredientsList.add(new Ingredient(newIngred));
+		nextState = new DialogState();
+		nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_INGREDIENT);
+		setCurrentDialogState(nextState);
+	}
+	else if (ingredients.size() == 2) {
+		//choice stratregy ???
+	}
+	else {
+		//or save all and ask or error handling
+		IngredientData newIngred = new IngredientData(ingredients.get(0).toString(), "");
+		ingredientsList.add(new Ingredient(newIngred));
+		nextState = new DialogState();
+		nextState.setCurrentState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
+		setCurrentDialogState(nextState);
+	}
 }
 
 private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
@@ -156,6 +208,20 @@ private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
+}
+
+private <T> List<Keyword> keywordsFromType(Class<T> type, List<Keyword> keywords) {
+	// TODO Auto-generated method stub
+	List<Keyword> res = new ArrayList<Keyword>();
+	if (keywords == null) {
+		return res;
+	}
+	for (Keyword keyword : keywords) {
+		if (keyword.getKeywordData().getDataReference().getClass() == type) {
+			res.add(keyword);
+		}
+	}
+	return res;
 }
 
 }
