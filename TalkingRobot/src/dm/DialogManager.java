@@ -1,6 +1,8 @@
 package dm;
 
 
+import generalControl.Main;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,6 +58,7 @@ public class DialogManager {
 		if (e.getNewClassName().contains("Canteen")) {
 			currentCanteen = ((CanteenDialog)currentDialog).getCurrentCanteen();
 		}
+		//If not switching the class
 		switch (e.getNewClassName()) {
 		case "dm.StartState" : currentDialog = new StartDialog(currentSession, currentDialogState); break;
 		case "dm.CanteenInformationState" : currentDialog = new CanteenInformationDialog(currentSession, currentDialogState, currentCanteen); break;
@@ -69,6 +72,10 @@ public class DialogManager {
 	}
 	   } while(true);
 
+	   //?
+	   if (isInErrorState) {
+		   handleError(Main.giveMain().getNluResult().get(2));
+	   }
   }
 
   /**
