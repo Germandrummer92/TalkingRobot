@@ -204,6 +204,7 @@ public class DialogManager {
 	  
 	  errorState = ErrorState.ZERO;
 	  dictionary = new Dictionary();
+	  isInErrorState = false;
   }
 
   /**

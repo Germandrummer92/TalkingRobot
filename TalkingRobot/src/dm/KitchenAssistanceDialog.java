@@ -32,7 +32,7 @@ public class KitchenAssistanceDialog extends KitchenDialog {
  */
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
-	if (getCurrentDialogState().getClass() != StartState.class) {
+	if (getCurrentDialogState().getClass() != KitchenAssistanceState.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 	}
 	if (!updateStateKeywordJump(keywords)) { 
@@ -60,7 +60,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		break;
 	}
 	}
-	if (getCurrentDialogState().getClass() != StartState.class) {
+	if (getCurrentDialogState().getClass() != KitchenAssistanceState.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 	}
 }
@@ -74,15 +74,30 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 		return false;
 	}
 	else {
+		boolean sameRef = true;
 		Enum<?> ref = keywords.get(0).getReference().getCurrentState();
 		for (Keyword kw : keywords) {
 			if (!ref.equals(kw.getReference().getCurrentState())) {
-				return false;
+				sameRef = false;
 			}
 		}
-		getCurrentDialogState().setCurrentState(ref);
-		return true;
-	}
+		if (sameRef == true) {
+			getCurrentDialogState().setCurrentState(ref);
+			return true;
+		}
+		else {
+			int priorityMax = keywords.get(0).getKeywordData().getPriority();
+			Keyword curKW = keywords.get(0);
+			for (Keyword kw : keywords) {
+				if (kw.getKeywordData().getPriority() > priorityMax) {
+					curKW = kw;
+					priorityMax = curKW.getKeywordData().getPriority();
+				}
+			}
+			getCurrentDialogState().setCurrentState(curKW.getReference().getCurrentState());
+			return true;
+			}
+		}
 }
 
 /**
@@ -90,8 +105,11 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
  * @param terms
  */
 private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms) {
-	if (!terms.isEmpty()) {
+	if (!terms.isEmpty() && requestedObjectName != null) {
 		requestedObjectName = terms.get(0);
+	}
+	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
 	}
 }
 
@@ -148,7 +166,15 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
  */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	//only invoked if not already jumped to TOOL_" or ING_FOUND
-	getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_TOOL_NOT_FOUND);
+	if (!terms.isEmpty()) {
+		requestedObjectName = terms.get(0);
+		getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_TOOL_NOT_FOUND);
+	}
+	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
+	
+	
 	
 }
 

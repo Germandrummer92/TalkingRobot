@@ -68,15 +68,30 @@ public class StartDialog extends Dialog {
 			return false;
 		}
 		else {
+			boolean sameRef = true;
 			Enum<?> ref = keywords.get(0).getReference().getCurrentState();
 			for (Keyword kw : keywords) {
 				if (!ref.equals(kw.getReference().getCurrentState())) {
-					return false;
+					sameRef = false;
 				}
 			}
-			getCurrentDialogState().setCurrentState(ref);
-			return true;
-		}
+			if (sameRef == true) {
+				getCurrentDialogState().setCurrentState(ref);
+				return true;
+			}
+			else {
+				int priorityMax = keywords.get(0).getKeywordData().getPriority();
+				Keyword curKW = keywords.get(0);
+				for (Keyword kw : keywords) {
+					if (kw.getKeywordData().getPriority() > priorityMax) {
+						curKW = kw;
+						priorityMax = curKW.getKeywordData().getPriority();
+					}
+				}
+				getCurrentDialogState().setCurrentState(curKW.getReference().getCurrentState());
+				return true;
+				}
+			}
 	}
 	/**
 	 * @param keywords
@@ -86,15 +101,17 @@ public class StartDialog extends Dialog {
 			List<String> terms, List<String> approval) {
 		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
 			if (approval.get(0).equals("Yes")) {
-				getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
-				getCurrentSession().getCurrentUser().getUserData().writeFile();
 			}
 			else {
-				getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
 				getCurrentSession().getCurrentUser().getUserData().setStudent(false);
-				getCurrentSession().getCurrentUser().getUserData().writeFile();
 			}
+			getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
+			getCurrentSession().getCurrentUser().getUserData().writeFile();	
+			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, new StartState(Start.S_USER_FOUND), getCurrentSession().getCurrentUser().getUserData());
+		}
+		else {
+			DialogManager.giveDialogManager().setInErrorState(true);
 		}
 		Main.giveMain().setUserLoggedIn(true);
 		
