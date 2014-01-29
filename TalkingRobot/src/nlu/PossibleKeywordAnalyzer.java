@@ -28,6 +28,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		this.runParse = "run_parse_possiblekw";
 		this.extractFlag = 0;
 		this.compile = new File ("resources/nlu/Phoenix/TalkingRobot/PossibleKw/");
+		this.dictionary = new Dictionary();
 	}
 	  
 	/**
