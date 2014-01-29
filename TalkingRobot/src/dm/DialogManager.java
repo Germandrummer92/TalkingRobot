@@ -155,6 +155,7 @@ public class DialogManager {
 	  }
 	  
 	  if(!dialogIsUpdated) { Main.giveMain().setDmResult(dmResult); }
+	  this.isInErrorState = false;
 	  
   }
 
@@ -167,6 +168,9 @@ public class DialogManager {
   				ChoiceStrategy strategy = (ChoiceStrategy)errorStrategy[2];
   				keyword.add(strategy.getSecondChoice());
   				this.updateDialog(keyword, new LinkedList<String>(), new LinkedList<String>());
+  			} else if(possibleKeywords.get(i).equals("first")) {
+  				ErrorHandlingState dmResult = errorStrategy[2].handleError(null);
+  				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
   			}
   		}
   	} else if(this.errorState == ErrorState.EXPLICIT_VERIFICATION) {
@@ -191,7 +195,6 @@ public class DialogManager {
 	} else {
 		return false;
 	}
-	
 }
 
 /**
