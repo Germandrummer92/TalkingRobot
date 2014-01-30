@@ -50,7 +50,7 @@ public class TermAnalyzerTest {
 	 * checks the result for "My very pretty name is Nicole"
 	 */
 	@Test
-	public void term2() { 
+	public void name() { 
 		setInput("My very pretty name is Nicole");
 		List <String> result = term.analyze("My very pretty name is Nicole");
 		List <String> compare = new LinkedList<String>();
