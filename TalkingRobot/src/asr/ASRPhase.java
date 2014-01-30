@@ -24,7 +24,10 @@ public class ASRPhase extends Phase {
    * @return the next Phase.
    */
   public Phase nextPhase(Main main) {
-  		return new NLUPhase();
+  	if(main.getAsrResult() == null || main.getAsrResult().isEmpty()) {
+		  return new ASRPhase();
+	 }
+	 return new NLUPhase();
   }
 
 }
