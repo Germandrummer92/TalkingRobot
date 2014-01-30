@@ -67,6 +67,7 @@ public class StartDialog extends Dialog {
 		if (keywords.isEmpty()) {
 			return false;
 		}
+		//Check if all keywords pointing to same state
 		else {
 			boolean sameRef = true;
 			Enum<?> ref = keywords.get(0).getReference().getCurrentState();
@@ -79,6 +80,7 @@ public class StartDialog extends Dialog {
 				getCurrentDialogState().setCurrentState(ref);
 				return true;
 			}
+			//If not go to keyword with highest priority
 			else {
 				int priorityMax = keywords.get(0).getKeywordData().getPriority();
 				Keyword curKW = keywords.get(0);

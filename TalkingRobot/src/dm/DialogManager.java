@@ -320,7 +320,7 @@ public ErrorStrategy[] getErrorStrategy() {
 /**
  * @param errorState the errorState to set
  */
-private void setErrorState(ErrorState errorState) {
+public void setErrorState(ErrorState errorState) {
 	this.errorState = errorState;
 }
 
