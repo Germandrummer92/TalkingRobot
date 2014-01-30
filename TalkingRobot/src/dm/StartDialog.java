@@ -13,6 +13,7 @@ import data.UserData;
  */
 public class StartDialog extends Dialog {
 
+	private DialogModus dialogModus;
 
 	/**
 	 * Creates a new StartDialog, using
@@ -20,7 +21,7 @@ public class StartDialog extends Dialog {
 	 */
 	public StartDialog(Session currentSession) {
 		super(currentSession);
-		
+		this.dialogModus = DialogModus.START;
 	}
 	/**
 	 * Creates a new Start Dialog using the current Session and State parameters

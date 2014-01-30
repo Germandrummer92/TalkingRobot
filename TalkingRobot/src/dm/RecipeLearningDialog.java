@@ -25,6 +25,8 @@ private UserData creator;
   private Integer numOfSteps;
   
   private Recipe recipe;
+  
+  private DialogModus dialogModus;
 
   private void createRecipe() {
   }
@@ -35,6 +37,7 @@ private UserData creator;
  	 */
  	public RecipeLearningDialog(Session session, DialogState dialogState) {
  		super(session, dialogState);
+ 		this.dialogModus = DialogModus.RECIPE_LEARNING;
  		// TODO Auto-generated constructor stub
  	}
  	

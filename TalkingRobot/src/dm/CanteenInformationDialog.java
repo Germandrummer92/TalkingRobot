@@ -13,6 +13,7 @@ import data.MealDatePair;
 public class CanteenInformationDialog extends CanteenDialog {
 	private String wishDate;
 	private String wishMeal;
+	private DialogModus dialogModus;
 	
 /**
 	 * @param session
@@ -21,6 +22,7 @@ public class CanteenInformationDialog extends CanteenDialog {
 	 */
 	public CanteenInformationDialog(Session session, DialogState dialogState, Canteen currentCanteen) {
 		super(session, dialogState, currentCanteen);
+		this.dialogModus = DialogModus.CANTEEN_INFORMATION;
 	}
 
 

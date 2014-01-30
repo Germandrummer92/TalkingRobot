@@ -16,6 +16,7 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 	private AssistanceState stateOfAssistance;
 	private Object requestedObject;
 	private String requestedObjectName;
+	private DialogModus dialogModus;
 	
   /**
 	 * @param session the Current Session
@@ -23,6 +24,7 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 	 */
 	public KitchenAssistanceDialog(Session session, DialogState dialogState) {
 		super(session, dialogState);
+		this.dialogModus = DialogModus.KITCHEN_ASSISTANCE;
 		// TODO Auto-generated constructor stub
 	}
 
