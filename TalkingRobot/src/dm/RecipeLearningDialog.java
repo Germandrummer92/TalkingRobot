@@ -4,7 +4,9 @@ import java.util.List;
 
 import data.Data;
 import data.IngredientData;
+import data.KeywordData;
 import data.RecipeData;
+import data.RecipeStepData;
 import data.ToolData;
 import data.UserData;
 
@@ -38,6 +40,7 @@ private UserData creator;
  	public RecipeLearningDialog(Session session, DialogState dialogState) {
  		super(session, dialogState);
  		this.dialogModus = DialogModus.RECIPE_LEARNING;
+ 		numOfSteps = 0;
  		// TODO Auto-generated constructor stub
  	}
  	
@@ -53,9 +56,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	switch ((RecipeLearning)getCurrentDialogState().getCurrentState()) {
 	case RL_ENTRY:
-		updateStateEntry(keywords, terms);
+		updateStateEntry(keywords, terms); //done
 	case RL_ASK_RECIPE_NAME:
-		updateStateRecipeName(keywords, terms);
+		updateStateRecipeName(keywords, terms); //partially done, questions open
 		break;
 	case RL_ASK_FIRST_INGREDIENT:
 		updateStateIngred(keywords, terms); //done
@@ -79,19 +82,19 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateToolRight(keywords, terms, approval); //done
 		break;
 	case RL_ASK_FIRST_STEP:
-		updateStateFirstStep(keywords, terms);
+		updateStateStep(keywords, terms); //done
 		break;
 	case RL_ASK_NEXT_STEP:
-		updateStateNextStep(keywords, terms);
+		updateStateStep(keywords, terms); //done
 		break;
 	case RL_ASK_LAST_STEP:
-		updateStateLastStep(keywords, terms);
+		updateStateLastStep(keywords, terms); //done
 		break;
 	case RL_ASK_STEP_RIGHT:
-		updateStateStepRight(keywords, terms);
+		updateStateStepRight(keywords, terms); //done
 		break;
 	case RL_EXIT:
-		updateStateExit(keywords, terms);
+		updateStateExit(keywords, terms); //done
 		break;
 	default:	
 	}
@@ -99,27 +102,65 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 }
 
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
 	
+	//not reachable due to keyword jump jump
 }
 
+
 private void updateStateStepRight(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	//not needed for now
 	
 }
 
 private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 	// TODO Auto-generated method stub
 	
-}
-
-private void updateStateNextStep(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	DialogState nextState;
+	//ganzes Step in terms, was wenn ein keyword in step gefunden wurde -> zerlegt
+	if (terms.isEmpty()) {
+		DialogManager.giveDialogManager().setInErrorState(true); //no recipe step found
+	}
+	else if (terms.size() == 1) {
+		recipeSteps[numOfSteps] = new RecipeStep(terms.get(0));
+		numOfSteps++;
+		nextState = new DialogState();
+		nextState.setCurrentState(RecipeLearning.RL_EXIT);
+		setCurrentDialogState(nextState);
+	}
+	else {
+		//TODO maybe take the string with biggeest length and ask user to confirm?
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
+	
 	
 }
 
-private void updateStateFirstStep(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+private void updateStateStep(List<Keyword> keywords, List<String> terms) {
+	
+	
+	DialogState nextState;
+	//ganzes Step in terms, was wenn ein keyword in step gefunden wurde -> zerlegt
+	if (terms.isEmpty()) {
+		DialogManager.giveDialogManager().setInErrorState(true); //no recipe step found
+	}
+	else if (terms.size() == 1) {
+		recipeSteps[numOfSteps] = new RecipeStep(terms.get(0));
+		numOfSteps++;
+		nextState = new DialogState();
+		if (numOfSteps == 19) {
+			nextState.setCurrentState(RecipeLearning.RL_ASK_LAST_STEP);
+			setCurrentDialogState(nextState);
+		}
+		else {
+			nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_STEP);
+			setCurrentDialogState(nextState);
+		}
+		
+	}
+	else {
+		//TODO maybe take the string with biggeest length and ask user to confirm?
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
 	
 }
 
@@ -193,11 +234,6 @@ private void updateStateTool(List<Keyword> keywords, List<String> terms) {
 	
 }
 
-//private void updateStateFirstTool(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-//}
-
 private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 	
 	
@@ -231,11 +267,6 @@ private void updateStateIngredRight(List<Keyword> keywords, List<String> terms,
 	}
 	
 }
-
-//private void updateStateNextIngred(List<Keyword> keywords, List<String> terms) {
-	
-	
-//}
 
 /**
  * Read out the ingredient given by the user for this recipe. If the ingredient
@@ -296,17 +327,29 @@ private void addWord(String name, int priority,
 }
 
 private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
+	DialogState nextState;
+	//can a recipe name be in keywords ???
+	if (terms.isEmpty()) {
+		DialogManager.giveDialogManager().setInErrorState(true); //no recipe name found
+	}
+	else if (terms.size() == 1) {
+		recipeName = terms.get(0);
+		nextState = new DialogState();
+		nextState.setCurrentState(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
+		setCurrentDialogState(nextState);
+	}
+	else {
+		//TODO how to extract it from more than one word, keywords vergleich?
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
 }
 
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	// don't analyze anything, just say hello and ask about the recipe name
 	
 }
 
 private <T> List<Keyword> keywordsFromType(Class<T> type, List<Keyword> keywords) {
-	// TODO Auto-generated method stub
 	List<Keyword> res = new ArrayList<Keyword>();
 	if (keywords == null) {
 		return res;
@@ -319,4 +362,11 @@ private <T> List<Keyword> keywordsFromType(Class<T> type, List<Keyword> keywords
 	return res;
 }
 
+//Just to see all keyword which we have
+public static void main(String[] args) {
+	List<KeywordData> keywords = KeywordData.loadData();
+	for (KeywordData key : keywords) {
+		System.out.println(key.generateJSON());
+	}
+}
 }
