@@ -59,7 +59,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	switch ((CanteenInfo)getCurrentDialogState().getCurrentState()) {
 	case CI_ENTRY:
-		updateStateEntry(keywords, terms, approval);
+		updateStateEntry(keywords, terms);
 		break;
 	case CI_ADEN_LINE_1_PRICE:
 		updateStateAdenLine1Price(keywords, terms, approval);
@@ -350,7 +350,7 @@ private void updateStateAdenLine1Price(List<Keyword> keywords, List<String> term
 }
 
 
-private void updateStateEntry(List<Keyword> keywords, List<String> terms, List<String> approval) {
+private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	// TODO 
 	boolean error = false;
 	if(keywords == null && (terms) == null) {
