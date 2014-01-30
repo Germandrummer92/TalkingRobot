@@ -115,7 +115,7 @@ public class DialogManager {
 		  }
 	  }
 	
-	  //explicit verification || the probability that we have a keyword lies between 60% and 75%
+	  //explicit verification || choice : the probability that we have a keyword lies between 60% and 75%
 	  if(avg >= (float) 0.25 && avg < (float) 0.4) {
 		  if(errorStrategy[2].getCounter() <= 3) {
 			  this.errorState = ErrorState.CHOICE;
@@ -187,7 +187,10 @@ public class DialogManager {
   		for(int i = 0; i < possibleKeywords.size(); i++) {
   			if(possibleKeywords.get(i).equals("yes")) {
   				IndirectVerificationStrategy strategy = (IndirectVerificationStrategy)errorStrategy[3];
-  				keyword = (LinkedList<String>) strategy.getQuestionableWords();
+  				keyword.add(strategy.getQuestionableWords());
+  			} else if(possibleKeywords.get(i).equals("no")) {
+  				ErrorHandlingState dmResult = errorStrategy[4].handleError(null);
+  				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
   			}
   		}
   	}

@@ -75,7 +75,7 @@ public class ChoiceStrategy extends ErrorStrategy {
 				for(int j = 0; j < keywordList.size(); j++) {
 					if(words[1].equals(keywordList.get(j).getWord())
 							&& keywordList.get(j).getKeywordData().getPriority() > priority
-							&& (float)Integer.parseInt(words[2]) / words[2].length() < 0.5) {
+							&& (float)Integer.parseInt(words[2]) / words[2].length() < 0.3) {
 						priority = keywordList.get(j).getKeywordData().getPriority();
 						elementId = i;
 					}  else if ((float)Integer.parseInt(words[2]) / words[2].length() < distance) {
