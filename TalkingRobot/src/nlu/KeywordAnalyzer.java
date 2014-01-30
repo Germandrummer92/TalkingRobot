@@ -21,7 +21,7 @@ public class KeywordAnalyzer extends InputAnalyzer {
 	 */
 	public KeywordAnalyzer() {
 		this.runParse = "run_parse_keyword";
-		this.extractFlag = 0;
+		this.extractFlag = 1;
 		this.compile = new File ("resources/nlu/Phoenix/TalkingRobot/Keyword/");
 	}
 
