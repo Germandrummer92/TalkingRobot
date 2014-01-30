@@ -87,7 +87,7 @@ public class DialogManager {
 	  
 	  ErrorHandlingState dmResult = new ErrorHandlingState(true, ErrorHandling.REPEAT, "repeat");;
 	  boolean dialogIsUpdated = false;
-	  int avg = 10;
+	  float avg = 10;
 	  
 	  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
 	  		avg = this.getAverageDistance(possibleKeywords);
@@ -99,8 +99,8 @@ public class DialogManager {
 		  	} 
 	  }  
 	  
-	  //repeat || rephrase: 8 <= avg
-	  if(avg >= 8){
+	  //repeat || rephrase: more than 40% of the word is probably written wrong
+	  if(avg >= (float) 0.4){
 		  if(errorStrategy[0].getCounter() <= 3) {
 			  dmResult = errorStrategy[0].handleError(possibleKeywords);
 		  } else if (errorStrategy[1].getCounter() <= 3) {
@@ -115,8 +115,8 @@ public class DialogManager {
 		  }
 	  }
 	
-	  //explicit verification || choice:  5 <= avg < 8
-	  if(avg >= 5 && avg < 8) {
+	  //explicit verification || the probability that we have a keyword lies between 60% and 75%
+	  if(avg >= (float) 0.25 && avg < (float) 0.4) {
 		  if(errorStrategy[2].getCounter() <= 3) {
 			  this.errorState = ErrorState.CHOICE;
 			  dmResult = errorStrategy[2].handleError(possibleKeywords);
@@ -125,23 +125,23 @@ public class DialogManager {
 			  dmResult = errorStrategy[3].handleError(possibleKeywords);
 		  } else {
 			  //if already tried numeral times than try with indirect verification.
-			  avg = 3;
+			  avg = (float) 0.2;
 		  }
 	  }
 	  
-	  //indirect verification: 3 <= avg < 5
-	  if(avg >= 3 && avg < 5) {
+	  //indirect verification: the probability that we have a keyword lies between 75% and 85%
+	  if(avg >= (float) 0.15 && avg < (float) 0.25) {
 		  if(errorStrategy[4].getCounter() <= 3) {
 			  this.errorState = ErrorState.INDIRECT_VERIFICATION;
 			  dmResult = errorStrategy[4].handleError(possibleKeywords);
 		  } else {
 			  //if already tried numeral times than try with ignoring
-			  avg = 1;
+			  avg = (float) 0.1;
 		  }
 	  }
 	  
-	  //ignore: avg < 3
-	  if(avg < 3){
+	  //ignore: the probability that we have a keyword is more than 85%
+	  if(avg < (float) 0.15){
 		  LinkedList<String> assumedKeywords = new LinkedList<String>();
 		  for(int i = 0; i < possibleKeywords.size(); i++) {
 		  		if(possibleKeywords.get(i).matches(".*;.*;[0-9]")){
@@ -177,7 +177,10 @@ public class DialogManager {
   		for(int i = 0; i < possibleKeywords.size(); i++) {
   			if(possibleKeywords.get(i).equals("yes")) {
   				ExplicitVerificationStrategy strategy = (ExplicitVerificationStrategy)errorStrategy[3];
-  				keyword = (LinkedList<String>) strategy.getQuestionableWords();
+  				keyword.add(strategy.getQuestionableWord());
+  			} else if(possibleKeywords.get(i).equals("no")) {
+  				ErrorHandlingState dmResult = errorStrategy[3].handleError(null);
+  				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
   			}
   		}
   	} else if(this.errorState == ErrorState.INDIRECT_VERIFICATION) {
@@ -269,16 +272,17 @@ public class DialogManager {
    * Gets the average Levenshtein Distance between two words.
    * @return the Levenshtein Distance.
    */
-  private Integer getAverageDistance(List<String> possibleKw) {
+  private float getAverageDistance(List<String> possibleKw) {
 	  	
-	  	int overallDistance = 0;
+	  	float overallDistance = 0;
 	  	int counter = 0;
 	  	
 	  	for(int i = 0; i < possibleKw.size(); i++) {
 	  		if(possibleKw.get(i).matches(".*;.*;[0-9]")){
 	  			counter++;
 	  			String[] possibleKwSplit = possibleKw.get(i).split(";");
-	  			overallDistance = overallDistance + Integer.parseInt(possibleKwSplit[2]);
+	  			overallDistance = overallDistance 
+	  					+ (float)Integer.parseInt(possibleKwSplit[2]) / possibleKwSplit[2].length();
 	  		}
 	  	}
 	  

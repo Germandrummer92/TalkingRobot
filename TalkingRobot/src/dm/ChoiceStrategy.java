@@ -19,7 +19,7 @@ public class ChoiceStrategy extends ErrorStrategy {
 	 * Constructor of RepeatStrategy.
 	 */
 	public ChoiceStrategy() {
-		dictionary = new Dictionary();
+		this.dictionary = new Dictionary();
 	}
 	
 	private String createChoice(String s1, String s2) {
@@ -47,10 +47,11 @@ public class ChoiceStrategy extends ErrorStrategy {
 	 */
 	@Override
 	public ErrorHandlingState handleError(List<String> errorWords) {
+		this.riseCounter();
 		if(errorWords != null) {
-			searchGoodChoice(errorWords);
+			this.searchGoodChoice(errorWords);
 		} else {
-			searchGoodChoice(listOfChoices);
+			this.searchGoodChoice(listOfChoices);
 		}
 		
 		if(listOfChoices == null) { return null; }
@@ -62,27 +63,42 @@ public class ChoiceStrategy extends ErrorStrategy {
 	}
 	
 	private void searchGoodChoice(List<String> choices) {
-		if(!choices.isEmpty()) {
+		if(choices != null && !choices.isEmpty()) {
 			List<Keyword> keywordList = dictionary.getKeywordList();
 			int priority = -1;
-			int elementId = 0;
+			float distance = 1;
+			int elementId = -1;
+			int elementIdRegardingDistance = 0;
+			
 			for(int i = 0; i < choices.size(); i++) {
 				String[] words = choices.get(i).split(";");
 				for(int j = 0; j < keywordList.size(); j++) {
 					if(words[1].equals(keywordList.get(j).getWord())
 							&& keywordList.get(j).getKeywordData().getPriority() > priority
-							&& Integer.parseInt(words[2]) < 5) {
+							&& (float)Integer.parseInt(words[2]) / words[2].length() < 0.5) {
 						priority = keywordList.get(j).getKeywordData().getPriority();
 						elementId = i;
+					}  else if ((float)Integer.parseInt(words[2]) / words[2].length() < distance) {
+						distance = (float)Integer.parseInt(words[2]) / words[2].length();
+						elementIdRegardingDistance = i;
 					}
 				}
 			}
-				
-			String[] choice = choices.get(elementId).split(";");
-			firstChoice = choice[0];
-			secondChoice = choice[1];
-			choices.remove(elementId);
-			listOfChoices = choices;
+
+			if(elementId >= 0) {
+				String[] choice = choices.get(elementId).split(";");
+				firstChoice = choice[0];
+				secondChoice = choice[1];
+				choices.remove(elementId);
+				listOfChoices = choices;
+			} else {
+				String[] choice = choices.get(elementIdRegardingDistance).split(";");
+				firstChoice = choice[0];
+				secondChoice = choice[1];
+				choices.remove(elementIdRegardingDistance);
+				listOfChoices = choices;
+			}
+			
 		} else {
 			listOfChoices = null;
 		}
