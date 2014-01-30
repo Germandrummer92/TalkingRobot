@@ -15,8 +15,6 @@ public abstract class KitchenDialog extends Dialog {
 
   private List<Recipe> recipeDatabase;
   
-  private DialogModus dialogModus;
-  
   /**
    * Creates a new Kitchen Dialog object in the given session and at the defined state.
    * @param session the current session (The session which this dialog is part of)
@@ -27,8 +25,8 @@ public abstract class KitchenDialog extends Dialog {
 	  loadLists();
 	  this.dialogModus = DialogModus.KITCHEN;
   }
-  
-  /**
+
+/**
    * Loads the listd of tool, recipes and ingredients from the system in order to
    * start a new kitchen Dialog
    */

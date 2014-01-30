@@ -10,7 +10,6 @@ import java.util.List;
 public class CanteenRecommendationDialog extends CanteenDialog {
 	private String wishmeal;
 	//private String wishDate;
-	private DialogModus dialogModus;
 	
 /**
 	 * @param session
@@ -20,8 +19,8 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		super(session, dialogState, currentCanteen);
 		this.dialogModus = DialogModus.CANTEEN_RECOMMENDATION;
 	}
-	
- public String getWishmeal() {
+
+public String getWishmeal() {
 			return wishmeal;
 }
 

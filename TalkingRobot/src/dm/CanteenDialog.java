@@ -9,7 +9,6 @@ package dm;
 public abstract class CanteenDialog extends Dialog {
 
   protected Canteen currentCanteen;
-  private DialogModus dialogModus;
 
   /**
    * Creates a new CanteenDialog at the given canteen which is part of the session given and
@@ -33,7 +32,5 @@ public abstract class CanteenDialog extends Dialog {
   public void setCurrentCanteen(Canteen currentCanteen) {
 	  this.currentCanteen = currentCanteen;
   }
-  
-  
 
 }

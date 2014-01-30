@@ -13,8 +13,6 @@ import data.UserData;
  */
 public class StartDialog extends Dialog {
 
-	private DialogModus dialogModus;
-
 	/**
 	 * Creates a new StartDialog, using
 	 * @param currentSession the Session this dialog runs on.
@@ -30,6 +28,7 @@ public class StartDialog extends Dialog {
 	 */
 	public StartDialog(Session currentSession, DialogState currentState) {
 		super(currentSession, currentState);
+		this.dialogModus = DialogModus.START;
 	}
 
 	/** 
@@ -184,8 +183,6 @@ public class StartDialog extends Dialog {
 		//Jumping due to keyword
 		}
 
-		
-
 	/**
 	 * @param keywords
 	 * @param terms
@@ -223,6 +220,9 @@ public class StartDialog extends Dialog {
 
 		DialogManager.giveDialogManager().setInErrorState(true);
 		}
+	
+	
+
 	}
 
 

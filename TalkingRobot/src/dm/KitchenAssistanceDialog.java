@@ -16,7 +16,6 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 	private AssistanceState stateOfAssistance;
 	private Object requestedObject;
 	private String requestedObjectName;
-	private DialogModus dialogModus;
 	
   /**
 	 * @param session the Current Session

@@ -10,8 +10,6 @@ import java.util.List;
 public class RecipeAssistanceDialog extends KitchenDialog {
 
 	private Recipe currRecipe;
-	
-	private DialogModus dialogModus;
 
 	
 	/**
@@ -24,7 +22,7 @@ public class RecipeAssistanceDialog extends KitchenDialog {
 		// TODO Auto-generated constructor stub
 	}
 
-  public Recipe getCurrRecipe() {
+public Recipe getCurrRecipe() {
   return currRecipe;
   }
 

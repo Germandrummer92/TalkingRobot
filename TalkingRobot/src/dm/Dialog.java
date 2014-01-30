@@ -14,6 +14,8 @@ public abstract class Dialog {
 
   private DialogState currentState;
   
+  protected DialogModus dialogModus;
+  
   /**
    * Creates a new dialog without a specified state in the first possible DialogState.
    * @param currentSession the currentSession starting this Dialog
@@ -61,7 +63,14 @@ public abstract class Dialog {
   public DialogState getCurrentDialogState() {
   		return currentState;
   }
-
+  
+  /**
+   * 
+   * @return the current dialog modus
+   */
+	public DialogModus getDialogModus() {
+		return dialogModus;
+	}
 
 /**
  * @param currentSession the currentSession to set
@@ -76,5 +85,8 @@ public void setCurrentSession(Session currentSession) {
 public void setCurrentDialogState(DialogState currentState) {
 	this.currentState = currentState;
 }
+
+
+
 
 }

@@ -62,6 +62,8 @@ public enum CanteenInfo {
   CI_TELL_LINE_NOT_EXIST,
 
   CI_TELL_MEAL_NOT_EXIST,
+  
+  CI_LINE_LOCATION_INFO,
 
   CI_EXIT;
 
