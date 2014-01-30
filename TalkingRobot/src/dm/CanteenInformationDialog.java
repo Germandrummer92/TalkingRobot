@@ -54,20 +54,19 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	switch ((CanteenInfo)getCurrentDialogState().getCurrentState()) {
 	case CI_ENTRY:
-		updateStateEntry();
+		updateStateEntry(keywords, terms, approval);
 		break;
-
 	case CI_ADEN_LINE_1_PRICE:
-		updateStateAdenLine1Price(keywords, terms);
+		updateStateAdenLine1Price(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_2_PRICE:
-		updateStateAdenLine2Price(keywords, terms);
+		updateStateAdenLine2Price(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_3_PRICE:
-		updateStateAdenLine3Price(keywords, terms);
+		updateStateAdenLine3Price(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_45_PRICE:
-		updateStateAdenLine45Price(keywords, terms);
+		updateStateAdenLine45Price(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_1_DISH:
 		updateStateAdenLine1Dish(keywords, terms);
@@ -322,31 +321,31 @@ private void updateStateAdenLine1Dish(List<Keyword> keywords, List<String> terms
 }
 
 
-private void updateStateAdenLine45Price(List<Keyword> keywords, List<String> terms) {
+private void updateStateAdenLine45Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
 	// TODO Auto-generated method stub
 	
 }
 
 
-private void updateStateAdenLine3Price(List<Keyword> keywords, List<String> terms) {
+private void updateStateAdenLine3Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
 	// TODO Auto-generated method stub
 	
 }
 
 
-private void updateStateAdenLine2Price(List<Keyword> keywords, List<String> terms) {
+private void updateStateAdenLine2Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
 	// TODO Auto-generated method stub
 	
 }
 
 
-private void updateStateAdenLine1Price(List<Keyword> keywords, List<String> terms) {
+private void updateStateAdenLine1Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
 	// TODO Auto-generated method stub
 	
 }
 
 
-private void updateStateEntry() {
+private void updateStateEntry(List<Keyword> keywords, List<String> terms, List<String> approval) {
 	// TODO Auto-generated method stub
 	
 }
