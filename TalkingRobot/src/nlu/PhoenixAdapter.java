@@ -15,112 +15,120 @@ import java.util.LinkedList;
  */
 public class PhoenixAdapter {
           
-  public LinkedList<String> operatePhoenix(String runParse, int extractFlag, File compile) {
-	  LinkedList<String> phoenixOutput = new LinkedList<String>();
-	  
-	  System.out.println(runParse);
-	  
-	  try {
-		  //compile grammar
-		  Runtime rt = Runtime.getRuntime();
-		  rt.exec("tcsh compile", null, compile.getAbsoluteFile());
+	/**
+	 * Runs Phoenix and gives back the data from input, parsed according to the parameter runParse. 
+	 * @param runParse the parse to be used
+	 * @param extractFlag shows if parse output will be in extracted form
+	 * @param compile the used grammar
+	 * @return
+	 */
+	public LinkedList<String> operatePhoenix(String runParse, int extractFlag, File compile) {
+		LinkedList<String> phoenixOutput = new LinkedList<String>();
 		  
-		  //run parse for file input
-		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", runParse);
-		  phoenixBuilder.directory(new File("resources/nlu/Phoenix/TalkingRobot"));
-		  phoenixBuilder.redirectInput(new File("resources/nlu/Phoenix/TalkingRobot/input"));
-		  Process phoenix = phoenixBuilder.start();
+		System.out.println(runParse);
+		  
+		try {
+			//compile grammar
+			Runtime rt = Runtime.getRuntime();
+			rt.exec("tcsh compile", null, compile.getAbsoluteFile());
+		  
+			//run parse for file input
+			ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", runParse);
+			phoenixBuilder.directory(new File("resources/nlu/Phoenix/TalkingRobot"));
+			phoenixBuilder.redirectInput(new File("resources/nlu/Phoenix/TalkingRobot/input"));
+			Process phoenix = phoenixBuilder.start();
 		  
 		  
-		  BufferedReader stdin2 = new BufferedReader(new InputStreamReader(phoenix.getInputStream()));
-		  BufferedReader stderr2 = new BufferedReader(new InputStreamReader(phoenix.getErrorStream()));
+		  	BufferedReader stdin2 = new BufferedReader(new InputStreamReader(phoenix.getInputStream()));
+		  	BufferedReader stderr2 = new BufferedReader(new InputStreamReader(phoenix.getErrorStream()));
 		  
-		  String phoenixLine2 = null;
+		  	String phoenixLine2 = null;
 		  
-		  while ((phoenixLine2 = stderr2.readLine()) != null) {
+		  	while ((phoenixLine2 = stderr2.readLine()) != null) {
 			  
-			  System.out.println(phoenixLine2);
-		  }
+		  		System.out.println(phoenixLine2);
+		  	}
 
-		  while ((phoenixLine2 = stdin2.readLine()) != null) {
+		  	while ((phoenixLine2 = stdin2.readLine()) != null) {
 
-			  phoenixOutput = insertWords(extractFlag, phoenixOutput, phoenixLine2);
-			  System.out.println(phoenixLine2);
-		  }	  
-	  } catch (IOException e) {
-		  e.printStackTrace();
-	  }
-	  return phoenixOutput;
-  }
-
-private LinkedList<String> insertWords(int extractFlag,
-		LinkedList<String> list, String phoenixLine) {
-	if(extractFlag == 1) {
-		if(phoenixLine.matches("Keyword:.+")) {
-			String[] keywords1 = phoenixLine.split("Keyword:");
-			String[] keywords2 = keywords1[keywords1.length - 1].split("_");
-			String keywords3 = "";
-			for(int i = 0; i < keywords2.length; i++) {
-				keywords3 = keywords3.trim() + " " + keywords2[i].trim().toLowerCase();
-			}
-			keywords3.trim();
-			if(!list.contains(keywords3)) {
-				list.add(keywords3);	
-			}
+		  		phoenixOutput = insertWords(extractFlag, phoenixOutput, phoenixLine2);
+		  		System.out.println(phoenixLine2);
+		  	}	  
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		else{
-			if(phoenixLine.matches("Approval:.+")) {
-				String[] keywords = phoenixLine.split("Approval:");
-				if(!list.contains(keywords[keywords.length - 1].trim().toLowerCase())) {
-					list.add(keywords[keywords.length - 1].trim().toLowerCase());
+		return phoenixOutput;
+	}
+
+	private LinkedList<String> insertWords(int extractFlag,
+			LinkedList<String> list, String phoenixLine) {
+		if(extractFlag == 1) {
+			if(phoenixLine.matches("Keyword:.+")) {
+				String[] keywords1 = phoenixLine.split("Keyword:");
+				String[] keywords2 = keywords1[keywords1.length - 1].split("_");
+				String keywords3 = "";
+				for(int i = 0; i < keywords2.length; i++) {
+					keywords3 = keywords3.trim() + " " + keywords2[i].trim().toLowerCase();
+				}
+				keywords3.trim();
+				if(!list.contains(keywords3)) {
+					list.add(keywords3);	
+				}
+			}
+			else{
+				if(phoenixLine.matches("Approval:.+")) {
+					String[] keywords = phoenixLine.split("Approval:");
+					if(!list.contains(keywords[keywords.length - 1].trim().toLowerCase())) {
+						list.add(keywords[keywords.length - 1].trim().toLowerCase());
+					}
 				}
 			}
 		}
-	}
-	else {		
-		if(phoenixLine.matches("Term:.+")) {
-			String[] help = phoenixLine.split("Term:");
-			String[] keywords1 = help[help.length - 1].split("[a-z()\\[\\]_]+");
-			String keywords2 = "";
-			for (int i = 0; i < keywords1.length; i++) {
+		else {		
+			if(phoenixLine.matches("Term:.+")) {
+				String[] help = phoenixLine.split("Term:");
+				String[] keywords1 = help[help.length - 1].split("[a-z()\\[\\]_]+");
+				String keywords2 = "";
+				for (int i = 0; i < keywords1.length; i++) {
 					if(!keywords1[i].isEmpty()) {
 						keywords2 = keywords2.trim() + " " + keywords1[i].trim().toLowerCase();
 					}
-			}
-			keywords2 = keywords2.trim();
-			boolean containsFor = false;
-			if (keywords2.equals("for")) {
-				for(int i = 0; i < list.size(); i++) {
-					if(list.get(i).matches(".*for.*")) {
-						containsFor = true;
-						break;
+				}
+				keywords2 = keywords2.trim();
+				boolean containsFor = false;
+				if (keywords2.equals("for")) {
+					for(int i = 0; i < list.size(); i++) {
+						if(list.get(i).matches(".*for.*")) {
+							containsFor = true;
+							break;
+						}
+					}
+					if(containsFor != true) {
+						list.add(keywords2);
 					}
 				}
-				if(containsFor != true) {
+				else {
 					list.add(keywords2);
 				}
+			
 			}
 			else {
-				list.add(keywords2);
-			}
-			
-		}
-		else {
-			if(phoenixLine.matches("PossibleKeyword:.+")) {
-				String[] help = phoenixLine.split("PossibleKeyword:");
-				String[] keywords = help[help.length - 1].split("[a-z()\\[\\]_ ]+");
-				for(int i = 0; i < keywords.length; i++) {
-					if(keywords[i].equals("[A-Z]")) {
-						keywords[i] = keywords[i].toLowerCase();
-						if(!list.contains(keywords[i])) {
-							list.add(keywords[i]);
+				if(phoenixLine.matches("PossibleKeyword:.+")) {
+					String[] help = phoenixLine.split("PossibleKeyword:");
+					String[] keywords = help[help.length - 1].split("[a-z()\\[\\]_ ]+");
+					for(int i = 0; i < keywords.length; i++) {
+						if(keywords[i].equals("[A-Z]")) {
+							keywords[i] = keywords[i].toLowerCase();
+							if(!list.contains(keywords[i])) {
+								list.add(keywords[i]);
+							}
 						}
 					}
 				}
 			}
 		}
+		return list;
 	}
-	return list;
-}
+	
  
 }
