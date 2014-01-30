@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class CanteenRecommendationDialog extends CanteenDialog {
 	private String wishmeal;
-	private String wishDate;
+	//private String wishDate;
 	
 /**
 	 * @param session
@@ -26,14 +26,14 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 public void setWishmeal(String wishmeal) {
 		this.wishmeal = wishmeal;
 }
-
+/*
 public String getWishDate() {
 	return wishDate;
-}
-
+}*/
+/*
 public void setWishDate(String wishDate) {
 		this.wishDate = wishDate;
-}
+}*/
 
 @Override
 public void updateState(List<Keyword> keywords, List<String> terms,
