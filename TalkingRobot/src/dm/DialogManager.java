@@ -101,26 +101,26 @@ public class DialogManager {
 	  
 	  //repeat || rephrase: more than 40% of the word is probably written wrong
 	  if(avg >= (float) 0.4){
-		  if(errorStrategy[0].getCounter() <= 3) {
+		  if(errorStrategy[0].getCounter() < 3) {
 			  dmResult = errorStrategy[0].handleError(possibleKeywords);
-		  } else if (errorStrategy[1].getCounter() <= 3) {
+		  } else if (errorStrategy[1].getCounter() < 3) {
 			  dmResult = errorStrategy[1].handleError(possibleKeywords);
 		  } else {
 			  if(this.getCurrentDialog().getCurrentDialogState().isQuestion()) {
 				  Main.giveMain().setDmResult(this.getCurrentDialog().getCurrentDialogState());
 				  dialogIsUpdated = true;
 			  } else {
-				  dmResult = new ErrorHandlingState(true, ErrorHandling.RESTART, null);
+				  dmResult = errorStrategy[5].handleError(possibleKeywords);;
 			  }
 		  }
 	  }
 	
 	  //explicit verification || choice : the probability that we have a keyword lies between 60% and 75%
 	  if(avg >= (float) 0.25 && avg < (float) 0.4) {
-		  if(errorStrategy[2].getCounter() <= 3) {
+		  if(errorStrategy[2].getCounter() < 3) {
 			  this.errorState = ErrorState.CHOICE;
 			  dmResult = errorStrategy[2].handleError(possibleKeywords);
-		  } else if(errorStrategy[3].getCounter() <= 3) {
+		  } else if(errorStrategy[3].getCounter() < 3) {
 			  this.errorState = ErrorState.EXPLICIT_VERIFICATION;
 			  dmResult = errorStrategy[3].handleError(possibleKeywords);
 		  } else {
@@ -131,7 +131,7 @@ public class DialogManager {
 	  
 	  //indirect verification: the probability that we have a keyword lies between 75% and 85%
 	  if(avg >= (float) 0.15 && avg < (float) 0.25) {
-		  if(errorStrategy[4].getCounter() <= 3) {
+		  if(errorStrategy[4].getCounter() < 3) {
 			  this.errorState = ErrorState.INDIRECT_VERIFICATION;
 			  dmResult = errorStrategy[4].handleError(possibleKeywords);
 		  } else {
@@ -211,12 +211,13 @@ public class DialogManager {
 	  loadUsers();
 	  previousDialog = null;
 	  
-	  errorStrategy = new ErrorStrategy[5];
+	  errorStrategy = new ErrorStrategy[6];
 	  errorStrategy[0] = new RepeatStrategy();
 	  errorStrategy[1] = new RephraseStrategy();
 	  errorStrategy[2] = new ChoiceStrategy();
 	  errorStrategy[3] = new ExplicitVerificationStrategy();
 	  errorStrategy[4] = new IndirectVerificationStrategy();
+	  errorStrategy[5] = new RestartStrategy();
 	  
 	  errorState = ErrorState.ZERO;
 	  dictionary = new Dictionary();
