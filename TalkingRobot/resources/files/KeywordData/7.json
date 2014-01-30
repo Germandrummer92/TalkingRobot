@@ -1,1 +1,1 @@
-{"wordID":7,"word":"xizhe","dialogState":{"currentState":{"name":"S_USER_FOUND"}},"priority":100,"dataReference":{"userID":5,"userName":"Xizhe","isStudent":true,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Jan 18, 2014 6:28:12 PM"}}
+{"wordID":7,"word":"xizhe","dialogState":{"currentState":{"name":"S_USER_FOUND"}},"priority":10,"dataReference":{"userID":5,"userName":"Xizhe","isStudent":true,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Jan 18, 2014 6:28:12 PM"}}

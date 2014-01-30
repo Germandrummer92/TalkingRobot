@@ -224,9 +224,30 @@ public class KeywordData implements Data {
 	}
 	
 	/*public static void main(String[] args) {
+		File keywords = new File("resources/files/keywords.txt");
+		BufferedReader br = null;
 		DialogState d = new DialogState();
-		d.setCurrentState(Start.S_ENTRY);
-		new KeywordData("Goodbye", d, 0, null).writeFile();
-		System.out.println(loadData().get(0).dialogState.getCurrentState().toString());
-	}*/
+		try {
+			br = new BufferedReader(new FileReader(keywords));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String line;
+		try {
+			while ((line = br.readLine()) != null) {
+			   new KeywordData(line, d, 0, null).writeFile();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+	}
 }

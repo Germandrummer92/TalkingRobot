@@ -198,13 +198,14 @@ public class StartDialog extends Dialog {
 					return;
 				}
 			}
-		if (terms.size() == 1) {
-			for (String s : terms) {
+
 				getCurrentDialogState().setCurrentState(Start.S_USER_NOT_FOUND);
-				getCurrentSession().getCurrentUser().getUserData().setUserName(s);
-				
-			}
-		}
+				if (!terms.isEmpty()) {
+					getCurrentSession().getCurrentUser().getUserData().setUserName(terms.get(0));
+				}
+				else {
+					DialogManager.giveDialogManager().setInErrorState(true);
+					}
 	}
 
 	/**
@@ -218,8 +219,9 @@ public class StartDialog extends Dialog {
 					return;
 				}
 			}
+
+		DialogManager.giveDialogManager().setInErrorState(true);
 		}
-		
 	}
 
 
