@@ -23,7 +23,7 @@ public class ASRPhase extends Phase {
    * @See {@link Phase#nextPhase(Main)}
    * @return the next Phase.
    */
-  protected Phase nextPhase(Main main) {
+  public Phase nextPhase(Main main) {
   		return new NLUPhase();
   }
 

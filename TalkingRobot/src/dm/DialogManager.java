@@ -79,39 +79,39 @@ public class DialogManager {
   }
 
   /**
-   * Handles Errors, from the NLU Phase.
+   * Handles Errors, from the NLU Phase and sets the next dmResult if errors couldn't be solved.
    * @param possibleKeywords possibly wrongly written keywords.
  * @return 
    */
-  public ErrorHandlingState handleError(List<String> possibleKeywords) {
+  public void handleError(List<String> possibleKeywords) {
 	  
+	  ErrorHandlingState dmResult = new ErrorHandlingState(true, ErrorHandling.REPEAT, "repeat");;
+	  boolean dialogIsUpdated = false;
 	  int avg = 10;
 	  
 	  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
 	  		avg = this.getAverageDistance(possibleKeywords);
 	  } else if (!possibleKeywords.isEmpty()) {
-		  	boolean errorSolved = handleResponseToPreviousErrorHandling(possibleKeywords);
-		  	if(!errorSolved) {
+		  	dialogIsUpdated = handleResponseToPreviousErrorHandling(possibleKeywords);
+		  	if(!dialogIsUpdated) {
 		  		//error could not be solved; start with repetition/rephrasing again
 		  		this.clearAllStrategies();
-		  	} else {
-		  		return null;
-		  	}
-	  }
-	  
-	  ErrorHandlingState dmResult;
+		  	} 
+	  }  
 	  
 	  //repeat || rephrase: 8 <= avg
 	  if(avg >= 8){
 		  if(errorStrategy[0].getCounter() <= 3) {
 			  dmResult = errorStrategy[0].handleError(possibleKeywords);
-			  return dmResult;
 		  } else if (errorStrategy[1].getCounter() <= 3) {
 			  dmResult = errorStrategy[1].handleError(possibleKeywords);
-			  return dmResult;
 		  } else {
-			  //TODO random?? or just passing down?
-			  avg = 6;
+			  if(this.getCurrentDialog().getCurrentDialogState().isQuestion()) {
+				  Main.giveMain().setDmResult(this.getCurrentDialog().getCurrentDialogState());
+				  dialogIsUpdated = true;
+			  } else {
+				  dmResult = new ErrorHandlingState(true, ErrorHandling.RESTART, null);
+			  }
 		  }
 	  }
 	
@@ -120,11 +120,9 @@ public class DialogManager {
 		  if(errorStrategy[2].getCounter() <= 3) {
 			  this.errorState = ErrorState.CHOICE;
 			  dmResult = errorStrategy[2].handleError(possibleKeywords);
-			  return dmResult;
 		  } else if(errorStrategy[3].getCounter() <= 3) {
 			  this.errorState = ErrorState.EXPLICIT_VERIFICATION;
 			  dmResult = errorStrategy[3].handleError(possibleKeywords);
-			  return dmResult;
 		  } else {
 			  //if already tried numeral times than try with indirect verification.
 			  avg = 3;
@@ -136,7 +134,6 @@ public class DialogManager {
 		  if(errorStrategy[4].getCounter() <= 3) {
 			  this.errorState = ErrorState.INDIRECT_VERIFICATION;
 			  dmResult = errorStrategy[4].handleError(possibleKeywords);
-			  return dmResult;
 		  } else {
 			  //if already tried numeral times than try with ignoring
 			  avg = 1;
@@ -153,9 +150,13 @@ public class DialogManager {
 		  		}
 		  }
 		  
-		  updateDialog(assumedKeywords, new LinkedList<String>(), new LinkedList<String>());  
+		  updateDialog(assumedKeywords, new LinkedList<String>(), new LinkedList<String>()); 
+		  dialogIsUpdated = true;
 	  }
-	  return null;
+	  
+	  if(!dialogIsUpdated) { Main.giveMain().setDmResult(dmResult); }
+	  this.isInErrorState = false;
+	  
   }
 
   private boolean handleResponseToPreviousErrorHandling(List<String> possibleKeywords) {
@@ -167,6 +168,9 @@ public class DialogManager {
   				ChoiceStrategy strategy = (ChoiceStrategy)errorStrategy[2];
   				keyword.add(strategy.getSecondChoice());
   				this.updateDialog(keyword, new LinkedList<String>(), new LinkedList<String>());
+  			} else if(possibleKeywords.get(i).equals("first")) {
+  				ErrorHandlingState dmResult = errorStrategy[2].handleError(null);
+  				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
   			}
   		}
   	} else if(this.errorState == ErrorState.EXPLICIT_VERIFICATION) {
@@ -191,7 +195,6 @@ public class DialogManager {
 	} else {
 		return false;
 	}
-	
 }
 
 /**

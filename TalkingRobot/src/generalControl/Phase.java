@@ -19,6 +19,6 @@ public abstract class Phase {
    * @param main the main class is system is running in currently
    * @return the next Phase.
    */
-  protected abstract Phase nextPhase(Main main);
+  public abstract Phase nextPhase(Main main);
 
 }

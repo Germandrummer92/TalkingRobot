@@ -59,7 +59,7 @@ public class NLUPhase extends Phase {
    * returns the next phase the system must enter.
    * The DM-phase always follows after the NLU-phase
    */
-  protected Phase nextPhase(Main main) {
+  public Phase nextPhase(Main main) {
   		return main.getDmPhase();
   }
 

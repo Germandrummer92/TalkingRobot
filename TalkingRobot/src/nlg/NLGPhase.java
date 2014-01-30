@@ -18,7 +18,7 @@ public class NLGPhase extends Phase {
 	  main.setNlgResult(nlgResult);
   }
 
-  protected Phase nextPhase(Main main) {
+  public Phase nextPhase(Main main) {
 	  return main.getDmPhase();
   }
 
