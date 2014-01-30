@@ -2,6 +2,10 @@ package nlu;
 import generalControl.Main;
 import generalControl.Phase;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,18 +41,25 @@ public class NLUPhase extends Phase {
    */
   public void setPhaseResult(Main main) {
 	  String userInput = main.getAsrResult();
+	  
+	  //write given input in file input
+	  File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
+	  PrintWriter writer;
+	try {
+		writer = new PrintWriter(file, "UTF-8");
+		writer.println(userInput);
+		writer.close();
+	} catch (FileNotFoundException | UnsupportedEncodingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  
+	  
 	  LinkedList<List<String>> nluResult = new LinkedList<List<String>>();
 	  	  
 	  nluResult.add(kwAnalyzer.analyze(userInput));
 	  nluResult.add(termAnalyzer.analyze(userInput));
-	  
-	  if(nluResult.get(0).isEmpty()) {
-		  nluResult.add(possibleKwAnalyzer.analyze(userInput));
-	  }
-	  else {
-		  nluResult.add(new LinkedList<String>());
-	  }
-	  
+	  nluResult.add(possibleKwAnalyzer.analyze(userInput));  
 	  nluResult.add(approvalAnalyzer.analyze(userInput));
 
       main.setNluResult(nluResult);

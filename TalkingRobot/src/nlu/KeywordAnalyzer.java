@@ -29,7 +29,7 @@ public class KeywordAnalyzer extends InputAnalyzer {
    * @see InputAdapter#analyze()
    */
   public List<String> analyze(String input) {
-    List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
+    List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
     if(result == null) {
     	System.out.println("hi");
     }

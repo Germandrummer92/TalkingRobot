@@ -35,7 +35,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	 * @see InputAdapter#analyze()
 	 */
 	public List<String> analyze(String input) {
-		 LinkedList<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
+		 LinkedList<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
 		  
 		 LinkedList<String> possibleKeywords = this.cleanInput(input, result);
 		 LinkedList<String> possibleKeywords2 = this.checkForKeywordsConsistingOfSeveralWords(possibleKeywords, result);

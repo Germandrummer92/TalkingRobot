@@ -15,7 +15,7 @@ import java.util.LinkedList;
  */
 public class PhoenixAdapter {
           
-  public LinkedList<String> operatePhoenix(String input, String runParse, int extractFlag, File compile) {
+  public LinkedList<String> operatePhoenix(String runParse, int extractFlag, File compile) {
 	  LinkedList<String> phoenixOutput = new LinkedList<String>();
 	  
 	  System.out.println(runParse);
@@ -24,12 +24,6 @@ public class PhoenixAdapter {
 		  //compile grammar
 		  Runtime rt = Runtime.getRuntime();
 		  rt.exec("tcsh compile", null, compile.getAbsoluteFile());
-		  
-		  //write given input in file input
-		  File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
-		  PrintWriter writer = new PrintWriter(file, "UTF-8");
-		  writer.println(input);
-		  writer.close();
 		  
 		  //run parse for file input
 		  ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", runParse);
