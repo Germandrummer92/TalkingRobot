@@ -1,6 +1,7 @@
 package nlu;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	 * @see InputAdapter#analyze()
 	 */
 	public List<String> analyze(String input) {
-		 LinkedList<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
+		 LinkedList<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
 		  
 		 LinkedList<String> possibleKeywords = this.cleanInput(input, result);
 		 LinkedList<String> possibleKeywords2 = this.checkForKeywordsConsistingOfSeveralWords(possibleKeywords, result);
@@ -76,7 +77,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 			LinkedList<String> possibleKeywords, LinkedList<String> result) {
 		
 		LinkedList<String> output = new LinkedList<String>();
-		LinkedList<Keyword> keywordList = (LinkedList<Keyword>) dictionary.getKeywordList();
+		ArrayList<Keyword> keywordList = (ArrayList<Keyword>) dictionary.getKeywordList();
 		
 		for(int i = 0; i < keywordList.size(); i++) {
 			if(keywordList.get(i).getWord().matches(".+ .+")) {
@@ -84,10 +85,10 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 				String possibleOutput = keywordList.get(i).getWord() + ";";
 				Integer distance = 0;
 				for(int j = 0; j < keywordWords.length; j++) {
-					String possibleMatch = this.seekMatchingWords(keywordWords[i], result, possibleKeywords);
+					String possibleMatch = this.seekMatchingWords(keywordWords[j], result, possibleKeywords);
 					if(possibleMatch.equals("")) {distance = 11;}
-					else if(!possibleMatch.endsWith(keywordWords[i])) {
-						Levenshtein levenshtein = new Levenshtein(possibleMatch, keywordWords[i]);
+					else if(!possibleMatch.endsWith(keywordWords[j])) {
+						Levenshtein levenshtein = new Levenshtein(possibleMatch, keywordWords[j]);
 						distance = distance + levenshtein.getDistance();
 						possibleOutput = possibleOutput + possibleMatch + " ";
 					} else { possibleOutput = possibleOutput + possibleMatch + " "; }
@@ -183,7 +184,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	   * @return the most probable keyword if the Levenshtein distance is smaller than 10
 	   */
 	  private String compareToAll(String possibleKw) {
-		  LinkedList<Keyword> keywordList = (LinkedList<Keyword>) dictionary.getKeywordList();
+		  ArrayList<Keyword> keywordList = (ArrayList<Keyword>) dictionary.getKeywordList();
 		  
 		  String mostProbableKeyword = "";
 		  int shortestDistance = 100;

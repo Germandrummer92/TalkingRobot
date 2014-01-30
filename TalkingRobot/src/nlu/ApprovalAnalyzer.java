@@ -24,11 +24,7 @@ public class ApprovalAnalyzer extends InputAnalyzer {
      * @see InputAdapter#analyze()
      */
 	public List<String> analyze(String input) {
-		List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
-		
-		if(result == null) {
-	    	System.out.println("hi");
-	    }
+		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
 	    if(!result.isEmpty()) {
 		    System.out.println(result.size());
 		    for(int i = 0; i < result.size(); i++){

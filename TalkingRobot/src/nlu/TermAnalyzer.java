@@ -26,7 +26,7 @@ public class TermAnalyzer extends InputAnalyzer {
 	 * @see InputAnalyzer#analyze()
 	 */
 	public List<String> analyze(String input) {
-		List<String> result = phoenix.operatePhoenix(input, this.runParse, this.extractFlag, this.compile);
+		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
 //		
 //		List<String> result = new LinkedList<String>();
 //		result.add("we need");
