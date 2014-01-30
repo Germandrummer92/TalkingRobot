@@ -11,7 +11,17 @@ public enum ErrorHandling {
 	
 	REPHRASE,
 	
-	RESTART,
+	RESTART_START,
+	
+	RESTART_CI,
+	
+	RESTART_CR,
+	
+	RESTART_RA,
+	
+	RESTART_RL,
+	
+	RESTART_KA,
 	
 	CHOICE,
 	
