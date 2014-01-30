@@ -3,6 +3,8 @@ package dm;
 import java.util.ArrayList;
 import java.util.List;
 
+import data.LineData;
+import data.MealData;
 import data.MealDatePair;
 
 /**
@@ -364,7 +366,7 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, List<S
 
 
 private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
-	CanteenInfo next = null;
+	CanteenInfo next = CanteenInfo.CI_ENTRY;
 	boolean askPrice = false;
 	// assume that line[name] is given in keywords, meals' name in terms
 	// if user ask price, then price will be in terms
@@ -382,20 +384,88 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 			}
 		}
 	}
+	
+	int index = -1;
 	if( askPrice ) {
 		// now to find out the required meal's name
+		for( String name : terms) {
+			for( LineData line : currentCanteen.getCanteenData().getLines()) {
+				for( MealData meal : line.getTodayMeals()) {
+					meal.getMealName().equals(name);
+					index = currentCanteen.getCanteenData().getLines().indexOf(line);
+					setWishMeal(name);
+				}
+			}
+			
+		}
+	} else {
 		
 	}
-	// its probably wrong :(
-	if( keywords != null) {
-		for(Keyword kw : keywords) {
-			if( kw.getClass().equals(currentCanteen.getCanteenData().getLines().get(0).getClass())) {
-				
-			} 
-		}
+	
+	if (index == -1) {
+		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	}
 	
+	boolean inAden = true;
+	if( currentCanteen.getCanteenData().getCanteenName()
+			.equals(currentCanteen.getCanteenData().getCanteenName().MOLTKE)) {
+		inAden = false;
+	}
+	
+	if(inAden) {
+		next = findLineEnum(inAden, index);
+	}
 	return next;
+}
+
+
+/**
+ * vll. muss noch mal aendern
+ * @param inAden
+ * @param index
+ * @return
+ */
+private CanteenInfo findLineEnum(boolean inAden, int index) {
+		if(inAden) {
+			switch (index) {
+			case 0:
+				return CanteenInfo.CI_ADEN_LINE_1_PRICE;
+			case 1:
+				return CanteenInfo.CI_ADEN_LINE_2_PRICE;
+			case 2:
+				return CanteenInfo.CI_ADEN_LINE_3_PRICE;
+			case 3:
+				return CanteenInfo.CI_ADEN_LINE_45_PRICE;
+			case 4:
+				return CanteenInfo.CI_ADEN_SCHNITBAR_PRICE;
+			case 5:
+				// die enum haben noch ned
+			case 6:
+				return CanteenInfo.CI_ADEN_CAFE_PRICE;
+			case 7:
+				// was ist nmtisch?
+			case 8:
+				return CanteenInfo.CI_ADEN_LINE_6_PRICE;
+			case 9:
+				return CanteenInfo.CI_ADEN_CURRYQ_PRICE;
+			}
+		}else {
+			switch (index) {
+			case 0:
+				return CanteenInfo.CI_MOLTKE_CHOICE_1_PRICE;
+			case 1:
+				return CanteenInfo.CI_MOLTKE_CHOICE_2_PRICE;
+			case 2:
+				return CanteenInfo.CI_MOLTKE_ACTTHEK_PRICE;
+			case 3:
+				return CanteenInfo.CI_MOLTKE_GG_PRICE;
+			case 4:
+				return CanteenInfo.CI_MOLTKE_BUFFET_PRICE;
+			case 5:
+				return CanteenInfo.CI_MOLTKE_SCHNITBAR_PRICE;
+			}
+		}	
+	return CanteenInfo.CI_EXIT;
 }
 
 }
