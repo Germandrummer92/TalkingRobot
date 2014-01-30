@@ -1,11 +1,14 @@
 package dm;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import data.MealDatePair;
 
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 0.6
+ * @version 0.8
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	private String wishDate;
@@ -346,8 +349,53 @@ private void updateStateAdenLine1Price(List<Keyword> keywords, List<String> term
 
 
 private void updateStateEntry(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// TODO Auto-generated method stub
+	// TODO 
+	boolean error = false;
+	if(keywords == null && (terms) == null) {
+		error = true;
+		DialogManager.giveDialogManager().setInErrorState(error);
+	}
+	CanteenInfo subState = matchSubState(keywords, terms);
+	DialogState nextState = new DialogState();
+	nextState.setCurrentState(subState);
+	setCurrentDialogState(nextState);
+}
+
+
+
+private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
+	CanteenInfo next = null;
+	boolean askPrice = false;
+	// assume that line[name] is given in keywords, meals' name in terms
+	// if user ask price, then price will be in terms
 	
+	
+    //	boolean askMeal = false;
+	//List<MealData> possibleMeals = new ArrayList<MealDatePair>();
+	//List<CanteenInfo> possibleChoices = new ArrayList<CanteenInfo>();
+	/* find out first what the user wants to know */
+	if( terms != null) {
+		for( String toDo : terms ) {
+			if( toDo.equals("price")) {
+				askPrice = true;
+				break;
+			}
+		}
+	}
+	if( askPrice ) {
+		// now to find out the required meal's name
+		
+	}
+	// its probably wrong :(
+	if( keywords != null) {
+		for(Keyword kw : keywords) {
+			if( kw.getClass().equals(currentCanteen.getCanteenData().getLines().get(0).getClass())) {
+				
+			} 
+		}
+	}
+	
+	return next;
 }
 
 }
