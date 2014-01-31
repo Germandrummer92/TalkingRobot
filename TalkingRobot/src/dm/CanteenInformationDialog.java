@@ -353,12 +353,13 @@ private void updateStateAdenLine1Price(List<Keyword> keywords, List<String> term
 
 
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
-	// TODO 
+	 
 	boolean error = false;
 	if(keywords == null && (terms) == null) {
 		error = true;
 		DialogManager.giveDialogManager().setInErrorState(error);
 	}
+	
 	CanteenInfo subState = matchSubState(keywords, terms);
 	DialogState nextState = new DialogState();
 	nextState.setCurrentState(subState);
@@ -366,7 +367,12 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 }
 
 
-
+/**
+ * This method helps to match substate 
+ * @param keywords list of keyword
+ * @param terms list of string
+ * @return canteenInfo
+ */
 private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 	CanteenInfo next = CanteenInfo.CI_ENTRY;
 	boolean askPrice = false;
@@ -401,6 +407,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 				for( MealData meal : line.getTodayMeals()) {
 					meal.getMealName().equals(name);
 					index = currentCanteen.getCanteenData().getLines().indexOf(line);
+					//next = getLineEnum(line, askPrice);
 					setWishMeal(name);
 				}
 			}
@@ -409,30 +416,53 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 		
 		if( index == -1) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
-				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line 
+				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line keyword
+					 ArrayList<DialogState> refs = line.getReference();
 					if(inAden) {
-						//FIXME actually here should be a list of references
-                       
-						if(line.getReference().getCurrentState().name().contains("ADEN") 
-								&& line.getReference().getCurrentState().name().contains("PRICE")) {
-							return (CanteenInfo) line.getReference().getCurrentState();
-						}else { // then we don't find the line reference
-							
-						}
-					}else {// then is moltke
-						if(line.getReference().getCurrentState().name().contains("MOLTKE") 
-								&& line.getReference().getCurrentState().name().contains("PRICE")) {
-							return (CanteenInfo)line.getReference().getCurrentState();
-						}
+						
+                       for( DialogState ref : refs) {
+                    	   if(ref.getCurrentState().name().contains("ADEN") 
+   								&& ref.getCurrentState().name().contains("PRICE")) {
+   							return (CanteenInfo) ref.getCurrentState();
+                    	   }
+                        }
+					}
+					// then is in Moltke
+					 for( DialogState ref : refs) {
+                  	   if(ref.getCurrentState().name().contains("MOLTKE") 
+ 								&& ref.getCurrentState().name().contains("PRICE")) {
+ 							return (CanteenInfo) ref.getCurrentState();
+                  	   	}
+                      }
 					}
 				}
 			}
 		}
-	} else { // the user is asking meals in lines
-		
-	}
-	
-	if (index == -1 && (askPrice)) { // wenn we are here, then it's nothing matched
+		else { // the user is asking meals in lines
+			for( Keyword line : keywords) {
+				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line keyword
+					 ArrayList<DialogState> refs = line.getReference();
+					 if(inAden) {
+							
+	                       for( DialogState ref : refs) {
+	                    	   if(ref.getCurrentState().name().contains("ADEN") 
+	   								&& ref.getCurrentState().name().contains("DISH")) {
+	   							return (CanteenInfo) ref.getCurrentState();
+	                    	   }
+	                        }
+						}
+					 
+					 for( DialogState ref : refs) {
+	                  	   if(ref.getCurrentState().name().contains("MOLTKE") 
+	 								&& ref.getCurrentState().name().contains("DISH")) {
+	 							return (CanteenInfo) ref.getCurrentState();
+	                  	   	}
+	                  }
+
+				}
+			}
+		}
+	if (index == -1 && (askPrice)) { // when we are here, then it's nothing matched
 		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	}
 	
@@ -443,10 +473,11 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 }
 
 
+
 /**
- * vll. muss noch mal aendern
- * @param inAden
- * @param index
+ * Find out the enum with given index 
+ * @param inAden if the current canteen in Adennaurring, then true
+ * @param index the index of lines in
  * @return
  */
 private CanteenInfo findLineEnum(boolean inAden, int index) {
