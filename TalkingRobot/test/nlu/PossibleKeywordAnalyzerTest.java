@@ -29,7 +29,7 @@ public class PossibleKeywordAnalyzerTest {
 	}
 	
 	@Before
-	private void setUp() {
+	public void setUp() {
 		this.possibleKw = new PossibleKeywordAnalyzer();
 	}
 	

@@ -41,7 +41,8 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_term", 0, 
 				new File("resources/nlu/Phoenix/TalkingRobot/Term/"));
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("for you need and");
+		compare.add("for you need");
+		compare.add("and");
 		assertEquals(compare, result);
 	}
 	
@@ -79,7 +80,7 @@ public class PhoenixAdapterTest {
 	 */
 	@Test
 	public void possibleKw2() { 
-		setInput("I want to go to the cantean");
+		setInput("that is al");
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_possiblekw", 0,
 				new File("resources/nlu/Phoenix/TalkingRobot/PossibleKw/"));
 		LinkedList <String> compare = new LinkedList<String>();

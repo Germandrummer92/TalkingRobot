@@ -29,7 +29,7 @@ public class TermAnalyzerTest {
 	}
 	
 	@Before
-	private void setUp() {
+	public void setUp() {
 		this.term = new TermAnalyzer();
 	}
 
