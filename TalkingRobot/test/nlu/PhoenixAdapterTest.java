@@ -41,8 +41,7 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_term", 0, 
 				new File("resources/nlu/Phoenix/TalkingRobot/Term/"));
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("toast");
-		compare.add("salad");
+		compare.add("for you need and");
 		assertEquals(compare, result);
 	}
 	
@@ -55,7 +54,6 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_term", 0, 
 				new File("resources/nlu/Phoenix/TalkingRobot/Term/"));
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("nicole");
 		assertEquals(compare, result);
 	}
 	
@@ -68,9 +66,11 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_possiblekw", 0,
 				new File("resources/nlu/Phoenix/TalkingRobot/PossibleKw/"));
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("cantean");
-		compare.add("canteen");
-		compare.add("1");
+		compare.add("i");
+		compare.add("want");
+		compare.add("to");
+		compare.add("go");
+		compare.add("the");
 		assertEquals(compare, result);
 	}
 	
@@ -83,8 +83,8 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_possiblekw", 0,
 				new File("resources/nlu/Phoenix/TalkingRobot/PossibleKw/"));
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("that is al");
-		compare.add("that is all");
+		compare.add("that");
+		compare.add("is");
 		assertEquals(compare, result);
 	}
 	
@@ -123,8 +123,8 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_keyword", 1,
 				new File("resources/nlu/Phoenix/TalkingRobot/Keyword/"));
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("canteen");
 		compare.add("recommendation");
+		compare.add("canteen");
 		assertEquals(compare, result);
 	}
 	
