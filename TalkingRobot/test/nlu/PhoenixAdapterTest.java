@@ -55,6 +55,7 @@ public class PhoenixAdapterTest {
 		LinkedList <String> result = phoenix.operatePhoenix("run_parse_term", 0, 
 				new File("resources/nlu/Phoenix/TalkingRobot/Term/"));
 		LinkedList <String> compare = new LinkedList<String>();
+		compare.add("my name is");
 		assertEquals(compare, result);
 	}
 	
