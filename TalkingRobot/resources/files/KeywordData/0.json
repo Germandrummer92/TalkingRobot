@@ -1,1 +1,1 @@
-{"wordID":0,"word":"Hello","dialogState":{"currentState":{"name":"S_ENTRY"}},"priority":10}
+{"wordID":0,"word":"hello","dialogState":[{"currentState":{"name":"S_ENTRY"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

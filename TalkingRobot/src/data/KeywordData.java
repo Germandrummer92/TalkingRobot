@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import dm.CanteenInfo;
+import dm.CanteenInformationState;
 import dm.DialogState;
 import dm.Start;
 import dm.StartState;
@@ -33,18 +35,37 @@ public class KeywordData implements Data {
 
   	private String word;
 
-  	private DialogState dialogState;
+  	private ArrayList<DialogState> dialogState;
 
   	private int priority;
 
-  	private Data dataReference;
+  	private ArrayList<Data> dataReference;
   	
-  	public KeywordData(String word, DialogState state, int priority, Data dataRef) {
+  	private KeywordType type;
+  	/**
+  	 * Creates a new KeywordData type with the parameters specified
+  	 * @param word
+  	 * @param state dialogstates
+  	 * @param priority
+  	 * @param dataRef dataReferences
+  	 * @param type
+  	 */
+  	public KeywordData(String word, ArrayList<DialogState> state, int priority, ArrayList<Data> dataRef, KeywordType type) {
   		wordID = nextID();
   		this.word = word;
   		this.dialogState = state;
   		this.priority = priority;
   		this.dataReference = dataRef;
+  		this.type = type;
+  	}
+  	
+  	private KeywordData(int id,String word, ArrayList<DialogState> state, int priority, ArrayList<Data> dataRef, KeywordType type) {
+  		this.wordID = id;
+  		this.word = word;
+  		this.dialogState = state;
+  		this.priority = priority;
+  		this.dataReference = dataRef;
+  		this.type = type;
   	}
   	
   	/**
@@ -79,6 +100,7 @@ public class KeywordData implements Data {
 		this.dialogState = newData.getDialogState();
 		this.priority = newData.getPriority();
 		this.dataReference = newData.getDataReference();
+		this.type = newData.getType();
 		
 	}
 	
@@ -142,7 +164,7 @@ public class KeywordData implements Data {
 	 * 
 	 * @return the keyword's dialog state.
 	 */
-	public DialogState getDialogState() {
+	public ArrayList<DialogState> getDialogState() {
 		return dialogState;
 	}
 	
@@ -150,7 +172,7 @@ public class KeywordData implements Data {
 	 * 
 	 * @param dialogState the dialog state reference to be set.
 	 */
-	public void setDialogState(DialogState dialogState) {
+	public void setDialogState(ArrayList<DialogState> dialogState) {
 		this.dialogState = dialogState;
 	}
 	
@@ -172,14 +194,14 @@ public class KeywordData implements Data {
 	/**
 	 * @return the current Data Reference.
 	 */
-	public Data getDataReference() {
+	public ArrayList<Data> getDataReference() {
 		return dataReference;
 	}
 
 	/**
 	 * @param dataReference the Data Reference to be set.
 	 */
-	public void setDataReference(Data dataReference) {
+	public void setDataReference(ArrayList<Data> dataReference) {
 		this.dataReference = dataReference;
 	}
 	
@@ -223,30 +245,24 @@ public class KeywordData implements Data {
 		return f.listFiles().length;
 	}
 	
-	/*public static void main(String[] args) {
-		File keywords = new File("resources/files/keywords.txt");
-		BufferedReader br = null;
-		DialogState d = new DialogState();
-		try {
-			br = new BufferedReader(new FileReader(keywords));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String line;
-		try {
-			while ((line = br.readLine()) != null) {
-			   new KeywordData(line, d, 0, null).writeFile();
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			br.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+	/**
+	 * @return the type
+	 */
+	public KeywordType getType() {
+		return type;
+	}
 
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(KeywordType type) {
+		this.type = type;
+	}
+
+	/*public static void main(String[] args) {
+		ArrayList<DialogState> states =  new ArrayList<DialogState>();
+		states.add(new CanteenInformationState(CanteenInfo.CI_ENTRY));
+		ArrayList<Data> refs = new ArrayList<Data>();
+		new KeywordData(34,"next week", states, 4, refs, KeywordType.DEFAULT).writeFile();
+	}*/
 }

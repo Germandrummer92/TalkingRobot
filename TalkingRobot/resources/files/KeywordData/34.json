@@ -1,1 +1,1 @@
-{"wordID":34,"word":"next week","dialogState":{"currentState":{"name":"CI_ENTRY"}},"priority":4}
+{"wordID":34,"word":"next week","dialogState":[{"currentState":{"name":"CI_ENTRY"}}],"priority":4,"dataReference":[],"type":"DEFAULT"}

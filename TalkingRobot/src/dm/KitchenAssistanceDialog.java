@@ -67,43 +67,53 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 }
 
 /**
+ * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
  * @param keywords
- * @return if the State was changed since all Keywords were pointing to the same State
+ * @return if the jump was completed
  */
 private boolean updateStateKeywordJump(List<Keyword> keywords) {
 	if (keywords.isEmpty()) {
 		return false;
 	}
+	//Check if all keywords pointing to same state
 	else {
 		boolean sameRef = true;
-		Enum<?> ref = keywords.get(0).getReference().getCurrentState();
+		Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
 		for (Keyword kw : keywords) {
-			if (!ref.equals(kw.getReference().getCurrentState())) {
+			for (DialogState d : kw.getReference()) {
+			if (!ref.equals(d)) {
 				sameRef = false;
+			}
 			}
 		}
 		if (sameRef == true) {
 			getCurrentDialogState().setCurrentState(ref);
 			return true;
 		}
+		//If not go to keyword with highest priority
 		else {
 			int priorityMax = keywords.get(0).getKeywordData().getPriority();
 			Keyword curKW = keywords.get(0);
+			DialogState curRef = keywords.get(0).getReference().get(0);
 			for (Keyword kw : keywords) {
+				for (DialogState d : kw.getReference()) {
 				if (kw.getKeywordData().getPriority() > priorityMax) {
 					curKW = kw;
 					priorityMax = curKW.getKeywordData().getPriority();
+					curRef = d;
 				}
-			}
-			getCurrentDialogState().setCurrentState(curKW.getReference().getCurrentState());
+				}
+				}
+			getCurrentDialogState().setCurrentState(curRef.getCurrentState());
 			return true;
 			}
 		}
 }
 
 /**
- * @param keywords
- * @param terms
+ * Updates the state if its in the ToolNotFound state.
+ * @param keywords keywords passed
+ * @param terms terms passed
  */
 private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms) {
 	if (!terms.isEmpty() && requestedObjectName != null) {
@@ -115,13 +125,14 @@ private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms)
 }
 
 /**
- * @param keywords
- * @param terms
+ * Updates the state if its in the ToolFound state.
+ * @param keywords keywords passed
+ * @param terms terms passed
  */
 private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
 	for (Keyword kw : keywords) {
 		if (kw.getKeywordData().getDataReference().getClass().getName().equals("data.ToolData")) {
-			requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference());
+			requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference().get(0));
 			requestedObjectName = ((Tool)requestedObject).getToolData().getToolName();
 			return;
 		}
@@ -130,8 +141,9 @@ private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
 }
 
 /**
- * @param keywords
- * @param terms
+ * Updates the state if its in the IngredientNotFound state.
+ * @param keywords keywords passed
+ * @param terms terms passed
  */
 private void updateStateIngNotFound(List<Keyword> keywords, List<String> terms) {
 	//Not needed, only one State not found needed
@@ -139,13 +151,14 @@ private void updateStateIngNotFound(List<Keyword> keywords, List<String> terms) 
 }
 
 /**
- * @param keywords
- * @param terms
+ * Updates the state if its in the IngredientFound state.
+ * @param keywords keywords passed
+ * @param terms terms passed
  */
 private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
 	for (Keyword kw : keywords) {
 		if (kw.getKeywordData().getDataReference().getClass().getName().equals("data.IngredientData")) {
-			requestedObject = new Ingredient((IngredientData)kw.getKeywordData().getDataReference());
+			requestedObject = new Ingredient((IngredientData)kw.getKeywordData().getDataReference().get(0));
 			requestedObjectName = ((Ingredient)requestedObject).getIngredientData().getIngredientName();
 			return;
 		}
@@ -154,16 +167,18 @@ private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
 }
 
 /**
- * @param keywords
- * @param terms
+ * Updates the state if its in the Exit state.
+ * @param keywords keywords passed
+ * @param terms terms passed
  */
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 	//State should never be reached
 }
 
 /**
- * @param keywords
- * @param terms
+ * Updates the state if its in the Entry state.
+ * @param keywords keywords passed
+ * @param terms terms passed
  */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	//only invoked if not already jumped to TOOL_" or ING_FOUND

@@ -1,1 +1,1 @@
-{"wordID":4,"word":"bettina","dialogState":{"currentState":{"name":"S_USER_FOUND"}},"priority":10,"dataReference":{"userID":2,"userName":"Bettina","isStudent":true,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Jan 18, 2014 6:28:12 PM"}}
+{"wordID":4,"word":"bettina","dialogState":[{"currentState":{"name":"S_USER_FOUND"}}],"priority":10,"dataReference":[{"userID":2,"userName":"bettina","isStudent":true,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Jan 31, 2014 6:29:39 PM"}],"type":"USER"}

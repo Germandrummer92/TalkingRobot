@@ -43,9 +43,9 @@ public class DialogTest {
 			try {
 				currentDialog.updateState(kwList, new ArrayList<String>(), new ArrayList<String>());
 			} catch (WrongStateClassException e) {
-				assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().getCurrentState()));
+				assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
 			}
-			assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().getCurrentState()));
+			assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
 		}
 	}
 

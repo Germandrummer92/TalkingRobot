@@ -1,1 +1,1 @@
-{"wordID":17,"word":"holzgartenstrasse","dialogState":{"currentState":{"name":"CI_ENTRY"}},"priority":6}
+{"wordID":17,"word":"holzgartenstrasse","dialogState":[{"currentState":{"name":"CI_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

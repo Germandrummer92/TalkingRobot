@@ -1,1 +1,1 @@
-{"wordID":28,"word":"what food","dialogState":{"currentState":{"name":"CI_ENTRY"}},"priority":5}
+{"wordID":28,"word":"what food","dialogState":[{"currentState":{"name":"CI_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

@@ -1,8 +1,11 @@
 package dm;
 
 
+import java.util.ArrayList;
+
 import data.Data;
 import data.KeywordData;
+import data.KeywordType;
 import data.UserData;
 
 /**
@@ -22,8 +25,8 @@ public class Keyword {
    * @param priority the priority it has in determining the next state
    * @param reference if it has a reference to a different data object
    */
-  public Keyword(String keyword, DialogState state, int priority, Data reference) {
-	  keywordData = new KeywordData(keyword, state, priority, reference);
+  public Keyword(String keyword, ArrayList<DialogState> state, int priority, ArrayList<Data> reference, KeywordType type) {
+	  keywordData = new KeywordData(keyword, state, priority, reference, type);
 	  keywordData.writeFile();
   }
   
@@ -39,7 +42,7 @@ public class Keyword {
    * 
    * @return the Dialog state this keyword points to.
    */
-public DialogState getReference() {
+public ArrayList<DialogState> getReference() {
   		return keywordData.getDialogState();
   }
 

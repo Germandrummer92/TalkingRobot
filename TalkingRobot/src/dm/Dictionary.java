@@ -12,6 +12,7 @@ import java.util.Vector;
 import data.Data;
 import data.IngredientData;
 import data.KeywordData;
+import data.KeywordType;
 import data.RecipeData;
 import data.ToolData;
 import data.UserData;
@@ -76,16 +77,17 @@ public class Dictionary {
    * @param ref
    */
   
-  public void addKeyword(String keyword, int priority, DialogState dialogState, Data ref) {
-	  Keyword kw = new Keyword(new KeywordData(keyword, dialogState, priority, ref));
+  public void addKeyword(String keyword, int priority, ArrayList<DialogState> dialogState, ArrayList<Data> ref, KeywordType type) {
+	  Keyword kw = new Keyword(new KeywordData(keyword, dialogState, priority, ref, type));
 	  kw.getKeywordData().writeFile();
 	  keywordList.add(kw);
 	  String file;
-	  switch (ref.getClass().getName()) {
-	  case "data.UserData" : file = "user"; break;
-	  case "data.ToolData" : file = "tool"; break;
-	  case "data.IngredientData" : file = "ingredient";break;
-	  case "data.RecipeData" : file = "recipe"; break;
+	  switch (type) {
+	  case USER : file = "user"; break;
+	  case TOOL : file = "tool"; break;
+	  case INGREDIENT : file = "ingredient";break;
+	  case RECIPE : file = "recipe"; break;
+	  case COUNTRY : file = "country"; break;
 	  default : return;
 	  }
 	  FileWriter pw = null;

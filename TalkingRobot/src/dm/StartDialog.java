@@ -2,8 +2,11 @@ package dm;
 
 import generalControl.Main;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import data.Data;
+import data.KeywordType;
 import data.UserData;
 
 /**
@@ -60,8 +63,9 @@ public class StartDialog extends Dialog {
 	
 
 	/**
+	 * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
 	 * @param keywords
-	 * @return
+	 * @return if the jump was completed
 	 */
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
 		if (keywords.isEmpty()) {
@@ -70,10 +74,12 @@ public class StartDialog extends Dialog {
 		//Check if all keywords pointing to same state
 		else {
 			boolean sameRef = true;
-			Enum<?> ref = keywords.get(0).getReference().getCurrentState();
+			Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
 			for (Keyword kw : keywords) {
-				if (!ref.equals(kw.getReference().getCurrentState())) {
+				for (DialogState d : kw.getReference()) {
+				if (!ref.equals(d)) {
 					sameRef = false;
+				}
 				}
 			}
 			if (sameRef == true) {
@@ -84,20 +90,25 @@ public class StartDialog extends Dialog {
 			else {
 				int priorityMax = keywords.get(0).getKeywordData().getPriority();
 				Keyword curKW = keywords.get(0);
+				DialogState curRef = keywords.get(0).getReference().get(0);
 				for (Keyword kw : keywords) {
+					for (DialogState d : kw.getReference()) {
 					if (kw.getKeywordData().getPriority() > priorityMax) {
 						curKW = kw;
 						priorityMax = curKW.getKeywordData().getPriority();
+						curRef = d;
 					}
-				}
-				getCurrentDialogState().setCurrentState(curKW.getReference().getCurrentState());
+					}
+					}
+				getCurrentDialogState().setCurrentState(curRef.getCurrentState());
 				return true;
 				}
 			}
 	}
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the waitingForEmployeeStatus state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateWaitingEmployee(List<Keyword> keywords,
 			List<String> terms, List<String> approval) {
@@ -110,7 +121,11 @@ public class StartDialog extends Dialog {
 			}
 			getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
 			getCurrentSession().getCurrentUser().getUserData().writeFile();	
-			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, new StartState(Start.S_USER_FOUND), getCurrentSession().getCurrentUser().getUserData());
+			ArrayList<DialogState> states = new ArrayList<DialogState>();
+			ArrayList<Data> refs = new ArrayList<Data>();
+			states.add(new StartState(Start.S_USER_FOUND));
+			refs.add(getCurrentSession().getCurrentUser().getUserData());
+			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
 		}
 		else {
 			DialogManager.giveDialogManager().setInErrorState(true);
@@ -120,8 +135,9 @@ public class StartDialog extends Dialog {
 	}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the Exit state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 		//State never Reached
@@ -129,8 +145,9 @@ public class StartDialog extends Dialog {
 	}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the UserWantsNoSave state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateNoSave(List<Keyword> keywords, List<String> terms) {
 			getCurrentDialogState().setCurrentState(Start.S_ENTRY);
@@ -140,8 +157,9 @@ public class StartDialog extends Dialog {
 	}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the UserWantsToBeSaved state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateWantsSave(List<Keyword> keywords, List<String> terms) {
 		//State never Reached
@@ -149,8 +167,9 @@ public class StartDialog extends Dialog {
 	}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the UserWasSaved state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateSaved(List<Keyword> keywords, List<String> terms) {
 		//Nothing needed, Jumping due to Keyword.
@@ -158,8 +177,9 @@ public class StartDialog extends Dialog {
 		
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the UserNotFound state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateNotFound(List<Keyword> keywords, List<String> terms, List<String> approval) {
 		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
@@ -176,25 +196,29 @@ public class StartDialog extends Dialog {
 	}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the UserFound state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateFound(List<Keyword> keywords, List<String> terms) {
 		//Jumping due to keyword
 		}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the WaitingForUsername state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
 			for (Keyword kw: keywords) {
-				if (kw.getReference().getCurrentState() == Start.S_USER_FOUND) {
+				for (DialogState d : kw.getReference()) {
+				if (d.getCurrentState() == Start.S_USER_FOUND) {
 					getCurrentDialogState().setCurrentState(Start.S_USER_FOUND);
-					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference())));
+					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference().get(0))));
 					Main.giveMain().setUserLoggedIn(true);
 					return;
 				}
+			}
 			}
 
 				getCurrentDialogState().setCurrentState(Start.S_USER_NOT_FOUND);
@@ -207,15 +231,19 @@ public class StartDialog extends Dialog {
 	}
 
 	/**
-	 * @param keywords
-	 * @param terms
+	 * Updates the state if its in the Entry state.
+	 * @param keywords keywords passed
+	 * @param terms terms passed
 	 */
 	private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 		for (Keyword kw: keywords) {
-				if (kw.getReference().getCurrentState() == Start.S_WAITING_FOR_USERNAME) {
+			for (DialogState d: kw.getReference()) {
+				
+				if (d.getCurrentState() == Start.S_WAITING_FOR_USERNAME) {
 					getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
 					return;
 				}
+			}
 			}
 
 		DialogManager.giveDialogManager().setInErrorState(true);
