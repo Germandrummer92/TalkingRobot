@@ -6,7 +6,7 @@
 	NETS: 
 		[greeting]
 		[greeting2]
-		[canteenLoc]
+		[canteenloc]
 		[kitchen]
 		[kitchen2]
 		[recipe_assistance]
