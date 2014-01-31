@@ -1,1 +1,1 @@
-{"wordID":13,"word":"adennauerring","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_1_PRICE"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":13,"word":"adennauerring","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}

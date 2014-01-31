@@ -1,1 +1,1 @@
-{"wordID":12,"word":"moltke","dialogState":[{"currentState":{"name":"CI_MOLTKE_CHOICE_1_PRICE"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":12,"word":"moltke","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
