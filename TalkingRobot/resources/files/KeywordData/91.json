@@ -1,1 +1,1 @@
-{"wordID":91,"word":"tell you about","dialogState":{},"priority":0}
+{"wordID":91,"word":"tell you about","dialogState":[{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

@@ -1,1 +1,1 @@
-{"wordID":94,"word":"that is all","dialogState":{},"priority":0}
+{"wordID":94,"word":"that is all","dialogState":[{"currentState":{"name":"RL_ASK_FIRST_TOOL"}},{"currentState":{"name":"RL_ASK_FIRST_STEP"}},{"currentState":{"name":"RL_EXIT"}},{"currentState":{"name":"RA_EXIT"}},{"currentState":{"name":"KA_EXIT"}}],"priority":1,"dataReference":[],"type":"DEFAULT"}

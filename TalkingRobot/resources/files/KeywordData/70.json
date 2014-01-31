@@ -1,1 +1,1 @@
-{"wordID":70,"word":"what do you need for","dialogState":{},"priority":0}
+{"wordID":70,"word":"what do you need for","dialogState":[{"currentState":{"name":"RA_TELL_INGREDIENTS"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}

@@ -1,1 +1,1 @@
-{"wordID":92,"word":"save","dialogState":{},"priority":0}
+{"wordID":92,"word":"save","dialogState":[{"currentState":{"name":"RL_ASK_FIRST_TOOL"}},{"currentState":{"name":"RL_ASK_FIRST_STEP"}},{"currentState":{"name":"RL_EXIT"}},{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":2,"dataReference":[],"type":"DEFAULT"}

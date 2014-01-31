@@ -1,1 +1,1 @@
-{"wordID":89,"word":"instruct you","dialogState":{},"priority":0}
+{"wordID":89,"word":"instruct you","dialogState":[{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}

@@ -1,1 +1,1 @@
-{"wordID":81,"word":"clear","dialogState":{},"priority":0}
+{"wordID":81,"word":"clear","dialogState":[{"currentState":{"name":"S_ENTRY"}}],"priority":3,"dataReference":[],"type":"DEFAULT"}

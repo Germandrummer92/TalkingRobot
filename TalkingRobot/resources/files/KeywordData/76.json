@@ -1,1 +1,1 @@
-{"wordID":76,"word":"how cook","dialogState":{},"priority":0}
+{"wordID":76,"word":"how cook","dialogState":[{"currentState":{"name":"RA_TELL_INGREDIENTS"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}

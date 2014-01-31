@@ -1,1 +1,1 @@
-{"wordID":79,"word":"erase","dialogState":{},"priority":0}
+{"wordID":79,"word":"erase","dialogState":[{"currentState":{"name":"RA_ENTRY"}}],"priority":4,"dataReference":[],"type":"DEFAULT"}

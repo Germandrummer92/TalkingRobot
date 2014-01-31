@@ -1,1 +1,1 @@
-{"wordID":93,"word":"finished","dialogState":{},"priority":0}
+{"wordID":93,"word":"finished","dialogState":[{"currentState":{"name":"RL_ASK_FIRST_TOOL"}},{"currentState":{"name":"RL_ASK_FIRST_STEP"}},{"currentState":{"name":"RL_EXIT"}}],"priority":4,"dataReference":[],"type":"DEFAULT"}

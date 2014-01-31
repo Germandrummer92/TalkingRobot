@@ -1,1 +1,1 @@
-{"wordID":85,"word":"teach you","dialogState":{},"priority":0}
+{"wordID":85,"word":"teach you","dialogState":[{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":9,"dataReference":[],"type":"DEFAULT"}

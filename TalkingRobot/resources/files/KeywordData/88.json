@@ -1,1 +1,1 @@
-{"wordID":88,"word":"add","dialogState":{},"priority":0}
+{"wordID":88,"word":"add","dialogState":[{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":3,"dataReference":[],"type":"DEFAULT"}

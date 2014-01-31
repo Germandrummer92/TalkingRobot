@@ -1,1 +1,1 @@
-{"wordID":86,"word":"show you","dialogState":{},"priority":0}
+{"wordID":86,"word":"show you","dialogState":[{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}
