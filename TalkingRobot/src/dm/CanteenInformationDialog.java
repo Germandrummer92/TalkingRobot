@@ -462,7 +462,7 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 			case 4:
 				return CanteenInfo.CI_ADEN_SCHNITBAR_PRICE;
 			case 5:
-				// die enum haben noch ned
+				return CanteenInfo.CI_EXIT; // we don't have the enum and it doesn't that meaningful to have it
 			case 6:
 				return CanteenInfo.CI_ADEN_CAFE_PRICE;
 			case 7:
