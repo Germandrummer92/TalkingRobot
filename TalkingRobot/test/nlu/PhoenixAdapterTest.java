@@ -145,6 +145,20 @@ public class PhoenixAdapterTest {
 		assertEquals(compare, result);
 	}
 	
+	/**
+	 * checks the result of "Where is the canteen" for keyword.gra
+	 */
+	@Test
+	public void keyword3() { 
+		setInput("Where is the canteen");
+		LinkedList <String> result = phoenix.operatePhoenix("run_parse_keyword", 1,
+				new File("resources/nlu/Phoenix/TalkingRobot/Keyword/"));
+		LinkedList <String> compare = new LinkedList<String>();
+		compare.add("where is");
+		compare.add("canteen");
+		assertEquals(compare, result);
+	}
+	
 	@After
 	public void tearDown() {
 		this.phoenix = null;
