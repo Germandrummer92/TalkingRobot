@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 
 /**
@@ -29,8 +28,7 @@ public class PhoenixAdapter {
 		  
 		try {
 			//compile grammar
-			Runtime rt = Runtime.getRuntime();
-			rt.exec("tcsh compile", null, compile.getAbsoluteFile());
+			compile(compile);
 		  
 			//run parse for file input
 			ProcessBuilder phoenixBuilder = new ProcessBuilder("/bin/tcsh", runParse);
@@ -44,13 +42,17 @@ public class PhoenixAdapter {
 		  
 		  	String phoenixLine2 = null;
 		  
-		  	while ((phoenixLine2 = stderr2.readLine()) != null) {
-			  
+		  	while ((phoenixLine2 = stderr2.readLine()) != null && (!phoenixLine2.equals("READY"))) {
+		  		stdin2.close();
+		  		stderr2.close();
+		  		phoenix.destroy();
+		  		compile(compile);
 		  		System.out.println(phoenixLine2);
+		  		System.out.println("compile again after error");
+		  		return operatePhoenix(runParse, extractFlag, compile);
 		  	}
 
 		  	while ((phoenixLine2 = stdin2.readLine()) != null) {
-
 		  		phoenixOutput = insertWords(extractFlag, phoenixOutput, phoenixLine2);
 		  		System.out.println(phoenixLine2);
 		  	}	  
@@ -65,14 +67,36 @@ public class PhoenixAdapter {
 		if(extractFlag == 1) {
 			if(phoenixLine.matches("Keyword:.+")) {
 				String[] keywords1 = phoenixLine.split("Keyword:");
-				String[] keywords2 = keywords1[keywords1.length - 1].split("_");
-				String keywords3 = "";
-				for(int i = 0; i < keywords2.length; i++) {
-					keywords3 = keywords3.trim() + " " + keywords2[i].trim().toLowerCase();
+				String[] keywords3 = null;
+				String[] keywords2;
+				if(keywords1[keywords1.length - 1].matches(".+\\..+")) {
+					keywords2 = keywords1[keywords1.length - 1].split("[\\.]");
+					if(keywords2[keywords2.length - 1].matches(".+_.+")) {
+						keywords3 = keywords2[keywords2.length - 1].split("[_]");
+					}
+					else {
+						keywords3 = new String[1];
+						keywords3[0] = keywords2[keywords2.length - 1];
+					}
 				}
-				keywords3.trim();
-				if(!list.contains(keywords3)) {
-					list.add(keywords3);	
+				else {
+					if(keywords1[keywords1.length - 1].matches(".+_.+")) {
+						keywords3 = keywords1[keywords1.length - 1].split("[_]");
+					}
+					else {
+						keywords3 = keywords1;
+					}
+				}
+				String keywords4 = "";
+				for(int i = 0; i < keywords3.length; i++) {
+					if(!keywords3[i].isEmpty() && !keywords3[i].equals(null)) {
+						keywords4 = keywords4 + " " + keywords3[i].trim();
+						keywords4 = keywords4.trim();
+					}
+				}
+				keywords4 = keywords4.toLowerCase();
+				if(!list.contains(keywords4) && !keywords4.isEmpty() && !keywords4.equals(null)) {
+					list.add(keywords4);
 				}
 			}
 			else{
@@ -87,7 +111,7 @@ public class PhoenixAdapter {
 		else {		
 			if(phoenixLine.matches("Term:.+")) {
 				String[] help = phoenixLine.split("Term:");
-				String[] keywords1 = help[help.length - 1].split("[a-z()\\[\\]_]+");
+				String[] keywords1 = help[help.length - 1].split("[0-9a-z()\\[\\]_]+");
 				String keywords2 = "";
 				for (int i = 0; i < keywords1.length; i++) {
 					if(!keywords1[i].isEmpty()) {
@@ -115,9 +139,9 @@ public class PhoenixAdapter {
 			else {
 				if(phoenixLine.matches("PossibleKeyword:.+")) {
 					String[] help = phoenixLine.split("PossibleKeyword:");
-					String[] keywords = help[help.length - 1].split("[a-z()\\[\\]_ ]+");
+					String[] keywords = help[help.length - 1].split("[0-9a-z()\\[\\]_ ]+");
 					for(int i = 0; i < keywords.length; i++) {
-						if(keywords[i].equals("[A-Z]")) {
+						if(!keywords[i].isEmpty() && !keywords.equals(null)) {
 							keywords[i] = keywords[i].toLowerCase();
 							if(!list.contains(keywords[i])) {
 								list.add(keywords[i]);
@@ -130,5 +154,23 @@ public class PhoenixAdapter {
 		return list;
 	}
 	
+	private void compile(File compile) {
+		ProcessBuilder grammarBiulder = new ProcessBuilder("/bin/tcsh", "compile");
+		grammarBiulder.directory(compile);
+		
+		try {
+			Process phoenix =grammarBiulder.start();
+			BufferedReader stderr2 = new BufferedReader(new InputStreamReader(phoenix.getErrorStream()));
+			String phoenixLine2 = null;
+			  
+		  	while ((phoenixLine2 = stderr2.readLine()) != null && (!phoenixLine2.equals("READY"))) {
+		  		stderr2.close();
+		  		phoenix.destroy();
+		  		compile(compile);
+		  	}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
  
 }
