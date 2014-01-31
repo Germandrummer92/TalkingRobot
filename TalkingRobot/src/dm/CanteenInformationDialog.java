@@ -24,6 +24,8 @@ public class CanteenInformationDialog extends CanteenDialog {
 	public CanteenInformationDialog(Session session, DialogState dialogState, Canteen currentCanteen) {
 		super(session, dialogState, currentCanteen);
 		this.dialogModus = DialogModus.CANTEEN_INFORMATION;
+		this.wishDate = "";
+		this.wishMeal = "";
 	}
 
 
@@ -377,12 +379,18 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 	//List<CanteenInfo> possibleChoices = new ArrayList<CanteenInfo>();
 	/* find out first what the user wants to know */
 	if( terms != null) {
-		for( String toDo : terms ) {
-			if( toDo.equals("price")) {
+		for( Keyword toDo : keywords ) {
+			if( toDo.getWord().equals("price")) {
 				askPrice = true;
 				break;
 			}
 		}
+	}
+	
+	boolean inAden = true;
+	if( currentCanteen.getCanteenData().getCanteenName()
+			.equals(currentCanteen.getCanteenData().getCanteenName().MOLTKE)) {
+		inAden = false;
 	}
 	
 	int index = -1;
@@ -398,23 +406,38 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 			}
 			
 		}
-	} else {
+		
+		if( index == -1) { // then maybe the user ask the price of a line
+			for( Keyword line : keywords) {
+				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line 
+					if(inAden) {
+						//FIXME actually here should be a list of references
+						if(line.getReference().getCurrentState().name().contains("ADEN") 
+								&& line.getReference().getCurrentState().name().contains("PRICE")) {
+							return (CanteenInfo) line.getReference().getCurrentState();
+						}else { // then we don't find the line reference
+							
+						}
+					}else {// then is moltke
+						if(line.getReference().getCurrentState().name().contains("MOLTKE") 
+								&& line.getReference().getCurrentState().name().contains("PRICE")) {
+							return (CanteenInfo)line.getReference().getCurrentState();
+						}
+					}
+				}
+			}
+		}
+	} else { // the user is asking meals in lines
 		
 	}
 	
-	if (index == -1) {
+	if (index == -1 && (askPrice)) { // wenn we are here, then it's nothing matched
 		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	}
 	
-	boolean inAden = true;
-	if( currentCanteen.getCanteenData().getCanteenName()
-			.equals(currentCanteen.getCanteenData().getCanteenName().MOLTKE)) {
-		inAden = false;
-	}
-	
-	if(inAden) {
-		next = findLineEnum(inAden, index);
-	}
+	/* find the matched enum */
+	next = findLineEnum(inAden, index);
+		
 	return next;
 }
 
