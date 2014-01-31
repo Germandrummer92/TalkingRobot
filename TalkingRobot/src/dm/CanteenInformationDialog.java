@@ -10,7 +10,7 @@ import data.MealDatePair;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 0.8
+ * @version 1.0
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	private String wishDate;
@@ -64,92 +64,92 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateEntry(keywords, terms);
 		break;
 	case CI_ADEN_LINE_1_PRICE:
-		updateStateAdenLine1Price(keywords, terms, approval);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_2_PRICE:
-		updateStateAdenLine2Price(keywords, terms, approval);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_3_PRICE:
-		updateStateAdenLine3Price(keywords, terms, approval);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_45_PRICE:
-		updateStateAdenLine45Price(keywords, terms, approval);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_1_DISH:
-		updateStateAdenLine1Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_2_DISH:
-		updateStateAdenLine2Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_3_DISH:
-		updateStateAdenLine3Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_45_DISH:
-		updateStateAdenLine45Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_6_DISH:
-		updateStateAdenLine6Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_LINE_6_PRICE:
-		updateStateAdenLine6Price(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_SCHNITBAR_PRICE:
-		updateStateAdenSchnitbarPrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_SCHNITBAR_DISH:
-		updateStateAdenSchnitbarDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_CAFE_PRICE:
-		updateStateAdenCafePrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_CURRYQ_PRICE:
-		updateStateAdenCurryqPrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_CURRYQ_DISH:
-		updateStateAdenCurryqDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_ADEN_CAFE_DISH:
-		updateStateAdenCafeDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_CHOICE_1_PRICE:
-		updateMoltkeChoice1Price(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_CHOICE_1_DISH:
-		updateMoltkeChoice1Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_CHOICE_2_PRICE:
-		updateMoltkeChoice2Price(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_CHOICE_2_DISH:
-		updateMoltkeChoice2Dish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_ACTTHEK_PRICE:
-		updateMoltkeActthekPrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_ACTTHEK_DISH:
-		updateMoltkeActthekDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_SCHNITBAR_PRICE:
-		updateMoltkeSchnitbarPrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_SCHNITBAR_DISH:
-		updateMoltkeSchnitbarDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_GG_PRICE:
-		updateMoltkeGGPrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_GG_DISH:
-		updateMoltkeGGDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_BUFFET_PRICE:
-		updateMoltkeBuffetPrice(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	case CI_MOLTKE_BUFFET_DISH:
-		updateMoltkeBuffetDish(keywords, terms);
+		generalUpdate(keywords, terms, approval);
 		break;
 	
 	case CI_TELL_LINE_NOT_EXIST:
-		updateStateTellLineNotExist(keywords, terms);
+		updateStateTellLineNotExist(keywords, terms, approval);
 		break;
 	case CI_TELL_MEAL_NOT_EXIST:
 		updateStateTellMealNotExist(keywords, terms);
@@ -165,193 +165,76 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 }
 
-
-private void updateStateAdenCafePrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+/**
+ * To update the state after give some informations
+ * @param keywords list of keywords
+ * @param terms list of Strings
+ * @param approval list of approval
+ */
+private void generalUpdate(List<Keyword> keywords, List<String> terms,
+		List<String> approval) {
+	 
+	boolean finished = false;
+	
+	if( approval.size() == 1 && (approval.get(0).equals("yes"))) { 
+		if( keywords == null && (terms == null)) {// user is satisfied
+				DialogState next = new DialogState();
+				next.setCurrentState(CanteenInfo.CI_EXIT);
+				finished = true;
+		} else { // user still has other requests
+			CanteenInfo subState = matchSubState(keywords, terms);
+			DialogState nextState = new DialogState();
+			nextState.setCurrentState(subState);
+			setCurrentDialogState(nextState);
+			finished = true;
+		}
+	}	
+	
+	if( (approval.size() >= 2) && (!finished)) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+		finished = true;
+	}
+	
+	if( !finished ){
+		CanteenInfo subState = matchSubState(keywords, terms);
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(subState);
+		setCurrentDialogState(nextState);
+	}
 	
 }
 
 
+
+
+
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	// nothing to do here
 	
 }
 
 
 private void updateStateTellMealNotExist(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	// well I think here it's nothing much to do
 	
 }
 
 
-private void updateStateTellLineNotExist(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+private void updateStateTellLineNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
+	// well I think here it's nothing much to do
 	
 }
 
 
-private void updateMoltkeBuffetDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
 
 
-private void updateMoltkeBuffetPrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
 
 
-private void updateMoltkeGGDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeGGPrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeSchnitbarDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeSchnitbarPrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeActthekDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeActthekPrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeChoice2Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeChoice2Price(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeChoice1Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateMoltkeChoice1Price(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenCafeDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenCurryqDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenCurryqPrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenSchnitbarDish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenSchnitbarPrice(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine6Price(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine6Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine45Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine3Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine2Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine1Dish(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine45Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine3Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine2Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// TODO Auto-generated method stub
-	
-}
-
-
-private void updateStateAdenLine1Price(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// TODO Auto-generated method stub
-	
-}
-
-
+/**
+ * To update the entry state
+ * @param keywords list of Keyword
+ * @param terms list of Strings
+ */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	 
 	boolean error = false;
@@ -473,7 +356,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 }
 
 
-
+/* it's dirty here...but I can't find a way to combin string name and Enums :( */
 /**
  * Find out the enum with given index 
  * @param inAden if the current canteen in Adennaurring, then true
