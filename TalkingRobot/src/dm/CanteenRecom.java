@@ -20,6 +20,8 @@ public enum CanteenRecom {
   CR_ADEN_CURRYQ_DISH,
 
   CR_ADEN_CAFE_DISH,
+  
+  CR_ADEN_CAFEABEND_DISH,
 
   CR_MOLTKE_CHOICE_1_DISH,
 

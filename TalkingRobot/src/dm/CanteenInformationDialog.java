@@ -412,6 +412,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line 
 					if(inAden) {
 						//FIXME actually here should be a list of references
+                       
 						if(line.getReference().getCurrentState().name().contains("ADEN") 
 								&& line.getReference().getCurrentState().name().contains("PRICE")) {
 							return (CanteenInfo) line.getReference().getCurrentState();
@@ -462,11 +463,11 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 			case 4:
 				return CanteenInfo.CI_ADEN_SCHNITBAR_PRICE;
 			case 5:
-				// die enum haben noch ned
+				return CanteenInfo.CI_EXIT; // we don't have the enum and it doesn't that meaningful to have it
 			case 6:
 				return CanteenInfo.CI_ADEN_CAFE_PRICE;
 			case 7:
-				// was ist nmtisch?
+				return CanteenInfo.CI_ADEN_CAFEABEND_PRICE;
 			case 8:
 				return CanteenInfo.CI_ADEN_LINE_6_PRICE;
 			case 9:
