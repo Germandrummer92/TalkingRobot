@@ -52,7 +52,7 @@ public class DialogManager {
 		break;
 	//Make Sure current Class is right for the current StateClass
 	} catch (WrongStateClassException e) {
-		DialogState currentDialogState = currentDialog.getCurrentDialogState();
+		Enum<?> currentDialogState = currentDialog.getCurrentDialogState().getCurrentState();
 		Session currentSession = currentDialog.getCurrentSession();
 		Canteen currentCanteen = null;
 		if (e.getNewClassName().contains("Canteen")) {
@@ -60,12 +60,12 @@ public class DialogManager {
 		}
 		//If not switching the class
 		switch (e.getNewClassName()) {
-		case "dm.StartState" : currentDialog = new StartDialog(currentSession, currentDialogState); break;
-		case "dm.CanteenInformationState" : currentDialog = new CanteenInformationDialog(currentSession, currentDialogState, currentCanteen); break;
-		case "dm.CanteenRecommendationState" : currentDialog = new CanteenRecommendationDialog(currentSession, currentDialogState, currentCanteen); break;
-		case "dm.KitchenAssistanceState" : currentDialog = new KitchenAssistanceDialog(currentSession, currentDialogState);
-		case "dm.RecipeAssistanceState" : currentDialog = new RecipeAssistanceDialog(currentSession, currentDialogState);
-		case "dm.RecipeLearningState" : currentDialog = new RecipeLearningDialog(currentSession, currentDialogState);
+		case "dm.Start" : currentDialog = new StartDialog(currentSession, new StartState((Start)currentDialogState)); break;
+		case "dm.CanteenInfo" : currentDialog = new CanteenInformationDialog(currentSession, new CanteenInformationState((CanteenInfo)currentDialogState), currentCanteen); break;
+		case "dm.CanteenRecom" : currentDialog = new CanteenRecommendationDialog(currentSession, new CanteenRecommendationState((CanteenRecom)currentDialogState), currentCanteen); break;
+		case "dm.KitchenAssistance" : currentDialog = new KitchenAssistanceDialog(currentSession, new KitchenAssistanceState((KitchenAssistance)currentDialogState));
+		case "dm.RecipeAssistance" : currentDialog = new RecipeAssistanceDialog(currentSession, new RecipeAssistanceState((RecipeAssistance)currentDialogState));
+		case "dm.RecipeLearning" : currentDialog = new RecipeLearningDialog(currentSession, new RecipeLearningState((RecipeLearning)currentDialogState));
 		default: break;
 			
 		}

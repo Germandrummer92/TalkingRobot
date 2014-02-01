@@ -41,7 +41,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 
 	if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
-		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
+		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
 	
 	switch ((CanteenRecom)getCurrentDialogState().getCurrentState()) {

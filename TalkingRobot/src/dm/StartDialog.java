@@ -43,7 +43,7 @@ public class StartDialog extends Dialog {
 			throws WrongStateClassException {
 		updateStateKeywordJump(keywords);
 			if (getCurrentDialogState().getClass() != StartState.class || getCurrentDialogState().getCurrentState().getClass() != Start.class) {
-				throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
+				throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 			}
 		switch ((Start)getCurrentDialogState().getCurrentState()) {
 		case S_ENTRY : updateStateEntry(keywords, terms); break;

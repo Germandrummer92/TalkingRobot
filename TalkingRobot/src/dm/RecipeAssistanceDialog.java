@@ -52,7 +52,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	RecipeAssistanceState currState;
 	updateStateKeywordJump(keywords);
 	if (getCurrentDialogState().getClass() != RecipeAssistanceState.class || getCurrentDialogState().getCurrentState().getClass() != RecipeAssistance.class) {
-		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
+		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
 	
 	switch ((RecipeAssistance)getCurrentDialogState().getCurrentState()) {
