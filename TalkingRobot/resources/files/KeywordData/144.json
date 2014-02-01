@@ -1,1 +1,1 @@
-{"wordID":144,"word":"student","dialogState":{},"priority":0}
+{"wordID":144,"word":"student","dialogState":{"S_WAITING_FOR_EMPLOYEE_STATUS"},"priority":10}
