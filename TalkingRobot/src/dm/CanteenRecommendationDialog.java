@@ -20,6 +20,8 @@ import data.MealData;
 public class CanteenRecommendationDialog extends CanteenDialog {
 	
 	private String wishmealCategory;
+	
+	/** A structure with temporary information of a specific meal. */
 	private OneMealData wishMeal;
 	//private String wishDate;
 	
@@ -39,8 +41,16 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 				return wishMeal;
 	}
 	
-	public void setWishmeal(OneMealData wishmeal) {
-			this.wishMeal = wishMeal;
+	public void setWishmealCategory(String wishmealCategory) {
+		this.wishmealCategory = wishmealCategory;
+}
+
+	public void setWishMeal(OneMealData wishMeal) {
+		this.wishMeal = wishMeal;
+	}
+
+	public OneMealData getWishMeal() {
+		return this.wishMeal;
 	}
 /*
 public String getWishDate() {
@@ -123,17 +133,6 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		}
 	}
 	
-	public void setWishmealCategory(String wishmealCategory) {
-			this.wishmealCategory = wishmealCategory;
-	}
-	
-	public void setWishMeal(OneMealData wishMeal) {
-		this.wishMeal = wishMeal;
-	}
-	
-	public OneMealData getWishMeal() {
-		return this.wishMeal;
-	}
 	/*
 	public String getWishDate() {
 		return wishDate;
@@ -143,7 +142,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 			this.wishDate = wishDate;
 	}*/
 
-
+	//NOT IN USE AT THE MOMENT.
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
 		if (keywords == null || keywords.isEmpty()) {
 			return false;
@@ -183,6 +182,13 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		}
 	}
 
+	/**
+	 * Does most of the job of finding a meal to recommend to the User, based on his preference/ on the meal category he wants
+	 * to have, and on the date he would like to have it.
+	 * @param keywords
+	 * @param terms
+	 * @param approval
+	 */
 	private void updateStateAskPreference(List<Keyword> keywords, List<String> terms, List<String> approval) {
 		if (keywords.isEmpty()) {
 			//Didn't get any keyword for preference
@@ -239,6 +245,11 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		}
 	}
 	
+	/**
+	 * Selects the next state, according to the meal that is going to be recommended, so that the right
+	 * sentence can be selected for the output.
+	 * @return
+	 */
 	private DialogState selectNextState() {
 		DialogState nextState = new DialogState();
 		if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ADENAUERRING)) {
@@ -276,6 +287,12 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		return null;
 	}
 
+	/**
+	 * Chooses a meal to be recommended to the user, among a list of meals that could be recommended.
+	 * Random choice, at the moment.
+	 * @param matchedMeals
+	 * @return
+	 */
 	private OneMealData chooseMeal(ArrayList<OneMealData> matchedMeals) {
 		//FIXME Temporarily choosing at random
 		Random mealRandom = new Random();
@@ -284,6 +301,12 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		return matchedMeals.get(index);
 	}
 
+	/**
+	 * Selects the day of the week given through keywords and returns it's value int Integer
+	 * @param keywords
+	 * @param today
+	 * @return the value in Integer, according to joda library definition for the weekdays
+	 */
 	private int getRequestedWeekDay(List<Keyword> keywords, LocalDate today) {
 		for (Keyword dateOfWeek : keywords) {
 			if (dateOfWeek.getWord().equals("today")) return today.getDayOfWeek();
@@ -385,7 +408,11 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		getCurrentDialogState().setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
 	}
 	
+	
 	//Mini helper class to keep track of a specific meal's information.
+	/**
+	 * Structure to be able to store the information related to a specific meal. Used internally only.
+	 */
 	class OneMealData {
 		MealData mealData;
 		CanteenData canteenData;
