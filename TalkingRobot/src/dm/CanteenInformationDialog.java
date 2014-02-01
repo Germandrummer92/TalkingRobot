@@ -10,7 +10,7 @@ import data.MealDatePair;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 1.0
+ * @version 1.2
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	private String wishDate;
@@ -149,10 +149,10 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		break;
 	
 	case CI_TELL_LINE_NOT_EXIST:
-		updateStateTellLineNotExist(keywords, terms, approval);
+		updateStateTellNotExist(keywords, terms, approval);
 		break;
 	case CI_TELL_MEAL_NOT_EXIST:
-		updateStateTellMealNotExist(keywords, terms);
+		updateStateTellNotExist(keywords, terms, approval);
 		break;
 	case  CI_EXIT:
 		updateStateExit(keywords, terms);
@@ -209,23 +209,53 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 
 
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	// nothing to do here
-	
+	// TODO
+	// maybe nothing to do?
 }
 
-
-private void updateStateTellMealNotExist(List<Keyword> keywords, List<String> terms) {
-	// well I think here it's nothing much to do
+/**
+ * update state when user is told that wished meal doesn't exist
+ * @param keywords 
+ * @param terms
+ * @param approval
+ */
+private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
+	// TODO
+	if( approval.isEmpty()) {
+		if( keywords.isEmpty() && (terms.isEmpty())) {
+			DialogManager.giveDialogManager().setInErrorState(true);
+			return;
+		}
+		
+		CanteenInfo subState = matchSubState(keywords, terms);
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(subState);
+		setCurrentDialogState(nextState);
+		return;
+	}
 	
-}
-
-
-private void updateStateTellLineNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// well I think here it's nothing much to do
+	if( approval.size() != 1) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+		return;
+	}
 	
+	if( approval.get(0).equals("yes")) { //user wants another information
+		if( keywords.isEmpty() && (terms.isEmpty())) {
+			DialogManager.giveDialogManager().setInErrorState(true);
+			return;
+		}
+		
+		CanteenInfo subState = matchSubState(keywords, terms);
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(subState);
+		setCurrentDialogState(nextState);
+		return;
+		
+	} else { // user don't need anything from canteen info
+		DialogState  next = new DialogState();
+		next.setCurrentState(CanteenInfo.CI_EXIT);
+	}
 }
-
-
 
 
 
@@ -237,10 +267,11 @@ private void updateStateTellLineNotExist(List<Keyword> keywords, List<String> te
  */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	 
-	boolean error = false;
+	//boolean error = false;
 	if(keywords == null && (terms) == null) {
-		error = true;
-		DialogManager.giveDialogManager().setInErrorState(error);
+		//error = true;
+		DialogManager.giveDialogManager().setInErrorState(true);
+		return;
 	}
 	
 	CanteenInfo subState = matchSubState(keywords, terms);
