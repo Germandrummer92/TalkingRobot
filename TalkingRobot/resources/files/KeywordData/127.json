@@ -1,1 +1,1 @@
-{"wordID":127,"word":"fetch","dialogState":{"KA_ENTRY"},"priority":10}
+{"wordID":127,"word":"fetch","dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

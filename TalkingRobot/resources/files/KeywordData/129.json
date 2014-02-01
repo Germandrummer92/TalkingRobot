@@ -1,1 +1,1 @@
-{"wordID":129,"word":"grab","dialogState":{"KA_ENTRY"},"priority":10}
+{"wordID":129,"word":"grab","dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

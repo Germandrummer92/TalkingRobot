@@ -1,1 +1,1 @@
-{"wordID":154,"word":"immediately","dialogState":{"CI_ENTRY", "CR_ENTRY"},"priority":5}
+{"wordID":154,"word":"immediately","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

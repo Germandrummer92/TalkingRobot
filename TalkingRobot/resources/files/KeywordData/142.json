@@ -1,1 +1,1 @@
-{"wordID":142,"word":"have a nice day","dialogState":{"S_EXIT"},"priority":10}
+{"wordID":142,"word":"have a nice day","dialogState":[{"currentState":{"name":"S_EXIT"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

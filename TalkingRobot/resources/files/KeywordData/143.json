@@ -1,1 +1,1 @@
-{"wordID":143,"word":"restart","dialogState":{"S_ENTRY"},"priority":10}
+{"wordID":143,"word":"restart","dialogState":[{"currentState":{"name":"S_ENTRY"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

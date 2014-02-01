@@ -1,1 +1,1 @@
-{"wordID":145,"word":"employee","dialogState":{"S_WAITING_FOR_EMPLOYEE_STATUS"},"priority":10}
+{"wordID":145,"word":"employee","dialogState":[{"currentState":{"name":"S_WAITING_FOR_EMPLOYEE_STATUS"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

@@ -1,1 +1,1 @@
-{"wordID":140,"word":"see you later","dialogState":{"S_EXIT"},"priority":10}
+{"wordID":140,"word":"see you later","dialogState":[{"currentState":{"name":"S_EXIT"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

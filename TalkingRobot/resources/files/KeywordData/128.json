@@ -1,1 +1,1 @@
-{"wordID":128,"word":"take","dialogState":{"KA_ENTRY"},"priority":10}
+{"wordID":128,"word":"take","dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}

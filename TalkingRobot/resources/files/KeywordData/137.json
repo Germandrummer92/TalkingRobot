@@ -1,1 +1,1 @@
-{"wordID":137,"word":"bye","dialogState":{"S_EXIT"},"priority":10}
+{"wordID":137,"word":"bye","dialogState":[{"currentState":{"name":"S_EXIT"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}
