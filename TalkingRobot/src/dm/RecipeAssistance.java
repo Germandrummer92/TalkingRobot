@@ -27,6 +27,10 @@ public enum RecipeAssistance  {
 
   RA_TELL_WHOLE_RECIPE,
   
+  RA_WAITING_FOR_RECIPE_NAME,
+  
+  RA_RECIPE_FOUND,
+  
   RA_EXIT;
 
   

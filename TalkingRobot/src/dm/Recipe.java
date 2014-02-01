@@ -49,7 +49,7 @@ public class Recipe {
   * Creates a new Recipe from the data specified, only used by loadRecipes().
  * @param d
  */
-  private Recipe(RecipeData d) {
+  public Recipe(RecipeData d) {
 	recipeData = d;
   }
 

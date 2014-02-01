@@ -39,13 +39,19 @@ public class RecipeAssistanceState extends DialogState {
    */
   public String getOutputKeyword() {
 		  RecipeAssistanceDialog dialog = (RecipeAssistanceDialog) DialogManager.giveDialogManager().getCurrentDialog();
-		  RecipeData recipe = dialog.getCurrRecipe().getRecipeData();
+		  RecipeData recipe = null;
 		  String output = "";
-		  String recipeName = recipe.getRecipeName();
-		  String ingreds = getIngredients(recipe);
-		  String steps = getSteps(recipe);
-		  String tools = getTools(recipe);
-		  
+		  String recipeName = dialog.getRecipeName();
+		  String ingreds = null;
+		  String steps = null;
+		  String tools = null;
+		  if (dialog.getCurrRecipe() != null && dialog.getCurrRecipe().getRecipeData() != null) {
+			  	recipe = dialog.getCurrRecipe().getRecipeData();
+			  	recipeName = recipe.getRecipeName();
+		 		ingreds = getIngredients(recipe);
+		 		steps = getSteps(recipe);
+		 		tools = getTools(recipe);
+		  }
 	 switch ((RecipeAssistance)getCurrentState()) {
 		case RA_ENTRY:
 			setQuestion(false);
@@ -89,6 +95,12 @@ public class RecipeAssistanceState extends DialogState {
 		case RA_TELL_WHOLE_RECIPE:
 			setQuestion(false);
 			return "<" + ingreds + ", " + tools +"> {" + steps + "}";
+		case RA_WAITING_FOR_RECIPE_NAME:
+			setQuestion(true);
+			break;
+		case RA_RECIPE_FOUND:
+			setQuestion(true);
+			return "<" + recipeName + ">";
 		default:
 			break;
 		  }

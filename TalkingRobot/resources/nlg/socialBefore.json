@@ -73,6 +73,14 @@
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
 				
+			],
+			"RA_WAITING_FOR_RECIPE_NAME" : [
+				"Sorry",
+				"Hey"
+			],
+			"RA_RECIPE_FOUND" : [
+				"Yay",
+				"Got it!"
 			]
 	},
 	"dm.RecipeLearningState" : {

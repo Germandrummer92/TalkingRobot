@@ -47,7 +47,7 @@
 			]
 	},
 	"dm.RecipeAssistanceState" : {
-			"S_ENTRY" : [
+			"RA_ENTRY" : [
 				"Now I'm going to help you in cooking",
 				"Now I'm working as a recipe Assistance",
 				"So now I will help you to cook some delicious thing"
@@ -62,7 +62,7 @@
 				
 			],
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
-				"{c} comes from <o> from",
+				"{c} comes from <o>",
 				"You can find {c} in a lot of restaurants in <o>",
 				"You really do not know that {c} comes from <o>. Good that you have bought me"
 				
@@ -111,6 +111,18 @@
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
 				"To prepare this recipe you will need the following ingredients and tools <o>. When you have them follow the following steps {c}"
+				
+			],
+			"RA_WAITING_FOR_RECIPE_NAME" : [
+				"So what Recipe do you want to know this for?",
+				"What's the name of the recipe you want to cook?",
+				"What are we cooking?"
+				
+			],
+			"RA_RECIPE_FOUND" : [
+				"I've found the recipe <o> in my database, what do you want to know?",
+				"Found it! What do you want to know about the recipe <o>?",
+				"Got all the information about <o> what do you need?"
 				
 			]
 	},
