@@ -1,1 +1,1 @@
-{"wordID":131,"word":"my name is","dialogState":{},"priority":0}
+{"wordID":131,"word":"my name is","dialogState":{"S_WAITING_FOR_USERNAME"},"priority":10}
