@@ -1,1 +1,1 @@
-{"wordID":37,"word":"show me where","dialogState":{"name":"CI_LINE_LOCATION_INFO"},"priority":6}
+{"wordID":37,"word":"show me where","dialogState":[{"currentState":{"name":"CI_LINE_LOCATION_INFO"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}

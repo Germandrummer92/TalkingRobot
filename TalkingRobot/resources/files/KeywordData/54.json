@@ -1,1 +1,1 @@
-{"wordID":54,"word":"which line","dialogState":{"name":"CI_ENTRY"},"priority":5}
+{"wordID":54,"word":"which line","dialogState":[{"currentState":{"name":"CI_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

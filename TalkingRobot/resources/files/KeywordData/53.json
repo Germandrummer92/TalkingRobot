@@ -1,1 +1,1 @@
-{"wordID":53,"word":"where","dialogState":{"name":"CI_ENTRY","KA_ENTRY"},"priority":5}
+{"wordID":53,"word":"where","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"KA_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

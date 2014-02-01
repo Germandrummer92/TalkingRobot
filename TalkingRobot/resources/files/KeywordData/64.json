@@ -1,1 +1,1 @@
-{"wordID":64,"word":"suggestion dish","dialogState":{"name":"CR_ASK_PREFERENCE"},"priority":5}
+{"wordID":64,"word":"suggestion dish","dialogState":[{"currentState":{"name":"CR_ENTRY"}},{"currentState":{"name":"CR_ASK_PREFERENCE"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

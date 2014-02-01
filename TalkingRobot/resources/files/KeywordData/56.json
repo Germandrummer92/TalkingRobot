@@ -1,1 +1,1 @@
-{"wordID":56,"word":"recommendation","dialogState":{name":"CR_ASK_PREFERENCE"},"priority":5}
+{"wordID":56,"word":"recommendation","dialogState":[{"currentState":{"name":"CR_ENTRY"}},{"currentState":{"name":"CR_ASK_PREFERENCE"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

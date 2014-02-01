@@ -1,1 +1,1 @@
-{"wordID":50,"word":"how much costs","dialogState"{"name":"CI_ENTRY"},"priority":5}
+{"wordID":50,"word":"how much costs","dialogState":[{"currentState":{"name":"CI_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

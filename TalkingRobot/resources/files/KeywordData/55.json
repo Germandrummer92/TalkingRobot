@@ -1,1 +1,1 @@
-{"wordID":55,"word":"which canteen","dialogState":{"name":"CI_ENTRY"},"priority":5}
+{"wordID":55,"word":"which cateen","dialogState":[{"currentState":{"name":"CI_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}
