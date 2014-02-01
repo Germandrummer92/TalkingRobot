@@ -140,7 +140,7 @@ public class StartDialogTest {
 		} catch (WrongStateClassException e) {
 			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(CanteenInfo.CI_ENTRY) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().equals(daniel));	
 			}
-		//Not Reachable due to WrongStateClassException
+		//Not Reachable due to WrongStateClassException as state is switched
 		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(CanteenInfo.CI_ENTRY) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().equals(daniel));
 	}
 	/**
