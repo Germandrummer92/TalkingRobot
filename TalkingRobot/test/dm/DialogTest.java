@@ -35,8 +35,11 @@ public class DialogTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void jumpTest() {
+	/**
+	 * Tests if the Dialog State jumps correctly when passed only one Keyword.
+	 */
+//	@Test
+/*	public void jumpTest() {
 		for (Keyword kw : dictionary.getKeywordList()) {
 			ArrayList<Keyword> kwList = new ArrayList<Keyword>();
 			kwList.add(kw);
@@ -47,6 +50,6 @@ public class DialogTest {
 			}
 			assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
 		}
-	}
+	}*/
 
 }

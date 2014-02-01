@@ -72,7 +72,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
  * @return if the jump was completed
  */
 private boolean updateStateKeywordJump(List<Keyword> keywords) {
-	if (keywords.isEmpty()) {
+	if (keywords == null || keywords.isEmpty()) {
 		return false;
 	}
 	//Check if all keywords pointing to same state
@@ -81,7 +81,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 		Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
 		for (Keyword kw : keywords) {
 			for (DialogState d : kw.getReference()) {
-			if (!ref.equals(d)) {
+			if (!ref.equals(d.getCurrentState())) {
 				sameRef = false;
 			}
 			}

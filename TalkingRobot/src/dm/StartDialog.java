@@ -42,7 +42,7 @@ public class StartDialog extends Dialog {
 	public void updateState(List<Keyword> keywords, List<String> terms, List<String> approval)
 			throws WrongStateClassException {
 		updateStateKeywordJump(keywords);
-			if (getCurrentDialogState().getClass() != StartState.class) {
+			if (getCurrentDialogState().getCurrentState().getClass() != Start.class) {
 				throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 			}
 		switch ((Start)getCurrentDialogState().getCurrentState()) {
@@ -68,7 +68,7 @@ public class StartDialog extends Dialog {
 	 * @return if the jump was completed
 	 */
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
-		if (keywords.isEmpty()) {
+		if (keywords == null || keywords.isEmpty()) {
 			return false;
 		}
 		//Check if all keywords pointing to same state
@@ -77,7 +77,7 @@ public class StartDialog extends Dialog {
 			Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
 			for (Keyword kw : keywords) {
 				for (DialogState d : kw.getReference()) {
-				if (!ref.equals(d)) {
+				if (!ref.equals(d.getCurrentState())) {
 					sameRef = false;
 				}
 				}
@@ -112,7 +112,7 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateWaitingEmployee(List<Keyword> keywords,
 			List<String> terms, List<String> approval) {
-		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
+		if ((keywords == null || keywords.isEmpty()) && (terms == null || terms.isEmpty()) && approval.size() == 1) {
 			if (approval.get(0).equals("Yes")) {
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
 			}
@@ -125,7 +125,7 @@ public class StartDialog extends Dialog {
 			ArrayList<Data> refs = new ArrayList<Data>();
 			states.add(new StartState(Start.S_USER_FOUND));
 			refs.add(getCurrentSession().getCurrentUser().getUserData());
-			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
+		//	DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
 		}
 		else {
 			DialogManager.giveDialogManager().setInErrorState(true);
@@ -182,7 +182,7 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateNotFound(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		if (keywords.isEmpty() && terms.isEmpty() && approval.size() == 1) {
+		if ((keywords == null || keywords.isEmpty()) && (terms == null ||terms.isEmpty())  && approval.size() == 1) {
 			if (approval.get(0).equals("yes")) {
 				getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_EMPLOYEE_STATUS);
 				
@@ -201,6 +201,16 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateFound(List<Keyword> keywords, List<String> terms) {
+		for (Keyword kw: keywords) {
+			for (DialogState d : kw.getReference()) {
+				if (d.getCurrentState() == Start.S_USER_FOUND) {
+					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference().get(0))));
+					Main.giveMain().setUserLoggedIn(true);
+					return;
+				}
+			}
+		}
+		DialogManager.giveDialogManager().setInErrorState(true);
 		//Jumping due to keyword
 		}
 
@@ -210,24 +220,14 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
-			for (Keyword kw: keywords) {
-				for (DialogState d : kw.getReference()) {
-				if (d.getCurrentState() == Start.S_USER_FOUND) {
-					getCurrentDialogState().setCurrentState(Start.S_USER_FOUND);
-					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference().get(0))));
-					Main.giveMain().setUserLoggedIn(true);
-					return;
-				}
-			}
-			}
-
+			//Came here due to Keyword, no data handling necessary
+		//If no Keyword jump, then data handling has to be done
+		if (keywords == null || keywords.isEmpty()) {
+			if (terms != null && !terms.isEmpty()) {
+				getCurrentSession().setCurrentUser(new User(terms.get(0), false));
 				getCurrentDialogState().setCurrentState(Start.S_USER_NOT_FOUND);
-				if (!terms.isEmpty()) {
-					getCurrentSession().getCurrentUser().getUserData().setUserName(terms.get(0));
-				}
-				else {
-					DialogManager.giveDialogManager().setInErrorState(true);
-					}
+			}
+		}
 	}
 
 	/**
@@ -236,21 +236,11 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
-		for (Keyword kw: keywords) {
-			for (DialogState d: kw.getReference()) {
-				
-				if (d.getCurrentState() == Start.S_WAITING_FOR_USERNAME) {
-					getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
-					return;
-				}
-			}
-			}
-
-		DialogManager.giveDialogManager().setInErrorState(true);
+		if (keywords == null || keywords.isEmpty()) {
+			DialogManager.giveDialogManager().setInErrorState(true);
 		}
-	
-	
-
+		getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
 	}
+}
 
 

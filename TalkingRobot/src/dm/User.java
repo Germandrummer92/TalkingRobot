@@ -59,4 +59,36 @@ public User() {
 	  return res;
   }
 
+/* (non-Javadoc)
+ * @see java.lang.Object#hashCode()
+ */
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((userData == null) ? 0 : userData.hashCode());
+	return result;
+}
+
+/* (non-Javadoc)
+ * @see java.lang.Object#equals(java.lang.Object)
+ */
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	User other = (User) obj;
+	if (userData == null) {
+		if (other.userData != null)
+			return false;
+	} else if (!userData.equals(other.userData))
+		return false;
+	return true;
+}
+
+  
 }
