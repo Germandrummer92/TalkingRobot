@@ -1,1 +1,1 @@
-{"wordID":171,"word":"oven","dialogState":{},"priority":0}
+{"wordID":171,"word":"oven","dialogState":[{"currentState":{"name":"KA_TELL_TOOL_FOUND"}}],"priority":10,"dataReference":[{"toolID":2,"toolName":"oven","location":"under the stove","recipes":[]}],"type":"TOOL"}

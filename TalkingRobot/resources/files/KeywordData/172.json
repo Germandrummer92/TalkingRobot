@@ -1,1 +1,1 @@
-{"wordID":172,"word":"knife","dialogState":{},"priority":0}
+{"wordID":172,"word":"knife","dialogState":[{"currentState":{"name":"KA_TELL_TOOL_FOUND"}}],"priority":10,"dataReference":[{"toolID":0,"toolName":"knife","location":"silverware drawer","recipes":[]}],"type":"TOOL"}

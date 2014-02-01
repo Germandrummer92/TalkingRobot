@@ -219,4 +219,10 @@ private int nextID() {
 	File f = new File("resources/files/ToolData/");
 	return f.listFiles().length;
 }
+
+/*public static void main(String[] args) {
+	new ToolData("knife", "silverware drawer", new ArrayList<RecipeData>()).writeFile();
+	new ToolData("spoon", "silverware drawer", new ArrayList<RecipeData>()).writeFile();
+	new ToolData("oven", "under the stove", new ArrayList<RecipeData>()).writeFile();
+}*/
 }

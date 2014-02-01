@@ -222,5 +222,7 @@ public void setIngredientLocation(String ingredientLocation) {
 	this.ingredientLocation = ingredientLocation;
 }
 
-
+/*public static void main(String[] args) {
+	new IngredientData("Tomato", "Top Cabinet").writeFile();
+}*/
 }

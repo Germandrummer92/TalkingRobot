@@ -52,6 +52,9 @@ public class DataDeserializer implements JsonDeserializer<Data> {
 		if (arg0.getAsJsonObject().has("robotID")) {
 			return loader.fromJson(arg0, RobotData.class);
 		}
+		if (arg0.getAsJsonObject().has("toolID")) {
+			return loader.fromJson(arg0, ToolData.class);
+		}
 		return null;
 	}
 }

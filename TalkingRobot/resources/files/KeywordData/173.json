@@ -1,1 +1,1 @@
-{"wordID":173,"word":"spoon","dialogState":{},"priority":0}
+{"wordID":173,"word":"spoon","dialogState":[{"currentState":{"name":"KA_TELL_TOOL_FOUND"}}],"priority":10,"dataReference":[{"toolID":1,"toolName":"spoon","location":"silverware drawer","recipes":[]}],"type":"TOOL"}

@@ -1,7 +1,10 @@
 package dm;
 
+import generalControl.Main;
+
 import java.util.List;
 
+import data.Data;
 import data.IngredientData;
 import data.ToolData;
 
@@ -24,7 +27,6 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 	public KitchenAssistanceDialog(Session session, DialogState dialogState) {
 		super(session, dialogState);
 		this.dialogModus = DialogModus.KITCHEN_ASSISTANCE;
-		// TODO Auto-generated constructor stub
 	}
 
 @Override
@@ -33,10 +35,10 @@ public class KitchenAssistanceDialog extends KitchenDialog {
  */
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
-	if (getCurrentDialogState().getClass() != KitchenAssistanceState.class) {
+	updateStateKeywordJump(keywords);
+	if (getCurrentDialogState().getClass() != KitchenAssistanceState.class || getCurrentDialogState().getCurrentState().getClass() != KitchenAssistance.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 	}
-	if (!updateStateKeywordJump(keywords)) { 
 	
 	switch ((KitchenAssistance)getCurrentDialogState().getCurrentState()) {
 	case KA_ENTRY:
@@ -60,10 +62,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	default:
 		break;
 	}
-	}
-	if (getCurrentDialogState().getClass() != KitchenAssistanceState.class) {
-		throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
-	}
+	
 }
 
 /**
@@ -116,7 +115,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
  * @param terms terms passed
  */
 private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms) {
-	if (!terms.isEmpty() && requestedObjectName != null) {
+	if ( terms != null && !terms.isEmpty()) {
 		requestedObjectName = terms.get(0);
 	}
 	else {
@@ -130,13 +129,18 @@ private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms)
  * @param terms terms passed
  */
 private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
+	if (keywords != null && !keywords.isEmpty()) {
 	for (Keyword kw : keywords) {
-		if (kw.getKeywordData().getDataReference().getClass().getName().equals("data.ToolData")) {
+		for (Data ref: kw.getKeywordData().getDataReference()) {
+		if (ref.getClass().getName().equals("data.ToolData")) {
 			requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference().get(0));
 			requestedObjectName = ((Tool)requestedObject).getToolData().getToolName();
 			return;
 		}
+		}
 	}
+	}
+	DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
 
@@ -156,13 +160,18 @@ private void updateStateIngNotFound(List<Keyword> keywords, List<String> terms) 
  * @param terms terms passed
  */
 private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
+	if (keywords != null && !keywords.isEmpty()) {
 	for (Keyword kw : keywords) {
-		if (kw.getKeywordData().getDataReference().getClass().getName().equals("data.IngredientData")) {
+		for (Data ref: kw.getKeywordData().getDataReference()) {
+			if (ref.getClass().getName().equals("data.IngredientData")) {
 			requestedObject = new Ingredient((IngredientData)kw.getKeywordData().getDataReference().get(0));
 			requestedObjectName = ((Ingredient)requestedObject).getIngredientData().getIngredientName();
 			return;
 		}
+		}
 	}
+	}
+	DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
 

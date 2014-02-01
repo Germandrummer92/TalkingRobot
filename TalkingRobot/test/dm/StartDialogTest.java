@@ -3,6 +3,10 @@
  */
 package dm;
 
+/* *********************************************
+ * NOTE: DON'T RUN THIS TILL ALL KEYWORDDATA HAS BEEN FIXED, OR EXCEPTIONS WILL FLY!
+ ***********************************************/
+ 
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
@@ -12,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -27,7 +32,7 @@ import data.UserData;
 /**
  * @author Daniel Draper
  * @version 1.0
- *
+ *	This class tests the StartDialogTest for different Keyword Combinations.
  */
 public class StartDialogTest {
 
@@ -37,7 +42,7 @@ public class StartDialogTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		DialogTest.currentDialog = new StartDialog(new Session(new User(), new Robot("Superman", true)));
+		DialogTest.currentDialog = new StartDialog(new Session(new User(), Robot.loadRobots().get(0)));
 		kwList = new ArrayList<Keyword>();
 	}
 
@@ -64,30 +69,30 @@ public class StartDialogTest {
 		DialogTest.currentDialog.getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
 		ArrayList<String> terms =  new ArrayList<String>();
 		ArrayList<String> approval = new ArrayList<String>();
-		approval.add("Yes");
+		approval.add("yes");
 		terms.add("Benjamin");
 		try {
 			DialogTest.currentDialog.updateState(null, terms, null);
 		} catch (WrongStateClassException e) {
 			//not reached
-			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_NOT_FOUND) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserID() == 6);
+			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_NOT_FOUND) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin"));
 		}
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_NOT_FOUND) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserID() == 6);
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_NOT_FOUND) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin"));
 		try {
 			DialogTest.currentDialog.updateState(null, null, approval);
 		} catch (WrongStateClassException e) {
 			//not reached
-			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_WAITING_FOR_EMPLOYEE_STATUS) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserID() == 6);
+			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_WAITING_FOR_EMPLOYEE_STATUS) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin"));
 		}
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_WAITING_FOR_EMPLOYEE_STATUS) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserID() == 6);
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_WAITING_FOR_EMPLOYEE_STATUS) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin"));
 		try {
 			DialogTest.currentDialog.updateState(null, null, approval);
 		} catch (WrongStateClassException e) {
 			//not reached
-			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserID() == 6 
+			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin") 
 					&& DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == true);
 		}
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserID() == 6 
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin")
 				&& DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == true);
 	}
 	/**
@@ -98,13 +103,13 @@ public class StartDialogTest {
 		DialogTest.currentDialog.getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_EMPLOYEE_STATUS);
 		DialogTest.currentDialog.getCurrentSession().setCurrentUser(new User(new UserData("AB", true)));
 		ArrayList<String> approval = new ArrayList<String>();
-		approval.add("Yes");
+		approval.add("no");
 		try {
 			DialogTest.currentDialog.updateState(null, null, approval);
 		} catch (WrongStateClassException e) {
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == true);
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == false);
 		}
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == true);
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == false);
 	}
 	/**
 	 * Tests, if a list of inputs follows the right states and handles data the right way.
@@ -170,6 +175,14 @@ public class StartDialogTest {
 		}
 	  	return new Keyword(read);	
 	  	
+	}
+	
+	/**
+	 * Tears down the changed Dialog after each test.
+	 */
+	@After
+	public void tearDown() {
+		DialogTest.currentDialog = new StartDialog(new Session(new User(), Robot.loadRobots().get(0)));
 	}
 	
 

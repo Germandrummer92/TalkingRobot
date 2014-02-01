@@ -42,7 +42,7 @@ public class StartDialog extends Dialog {
 	public void updateState(List<Keyword> keywords, List<String> terms, List<String> approval)
 			throws WrongStateClassException {
 		updateStateKeywordJump(keywords);
-			if (getCurrentDialogState().getCurrentState().getClass() != Start.class) {
+			if (getCurrentDialogState().getClass() != StartState.class || getCurrentDialogState().getCurrentState().getClass() != Start.class) {
 				throw new WrongStateClassException(getCurrentDialogState().getClass().getName());
 			}
 		switch ((Start)getCurrentDialogState().getCurrentState()) {
@@ -113,7 +113,7 @@ public class StartDialog extends Dialog {
 	private void updateStateWaitingEmployee(List<Keyword> keywords,
 			List<String> terms, List<String> approval) {
 		if ((keywords == null || keywords.isEmpty()) && (terms == null || terms.isEmpty()) && approval.size() == 1) {
-			if (approval.get(0).equals("Yes")) {
+			if (approval.get(0).equals("yes")) {
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
 			}
 			else {
@@ -125,7 +125,7 @@ public class StartDialog extends Dialog {
 			ArrayList<Data> refs = new ArrayList<Data>();
 			states.add(new StartState(Start.S_USER_FOUND));
 			refs.add(getCurrentSession().getCurrentUser().getUserData());
-		//	DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
+			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
 		}
 		else {
 			DialogManager.giveDialogManager().setInErrorState(true);

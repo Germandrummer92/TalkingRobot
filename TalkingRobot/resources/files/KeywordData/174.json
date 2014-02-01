@@ -1,1 +1,1 @@
-{"wordID":174,"word":"tomato","dialogState":{},"priority":0}
+{"wordID":174,"word":"tomato","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}}],"priority":10,"dataReference":[{"ingredientID":3,"ingredientName":"Tomato","ingredientLocation":"Top Cabinet"}],"type":"INGREDIENT"}
