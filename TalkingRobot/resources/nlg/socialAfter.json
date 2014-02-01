@@ -1,6 +1,6 @@
 {
     "dm.StartState" : {
-			"S_ENTRY": [
+    		"S_ENTRY": [
 				"So long no see",
 				"Happy to see you",
 				"Nice to meet you"
@@ -10,7 +10,7 @@
 				"Enjoy your day"
 			],
 			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
-				"You can restart it, by saying Hello or Hi"
+				"You still have a chance to save your usage data . Are you sure that you don't want to be saved"
 			],
 			"S_USER_FOUND": [
 				"You know me already"
@@ -20,7 +20,7 @@
 			],
 			"S_USER_SAVED": [
 				"I hope we will have a good time together",
-				"I hope you will like my assistance",
+				"I hope you will like my assistance"
 			],
 			"S_USER_WANTS_TO_BE_SAVED": [
 				"So I can offer the right prices"
@@ -247,9 +247,6 @@
 			]
 	},
 	"dm.CanteenInformationState" : {
-			"CR_ASK_PREFERENCE" : [
-			    "I can hear your stomach drumming "
-			],
 			"CI_ADEN_CAFE_DISH" : [
 				"Hmm, sounds nice",
 				"Yummy yummy",

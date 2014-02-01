@@ -1,6 +1,6 @@
-ï»¿{
+{
     "dm.StartState" : {
-			"S_ENTRY": [
+    		"S_ENTRY": [
 				"Hello, I'm <o>",
 				"Welcome, I'm the KIT's own Robot called <o>",
 				"Hi, I'm <o>"
@@ -12,8 +12,8 @@
 				"See you next time"
 			],
 			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
-				"What a pity, please restart the conversation with me!"
-				"Okay, see you around, please restart the conversation!"
+				"What a pity, please restart the conversation with me!",
+				"Okay, see you around, please restart the conversation!",
 				"That's okay! Please restart the conversation now!"
 			],
 			"S_USER_FOUND": [
@@ -25,13 +25,13 @@
 				"I don't have your usage record . Would you like to save your usage history"
 			],
 			"S_USER_SAVED": [
-				"Your profile has been saved under the name <o>, how can I help you"
-				"Now I know your name, what can I do for you"
+				"Your profile has been saved under the name <o>, how can I help you",
+				"Now I know your name, what can I do for you",
 				"I will know you when you talk to me again now, <o>, what do you need"
 			],
 			"S_USER_WANTS_TO_BE_SAVED": [
 				"Nice choice <o>, so are you a Student here",
-				"Okay <o>, so are you a student"
+				"Okay <o>, so are you a student",
 				"Alright <o>, so do you study here"
 			],
 			"S_WAITING_FOR_EMPLOYEE_STATUS": [
@@ -56,57 +56,57 @@
 				"We have just cooked something delicious"
 			],
 			"RA_RECIPE_NOT_FOUND" : [
-				"I have never heard of <o>. Would you like to teach me how to prepare it"
-				"<o> sound like a interesting recipe. Would you tell me how to cook it"
+				"I have never heard of <o>. Would you like to teach me how to prepare it",
+				"<o> sound like a interesting recipe. Would you tell me how to cook it",
 				"I think <o> sounds delicious, but i don't know how to preapre it. Would you tesch me"
 				
 			],
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
-				"{c} comes from <o> from"
-				"You can find {c} in a lot of restaurants in <o>"
+				"{c} comes from <o> from",
+				"You can find {c} in a lot of restaurants in <o>",
 				"You really do not know that {c} comes from <o>. Good that you have bought me"
 				
 			],
 			"RA_TELL_CREATOR" : [
-				"I learned preparing {c} from <o>"
-				"{c} used to be a secret recipe which <o> told me about"
+				"I learned preparing {c} from <o>",
+				"{c} used to be a secret recipe which <o> told me about",
 				"<o> told me how to prepare {c}"
 			],
 			"RA_TELL_INGREDIENTS" : [
-				"The ingredients needed for this recipe are <o>"
-				"You should get <o> in order to prepare this recipe"
+				"The ingredients needed for this recipe are <o>",
+				"You should get <o> in order to prepare this recipe",
 				"All that you need for this recipe is <o>"
 			],
 			"RA_TELL_INGREDIENT_FOUND" : [
-				"Yes you will need this ingredient to prepare <o>"
+				"Yes you will need this ingredient to prepare <o>",
 				"<o> can be prepared properly only when you have this ingredient"
 				
 			],
 			"RA_TELL_NUM_OF_STEPS" : [
-				"This ingredient has <o> steps"
-				"You will have to go through <o> steps to prepare this recipe"
+				"This ingredient has <o> steps",
+				"You will have to go through <o> steps to prepare this recipe",
 				"You should finish <o> steps to prepare this meal"
 				
 			],
 			"RA_TELL_STEPS" : [
-				"To prepare {c} you should do as follows <o>"
-				"If you want to cook {c} do the following <o>"
+				"To prepare {c} you should do as follows <o>",
+				"If you want to cook {c} do the following <o>",
 				"Making some delicious {c} requires you to do as follows <o>"
 			],
 			"RA_TELL_TOOLS" : [
-				"The tools needed to prepare {c} are <o>"
-				"If you want to prepare {c} you should find the following tools <o>"
+				"The tools needed to prepare {c} are <o>",
+				"If you want to prepare {c} you should find the following tools <o>",
 				"You need <o> in order to prepare {c}"
 
 			],
 			"RA_TELL_TOOL_FOUND" : [
-				"Yes you need this in order to prepare <o>"
-				"If you want to cook <o>, you should get this tool"
+				"Yes you need this in order to prepare <o>",
+				"If you want to cook <o>, you should get this tool",
 				"This tool is needed for cooking <o>"
 			],
 			"RA_TELL_TOOL_NOT_FOUND" : [
-				"No, as far as I know this tool is not needed in order to prepare <o>"
-				"Well, I do not really use this when I prepare <o>"
+				"No, as far as I know this tool is not needed in order to prepare <o>",
+				"Well, I do not really use this when I prepare <o>",
 				"What a strange request, I do not think anybody uses this tool when preparing <o>"
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
@@ -163,7 +163,7 @@
 	"dm.KitchenAssistanceState" : {
 			"KA_ENTRY" : [
 				"What can I assist you with, <o>",
-				"What can I get for you, <o>,
+				"What can I get for you, <o>"
 			],
 			"KA_EXIT" : [
 				"Bye",
@@ -186,7 +186,7 @@
 				"Here you go, it's located here: {c}"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
-				"I can't seem to locate <o>"'
+				"I can't seem to locate <o>",
 				"I don't know where <o> is",
 				"Sorry, can't find <o>"
 			]

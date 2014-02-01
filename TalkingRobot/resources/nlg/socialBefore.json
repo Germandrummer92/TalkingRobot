@@ -1,12 +1,12 @@
 {
     "dm.StartState" : {
-			"S_ENTRY": [
+    		"S_ENTRY": [
 				
 			],
 			"S_EXIT": [
 				
 			],
-			S_"USER_DOESNT_WANT_TO_BE_SAVED": [
+			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
 				"Oh well"
 			],
 			"S_USER_FOUND": [
@@ -25,7 +25,7 @@
 				
 			],
 			"S_WAITING_FOR_EMPLOYEE_STATUS": [
-				"I can't call you 'human' all the time, so"
+				"I can't call you 'human' all the time, so",
 				"You know my name, so"
 			],
 			"S_WAITING_FOR_USERNAME": [
@@ -131,20 +131,20 @@
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
 				"Yay",
-				"Hooray"
+				"Hooray",
 				"I got it"
 			],
 			"KA_TELL_INGREDIENT_NOT_FOUND" : [
-				"Sorry"
+				"Sorry",
 				"I feel so bad, but"
 			],
 			"KA_TELL_TOOL_FOUND" : [
-				"Yay"
-				"Hooray"
+				"Yay",
+				"Hooray",
 				"I got it"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
-				"Sorry"
+				"Sorry",
 				"I feel so bad, but"
 			]
 	},
@@ -282,8 +282,8 @@
 				"As you're a meat lover"
 			],
 			"CR_ENTRY" : [
-				"I guess you're pretty hungry right?";
-				"I can hear your stomach drumming";
+				"I guess you're pretty hungry right?",
+				"I can hear your stomach drumming"
 			],
 			"CR_EXIT" : [
 				
