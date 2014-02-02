@@ -13,6 +13,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Bettina Weller
+ * @version 1.0
+ * This class tests TermAnalyzer for different inputs
+ *
+ */
 public class TermAnalyzerTest {
 	private TermAnalyzer term = new TermAnalyzer();
 	
@@ -96,6 +103,7 @@ public class TermAnalyzerTest {
 		assertEquals(compare, result);
 	}
 	
+	
 	/**
 	 * checks the result for "my very pretty name is nicole"
 	 */
@@ -105,6 +113,30 @@ public class TermAnalyzerTest {
 		List <String> result = term.analyze("my very pretty name is nicole");
 		List <String> compare = new LinkedList<String>();
 		compare.add("nicole");
+		assertEquals(compare, result);
+	}
+	
+	/**
+	 * checks the result for "the recipes name is pasta"
+	 */
+	@Test
+	public void name2() { 
+		setInput("the recipe name is pasta");
+		List <String> result = term.analyze("the recipe name is pasta");
+		List <String> compare = new LinkedList<String>();
+		compare.add("pasta");
+		assertEquals(compare, result);
+	}
+	
+	/**
+	 * checks the result for "the recipes name is pasta"
+	 */
+	@Test
+	public void name3() { 
+		setInput("the recipe is called pasta");
+		List <String> result = term.analyze("the recipe is called pasta");
+		List <String> compare = new LinkedList<String>();
+		compare.add("pasta");
 		assertEquals(compare, result);
 	}
 	
