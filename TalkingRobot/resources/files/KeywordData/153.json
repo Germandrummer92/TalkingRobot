@@ -1,1 +1,1 @@
-{"wordID":153,"word":"now","dialogState":[{"currentState":{"name":"KA_ENTRY"}},{"currentState":{"name":"RL_ENTRY"}},{"currentState":{"name":"RA_ENTRY"}},{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":0,"dataReference":[],"type":"DEFAULT"}
+{"wordID":153,"word":"now","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}},{"currentState":{"name":"KA_ENTRY"}},{"currentState":{"name":"RL_ENTRY"}},{"currentState":{"name":"RA_ENTRY"}}],"priority":0,"dataReference":[],"type":"DEFAULT"}
