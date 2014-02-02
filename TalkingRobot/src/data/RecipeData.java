@@ -252,8 +252,6 @@ public class RecipeData implements Data {
 				return false;
 		} else if (!originalCountry.equals(other.originalCountry))
 			return false;
-		if (recipeID != other.recipeID)
-			return false;
 		if (recipeName == null) {
 			if (other.recipeName != null)
 				return false;
@@ -272,7 +270,6 @@ public class RecipeData implements Data {
 		return true;
 	}
 
-	
 	/**
 	 * This static method returns a List of all existing RecipeData files.
 	 * @return a list of all existing RecipeData files
@@ -308,21 +305,17 @@ public class RecipeData implements Data {
 		File f = new File("resources/files/RecipeData/");
 		return f.listFiles().length;
 	}
-
-/*	public static void main (String args[]) {
-	  	ArrayList<RecipeStepData> steps =  new ArrayList<RecipeStepData>();
-	  	ArrayList<IngredientData> ings = new ArrayList<IngredientData>();
-	  	ArrayList<ToolData> tools = new ArrayList<ToolData>();
-	  	tools.add(ToolData.loadData().get(0));
+	/*//TEST:
+	public static void main (String args[]) {
 	  	
-	  	ings.add(new IngredientData("Ground beef", "Fridge"));
-	  	ings.add(new IngredientData("Lettuce", "Fridge"));
-	  	ings.add(new IngredientData("Buns", "Cabinet"));
-	  	steps.add(new RecipeStepData("Form the ground Beef into hamburgers"));
-	  	steps.add(new RecipeStepData("Grill the burgers till medium rare"));
-	  	steps.add(new RecipeStepData("Cut up the rest of the needed ingredients"));
-	  	steps.add(new RecipeStepData("Cut up the buns, and prepare own burgers as wanted"));
-	  	new RecipeData("hamburger",ings, steps,tools,UserData.loadData().get(0), "USA", new MealCategoryData("meat")).writeFile();
-	  	}*/
-	
+	  	RecipeData spags = new RecipeData("spags", null, null, null, null, "Italy", null);
+		spags.writeFile();
+	  	//File newFile = new File("resources/files/RecipeData/0.json");
+	  	//System.out.println(newFile.exists());
+		RecipeData reis = new RecipeData("rice", null, null, null, null, "China", null);
+		reis.writeFile();
+		
+		spags.deleteFile();
+	  	}
+	*/
 }

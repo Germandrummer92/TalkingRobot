@@ -1,10 +1,8 @@
 package data;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,16 +20,12 @@ public class RecipeStepData implements Data {
 
   private String description;
 
-  private ArrayList<IngredientData> ingredients;
-
 /**
  * The constructor constructs the class with one parameter
  * @param descri description of a recipe step
  */
 public RecipeStepData(String descri) {
-	//this.stepID = nextID();
 	this.description = descri;
-	this.ingredients = new ArrayList<IngredientData>();
 }
 
 @Override
@@ -52,9 +46,7 @@ public void createFromJSONText(String jsonString) {
 	Gson creator; 
 	creator = new Gson();
 	RecipeStepData newData = creator.fromJson(jsonString, this.getClass());
-	this.stepID = newData.getStepID();
 	this.description = newData.getDescription();
-	this.ingredients = newData.getIngredients();
 	
 }
 
@@ -91,29 +83,6 @@ public JSONObject getJson() {
 }
 
 /**
- * A help method to get the unique ID of a recipe step Data
- * @return the last ID in the list of recipe step Data
- */
-private int nextID() {
-	File f = new File("resources/files/RecipeStepData/");
-	return f.listFiles().length;
-}
-
-/**
- * @return step ID
- */
-public Integer getStepID() {
-	return stepID;
-}
-
-/**
- * @param stepID the ID of this step
- */
-public void setStepID(Integer stepID) {
-	this.stepID = stepID;
-}
-
-/**
  * @return description of this step
  */
 public String getDescription() {
@@ -127,18 +96,23 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
-/**
- * @return a list of ingredients needed in this step
- */
-public ArrayList<IngredientData> getIngredients() {
-	return ingredients;
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	RecipeStepData other = (RecipeStepData) obj;
+	if (description == null) {
+		if (other.description != null)
+			return false;
+	} else if (!description.equals(other.description))
+		return false;
+	return true;
 }
 
-/**
- * @param ingredients a list of ingredients needed in this step
- */
-public void setIngredients(ArrayList<IngredientData> ingredients) {
-	this.ingredients = ingredients;
-}
+
 
 }

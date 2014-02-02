@@ -126,6 +126,23 @@ public JSONObject getJson() {
         return object;
 }
 
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	MealCategoryData other = (MealCategoryData) obj;
+	if (mealCategoryName == null) {
+		if (other.mealCategoryName != null)
+			return false;
+	} else if (!mealCategoryName.equals(other.mealCategoryName))
+		return false;
+	return true;
+}
+
 /**
  * This static method returns a List of all existing MealCategoryData files.
  * @return a list of all existing MealCategoryData files
