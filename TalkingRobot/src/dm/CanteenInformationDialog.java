@@ -3,6 +3,11 @@ package dm;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+
+import data.CanteenData;
+import data.CanteenNames;
+import data.KeywordData;
 import data.LineData;
 import data.MealData;
 import data.MealDatePair;
@@ -13,8 +18,13 @@ import data.MealDatePair;
  * @version 1.2
  */
 public class CanteenInformationDialog extends CanteenDialog {
+	// TODO wishDate is not today
 	private String wishDate;
+	
 	private String wishMeal;
+	
+	private Canteen curCanteen; // current canteen with wished date
+	
 	
 /**
 	 * @param session
@@ -313,14 +323,32 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 		inAden = false;
 	}
 	
+	LocalDate date = LocalDate.now();
+	int dateShift = 0; //0 for today, 1 for tomorrow, etc
+	int result = getRequestedWeekDay(keywords, date) - date.getDayOfWeek();
+	//Normalize the shift according to the days of the week.
+	if (result <= 0) { 
+		dateShift = 7 + result; //7 days in the week
+	} else {
+		dateShift = result;
+	}
+	
+	
+	if(inAden) {
+		curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
+	} else {
+		curCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift));
+	}
+	
+	
 	int index = -1;
 	if( askPrice ) {
 		// now to find out the required meal's name
 		for( String name : terms) {
-			for( LineData line : currentCanteen.getCanteenData().getLines()) {
+			for( LineData line : curCanteen.getCanteenData().getLines()) {
 				for( MealData meal : line.getTodayMeals()) {
 					meal.getMealName().equals(name);
-					index = currentCanteen.getCanteenData().getLines().indexOf(line);
+					index = curCanteen.getCanteenData().getLines().indexOf(line);
 					//next = getLineEnum(line, askPrice);
 					setWishMeal(name);
 				}
@@ -387,6 +415,24 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 }
 
 
+private int getRequestedWeekDay(List<Keyword> keywords, LocalDate date) {
+	for (Keyword dateOfWeek : keywords) {
+		if (dateOfWeek.getWord().equals("today")) return date.getDayOfWeek();
+		else if (dateOfWeek.getWord().equals("tomorrow")) return date.getDayOfWeek() + 1;
+		else if (dateOfWeek.getWord().equals("day after tomorrow")) return date.getDayOfWeek() + 2;
+		else if (dateOfWeek.getWord().equals("sunday")) return 0;
+		else if (dateOfWeek.getWord().equals("monday")) return 1;
+		else if (dateOfWeek.getWord().equals("tuesday")) return 2;
+		else if (dateOfWeek.getWord().equals("wednesday")) return 3;
+		else if (dateOfWeek.getWord().equals("thursday")) return 4;
+		else if (dateOfWeek.getWord().equals("friday")) return 5;
+		else if (dateOfWeek.getWord().equals("saturday")) return 6;
+	}
+	
+	return date.getDayOfWeek(); // if there's no keyword for time, default is "today"
+}
+
+
 /* it's dirty here...but I can't find a way to combin string name and Enums :( */
 /**
  * Find out the enum with given index 
@@ -436,5 +482,32 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 		}	
 	return CanteenInfo.CI_EXIT;
 }
+
+/*
+public static void main(String[] args) throws WrongStateClassException {
+	List<Keyword> keywords = new ArrayList<Keyword>();
+	List<String> terms = new ArrayList<String>();
+	List<String> approval = new ArrayList<String>();
+	
+	Keyword line = new Keyword(new KeywordData("line1"));
+	Keyword date = new Keyword(new KeywordData("today"));
+	Keyword price = new Keyword(new KeywordData("price")); 
+	keywords.add(line);
+	keywords.add(date);
+	keywords.add(price);
+	
+	User user = new User();
+	//session;
+	Session s = new Session(user, null);
+	Canteen c = new Canteen(null);
+	CanteenRecommendationState cstate = new CanteenRecommendationState();
+	cstate.setCurrentState(CanteenInfo.CI_ENTRY);
+	CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
+//	dialog.updateStateAskPreference(keywords, terms, approval);
+//	dialog.updateStateEntry(keywords, terms, approval);
+	dialog.updateState(keywords, terms, approval);
+	
+	System.out.println(dialog.getWishMeal().getMealData().getMealName());
+ }*/
 
 }

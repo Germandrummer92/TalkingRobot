@@ -15,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 import dm.CanteenInformationState;
 import dm.CanteenRecommendationState;
+import dm.DialogManager;
 import dm.DialogState;
 import dm.KitchenAssistanceState;
 import dm.RecipeAssistanceState;
@@ -45,11 +46,15 @@ public class OutputCreator {
 	 * @return output as String
 	 */
 	public String createOutput(DialogState dialogState) {
-		generators = new ArrayList<Generator>();
-		outputPhrases = new ArrayList<Phrase>();
+		//generators = new ArrayList<Generator>();
+		//outputPhrases = new ArrayList<Phrase>();
 		
 		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
 		String output = addKeyword(temp, dialogState.getOutputKeyword());
+		String error = "";
+		if( DialogManager.giveDialogManager().isInErrorState()) {
+			
+		}
 	
 		// random decide whether to add a social component or not
 		Random socialRandom = new Random();
@@ -104,9 +109,9 @@ public class OutputCreator {
   	}
   	
   	 /**
-  	 *  
+  	 * Add social component to the output 
      * @param dialogState
-     * @return
+     * @return a social component in string
      */
   	private String addSocialComponent(DialogState dialogState, String output) {
   		//String keyword = dialogState.getOutputKeyword();
