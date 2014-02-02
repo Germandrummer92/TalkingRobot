@@ -132,7 +132,24 @@ public class KitchenAssistanceTest {
 	  	return new Keyword(read);	
 	  	
 	}
-	
+	@Test
+	public void loadTest() {
+		Keyword kw = null;
+		for (int i = 0; i < 185; i++) {
+			try {
+				kw = loadKeyword(i);
+			}
+			catch (Exception e) {
+				fail("Failed at number:" + i + "\n");
+			}
+			try {
+				System.out.println(kw.getWord() + i);
+			}
+			catch (Exception e) {
+				fail("Failed at printing number:" + i + "\n");
+			}
+		}
+	}
 	@After
 	public void tearDown() {
 		DialogTest.currentDialog = new KitchenAssistanceDialog(new Session(new User(), Robot.loadRobots().get(0)), new KitchenAssistanceState());

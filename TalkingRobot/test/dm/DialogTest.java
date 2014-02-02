@@ -44,26 +44,9 @@ public class DialogTest {
 		
 	}
 	
-	/*@Test
-	public void loadTest() {
-		Keyword kw = null;
-		for (int i = 0; i < 185; i++) {
-			try {
-				kw = loadKeyword(i);
-			}
-			catch (Exception e) {
-				fail("Failed at number:" + i + "\n");
-			}
-			try {
-				System.out.println(kw.getWord());
-			}
-			catch (Exception e) {
-				fail("Failed at printing number:" + i + "\n");
-			}
-		}
 		
 		
-	}*/
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -76,6 +59,7 @@ public class DialogTest {
 	 */
 	@Test
 	public void jumpTest() {
+		int i = 0;
 		currentDialog = new StartDialog(new Session(new User(), Robot.loadRobots().get(0)));
 		for (Keyword kw : dictionary.getKeywordList()) {
 			ArrayList<Keyword> kwList = new ArrayList<Keyword>();
@@ -83,38 +67,13 @@ public class DialogTest {
 			try {
 				currentDialog.updateState(kwList, new ArrayList<String>(), new ArrayList<String>());
 			} catch (WrongStateClassException e) {
+				System.out.println("At number: " + i);
 				assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
 			}
+			System.out.println("At number: " + i);
 			assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
+			i++;
 		}
 	}
 
-	private Keyword loadKeyword(int keywordID) {
-		File load = new File("resources/files/KeywordData/" + keywordID + ".json");
-		//Needed for Generic Enum Deserialization
-		EnumDeserializer des = new EnumDeserializer();
-		DataDeserializer d = new DataDeserializer();
-		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(load));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	  	KeywordData read = null;
-	  		try {
-				read = loader.fromJson(br.readLine(), KeywordData.class);
-			} catch (JsonSyntaxException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	  	try {
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	  	return new Keyword(read);	
-	  	
-	}
 }
