@@ -34,12 +34,12 @@ public class TermAnalyzerTest {
 	}
 
 	/**
-	 * checks the result for "For sandwiches you need toast and salad"
+	 * checks the result for "for sandwiches you need toast and salad"
 	 */
 	@Test
 	public void and() { 
-		setInput("For sandwiches you need toast and salad");
-		List <String> result = term.analyze("For sandwiches you need toast and salad");
+		setInput("for sandwiches you need toast and salad");
+		List <String> result = term.analyze("for sandwiches you need toast and salad");
 		List <String> compare = new LinkedList<String>();
 		compare.add("toast");
 		compare.add("salad");
@@ -47,12 +47,62 @@ public class TermAnalyzerTest {
 	}
 	
 	/**
-	 * checks the result for "My very pretty name is Nicole"
+	 * checks the result for "you need toast and salad for sandwiches"
+	 */
+	@Test
+	public void and2() { 
+		setInput("you need toast and salad for sandwiches");
+		List <String> result = term.analyze("you need toast and salad for sandwiches");
+		List <String> compare = new LinkedList<String>();
+		compare.add("toast");
+		compare.add("salad");
+		assertEquals(compare, result);
+	}
+	
+	
+	/**
+	 * checks the result for "salad is needed for sandwiches"
+	 */
+	@Test
+	public void test2() { 
+		setInput("salad is needed for sandwiches");
+		List <String> result = term.analyze("salad is needed for sandwiches");
+		List <String> compare = new LinkedList<String>();
+		compare.add("salad");
+		assertEquals(compare, result);
+	}
+	
+	/**
+	 * checks the result for "salad"
+	 */
+	@Test
+	public void simpleInput() { 
+		setInput("salad");
+		List <String> result = term.analyze("salad");
+		List <String> compare = new LinkedList<String>();
+		compare.add("salad");
+		assertEquals(compare, result);
+	}
+	
+	/**
+	 * checks the result for "for spaghetti bolognese tomatoes are needed"
+	 */
+	@Test
+	public void test() { 
+		setInput("for spaghetti bolognese tomatoes are needed");
+		List <String> result = term.analyze("for spaghetti bolognese tomatoes are needed");
+		List <String> compare = new LinkedList<String>();
+		compare.add("tomatoes");
+		assertEquals(compare, result);
+	}
+	
+	/**
+	 * checks the result for "my very pretty name is nicole"
 	 */
 	@Test
 	public void name() { 
-		setInput("My very pretty name is Nicole");
-		List <String> result = term.analyze("My very pretty name is Nicole");
+		setInput("my very pretty name is nicole");
+		List <String> result = term.analyze("my very pretty name is nicole");
 		List <String> compare = new LinkedList<String>();
 		compare.add("nicole");
 		assertEquals(compare, result);
