@@ -359,7 +359,8 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 		if( index == -1) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
 				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line keyword
-					 ArrayList<DialogState> refs = line.getReference();
+					ArrayList<DialogState> refs = new ArrayList<DialogState>();
+					refs = line.getKeywordData().getDialogState();
 					if(inAden) {
 						
                        for( DialogState ref : refs) {

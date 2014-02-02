@@ -1,1 +1,8 @@
-{"wordID":41,"word":"line one","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_1_DISH"}},{"currentState":{"name":"CI_ADEN_LINE_1_PRICE"}},{"currentState":{"name":"CR_ADEN_LINE_1_DISH"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":41,
+	"word":"line one",
+	"dialogState":[{"currentState":{"name":"CI_ADEN_LINE_1_DISH"}},
+		{"currentState":{"name":"CI_ADEN_LINE_1_PRICE"}},
+		{"currentState":{"name":"CR_ADEN_LINE_1_DISH"}}],
+	"priority":6,
+	"dataReference":[],
+	"type":"DEFAULT"}
