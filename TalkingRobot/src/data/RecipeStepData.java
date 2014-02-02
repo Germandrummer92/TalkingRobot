@@ -29,7 +29,7 @@ public class RecipeStepData implements Data {
  * @param descri description of a recipe step
  */
 public RecipeStepData(String descri) {
-	this.stepID = nextID();
+	//this.stepID = nextID();
 	this.description = descri;
 	this.ingredients = new ArrayList<IngredientData>();
 }

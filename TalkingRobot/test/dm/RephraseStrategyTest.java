@@ -23,7 +23,7 @@ public class RephraseStrategyTest {
 	@Test
 	public void testHandleError() {
 		ErrorHandlingState errorHandleState = rephrase.handleError(null);
-		ErrorHandlingState comparison = new ErrorHandlingState(true, ErrorHandling.REPHRASE, "rephrase");
+		ErrorHandlingState comparison = new ErrorHandlingState(true, ErrorHandling.REPHRASE, null);
 		
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
 		assertEquals(comparison.getOutputKeyword(), errorHandleState.getOutputKeyword());

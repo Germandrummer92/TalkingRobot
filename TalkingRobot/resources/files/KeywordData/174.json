@@ -1,1 +1,2 @@
 {"wordID":174,"word":"tomato","dialogState":[{"currentState":{"name":"RL_ASK_NEXT_INGREDIENT"}},{"currentState":{"name":"RL_ASK_INGREDIENT_RIGHT"}},{"currentState":{"name":"RL_ASK_FIRST_INGREDIENT"}},{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"KA_TELL_INGREDIENT_NOT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":4,"dataReference":[{"ingredientID":3,"ingredientName":"Tomato","ingredientLocation":"Top Cabinet"}],"type":"INGREDIENT"}
+

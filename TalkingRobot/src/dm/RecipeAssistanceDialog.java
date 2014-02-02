@@ -122,33 +122,27 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 	}
 	//Check if all keywords pointing to same state, in one of their references (takes first state, if more than one state)
 	else {
-		boolean sameRef = false;
+	/*	boolean sameRef = false;
 		Enum<?> refMax = null;
 		for (DialogState d : keywords.get(0).getReference()) {
-			
-			Enum<?> ref = d.getCurrentState();
+			int count = 0;
 			for (Keyword kw : keywords) {
-				int count = 0;
-				for (DialogState d1 : kw.getReference()) {
-					if (d1.getCurrentState().equals(ref)) {
-						count++;
-					}
-					if (count == 1) {
-							sameRef = true;
-					}
+				if (kw.getReference().contains(d)) {
+					count++;
 				}
-				
+				if (count == keywords.size()) {
+					sameRef = true;
+					refMax = d.getCurrentState();
+				}
 			}
-			if (sameRef && refMax == null) {
-				refMax = ref;
-			}
+
 		}
 		if (sameRef) {
 			getCurrentDialogState().setCurrentState(refMax);
 			return true;
-		}
+		}*/
 		//If not go to keyword with highest priority
-		else {
+		//else {
 			int priorityMax = keywords.get(0).getKeywordData().getPriority();
 			Keyword curKW = keywords.get(0);
 			DialogState curRef = keywords.get(0).getReference().get(0);
@@ -163,7 +157,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 				if (d.getCurrentState().getClass().getName().equals("dm.RecipeAssistance")) {
 					if (kw.getKeywordData().getPriority() + 3 > priorityMax) {
 						curKW = kw;
-						priorityMax = curKW.getKeywordData().getPriority();
+						priorityMax = curKW.getKeywordData().getPriority() + 3;
 						curRef = d;
 					}
 				}
@@ -172,7 +166,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 			getCurrentDialogState().setCurrentState(curRef.getCurrentState());
 			return true;
 			}
-		}
+		//}
 }
 
 /**
@@ -274,9 +268,11 @@ private void updateStateTellIngredientFound(List<Keyword> keywords,
 		for (Keyword kw : keywords) {
 			if (kw.getKeywordData().getType().equals(KeywordType.INGREDIENT)) {
 				for (Recipe r : getRecipeDatabase()) {
+					if (r.getRecipeData().getIngredients() != null) {
 					if (r.getRecipeData().getIngredients().contains((IngredientData)kw.getKeywordData().getDataReference().get(0)));
 						currRecipe = r;
 					}
+				}
 				}
 			}
 		if (currRecipe == null || currRecipe.getRecipeData() == null) {

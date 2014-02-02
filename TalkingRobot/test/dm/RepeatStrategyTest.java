@@ -23,7 +23,7 @@ public class RepeatStrategyTest {
 	@Test
 	public void testHandleError() {
 		ErrorHandlingState errorHandleState = repeat.handleError(null);
-		ErrorHandlingState comparison = new ErrorHandlingState(true, ErrorHandling.REPEAT, "repeat");
+		ErrorHandlingState comparison = new ErrorHandlingState(true, ErrorHandling.REPEAT, null);
 		
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
 		assertEquals(comparison.getOutputKeyword(), errorHandleState.getOutputKeyword());

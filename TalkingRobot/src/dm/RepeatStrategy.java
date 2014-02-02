@@ -16,7 +16,7 @@ public class RepeatStrategy extends ErrorStrategy {
 	 * Constructor of RepeatStrategy.
 	 */
 	public RepeatStrategy() {
-		repeatState = new ErrorHandlingState(true, ErrorHandling.REPEAT, "repeat");
+		repeatState = new ErrorHandlingState(true, ErrorHandling.REPEAT, null);
 	}
   
 	/**

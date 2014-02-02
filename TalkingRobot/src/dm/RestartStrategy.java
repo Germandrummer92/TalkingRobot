@@ -83,11 +83,11 @@ public class RestartStrategy extends ErrorStrategy {
 	
 
 	private String handleStart(Dialog currentDialog) {
-		return "how can i help you";
+		return null;
 	}
 	
 	private String handleCanteen(Dialog currentDialog) {
-		return "how can i help you";
+		return null;
 	}
 	
 	private String handleCanteenInformation(Dialog currentDialog) {
@@ -121,38 +121,11 @@ public class RestartStrategy extends ErrorStrategy {
 //	}
 	
 	private String handleKitchen(Dialog currentDialog) {
-		return "how can i help you";
+		return null;
 	}
 
 	private String handleKitchenAssistance(Dialog currentDialog) {
-		ArrayList<String> kitchenAssist = new ArrayList<String>();
-		kitchenAssist.add("bring you ingredients");
-		kitchenAssist.add("bring you tools");
-		kitchenAssist.add("set the table");
-		kitchenAssist.add("use the dishwasher");
-		String output = "i can ";
-		ArrayList<Integer> usedNumbers = new ArrayList<Integer>();
-		
-		while(usedNumbers.size() != 2) {
-			int random = this.getRandomNum(4);
-			if(!usedNumbers.contains(random)) {
-				usedNumbers.add(random);
-				output = output + kitchenAssist.get(random) + " ";
-			}
-		}
-		
-		output = output + "and ";
-		while(usedNumbers.size() != 3) {
-			int random = this.getRandomNum(4);
-			if(!usedNumbers.contains(random)) {
-				usedNumbers.add(random);
-				output = output + kitchenAssist.get(random) + " ";
-			}
-		}
-		
-		output = output + "so how can i help you";
-		
-		return output;
+		return null;
 	}
 
 	private String handleRecipeAssistance(Dialog currentDialog) {
@@ -171,7 +144,7 @@ public class RestartStrategy extends ErrorStrategy {
 	}
 
 	private String handleRecipeLearning(Dialog currentDialog) {
-		return "do you still want to teach me a recipe";
+		return null;
 	}
 	
 	private int getRandomNum(int limit) {

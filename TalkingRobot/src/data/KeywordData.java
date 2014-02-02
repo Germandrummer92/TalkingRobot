@@ -218,15 +218,15 @@ public class KeywordData implements Data {
 		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
 		ArrayList <KeywordData> res = new ArrayList <KeywordData>();
 		for (File f : load.listFiles()) {
-			BufferedReader br = null;
+			/*BufferedReader br = null;
 			try {
 				br = new BufferedReader(new FileReader(f));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
-			}
+			}*/
 		  	KeywordData read = null;
 		  		try {
-					read = loader.fromJson(br.readLine(), KeywordData.class);
+					read = loader.fromJson(new FileReader(f), KeywordData.class);
 				} catch (JsonSyntaxException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
