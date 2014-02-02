@@ -1,1 +1,8 @@
-{"wordID":121,"word":"upper drawer","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "upper drawer",
+    "wordID": 121
+}

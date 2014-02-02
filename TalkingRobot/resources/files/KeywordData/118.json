@@ -1,1 +1,8 @@
-{"wordID":118,"word":"drawer","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "drawer",
+    "wordID": 118
+}

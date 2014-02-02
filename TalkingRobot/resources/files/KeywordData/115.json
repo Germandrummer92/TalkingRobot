@@ -1,1 +1,8 @@
-{"wordID":115,"word":"kitchen unit","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "kitchen unit",
+    "wordID": 115
+}

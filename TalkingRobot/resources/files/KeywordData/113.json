@@ -1,1 +1,8 @@
-{"wordID":113,"word":"refridgerator","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "refridgerator",
+    "wordID": 113
+}

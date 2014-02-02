@@ -1,1 +1,8 @@
-{"wordID":114,"word":"cupboard","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "cupboard",
+    "wordID": 114
+}

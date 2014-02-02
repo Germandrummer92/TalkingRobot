@@ -1,1 +1,8 @@
-{"wordID":112,"word":"fridge","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "fridge",
+    "wordID": 112
+}
