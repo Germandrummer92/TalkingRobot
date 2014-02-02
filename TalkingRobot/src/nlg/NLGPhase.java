@@ -1,4 +1,5 @@
 package nlg;
+import tts.TTSPhase;
 import dm.DialogState;
 import generalControl.Main;
 import generalControl.Phase;
@@ -19,7 +20,7 @@ public class NLGPhase extends Phase {
   }
 
   public Phase nextPhase(Main main) {
-	  return main.getDmPhase();
+	  return new TTSPhase();
   }
 
 }
