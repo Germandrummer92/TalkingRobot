@@ -17,12 +17,12 @@
 				"That's okay! Please restart the conversation now!"
 			],
 			"S_USER_FOUND": [
-				"I've found your user history, <o>, how may I help you",
-				"Your user history was found, <o>, what can I do for you",
-				"Your usage record was found, <o>, can I help you"
+				"I've found your user history, <o>. How may I help you",
+				"Your user history was found, <o>. What can I do for you",
+				"Your usage record was found, <o>. Can I help you"
 			],
 			"S_USER_NOT_FOUND": [
-				"I don't have your usage record . Would you like to save your usage history"
+				"I don't have your usage record. Would you like to save your usage history"
 			],
 			"S_USER_SAVED": [
 				"Your profile has been saved under the name <o>, how can I help you",
@@ -120,8 +120,8 @@
 				
 			],
 			"RA_RECIPE_FOUND" : [
-				"I've found the recipe <o> in my database, what do you want to know?",
-				"Found it! What do you want to know about the recipe <o>?",
+				"I've found the recipe <o> in my database. What do you want to know?",
+				"Found it!  What do you want to know about the recipe <o>?",
 				"Got all the information about <o> what do you need?"
 				
 			]
@@ -582,7 +582,7 @@
 		],
 	
 		"RESTART_KA" : [
-			""
+			"I can bring you ingredients, tools and set the table. So how can I help you ?"
 		]
 	}
 }

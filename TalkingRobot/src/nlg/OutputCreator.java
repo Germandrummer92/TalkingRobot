@@ -50,13 +50,18 @@ public class OutputCreator {
 		//outputPhrases = new ArrayList<Phrase>();
 		
 		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
-		String output = addKeyword(temp, dialogState.getOutputKeyword());
 		
 		if( DialogManager.giveDialogManager().isInErrorState()) {
-			addEKeywords(temp, dialogState.getOutputKeyword());
-			return output;
+			String eOut = temp;
+			if( !dialogState.getOutputKeyword().isEmpty() ) {
+				eOut = addEKeywords(temp, dialogState.getOutputKeyword(), dialogState);
+			}
+			return eOut;
 		}
-	
+
+		String output = addKeyword(temp, dialogState.getOutputKeyword());
+		
+			
 		// random decide whether to add a social component or not
 		Random socialRandom = new Random();
 		Integer toAdd = socialRandom.nextInt(2);  // 0 for no, 1 for yes
@@ -70,13 +75,76 @@ public class OutputCreator {
 	}
 
 	/**
-	 * 
-	 * @param temp
-	 * @param outputKeyword 
+	 * Add keywords for error handling to template sentences
+	 * @param temp template sentence
+	 * @param dialogState 
+	 * @param outputKeyword, a string with keywords 
+	 * @return the right sentence for output
 	 */
-	private void addEKeywords(String temp, String outputKeyword) {
-		// TODO Auto-generated method stub
-		
+	private String addEKeywords(String text, String keywords, DialogState dialogState) {
+		String answer = " ";
+		try {
+			
+			String[] evaObjs = {"<1>", "<2>", "<3>"};
+	  		//String evaObj1 = "<1>";
+	  		//String evaObj2 = "<2>";
+	  		//String evaObj3 = "<3>";
+	  		String evaluationCompl = "{c}";
+	  		    
+		  		String[] sentences = null;
+		  		String[] keywordPhrases = keywords.split(","); 
+		  		String[] objs = { "", "", "" };
+		  		String compl = "";
+		  		if(text.contains(".")) {
+		  			sentences = text.split(".");
+		  		} else {
+		  			sentences = new String[1]; // nothing to split
+		  			sentences[0] = text;
+		  		}
+		  		
+		  		for(int i = 0; i < keywordPhrases.length; i++) {
+		  			//String[] keywordArray = keywordPhrases[i].split(" ");
+		  			for (int j = 0; j < keywordPhrases.length; j++){
+			  			if( keywordPhrases[j].contains("<") && keywordPhrases[j].contains(">") ) {
+			  				objs[j] = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
+			  			}
+			  			if( keywordPhrases[j].contains("{") && keywordPhrases[j].contains("}")) {
+			  				compl = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
+			  				if(compl.contains("canteen")) {
+			  					compl = "Eating in canteen";
+			  				} 
+			  				
+			  				if(compl.contains("kitchen")) {
+			  					compl = "Self cooking";
+			  				}
+			  			}
+		  			}
+		  			
+		  		}
+		  		
+		  		
+		  		for(int i = 0; i < sentences.length; i++) {
+		  			for(int j = 0; j < objs.length; j++) {
+			  			if(sentences[i].contains(evaObjs[j])) {
+			  				sentences[i].replace(evaObjs[j], objs[j]);
+			  			}
+		  			}
+		  			if(sentences[i].contains(evaluationCompl)) {
+		  				sentences[i].replace(evaluationCompl, compl);
+		  			}	  
+		  			sentences[i] = sentences[i] + ". "; // blank between 2 sentences
+		  		}
+		  		
+		  		for(int i = 0; i < sentences.length; i++) {
+		  			answer = answer + sentences[i];
+		  		}
+	  	
+		  		return answer;
+			
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return answer;
 	}
 
 	/**
@@ -181,7 +249,7 @@ public class OutputCreator {
   	 * @return a complete answer as string
   	 */
   	private String addKeyword(String text, String keyword){
-  		String answer = null;
+  		String answer = " ";
   		String evaluationObj = "<o>";
   		String evaluationCompl = "{c}";
   		//String evaluationTime = "{time}";
@@ -191,8 +259,8 @@ public class OutputCreator {
   		    
 	  		String[] sentences = null;
 	  		String[] keywordPhrases = keyword.split(","); 
-	  		String obj = null;
-	  		String compl = null;
+	  		String obj = "";
+	  		String compl = "";
 	  		if(text.contains(".")) {
 	  			sentences = text.split(".");
 	  		} else {
