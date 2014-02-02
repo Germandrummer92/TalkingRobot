@@ -168,7 +168,6 @@ private void updateStateStepRight(List<Keyword> keywords, List<String> terms) {
 }
 
 private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
 	
 	DialogState nextState;
 	//ganzes Step in terms, was wenn ein keyword in step gefunden wurde -> zerlegt
@@ -181,6 +180,7 @@ private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 		nextState = new DialogState();
 		nextState.setCurrentState(RecipeLearning.RL_EXIT);
 		setCurrentDialogState(nextState);
+		createRecipe();
 	}
 	else {
 		//TODO maybe take the string with biggeest length and ask user to confirm?
@@ -199,6 +199,7 @@ private void updateStateStep(List<Keyword> keywords, List<String> terms) {
 	if (userSaidEnd(keywords)) {
 		nextState = new RecipeLearningState(RecipeLearning.RL_EXIT);
 		setCurrentDialogState(nextState);
+		createRecipe();
 	}
 	
 	if (terms.isEmpty()) {
@@ -487,8 +488,21 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 
 private boolean userSaidEnd(List<Keyword> keywords) {
 	for (Keyword keyword : keywords) {
-		if (keyword.getKeywordData().getWord().equals("end")) {
-			return true;
+		for (DialogState state : keyword.getReference()) {
+			Enum<?> innerState = state.getCurrentState();
+			Enum<?> cs = getCurrentDialogState().getCurrentState(); //current state
+			boolean iState = cs.equals(RecipeLearning.RL_ASK_NEXT_INGREDIENT) || cs.equals(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
+			boolean tState = cs.equals(RecipeLearning.RL_ASK_FIRST_TOOL) || cs.equals(RecipeLearning.RL_ASK_NEXT_TOOL);
+			boolean sState = cs.equals(RecipeLearning.RL_ASK_FIRST_STEP) || cs.equals(RecipeLearning.RL_ASK_NEXT_STEP) || cs.equals(RecipeLearning.RL_ASK_LAST_STEP);
+			if (innerState.equals(RecipeLearning.RL_ASK_FIRST_TOOL) && iState) {
+				return true;
+			}
+			else if (innerState.equals(RecipeLearning.RL_ASK_FIRST_STEP) && tState) {
+				return true;
+			}
+			else if (innerState.equals(RecipeLearning.RL_EXIT) && sState) {
+				return true;
+			}
 		}
 	}
 	return false;
