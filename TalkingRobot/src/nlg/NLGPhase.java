@@ -11,6 +11,9 @@ import generalControl.Phase;
 public class NLGPhase extends Phase {
 
   private OutputCreator outputCreator;
+  public NLGPhase() {
+	  this.outputCreator = new OutputCreator();
+  }
 
   public void setPhaseResult(Main main) {
 	  DialogState currentState = main.getDmResult();
