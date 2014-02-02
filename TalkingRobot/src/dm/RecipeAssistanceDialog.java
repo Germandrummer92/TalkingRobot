@@ -2,6 +2,7 @@ package dm;
 
 import java.util.List;
 
+import data.IngredientData;
 import data.KeywordType;
 import data.RecipeData;
 
@@ -48,8 +49,7 @@ public void setRecipeName(String recipeName) {
 
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
-	// TODO Auto-generated method stub
-	RecipeAssistanceState currState;
+	//RecipeAssistanceState currState;
 	updateStateKeywordJump(keywords);
 	if (getCurrentDialogState().getClass() != RecipeAssistanceState.class || getCurrentDialogState().getCurrentState().getClass() != RecipeAssistance.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
@@ -83,6 +83,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case RA_TELL_INGREDIENT_NOT_FOUND:
 		updateStateTellIngredientNotFound(keywords, terms);
 		break;
+	case RA_TELL_INGREDIENT_FOUND:
+		updateStateTellIngredientFound(keywords, terms);
+		break;
 	case RA_TELL_TOOL_FOUND:
 		updateStateTellToolFound(keywords, terms);
 		break;
@@ -107,6 +110,8 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 }
 
 
+
+
 /**
 * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
 * @param keywords
@@ -116,19 +121,31 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 	if (keywords == null || keywords.isEmpty()) {
 		return false;
 	}
-	//Check if all keywords pointing to same state
+	//Check if all keywords pointing to same state, in one of their references (takes first state, if more than one state)
 	else {
-		boolean sameRef = true;
-		Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
-		for (Keyword kw : keywords) {
-			for (DialogState d : kw.getReference()) {
-			if (!ref.equals(d.getCurrentState())) {
-				sameRef = false;
+		boolean sameRef = false;
+		Enum<?> refMax = null;
+		for (DialogState d : keywords.get(0).getReference()) {
+			
+			Enum<?> ref = d.getCurrentState();
+			for (Keyword kw : keywords) {
+				int count = 0;
+				for (DialogState d1 : kw.getReference()) {
+					if (d1.getCurrentState().equals(ref)) {
+						count++;
+					}
+					if (count == 1) {
+							sameRef = true;
+					}
+				}
+				
 			}
+			if (sameRef && refMax == null) {
+				refMax = ref;
 			}
 		}
-		if (sameRef == true) {
-			getCurrentDialogState().setCurrentState(ref);
+		if (sameRef) {
+			getCurrentDialogState().setCurrentState(refMax);
 			return true;
 		}
 		//If not go to keyword with highest priority
@@ -142,6 +159,14 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 					curKW = kw;
 					priorityMax = curKW.getKeywordData().getPriority();
 					curRef = d;
+				}
+				//If the Keyword has a pointer to RA_* we should rate that higher since we're IN RA_
+				if (d.getCurrentState().getClass().getName().equals("dm.RecipeAssistance")) {
+					if (kw.getKeywordData().getPriority() + 3 > priorityMax) {
+						curKW = kw;
+						priorityMax = curKW.getKeywordData().getPriority();
+						curRef = d;
+					}
 				}
 				}
 				}
@@ -230,18 +255,47 @@ private void updateStateTellWholeRecipe(List<Keyword> keywords,
 
 private void updateStateTellToolNotFound(List<Keyword> keywords,
 		List<String> terms) {
-	// TODO Auto-generated method stub
+	//State is not used
 	
 }
 
 private void updateStateTellToolFound(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+	//State is not used
+	
+}
+
+/**
+ * @param keywords
+ * @param terms
+ */
+private void updateStateTellIngredientFound(List<Keyword> keywords,
+		List<String> terms) {
+	//We came here due to a jump, so the Ingredient should have been passed, if not there's an error
+	if (keywords != null && !keywords.isEmpty()) {
+		for (Keyword kw : keywords) {
+			if (kw.getKeywordData().getType().equals(KeywordType.INGREDIENT)) {
+				for (Recipe r : getRecipeDatabase()) {
+					if (r.getRecipeData().getIngredients().contains((IngredientData)kw.getKeywordData().getDataReference().get(0)));
+						currRecipe = r;
+					}
+				}
+			}
+		if (currRecipe == null || currRecipe.getRecipeData() == null) {
+			DialogManager.giveDialogManager().setInErrorState(true);
+		}
+		}
+	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
 	
 }
 
 private void updateStateTellIngredientNotFound(List<Keyword> keywords,
 		List<String> terms) {
-	// TODO Auto-generated method stub
+	//If we came here, keyword for ingredients and unknown ingredient must have been passed
+	if (terms == null || terms.isEmpty()) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
 	
 }
 

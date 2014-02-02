@@ -22,7 +22,7 @@ public class NLUPhaseTest {
 	@Before
 	public void setUp() {
 		this.nluPhase = new NLUPhase();
-		this.main = main.giveMain();
+		this.main = Main.giveMain();
 		this.keyword = new KeywordAnalyzer();
 		this.possible = new PossibleKeywordAnalyzer();
 		this.term = new TermAnalyzer();
