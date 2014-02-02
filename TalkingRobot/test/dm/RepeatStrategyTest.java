@@ -9,7 +9,7 @@ import org.junit.Before;
 /**
  * 
  * @author Meng Meng Yan
- * @version
+ * @version 1.0
  */
 public class RepeatStrategyTest {
 	
