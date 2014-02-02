@@ -1,1 +1,1 @@
-{"wordID":176,"word":"two","dialogState":{},"priority":0}
+{"wordID":176,"word":"two","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_2_DISH"}},{"currentState":{"name":"CR_ADEN_LINE_2_DISH"}},{"currentState":{"name":"CI_ADEN_LINE_2_PRICE"}},{"currentState":{"name":"CI_MOLTKE_CHOICE_2_DISH"}},{"currentState":{"name":"CI_MOLTKE_CHOICE_2_PRICE"}},{"currentState":{"name":"CR_MOLTKE_CHOICE_2_DISH"}}],"priority":4,"dataReference":[],"type":"DEFAULT"}
