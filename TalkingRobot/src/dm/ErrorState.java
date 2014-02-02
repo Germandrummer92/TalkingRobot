@@ -28,6 +28,11 @@ enum ErrorState {
 	/**
 	 * last error was tried to be handled with indirect verification.
 	 */
-	INDIRECT_VERIFICATION;
+	INDIRECT_VERIFICATION,
+	
+	/**
+	 * error was handled with restart-strategy.
+	 */
+	RESTART;
   
 }

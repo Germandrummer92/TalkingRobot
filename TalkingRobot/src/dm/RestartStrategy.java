@@ -165,7 +165,7 @@ public class RestartStrategy extends ErrorStrategy {
 			ArrayList<RecipeData> recipes = RecipeData.loadData();
 			RecipeData recipe = recipes.get(this.getRandomNum(recipes.size()));
 			this.randomRecipe = recipe;
-			return "would you like to eat " + recipe.getRecipeName();
+			return "<" + recipe.getRecipeName() + ">";
 		}
 		
 	}
@@ -176,6 +176,18 @@ public class RestartStrategy extends ErrorStrategy {
 	
 	private int getRandomNum(int limit) {
 		return (int) (Math.random() * (limit));
+	}
+	
+	public ErrorHandling getErrorHandling() {
+		return this.errorHandling;
+	}
+	
+	public MealData getMeal() {
+		return this.randomMeal;
+	}
+	
+	public RecipeData getRecipe() {
+		return this.randomRecipe;
 	}
 
 }

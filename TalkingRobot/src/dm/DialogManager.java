@@ -43,7 +43,7 @@ public class DialogManager {
    */
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
 	  
-	  clearAllStrategies();
+	  
 	  previousDialog = currentDialog;
 	   List<Keyword> kws = dictionary.findKeywords(keywords);
 	   do {
@@ -75,6 +75,8 @@ public class DialogManager {
 	   //?
 	   if (isInErrorState) {
 		   handleError(Main.giveMain().getNluResult().get(2));
+	   } else {
+		   clearAllStrategies();
 	   }
   }
 
@@ -92,7 +94,7 @@ public class DialogManager {
 	  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
 	  		avg = this.getAverageDistance(possibleKeywords);
 	  } else if (!possibleKeywords.isEmpty()) {
-		  	dialogIsUpdated = handleResponseToPreviousErrorHandling(possibleKeywords);
+		  	dialogIsUpdated = this.handleResponseToPreviousErrorHandling(possibleKeywords);
 		  	if(!dialogIsUpdated) {
 		  		//error could not be solved; start with repetition/rephrasing again
 		  		this.clearAllStrategies();
@@ -110,6 +112,7 @@ public class DialogManager {
 				  Main.giveMain().setDmResult(this.getCurrentDialog().getCurrentDialogState());
 				  dialogIsUpdated = true;
 			  } else {
+				  this.errorState = ErrorState.RESTART;
 				  dmResult = errorStrategy[5].handleError(possibleKeywords);;
 			  }
 		  }
@@ -190,6 +193,23 @@ public class DialogManager {
   				keyword.add(strategy.getQuestionableWords());
   			} else if(possibleKeywords.get(i).equals("no")) {
   				ErrorHandlingState dmResult = errorStrategy[4].handleError(null);
+  				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
+  			}
+  		}
+  	} else if(this.errorState == ErrorState.RESTART) {
+  		RestartStrategy restart = (RestartStrategy) errorStrategy[5];
+  		for(int i = 0; i < possibleKeywords.size(); i++) {
+  			if(possibleKeywords.get(i).equals("yes")) {
+  				if(restart.getErrorHandling() == ErrorHandling.RESTART_CI
+  						|| restart.getErrorHandling() == ErrorHandling.RESTART_CR) {
+  					keyword.add(restart.getMeal().getMealName());
+  				} else if(restart.getErrorHandling() == ErrorHandling.RESTART_RA) {
+  					keyword.add(restart.getRecipe().getRecipeName());
+  				} else if(restart.getErrorHandling() == ErrorHandling.RESTART_RL) {
+  					keyword.add("teach you");
+  				}
+  			} else {
+  				ErrorHandlingState dmResult = errorStrategy[5].handleError(null);
   				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
   			}
   		}
