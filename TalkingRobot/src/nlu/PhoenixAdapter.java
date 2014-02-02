@@ -24,8 +24,6 @@ public class PhoenixAdapter {
 	public LinkedList<String> operatePhoenix(String runParse, int extractFlag, File compile) {
 		LinkedList<String> phoenixOutput = new LinkedList<String>();
 		  
-		System.out.println(runParse);
-		  
 		try {
 			//compile grammar
 			compile(compile);
@@ -47,14 +45,11 @@ public class PhoenixAdapter {
 		  		stderr2.close();
 		  		phoenix.destroy();
 		  		compile(compile);
-		  		System.out.println(phoenixLine2);
-		  		System.out.println("compile again after error");
 		  		return operatePhoenix(runParse, extractFlag, compile);
 		  	}
 
 		  	while ((phoenixLine2 = stdin2.readLine()) != null) {
 		  		phoenixOutput = insertWords(extractFlag, phoenixOutput, phoenixLine2);
-		  		System.out.println(phoenixLine2);
 		  	}	  
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -155,11 +150,11 @@ public class PhoenixAdapter {
 	}
 	
 	private void compile(File compile) {
-		ProcessBuilder grammarBiulder = new ProcessBuilder("/bin/tcsh", "compile");
-		grammarBiulder.directory(compile);
+		ProcessBuilder grammarBuilder = new ProcessBuilder("/bin/tcsh", "compile");
+		grammarBuilder.directory(compile);
 		
 		try {
-			Process phoenix =grammarBiulder.start();
+			Process phoenix =grammarBuilder.start();
 			BufferedReader stderr2 = new BufferedReader(new InputStreamReader(phoenix.getErrorStream()));
 			String phoenixLine2 = null;
 			  
