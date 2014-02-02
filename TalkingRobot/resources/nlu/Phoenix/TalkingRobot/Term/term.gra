@@ -5,6 +5,9 @@
 [recipe_name]
 	(*[want] [teach] *[you] *[a] *recipe *[named])
 	(*[want] [teach] *[you] *[a] *recipe *[named])
+	(*[a] recipe [named])
+	(*[a] recipe name is)
+	(*[a] recipes name is)
 	(*for [time])
 ;
 
@@ -102,8 +105,8 @@ NEED
 ;
 
 [named]
-	(named)
-	(called)
+	(*is named)
+	(*is called)
 ;
 
 [time]
