@@ -306,7 +306,7 @@ public class DialogManager {
 	  			counter++;
 	  			String[] possibleKwSplit = possibleKw.get(i).split(";");
 	  			overallDistance = overallDistance 
-	  					+ (float)Integer.parseInt(possibleKwSplit[2]) / possibleKwSplit[2].length();
+	  					+ (float)Integer.parseInt(possibleKwSplit[2]) / possibleKwSplit[1].length();
 	  		}
 	  	}
 	  
