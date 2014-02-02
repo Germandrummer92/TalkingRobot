@@ -2,6 +2,7 @@ package dm;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -23,13 +24,14 @@ public class UserTest {
 	}
 	
 	/**
-	 * currently 6 users exists. checks if 6 users were loaded
+	 * checks if the number of loaded users is the number of existing users
 	 */
 	@Test
 	public void load() {
 		ArrayList<User> load = new ArrayList<User>();
 		load = user.loadUsers();
-		assertEquals(6, load.size());
+		File directory = new File("resources/files/UserData/");
+		assertEquals(directory.list().length, load.size());
 	}
 	
 	@After
