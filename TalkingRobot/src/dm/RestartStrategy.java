@@ -29,7 +29,7 @@ public class RestartStrategy extends ErrorStrategy {
 		this.riseCounter();
 		Dialog currentDialog = DialogManager.giveDialogManager().getCurrentDialog();
 		ErrorHandlingState errorState = decideDialogBasedErrorHandling(currentDialog);
-		return null;
+		return errorState;
 	}
 
 	private ErrorHandlingState decideDialogBasedErrorHandling(Dialog currentDialog) {
