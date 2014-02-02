@@ -27,7 +27,7 @@ import data.KeywordData;
 /**
  * @author Daniel Draper
  * @version 1.0
- *
+ * This class tests the RecipeAssistanceTest and makes sure all different keywords are resolved the right way.
  */
 public class RecipeAssistanceTest {
 
