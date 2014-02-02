@@ -531,17 +531,58 @@
 		},
 			
 	"dm.ErrorHanndlingState" : {
-		"ZERO" :[
-			""
-		],
+	
 		"CHOICE" : [
 		   "Do you mean <1> or <2> ?"
 		],
-		"EXPLICIT_VERIFICATION" : [
+		"Explicit_Verification" : [
 		   "Do you mean <1> ?"
 		],
-		"INDIRECT_VERIFICATION" : [
+		"Indirect_Verification" : [
+			"{c} sounds nice",
+			"It's good idea {c}"
+		],
+		"REPEAT" : [
+			"Pardon, can you say that again?",
+			"Sorry I don't understand. Can you say it again?",
+			"Sorry I can't get you. Would you please say it again?",
 			
+		],
+	
+	 	"REPHRASE" : [
+	 		"Can you rephrase?",
+	 		"Can you repeat your statement?"
+	 	],
+	
+		"RESTART_START" : [
+			"How can I help you?",
+			"Do you need some assistance?",
+			"Can I offer my assistance?",
+			"May I help you?"
+		],
+	
+		"RESTART_CI" : [
+			"Would you like to have <1> at <2> in <3> ?",
+			"Do you mean <1> at <2> in <3> ?"
+		],
+	
+		"RESTART_CR" : [
+			"Would you like to have <1> at <2> in <3> ?",
+			"Do you mean <1> at <2> in <3> ?"
+		],
+	
+		"RESTART_RA" : [
+			"Would you like to cook <1> ?",
+			"Do you mean you want to cook <1> ?"
+		],
+	
+		"RESTART_RL" : [
+			"Do you still want to teach me a recipe ?",
+			"Do you still want to tell me a new recipe ?"
+		],
+	
+		"RESTART_KA" : [
+			""
 		]
 	}
 }
