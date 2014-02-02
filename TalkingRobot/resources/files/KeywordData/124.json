@@ -1,1 +1,8 @@
-{"wordID":124,"word":"bring","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "bring",
+    "wordID": 124
+}

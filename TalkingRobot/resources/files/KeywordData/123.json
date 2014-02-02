@@ -1,1 +1,8 @@
-{"wordID":123,"word":"center drawer","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "center drawer",
+    "wordID": 123
+}

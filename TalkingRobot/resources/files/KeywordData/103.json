@@ -1,1 +1,8 @@
-{"wordID":103,"word":"repeat the last","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "repeat the last",
+    "wordID": 103
+}

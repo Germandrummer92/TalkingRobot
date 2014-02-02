@@ -1,1 +1,8 @@
-{"wordID":120,"word":"lower drawer","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "lower drawer",
+    "wordID": 120
+}

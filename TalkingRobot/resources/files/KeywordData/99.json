@@ -1,1 +1,8 @@
-{"wordID":99,"word":"to finish","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "to finish",
+    "wordID": 99
+}

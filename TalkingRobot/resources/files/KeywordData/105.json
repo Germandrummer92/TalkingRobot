@@ -1,1 +1,8 @@
-{"wordID":105,"word":"what was it","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "what was it",
+    "wordID": 105
+}

@@ -1,1 +1,8 @@
-{"wordID":116,"word":"kitchen cabinet","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "kitchen cabinet",
+    "wordID": 116
+}

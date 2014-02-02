@@ -1,1 +1,8 @@
-{"wordID":107,"word":"previous","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "previous",
+    "wordID": 107
+}

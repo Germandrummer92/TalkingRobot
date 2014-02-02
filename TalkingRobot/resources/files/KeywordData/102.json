@@ -1,1 +1,8 @@
-{"wordID":102,"word":"repeat this","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "repeat this",
+    "wordID": 102
+}

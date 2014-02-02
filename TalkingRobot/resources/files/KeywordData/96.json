@@ -1,1 +1,8 @@
-{"wordID":96,"word":"that was the last one","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "that was the last one",
+    "wordID": 96
+}

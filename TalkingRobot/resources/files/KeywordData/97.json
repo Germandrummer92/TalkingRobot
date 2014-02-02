@@ -1,1 +1,8 @@
-{"wordID":97,"word":"last","dialogState":{},"priority":0}
+{
+	"dataReference": [],
+    "dialogState": [],
+    "priority": 0,
+	"type": "DEFAULT",
+    "word": "last",
+    "wordID": 97
+}
