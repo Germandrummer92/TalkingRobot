@@ -6,6 +6,7 @@ import data.Data;
 import data.IngredientData;
 import data.KeywordData;
 import data.KeywordType;
+import data.MealCategoryData;
 import data.RecipeData;
 import data.RecipeStepData;
 import data.ToolData;
@@ -13,13 +14,13 @@ import data.UserData;
 
 public class RecipeLearningDialog extends KitchenDialog {
 
-private UserData creator;
+private User creator;
 
   private String countryOfOrigin;
 
-  private List<Ingredient> ingredientsList;
+  private ArrayList<Ingredient> ingredientsList;
 
-  private List<Tool> toolsList;
+  private ArrayList<Tool> toolsList;
 
   private String recipeName;
 
@@ -31,9 +32,6 @@ private UserData creator;
   
   private DialogModus dialogModus;
 
-  private void createRecipe() {
-  }
-
   /**
  	 * @param session
  	 * @param dialogState
@@ -42,6 +40,11 @@ private UserData creator;
  		super(session, dialogState);
  		this.dialogModus = DialogModus.RECIPE_LEARNING;
  		numOfSteps = 0;
+ 		creator = this.getCurrentSession().getCurrentUser();
+ 		ingredientsList = new ArrayList<Ingredient>();
+ 		toolsList = new ArrayList<Tool>();
+ 		recipeSteps = new RecipeStep[20];
+ 		
  		// TODO Auto-generated constructor stub
  	}
  	
@@ -157,8 +160,12 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 }
 
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	
-	//not reachable due to keyword jump jump
+	for (Recipe recipe : this.getRecipeDatabase()) {
+		if (recipe.getRecipeData().getRecipeName().equals(recipeName)) {
+			return;
+		}
+	}
+	createRecipe();
 }
 
 
@@ -361,7 +368,6 @@ private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 private void updateStateIngredRight(List<Keyword> keywords, List<String> terms,
 		List<String> approval) {
 	if (approval.isEmpty()) {
-		//TODO no answer at approval question
 		DialogManager.giveDialogManager().setInErrorState(true);
 	}
 	else if (approval.get(0).equals("yes")) {
@@ -435,6 +441,10 @@ private void updateStateIngred(List<Keyword> keywords, List<String> terms) {
 	}
 }
 
+/**
+ * Takes the first ingredient from the list of keyword that 
+ * @param ingredients
+ */
 private void saveIngred(List<Keyword> ingredients) {
 	KeywordData foundIngredKey = ingredients.get(0).getKeywordData();
 	IngredientData foundIngred;
@@ -519,6 +529,18 @@ private List<Keyword> keywordsFromType(KeywordType type, List<Keyword> keywords)
 		}
 	}
 	return res;
+}
+
+private void createRecipe() {
+  	MealCategoryData mealCategory = new MealCategoryData("default"); //not in obligatory criteria
+  	ArrayList<RecipeStep> rs = new ArrayList<RecipeStep>();
+  	for (int i = 0; i < recipeSteps.length; i++) {
+  		rs.add(recipeSteps[i]);
+  	}
+  	Recipe recipe = new Recipe(recipeName, ingredientsList, rs, toolsList,
+  			creator ,countryOfOrigin, mealCategory);
+  	recipe.getRecipeData().writeFile();
+  	getRecipeDatabase().add(recipe);
 }
 
 //Just to see all keyword which we have
