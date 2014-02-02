@@ -157,7 +157,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		for(int i= 0; i < output.size(); i++) {
 			String[] help = output.get(i).split(" ");
 			for(int j = 0; j < help.length; j++) {
-				if(!help[j].matches("[ \t\n\x0B\f\r]+") && help[j] != "")  {
+				if(!help[j].matches("\\s+") && help[j] != "")  {
 					singleWords.add(help[j].trim());
 				}
 			}
