@@ -223,9 +223,5 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		  }
 		  return result;
 	  }
-	  
-//	public static void main(String[] args) {
-//		PossibleKeywordAnalyzer pwa = new PossibleKeywordAnalyzer();
-//
-//	}
+	
 }
