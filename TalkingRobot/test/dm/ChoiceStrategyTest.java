@@ -33,7 +33,6 @@ public class ChoiceStrategyTest {
 		ErrorHandlingState errorHandleState = choice.handleError(example);
 		ErrorHandlingState comparison = new ErrorHandlingState(true, ErrorHandling.CHOICE, "<cantean>,<canteen>");
 		
-		System.out.println(errorHandleState.getOutputKeyword());
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
 		assertEquals(comparison.getOutputKeyword(), errorHandleState.getOutputKeyword());
 		assertEquals(comparison.isQuestion(), errorHandleState.isQuestion());
@@ -49,7 +48,6 @@ public class ChoiceStrategyTest {
 		ErrorHandlingState errorHandleState = choice.handleError(null);
 		ErrorHandlingState comparison = new ErrorHandlingState(true, ErrorHandling.CHOICE, "<habger>,<hamburger>");
 		
-		System.out.println(errorHandleState.getOutputKeyword());
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
 		assertEquals(comparison.getOutputKeyword(), errorHandleState.getOutputKeyword());
 		assertEquals(comparison.isQuestion(), errorHandleState.isQuestion());
