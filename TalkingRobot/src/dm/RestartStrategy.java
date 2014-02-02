@@ -109,8 +109,8 @@ public class RestartStrategy extends ErrorStrategy {
 		}
 		
 		randomMeal = meal;
-		String output = "<" + meal.getMealName() + ">";
-		output = output + "<" + line.getLineName() + ">";
+		String output = "<" + meal.getMealName() + ">,";
+		output = output + "<" + line.getLineName() + ">,";
 		output = output + "<" + canteenData.getCanteenName().toString() + ">";
 		return output;
 	}
