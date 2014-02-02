@@ -1,1 +1,1 @@
-{"wordID":161,"word":"fish","dialogState":{},"priority":0}
+{"wordID":161,"word":"fish","dialogState":[{"currentState":{"name":"CR_ASK_PREFERENCE"}}],"priority":6,"dataReference":[],"type":"CATEGORY"}

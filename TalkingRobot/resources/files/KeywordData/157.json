@@ -1,1 +1,1 @@
-{"wordID":157,"word":"day after tomorrow","dialogState":{},"priority":0}
+{"wordID":157,"word":"day after tomorrow","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":5,"dataReference":[],"type":"TIME"}

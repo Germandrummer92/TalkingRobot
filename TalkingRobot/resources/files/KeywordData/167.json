@@ -1,1 +1,1 @@
-{"wordID":167,"word":"spain","dialogState":{},"priority":0}
+{"wordID":167,"word":"spain","dialogState":[{"currentState":{"name":"RA_ENTRY"}}],"priority":5,"dataReference":[],"type":"COUNTRY"}

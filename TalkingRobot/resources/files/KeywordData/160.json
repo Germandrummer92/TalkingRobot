@@ -1,1 +1,1 @@
-{"wordID":160,"word":"vegan","dialogState":{},"priority":0}
+{"wordID":160,"word":"vegan","dialogState":[{"currentState":{"name":"CR_ASK_PREFERENCE"}}],"priority":6,"dataReference":[],"type":"CATEGORY"}
