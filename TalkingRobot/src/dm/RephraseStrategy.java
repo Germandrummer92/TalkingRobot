@@ -16,7 +16,7 @@ public class RephraseStrategy extends ErrorStrategy {
 	 * Constructor of RephraseStrategy.
 	 */
 	public RephraseStrategy() {
-		this.rephraseState = new ErrorHandlingState(true, ErrorHandling.REPHRASE, "rephrase");
+		this.rephraseState = new ErrorHandlingState(true, ErrorHandling.REPHRASE, null);
 	}
 	
 	/**

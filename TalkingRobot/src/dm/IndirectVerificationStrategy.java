@@ -43,7 +43,8 @@ public class IndirectVerificationStrategy extends ErrorStrategy {
 	
 		if(this.possibleWords == null) { return null; }
 		else {
-			return new ErrorHandlingState(false, ErrorHandling.Indirect_Verification, questionableWord);	
+			return new ErrorHandlingState(
+					false, ErrorHandling.Indirect_Verification, "{" + questionableWord + "}");	
 		}
 	}
 
