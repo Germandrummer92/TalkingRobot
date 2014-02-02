@@ -506,10 +506,10 @@ public static void main(String[] args) throws WrongStateClassException {
 	Session s = new Session(user, r);
 	CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 0);
 	Canteen c = new Canteen(cd);
-	List<LineData> ls = new ArrayList<LineData>();
-	LineData ll = new LineData("line1");
-	ls.add(ll);
-	cd.setLines((ArrayList<LineData>) ls);
+	//List<LineData> ls = new ArrayList<LineData>();
+	//LineData ll = new LineData("line1");
+	//ls.add(ll);
+	//cd.setLines((ArrayList<LineData>) ls);
 	CanteenInformationState cstate = new CanteenInformationState();
 	cstate.setCurrentState(CanteenInfo.CI_ENTRY);
 	CanteenInformationDialog dialog = new CanteenInformationDialog(s, cstate, c);
