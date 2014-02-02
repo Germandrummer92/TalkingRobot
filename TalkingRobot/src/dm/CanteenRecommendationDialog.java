@@ -338,7 +338,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 			else if (dateOfWeek.getWord().equals("friday")) return 5;
 			else if (dateOfWeek.getWord().equals("saturday")) return 6;
 		}
-		return 0;
+		return today.getDayOfWeek();
 	}
 	
 
