@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 
 import data.CanteenData;
 import data.CanteenNames;
+import data.KeywordData;
 import data.LineData;
 import data.MealData;
 import data.MealDatePair;
@@ -481,5 +482,32 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 		}	
 	return CanteenInfo.CI_EXIT;
 }
+
+/*
+public static void main(String[] args) throws WrongStateClassException {
+	List<Keyword> keywords = new ArrayList<Keyword>();
+	List<String> terms = new ArrayList<String>();
+	List<String> approval = new ArrayList<String>();
+	
+	Keyword line = new Keyword(new KeywordData("line1"));
+	Keyword date = new Keyword(new KeywordData("today"));
+	Keyword price = new Keyword(new KeywordData("price")); 
+	keywords.add(line);
+	keywords.add(date);
+	keywords.add(price);
+	
+	User user = new User();
+	//session;
+	Session s = new Session(user, null);
+	Canteen c = new Canteen(null);
+	CanteenRecommendationState cstate = new CanteenRecommendationState();
+	cstate.setCurrentState(CanteenInfo.CI_ENTRY);
+	CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
+//	dialog.updateStateAskPreference(keywords, terms, approval);
+//	dialog.updateStateEntry(keywords, terms, approval);
+	dialog.updateState(keywords, terms, approval);
+	
+	System.out.println(dialog.getWishMeal().getMealData().getMealName());
+ }*/
 
 }
