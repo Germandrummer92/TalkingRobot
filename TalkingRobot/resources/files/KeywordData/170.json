@@ -1,1 +1,1 @@
-{"wordID":170,"word":"chicken drum stick","dialogState":{},"priority":0}
+{"wordID":170,"word":"chicken drum stick","dialogState":[{"currentState":{"name":"RA_RECIPE_NOT_FOUND"}},{"currentState":{"name":"RA_RECIPE_FOUND"}},{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":8,"dataReference":[],"type":"RECIPE"}

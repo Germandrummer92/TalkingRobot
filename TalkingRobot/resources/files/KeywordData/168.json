@@ -1,1 +1,1 @@
-{"wordID":168,"word":"hamburger","dialogState":{},"priority":0}
+{"wordID":168,"word":"hamburger","dialogState":[{"currentState":{"name":"RA_RECIPE_NOT_FOUND"}},{"currentState":{"name":"RA_RECIPE_FOUND"}},{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":8,"dataReference":[],"type":"RECIPE"}
