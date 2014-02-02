@@ -101,6 +101,13 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 					priorityMax = curKW.getKeywordData().getPriority();
 					curRef = d;
 				}
+				if (d.getCurrentState().getClass().getName().equals("dm.KitchenAssistance")) {
+					if (kw.getKeywordData().getPriority() + 3 > priorityMax) {
+						curKW = kw;
+						priorityMax = curKW.getKeywordData().getPriority();
+						curRef = d;
+					}
+					}
 				}
 				}
 			getCurrentDialogState().setCurrentState(curRef.getCurrentState());

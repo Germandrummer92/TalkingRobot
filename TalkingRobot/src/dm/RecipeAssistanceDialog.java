@@ -24,7 +24,6 @@ public class RecipeAssistanceDialog extends KitchenDialog {
 	public RecipeAssistanceDialog(Session session, DialogState dialogState) {
 		super(session, dialogState);
 		this.dialogModus = DialogModus.RECIPE_ASSISTANCE;
-		// TODO Auto-generated constructor stub
 	}
 
 public Recipe getCurrRecipe() {

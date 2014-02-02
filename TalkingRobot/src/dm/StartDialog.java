@@ -98,6 +98,13 @@ public class StartDialog extends Dialog {
 						priorityMax = curKW.getKeywordData().getPriority();
 						curRef = d;
 					}
+					if (d.getCurrentState().getClass().getName().equals("dm.Start")) {
+						if (kw.getKeywordData().getPriority() + 3 > priorityMax) {
+							curKW = kw;
+							priorityMax = curKW.getKeywordData().getPriority();
+							curRef = d;
+						}
+						}
 					}
 					}
 				getCurrentDialogState().setCurrentState(curRef.getCurrentState());
