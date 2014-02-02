@@ -51,9 +51,10 @@ public class OutputCreator {
 		
 		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
 		String output = addKeyword(temp, dialogState.getOutputKeyword());
-		String error = "";
+		
 		if( DialogManager.giveDialogManager().isInErrorState()) {
-			
+			addEKeywords(temp, dialogState.getOutputKeyword());
+			return output;
 		}
 	
 		// random decide whether to add a social component or not
@@ -66,6 +67,16 @@ public class OutputCreator {
 		}
 		
 		return output;
+	}
+
+	/**
+	 * 
+	 * @param temp
+	 * @param outputKeyword 
+	 */
+	private void addEKeywords(String temp, String outputKeyword) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
