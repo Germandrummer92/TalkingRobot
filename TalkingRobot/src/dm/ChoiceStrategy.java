@@ -1,4 +1,4 @@
-package dm;
+package Rubbish;
 
 import java.util.List;
 
@@ -75,23 +75,25 @@ public class ChoiceStrategy extends ErrorStrategy {
 				for(int j = 0; j < keywordList.size(); j++) {
 					if(words[1].equals(keywordList.get(j).getWord())
 							&& keywordList.get(j).getKeywordData().getPriority() > priority
-							&& (float)Integer.parseInt(words[2]) / words[2].length() < 0.3) {
+							&& (float)Integer.parseInt(words[2]) / words[1].length() < 0.3) {
 						priority = keywordList.get(j).getKeywordData().getPriority();
 						elementId = i;
-					}  else if ((float)Integer.parseInt(words[2]) / words[2].length() < distance) {
-						distance = (float)Integer.parseInt(words[2]) / words[2].length();
+					}  else if ((float)Integer.parseInt(words[2]) / words[1].length() < distance) {
+						distance = (float)Integer.parseInt(words[2]) / words[1].length();
 						elementIdRegardingDistance = i;
 					}
 				}
 			}
 
 			if(elementId >= 0) {
+
 				String[] choice = choices.get(elementId).split(";");
 				firstChoice = choice[0];
 				secondChoice = choice[1];
 				choices.remove(elementId);
 				listOfChoices = choices;
 			} else {
+
 				String[] choice = choices.get(elementIdRegardingDistance).split(";");
 				firstChoice = choice[0];
 				secondChoice = choice[1];
@@ -104,3 +106,4 @@ public class ChoiceStrategy extends ErrorStrategy {
 		}
 	}
 }
+
