@@ -1,7 +1,18 @@
 {
 	"dataReference": [],
-    "dialogState": [],
-    "priority": 0,
+    "dialogState": [
+    	{
+			"currentState" : {
+    			"name" : "RL_ASK_FIRST_TOOL"
+    		}
+		},
+    	{
+			"currentState" : {
+    			"name" : "RL_ASK_FIRST_STEP"
+    		}
+		}
+    ],
+    "priority": 7,
 	"type": "DEFAULT",
     "word": "that was the last one",
     "wordID": 96
