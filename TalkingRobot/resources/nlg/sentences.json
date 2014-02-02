@@ -180,7 +180,8 @@
 			"KA_EXIT" : [
 				"Bye",
 				"See you soon!",
-				"Ciao"
+				"Ciao",
+				"Bye bye"
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
 				"I have found <o> it's located in or on the {c}",
@@ -510,7 +511,8 @@
 			],
 			"CI_MOLTKE_SCHNITBAR_PRICE" : [
 				"The price for <o> it's {c}",
-				"The price for wanted meal it's {c}"
+				"The price for wanted meal it's {c}",
+				"The price for what you want is {c}"
 			],
 			"CI_TELL_MEAL_NOT_EXIST" : [
 				"The meal wanted is not found. Do you want to know what else are provided?",
@@ -526,5 +528,20 @@
 				"The given line doesn't exist. Do you want information about other lines?",
 				"I can't find the information about wished line. Do you want information about other lines?"	
 			]
+		},
+			
+	"dm.ErrorHanndlingState" : {
+		"ZERO" :[
+			""
+		],
+		"CHOICE" : [
+		   "Do you mean <1> or <2> ?"
+		],
+		"EXPLICIT_VERIFICATION" : [
+		   "Do you mean <1> ?"
+		],
+		"INDIRECT_VERIFICATION" : [
+			
+		]
 	}
 }

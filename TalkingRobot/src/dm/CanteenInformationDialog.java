@@ -483,31 +483,41 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 	return CanteenInfo.CI_EXIT;
 }
 
-/*
+
 public static void main(String[] args) throws WrongStateClassException {
 	List<Keyword> keywords = new ArrayList<Keyword>();
 	List<String> terms = new ArrayList<String>();
 	List<String> approval = new ArrayList<String>();
 	
-	Keyword line = new Keyword(new KeywordData("line1"));
-	Keyword date = new Keyword(new KeywordData("today"));
-	Keyword price = new Keyword(new KeywordData("price")); 
+	KeywordData l = new KeywordData("line1", null, 0, null, null);
+	
+	Keyword line = new Keyword(l);
+	KeywordData d = new KeywordData("tomorrow", null, 0, null, null);
+	Keyword date = new Keyword(d);
+	KeywordData p = new KeywordData("price", null, 0, null, null);
+	Keyword price = new Keyword(p); 
 	keywords.add(line);
 	keywords.add(date);
 	keywords.add(price);
 	
 	User user = new User();
 	//session;
-	Session s = new Session(user, null);
-	Canteen c = new Canteen(null);
-	CanteenRecommendationState cstate = new CanteenRecommendationState();
+	Robot r = new Robot("L", false);
+	Session s = new Session(user, r);
+	CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 0);
+	Canteen c = new Canteen(cd);
+	List<LineData> ls = new ArrayList<LineData>();
+	LineData ll = new LineData("line1");
+	ls.add(ll);
+	cd.setLines((ArrayList<LineData>) ls);
+	CanteenInformationState cstate = new CanteenInformationState();
 	cstate.setCurrentState(CanteenInfo.CI_ENTRY);
-	CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
+	CanteenInformationDialog dialog = new CanteenInformationDialog(s, cstate, c);
 //	dialog.updateStateAskPreference(keywords, terms, approval);
 //	dialog.updateStateEntry(keywords, terms, approval);
 	dialog.updateState(keywords, terms, approval);
 	
-	System.out.println(dialog.getWishMeal().getMealData().getMealName());
- }*/
+	System.out.println(dialog.getCurrentDialogState().getOutputKeyword());
+ }
 
 }
