@@ -129,7 +129,7 @@ public class TermAnalyzerTest {
 	}
 	
 	/**
-	 * checks the result for "the recipes name is pasta"
+	 * checks the result for "the recipe is called pasta"
 	 */
 	@Test
 	public void name3() { 

@@ -27,19 +27,14 @@ public class TermAnalyzer extends InputAnalyzer {
 	 */
 	public List<String> analyze(String input) {
 		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
-//		
-//		List<String> result = new LinkedList<String>();
-//		
-//		result.add("for you need");
-//		result.add("and");
-//		result.add("my name is");
-//		result.add("this from");
-//		for(int i = 0; i < result.size(); i++) {
-//			System.out.println("result: " + result.get(i));
-//		}
+		
+		if(result.contains("and")) { 
+			result.remove("and"); 
+			result.add("and");
+		}
+		
 		List<String> term = new LinkedList<String>();
 		term.add(input);
-		
 		for(int i = 0; i < result.size(); i++) {
 			if(!result.get(i).equals("")) {
 				if(result.get(i).contains("for")) {
@@ -48,11 +43,6 @@ public class TermAnalyzer extends InputAnalyzer {
 							&& input.contains("for")) {
 						currentResult = input.split("for ");
 						term.set(0, currentResult[0].trim());
-					} else if (result.get(i).matches(".*for.* need.*") 
-							&& input.contains("need")) {
-						System.out.println("Hey " + input);
-						currentResult = input.split("need");
-						term.set(0, currentResult[1].trim());
 					} else if (result.get(i).matches(".*needed .*for.*")) {
 						String[] words = result.get(i).split(" ");
 						currentResult = input.split(words[0]);
@@ -60,7 +50,6 @@ public class TermAnalyzer extends InputAnalyzer {
 					} else if (result.get(i).matches(".*for .*needed.*")
 							&& input.contains("for")) {
 						String words = result.get(i).substring(4, result.get(i).length());
-						System.out.println(words);
 						currentResult = this.removeWords(input, words);
 						currentResult = currentResult[0].split(".*for ");
 						
@@ -70,6 +59,10 @@ public class TermAnalyzer extends InputAnalyzer {
 						
 						currentResult = words.split(" ");
 						term.set(0, currentResult[currentResult.length - 1].trim());
+					}else if (result.get(i).matches(".*for.* need.*") 
+							&& input.contains("need")) {
+						currentResult = input.split("need");
+						term.set(0, currentResult[1].trim());
 					}
 					input = term.get(0);
 				} else {
@@ -85,8 +78,7 @@ public class TermAnalyzer extends InputAnalyzer {
 									term.set(j, currentResult[j].trim());
 								}
 							}
-						}
-						
+						}	
 					} else {
 						
 						String[] currentResult = this.removeWords(input, result.get(i));
@@ -130,25 +122,4 @@ public class TermAnalyzer extends InputAnalyzer {
 		
 	}
 	
-//	public static void main(String[] args) {
-//		TermAnalyzer ta = new TermAnalyzer();
-//
-//		List<String> result = ta.analyze("for sandwiches you need toast and salad");
-//		for(int i = 0; i < result.size(); i++) {
-//			System.out.println("and now: " + result.get(i));
-//		}
-//		
-//		result = ta.analyze("my name is nicole");
-//		for(int i = 0; i < result.size(); i++) {
-//			System.out.println("and now: " + result.get(i));
-//		}
-//		
-//		result = ta.analyze("this is from italy");
-//		for(int i = 0; i < result.size(); i++) {
-//			System.out.println("and now: " + result.get(i));
-//		}
-//		System.out.println("now in main");
-//		String test = "cheese is needed for fodue";
-//		System.out.println(test.matches(".*needed.*for.*"));
-//	}
 }
