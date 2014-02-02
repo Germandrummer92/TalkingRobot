@@ -1,14 +1,1 @@
-{
-	"dataReference": [],
-    "dialogState": [
-    	{
-			"currentState" : {
-    			"name" : "KA_ENTRY"
-    		}
-		}
-    ],
-    "priority": 6,
-	"type": "DEFAULT",
-    "word": "top drawer",
-    "wordID": 117
-}
+{"dataReference":[],"dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":6,"type":"DEFAULT","word":"topdrawer","wordID":117}

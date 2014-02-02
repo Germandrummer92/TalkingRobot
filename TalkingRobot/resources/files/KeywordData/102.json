@@ -1,8 +1,1 @@
-{
-	"dataReference": [],
-    "dialogState": [],
-    "priority": 0,
-	"type": "DEFAULT",
-    "word": "repeat this",
-    "wordID": 102
-}
+{"dataReference":[],"dialogState":[],"priority":0,"type":"DEFAULT","word":"repeatthis","wordID":102}

@@ -220,20 +220,14 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 			canteens.add(new Canteen(new CanteenData(CanteenNames.TIEFENBRONNER, dateShift)));
 			canteens.add(new Canteen(new CanteenData(CanteenNames.ERZBERGER, dateShift)));
 			
+			//Find meals based on what the user said he wants, and on the canteen information
+			ArrayList<OneMealData> matchedMeals = findMatchedMeals(canteens);
 			
-			ArrayList<OneMealData> matchedMeals = new ArrayList<OneMealData>();
-			//Not pretty at all!!
-			for (Canteen canteen : canteens) {
-				for (LineData lineData : canteen.getCanteenData().getLines()) {
-					for (MealData mealData : lineData.getTodayMeals()) {
-						for (MealCategoryData mealCategory : mealData.getMealCategory()) {
-							if (mealCategory.getMealCategoryName().equals(wishmealCategory)) {
-								//Category found
-								matchedMeals.add(new OneMealData(mealData, canteen.getCanteenData(), lineData));
-							}
-						}	
-					}
-				}
+			if (matchedMeals.isEmpty()) {
+				DialogState nextState = new DialogState();
+				nextState.setCurrentState(CanteenRecom.CR_TELL_MEAL_NOT_EXIST);
+				this.setCurrentDialogState(nextState);
+				return;
 			}
 			
 			//Now randomly (or based on User History) choose one Meal
@@ -245,6 +239,30 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		}
 	}
 	
+	/**
+	 * Given the canteens information, it looks for the meals that match the mealCategory setted in the class earlier.
+	 * @param canteens
+	 * @return
+	 */
+	private ArrayList<OneMealData> findMatchedMeals(ArrayList<Canteen> canteens) {
+		
+		ArrayList<OneMealData> matchedMeals = new ArrayList<OneMealData>();
+		//Not pretty at all!!
+		for (Canteen canteen : canteens) {
+			for (LineData lineData : canteen.getCanteenData().getLines()) {
+				for (MealData mealData : lineData.getTodayMeals()) {
+					for (MealCategoryData mealCategory : mealData.getMealCategory()) {
+						if (mealCategory.getMealCategoryName().equals(wishmealCategory)) {
+							//Category found
+							matchedMeals.add(new OneMealData(mealData, canteen.getCanteenData(), lineData));
+						}
+					}	
+				}
+			}
+		}
+		return matchedMeals;
+	}
+
 	/**
 	 * Selects the next state, according to the meal that is going to be recommended, so that the right
 	 * sentence can be selected for the output.
@@ -333,7 +351,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	
 	private void updateMealNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
+		//Doesn't expect anything. Maybe that the user says something else?
 	}
 	
 	/*

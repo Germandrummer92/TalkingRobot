@@ -1,14 +1,1 @@
-{
-	"dataReference": [],
-    "dialogState": [
-    	{
-			"currentState" : {
-    			"name" : "KA_ENTRY"
-    		}
-		}
-    ],
-    "priority": 6,
-	"type": "DEFAULT",
-    "word": "refridgerator",
-    "wordID": 113
-}
+{"dataReference":[],"dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":6,"type":"DEFAULT","word":"refridgerator","wordID":113}
