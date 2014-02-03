@@ -35,6 +35,8 @@ public class DialogManager {
   private ErrorStrategy[] errorStrategy;
 
   private boolean isInErrorState; //dialogs set this to true when error handling is needed
+  
+  private List<String> lastPossibleKeywords;
 
 
 /**
@@ -94,15 +96,23 @@ public class DialogManager {
 	  boolean dialogIsUpdated = false;
 	  float avg = 10;
 	  
-	  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
-	  		avg = this.getAverageDistance(possibleKeywords);
-	  } else if (!possibleKeywords.isEmpty()) {
+	  if(lastPossibleKeywords != null && lastPossibleKeywords.equals(possibleKeywords)) {
+		  
+		  this.errorState = ErrorState.RESTART;
+		  dmResult = errorStrategy[5].handleError(possibleKeywords);
+		  
+	  } else {
+		  lastPossibleKeywords = possibleKeywords;
+		  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
+	  			avg = this.getAverageDistance(possibleKeywords);
+		  } else if (!possibleKeywords.isEmpty()) {
 		  	dialogIsUpdated = this.handleResponseToPreviousErrorHandling(possibleKeywords);
-		  	if(!dialogIsUpdated) {
-		  		//error could not be solved; start with repetition/rephrasing again
-		  		this.clearAllStrategies();
-		  	} 
-	  }  
+		  		if(!dialogIsUpdated) {
+		  			//error could not be solved; start with repetition/rephrasing again
+		  			this.clearAllStrategies();
+		  		} 
+		  }  
+	  }
 	  
 	  //repeat || rephrase: more than 40% of the word is probably written wrong
 	  if(avg >= (float) 0.4){
