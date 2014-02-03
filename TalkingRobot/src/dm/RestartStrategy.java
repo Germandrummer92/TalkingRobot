@@ -17,9 +17,9 @@ import data.RecipeData;
  */
 public class RestartStrategy extends ErrorStrategy {
 	
-	ErrorHandling errorHandling;
-	MealData randomMeal;
-	RecipeData randomRecipe;
+	private ErrorHandling errorHandling;
+	private MealData randomMeal;
+	private RecipeData randomRecipe;
 
 	/**
 	 * @see ErrorStrategy#handleError(List)
