@@ -3,23 +3,27 @@
 
 #canteen assistance
 [canteen_assistance]
-	(CANTEEN *[Canteen])
-	
-CANTEEN
+	([_canteen])
+	([Canteen])
+
+;
+
+[_canteen]
 	(canteen)
 	(mensa)
 	(dining hall)
 	(cafeteria)
 ;
 
-[Canteen]
+[Canteen] 
 	([_moltke])
-	(*am [_adenauerring])
-	(*at [_adenauerring])
-	(*in *the [_erzbergerstrasse])
-	(*in *the [_schloss_gottesaue])
-	(*in *the [_tiefenbronner_strasse])
-	(*in *the [_holzgartenstrasse])
+	([_adenauerring])
+	([_erzbergerstrasse])
+	([_schloss_gottesaue])
+	([_tiefenbronner_strasse])
+	([_holzgartenstrasse])
+	(curry queen)
+	(cafeteria)
 ;
 
 [_moltke]
@@ -68,54 +72,70 @@ CANTEEN
 
 #canteen information
 [canteen_information]
-	(what food OFFER [Canteen] *[Time_extend])
-	(offer [Canteen] *[Time_extend])
-	(what food OFFER canteen *[Time_extend])
-	(offer [Canteen] canteen *[Time_extend])
-	(what [Canteen] *[Time_extend])
-	(what food *[Canteen] *[Time_extend])
-	(list)
-	([Where_is])
-	(PRICE *line [Number] *[Canteen])
+	([_offer])
+	([Canteen])
+	([Time_extend])
+	([_where_is])
+	(line [Number])
+	(schnitzelbar)
+	([_price])
+	([_canteen])
+	([_where_eat])
+	([Menu])
+;
 	
-PRICE
-	(price)
-	(how much is *[Menu])
-	(how much costs *[Menu])
-	(how much money *[Menu])
-	
-OFFER
-	(is offered)
-	(is served)
-	(is available)
-	(can [i] get)
-	(can [i] eat)
+[_where_eat]
+	(where)
+	(which line)
+	(which canteen)
 ;
 
-[Where_is]
-	(help me finding *line [Number])
-	(show me where *line [Number])
-	(where is *line [Number])
-	(tell me where *line [Number])
+[_offer]
+	(what is offered)
+	(what is served)
+	(what is available)
+	(what can get)
+	(what can eat)
+	(offer)
+	(what [_meal])
+	(list)
+;
+
+[_price]
+	(price)
+	(how much is)
+	(how much costs)
+	(how much money)
+;
+
+[_where_is]
+	(help me finding)
+	(show me where)
+	(where is)
+	(tell me where)
+	(way)
 ;
 
 #canteen recommendation
 [canteen_recommendation]
+	([_recommendation])
+	([Canteen])
+	(*line [Number])
+	([Time_extend])
+	([Country])
+	([Category])
+;
+
+[_recommendation]
 	(recommendation)
-	(give me a recommendation *[Canteen] *line *[Number] *[Time_extend])
-	(recommend me *[Canteen] *line *[Number] *[Time_extend])
-	(suggest [meal] *at *[Canteen] *line *[Number] *[Time_extend])
-	(suggestion [meal] *at *[Canteen] *line *[Number] *[Time_extend])
-	(give me a recommendation *[Time_extend] *[Canteen] *line *[Number])
-	(recommend me *[Time_extend] *[Canteen] *line *[Number])
-	(suggest [meal] *[Time_extend] *at *[Canteen] *line *[Number])
-	(suggestion [meal] *[Time_extend] *at *[Canteen] *line *[Number])
-	([Country] at *the [Canteen] *line *[Number])
-	(eat something from [Country] *line *[Number])
+	(give me a recommendation)
+	(recommend)
+	(suggest [_meal])
+	(suggestion [_meal])
 ;
 
 #kitchen assistance
-[kitchen_assistance]
+[Kitchen_assistance]
 	(recipe)
 	(cooking)
 	(kitchen tool)
@@ -126,6 +146,7 @@ OFFER
 [What]
 	(what do you need for)
 	(what do i need for)
+	(what is needed for)
 ;
 
 [How]
@@ -134,19 +155,32 @@ OFFER
 ;
 
 #recipe assistance
-[recipe_assistance]
-	([How] [Recipe])
-	([What] [Recipe])
-	([_next] *step)
-	([_next] *ingredient)
-	([_next] *kitchen *tool)
-	([_previous] *step)
-	([_previous] *ingredient)
-	([_previous] *kitchen *tool)
-	([_current] *step)
-	([_current] *ingredient)
-	([_current] *kitchen *tool)
+[Recipe_assistance]
+	([_delete])
+	([How])
+	([Recipe])
+	([What])
+	([_next])
+	([_previous])
+	([_current])
+	(ingredients)
+	(cooking)
+	([_how_cook])
+	(cook)
+	([Recipe])
 ;	
+
+[_how_cook]
+	(how cook)
+	(what need cook)
+;
+
+[_delete]
+	(delete)
+	(erase)
+	(cancel)
+	(clear)
+;
 
 [Recipe]
 #include recipe
@@ -164,7 +198,7 @@ OFFER
 #include menu
 ;
 
-[meal]
+[_meal]
 	(meal)
 	(dish)
 	(food)
@@ -172,39 +206,27 @@ OFFER
 
 #recipe learning
 [recipe_learning]
-	([_next] *COMPONENT *COMPONENT)
-	([_next] *COMPONENT)
-	([_last] *COMPONENT)
+	([_next])
+	([Component])
+	([_last])
 	([_end])
-	([_teach_you] *[Recipe])
-	
-	
-COMPONENT
-	(step)
-	(*kitchen tool)
-	(ingredient)
-	(*kitchen *tool [Tool])
+	([_teach_you])
 	([Recipe])
-	(*ingredient [Ingredient])
+;
+
+[Component]
+	([Tool])
+	([Recipe])
+	([Ingredient])
 ;
 
 [_teach_you]
-	(want teach you)
-	(*want show you how make)
-	(*want teach you how make)
-	(add)
-	(*will instruct you how to make)
-	(*want *to instruct you how to make)
-	(will show you how make)
-	(will tell you how make)
-	(will tell you about *making)
 	(teach you)
+	(show you how make)
+	(add)
 	(instruct you)
-;
-
-[i]
- 	(i)
- 	(we)
+	(tell you how)
+	(tell you about)
 ;
 
 [_end]
@@ -222,7 +244,7 @@ COMPONENT
 
 [_current]
 	(current)
-	(repeat THIS)
+	(repeat *THIS)
 	(what was it *again)
 	
 THIS
@@ -244,12 +266,13 @@ THIS
 
 #cooking assistance
 [cooking_assistance]	
-	(BRING [Ingredient])
-	(BRING [Tool])
-	(BRING [Ingredient] PLACES)
-	(BRING [Tool] PLACES)
-	(PLACES)
-PLACES
+	([_bring])
+	([Ingredient])
+	([Tool])
+	([Places])
+;
+	
+[Places]
 	(fridge)
 	(refrigerator)
 	(cupboard)
@@ -262,8 +285,10 @@ PLACES
 	(upper drawer)
 	(centre drawer)
 	(center drawer)
+	(oven)
+;
 	
-BRING
+[_bring]
 	(bring)
 	(get)
 	(give)
@@ -273,38 +298,42 @@ BRING
 ;
 
 #main
-[main]
+[Main]
 	(restart)
+	(hello)
 ;
 
-[login]
-	([_hello] *[_name])
+[Login]
+	([_hi])
+	([_name])
+	([User])
+	(student)
+	(employee)
 ;
 
 [_name]
-	(my name is *[User])
-	(i am *[User])
-	(im *[User])
+	(my name is)
+	(i am)
+	(im)
 ;
 
 [User]
 #include user
 ;
 
-[_hello]
+[_hi]
 	(hi)
-	(hello)
 	(good morning)
 	(how do you do)
 ;
 
-[logout]
+[Logout]
 	([_bye])
 ;
 
 [_bye]
 	(*good bye)
-	(see you later)
+	(see you *later)
 	(until next time)
 	(have a nice day)
 ;
@@ -330,12 +359,13 @@ BRING
 ;
 
 [Category]
-	(MEAT)
+	([Meat])
 	(vegetarian)
 	(vegan)
 	(fish)
+;
 	
-MEAT
+[Meat]
 	(pork)
 	(chicken)
 	(beef)
@@ -344,7 +374,6 @@ MEAT
 [Country]
 #include country
 ;
-
 
 [_anytime]
 	(any TIME)

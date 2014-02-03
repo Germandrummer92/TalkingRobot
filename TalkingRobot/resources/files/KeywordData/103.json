@@ -1,1 +1,1 @@
-{"dataReference":[],"dialogState":[],"priority":0,"type":"DEFAULT","word":"repeat the last","wordID":103}
+{"wordID":103,"word":"repeat the last","dialogState":[{"currentState":{"name":"RA_TELL_STEPS"}},{"currentState":{"name":"RA_TELL_INGREDIENTS"}},{"currentState":{"name":"RA_TELL_TOOLS"}},{"currentState":{"name":"RA_ENTRY"}}],"priority":4,"dataReference":[],"type":"DEFAULT"}

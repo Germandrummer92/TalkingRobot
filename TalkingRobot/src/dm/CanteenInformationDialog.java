@@ -69,253 +69,6 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	if (getCurrentDialogState().getClass() != CanteenInformationState.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
-	switch ((CanteenInfo)getCurrentDialogState().getCurrentState()) {
-	case CI_ENTRY:
-		updateStateEntry(keywords, terms);
-		break;
-	case CI_ADEN_LINE_1_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_2_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_3_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_45_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_1_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_2_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_3_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_45_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_6_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_LINE_6_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_SCHNITBAR_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_SCHNITBAR_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_CAFE_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_CURRYQ_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_CURRYQ_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_ADEN_CAFE_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_CHOICE_1_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_CHOICE_1_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_CHOICE_2_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_CHOICE_2_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_ACTTHEK_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_ACTTHEK_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_SCHNITBAR_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_SCHNITBAR_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_GG_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_GG_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_BUFFET_PRICE:
-		generalUpdate(keywords, terms, approval);
-		break;
-	case CI_MOLTKE_BUFFET_DISH:
-		generalUpdate(keywords, terms, approval);
-		break;
-	
-	case CI_TELL_LINE_NOT_EXIST:
-		updateStateTellNotExist(keywords, terms, approval);
-		break;
-	case CI_TELL_MEAL_NOT_EXIST:
-		updateStateTellNotExist(keywords, terms, approval);
-		break;
-	case  CI_EXIT:
-		updateStateExit(keywords, terms);
-		break;
-	default:
-		
-		break;
-	
-	}
-	
-}
-
-/**
- * To update the state after give some informations
- * @param keywords list of keywords
- * @param terms list of Strings
- * @param approval list of approval
- */
-private void generalUpdate(List<Keyword> keywords, List<String> terms,
-		List<String> approval) {
-	 
-	boolean finished = false;
-	
-	if( approval.size() == 1 && (approval.get(0).equals("yes"))) { 
-		if( keywords == null && (terms == null)) {// user is satisfied
-				DialogState next = new DialogState();
-				next.setCurrentState(CanteenInfo.CI_EXIT);
-				finished = true;
-		} else { // user still has other requests
-			CanteenInfo subState = matchSubState(keywords, terms);
-			DialogState nextState = new DialogState();
-			nextState.setCurrentState(subState);
-			setCurrentDialogState(nextState);
-			finished = true;
-		}
-	}	
-	
-	if( (approval.size() >= 2) && (!finished)) {
-		DialogManager.giveDialogManager().setInErrorState(true);
-		finished = true;
-	}
-	
-	if( !finished ){
-		CanteenInfo subState = matchSubState(keywords, terms);
-		DialogState nextState = new DialogState();
-		nextState.setCurrentState(subState);
-		setCurrentDialogState(nextState);
-	}
-	
-}
-
-
-
-
-
-private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	// TODO
-	// maybe nothing to do?
-}
-
-/**
- * update state when user is told that wished meal doesn't exist
- * @param keywords 
- * @param terms
- * @param approval
- */
-private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
-	// TODO
-	if( approval.isEmpty()) {
-		if( keywords.isEmpty() && (terms.isEmpty())) {
-			DialogManager.giveDialogManager().setInErrorState(true);
-			return;
-		}
-		
-		CanteenInfo subState = matchSubState(keywords, terms);
-		DialogState nextState = new DialogState();
-		nextState.setCurrentState(subState);
-		setCurrentDialogState(nextState);
-		return;
-	}
-	
-	if( approval.size() != 1) {
-		DialogManager.giveDialogManager().setInErrorState(true);
-		return;
-	}
-	
-	if( approval.get(0).equals("yes")) { //user wants another information
-		if( keywords.isEmpty() && (terms.isEmpty())) {
-			DialogManager.giveDialogManager().setInErrorState(true);
-			return;
-		}
-		
-		CanteenInfo subState = matchSubState(keywords, terms);
-		DialogState nextState = new DialogState();
-		nextState.setCurrentState(subState);
-		setCurrentDialogState(nextState);
-		return;
-		
-	} else { // user don't need anything from canteen info
-		DialogState  next = new DialogState();
-		next.setCurrentState(CanteenInfo.CI_EXIT);
-	}
-}
-
-
-
-
-/**
- * To update the entry state
- * @param keywords list of Keyword
- * @param terms list of Strings
- */
-private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
-	 
-	//boolean error = false;
-	if(keywords == null && (terms) == null) {
-		//error = true;
-		DialogManager.giveDialogManager().setInErrorState(true);
-		return;
-	}
-	
-	CanteenInfo subState = matchSubState(keywords, terms);
-	DialogState nextState = new DialogState();
-	nextState.setCurrentState(subState);
-	setCurrentDialogState(nextState);
-}
-
-
-/**
- * This method helps to match substate 
- * @param keywords list of keyword
- * @param terms list of string
- * @return canteenInfo
- */
-private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
-	CanteenInfo next = CanteenInfo.CI_ENTRY;
-	boolean askPrice = false;
-	// assume that line[name] is given in keywords, meals' name in terms
-	// if user ask price, then price will be in terms
-	
-	
-    //	boolean askMeal = false;
-	//List<MealData> possibleMeals = new ArrayList<MealDatePair>();
-	//List<CanteenInfo> possibleChoices = new ArrayList<CanteenInfo>();
-	/* find out first what the user wants to know */
-	if( terms != null) {
-		for( Keyword toDo : keywords ) {
-			if( toDo.getWord().equals("price")) {
-				askPrice = true;
-				break;
-			}
-		}
-	}
 	
 	boolean inAden = true;
 	if( currentCanteen.getCanteenData().getCanteenName()
@@ -341,6 +94,256 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 		curCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift));
 	}
 	 super.setCurrentCanteen(curCanteen);
+	
+	
+	switch ((CanteenInfo)getCurrentDialogState().getCurrentState()) {
+	case CI_ENTRY:
+		updateStateEntry(keywords, terms, inAden);
+		break;
+	case CI_ADEN_LINE_1_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_2_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_3_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_45_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_1_DISH:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_2_DISH:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_3_DISH:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_45_DISH:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_6_DISH:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_LINE_6_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_SCHNITBAR_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_SCHNITBAR_DISH:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_CAFE_PRICE:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+	case CI_ADEN_CURRYQ_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_ADEN_CURRYQ_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_ADEN_CAFE_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_CHOICE_1_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_CHOICE_1_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_CHOICE_2_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_CHOICE_2_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_ACTTHEK_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_ACTTHEK_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_SCHNITBAR_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_SCHNITBAR_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_GG_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_GG_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_BUFFET_PRICE:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	case CI_MOLTKE_BUFFET_DISH:
+		generalUpdate(keywords, terms, approval,inAden);
+		break;
+	
+	case CI_TELL_LINE_NOT_EXIST:
+		updateStateTellNotExist(keywords, terms, approval,inAden);
+		break;
+	case CI_TELL_MEAL_NOT_EXIST:
+		updateStateTellNotExist(keywords, terms, approval,inAden);
+		break;
+	case  CI_EXIT:
+		updateStateExit(keywords, terms);
+		break;
+	default:
+		
+		break;
+	
+	}
+	
+}
+
+/**
+ * To update the state after give some informations
+ * @param keywords list of keywords
+ * @param terms list of Strings
+ * @param approval list of approval
+ */
+private void generalUpdate(List<Keyword> keywords, List<String> terms,
+		List<String> approval, boolean inAden) {
+	 
+	boolean finished = false;
+	
+	if( approval.size() == 1 && (approval.get(0).equals("yes"))) { 
+		if( keywords == null && (terms == null)) {// user is satisfied
+				DialogState next = new DialogState();
+				next.setCurrentState(CanteenInfo.CI_EXIT);
+				finished = true;
+		} else { // user still has other requests
+			CanteenInfo subState = matchSubState(keywords, terms, inAden);
+			DialogState nextState = new DialogState();
+			nextState.setCurrentState(subState);
+			setCurrentDialogState(nextState);
+			finished = true;
+		}
+	}	
+	
+	if( (approval.size() >= 2) && (!finished)) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+		finished = true;
+	}
+	
+	if( !finished ){
+		CanteenInfo subState = matchSubState(keywords, terms, inAden);
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(subState);
+		setCurrentDialogState(nextState);
+	}
+	
+}
+
+
+
+
+
+private void updateStateExit(List<Keyword> keywords, List<String> terms) {
+	// TODO
+	// maybe nothing to do?
+}
+
+/**
+ * update state when user is told that wished meal doesn't exist
+ * @param keywords 
+ * @param terms
+ * @param approval
+ */
+private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden) {
+	// TODO
+	if( approval.isEmpty()) {
+		if( keywords.isEmpty() && (terms.isEmpty())) {
+			DialogManager.giveDialogManager().setInErrorState(true);
+			return;
+		}
+		
+		CanteenInfo subState = matchSubState(keywords, terms, inAden);
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(subState);
+		setCurrentDialogState(nextState);
+		return;
+	}
+	
+	if( approval.size() != 1) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+		return;
+	}
+	
+	if( approval.get(0).equals("yes")) { //user wants another information
+		if( keywords.isEmpty() && (terms.isEmpty())) {
+			DialogManager.giveDialogManager().setInErrorState(true);
+			return;
+		}
+		
+		CanteenInfo subState = matchSubState(keywords, terms, inAden);
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(subState);
+		setCurrentDialogState(nextState);
+		return;
+		
+	} else { // user don't need anything from canteen info
+		DialogState  next = new DialogState();
+		next.setCurrentState(CanteenInfo.CI_EXIT);
+	}
+}
+
+
+
+
+/**
+ * To update the entry state
+ * @param keywords list of Keyword
+ * @param terms list of Strings
+ */
+private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden) {
+	 
+	//boolean error = false;
+	if(keywords == null && (terms) == null) {
+		//error = true;
+		DialogManager.giveDialogManager().setInErrorState(true);
+		return;
+	}
+	
+	CanteenInfo subState = matchSubState(keywords, terms, inAden);
+	DialogState nextState = new DialogState();
+	nextState.setCurrentState(subState);
+	setCurrentDialogState(nextState);
+}
+
+
+/**
+ * This method helps to match substate 
+ * @param keywords list of keyword
+ * @param terms list of string
+ * @return canteenInfo
+ */
+private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, boolean inAden) {
+	CanteenInfo next = CanteenInfo.CI_ENTRY;
+	boolean askPrice = false;
+	// assume that line[name] is given in keywords, meals' name in terms
+	// if user ask price, then price will be in terms
+	
+	
+    //	boolean askMeal = false;
+	//List<MealData> possibleMeals = new ArrayList<MealDatePair>();
+	//List<CanteenInfo> possibleChoices = new ArrayList<CanteenInfo>();
+	/* find out first what the user wants to know */
+	if( terms != null) {
+		for( Keyword toDo : keywords ) {
+			if( toDo.getWord().equals("price")) {
+				askPrice = true;
+				break;
+			}
+		}
+	}
+	
 	
 	int index = -1;
 	if( askPrice ) {

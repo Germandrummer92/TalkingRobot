@@ -1,1 +1,1 @@
-{"dataReference":[],"dialogState":[],"priority":0,"type":"DEFAULT","word":"previous","wordID":107}
+{"wordID":107,"word":"previous","dialogState":[{"currentState":{"name":"RA_TELL_STEPS"}},{"currentState":{"name":"RA_TELL_INGREDIENTS"}},{"currentState":{"name":"RA_TELL_TOOLS"}},{"currentState":{"name":"RA_ENTRY"}}],"priority":4,"dataReference":[],"type":"DEFAULT"}
