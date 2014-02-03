@@ -358,8 +358,8 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 		
 		if( index == -1) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
-				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line keyword
-					ArrayList<DialogState> refs = new ArrayList<DialogState>();
+				if( line.getWord().contains("line")) { // we found a line keyword
+					List<DialogState> refs = new ArrayList<DialogState>();
 					// FIXME how can I get the reference...this method is always null
 					refs = line.getReference();
 					if(inAden) {
