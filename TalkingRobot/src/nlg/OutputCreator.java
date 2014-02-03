@@ -48,7 +48,7 @@ public class OutputCreator {
 	public String createOutput(DialogState dialogState) {
 		//generators = new ArrayList<Generator>();
 		//outputPhrases = new ArrayList<Phrase>();
-		
+		System.out.println(dialogState.getCurrentState().toString());
 		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
 		String output = addKeyword(temp, dialogState.getOutputKeyword());
 		
@@ -103,10 +103,13 @@ public class OutputCreator {
   			Integer size = jsonSentences.size();
   			
   			//Generates random number based on array size (number of sentences)
-  			Random rn = new Random();
-			Integer randomNum = rn.nextInt(size - 1);
-			
-			return (String) jsonSentences.get(randomNum);
+  			if(size > 2) {
+	  			Random rn = new Random();
+				Integer randomNum = rn.nextInt(size - 1);
+				
+				return (String) jsonSentences.get(randomNum);
+  			}
+  			return (String) jsonSentences.get(0);
   		
   		} catch (FileNotFoundException e) {
   			e.printStackTrace();
