@@ -62,7 +62,7 @@ public class OutputCreator {
 			return eOut;
 		}
 
-		if (!dialogState.getOutputKeyword().isEmpty()) {
+		if (dialogState.getOutputKeyword() != null) {
 			output = addKeyword(temp, dialogState.getOutputKeyword());
 		} else output = temp;
 			

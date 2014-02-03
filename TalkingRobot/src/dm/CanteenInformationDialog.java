@@ -2,6 +2,8 @@ package dm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.joda.time.LocalDate;
 
@@ -351,10 +353,15 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		for( String name : terms) {
 			for( LineData line : curCanteen.getCanteenData().getLines()) {
 				for( MealData meal : line.getTodayMeals()) {
-					meal.getMealName().equals(name);
-					index = curCanteen.getCanteenData().getLines().indexOf(line);
-					//next = getLineEnum(line, askPrice);
-					setWishMeal(name);
+					Pattern p = Pattern.compile(name); // for comparing with json data
+					Matcher m = p.matcher(meal.getMealName());
+					if(m.find()) {
+					//	meal.getMealName().equals(name);
+						index = curCanteen.getCanteenData().getLines().indexOf(line);
+						//next = getLineEnum(line, askPrice);
+						setWishMeal(name);
+						break;
+					}
 				}
 			}
 			
@@ -364,8 +371,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 			for( Keyword line : keywords) {
 				if( line.getWord().contains("line")) { // we found a line keyword
 					//List<DialogState> refs = new ArrayList<DialogState>();
-					// FIXME how can I get the reference...this method is always null
-					//refs = line.getReference();
+										//refs = line.getReference();
 					if(inAden) {
 						
                        for( DialogState ref : line.getReference()) {
@@ -388,11 +394,11 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		}
 		else { // the user is asking meals in lines
 			for( Keyword line : keywords) {
-				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line keyword
-					 ArrayList<DialogState> refs = line.getReference();
+				if( line.getWord().contains("line")) { // we found a line keyword
+					// ArrayList<DialogState> refs = line.getReference();
 					 if(inAden) {
 							
-	                       for( DialogState ref : refs) {
+	                       for( DialogState ref : line.getReference()) {
 	                    	   if(ref.getCurrentState().name().contains("ADEN") 
 	   								&& ref.getCurrentState().name().contains("DISH")) {
 	   							return (CanteenInfo) ref.getCurrentState();
@@ -400,7 +406,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	                        }
 						}
 					 
-					 for( DialogState ref : refs) {
+					 for( DialogState ref : line.getReference()) {
 	                  	   if(ref.getCurrentState().name().contains("MOLTKE") 
 	 								&& ref.getCurrentState().name().contains("DISH")) {
 	 							return (CanteenInfo) ref.getCurrentState();
@@ -422,17 +428,48 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 
 
 private int getRequestedWeekDay(List<Keyword> keywords, LocalDate date) {
+	//int i = 0;
 	for (Keyword dateOfWeek : keywords) {
-		if (dateOfWeek.getWord().equals("today")) return date.getDayOfWeek();
-		else if (dateOfWeek.getWord().equals("tomorrow")) return date.getDayOfWeek() + 1;
-		else if (dateOfWeek.getWord().equals("day after tomorrow")) return date.getDayOfWeek() + 2;
-		else if (dateOfWeek.getWord().equals("sunday")) return 0;
-		else if (dateOfWeek.getWord().equals("monday")) return 1;
-		else if (dateOfWeek.getWord().equals("tuesday")) return 2;
-		else if (dateOfWeek.getWord().equals("wednesday")) return 3;
-		else if (dateOfWeek.getWord().equals("thursday")) return 4;
-		else if (dateOfWeek.getWord().equals("friday")) return 5;
-		else if (dateOfWeek.getWord().equals("saturday")) return 6;
+		if (dateOfWeek.getWord().equals("today")) {
+			this.wishDate = dateOfWeek.getWord();
+			return date.getDayOfWeek();
+		}
+		else if (dateOfWeek.getWord().equals("tomorrow")) {
+			this.wishDate = dateOfWeek.getWord();
+			return  date.getDayOfWeek() + 1;
+		}
+		else if (dateOfWeek.getWord().equals("day after tomorrow")) {
+			this.wishDate = dateOfWeek.getWord();
+			return date.getDayOfWeek() + 2;
+		}
+		else if (dateOfWeek.getWord().equals("sunday")) {
+			this.wishDate = "on sunday";
+			return 0;
+		}
+		else if (dateOfWeek.getWord().equals("monday")) {
+			this.wishDate = "on monday";
+			return 1;
+		}
+		else if (dateOfWeek.getWord().equals("tuesday")) {
+			this.wishDate = "on tuesday";
+			return 2;
+		}
+		else if (dateOfWeek.getWord().equals("wednesday")) {
+			this.wishDate = "on wednesday";
+			return 3;
+		}
+		else if (dateOfWeek.getWord().equals("thursday")) {
+			this.wishDate = "on thursday";
+			return 4;
+		}
+		else if (dateOfWeek.getWord().equals("friday")) {
+			this.wishDate = "on friday";
+			return 5;
+		}
+		else if (dateOfWeek.getWord().equals("saturday")) {
+			this.wishDate = "on saturday";
+			return 6;
+		}
 	}
 	
 	return date.getDayOfWeek(); // if there's no keyword for time, default is "today"
@@ -497,16 +534,16 @@ public static void main(String[] args) throws WrongStateClassException {
 	
 	ArrayList<DialogState> ld = new ArrayList<DialogState>();
 	DialogState s1 = new DialogState();
-	s1.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_DISH);
+	s1.setCurrentState(CanteenInfo.CI_ADEN_LINE_2_DISH);
 	ld.add(s1);
 	DialogState s2 = new DialogState();
-	s2.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_PRICE);
+	s2.setCurrentState(CanteenInfo.CI_ADEN_LINE_2_PRICE);
 	ld.add(s2);
-	KeywordData l = new KeywordData("line1",ld , 0, null, null);
+	KeywordData l = new KeywordData("line2",ld , 0, null, null);
 	
 	Keyword line = new Keyword(l);
 	
-	KeywordData d = new KeywordData("tomorrow", null, 0, null, null);
+	KeywordData d = new KeywordData("today", null, 0, null, null);
 	Keyword date = new Keyword(d);
 	KeywordData p = new KeywordData("price", null, 0, null, null);
 	Keyword price = new Keyword(p); 
@@ -533,7 +570,7 @@ public static void main(String[] args) throws WrongStateClassException {
 	
 	System.out.println(dialog.getCurrentDialogState().getCurrentState());
 	
-	//System.out.println(dialog.getCurrentDialogState().getOutputKeyword().toString());
+	//System.out.println(dialog.getCurrentDialogState().getOutputKeyword());
  }*/
 
 }
