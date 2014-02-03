@@ -18,8 +18,6 @@ public abstract class CanteenDialog extends Dialog {
    * @param currentCanteen The canteen where this dialog is taking place.
    */
   public CanteenDialog(Session session, DialogState currState, Canteen currentCanteen) {
-	  //TODO The canteen specs document is needed in order to parse tha data to
-	  //canteen object and load it into the system
 	  super(session, currState);
 	  this.currentCanteen = currentCanteen;
 	  this.dialogModus = DialogModus.CANTEEN;

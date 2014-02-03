@@ -6,6 +6,9 @@ import generalControl.Main;
 import java.util.LinkedList;
 import java.util.List;
 
+import data.CanteenData;
+import data.CanteenNames;
+
 
 
 /**
@@ -55,7 +58,9 @@ public class DialogManager {
 		Enum<?> currentDialogState = currentDialog.getCurrentDialogState().getCurrentState();
 		Session currentSession = currentDialog.getCurrentSession();
 		Canteen currentCanteen = null;
-		
+		if (e.getNewClassName().contains("Canteen")) {
+			currentCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		}
 		//If not switching the class
 		switch (e.getNewClassName()) {
 		case "dm.Start" : currentDialog = new StartDialog(currentSession, new StartState((Start)currentDialogState)); break;
@@ -66,9 +71,7 @@ public class DialogManager {
 		case "dm.RecipeLearning" : currentDialog = new RecipeLearningDialog(currentSession, new RecipeLearningState((RecipeLearning)currentDialogState)); break;
 		default: break;	
 		}
-		if (e.getNewClassName().contains("Canteen")) {
-			currentCanteen = ((CanteenDialog)currentDialog).getCurrentCanteen();
-		}
+		
 	}
 	   } while(true);
 
