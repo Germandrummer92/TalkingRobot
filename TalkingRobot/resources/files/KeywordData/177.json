@@ -1,1 +1,1 @@
-{"wordID":177,"word":"three","dialogState":{},"priority":0}
+{"wordID":177,"word":"three","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_3_DISH"}},{"currentState":{"name":"CR_ADEN_LINE_3_DISH"}},{"currentState":{"name":"CI_ADEN_LINE_3_PRICE"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}

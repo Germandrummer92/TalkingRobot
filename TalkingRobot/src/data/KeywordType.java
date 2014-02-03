@@ -12,5 +12,7 @@ public enum KeywordType {
 	INGREDIENT,
 	TOOL,
 	USER,
-	COUNTRY
+	COUNTRY,
+	TIME,
+	CATEGORY;
 }

@@ -43,7 +43,8 @@ public class IndirectVerificationStrategy extends ErrorStrategy {
 	
 		if(this.possibleWords == null) { return null; }
 		else {
-			return new ErrorHandlingState(false, ErrorHandling.Indirect_Verification, questionableWord);	
+			return new ErrorHandlingState(
+					false, ErrorHandling.Indirect_Verification, "{" + questionableWord + "}");	
 		}
 	}
 
@@ -60,11 +61,11 @@ public class IndirectVerificationStrategy extends ErrorStrategy {
 				for(int j = 0; j < keywordList.size(); j++) {
 					if(possibleWords[1].equals(keywordList.get(j).getWord())
 							&& keywordList.get(j).getKeywordData().getPriority() > priority
-							&& (float)Integer.parseInt(possibleWords[2]) / possibleWords[2].length() < 0.2) {
+							&& (float)Integer.parseInt(possibleWords[2]) / possibleWords[1].length() < 0.2) {
 						priority = keywordList.get(j).getKeywordData().getPriority();
 						elementId = i;
-					}  else if ((float)Integer.parseInt(possibleWords[2]) / possibleWords[2].length() < distance) {
-						distance = (float)Integer.parseInt(possibleWords[2]) / possibleWords[2].length();
+					}  else if ((float)Integer.parseInt(possibleWords[2]) / possibleWords[1].length() < distance) {
+						distance = (float)Integer.parseInt(possibleWords[2]) / possibleWords[1].length();
 						elementIdRegardingDistance = i;
 					}
 				}

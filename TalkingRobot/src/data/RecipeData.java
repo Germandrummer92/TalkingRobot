@@ -252,8 +252,6 @@ public class RecipeData implements Data {
 				return false;
 		} else if (!originalCountry.equals(other.originalCountry))
 			return false;
-		if (recipeID != other.recipeID)
-			return false;
 		if (recipeName == null) {
 			if (other.recipeName != null)
 				return false;
@@ -272,7 +270,6 @@ public class RecipeData implements Data {
 		return true;
 	}
 
-	
 	/**
 	 * This static method returns a List of all existing RecipeData files.
 	 * @return a list of all existing RecipeData files

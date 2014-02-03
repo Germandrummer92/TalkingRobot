@@ -29,7 +29,7 @@ public class UserTest {
 	@Test
 	public void load() {
 		ArrayList<User> load = new ArrayList<User>();
-		load = user.loadUsers();
+		load = User.loadUsers();
 		File directory = new File("resources/files/UserData/");
 		assertEquals(directory.list().length, load.size());
 	}

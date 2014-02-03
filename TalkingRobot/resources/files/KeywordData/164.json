@@ -1,1 +1,1 @@
-{"wordID":164,"word":"beef","dialogState":{},"priority":0}
+{"wordID":164,"word":"beef","dialogState":[{"currentState":{"name":"CR_ASK_PREFERENCE"}}],"priority":6,"dataReference":[],"type":"CATEGORY"}

@@ -1,4 +1,5 @@
 package nlg;
+import tts.TTSPhase;
 import dm.DialogState;
 import generalControl.Main;
 import generalControl.Phase;
@@ -11,6 +12,9 @@ import generalControl.Phase;
 public class NLGPhase extends Phase {
 
   private OutputCreator outputCreator;
+  public NLGPhase() {
+	  this.outputCreator = new OutputCreator();
+  }
 
   public void setPhaseResult(Main main) {
 	  DialogState currentState = main.getDmResult();
@@ -19,7 +23,7 @@ public class NLGPhase extends Phase {
   }
 
   public Phase nextPhase(Main main) {
-	  return main.getDmPhase();
+	  return new TTSPhase();
   }
 
 }

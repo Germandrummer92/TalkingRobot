@@ -110,29 +110,29 @@ public class KitchenAssistanceTest {
 		EnumDeserializer des = new EnumDeserializer();
 		DataDeserializer d = new DataDeserializer();
 		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
-		BufferedReader br = null;
+		/*BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(load));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		}*/
 	  	KeywordData read = null;
 	  		try {
-				read = loader.fromJson(br.readLine(), KeywordData.class);
+				read = loader.fromJson(new FileReader(load), KeywordData.class);
 			} catch (JsonSyntaxException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-	  	try {
+	  	/*try {
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	  	return new Keyword(read);	
 	  	
 	}
-	
+
 	@After
 	public void tearDown() {
 		DialogTest.currentDialog = new KitchenAssistanceDialog(new Session(new User(), Robot.loadRobots().get(0)), new KitchenAssistanceState());

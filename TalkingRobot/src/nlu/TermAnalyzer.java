@@ -42,27 +42,37 @@ public class TermAnalyzer extends InputAnalyzer {
 					if(result.get(i).equals("for")
 							&& input.contains("for")) {
 						currentResult = input.split("for ");
-						term.set(0, currentResult[0].trim());
+						if(currentResult.length >= 1) {
+							term.set(0, currentResult[0].trim());
+						}
 					} else if (result.get(i).matches(".*needed .*for.*")) {
 						String[] words = result.get(i).split(" ");
-						currentResult = input.split(words[0]);
-						term.set(0, currentResult[0].trim());
+						if(words.length >= 1) {
+							currentResult = input.split(words[0]);
+							if(currentResult.length >= 1) {
+								term.set(0, currentResult[0].trim());
+							}
+						}
 					} else if (result.get(i).matches(".*for .*needed.*")
 							&& input.contains("for")) {
 						String words = result.get(i).substring(4, result.get(i).length());
 						currentResult = this.removeWords(input, words);
 						currentResult = currentResult[0].split(".*for ");
-						
-						if(currentResult[0].equals("")) {
-							if (currentResult.length >= 1) { words = currentResult[1]; }
-						} else { words = currentResult[0]; }
-						
+						if(currentResult.length >= 1) {
+							if(currentResult[0].equals("")) {
+								if (currentResult.length >= 1) { words = currentResult[1]; }
+							} else { words = currentResult[0]; }
+						}
 						currentResult = words.split(" ");
-						term.set(0, currentResult[currentResult.length - 1].trim());
+						if(currentResult != null) {
+							term.set(0, currentResult[currentResult.length - 1].trim());
+						}
 					}else if (result.get(i).matches(".*for.* need.*") 
 							&& input.contains("need")) {
 						currentResult = input.split("need");
-						term.set(0, currentResult[1].trim());
+						if(currentResult.length >= 2) {
+							term.set(0, currentResult[1].trim());
+						}
 					}
 					input = term.get(0);
 				} else {
@@ -84,9 +94,11 @@ public class TermAnalyzer extends InputAnalyzer {
 						String[] currentResult = this.removeWords(input, result.get(i));
 						
 						if(currentResult != null) {
-							if(currentResult[0].equals("")) {
-								if(currentResult.length > 1) {input = currentResult[1].trim();}
-							} else {input = currentResult[0].trim();}
+							if(currentResult.length >= 1) {
+								if(currentResult[0].equals("")) {
+									if(currentResult.length > 1) {input = currentResult[1].trim();}
+								} else {input = currentResult[0].trim();}
+							}
 						}
 						term.set(0, input);
 					}

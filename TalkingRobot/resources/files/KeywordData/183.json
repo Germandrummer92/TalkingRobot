@@ -1,1 +1,1 @@
-{"wordID":183,"word":"nine","dialogState":{},"priority":0}
+{"wordID":183,"word":"nine","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}

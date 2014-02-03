@@ -63,9 +63,9 @@ public class DialogManager {
 		case "dm.Start" : currentDialog = new StartDialog(currentSession, new StartState((Start)currentDialogState)); break;
 		case "dm.CanteenInfo" : currentDialog = new CanteenInformationDialog(currentSession, new CanteenInformationState((CanteenInfo)currentDialogState), currentCanteen); break;
 		case "dm.CanteenRecom" : currentDialog = new CanteenRecommendationDialog(currentSession, new CanteenRecommendationState((CanteenRecom)currentDialogState), currentCanteen); break;
-		case "dm.KitchenAssistance" : currentDialog = new KitchenAssistanceDialog(currentSession, new KitchenAssistanceState((KitchenAssistance)currentDialogState));
-		case "dm.RecipeAssistance" : currentDialog = new RecipeAssistanceDialog(currentSession, new RecipeAssistanceState((RecipeAssistance)currentDialogState));
-		case "dm.RecipeLearning" : currentDialog = new RecipeLearningDialog(currentSession, new RecipeLearningState((RecipeLearning)currentDialogState));
+		case "dm.KitchenAssistance" : currentDialog = new KitchenAssistanceDialog(currentSession, new KitchenAssistanceState((KitchenAssistance)currentDialogState)); break;
+		case "dm.RecipeAssistance" : currentDialog = new RecipeAssistanceDialog(currentSession, new RecipeAssistanceState((RecipeAssistance)currentDialogState)); break;
+		case "dm.RecipeLearning" : currentDialog = new RecipeLearningDialog(currentSession, new RecipeLearningState((RecipeLearning)currentDialogState)); break;
 		default: break;
 			
 		}
@@ -306,7 +306,7 @@ public class DialogManager {
 	  			counter++;
 	  			String[] possibleKwSplit = possibleKw.get(i).split(";");
 	  			overallDistance = overallDistance 
-	  					+ (float)Integer.parseInt(possibleKwSplit[2]) / possibleKwSplit[2].length();
+	  					+ (float)Integer.parseInt(possibleKwSplit[2]) / possibleKwSplit[1].length();
 	  		}
 	  	}
 	  

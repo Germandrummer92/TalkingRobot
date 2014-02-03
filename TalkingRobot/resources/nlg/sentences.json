@@ -133,43 +133,44 @@
 				"Bliblibli"
 			],
 			"RL_ASK_COUNTRY_OF_ORIGIN" : [
-				
+				"from what country does this recipe come from"
 			],
 			"RL_ASK_FIRST_INGREDIENT" : [
-				
+				"tell me the first ingredient"
 			],
 			"RL_ASK_FIRST_STEP" : [
-				
+				"what is the first step for this recipe",
+				"what do i have to do first"
 			],
 			"RL_ASK_FIRST_TOOL" : [
-				
+				"what is the first tool"
 			],
 			"RL_ASK_LAST_STEP" : [
-				
+				"was that the last step"
 			],
 			"RL_ASK_NEXT_INGREDIENT" : [
-				
+				"next ingredient"
 			],
 			"RL_ASK_NEXT_STEP" : [
-				
+				"next step"
 			],
 			"RL_ASK_NEXT_TOOL" : [
-				
+				"next tool"
 			],
 			"RL_ASK_RECIPE_NAME" : [
-				
+				"what is the recipe called"
 			],
 			"RL_ASK_STEP_RIGHT" : [
-				
+				"is that right"
 			],
 			"RL_ASK_TOOL_RIGHT" : [
-				
+				"is that right"
 			],
 			"RL_ENTRY" : [
-				
+				"oh, nice"
 			],
 			"RL_EXIT" : [
-				
+				"thanks"
 			]
 	},
 	"dm.KitchenAssistanceState" : {

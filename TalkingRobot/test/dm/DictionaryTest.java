@@ -46,7 +46,9 @@ public class DictionaryTest {
 		for(int i = 0; i < res.size(); i++) {
 			comp.add(res.get(i).getWord());
 		}
-		assertEquals(input, comp);
+		
+		assertTrue(input.containsAll(comp) && comp.containsAll(input));
+		//assertEquals(input, comp);
 	}
 	
 	/**

@@ -44,7 +44,54 @@ public class DialogTest {
 		
 	}
 	
-	/*@Test
+		
+		
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	/**
+	 * Loads and returns the keyword specified by the ID passed as a parameter
+	 * @param KeywordID
+	 * @return
+	 */
+	private Keyword loadKeyword(int keywordID) {
+		File load = new File("resources/files/KeywordData/" + keywordID + ".json");
+		//Needed for Generic Enum Deserialization
+		EnumDeserializer des = new EnumDeserializer();
+		DataDeserializer d = new DataDeserializer();
+		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
+		/*BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(load));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}*/
+	  	KeywordData read = null;
+	  		try {
+				read = loader.fromJson(new FileReader(load), KeywordData.class);
+			} catch (JsonSyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	  	/*try {
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+	  	return new Keyword(read);	
+	  	
+	}
+	
+	/**
+	 * Tests to see if keywords are loaded correctly, or errors persist.
+	 */
+	@Test
 	public void loadTest() {
 		Keyword kw = null;
 		for (int i = 0; i < 185; i++) {
@@ -55,66 +102,12 @@ public class DialogTest {
 				fail("Failed at number:" + i + "\n");
 			}
 			try {
-				System.out.println(kw.getWord());
+				System.out.println(kw.getWord() + i);
 			}
 			catch (Exception e) {
 				fail("Failed at printing number:" + i + "\n");
 			}
 		}
-		
-		
-	}*/
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
 	}
 
-	/**
-	 * Tests if the Dialog State jumps correctly when passed only one Keyword.
-	 */
-	@Test
-	public void jumpTest() {
-		currentDialog = new StartDialog(new Session(new User(), Robot.loadRobots().get(0)));
-		for (Keyword kw : dictionary.getKeywordList()) {
-			ArrayList<Keyword> kwList = new ArrayList<Keyword>();
-			kwList.add(kw);
-			try {
-				currentDialog.updateState(kwList, new ArrayList<String>(), new ArrayList<String>());
-			} catch (WrongStateClassException e) {
-				assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
-			}
-			assertTrue(currentDialog.getCurrentDialogState().getCurrentState().equals(kw.getReference().get(0).getCurrentState()));
-		}
-	}
-
-	private Keyword loadKeyword(int keywordID) {
-		File load = new File("resources/files/KeywordData/" + keywordID + ".json");
-		//Needed for Generic Enum Deserialization
-		EnumDeserializer des = new EnumDeserializer();
-		DataDeserializer d = new DataDeserializer();
-		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(load));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	  	KeywordData read = null;
-	  		try {
-				read = loader.fromJson(br.readLine(), KeywordData.class);
-			} catch (JsonSyntaxException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	  	try {
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	  	return new Keyword(read);	
-	  	
-	}
 }

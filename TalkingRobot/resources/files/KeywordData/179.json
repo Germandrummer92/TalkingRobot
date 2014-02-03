@@ -1,1 +1,1 @@
-{"wordID":179,"word":"five","dialogState":{},"priority":0}
+{"wordID":179,"word":"five","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_45_DISH"}},{"currentState":{"name":"CR_ADEN_LINE_45_DISH"}},{"currentState":{"name":"CI_ADEN_LINE_45_PRICE"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
