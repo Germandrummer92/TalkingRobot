@@ -222,11 +222,18 @@ public class OutputCreator {
   			if (size == 0) {
   				return output;
   			}
+  			String temp;
+  			
   			//Generates random number based on array size (number of sentences)
-  			Random rn = new Random();
-			Integer randomNum = rn.nextInt(size - 1);
+  			if(size < 2) {
+  				temp =  (String) jsonSentences.get(0);
+  			}
+  			else {
+  				Random rn = new Random();
+  				Integer randomNum = rn.nextInt(size - 1);
 			
-			String temp =  (String) jsonSentences.get(randomNum);
+				temp =  (String) jsonSentences.get(randomNum);
+  			}
 			
 			if(addBefore) { // add social component before the 
 				output = temp + ". " + output; 
