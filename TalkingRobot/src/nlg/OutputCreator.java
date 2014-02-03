@@ -48,7 +48,6 @@ public class OutputCreator {
 	public String createOutput(DialogState dialogState) {
 		//generators = new ArrayList<Generator>();
 		//outputPhrases = new ArrayList<Phrase>();
-		System.out.println(dialogState.getCurrentState().toString());
 		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
 		
 		if( DialogManager.giveDialogManager().isInErrorState()) {
