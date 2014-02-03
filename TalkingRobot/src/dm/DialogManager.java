@@ -55,9 +55,7 @@ public class DialogManager {
 		Enum<?> currentDialogState = currentDialog.getCurrentDialogState().getCurrentState();
 		Session currentSession = currentDialog.getCurrentSession();
 		Canteen currentCanteen = null;
-		if (e.getNewClassName().contains("Canteen")) {
-			currentCanteen = ((CanteenDialog)currentDialog).getCurrentCanteen();
-		}
+		
 		//If not switching the class
 		switch (e.getNewClassName()) {
 		case "dm.Start" : currentDialog = new StartDialog(currentSession, new StartState((Start)currentDialogState)); break;
@@ -66,8 +64,10 @@ public class DialogManager {
 		case "dm.KitchenAssistance" : currentDialog = new KitchenAssistanceDialog(currentSession, new KitchenAssistanceState((KitchenAssistance)currentDialogState)); break;
 		case "dm.RecipeAssistance" : currentDialog = new RecipeAssistanceDialog(currentSession, new RecipeAssistanceState((RecipeAssistance)currentDialogState)); break;
 		case "dm.RecipeLearning" : currentDialog = new RecipeLearningDialog(currentSession, new RecipeLearningState((RecipeLearning)currentDialogState)); break;
-		default: break;
-			
+		default: break;	
+		}
+		if (e.getNewClassName().contains("Canteen")) {
+			currentCanteen = ((CanteenDialog)currentDialog).getCurrentCanteen();
 		}
 	}
 	   } while(true);
