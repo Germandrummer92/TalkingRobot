@@ -189,8 +189,8 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateNotFound(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		if ((keywords == null || keywords.isEmpty()) && (terms == null ||terms.isEmpty())  && approval.size() == 1) {
-			if (approval.get(0).equals("yes")) {
+		if (approval.size() == 1) {
+			if (approval.get(0).equals("yes") || approval.get(0).equals("Yes")) {
 				getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_EMPLOYEE_STATUS);
 				
 			}
