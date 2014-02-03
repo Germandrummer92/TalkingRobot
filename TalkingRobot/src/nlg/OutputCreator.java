@@ -48,7 +48,11 @@ public class OutputCreator {
 	public String createOutput(DialogState dialogState) {
 		//generators = new ArrayList<Generator>();
 		//outputPhrases = new ArrayList<Phrase>();
-		String temp = findInFile(dialogState.getClass().getName(), dialogState.getCurrentState().toString());
+		//get the dialog state class, old implementation gave out just the abstract name dm.dialogState
+
+
+		String dialogStateClass = getStateClassFromEnum(dialogState.getCurrentState());
+		String temp = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
 		
 		if( DialogManager.giveDialogManager().isInErrorState()) {
 			String eOut = temp;
@@ -165,6 +169,7 @@ public class OutputCreator {
   	 
   			//Access to a sentence
   			JSONObject jsonObject = (JSONObject) obj;
+  			System.out.println(className);
   			JSONObject jsonState = (JSONObject) jsonObject.get(className);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(stateName);
   			Integer size = jsonSentences.size();
@@ -204,8 +209,11 @@ public class OutputCreator {
   			Object obj = parser.parse(new FileReader("resources/nlg/socialBefore.json"));
   	 
   			//Access to a sentence
+  			//added
+  			String dialogStateClass = getStateClassFromEnum(dialogState.getCurrentState());
+  			//added
   			JSONObject jsonObject = (JSONObject) obj;
-  			JSONObject jsonState = (JSONObject) jsonObject.get(dialogState.getClass().getName());
+  			JSONObject jsonState = (JSONObject) jsonObject.get(dialogStateClass);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
   			Integer size = jsonSentences.size();
   			
@@ -213,7 +221,7 @@ public class OutputCreator {
   				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
   				addBefore = false;
   				jsonObject = (JSONObject) obj;
-  	  			jsonState = (JSONObject) jsonObject.get(dialogState.getClass().getName());
+  	  			jsonState = (JSONObject) jsonObject.get(dialogStateClass);
   	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
   	  			size = jsonSentences.size();
   			}
@@ -310,6 +318,30 @@ public class OutputCreator {
   		return answer;
   	}
   	
+  	private String getStateClassFromEnum(Enum<?> num) {
+		String dialogStateClass = "";
+		switch (num.getClass().toString()) {
+		case "class dm.Start":
+			dialogStateClass = "dm.StartState";
+			break;
+		case "class dm.RecipeLearning":
+			dialogStateClass = "dm.RecipeLearningState";
+			break;
+		case "class dm.RecipeAssistance":
+			dialogStateClass = "dm.RecipeAssistanceState";
+			break;
+		case "class dm.CanteenInfo":
+			dialogStateClass = "dm.CanteenInformationState";
+			break;
+		case "class dm.CanteenRecom":
+			dialogStateClass = "dm.CanteenRecommendationState";
+			break;
+		case "class dm.KitchenAssistance":
+			dialogStateClass = "dm.KitchenAssistanceState";
+			break;
+		}
+		return dialogStateClass;
+  	}
   	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
   	
   /*public static void main (String args[]) {
