@@ -17,9 +17,9 @@ import data.RecipeData;
  */
 public class RestartStrategy extends ErrorStrategy {
 	
-	ErrorHandling errorHandling;
-	MealData randomMeal;
-	RecipeData randomRecipe;
+	private ErrorHandling errorHandling;
+	private MealData randomMeal;
+	private RecipeData randomRecipe;
 
 	/**
 	 * @see ErrorStrategy#handleError(List)
@@ -29,17 +29,19 @@ public class RestartStrategy extends ErrorStrategy {
 		this.riseCounter();
 		Dialog currentDialog = DialogManager.giveDialogManager().getCurrentDialog();
 		ErrorHandlingState errorState = decideDialogBasedErrorHandling(currentDialog);
-		return null;
+		return errorState;
 	}
 
 	private ErrorHandlingState decideDialogBasedErrorHandling(Dialog currentDialog) {
 		DialogModus dialogModus = currentDialog.getDialogModus();
+
 		String result;
 		ErrorHandlingState errorState = null;
 		switch(dialogModus) {
 		case START:
 					result = handleStart(currentDialog);
 					this.errorHandling = ErrorHandling.RESTART_START;
+	
 					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, result);
 					break;
 		case CANTEEN:
@@ -49,7 +51,7 @@ public class RestartStrategy extends ErrorStrategy {
 		case CANTEEN_INFORMATION:
 					result = handleCanteenInformation(currentDialog);
 					this.errorHandling = ErrorHandling.RESTART_CI;
-					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, result);
+					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_CI, result);
 					break;
 		case CANTEEN_RECOMMENDATION:
 					result = handleCanteenInformation(currentDialog);
@@ -71,6 +73,7 @@ public class RestartStrategy extends ErrorStrategy {
 					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_RA, result);
 					break;
 		case RECIPE_LEARNING:
+
 					result = handleRecipeLearning(currentDialog);
 					this.errorHandling = ErrorHandling.RESTART_RL;
 					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_RL, result);
@@ -78,6 +81,7 @@ public class RestartStrategy extends ErrorStrategy {
 		default:
 					break;
 		}
+
 		return errorState;
 	}
 	
@@ -91,13 +95,13 @@ public class RestartStrategy extends ErrorStrategy {
 	}
 	
 	private String handleCanteenInformation(Dialog currentDialog) {
-		CanteenInformationDialog dialog = (CanteenInformationDialog) currentDialog;
+		CanteenDialog dialog = (CanteenDialog) currentDialog;
 		CanteenData canteenData = dialog.getCurrentCanteen().getCanteenData();
 		ArrayList<MealData> todayMeals = new ArrayList<MealData>();
 		for( LineData line : canteenData.getLines()) {
 			todayMeals.addAll(line.getTodayMeals());
 		}
-		
+
 		MealData meal = todayMeals.get(this.getRandomNum(todayMeals.size()));
 		LineData line = null;
 		for( LineData lineHelp : canteenData.getLines()) {
@@ -111,7 +115,7 @@ public class RestartStrategy extends ErrorStrategy {
 		randomMeal = meal;
 		String output = "<" + meal.getMealName() + ">,";
 		output = output + "<" + line.getLineName() + ">,";
-		output = output + "<" + canteenData.getCanteenName().toString() + ">";
+		output = output + "<" + canteenData.getCanteenName().toString().toLowerCase() + ">";
 		return output;
 	}
 
