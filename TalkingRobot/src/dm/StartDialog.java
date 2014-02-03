@@ -119,7 +119,7 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateWaitingEmployee(List<Keyword> keywords,
 			List<String> terms, List<String> approval) {
-		if ((keywords == null || keywords.isEmpty()) && (terms == null || terms.isEmpty()) && approval.size() == 1) {
+		if ((keywords == null || keywords.isEmpty()) && approval.size() == 1) {
 			if (approval.get(0).equals("yes")) {
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
 			}
