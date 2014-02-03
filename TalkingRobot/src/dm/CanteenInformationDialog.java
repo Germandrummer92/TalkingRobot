@@ -532,7 +532,8 @@ public static void main(String[] args) throws WrongStateClassException {
 	dialog.updateState(keywords, terms, approval);
 	
 	System.out.println(dialog.getCurrentDialogState().getCurrentState());
-	System.out.println(dialog.getCurrentDialogState().getOutputKeyword());
+	
+	//System.out.println(dialog.getCurrentDialogState().getOutputKeyword().toString());
  }*/
 
 }

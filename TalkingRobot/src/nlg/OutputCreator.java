@@ -30,11 +30,11 @@ import dm.StartState;
 public class OutputCreator {
 	
 	//TODO Still to be decided if following attributes will be needed.
-	private List<Generator> generators;
+	//private List<Generator> generators;
 
-	private List<Phrase> outputPhrases;
+	//private List<Phrase> outputPhrases;
 
-	private SocialComponent socialComponent;
+	//private SocialComponent socialComponent;
 	
 	public OutputCreator() {
 	}
@@ -49,7 +49,7 @@ public class OutputCreator {
 		//generators = new ArrayList<Generator>();
 		//outputPhrases = new ArrayList<Phrase>();
 		//get the dialog state class, old implementation gave out just the abstract name dm.dialogState
-
+		String output = "";
 
 		String dialogStateClass = getStateClassFromEnum(dialogState.getCurrentState());
 		String temp = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
@@ -62,8 +62,9 @@ public class OutputCreator {
 			return eOut;
 		}
 
-		String output = addKeyword(temp, dialogState.getOutputKeyword());
-		
+		if (!dialogState.getOutputKeyword().isEmpty()) {
+			output = addKeyword(temp, dialogState.getOutputKeyword());
+		} else output = temp;
 			
 		// random decide whether to add a social component or not
 		Random socialRandom = new Random();

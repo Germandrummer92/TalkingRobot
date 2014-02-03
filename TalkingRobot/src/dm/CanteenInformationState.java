@@ -2,6 +2,8 @@ package dm;
 
 import java.util.ArrayList;
 
+import data.CanteenData;
+import data.CanteenNames;
 import data.MealData;
 
 
@@ -51,7 +53,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(0).getTodayMeals();
 		  int l1index = 0;
 		  for(MealData wish : l1meals) {
-			  if(wish.getMealName().equals(wishMeal)) {
+			  if(wish.getMealName().toString().equals(wishMeal)) {
 				  l1index = l1meals.indexOf(wish);
 				  break;
 			  }
@@ -67,14 +69,15 @@ public class CanteenInformationState extends DialogState {
 		  ArrayList<MealData> l2meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(1).getTodayMeals();
 		  int l2index = 0;
+		  /*
 		  for(MealData wish : l2meals) {
-			  if(wish.getMealName().equals(wishMeal)) {
+			  if(wish.getMealName().toString().equals(wishMeal)) {
 				  l1index = l2meals.indexOf(wish);
-				  break;
+				  //break;
 			  }
-		  }
+		  }*/
 		  price = l2meals.get(l2index).getPrice();
-		  output = "< " + wishMeal + " >";
+		//  output = "< " + wishMeal + " >";
 		  output = output + " ,{ " + String.valueOf(price) + " }";	
 		  return output;
 		  
@@ -317,8 +320,23 @@ public class CanteenInformationState extends DialogState {
 	  case CI_EXIT:
 		  setQuestion(false);
 		  return null;
+		  default : 
+			  return null;
 	  }
-  return null;
+  
   }
-
+  
+  
+  public static void main(String[] args) {
+	  DialogState s = new DialogState();
+	  s.setCurrentState(CanteenInfo.CI_ADEN_LINE_2_PRICE);
+	 // MealData meal = new MealData("ungarisched rindergulash");
+	  
+	 //Dialog cd =  (CanteenDialog)DialogManager.giveDialogManager().getCurrentDialog();
+	  Canteen curC = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+	 CanteenInformationDialog c = new CanteenInformationDialog(null, s, curC);
+	// c.setWishMeal("Ungarisches Rindergulash");
+	  
+	  System.out.println(s.getOutputKeyword());
+  }
 }
