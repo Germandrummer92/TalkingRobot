@@ -29,8 +29,6 @@ private User creator;
   private Integer numOfSteps;
   
   private Recipe recipe;
-  
-  private DialogModus dialogModus;
 
   /**
  	 * @param session
