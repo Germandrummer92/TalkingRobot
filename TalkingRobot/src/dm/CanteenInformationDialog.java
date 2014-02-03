@@ -336,10 +336,11 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 	
 	if(inAden) {
 		curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
+	   
 	} else {
 		curCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift));
 	}
-	
+	 super.setCurrentCanteen(curCanteen);
 	
 	int index = -1;
 	if( askPrice ) {
@@ -528,6 +529,7 @@ public static void main(String[] args) throws WrongStateClassException {
 	dialog.updateState(keywords, terms, approval);
 	
 	System.out.println(dialog.getCurrentDialogState().getCurrentState());
+	System.out.println(dialog.getCurrentDialogState().getOutputKeyword());
  }*/
 
 }
