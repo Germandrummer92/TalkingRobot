@@ -274,7 +274,7 @@
 				"When you don't know what to have. I can suggest some meals"
 			],
 			"CR_EXIT" : [
-				""
+				"Goodbye!"
 			],
 			"CR_MOLTKE_ACTTHEK_DISH" : [
 				"I will suggest to try <o> at action counter, if you want {c}",
