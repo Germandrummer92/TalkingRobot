@@ -360,7 +360,8 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 			for( Keyword line : keywords) {
 				if( line.getWord().contains("line") || line.getWord().matches(".*[0-9]")) { // we found a line keyword
 					ArrayList<DialogState> refs = new ArrayList<DialogState>();
-					refs = line.getKeywordData().getDialogState();
+					// FIXME how can I get the reference...this method is always null
+					refs = line.getReference();
 					if(inAden) {
 						
                        for( DialogState ref : refs) {
@@ -484,7 +485,7 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 	return CanteenInfo.CI_EXIT;
 }
 
-
+/*
 public static void main(String[] args) throws WrongStateClassException {
 	List<Keyword> keywords = new ArrayList<Keyword>();
 	List<String> terms = new ArrayList<String>();
@@ -519,6 +520,6 @@ public static void main(String[] args) throws WrongStateClassException {
 	dialog.updateState(keywords, terms, approval);
 	
 	System.out.println(dialog.getCurrentDialogState().getOutputKeyword());
- }
+ }*/
 
 }
