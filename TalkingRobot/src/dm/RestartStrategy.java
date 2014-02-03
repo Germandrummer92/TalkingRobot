@@ -136,7 +136,8 @@ public class RestartStrategy extends ErrorStrategy {
 		RecipeAssistanceDialog dialog = (RecipeAssistanceDialog) currentDialog;
 		
 		if(dialog.getCurrRecipe() != null) {
-			return "what do you want to know about " + dialog.getCurrRecipe().getRecipeData().getRecipeName();
+			this.randomRecipe = dialog.getCurrRecipe().getRecipeData();
+			return "<" + dialog.getCurrRecipe().getRecipeData().getRecipeName() + ">";
 		} else {
 			Dictionary dictionary = new Dictionary();
 			ArrayList<RecipeData> recipes = RecipeData.loadData();
