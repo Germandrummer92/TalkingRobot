@@ -38,12 +38,13 @@ public class CanteenInformationState extends DialogState {
 	  Dialog currentDialog =(CanteenRecommendationDialog)DialogManager.giveDialogManager().getCurrentDialog();
 	  String time = ((CanteenInformationDialog) currentDialog).getWishDate();
 	  String wishMeal = ((CanteenInformationDialog) currentDialog).getWishMeal();
-	  String output;
+	  String output = "";
 	  float price;
+	  
 	  switch ((CanteenInfo)getCurrentState()) {
 	  case CI_ENTRY:
           setQuestion(false);
-          return null;
+          return output;
 	  case CI_ADEN_LINE_1_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> l1meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
@@ -55,6 +56,7 @@ public class CanteenInformationState extends DialogState {
 				  break;
 			  }
 		  }
+		  
 		  price = l1meals.get(l1index).getPrice();
 		  output = "<" + wishMeal+ ">";
 		  output = output + " ,{ " + String.valueOf(price) + " }";	
