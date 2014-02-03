@@ -359,12 +359,12 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
 		if( index == -1) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
 				if( line.getWord().contains("line")) { // we found a line keyword
-					List<DialogState> refs = new ArrayList<DialogState>();
+					//List<DialogState> refs = new ArrayList<DialogState>();
 					// FIXME how can I get the reference...this method is always null
-					refs = line.getReference();
+					//refs = line.getReference();
 					if(inAden) {
 						
-                       for( DialogState ref : refs) {
+                       for( DialogState ref : line.getReference()) {
                     	   if(ref.getCurrentState().name().contains("ADEN") 
    								&& ref.getCurrentState().name().contains("PRICE")) {
    							return (CanteenInfo) ref.getCurrentState();
@@ -372,7 +372,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms) {
                         }
 					}
 					// then is in Moltke
-					 for( DialogState ref : refs) {
+					 for( DialogState ref : line.getReference()) {
                   	   if(ref.getCurrentState().name().contains("MOLTKE") 
  								&& ref.getCurrentState().name().contains("PRICE")) {
  							return (CanteenInfo) ref.getCurrentState();
@@ -491,9 +491,17 @@ public static void main(String[] args) throws WrongStateClassException {
 	List<String> terms = new ArrayList<String>();
 	List<String> approval = new ArrayList<String>();
 	
-	KeywordData l = new KeywordData("line1", null, 0, null, null);
+	ArrayList<DialogState> ld = new ArrayList<DialogState>();
+	DialogState s1 = new DialogState();
+	s1.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_DISH);
+	ld.add(s1);
+	DialogState s2 = new DialogState();
+	s2.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_PRICE);
+	ld.add(s2);
+	KeywordData l = new KeywordData("line1",ld , 0, null, null);
 	
 	Keyword line = new Keyword(l);
+	
 	KeywordData d = new KeywordData("tomorrow", null, 0, null, null);
 	Keyword date = new Keyword(d);
 	KeywordData p = new KeywordData("price", null, 0, null, null);
@@ -519,7 +527,7 @@ public static void main(String[] args) throws WrongStateClassException {
 //	dialog.updateStateEntry(keywords, terms, approval);
 	dialog.updateState(keywords, terms, approval);
 	
-	System.out.println(dialog.getCurrentDialogState().getOutputKeyword());
+	System.out.println(dialog.getCurrentDialogState().getCurrentState());
  }*/
 
 }
