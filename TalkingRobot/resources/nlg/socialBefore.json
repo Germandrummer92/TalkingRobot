@@ -326,5 +326,40 @@
 				"Oops",
 				"Well"
 			]
+	},
+	"dm.ErrorHandlingState" : {
+			"REPEAT" : [
+				
+			],
+			"REPHRASE" : [
+				
+			],
+			"RESTART_START" : [
+				
+			],
+			"RESTART_CI" : [
+				
+			],
+			"RESTART_CR" : [
+				
+			],
+			"RESTART_KA" : [
+				
+			],
+			"RESTART_RA" : [
+				
+			],
+			"RESTART_RL" : [
+				
+			],
+			"EXPLICIT_VERIFICATION" : [
+				
+			],
+			"INDIRECT_VERIFICATION" : [
+				
+			],
+			"CHOICE" : [
+				
+			]
 	}
 }
