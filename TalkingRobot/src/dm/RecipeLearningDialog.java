@@ -129,6 +129,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 				}
 			}
 			sameRef = sameRef && oneRef;
+			oneRef = false;
 		}
 		if (sameRef == true) {
 			getCurrentDialogState().setCurrentState(ref);
