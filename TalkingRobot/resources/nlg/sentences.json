@@ -127,10 +127,9 @@
 			]
 	},
 	"dm.RecipeLearningState" : {
+	
 			"RL_ASK_INGREDIENT_RIGHT" : [
-				"Blablabla",
-				"Bleblebleble",
-				"Bliblibli"
+			"Are you sure about this ingrdient",
 			],
 			"RL_ASK_COUNTRY_OF_ORIGIN" : [
 				"from what country does this recipe come from"
@@ -146,31 +145,31 @@
 				"what is the first tool"
 			],
 			"RL_ASK_LAST_STEP" : [
-				"was that the last step"
+				"Wow this recipe has a lot of steps. Just tell me the last one"
 			],
 			"RL_ASK_NEXT_INGREDIENT" : [
-				"next ingredient"
+				"And what is the next ingredient"
 			],
 			"RL_ASK_NEXT_STEP" : [
-				"next step"
+				"What is the next step then"
 			],
 			"RL_ASK_NEXT_TOOL" : [
-				"next tool"
+				"And what is the next tool"
 			],
 			"RL_ASK_RECIPE_NAME" : [
 				"what is the recipe called"
 			],
 			"RL_ASK_STEP_RIGHT" : [
-				"is that right"
+				"Are you sure that this recipe step is right"
 			],
 			"RL_ASK_TOOL_RIGHT" : [
-				"is that right"
+				"Are you sure that this tool is right"
 			],
 			"RL_ENTRY" : [
 				"oh, nice"
 			],
 			"RL_EXIT" : [
-				"thanks"
+				"This is a delicious recipe"
 			]
 	},
 	"dm.KitchenAssistanceState" : {
