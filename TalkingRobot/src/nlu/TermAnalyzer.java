@@ -107,6 +107,7 @@ public class TermAnalyzer extends InputAnalyzer {
 					
 			}
 		} 
+		term.add(input);
 		return term;
 	}
 	
