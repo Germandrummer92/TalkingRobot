@@ -42,7 +42,8 @@ private User creator;
  		ingredientsList = new ArrayList<Ingredient>();
  		toolsList = new ArrayList<Tool>();
  		recipeSteps = new RecipeStep[20];
- 		
+ 		RecipeData rd = new RecipeData("", null, null, null, null, "", null);
+ 		recipe = new Recipe(rd);
  		// TODO Auto-generated constructor stub
  	}
  	
@@ -119,13 +120,15 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 	//Check if all keywords pointing to same state
 	else {
 		boolean sameRef = true;
+		boolean oneRef = false; //if there is one reference to the current state in all keywords, stay here
 		Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
 		for (Keyword kw : keywords) {
 			for (DialogState d : kw.getReference()) {
-			if (!ref.equals(d)) {
-				sameRef = false;
+				if (ref.equals(d)) {
+					oneRef = true; 
+				}
 			}
-			}
+			sameRef = sameRef && oneRef;
 		}
 		if (sameRef == true) {
 			getCurrentDialogState().setCurrentState(ref);
@@ -457,7 +460,7 @@ private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 	if (terms.size() > 0) {
 		recipeName = terms.get(0);
 		nextState = new RecipeLearningState();
-		nextState.setCurrentState(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
+		nextState.setCurrentState(RecipeLearning.RL_ASK_COUNTRY_OF_ORIGIN);
 		setCurrentDialogState(nextState);
 	}
 	//theoretically never happens
