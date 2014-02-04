@@ -531,7 +531,7 @@
 			]
 		},
 			
-	"dm.ErrorHanndlingState" : {
+	"dm.ErrorHandlingState" : {
 	
 		"CHOICE" : [
 		   "Do you mean <1> or <2> ?"
