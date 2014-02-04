@@ -64,7 +64,9 @@ public class OutputCreator {
 
 		if (dialogState.getOutputKeyword() != null) {
 			output = addKeyword(temp, dialogState.getOutputKeyword());
-		} else output = temp;
+		} else {
+			output = temp;
+		}
 			
 		// random decide whether to add a social component or not
 		Random socialRandom = new Random();
