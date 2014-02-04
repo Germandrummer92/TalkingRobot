@@ -26,6 +26,7 @@ public class TermAnalyzer extends InputAnalyzer {
 	 * @see InputAnalyzer#analyze()
 	 */
 	public List<String> analyze(String input) {
+		String originalInput = input;
 		List<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
 		
 		if(result.contains("and")) { 
@@ -107,7 +108,7 @@ public class TermAnalyzer extends InputAnalyzer {
 					
 			}
 		} 
-		term.add(input);
+		term.add(originalInput);
 		return term;
 	}
 	
