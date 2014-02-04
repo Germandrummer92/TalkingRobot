@@ -106,6 +106,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 }
 
+
 /**
  * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
  * @param keywords
@@ -175,11 +176,7 @@ private void updateStateStepRight(List<Keyword> keywords, List<String> terms) {
 private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 	
 	RecipeLearningState nextState;
-	//ganzes Step in terms, was wenn ein keyword in step gefunden wurde -> zerlegt
-	if (terms.isEmpty()) {
-		DialogManager.giveDialogManager().setInErrorState(true); //no recipe step found
-	}
-	else if (terms.size() == 1) {
+	if (terms.size() > 0) {
 		recipeSteps[numOfSteps] = new RecipeStep(terms.get(terms.size() - 1));
 		numOfSteps++;
 		nextState = new RecipeLearningState();
@@ -187,30 +184,23 @@ private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 		setCurrentDialogState(nextState);
 		createRecipe();
 	}
+	//theoretically never happens
 	else {
-		//TODO maybe take the string with biggeest length and ask user to confirm?
 		DialogManager.giveDialogManager().setInErrorState(true);
 	}
-	
 	
 }
 
 private void updateStateStep(List<Keyword> keywords, List<String> terms) {
 	
-	
 	RecipeLearningState nextState;
-	//ganzes Step in terms, was wenn ein keyword in step gefunden wurde -> zerlegt
-	
 	if (userSaidEnd(keywords)) {
 		nextState = new RecipeLearningState(RecipeLearning.RL_EXIT);
 		setCurrentDialogState(nextState);
 		createRecipe();
 	}
 	
-	if (terms.isEmpty()) {
-		DialogManager.giveDialogManager().setInErrorState(true); //no recipe step found
-	}
-	else if (terms.size() == 1) {
+	if (terms.size() > 0) {
 		recipeSteps[numOfSteps] = new RecipeStep(terms.get(terms.size() - 1));
 		numOfSteps++;
 		nextState = new RecipeLearningState();
@@ -224,6 +214,7 @@ private void updateStateStep(List<Keyword> keywords, List<String> terms) {
 		}
 		
 	}
+	//theoretically never happens
 	else {
 		//TODO maybe take the string with biggeest length and ask user to confirm?
 		DialogManager.giveDialogManager().setInErrorState(true);
@@ -254,6 +245,7 @@ private void updateStateToolRight(List<Keyword> keywords, List<String> terms, Li
 }
 
 private void updateStateTool(List<Keyword> keywords, List<String> terms) {
+	// TODO mehr als ein tool durch terms
 	RecipeLearningState nextState;
 	List<Keyword> tools = keywordsFromType(KeywordType.TOOL, keywords);
 	
@@ -263,10 +255,7 @@ private void updateStateTool(List<Keyword> keywords, List<String> terms) {
 	}
 	
 	if (tools.isEmpty()) {
-		if (terms.isEmpty()) {
-			DialogManager.giveDialogManager().setInErrorState(true); //no keys or terms
-		}
-		else if (terms.size() == 1) {
+		if (terms.size() > 0) {
 			ArrayList<RecipeData> associatedRecipes = new ArrayList<RecipeData>();
 			associatedRecipes.add(recipe.getRecipeData());
 			ToolData newTool = new ToolData(terms.get(0).toString(), "", associatedRecipes); //location???
@@ -287,19 +276,17 @@ private void updateStateTool(List<Keyword> keywords, List<String> terms) {
 		setCurrentDialogState(nextState);
 		
 	}
-	else if (tools.size() == 2) {
-		//choice stratregy ???
-	}
 	else {
 		//or save all and ask or error handling
 		saveTool(tools);
 		nextState = new RecipeLearningState();
-		nextState.setCurrentState(RecipeLearning.RL_ASK_TOOL_RIGHT);
+		nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_TOOL);
 		setCurrentDialogState(nextState);
 	}
 	
 }
 
+//only used if tools found as keywords
 private void saveTool(List<Keyword> tools) {
 	// TODO Auto-generated method stub
 	KeywordData foundToolKey = tools.get(0).getKeywordData();
@@ -320,30 +307,29 @@ private void saveTool(List<Keyword> tools) {
 		addWord(foundTool.getToolName(), 0, new RecipeAssistanceState(RecipeAssistance.RA_TELL_TOOL_FOUND), foundTool, KeywordType.TOOL);
 	}
 	toolsList.add(new Tool(foundTool));
-	
-	
 }
 
 private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 	RecipeLearningState nextState;
 	List<Keyword> countries = keywordsFromType(KeywordType.COUNTRY, keywords);
 	if (countries.size() == 0) {
-		if (terms.size() ==  1) {
+		if (terms.size() >  0) {
 			ArrayList<DialogState> states = new ArrayList<DialogState>();
 			states.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_COUNTRY_OF_ORIGIN));
 			ArrayList<Data> refs = new ArrayList<Data>();
 			refs.add(recipe.getRecipeData());
-			KeywordData newCountry = new KeywordData(terms.get(0), states, 5, refs, KeywordType.COUNTRY);
+			KeywordData newCountry = new KeywordData(terms.get(terms.size() - 1), states, 5, refs, KeywordType.COUNTRY);
 			newCountry.writeFile();
-			DialogManager.giveDialogManager().getDictionary().addKeyword(terms.get(0), 5, states, refs, KeywordType.COUNTRY);
-			countryOfOrigin = terms.get(0);
+			DialogManager.giveDialogManager().getDictionary().addKeyword(terms.get(terms.size() - 1), 5, states, refs, KeywordType.COUNTRY);
+			countryOfOrigin = terms.get(terms.size() - 1);
 			keywords.add(new Keyword(newCountry));
 		}
+		//theoretically never happens
 		else {
 			DialogManager.giveDialogManager().setInErrorState(true);
 		}
 	}
-	else if (countries.size() == 1) {
+	else if(countries.size() == 1) {
 		countryOfOrigin = countries.get(0).getWord();
 		countries.get(0).getKeywordData().getDataReference().add(recipe.getRecipeData());
 		countries.get(0).getKeywordData().writeFile();
@@ -352,12 +338,13 @@ private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 		countryOfOrigin = countries.get(0).getWord();
 		countries.get(0).getKeywordData().getDataReference().add(recipe.getRecipeData());
 		countries.get(0).getKeywordData().writeFile();
+		
 	}
 	nextState = new RecipeLearningState(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
 	setCurrentDialogState(nextState);
 }
 /**
- * Decide weather the ingredient chosen by the state before is correct. If yes save
+ * Decide whether the ingredient chosen by the state before is correct. If yes save
  * it as a keyword in the future and add it to the database.
  * @param keywords 
  * @param terms
@@ -405,43 +392,35 @@ private void updateStateIngred(List<Keyword> keywords, List<String> terms) {
 	}
 	
 	if (ingredients.isEmpty()) {
-		if (terms.isEmpty()) {
-			DialogManager.giveDialogManager().setInErrorState(true); //no keys or terms
-		}
-		else if (terms.size() == 1) {
+		if (terms.size() > 0) {
 			IngredientData newIngred = new IngredientData(terms.get(0).toString(), "");
 			ingredientsList.add(new Ingredient(newIngred));
 			nextState = new RecipeLearningState();
-			nextState.setCurrentState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
-			setCurrentDialogState(nextState);
+				nextState.setCurrentState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
+				setCurrentDialogState(nextState);
 		}
+		//theretically never happens
 		else {
 			DialogManager.giveDialogManager().setInErrorState(true);
-			// too many terms
-		}
-		
+		}	
 	}
 	else if (ingredients.size() == 1) {
 		saveIngred(ingredients);
 		nextState = new RecipeLearningState();
 		nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_INGREDIENT);
 		setCurrentDialogState(nextState);
-		
-	}
-	else if (ingredients.size() == 2) {
-		//choice stratregy ???
 	}
 	else {
 		//or save all and ask or error handling
 		saveIngred(ingredients);
 		nextState = new RecipeLearningState();
-		nextState.setCurrentState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
+		nextState.setCurrentState(RecipeLearning.RL_ASK_NEXT_INGREDIENT);
 		setCurrentDialogState(nextState);
 	}
 }
 
 /**
- * Takes the first ingredient from the list of keyword that 
+ * Takes the first ingredient from the given list of keywords
  * @param ingredients
  */
 private void saveIngred(List<Keyword> ingredients) {
@@ -474,16 +453,14 @@ private void addWord(String name, int priority,
 
 private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 	RecipeLearningState nextState;
-	//can a recipe name be in keywords ???
-	if (terms.isEmpty()) {
-		DialogManager.giveDialogManager().setInErrorState(true); //no recipe name found
-	}
-	else if (terms.size() == 1) {
+	//TODO recipe already exists
+	if (terms.size() > 0) {
 		recipeName = terms.get(0);
 		nextState = new RecipeLearningState();
 		nextState.setCurrentState(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
 		setCurrentDialogState(nextState);
 	}
+	//theoretically never happens
 	else {
 		//TODO how to extract it from more than one word, keywords vergleich?
 		DialogManager.giveDialogManager().setInErrorState(true);
