@@ -342,6 +342,9 @@ public class OutputCreator {
 		case "class dm.KitchenAssistance":
 			dialogStateClass = "dm.KitchenAssistanceState";
 			break;
+		case "class dm.ErrorHandling":
+			dialogStateClass = "dm.ErrorHandlingState";
+			break;
 		}
 		return dialogStateClass;
   	}
