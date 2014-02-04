@@ -180,7 +180,7 @@ private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 		DialogManager.giveDialogManager().setInErrorState(true); //no recipe step found
 	}
 	else if (terms.size() == 1) {
-		recipeSteps[numOfSteps] = new RecipeStep(terms.get(0));
+		recipeSteps[numOfSteps] = new RecipeStep(terms.get(terms.size() - 1));
 		numOfSteps++;
 		nextState = new DialogState();
 		nextState.setCurrentState(RecipeLearning.RL_EXIT);
@@ -211,7 +211,7 @@ private void updateStateStep(List<Keyword> keywords, List<String> terms) {
 		DialogManager.giveDialogManager().setInErrorState(true); //no recipe step found
 	}
 	else if (terms.size() == 1) {
-		recipeSteps[numOfSteps] = new RecipeStep(terms.get(0));
+		recipeSteps[numOfSteps] = new RecipeStep(terms.get(terms.size() - 1));
 		numOfSteps++;
 		nextState = new DialogState();
 		if (numOfSteps == 19) {
