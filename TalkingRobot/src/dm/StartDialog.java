@@ -68,6 +68,10 @@ public class StartDialog extends Dialog {
 	 * @return if the jump was completed
 	 */
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
+		if (((Start)getCurrentDialogState().getCurrentState()).equals(Start.S_ENTRY)) {
+			getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
+			return true;
+		}
 		if (keywords == null || keywords.isEmpty()) {
 			return false;
 		}
