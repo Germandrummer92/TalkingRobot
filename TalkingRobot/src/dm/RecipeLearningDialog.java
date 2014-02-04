@@ -408,7 +408,7 @@ private void updateStateIngred(List<Keyword> keywords, List<String> terms) {
 			DialogManager.giveDialogManager().setInErrorState(true); //no keys or terms
 		}
 		else if (terms.size() == 1) {
-			IngredientData newIngred = new IngredientData(ingredients.get(0).toString(), "");
+			IngredientData newIngred = new IngredientData(terms.get(0).toString(), "");
 			ingredientsList.add(new Ingredient(newIngred));
 			nextState = new DialogState();
 			nextState.setCurrentState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
