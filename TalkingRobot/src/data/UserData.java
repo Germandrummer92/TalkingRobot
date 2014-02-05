@@ -112,6 +112,21 @@ public class UserData implements Data {
 	}
 	
 	/**
+	 * Add an accepted suggestion to this user (Maintaining User History). Stores up to 10 suggestions,
+	 * and newest suggestion is at the first position.
+	 * @param mealDate
+	 */
+	public void addAcceptedSuggestion(MealDatePair mealDate) {
+		if (acceptedSuggestions.size() < 10) {
+			this.acceptedSuggestions.add(0, mealDate);
+		}
+		else {
+			acceptedSuggestions.remove(9);
+			this.acceptedSuggestions.add(0, mealDate);
+		}
+	}
+	
+	/**
 	 * @return the next unique ID
 	 */
 	private int nextID() {
