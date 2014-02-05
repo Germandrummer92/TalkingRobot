@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import data.CanteenData;
 import data.CanteenNames;
+import data.LineData;
 import data.MealData;
 
 
@@ -51,6 +52,12 @@ public class CanteenInformationState extends DialogState {
 	  case "CI_ENTRY":
           setQuestion(false);
           return null;
+	  case "CI_ADEN_TELL_ALL_MEALS" :
+		  //TODO
+		  setQuestion(false);
+		  String out = "{" + getAllMealsName( ((CanteenDialog) currentDialog).getCurrentCanteen()
+				  .getCanteenData()) + "}";
+		  return out;
 	  case "CI_ADEN_LINE_1_PRICE":
 		  setQuestion(false);
 		  ArrayList<MealData> l1meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
@@ -141,6 +148,13 @@ public class CanteenInformationState extends DialogState {
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
 	  
+	  case "CI_MOLTKE_TELL_ALL_MEALS" :
+		  //TODO
+		  setQuestion(false);
+		  String out1 = "{" + getAllMealsName( ((CanteenDialog) currentDialog).getCurrentCanteen()
+				  .getCanteenData()) + "}";
+		  return out1;
+		  
 	  case "CI_MOLTKE_CHOICE_1_PRICE":
 		  
 		  setQuestion(false);
@@ -370,8 +384,37 @@ public class CanteenInformationState extends DialogState {
 	  }
   
   }
-  
- private String packMeals(ArrayList<MealData> meals) {
+ 
+  /**
+   * Get the names of all line in a canteen
+   * @param canteenData
+   * @return a string with all the meals name
+   */
+ private String getAllMealsName(CanteenData canteenData) {
+	String meals = "{";
+	try {
+		for( LineData ld : canteenData.getLines()) {
+			for( MealData md : ld.getTodayMeals()) {
+				if(( ld.getLineID() == (canteenData.getLines().size() - 1)) 
+						&& ( md.getMealID() == (ld.getTodayMeals().size() - 1))) {
+					meals = meals + " and " + md.getMealName() + " at " + ld.getLineName();
+				}
+				meals = meals + md.getMealName() + " at " + ld.getLineName() + ";";
+			}
+		}
+		meals = meals + "}";
+	} catch (NullPointerException e) {
+		e.printStackTrace();
+	}
+	return meals;
+}
+
+ /**
+  * Get the meals of a line 
+  * @param meals a list of MealData of this line
+  * @return a string with all meal names of a line
+  */
+private String packMeals(ArrayList<MealData> meals) {
 	String s = "<";
 	for(int i = 0; i < meals.size(); i++) {
 		if( i > 0 ) {

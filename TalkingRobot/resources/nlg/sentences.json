@@ -340,6 +340,9 @@
 			]
 	},
 	"dm.CanteenInformationState" : {
+			"CI_ADEN_TELL_ALL_MEALS" : [
+				"In canteen Addenaurring there's {c}"
+			],
 			"CI_ADEN_CAFE_DISH" : [
 				"In cafeteria there's <o> {c}",
 				"You can find <o> {c} there",
@@ -435,6 +438,9 @@
 			],
 			"CI_EXIT" : [
 				"Have a good meal"
+			],
+			"CI_MOLTKE_TELL_ALL_MEALS" : [
+				"In Canteen Moltke there's {c}"
 			],
 			"CI_MOLTKE_ACTTHEK_DISH" : [
 				"At action counter there's <o> {c}",

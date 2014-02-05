@@ -17,7 +17,7 @@ import data.MealDatePair;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 1.2
+ * @version 1.5
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	// TODO wishDate is not today
@@ -30,7 +30,7 @@ public class CanteenInformationDialog extends CanteenDialog {
 	
 /**
 	 * @param session
-	 * @dialogState
+	 * @dialogState current Dialogstate
 	 * @param currentCanteen
 	 */
 	public CanteenInformationDialog(Session session, DialogState dialogState, Canteen currentCanteen) {
@@ -102,6 +102,14 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case CI_ENTRY:
 		updateStateEntry(keywords, terms, inAden);
 		break;
+	case CI_ADEN_TELL_ALL_MEALS:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+		
+	case CI_MOLTKE_TELL_ALL_MEALS:
+		generalUpdate(keywords, terms, approval, inAden);
+		break;
+		
 	case CI_ADEN_LINE_1_PRICE:
 		generalUpdate(keywords, terms, approval, inAden);
 		break;
@@ -329,22 +337,17 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, boolean inAden) {
 	CanteenInfo next = CanteenInfo.CI_ENTRY;
 	boolean askPrice = false;
-	// assume that line[name] is given in keywords, meals' name in terms
-	// if user ask price, then price will be in terms
 	
 	
-    //	boolean askMeal = false;
-	//List<MealData> possibleMeals = new ArrayList<MealDatePair>();
-	//List<CanteenInfo> possibleChoices = new ArrayList<CanteenInfo>();
 	/* find out first what the user wants to know */
-	if( terms != null) {
+	
 		for( Keyword toDo : keywords ) {
 			if( toDo.getWord().equals("price")) {
 				askPrice = true;
 				break;
 			}
 		}
-	}
+	
 	
 	
 	int index = -1;
@@ -393,6 +396,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 			}
 		}
 		else { // the user is asking meals in lines
+			
 			for( Keyword line : keywords) {
 				if( line.getWord().contains("line")) { // we found a line keyword
 					// ArrayList<DialogState> refs = line.getReference();
@@ -413,9 +417,17 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	                  	   	}
 	                  }
 
+				} else { // the user ask the meals in whole canteen
+					if(inAden) {
+						return CanteenInfo.CI_ADEN_TELL_ALL_MEALS;
+					}else {
+						return CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS;
+					}
 				}
 			}
 		}
+	
+	
 	if (index == -1 && (askPrice)) { // when we are here, then it's nothing matched
 		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	}

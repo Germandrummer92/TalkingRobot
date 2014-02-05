@@ -2,6 +2,8 @@ package dm;
 public enum CanteenInfo {
 	
   CI_ENTRY,
+  
+  CI_ADEN_TELL_ALL_MEALS,
 
   CI_ADEN_LINE_1_PRICE,
 
@@ -38,7 +40,9 @@ public enum CanteenInfo {
   CI_ADEN_CURRYQ_DISH,
   
   CI_ADEN_CAFE_DISH,
-
+  
+  CI_MOLTKE_TELL_ALL_MEALS,
+	  
   CI_MOLTKE_CHOICE_1_PRICE,
 
   CI_MOLTKE_CHOICE_1_DISH,
