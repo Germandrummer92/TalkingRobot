@@ -35,6 +35,8 @@ public class CanteenInformationDialog extends CanteenDialog {
 	 */
 	public CanteenInformationDialog(Session session, DialogState dialogState, Canteen currentCanteen) {
 		super(session, dialogState, currentCanteen);
+		//dialogState.setCurrentState(getDialogModus());
+	//	super(session, new CanteenInformationState(), currentCanteen);
 		this.dialogModus = DialogModus.CANTEEN_INFORMATION;
 		this.wishDate = "";
 		this.wishMeal = "";

@@ -13,19 +13,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import dm.CanteenInformationState;
-import dm.CanteenRecommendationState;
-import dm.DialogManager;
-import dm.DialogState;
-import dm.KitchenAssistanceState;
-import dm.RecipeAssistanceState;
-import dm.RecipeLearningState;
-import dm.StartState;
+import data.*;
+import dm.*;
 
 /**
  * This class represents a creator of output 
  * @author Luiz Henrique Soares Silva, Xizhe Lian
- * @version 1.0
+ * @version 1.2
  */
 public class OutputCreator {
 	
@@ -280,25 +274,24 @@ public class OutputCreator {
 	  		}
 	  		
 	  		for(int i = 0; i < keywordPhrases.length; i++) {
-	  			String[] keywords = keywordPhrases[i].split(" ");
-	  			for (int j = 0; j < keywords.length; j++){
-		  			if(keywords[j].contains("<") && keywords[j].contains(">")) {
-		  				obj = keywords[j].substring(1, keywords[j].length() - 2);
+	  		//	String[] keywords = keywordPhrases[i].split(" ");
+	  			//for (int j = 0; j < keywords.length; j++){
+		  			if(keywordPhrases[i].contains("<") && keywordPhrases[i].contains(">")) {
+		  				obj = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
 		  			}
-		  			if(keywords[j].contains("{") && keywords[j].contains("}")) {
-		  				compl = keywords[j].substring(1, keywords[j].length() - 2);
+		  			if(keywordPhrases[i].contains("{") && keywordPhrases[i].contains("}")) {
+		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
 		  			}
 	  			}
 	  			
-	  		}
-	  		
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			if(sentences[i].contains(evaluationObj)) {
 	  				sentences[i].replace(evaluationObj, obj);
 	  			}
 	  			if(sentences[i].contains(evaluationCompl)) {
 	  				sentences[i].replace(evaluationCompl, compl);
-	  			}	  
+	  			}	
+	  			
 	  			sentences[i] = sentences[i] + ". "; // blank between 2 sentences
 	  		}
 	  		
@@ -339,10 +332,18 @@ public class OutputCreator {
 		return dialogStateClass;
   	}
   	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
-  	
-  /*public static void main (String args[]) {
+  /*	
+  public static void main (String args[]) {
 	  	OutputCreator creator = new OutputCreator();
-	  	StartState startState = new StartState();
-	  	System.out.println(creator.createOutput(startState));
+	  	//StartState startState = new StartState();
+	  	User user = new User();
+	  	Robot r = new Robot("L", false);
+		Session s = new Session(user, r);
+		CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 0);
+		Canteen c = new Canteen(cd);
+	  	CanteenInformationState ci = new CanteenInformationState();
+	  	Dialog cdia = new CanteenInformationDialog(s, ci, c);
+	  	ci.setCurrentState(CanteenInfo.CI_ADEN_TELL_ALL_MEALS);
+	  	System.out.println(creator.createOutput(ci));
   	}*/
 }
