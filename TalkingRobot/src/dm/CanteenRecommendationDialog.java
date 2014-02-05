@@ -153,10 +153,10 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			ArrayList<Canteen> canteens = new ArrayList<Canteen>();
 			canteens.add(new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift)));
 			canteens.add(new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift)));
-			canteens.add(new Canteen(new CanteenData(CanteenNames.HOLZGARTEN, dateShift)));
-			canteens.add(new Canteen(new CanteenData(CanteenNames.GOTTESAUE, dateShift)));
-			canteens.add(new Canteen(new CanteenData(CanteenNames.TIEFENBRONNER, dateShift)));
-			canteens.add(new Canteen(new CanteenData(CanteenNames.ERZBERGER, dateShift)));
+//			canteens.add(new Canteen(new CanteenData(CanteenNames.HOLZGARTEN, dateShift)));
+//			canteens.add(new Canteen(new CanteenData(CanteenNames.GOTTESAUE, dateShift)));
+//			canteens.add(new Canteen(new CanteenData(CanteenNames.TIEFENBRONNER, dateShift)));
+//			canteens.add(new Canteen(new CanteenData(CanteenNames.ERZBERGER, dateShift)));
 			
 			//Find meals based on what the user said he wants, and on the canteen information
 			ArrayList<OneMealData> matchedMeals = findMatchedMeals(canteens);
@@ -343,27 +343,30 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		}
 	}
 	
-//	public static void main(String[] args) throws WrongStateClassException {
-//		ArrayList<String> keywords = new ArrayList<String>();
-//		ArrayList<String> terms = new ArrayList<String>();
-//		ArrayList<String> approval = new ArrayList<String>();
-//		
-////		Keyword fish = new Keyword(new K));
-////		Keyword date = new Keyword(new KeywordData("today"));
-//		keywords.add("fish");
-//		keywords.add("today");
-//		
-//		User user = new User();
-//		session;
-//		Session s = new Session(user, null);
-//		Canteen c = new Canteen(null);
-//		CanteenRecommendationState cstate = new CanteenRecommendationState();
-//		cstate.setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
-//		CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
-//		dialog.updateStateAskPreference(keywords, terms, approval);
-//		
-//		
-//		System.out.println(dialog.getWishMeal().getMealData().getMealName());
-//	}
+	public static void main(String[] args) throws WrongStateClassException {
+		ArrayList<Keyword> keywords = new ArrayList<Keyword>();
+		ArrayList<String> terms = new ArrayList<String>();
+		ArrayList<String> approval = new ArrayList<String>();
+		
+//		Keyword fish = new Keyword(new K));
+//		Keyword date = new Keyword(new KeywordData("today"));
+		keywords.add(new Keyword("cow", null, 0, null, null));
+		keywords.add(new Keyword("today", null, 0, null, null));
+		
+		User user = new User();
+		Robot robot = new Robot("Teddy", true);
+		Session s = new Session(user, robot);
+		Canteen c = new Canteen(null);
+		CanteenRecommendationState cstate = new CanteenRecommendationState();
+		cstate.setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
+		CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
+		dialog.updateStateAskPreference(keywords, terms, approval);
+		
+		String result = "No meal found!";
+		if (dialog.getWishmeal() != null) {
+			result = dialog.getWishMeal().getMealData().getMealName();
+		}
+		System.out.println(result);
+	}
 
 }
