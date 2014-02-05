@@ -12,6 +12,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Bettina Weller
+ * @version 1.0
+ * This class tests the class KeywordAnalyzer.
+ *
+ */
 public class KeywordAnalyzerTest {
 	private KeywordAnalyzer keyword;
 	

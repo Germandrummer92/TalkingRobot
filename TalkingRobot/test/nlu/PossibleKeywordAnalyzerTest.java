@@ -1,6 +1,6 @@
 package nlu;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Bettina Weller
+ * @version 1.0
+ * This class tests the class PossibleKeywordAnalyzer.
+ *
+ */
 public class PossibleKeywordAnalyzerTest {
 	private PossibleKeywordAnalyzer possibleKw;
 	
@@ -41,10 +48,8 @@ public class PossibleKeywordAnalyzerTest {
 		setInput("I want to go to the cantean");
 		List<String> result = possibleKw.analyze("I want to go to the cantean");
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("cantean");
-		compare.add("canteen");
-		compare.add("1");
-		assertEquals(compare, result);
+		compare.add("cantean;canteen;1");
+		assertTrue(result.containsAll(compare));
 	}
 	
 	/**
@@ -55,10 +60,8 @@ public class PossibleKeywordAnalyzerTest {
 		setInput("that is al");
 		List<String> result = possibleKw.analyze("that is al");
 		List <String> compare = new LinkedList<String>();
-		compare.add("that is al");
-		compare.add("that is all");
-		compare.add("1");
-		assertEquals(compare, result);
+		compare.add("that is all;that is al;1");
+		assertTrue(result.containsAll(compare));
 	}
 	
 	@After

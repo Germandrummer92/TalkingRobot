@@ -11,6 +11,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Bettina Weller
+ * @version 1.0
+ * This class tests the class NLUPhase.
+ *
+ */
 public class NLUPhaseTest {
 	private NLUPhase nluPhase;
 	private Main main;

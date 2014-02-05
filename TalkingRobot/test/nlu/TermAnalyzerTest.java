@@ -50,6 +50,7 @@ public class TermAnalyzerTest {
 		List <String> compare = new LinkedList<String>();
 		compare.add("toast");
 		compare.add("salad");
+		compare.add("for sandwiches you need toast and salad");
 		assertEquals(compare, result);
 	}
 	
@@ -63,6 +64,7 @@ public class TermAnalyzerTest {
 		List <String> compare = new LinkedList<String>();
 		compare.add("toast");
 		compare.add("salad");
+		compare.add("you need toast and salad for sandwiches");
 		assertEquals(compare, result);
 	}
 	
@@ -76,6 +78,7 @@ public class TermAnalyzerTest {
 		List <String> result = term.analyze("salad is needed for sandwiches");
 		List <String> compare = new LinkedList<String>();
 		compare.add("salad");
+		compare.add("salad is needed for sandwiches");
 		assertEquals(compare, result);
 	}
 	
@@ -87,6 +90,7 @@ public class TermAnalyzerTest {
 		setInput("salad");
 		List <String> result = term.analyze("salad");
 		List <String> compare = new LinkedList<String>();
+		compare.add("salad");
 		compare.add("salad");
 		assertEquals(compare, result);
 	}
@@ -100,6 +104,7 @@ public class TermAnalyzerTest {
 		List <String> result = term.analyze("for spaghetti bolognese tomatoes are needed");
 		List <String> compare = new LinkedList<String>();
 		compare.add("tomatoes");
+		compare.add("for spaghetti bolognese tomatoes are needed");
 		assertEquals(compare, result);
 	}
 	
@@ -113,6 +118,7 @@ public class TermAnalyzerTest {
 		List <String> result = term.analyze("my very pretty name is nicole");
 		List <String> compare = new LinkedList<String>();
 		compare.add("nicole");
+		compare.add("my very pretty name is nicole");
 		assertEquals(compare, result);
 	}
 	
@@ -125,6 +131,7 @@ public class TermAnalyzerTest {
 		List <String> result = term.analyze("the recipe name is pasta");
 		List <String> compare = new LinkedList<String>();
 		compare.add("pasta");
+		compare.add("the recipe name is pasta");
 		assertEquals(compare, result);
 	}
 	
@@ -137,6 +144,7 @@ public class TermAnalyzerTest {
 		List <String> result = term.analyze("the recipe is called pasta");
 		List <String> compare = new LinkedList<String>();
 		compare.add("pasta");
+		compare.add("the recipe is called pasta");
 		assertEquals(compare, result);
 	}
 	
