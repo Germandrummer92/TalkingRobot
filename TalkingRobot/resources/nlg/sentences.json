@@ -206,7 +206,7 @@
 	},
 	"dm.CanteenRecommendationState" : {
 			"CR_ASK_PREFERENCE" :[
-				"Do you have some thing particularly want to have? ",
+				"What would you like to have? ",
 				"What do you prefer to have?"
 				
 			],
