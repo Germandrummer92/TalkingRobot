@@ -270,6 +270,12 @@ THIS
 	([Ingredient])
 	([Tool])
 	([Places])
+	([_set_the_table])
+;
+
+[_set_the_table]
+	(set the table)
+	(lay the table)
 ;
 	
 [Places]

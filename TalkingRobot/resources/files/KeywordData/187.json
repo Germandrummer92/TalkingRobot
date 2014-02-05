@@ -1,1 +1,1 @@
-{"wordID":187,"word":"AB","dialogState":[{"currentState":{"name":"S_USER_FOUND"}}],"priority":10,"dataReference":[{"userID":6,"userName":"AB","isStudent":false,"requestedRecipes":[],"acceptedSuggestions":[],"lastAccess":"Feb 2, 2014 9:40:00 PM"}],"type":"USER"}
+{"wordID":187,"word":"set the table","dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":10,"dataReference":[],"type":"DEFAULT"}
