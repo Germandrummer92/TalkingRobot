@@ -47,6 +47,7 @@ public class OutputCreator {
 			return eOut;
 		}
 
+		//FIXME here dialgoState.getOutputKeyword() is always null!!!!!!
 		if (dialogState.getOutputKeyword() != null) {
 			output = addKeyword(temp, dialogState.getOutputKeyword());
 		} else {
@@ -260,7 +261,7 @@ public class OutputCreator {
   		//String evaluationTime = "{time}";
   		
   		//String[] tokens = sentences.split(" "); 
-  		if(keyword != null) {
+  	//	if(keyword != null) {
   		    
 	  		String[] sentences = null;
 	  		String[] keywordPhrases = keyword.split(","); 
@@ -298,7 +299,7 @@ public class OutputCreator {
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			answer = answer + sentences[i];
 	  		}
-  		} else {answer = text;} // don't need to add keywords
+  	//	} else {answer = text;} // don't need to add keywords
   		
   		
   		return answer;
