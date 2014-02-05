@@ -29,13 +29,6 @@ import dm.StartState;
  */
 public class OutputCreator {
 	
-	//TODO Still to be decided if following attributes will be needed.
-	//private List<Generator> generators;
-
-	//private List<Phrase> outputPhrases;
-
-	//private SocialComponent socialComponent;
-	
 	public OutputCreator() {
 	}
   
@@ -46,8 +39,6 @@ public class OutputCreator {
 	 * @return output as String
 	 */
 	public String createOutput(DialogState dialogState) {
-		//generators = new ArrayList<Generator>();
-		//outputPhrases = new ArrayList<Phrase>();
 		//get the dialog state class, old implementation gave out just the abstract name dm.dialogState
 		String output = "";
 
@@ -300,7 +291,6 @@ public class OutputCreator {
 	  			}
 	  			
 	  		}
-	  		
 	  		
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			if(sentences[i].contains(evaluationObj)) {
