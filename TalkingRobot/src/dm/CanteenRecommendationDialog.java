@@ -1,6 +1,9 @@
 package dm;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -11,6 +14,7 @@ import data.CanteenNames;
 import data.LineData;
 import data.MealCategoryData;
 import data.MealData;
+import data.MealDatePair;
 
 /**
  * This class represents a dialog about canteen recommendation
@@ -23,7 +27,6 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	
 	/** A structure with temporary information of a specific meal. */
 	private OneMealData wishMeal;
-	//private String wishDate;
 	
 	/**
 	 * @param session
@@ -43,7 +46,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	
 	public void setWishmealCategory(String wishmealCategory) {
 		this.wishmealCategory = wishmealCategory;
-}
+	}
 
 	public void setWishMeal(OneMealData wishMeal) {
 		this.wishMeal = wishMeal;
@@ -52,95 +55,32 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	public OneMealData getWishMeal() {
 		return this.wishMeal;
 	}
-/*
-public String getWishDate() {
-	return wishDate;
-}*/
-/*
-public void setWishDate(String wishDate) {
-		this.wishDate = wishDate;
-}*/
 
-@Override
-public void updateState(List<Keyword> keywords, List<String> terms,
-		List<String> approval) throws WrongStateClassException {
-
-	if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
-		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
-	}
+	@Override
+	public void updateState(List<Keyword> keywords, List<String> terms,
+			List<String> approval) throws WrongStateClassException {
 	
-	switch ((CanteenRecom)getCurrentDialogState().getCurrentState()) {
-		case CR_ENTRY:
-			updateStateEntry(keywords, terms, approval);
-			break;
-		case CR_ASK_PREFERENCE:
-			updateStateAskPreference(keywords, terms, approval);
-			break;
-		/*case CR_ADEN_LINE_1_DISH:
-			updateAdenLine1Dish(keywords, terms, approval);
-			break;
-		case CR_ADEN_LINE_2_DISH:
-			updateAdenLine2Dish(keywords, terms, approval);
-			break;
-		case CR_ADEN_LINE_3_DISH:
-			updateAdenLine3Dish(keywords, terms, approval); 
-			break;
-		case CR_ADEN_LINE_45_DISH:
-			updateAdenLine45Dish(keywords, terms, approval);
-			break;
-		case CR_ADEN_LINE_6_DISH:
-			updateAdenLine6Dish(keywords, terms, approval);
-			break;
-		case CR_ADEN_SCHNITBAR_DISH:
-			updateAdenSchnitbarDish(keywords, terms, approval);
-			break;
-		case CR_ADEN_CURRYQ_DISH:
-			updateAdenCurryqDish(keywords, terms, approval);
-			break;
-		case CR_ADEN_CAFE_DISH:
-			updateAdenCafeDish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_CHOICE_1_DISH:
-			updateMoltkeChoice1Dish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_CHOICE_2_DISH:
-			updateMoltkeChoice2Dish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_SCHNITBAR_DISH:
-			updateMoltkeSchnitbarDish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_CAFE_DISH:
-			updateMoltkeCafeDish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_GG_DISH:
-			updateMoltkeGGDish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_ACTTHEK_DISH:
-			updateMoltkeActthekDish(keywords, terms, approval);
-			break;
-		case CR_MOLTKE_BUFFET_DISH:
-			updateMoltkeBuffetDish(keywords, terms, approval);
-			break;
-			 */
-		case CR_TELL_MEAL_NOT_EXIST:
-			updateMealNotExist(keywords, terms, approval);
-			break;
-		case CR_EXIT:
-			updateStatExit(keywords, terms, approval);
-			break;
-		default:
-			break;
+		if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
+			throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
+		}
+		
+		switch ((CanteenRecom)getCurrentDialogState().getCurrentState()) {
+			case CR_ENTRY:
+				updateStateEntry(keywords, terms, approval);
+				break;
+			case CR_ASK_PREFERENCE:
+				updateStateAskPreference(keywords, terms, approval);
+				break;
+			case CR_TELL_MEAL_NOT_EXIST:
+				updateMealNotExist(keywords, terms, approval);
+				break;
+			case CR_EXIT:
+				updateStatExit(keywords, terms, approval);
+				break;
+			default:
+				break;
 		}
 	}
-	
-	/*
-	public String getWishDate() {
-		return wishDate;
-	}*/
-	/*
-	public void setWishDate(String wishDate) {
-			this.wishDate = wishDate;
-	}*/
 
 	//NOT IN USE AT THE MOMENT.
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
@@ -204,12 +144,10 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 			} else {
 				dateShift = result;
 			}
-			
-			
+				
 			//The request type of food (MealCategory) is in keyword.
 			
 			this.setWishmealCategory(keywords.get(0).getWord());
-//			this.setWishmealCategory(keywords.get(0));
 			
 			//Need to search in data then decide what's next state
 			ArrayList<Canteen> canteens = new ArrayList<Canteen>();
@@ -230,7 +168,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 				return;
 			}
 			
-			//Now randomly (or based on User History) choose one Meal
+			//Now randomly choose one Meal (based on User History for later implementation?)
 			setWishMeal(chooseMeal(matchedMeals));
 			
 			
@@ -341,77 +279,22 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		return today.getDayOfWeek();
 	}
 	
-
-	private void updateMoltkeActthekDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		//Does nothing
-	}
-	
 	private void updateStatExit(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
+		if (!approval.isEmpty()) {
+			if (approval.get(0).equals("yes")) {
+				//Save user history
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+				Date date = new Date();
+				MealDatePair mealAndDate = new MealDatePair(date, wishMeal.getMealData());
+				this.getCurrentSession().getCurrentUser().getUserData().addAcceptedSuggestion(mealAndDate);
+			}
+		}
 	}
 	
 	private void updateMealNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
 		//Doesn't expect anything. Maybe that the user says something else?
 	}
 	
-	/*
-	private void updateMoltkeBuffetDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateMoltkeGGDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateMoltkeCafeDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateMoltkeSchnitbarDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateMoltkeChoice2Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateMoltkeChoice1Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenCafeDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenCurryqDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenSchnitbarDish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenLine6Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-
-	}
-	
-	private void updateAdenLine45Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenLine3Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenLine2Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-	}
-	
-	private void updateAdenLine1Dish(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		
-		
-	}
-	*/
 	/**
 	 * Will forward to next state (CR_ASK_PREFERENCE)
 	 * @param keywords
@@ -422,7 +305,12 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		if (keywords == null || keywords.isEmpty()) {
 			DialogManager.giveDialogManager().setInErrorState(true);
 		}
-		// TODO Check for User History!
+		
+		//If User has History
+		if (!this.getCurrentSession().getCurrentUser().getUserData().getAcceptedSuggestions().isEmpty()) {
+			//find based on User History
+		}
+		
 		getCurrentDialogState().setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
 	}
 	
