@@ -350,7 +350,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		
 //		Keyword fish = new Keyword(new K));
 //		Keyword date = new Keyword(new KeywordData("today"));
-		keywords.add(new Keyword("cow", null, 0, null, null));
+		keywords.add(new Keyword("pork", null, 0, null, null));
 		keywords.add(new Keyword("today", null, 0, null, null));
 		
 		User user = new User();

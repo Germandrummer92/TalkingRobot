@@ -59,8 +59,10 @@ public class OutputCreator {
 		Integer toAdd = socialRandom.nextInt(2);  // 0 for no, 1 for yes
 		
 		if(toAdd == 1) {
-			
-			output = addSocialComponent(dialogState, output);
+			String outputWithSocialComponent = addSocialComponent(dialogState, output);
+			if (outputWithSocialComponent != null) {
+				output = outputWithSocialComponent;
+			}
 		}
 		
 		return output;
