@@ -37,21 +37,24 @@ public class OutputCreator {
 		String output = "";
 
 		String dialogStateClass = getStateClassFromEnum(dialogState.getCurrentState());
-		String temp = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
 		
+		//tempSentence contains the sentence obtained directly from the json file, without replacements. It's a raw sentence.
+		String tempSentence = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
+		
+		//Add error keywords
 		if( DialogManager.giveDialogManager().isInErrorState()) {
-			String eOut = temp;
+			String eOut = tempSentence;
 			if( !dialogState.getOutputKeyword().isEmpty() ) {
-				eOut = addEKeywords(temp, dialogState.getOutputKeyword(), dialogState);
+				eOut = addEKeywords(tempSentence, dialogState.getOutputKeyword(), dialogState);
 			}
 			return eOut;
 		}
 
 		//FIXME here dialgoState.getOutputKeyword() is always null!!!!!!
 		if (dialogState.getOutputKeyword() != null) {
-			output = addKeyword(temp, dialogState.getOutputKeyword());
+			output = addKeyword(tempSentence, dialogState.getOutputKeyword());
 		} else {
-			output = temp;
+			output = tempSentence;
 		}
 			
 		// random decide whether to add a social component or not
@@ -85,56 +88,55 @@ public class OutputCreator {
 	  		//String evaObj3 = "<3>";
 	  		String evaluationCompl = "{c}";
 	  		    
-		  		String[] sentences = null;
-		  		String[] keywordPhrases = keywords.split(","); 
-		  		String[] objs = { "", "", "" };
-		  		String compl = "";
-		  		if(text.contains(".")) {
-		  			sentences = text.split(".");
-		  		} else {
-		  			sentences = new String[1]; // nothing to split
-		  			sentences[0] = text;
-		  		}
-		  		
-		  		for(int i = 0; i < keywordPhrases.length; i++) {
-		  			//String[] keywordArray = keywordPhrases[i].split(" ");
-		  			for (int j = 0; j < keywordPhrases.length; j++){
-			  			if( keywordPhrases[j].contains("<") && keywordPhrases[j].contains(">") ) {
-			  				objs[j] = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
-			  			}
-			  			if( keywordPhrases[j].contains("{") && keywordPhrases[j].contains("}")) {
-			  				compl = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
-			  				if(compl.contains("canteen")) {
-			  					compl = "Eating in canteen";
-			  				} 
-			  				
-			  				if(compl.contains("kitchen")) {
-			  					compl = "Self cooking";
-			  				}
-			  			}
+	  		String[] sentences = null;
+	  		String[] keywordPhrases = keywords.split(","); 
+	  		String[] objs = { "", "", "" };
+	  		String compl = "";
+	  		if(text.contains(".")) {
+	  			sentences = text.split(".");
+	  		} else {
+	  			sentences = new String[1]; // nothing to split
+	  			sentences[0] = text;
+	  		}
+	  		
+	  		for(int i = 0; i < keywordPhrases.length; i++) {
+	  			//String[] keywordArray = keywordPhrases[i].split(" ");
+	  			for (int j = 0; j < keywordPhrases.length; j++){
+		  			if( keywordPhrases[j].contains("<") && keywordPhrases[j].contains(">") ) {
+		  				objs[j] = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
 		  			}
-		  			
-		  		}
-		  		
-		  		
-		  		for(int i = 0; i < sentences.length; i++) {
-		  			for(int j = 0; j < objs.length; j++) {
-			  			if(sentences[i].contains(evaObjs[j])) {
-			  				sentences[i].replace(evaObjs[j], objs[j]);
-			  			}
+		  			if( keywordPhrases[j].contains("{") && keywordPhrases[j].contains("}")) {
+		  				compl = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
+		  				if(compl.contains("canteen")) {
+		  					compl = "Eating in canteen";
+		  				} 
+		  				
+		  				if(compl.contains("kitchen")) {
+		  					compl = "Self cooking";
+		  				}
 		  			}
-		  			if(sentences[i].contains(evaluationCompl)) {
-		  				sentences[i].replace(evaluationCompl, compl);
-		  			}	  
-		  			sentences[i] = sentences[i] + ". "; // blank between 2 sentences
-		  		}
+	  			}
+	  			
+	  		}
 		  		
-		  		for(int i = 0; i < sentences.length; i++) {
-		  			answer = answer + sentences[i];
-		  		}
-	  	
-		  		return answer;
-			
+	  		for(int i = 0; i < sentences.length; i++) {
+	  			for(int j = 0; j < objs.length; j++) {
+		  			if(sentences[i].contains(evaObjs[j])) {
+		  				sentences[i].replace(evaObjs[j], objs[j]);
+		  			}
+	  			}
+	  			if(sentences[i].contains(evaluationCompl)) {
+	  				sentences[i].replace(evaluationCompl, compl);
+	  			}	  
+	  			sentences[i] = sentences[i] + ". "; // blank between 2 sentences
+	  		}
+	  		
+	  		for(int i = 0; i < sentences.length; i++) {
+	  			answer = answer + sentences[i];
+	  		}
+  	
+	  		return answer;
+		
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -251,13 +253,13 @@ public class OutputCreator {
   	}
   	
   	/**
-  	 * Add keyword to sentences from template
+  	 * Add keyword to sentences from template. It replaces placeholder in the sentences, such as <o>.
   	 * @param text text from template
   	 * @param keyword keyword from dialogStates
   	 * @return a complete answer as string
   	 */
   	private String addKeyword(String text, String keyword){
-  		String answer = " ";
+  		String answer = "";
   		String evaluationObj = "<o>";
   		String evaluationCompl = "{c}";
   		//String evaluationTime = "{time}";
@@ -269,6 +271,8 @@ public class OutputCreator {
 	  		String[] keywordPhrases = keyword.split(","); 
 	  		String obj = "";
 	  		String compl = "";
+	  		
+	  		//Critical point! From now on, dots (".") should only be used to separate sentences!!
 	  		if(text.contains(".")) {
 	  			sentences = text.split(".");
 	  		} else {
