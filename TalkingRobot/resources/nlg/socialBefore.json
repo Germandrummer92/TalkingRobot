@@ -1,10 +1,10 @@
 {
     "dm.StartState" : {
     		"S_ENTRY": [
-				
+				""
 			],
 			"S_EXIT": [
-				
+				""
 			],
 			"S_USER_DOESNT_WANT_TO_BE_SAVED": [
 				"Oh well"
@@ -22,14 +22,14 @@
 				"I'm glad that I can help you"
 			],
 			"S_USER_WANTS_TO_BE_SAVED": [
-				
+				""
 			],
 			"S_WAITING_FOR_EMPLOYEE_STATUS": [
 				"I can't call you 'human' all the time, so",
 				"You know my name, so"
 			],
 			"S_WAITING_FOR_USERNAME": [
-				
+				""
 			]
 	},
 	"dm.RecipeAssistanceState" : {
@@ -48,31 +48,31 @@
 				"Wow, I haven't been there"
 			],
 			"RA_TELL_CREATOR" : [
-				
+				""
 			],
 			"RA_TELL_INGREDIENTS" : [
-				
+				""
 			],
 			"RA_TELL_INGREDIENT_FOUND" : [
-				
+				""
 			],
 			"RA_TELL_NUM_OF_STEPS" : [
-				
+				""
 			],
 			"RA_TELL_STEPS" : [
-				
+				""
 			],
 			"RA_TELL_TOOLS" : [
-				
+				""
 			],
 			"RA_TELL_TOOL_FOUND" : [
-				
+				""
 			],
 			"RA_TELL_TOOL_NOT_FOUND" : [
-				
+				""
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
-				
+				""
 			],
 			"RA_WAITING_FOR_RECIPE_NAME" : [
 				"Sorry",
@@ -90,46 +90,46 @@
 				"Bliblibli"
 			],
 			"RL_ASK_COUNTRY_OF_ORIGIN" : [
-				
+				""
 			],
 			"RL_ASK_FIRST_INGREDIENT" : [
-				
+				""
 			],
 			"RL_ASK_FIRST_STEP" : [
-				
+				""
 			],
 			"RL_ASK_FIRST_TOOL" : [
-				
+				""
 			],
 			"RL_ASK_LAST_STEP" : [
-				
+				""
 			],
 			"RL_ASK_NEXT_INGREDIENT" : [
-				
+				""
 			],
 			"RL_ASK_NEXT_STEP" : [
-				
+				""
 			],
 			"RL_ASK_NEXT_TOOL" : [
-				
+				""
 			],
 			"RL_ASK_RECIPE_NAME" : [
-				
+				""
 			],
 			"RL_ASK_STEP_RIGHT" : [
-				
+				""
 			],
 			"RL_ASK_TOOL_RIGHT" : [
-				
+				""
 			],
 			"RL_ASK_INGREDIENT_RIGHT" : [
-				
+				""
 			],
 			"RL_ENTRY" : [
-				
+				""
 			],
 			"RL_EXIT" : [
-				
+				""
 			]
 	},
 	"dm.KitchenAssistanceState" : {
@@ -138,7 +138,7 @@
 				""
 			],
 			"KA_EXIT" : [
-				
+				""
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
 				"Yay",
@@ -161,94 +161,94 @@
 	},
 	"dm.CanteenInformationState" : {
 			"CI_ADEN_CAFE_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_CAFE_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_CURRYQ_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_CURRYQ_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_1_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_1_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_2_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_2_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_3_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_3_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_45_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_45_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_6_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_LINE_6_PRICE" : [
-				
+				""
 			],
 			"CI_ADEN_SCHNITBAR_DISH" : [
-				
+				""
 			],
 			"CI_ADEN_SCHNITBAR_PRICE" : [
-				
+				""
 			],
 			"CI_ENTRY" : [
-				
+				""
 			],
 			"CI_EXIT" : [
-				
+				""
 			],
 			"CI_MOLTKE_ACTTHEK_DISH" : [
-				
+				""
 			],
 			"CI_MOLTKE_ACTTHEK_PRICE" : [
-				
+				""
 			],
 			"CI_MOLTKE_BUFFET_DISH" : [
-				
+				""
 			],
 			"CI_MOLTKE_BUFFET_PRICE" : [
-				
+				""
 			],
 			"CI_MOLTKE_CHOICE_1_DISH" : [
-				
+				""
 			],
 			"CI_MOLTKE_CHOICE_1_PRICE" : [
-
+				""
 			],
 			"CI_MOLTKE_CHOICE_2_DISH" : [
-				
+				""
 			],
 			"CI_MOLTKE_CHOICE_2_PRICE" : [
-				
+				""
 			],
 			"CI_MOLTKE_GG_DISH" : [
-				
+				""
 			],
 			"CI_MOLTKE_GG_PRICE" : [
-				
+				""
 			],
 			"CI_MOLTKE_SCHNITBAR_DISH" : [
-				
+				""
 			],
 			"CI_MOLTKE_SCHNITBAR_PRICE" : [
-				
+				""
 			],
 			"CI_TELL_LINE_NOT_EXIST" : [
 				"Sorry",
@@ -263,26 +263,26 @@
 	},
 	"dm.CanteenRecommendationState" : {
 			"CR_ASK_PREFERENCE" : [
-				
+				""
 			],
 			"CR_ADEN_CAFE_DISH" : [
 				"If you want something quick and light",
 				"If you don't have big hunger"
 			],
 			"CR_ADEN_CURRYQ_DISH" : [
-				
+				""
 			],
 			"CR_ADEN_LINE_1_DISH" : [
-				
+				""
 			],
 			"CR_ADEN_LINE_2_DISH" : [
-				
+				""
 			],
 			"CR_ADEN_LINE_3_DISH" : [
-				
+				""
 			],
 			"CR_ADEN_LINE_45_DISH" : [
-				
+				""
 			],
 			"CR_ADEN_LINE_6_DISH" : [
 				"If you want to spend some money",
@@ -297,7 +297,7 @@
 				"I can hear your stomach drumming"
 			],
 			"CR_EXIT" : [
-				
+				""
 			],
 			"CR_MOLTKE_BUFFET_DISH" : [
 				"If you want to pick it yourself",
@@ -308,16 +308,16 @@
 				"If you don't have big hunger"
 			],
 			"CR_MOLTKE_CHOICE_1_DISH" : [
-				
+				""
 			],
 			"CR_MOLTKE_CHOICE_2_DISH" : [
-				
+				""
 			],
 			"CR_MOLTKE_GG_DISH" : [
-				
+				""
 			],
 			"CR_MOLTKE_SCHNITBAR_DISH" : [
-				
+				""
 			],
 			"CR_TELL_MEAL_NOT_EXIST" : [
 				"Sorry",
@@ -332,37 +332,37 @@
 	},
 	"dm.ErrorHandlingState" : {
 			"REPEAT" : [
-				
+				""
 			],
 			"REPHRASE" : [
-				
+				""
 			],
 			"RESTART_START" : [
-				
+				""
 			],
 			"RESTART_CI" : [
-				
+				""
 			],
 			"RESTART_CR" : [
-				
+				""
 			],
 			"RESTART_KA" : [
-				
+				""
 			],
 			"RESTART_RA" : [
-				
+				""
 			],
 			"RESTART_RL" : [
-				
+				""
 			],
 			"EXPLICIT_VERIFICATION" : [
-				
+				""
 			],
 			"INDIRECT_VERIFICATION" : [
-				
+				""
 			],
 			"CHOICE" : [
-				
+				""
 			]
 	}
 }
