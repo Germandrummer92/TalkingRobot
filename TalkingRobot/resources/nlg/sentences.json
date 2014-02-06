@@ -129,7 +129,7 @@
 	"dm.RecipeLearningState" : {
 	
 			"RL_ASK_INGREDIENT_RIGHT" : [
-			"Are you sure about this ingrdient",
+			"Are you sure about this ingredient",
 			],
 			"RL_ASK_COUNTRY_OF_ORIGIN" : [
 				"from what country does this recipe come from"
