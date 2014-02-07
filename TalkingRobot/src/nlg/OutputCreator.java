@@ -162,13 +162,16 @@ public class OutputCreator {
   	 
   			//Access to a sentence
   			JSONObject jsonObject = (JSONObject) obj;
+  			
+  			//TODO Remove this print!
   			System.out.println(className);
+  			
   			JSONObject jsonState = (JSONObject) jsonObject.get(className);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(stateName);
   			Integer size = jsonSentences.size();
   			
   			//Generates random number based on array size (number of sentences)
-  			if(size > 2) {
+  			if(size > 1) {
 	  			Random rn = new Random();
 				Integer randomNum = rn.nextInt(size - 1);
 				
@@ -274,7 +277,7 @@ public class OutputCreator {
 	  		
 	  		//Critical point! From now on, dots (".") should only be used to separate sentences!!
 	  		if(text.contains(".")) {
-	  			sentences = text.split(".");
+	  			sentences = text.split("\\.");
 	  		} else {
 	  			sentences = new String[1]; // nothing to split
 	  			sentences[0] = text;
@@ -284,26 +287,31 @@ public class OutputCreator {
 	  		//	String[] keywords = keywordPhrases[i].split(" ");
 	  			//for (int j = 0; j < keywords.length; j++){
 		  			if(keywordPhrases[i].contains("<") && keywordPhrases[i].contains(">")) {
-		  				obj = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
+		  				obj = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
 		  			if(keywordPhrases[i].contains("{") && keywordPhrases[i].contains("}")) {
-		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
+		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
 	  			}
 	  			
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			if(sentences[i].contains(evaluationObj)) {
-	  				sentences[i].replace(evaluationObj, obj);
+	  				sentences[i] = sentences[i].replace(evaluationObj, obj);
 	  			}
 	  			if(sentences[i].contains(evaluationCompl)) {
-	  				sentences[i].replace(evaluationCompl, compl);
+	  				sentences[i] = sentences[i].replace(evaluationCompl, compl);
 	  			}	
 	  			
-	  			sentences[i] = sentences[i] + ". "; // blank between 2 sentences
+	  			//sentences[i] = sentences[i] + ". "; // blank between 2 sentences
 	  		}
 	  		
 	  		for(int i = 0; i < sentences.length; i++) {
-	  			answer = answer + sentences[i];
+	  			if (answer.equals("")) {
+	  				answer = sentences[i];
+	  			}
+	  			else {
+	  				answer = answer + ". " + sentences[i];
+	  			}
 	  		}
   	//	} else {answer = text;} // don't need to add keywords
   		
