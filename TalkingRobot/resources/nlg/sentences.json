@@ -1,6 +1,6 @@
 {
     "dm.StartState" : {
-    		"S_ENTRY": [
+        	"S_ENTRY": [
 				"Hello, I'm <o>",
 				"Welcome, I'm the KIT's own Robot called <o>",
 				"Hi, I'm <o>"
@@ -129,7 +129,7 @@
 	"dm.RecipeLearningState" : {
 	
 			"RL_ASK_INGREDIENT_RIGHT" : [
-			"Are you sure about this ingredient",
+			"Are you sure about this ingredient"
 			],
 			"RL_ASK_COUNTRY_OF_ORIGIN" : [
 				"from what country does this recipe come from"
@@ -533,6 +533,9 @@
 				"I can't find the information about wished line. Are you sure about the line number?",
 				"The given line doesn't exist. Do you want information about other lines?",
 				"I can't find the information about wished line. Do you want information about other lines?"	
+			],
+            "CI_LINE_LOCATION_INFO" : [
+    			""	
 			]
 		},
 			
@@ -551,7 +554,7 @@
 		"REPEAT" : [
 			"Pardon, can you say that again?",
 			"Sorry I don't understand. Can you say it again?",
-			"Sorry I can't get you. Would you please say it again?",
+			"Sorry I can't get you. Would you please say it again?"
 			
 		],
 	
