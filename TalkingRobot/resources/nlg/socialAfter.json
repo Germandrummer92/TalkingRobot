@@ -296,6 +296,9 @@
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
 			],
+			"CI_ADEN_TELL_ALL_MEALS" : [
+				""
+			],
 			"CI_ENTRY" : [
 				""
 			],
@@ -331,6 +334,9 @@
 				"Hmm, sounds nice",
 				"Yummy yummy",
 				"Woow, it sound so delicious that I also feel hungry"
+			],
+			"CI_MOLTKE_TELL_ALL_MEALS" : [
+				""
 			],
 			"CI_TELL_MEAL_NOT_EXIST" : [
 				""

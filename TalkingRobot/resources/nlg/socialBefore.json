@@ -208,6 +208,9 @@
 			"CI_ADEN_SCHNITBAR_PRICE" : [
 				""
 			],
+			"CI_ADEN_TELL_ALL_MEALS" : [
+				""
+			],
 			"CI_ENTRY" : [
 				""
 			],
@@ -248,6 +251,9 @@
 				""
 			],
 			"CI_MOLTKE_SCHNITBAR_PRICE" : [
+				""
+			],
+			"CI_MOLTKE_TELL_ALL_MEALS" : [
 				""
 			],
 			"CI_TELL_LINE_NOT_EXIST" : [

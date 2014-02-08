@@ -43,23 +43,24 @@ public class CanteenInformationState extends DialogState {
    */
   public String getOutputKeyword() {
 	  CanteenInformationDialog currentDialog = new CanteenInformationDialog(DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession(), 
-			  this, ((CanteenInformationDialog) DialogManager.giveDialogManager().getCurrentDialog()).getCurCanteen());
+			  this, null);
 	   currentDialog = (CanteenInformationDialog)DialogManager.giveDialogManager().getCurrentDialog();
+	   currentDialog.setCurCanteen(currentDialog.getCurCanteen());
 	 // currentDialog.setCurrentDialogState(new CanteenInformationDialog(null, null, null));
 	  String time =  ((CanteenInformationDialog) currentDialog).getWishDate();
 	  String wishMeal =  ((CanteenInformationDialog) currentDialog).getWishMeal();
 
 	  float price;
 	  
-	  switch ((CanteenInfo)getCurrentState()) {
+	  switch ((CanteenInfo)currentDialog.getCurrentDialogState().getCurrentState()) {
 	  case CI_ENTRY:
           setQuestion(false);
           return null;
 	  case CI_ADEN_TELL_ALL_MEALS :
 		  //TODO
 		  setQuestion(false);
-		  String out = "{" + getAllMealsName( ((CanteenDialog) currentDialog).getCurrentCanteen()
-				  .getCanteenData()) + "}";
+		  String out = getAllMealsName( ((CanteenDialog) currentDialog).getCurrentCanteen()
+				  .getCanteenData());
 		  return out;
 	  case CI_ADEN_LINE_1_PRICE:
 		  setQuestion(false);
@@ -400,12 +401,13 @@ public class CanteenInformationState extends DialogState {
 			for( MealData md : ld.getTodayMeals()) {
 				if(( ld.getLineID() == (canteenData.getLines().size() - 1)) 
 						&& ( md.getMealID() == (ld.getTodayMeals().size() - 1))) {
-					meals = meals + " and " + md.getMealName() + " at " + ld.getLineName();
+					meals = meals.toString() + " and " + md.getMealName().toString() + " at " + ld.getLineName().toString();
 				}
-				meals = meals + md.getMealName() + " at " + ld.getLineName() + ";";
+				meals = meals + md.getMealName().toString() + " at " + ld.getLineName().toString() + ";";
 			}
 		}
 		meals = meals + "}";
+		return meals;
 	} catch (NullPointerException e) {
 		e.printStackTrace();
 	}
