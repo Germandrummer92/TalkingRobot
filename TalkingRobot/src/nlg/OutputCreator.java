@@ -40,7 +40,6 @@ public class OutputCreator {
 		
 		//tempSentence contains the sentence obtained directly from the json file, without replacements. It's a raw sentence.
 		String tempSentence = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
-		
 		//Add error keywords
 		if( DialogManager.giveDialogManager().isInErrorState()) {
 			String eOut = tempSentence;
@@ -168,6 +167,10 @@ public class OutputCreator {
   			
   			JSONObject jsonState = (JSONObject) jsonObject.get(className);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(stateName);
+  			if (jsonSentences == null) {
+  				//Error!
+  				throw new NullPointerException("State " + stateName + " not found!");
+  			}
   			Integer size = jsonSentences.size();
   			
   			//Generates random number based on array size (number of sentences)
@@ -185,6 +188,8 @@ public class OutputCreator {
   			e.printStackTrace();
   		} catch (ParseException e) {
   			e.printStackTrace();
+  		} catch (NullPointerException e) {
+  			System.out.println(e.getMessage());
   		}
   		
   		return null;
