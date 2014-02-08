@@ -210,13 +210,19 @@
 				"What do you prefer to have?"
 				
 			],
-	
 			"CR_ADEN_CAFE_DISH" : [
 				"I will suggest to try <o> in cafeteria, if you want {c}",
 				"<o> sounds nice from cafeteria, do you want to have it?",
 				"In cafeteria there's <o>, maybe you can try it",
 				"Do you want to have <o> in cafeteria?",
 				"If you want {c}, there's <o> in cafeteria"
+			],
+			"CR_ADEN_CAFEABEND_DISH" : [
+				"I will suggest to try <o> in the cafeteria, if you want {c}",
+				"<o> sounds nice from the cafeteria, do you want to have it?",
+				"In the cafeteria there's <o>, maybe you can try it",
+				"Do you want to have <o> in the cafeteria?",
+				"If you want {c}, there's <o> in the cafeteria"
 			],
 			"CR_ADEN_CURRYQ_DISH" : [
 				"I will suggest to try <o> in curry queen, if you want {c}",
@@ -323,13 +329,6 @@
 				"At schnitzel bar there's <o>, maybe you can try it",
 				"Do you want to have <o> from schnitzel bar?",
 				"If you want {c}, there's <o> at schnitzel bar"
-			],
-			"CR_TELL_LINE_NOT_EXIST" : [
-				"The given line doesn't exist. Are you sure about the line number?",
-				"There's no such line. Do you want information about other lines?",
-				"I can't find the information about wished line. Are you sure about the line number?",
-				"The given line doesn't exist. Do you want information about other lines?",
-				"I can't find the information about wished line. Do you want information about other lines?"	
 			],
 			"CR_TELL_MEAL_NOT_EXIST" : [
 				"The meal wanted is not found. Do you want to know what else are provided?",
