@@ -278,8 +278,10 @@ public class OutputCreator {
 	  		String[] sentences = null;
 	  		String[] keywordPhrases = null;
 	  		
-	  		if(keyword.contains(",")) {
-	  			keywordPhrases = keyword.split(","); 
+	  		if(keyword.contains("},")) {
+	  			keywordPhrases = keyword.split("},"); 
+	  		} else if(keyword.contains(">,")){
+	  			keywordPhrases = keyword.split(">,");
 	  		} else {
 	  			keywordPhrases = new String[1];
 	  			keywordPhrases[0] = keyword;
