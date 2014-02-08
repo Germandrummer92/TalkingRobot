@@ -51,7 +51,7 @@ public class OutputCreator {
 		String kw = dialogState.getOutputKeyword();
 		//FIXME here dialgoState.getOutputKeyword() is always null!!!!!!
 		if (kw != null) {
-			output = addKeyword(tempSentence, kw);
+			output = addKeyword(tempSentence, kw, dialogState);
 		} else {
 			output = tempSentence;
 		}
@@ -266,7 +266,7 @@ public class OutputCreator {
   	 * @param keyword keyword from dialogStates
   	 * @return a complete answer as string
   	 */
-  	private String addKeyword(String text, String keyword){
+  	private String addKeyword(String text, String keyword, DialogState s){
   		String answer = "";
   		String evaluationObj = "<o>";
   		String evaluationCompl = "{c}";
@@ -278,13 +278,19 @@ public class OutputCreator {
 	  		String[] sentences = null;
 	  		String[] keywordPhrases = null;
 	  		
-	  		if(keyword.contains("},")) {
-	  			keywordPhrases = keyword.split("},"); 
-	  		} else if(keyword.contains(">,")){
-	  			keywordPhrases = keyword.split(">,");
+	  		if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
+	  				|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
+		  		
+		  			keywordPhrases = new String[1];
+		  			keywordPhrases[0] = keyword; // nothing to split
+		  		
 	  		} else {
-	  			keywordPhrases = new String[1];
-	  			keywordPhrases[0] = keyword;
+	  			if(keyword.contains(",")) {
+	  				keywordPhrases = keyword.split(",");
+	  			} else {
+	  				keywordPhrases = new String[1];
+	  				keywordPhrases[0] = keyword;
+	  			}
 	  		}
 	  		String obj = "";
 	  		String compl = "";
@@ -300,6 +306,13 @@ public class OutputCreator {
 	  		for(int i = 0; i < keywordPhrases.length; i++) {
 	  		//	String[] keywords = keywordPhrases[i].split(" ");
 	  			//for (int j = 0; j < keywords.length; j++){
+	  			/*
+	  			if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
+	  					|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
+	  				if(keywordPhrases[i].contains("{")) {
+	  					compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
+	  				}*/
+	  			//}else {
 		  			if(keywordPhrases[i].contains("<")) {
 		  				obj = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
@@ -307,6 +320,7 @@ public class OutputCreator {
 		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
 	  			}
+	  		//}
 	  			
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			if(sentences[i].contains(evaluationObj)) {
@@ -361,7 +375,7 @@ public class OutputCreator {
 		return dialogStateClass;
   	}
   	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
-  
+ /* 
   public static void main (String args[]) {
 	  	OutputCreator creator = new OutputCreator();
 	  	//StartState startState = new StartState();
@@ -372,8 +386,10 @@ public class OutputCreator {
 		Canteen c = new Canteen(cd);
 	  	CanteenInformationState ci = new CanteenInformationState();
 	  	Dialog cdia = new CanteenInformationDialog(s, ci, c);
+	  	((CanteenInformationDialog) cdia).setWishMeal(c.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName());
 	  	DialogManager.giveDialogManager().setCurrentDialog(cdia);
+	  	//ci.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_PRICE);
 	  	ci.setCurrentState(CanteenInfo.CI_ADEN_TELL_ALL_MEALS);
 	  	System.out.println(creator.createOutput(ci));
-  	}
+  	}*/
 }
