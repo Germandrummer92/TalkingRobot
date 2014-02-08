@@ -139,7 +139,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			int dateShift = 0; //0 for today, 1 for tomorrow, etc
 			int result = getRequestedWeekDay(keywords, date) - date.getDayOfWeek();
 			//Normalize the shift according to the days of the week.
-			if (result <= 0) { 
+			if (result < 0) { 
 				dateShift = 7 + result; //7 days in the week
 			} else {
 				dateShift = result;
@@ -209,29 +209,32 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	private DialogState selectNextState() {
 		DialogState nextState = new DialogState();
 		if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ADENAUERRING)) {
-			if (wishMeal.lineData.getLineName().equals("l1")) {
+			if (wishMeal.lineData.getLineName().equals("line one")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_1_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("l2")) { 
+			else if(wishMeal.lineData.getLineName().equals("line two")) { 
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_2_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("l3")) {
+			else if(wishMeal.lineData.getLineName().equals("line three")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_3_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("l45")) {
+			else if(wishMeal.lineData.getLineName().equals("line four")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_45_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("update")) {
+			else if(wishMeal.lineData.getLineName().equals("line six")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_6_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("schnitzelbar")) {
+			else if(wishMeal.lineData.getLineName().equals("schnitzel bar")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_SCHNITBAR_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("aktion")) {
+			else if(wishMeal.lineData.getLineName().equals("Curry Queen")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_CURRYQ_DISH);
 			} //curry queen
-			else if(wishMeal.lineData.getLineName().equals("heisstheke")) {
+			else if(wishMeal.lineData.getLineName().equals("theke")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFE_DISH);
+			} //cafe
+			else if(wishMeal.lineData.getLineName().equals("nmtisch")) {
+				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFEABEND_DISH);
 			} //cafe
 		}
 		//TODO not yet implemented to the other Canteens
@@ -240,7 +243,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.GOTTESAUE)) { }
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.TIEFENBRONNER)) { }
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ERZBERGER)) { }
-		return null;
+		return nextState;
 	}
 
 	/**
