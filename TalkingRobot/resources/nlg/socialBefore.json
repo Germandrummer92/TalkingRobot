@@ -265,6 +265,9 @@
 				"Sorry",
 				"Oops",
 				"Well"
+			],
+			"CI_LINE_LOCATION_INFO" : [
+			    ""
 			]
 	},
 	"dm.CanteenRecommendationState" : {
@@ -305,6 +308,9 @@
 			"CR_EXIT" : [
 				""
 			],
+			"CR_MOLTKE_ACTTHEK_DISH" : [
+				""
+			],
 			"CR_MOLTKE_BUFFET_DISH" : [
 				"If you want to pick it yourself",
 				"If you want more choices"
@@ -329,14 +335,6 @@
 				"Sorry",
 				"Oops",
 				"Well"
-			],
-			"CR_TELL_LINE_NOT_EXIST" : [
-				"Sorry",
-				"Oops",
-				"Well"
-			],
-			"CI_LINE_LOCATION_INFO" : [
-			    ""
 			]
 	},
 	"dm.ErrorHandlingState" : {
