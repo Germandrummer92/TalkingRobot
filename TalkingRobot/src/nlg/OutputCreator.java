@@ -218,30 +218,26 @@ public class OutputCreator {
   			JSONArray jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
   			Integer size = jsonSentences.size();
   			
-  			if(size == 0) {
+  			String temp;
+  			Random rn = new Random();
+  			Integer randomNum = rn.nextInt(size);
+			temp =  (String) jsonSentences.get(randomNum);
+			
+			if (temp.equals("")) {
   				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
   				addBefore = false;
   				jsonObject = (JSONObject) obj;
   	  			jsonState = (JSONObject) jsonObject.get(dialogStateClass);
   	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
-  	  			size = jsonSentences.size();
-  			}
-  			//Nothing Changes if both Social parts are empty
-  			if (size == 0) {
-  				return output;
-  			}
-  			String temp;
-  			
-  			//Generates random number based on array size (number of sentences)
-  			if(size < 2) {
-  				temp =  (String) jsonSentences.get(0);
-  			}
-  			else {
-  				Random rn = new Random();
-  				Integer randomNum = rn.nextInt(size - 1);
-			
-				temp =  (String) jsonSentences.get(randomNum);
-  			}
+  	  			
+	  			rn = new Random();
+	  			randomNum = rn.nextInt(size);
+				temp = (String) jsonSentences.get(randomNum);
+				
+				if (temp.equals("")) {
+					return output;
+				}
+			}
 			
 			if(addBefore) { // add social component before the 
 				output = temp + ". " + output; 
