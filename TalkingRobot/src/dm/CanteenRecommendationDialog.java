@@ -189,13 +189,15 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		//Not pretty at all!!
 		for (Canteen canteen : canteens) {
 			for (LineData lineData : canteen.getCanteenData().getLines()) {
-				for (MealData mealData : lineData.getTodayMeals()) {
-					for (MealCategoryData mealCategory : mealData.getMealCategory()) {
-						if (mealCategory.getMealCategoryName().equals(wishmealCategory)) {
-							//Category found
-							matchedMeals.add(new OneMealData(mealData, canteen.getCanteenData(), lineData));
-						}
-					}	
+				if (!lineData.getLineName().equals("nmtisch")) { //prevents future NullExceptions, since we're not using it
+					for (MealData mealData : lineData.getTodayMeals()) {
+						for (MealCategoryData mealCategory : mealData.getMealCategory()) {
+							if (mealCategory.getMealCategoryName().equals(wishmealCategory)) {
+								//Category found
+								matchedMeals.add(new OneMealData(mealData, canteen.getCanteenData(), lineData));
+							}
+						}	
+					}
 				}
 			}
 		}
@@ -234,9 +236,9 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			else if(wishMeal.lineData.getLineName().equals("theke")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFE_DISH);
 			} //cafe
-			else if(wishMeal.lineData.getLineName().equals("nmtisch")) {
-				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFEABEND_DISH);
-			} //cafe
+//			else if(wishMeal.lineData.getLineName().equals("nmtisch")) {
+//				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFEABEND_DISH);
+//			} //cafe
 		}
 		//TODO not yet implemented to the other Canteens
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.MOLTKE)) { }

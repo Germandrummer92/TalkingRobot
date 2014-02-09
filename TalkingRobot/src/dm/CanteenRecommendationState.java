@@ -62,7 +62,7 @@ public class CanteenRecommendationState extends DialogState {
     		setQuestion(false);
     		String wishMeal = ((CanteenRecommendationDialog) currentDialog).getWishMeal().getMealData().getMealName();
     		String wishMealCategory = ((CanteenRecommendationDialog) currentDialog).getWishmealCategory();
-    		String output = "<" + wishMeal + ">" + " ,{" + wishMealCategory + "}";
+    		String output = "<" + wishMeal + ">" + ",{" + wishMealCategory + "}";
     		return output;
     	case CR_TELL_MEAL_NOT_EXIST:
     		setQuestion(false);
