@@ -1,1 +1,1 @@
-{"wordID":74,"word":"cooking","dialogState":[{"currentState":{"name":"RA_TELL_INGREDIENTS"}}],"priority":2,"dataReference":[],"type":"DEFAULT"}
+{"wordID":74,"word":"cooking","dialogState":[{"currentState":{"name":"RA_TELL_WHOLE_RECIPE"}}],"priority":2,"dataReference":[],"type":"DEFAULT"}

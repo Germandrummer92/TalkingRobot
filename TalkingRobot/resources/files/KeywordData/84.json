@@ -1,1 +1,1 @@
-{"wordID":84,"word":"food","dialogState":[{"currentState":{"name":"S_ENTRY"}},{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":3,"dataReference":[],"type":"DEFAULT"}
+{"wordID":84,"word":"food","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":3,"dataReference":[],"type":"DEFAULT"}

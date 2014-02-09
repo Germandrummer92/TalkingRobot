@@ -1,1 +1,1 @@
-{"wordID":65,"word":"recipe","dialogState":[{"currentState":{"name":"RA_ENTRY"}},{"currentState":{"name":"RL_ENTRY"}}],"priority":0,"dataReference":[],"type":"DEFAULT"}
+{"wordID":65,"word":"recipe","dialogState":[{"currentState":{"name":"RA_WAITING_FOR_RECIPE_NAME"}},{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":0,"dataReference":[],"type":"DEFAULT"}
