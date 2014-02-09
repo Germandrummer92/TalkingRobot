@@ -60,6 +60,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	public void updateState(List<Keyword> keywords, List<String> terms,
 			List<String> approval) throws WrongStateClassException {
 	
+		//updateStateKeywordJump(keywords);
 		if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
 			throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 		}
@@ -173,7 +174,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			
 			
 			//Based on choosed wishMeal
-			this.setCurrentDialogState(selectNextState());
+			getCurrentDialogState().setCurrentState(selectNextState().getCurrentState());
 		}
 	}
 	
