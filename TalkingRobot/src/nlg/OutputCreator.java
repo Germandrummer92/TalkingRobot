@@ -176,7 +176,7 @@ public class OutputCreator {
   			//Generates random number based on array size (number of sentences)
   			if(size > 1) {
 	  			Random rn = new Random();
-				Integer randomNum = rn.nextInt(size - 1);
+				Integer randomNum = rn.nextInt(size);
 				
 				return (String) jsonSentences.get(randomNum);
   			}
