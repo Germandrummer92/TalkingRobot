@@ -69,19 +69,26 @@
 	(holcegartenshtrahse)
 	(holzgartenstreet)
 ;
-
 #canteen information
 [canteen_information]
 	([_offer])
 	([Canteen])
 	([Time_extend])
 	([_where_is])
-	(line [Number])
-	(schnitzelbar)
+	([Line])
+	([Special])
 	([_price])
 	([_canteen])
 	([_where_eat])
 	([Menu])
+;
+
+[Special]
+	(schnitzelbar)
+;
+
+[Line]
+	(*line [Number])
 ;
 	
 [_where_eat]
@@ -120,7 +127,7 @@
 [canteen_recommendation]
 	([_recommendation])
 	([Canteen])
-	(*line [Number])
+	([Line])
 	([Time_extend])
 	([Country])
 	([Category])
