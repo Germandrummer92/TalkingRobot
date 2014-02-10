@@ -31,6 +31,8 @@ public enum RecipeAssistance  {
   
   RA_RECIPE_FOUND,
   
+  RA_DELETE_RECIPE,
+  
   RA_EXIT;
 
   

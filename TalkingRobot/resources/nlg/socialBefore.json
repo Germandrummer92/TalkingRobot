@@ -81,6 +81,10 @@
 			"RA_RECIPE_FOUND" : [
 				"Yay",
 				"Got it!"
+			],
+			"RA_DELETE_RECIPE" : [
+				"Didn't taste good, huh?",
+				"I got you!"
 			]
 	},
 	"dm.RecipeLearningState" : {

@@ -259,10 +259,16 @@ public class KeywordData implements Data {
 		this.type = type;
 	}
 
-	/*public static void main(String[] args) {
-		ArrayList<DialogState> states =  new ArrayList<DialogState>();
-		states.add(new CanteenInformationState(CanteenInfo.CI_ENTRY));
-		ArrayList<Data> refs = new ArrayList<Data>();
-		new KeywordData(34,"next week", states, 4, refs, KeywordType.DEFAULT).writeFile();
+	public void deleteFile() {
+		String dirPath = "resources/files/KeywordData/" + wordID + ".json";
+		File currFile = new File(dirPath + wordID + ".json");
+		currFile.delete();
+		
+	}
+
+/*	public static void main(String[] args) {
+		for (KeywordData d : loadData()) {
+			System.out.println(d.word + " " + d.wordID);
+		}
 	}*/
 }

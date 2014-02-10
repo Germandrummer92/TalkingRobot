@@ -100,6 +100,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case RA_RECIPE_FOUND:
 		updateStateFound(keywords, terms);
 		break;
+	case RA_DELETE_RECIPE:
+		updateStateDelete(keywords, terms);
+		break;
 	case RA_EXIT:
 		updateStateExit(keywords, terms);
 		break;
@@ -107,6 +110,8 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	
 }
+
+
 
 
 
@@ -170,6 +175,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 }
 
 /**
+ * Updates the Recipe Found State according to parsed keywords/terms
  * @param keywords
  * @param terms
  */
@@ -187,6 +193,7 @@ private void updateStateFound(List<Keyword> keywords, List<String> terms) {
 }
 
 /**
+* Updates the Waiting for Recipe name according to parsed keywords/terms
 * @param keywords
 * @param terms
 */
@@ -204,10 +211,12 @@ private void updateStateWaitingName(List<Keyword> keywords, List<String> terms) 
 
 	
 }
+
 /**
- * @param keywords
- * @param terms
- */
+* Updates the Entry state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	//Either jumped due to RecipeName passed, or no Recipe could be found
 	if (keywords == null || keywords.isEmpty()) {
@@ -224,12 +233,22 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	
 }
 
+/**
+* Updates the Exit state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 	//Should be jumping due to keywords
 	DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
 
+/**
+* Updates the Tell whole Recipe state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellWholeRecipe(List<Keyword> keywords,
 		List<String> terms) {
 	//If we came here due to a keyword, there should be a recipe keyword, or the recipe has been set
@@ -246,21 +265,32 @@ private void updateStateTellWholeRecipe(List<Keyword> keywords,
 	}
 }
 
+/**
+* Updates the Tool not found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellToolNotFound(List<Keyword> keywords,
 		List<String> terms) {
 	//State is not used
 	
 }
 
+/**
+* Updates the Tool found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellToolFound(List<Keyword> keywords, List<String> terms) {
 	//State is not used
 	
 }
 
 /**
- * @param keywords
- * @param terms
- */
+* Updates the Ingredient found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellIngredientFound(List<Keyword> keywords,
 		List<String> terms) {
 	//We came here due to a jump, so the Ingredient should have been passed, if not there's an error
@@ -285,6 +315,11 @@ private void updateStateTellIngredientFound(List<Keyword> keywords,
 	
 }
 
+/**
+* Updates the Ingredient not found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellIngredientNotFound(List<Keyword> keywords,
 		List<String> terms) {
 	//If we came here, keyword for ingredients and unknown ingredient must have been passed
@@ -294,6 +329,11 @@ private void updateStateTellIngredientNotFound(List<Keyword> keywords,
 	
 }
 
+/**
+* Updates the tell number of steps according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellNumOfSteps(List<Keyword> keywords, List<String> terms) {
 	//We should have come here by a keyword jump and the recipe shouldve been passed or set
 	if (keywords != null && !keywords.isEmpty()) {
@@ -310,6 +350,11 @@ private void updateStateTellNumOfSteps(List<Keyword> keywords, List<String> term
 	}
 }
 
+/**
+* Updates the tell creator state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellCreator(List<Keyword> keywords, List<String> terms) {
 	//We should have come here by a keyword jump and the recipe shouldve been passed or set
 	if (keywords != null && !keywords.isEmpty()) {
@@ -327,6 +372,11 @@ private void updateStateTellCreator(List<Keyword> keywords, List<String> terms) 
 	
 }
 
+/**
+* Updates the tell origin state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellOrigin(List<Keyword> keywords, List<String> terms) {
 	//Check if new Recipe was also passed as a keyword
 	if (keywords != null && !keywords.isEmpty()) {
@@ -344,12 +394,18 @@ private void updateStateTellOrigin(List<Keyword> keywords, List<String> terms) {
 	
 }
 
+/**
+* Updates the tell steps state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellSteps(List<Keyword> keywords, List<String> terms) {
 	//We should have come here by a keyword jump and the recipe shouldve been passed or set
 	if (keywords != null && !keywords.isEmpty()) {
 		for (Keyword kw : keywords) {
 			if (kw.getKeywordData().getType() == KeywordType.RECIPE) {
 				currRecipe = new Recipe((RecipeData)kw.getKeywordData().getDataReference().get(0));
+				
 				return;
 			}
 		}
@@ -361,6 +417,11 @@ private void updateStateTellSteps(List<Keyword> keywords, List<String> terms) {
 	
 }
 
+/**
+* Updates the tell tools state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellTools(List<Keyword> keywords, List<String> terms) {
 	//We should have come here by a keyword jump and the recipe shouldve been passed or set
 	if (keywords != null && !keywords.isEmpty()) {
@@ -378,6 +439,11 @@ private void updateStateTellTools(List<Keyword> keywords, List<String> terms) {
 	
 }
 
+/**
+* Updates the tell ingredients state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateTellIngredients(List<Keyword> keywords,
 		List<String> terms) {
 	//We should have come here by a keyword jump and the recipe shouldve been passed or set
@@ -396,6 +462,35 @@ private void updateStateTellIngredients(List<Keyword> keywords,
 	
 }
 
+private void updateStateDelete(List<Keyword> keywords, List<String> terms) {
+	//We should have come here by a keyword jump and the recipe shouldve been passed or set
+		if (keywords != null && !keywords.isEmpty()) {
+			for (Keyword kw : keywords) {
+				if (kw.getKeywordData().getType() == KeywordType.RECIPE) {
+					currRecipe = new Recipe((RecipeData)kw.getKeywordData().getDataReference().get(0));
+					recipeName = currRecipe.getRecipeData().getRecipeName();
+					return;
+				}
+			}
+		}
+		//If not, the recipe should've already been set, if not, we need a recipe Name.
+		if (currRecipe == null || currRecipe.getRecipeData() == null) {
+			getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
+		}
+		//If we have a currRecipe we can delete it then
+		else {
+			//Remove keyword:
+			DialogManager.giveDialogManager().getDictionary().removeKeyword(currRecipe.getRecipeData().getRecipeName());
+			currRecipe.getRecipeData().deleteFile();
+			
+		}
+}
+
+/**
+* Updates the recipe not found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
 private void updateStateRNF(List<Keyword> keywords, List<String> terms) {
 	//Should jump due to keywords, if not something's wrong
 	DialogManager.giveDialogManager().setInErrorState(true);

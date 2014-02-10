@@ -98,6 +98,9 @@ public class RecipeAssistanceState extends DialogState {
 		case RA_WAITING_FOR_RECIPE_NAME:
 			setQuestion(true);
 			break;
+		case RA_DELETE_RECIPE:
+			setQuestion(true);
+			return "<" + dialog.getRecipeName() + ">";
 		case RA_RECIPE_FOUND:
 			setQuestion(true);
 			return "<" + recipeName + ">";

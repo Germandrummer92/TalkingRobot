@@ -1,12 +1,18 @@
 package dm;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Vector;
 
 import data.Data;
@@ -110,6 +116,59 @@ public class Dictionary {
 	}
 	 }
 	  
+  }
+  
+  /**
+   * Removes a Recipe Keyword from the Keyword List, its KeywordData file and removes it from the Recipe grammar.
+   */
+  
+  public void removeKeyword(String keyword) {
+	  Keyword kwToDelete = null;
+	  for (Keyword kw : keywordList) {
+		  if (kw.getWord().equals(keyword)) {
+			  kwToDelete = kw;
+		  }
+	  }
+	  //Delete the KeywordData
+	  kwToDelete.getKeywordData().deleteFile();
+	  String file;
+	  switch (kwToDelete.getKeywordData().getType()) {
+	  case USER : file = "user"; break;
+	  case TOOL : file = "tool"; break;
+	  case INGREDIENT : file = "ingredient";break;
+	  case RECIPE : file = "recipe"; break;
+	  case COUNTRY : file = "country"; break;
+	  default : return;
+	  }
+	  //Delete From the corresponding grammar
+	  File f = new File("resources/nlu/Phoenix/TalkingRobot/Keyword/" + file);
+	  File temp;
+	  BufferedReader reader;
+	  PrintWriter writer;
+	try {
+		temp = File.createTempFile("file", ".txt", f.getParentFile());
+	  String charset = "UTF-8";
+	  String delete = kwToDelete.getWord();
+	  
+	  reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
+	
+	  writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(temp), charset));
+	
+	  for (String line; (line = reader.readLine()) != null;) {
+		  line = line.replace(delete, "");
+		  if (!line.equals("")) {
+			  writer.println(line);
+		  }
+		}
+	  reader.close();
+	  writer.close();
+	  f.delete();
+	  temp.renameTo(f);
+  	} catch (IOException e) {
+  		e.printStackTrace();
+  	}
+	//Remove from the list
+	keywordList.remove(kwToDelete);
   }
   
  /* Test: public static void main(String[] args) {

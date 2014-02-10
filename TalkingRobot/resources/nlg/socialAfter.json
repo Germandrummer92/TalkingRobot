@@ -80,6 +80,9 @@
 			],
 			"RA_RECIPE_FOUND" : [
 				""
+			],
+			"RA_DELETE_RECIPE" : [
+				""
 			]
 	},
 	"dm.RecipeLearningState" : {

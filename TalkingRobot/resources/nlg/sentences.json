@@ -124,6 +124,11 @@
 				"Found it!  What do you want to know about the recipe <o>?",
 				"Got all the information about <o> what do you need?"
 				
+			],
+			"RA_DELETE_RECIPE" : [
+				"I've deleted <o> now, what else can I do for you?",
+				"<o> deleted, what's next?",
+				"Done. Next Task?"
 			]
 	},
 	"dm.RecipeLearningState" : {

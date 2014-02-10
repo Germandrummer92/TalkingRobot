@@ -1,1 +1,1 @@
-{"wordID":66,"word":"kitchen tool","dialogState":[{"currentState":{"name":"KA_ENTRY"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
+{"wordID":66,"word":"kitchen tool","dialogState":[{"currentState":{"name":"RA_TELL_TOOLS"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}

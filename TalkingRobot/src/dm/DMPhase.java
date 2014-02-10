@@ -30,7 +30,10 @@ public class DMPhase extends Phase {
 	  	//If nothing has been parsed, handle Error
 	  	
 	  	main.setDmResult(null);
-	  	
+	  	int i =0;
+	  	for (String s : Main.giveMain().getNluResult().get(0)) {
+	  		System.out.println("Keyword" + " " + i + ": " + s);
+	  	}
 	  	if (dialogManager.getErrorState() != ErrorState.ZERO 
 	  			&& main.getNluResult().get(0).isEmpty() 
 	  			&& !main.getNluResult().get(3).isEmpty()) {
