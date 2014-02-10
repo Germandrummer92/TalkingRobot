@@ -64,10 +64,10 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" + recipeName + ">";
 		case RA_TELL_COUNTRY_OF_ORIGIN:
 			setQuestion(false);
-			return "<" + recipe.getOriginalCountry() + "> {" + recipeName + "}";
+			return "<" + recipe.getOriginalCountry() + ">,{" + recipeName + "}";
 		case RA_TELL_CREATOR:
 			setQuestion(false);
-			return "<" + recipe.getCreator().getUserName() + "> {" + recipeName + "}";
+			return "<" + recipe.getCreator().getUserName() + ">,{" + recipeName + "}";
 		case RA_TELL_INGREDIENTS:
 			setQuestion(false);
 			return "<" + ingreds + ">";
@@ -82,10 +82,10 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" + Integer.toString(recipe.getNumOfSteps()) + ">";
 		case RA_TELL_STEPS:
 			setQuestion(false);
-			return "<" + steps + "> {" + recipeName + "}";
+			return "<" + steps + ">,{" + recipeName + "}";
 		case RA_TELL_TOOLS:
 			setQuestion(false);
-			return "<" + tools + "> {" + recipeName + "}";
+			return "<" + tools + ">,{" + recipeName + "}";
 		case RA_TELL_TOOL_FOUND:
 			setQuestion(false);
 			return "<" +recipeName + ">";
@@ -94,7 +94,7 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" +recipeName + ">";
 		case RA_TELL_WHOLE_RECIPE:
 			setQuestion(false);
-			return "<" + ingreds + ", " + tools +"> {" + steps + "}";
+			return "<" + ingreds + " " + tools +">,{" + steps + "}";
 		case RA_WAITING_FOR_RECIPE_NAME:
 			setQuestion(true);
 			break;
@@ -112,7 +112,7 @@ public class RecipeAssistanceState extends DialogState {
   }
 
   /**
-   * Returns the tools of a recipe as a string with commas
+   * Returns the tools of a recipe as a string with spaces
    * @param recipe the recipe from which the tool should be taken
    * @return the tools separated by commas
    */
@@ -125,7 +125,7 @@ private String getTools(RecipeData recipe) {
 	
 	ToolData last = tools.remove(recipe.getTools().size() - 1);
 	for (ToolData tool : tools) {
-		res += tool.getToolName() + " ,";
+		res += tool.getToolName() + " ";
 	}
 	res += last.getToolName();
 	return res;
@@ -150,7 +150,7 @@ private String getSteps(RecipeData recipe) {
 }
 
 /**
- * All ingredients of a recipe as a string, separated by commas
+ * All ingredients of a recipe as a string, separated by spaces
  * @param recipe the recipe with which the ingredients are associated
  * @return the ingredients of the recipe as a string.
  */
@@ -163,7 +163,7 @@ private String getIngredients(RecipeData recipe) {
 	
 	IngredientData last = ingreds.remove(recipe.getIngredients().size() - 1);
 	for (IngredientData ing : ingreds) {
-		res += ing.getIngredientName() + " ,";
+		res += ing.getIngredientName() + " ";
 	}
 	res += last.getIngredientName();
 	return res;
