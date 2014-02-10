@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.json.simple.JSONArray;
@@ -13,7 +12,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import data.*;
 import dm.*;
 
 /**
@@ -36,7 +34,7 @@ public class OutputCreator {
 		//get the dialog state class, old implementation gave out just the abstract name dm.dialogState
 		String output = "";
 
-		String dialogStateClass = getStateClassFromEnum(dialogState.getCurrentState());
+		String dialogStateClass = dialogState.getClass().getCanonicalName();//getStateClassFromEnum(dialogState.getCurrentState());
 		
 		//tempSentence contains the sentence obtained directly from the json file, without replacements. It's a raw sentence.
 		String tempSentence = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
@@ -49,7 +47,7 @@ public class OutputCreator {
 			return eOut;
 		}
 		String kw = dialogState.getOutputKeyword();
-		//FIXME here dialgoState.getOutputKeyword() is always null!!!!!!
+		
 		if (kw != null) {
 			output = addKeyword(tempSentence, kw, dialogState);
 		} else {
@@ -196,7 +194,8 @@ public class OutputCreator {
   	}
   	
   	 /**
-  	 * Add social component to the output 
+  	 * Add social component to the output. If it doesn't find anything to add before, it tries to find
+  	 * a social component to add after the sentence.
      * @param dialogState
      * @return a social component in string
      */
@@ -211,18 +210,20 @@ public class OutputCreator {
   	 
   			//Access to a sentence
   			//added
-  			String dialogStateClass = getStateClassFromEnum(dialogState.getCurrentState());
+  			String dialogStateClass = dialogState.getClass().getCanonicalName();//getStateClassFromEnum(dialogState.getCurrentState());
   			//added
   			JSONObject jsonObject = (JSONObject) obj;
   			JSONObject jsonState = (JSONObject) jsonObject.get(dialogStateClass);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
   			Integer size = jsonSentences.size();
   			
+  			//selects social component randomly
   			String temp;
   			Random rn = new Random();
   			Integer randomNum = rn.nextInt(size);
 			temp =  (String) jsonSentences.get(randomNum);
 			
+			//search for a social component to be added after, in case there's no social component.
 			if (temp.equals("")) {
   				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
   				addBefore = false;
@@ -344,33 +345,6 @@ public class OutputCreator {
   		return answer;
   	}
   	
-  	private String getStateClassFromEnum(Enum<?> num) {
-		String dialogStateClass = "";
-		switch (num.getClass().toString()) {
-		case "class dm.Start":
-			dialogStateClass = "dm.StartState";
-			break;
-		case "class dm.RecipeLearning":
-			dialogStateClass = "dm.RecipeLearningState";
-			break;
-		case "class dm.RecipeAssistance":
-			dialogStateClass = "dm.RecipeAssistanceState";
-			break;
-		case "class dm.CanteenInfo":
-			dialogStateClass = "dm.CanteenInformationState";
-			break;
-		case "class dm.CanteenRecom":
-			dialogStateClass = "dm.CanteenRecommendationState";
-			break;
-		case "class dm.KitchenAssistance":
-			dialogStateClass = "dm.KitchenAssistanceState";
-			break;
-		case "class dm.ErrorHandling":
-			dialogStateClass = "dm.ErrorHandlingState";
-			break;
-		}
-		return dialogStateClass;
-  	}
   	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
  /* 
   public static void main (String args[]) {
