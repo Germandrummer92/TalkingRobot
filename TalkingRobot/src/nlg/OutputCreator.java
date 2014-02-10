@@ -41,7 +41,7 @@ public class OutputCreator {
 		//Add error keywords
 		if( DialogManager.giveDialogManager().isInErrorState()) {
 			String eOut = tempSentence;
-			if( !dialogState.getOutputKeyword().isEmpty() ) {
+			if( dialogState.getOutputKeyword() != null ) {
 				eOut = addEKeywords(tempSentence, dialogState.getOutputKeyword(), dialogState);
 			}
 			return eOut;

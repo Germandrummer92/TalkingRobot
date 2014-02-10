@@ -268,8 +268,10 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 
 
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	// TODO
-	// maybe nothing to do?
+	
+	DialogState next = new DialogState();
+	next.setCurrentState(Start.S_USER_FOUND);
+	
 }
 
 /**
@@ -279,7 +281,7 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
  * @param approval
  */
 private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden) {
-	// TODO
+	
 	if( approval.isEmpty()) {
 		if( keywords.isEmpty() && (terms.isEmpty())) {
 			DialogManager.giveDialogManager().setInErrorState(true);
