@@ -241,8 +241,13 @@ public class KeywordData implements Data {
 	 * @return the next unique ID
 	 */
 	private int nextID() {
-		File f = new File("resources/files/KeywordData/");
-		return f.listFiles().length;
+		int maxID = 0;
+		for (KeywordData d: loadData()) {
+			if (d.getWordID() > maxID) {
+				maxID = d.getWordID();
+			}
+		}
+		return maxID + 1;
 	}
 	
 	/**
