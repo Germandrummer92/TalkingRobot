@@ -60,7 +60,8 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	public void updateState(List<Keyword> keywords, List<String> terms,
 			List<String> approval) throws WrongStateClassException {
 	
-		//updateStateKeywordJump(keywords);
+		updateStateKeywordJump(keywords);
+		
 		if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
 			throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 		}
@@ -299,6 +300,13 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	
 	private void updateMealNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
 		//Doesn't expect anything. Maybe that the user says something else?
+		if (!approval.isEmpty()) {
+			if (approval.get(0).equals("no")) {
+				getCurrentDialogState().setCurrentState(CanteenRecom.CR_EXIT);
+				return;
+			}
+		}
+		getCurrentDialogState().setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
 	}
 	
 	/**
@@ -311,10 +319,10 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		if (keywords == null || keywords.isEmpty()) {
 			DialogManager.giveDialogManager().setInErrorState(true);
 		}
-		
 		//If User has History
 		if (!this.getCurrentSession().getCurrentUser().getUserData().getAcceptedSuggestions().isEmpty()) {
 			//find based on User History
+			
 		}
 		
 		getCurrentDialogState().setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
