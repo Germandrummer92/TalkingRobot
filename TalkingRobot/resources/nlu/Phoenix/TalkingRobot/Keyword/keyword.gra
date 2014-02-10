@@ -167,12 +167,23 @@
 	([_next])
 	([_previous])
 	([_current])
+	([Ra_Kw])
+	([_how_cook])
+	([Recipe])
+;
+
+[Ra_Kw]
+	(ingredient)
 	(ingredients)
 	(cooking)
-	([_how_cook])
 	(cook)
-	([Recipe])
-;	
+	(*kitchen tools)
+	(*kitchen tool)
+	(*recipe step)
+	(*recipe steps)
+	(country)
+	(origin)
+;
 
 [_how_cook]
 	(how cook)
