@@ -81,17 +81,26 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		
 		for(int i = 0; i < keywordList.size(); i++) {
 			if(keywordList.get(i).getWord().matches(".+ .+")) {
+				LinkedList<String> possibleKw = new LinkedList<String>();
+				possibleKw.addAll(possibleKeywords);
+				LinkedList<String> inputWords = new LinkedList<String>();
+				inputWords.addAll(result);
+				
 				String[] keywordWords = keywordList.get(i).getWord().split(" ");
 				String possibleOutput = keywordList.get(i).getWord() + ";";
 				Integer distance = 0;
 				for(int j = 0; j < keywordWords.length; j++) {
-					String possibleMatch = this.seekMatchingWords(keywordWords[j], result, possibleKeywords);
+					String possibleMatch = this.seekMatchingWords(keywordWords[j], inputWords, possibleKw);
 					if(possibleMatch.equals("")) {distance = 11;}
-					else if(!possibleMatch.endsWith(keywordWords[j])) {
+					else if(!possibleMatch.equals(keywordWords[j])) {
 						Levenshtein levenshtein = new Levenshtein(possibleMatch, keywordWords[j]);
 						distance = distance + levenshtein.getDistance();
 						possibleOutput = possibleOutput + possibleMatch + " ";
-					} else { possibleOutput = possibleOutput + possibleMatch + " "; }
+						possibleKw.removeFirstOccurrence(possibleMatch);
+					} else { 
+						possibleOutput = possibleOutput + possibleMatch + " "; 
+						inputWords.removeFirstOccurrence(possibleMatch);
+					}
 				}
 				if(distance <= 10) { 
 					possibleOutput = possibleOutput.trim() + ";" + distance.toString();
@@ -100,9 +109,19 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 			}
 		}
 		
-		return output;
+		return this.switchWords(output);
 	}
 	
+	private LinkedList<String> switchWords(LinkedList<String> output) {
+		LinkedList<String> finalOutput = new LinkedList<String>();
+		for(int i = 0; i < output.size(); i++) {
+			String[] outputWord = output.get(i).split(";");
+			String actualOutput = outputWord[1] + ";" + outputWord[0] + ";" + outputWord[2];
+			finalOutput.add(actualOutput.trim());		
+		}
+		return finalOutput;
+	}
+
 	/**
 	 * seeks for a matching word.
 	 * @param keywordWord a word which is part of a keyword; e.g. "how" in "how much costs"
@@ -157,8 +176,9 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		for(int i= 0; i < output.size(); i++) {
 			String[] help = output.get(i).split(" ");
 			for(int j = 0; j < help.length; j++) {
-				if(!help[j].matches("\\s+") && help[j] != "")  {
-					singleWords.add(help[j].trim());
+				String possibleWord = help[j].trim();
+				if(possibleWord.length() > 0)  {
+					singleWords.add(possibleWord);
 				}
 			}
 		}
@@ -217,9 +237,18 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	  private List<String> cleanOfNotPossibleKeywords(List<String> possibleKeywords) {
 		  
 		  LinkedList<String> result = new LinkedList<String>();
+		  LinkedList<String> finalResult = new LinkedList<String>();
 		  
 		  for(int i = 0; i < possibleKeywords.size(); i++) {
 			  if(possibleKeywords.get(i).matches(".*;.*;[0-9]+")) { result.add(possibleKeywords.get(i)); }
+		  }
+		  
+		  for(int i = 0; i < result.size(); i++) {
+			  String[] triple = result.get(i).split(";");
+			  int distance = Integer.parseInt(triple[2]);
+			  if(distance / (float) triple[1].length() <= (float) 0.5) {
+				  finalResult.add(result.get(i));
+			  }
 		  }
 		  return result;
 	  }
