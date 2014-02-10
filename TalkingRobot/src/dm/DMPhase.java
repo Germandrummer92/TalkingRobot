@@ -33,6 +33,7 @@ public class DMPhase extends Phase {
 	  	int i =0;
 	  	for (String s : Main.giveMain().getNluResult().get(0)) {
 	  		System.out.println("Keyword" + " " + i + ": " + s);
+	  		i++;
 	  	}
 	  	if (dialogManager.getErrorState() != ErrorState.ZERO 
 	  			&& main.getNluResult().get(0).isEmpty() 
