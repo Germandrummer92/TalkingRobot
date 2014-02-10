@@ -72,7 +72,8 @@ public class KeywordAnalyzerTest {
 		LinkedList <String> result = (LinkedList<String>) keyword.analyze("can you help me with a recipe of the country and origin");
 		LinkedList <String> compare = new LinkedList<String>();
 		compare.add("recipe");
-		
+		compare.add("country");
+		compare.add("origin");
 //		for (int i = 0; i < result.size(); i++) {
 //			System.out.println(result.get(i));
 //		}
@@ -84,7 +85,7 @@ public class KeywordAnalyzerTest {
 		setInput("what do you need for this");
 		LinkedList <String> result = (LinkedList<String>) keyword.analyze("can you help me with a recipe of the country and origin");
 		LinkedList <String> compare = new LinkedList<String>();
-		compare.add("what do you need for");
+
 		
 //		for (int i = 0; i < result.size(); i++) {
 //			System.out.println(result.get(i));
