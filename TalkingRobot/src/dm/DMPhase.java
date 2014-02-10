@@ -29,7 +29,7 @@ public class DMPhase extends Phase {
   public void setPhaseResult(Main main) {
 	  	//If nothing has been parsed, handle Error
 	  	
-	  	DialogState previousDMResult = main.getDmResult();
+	  	main.setDmResult(null);
 	  	
 	  	if (dialogManager.getErrorState() != ErrorState.ZERO 
 	  			&& main.getNluResult().get(0).isEmpty() 
@@ -47,7 +47,7 @@ public class DMPhase extends Phase {
 		
 		//this is needed because ErrorHandlingState will not be saved in the dialog history
 		//thus it will not be saved as current dialogstate
-		if(previousDMResult == main.getDmResult()) {
+		if(main.getDmResult() == null) {
 	  		main.setDmResult(dialogManager.getCurrentDialog().getCurrentDialogState());
 	  	}
   }
