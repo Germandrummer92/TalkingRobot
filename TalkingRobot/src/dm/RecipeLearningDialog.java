@@ -169,12 +169,10 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 		allHaveRef = allHaveRef && hasOneRef;
 	}
 	if (allHaveRef) {
-		System.out.println("ALL POINT TO ONE");//TEST
 		return true;
 	}
 	//go to the keyword with highest priority
 	else {
-		System.out.println("POINT TO MANY");//TEST
 		int maxPrio = -1;
 		ArrayList<DialogState> maxPrioState = null;
 		for (Keyword kw : keywords) {
@@ -186,7 +184,6 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 		if (maxPrioState != null) {
 			//if it points to this mode stay here
 			for (DialogState ds : maxPrioState) {
-				System.out.println(ds.getCurrentState().getClass().getName());//TEST
 				if (ds.getCurrentState().getClass().getName().equals("dm.RecipeLearning")) { 
 					//setCurrentDialogState(ds);
 					return false;
