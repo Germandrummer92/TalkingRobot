@@ -135,12 +135,16 @@
 ;
 
 #kitchen assistance
-[Kitchen_assistance]
+[Kitchen_Assistance]
+	([Kitchen_Assistance_Kw])
+	([How])
+	([What])
+;
+
+[Kitchen_Assistance_Kw]
 	(recipe)
 	(cooking)
 	(kitchen tool)
-	([How])
-	([What])
 ;
 
 [What]
