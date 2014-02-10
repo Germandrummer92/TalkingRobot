@@ -264,13 +264,11 @@ public class OutputCreator {
   	 */
   	private String addKeyword(String text, String keyword, DialogState s){
   		String answer = "";
-  		String evaluationObj = "<o>";
+  		String[] evaluationObjs = {"<o>", "<1>", "<2>", "<3>"};
   		String evaluationCompl = "{c}";
-  		//String evaluationTime = "{time}";
+  		ArrayList<String> objs = new ArrayList<String>();
+  		String compl = "";
   		
-  		//String[] tokens = sentences.split(" "); 
-  	//	if(keyword != null) {
-  		    
 	  		String[] sentences = null;
 	  		String[] keywordPhrases = null;
 	  		
@@ -288,8 +286,6 @@ public class OutputCreator {
 	  				keywordPhrases[0] = keyword;
 	  			}
 	  		}
-	  		String obj = "";
-	  		String compl = "";
 	  		
 	  		//Critical point! From now on, dots (".") should only be used to separate sentences!!
 	  		if(text.contains(".")) {
@@ -310,7 +306,8 @@ public class OutputCreator {
 	  				}*/
 	  			//}else {
 		  			if(keywordPhrases[i].contains("<")) {
-		  				obj = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
+		  				//obj. = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
+		  				objs.add(keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1));
 		  			}
 		  			if(keywordPhrases[i].contains("{") ) {
 		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
@@ -319,8 +316,12 @@ public class OutputCreator {
 	  		//}
 	  			
 	  		for(int i = 0; i < sentences.length; i++) {
-	  			if(sentences[i].contains(evaluationObj)) {
-	  				sentences[i] = sentences[i].replace(evaluationObj, obj);
+	  			//int j = 0;
+	  			for (String evalObj : evaluationObjs) {
+	  				if(sentences[i].contains(evalObj)) {
+	  					if (!objs.isEmpty()) //So that it doesnt throws a NullPointerException
+	  						sentences[i] = sentences[i].replace(evalObj, objs.remove(0));
+	  				}
 	  			}
 	  			if(sentences[i].contains(evaluationCompl)) {
 	  				sentences[i] = sentences[i].replace(evaluationCompl, compl);
