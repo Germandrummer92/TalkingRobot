@@ -548,7 +548,8 @@
 		],
 		"Indirect_Verification" : [
 			"{c} sounds nice",
-			"It's good idea {c}"
+			"{c} sounds good",
+			"I sure can help you with {c}"
 		],
 		"REPEAT" : [
 			"Pardon, can you say that again?",

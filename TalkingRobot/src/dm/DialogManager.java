@@ -80,7 +80,11 @@ public class DialogManager {
 
 	   //?
 	   if (isInErrorState) {
-		   handleError(Main.giveMain().getNluResult().get(2));
+		   if(this.errorState != null && !Main.giveMain().getNluResult().get(3).isEmpty()) {
+			   handleError(Main.giveMain().getNluResult().get(3));
+		   } else {
+			   handleError(Main.giveMain().getNluResult().get(2));
+		   }
 	   } else {
 		   clearAllStrategies();
 	   }
@@ -107,8 +111,11 @@ public class DialogManager {
 	  } else {
 		  lastPossibleKeywords = possibleKeywords;
 		  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
+//			  System.out.println("working with possible kw");
 	  			avg = this.getAverageDistance(possibleKeywords);
 		  } else if (!possibleKeywords.isEmpty()) {
+//			  System.out.println("working with approval");
+			  this.isInErrorState = false;
 		  	dialogIsUpdated = this.handleResponseToPreviousErrorHandling(possibleKeywords);
 		  		if(!dialogIsUpdated) {
 		  			//error could not be solved; start with repetition/rephrasing again
