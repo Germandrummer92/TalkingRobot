@@ -190,7 +190,8 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 				}
 			}
 			//take by default the first one, problem -> json can't read out the class because attribut is of type dialogState ...
-			setCurrentDialogState(maxPrioState.get(0)); 
+			setDialogStateFromKeywordState(maxPrioState.get(0));
+		//	setCurrentDialogState(maxPrioState.get(0)); 
 		}
 		return true;
 		}
@@ -561,6 +562,44 @@ private void createRecipe() {
   			creator ,countryOfOrigin, mealCategory);
   	recipe.getRecipeData().writeFile();
   	getRecipeDatabase().add(recipe);
+}
+
+/**
+ * sets the dialog state with the given dialog state. So the state has the
+ * appropriate class, because when loading from json the class is just
+ * DialogState and every comparison with getClass doesn't work anymore
+ * as the concrete class is not known. 
+ * @param the dialog state
+ */
+private void setDialogStateFromKeywordState(DialogState ds) {
+	switch(ds.getCurrentState().getClass().getName()) {
+		case "dm.RecipeLearning":
+			RecipeLearningState rls = new RecipeLearningState();
+			rls.setCurrentState(ds.getCurrentState());
+			setCurrentDialogState(rls);
+			break;
+		case "dm.RecipeAssistance":
+			RecipeAssistanceState ras = new RecipeAssistanceState();
+			ras.setCurrentState(ds.getCurrentState());
+			setCurrentDialogState(ras);
+			break;
+		case "dm.KitchenAssistance":
+			KitchenAssistanceState kas = new KitchenAssistanceState();
+			kas.setCurrentState(ds.getCurrentState());
+			setCurrentDialogState(kas);
+			break;
+		case "CanteenRecom":
+			CanteenRecommendationState crs = new CanteenRecommendationState();
+			crs.setCurrentState(ds.getCurrentState());
+			setCurrentDialogState(crs);
+			break;
+		case "CanteenInfo":
+			CanteenInformationState cis = new CanteenInformationState();
+			cis.setCurrentState(ds.getCurrentState());
+			setCurrentDialogState(cis);
+			break;
+	}
+	
 }
 
 //Just to see all keyword which we have
