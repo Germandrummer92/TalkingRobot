@@ -165,7 +165,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			if (matchedMeals.isEmpty()) {
 				DialogState nextState = new DialogState();
 				nextState.setCurrentState(CanteenRecom.CR_TELL_MEAL_NOT_EXIST);
-				this.setCurrentDialogState(nextState);
+				getCurrentDialogState().setCurrentState(nextState.getCurrentState());
 				return;
 			}
 			
