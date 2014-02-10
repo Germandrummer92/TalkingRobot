@@ -112,53 +112,90 @@ public void updateState(List<Keyword> keywords, List<String> terms,
  * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
  * @param keywords
  * @return if the jump was completed
+ * @throws WrongStateClassException 
  */
-private boolean updateStateKeywordJump(List<Keyword> keywords) {
+private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongStateClassException {
+	DialogState currState = this.getCurrentDialogState();
+	if (!currState.getCurrentState().getClass().equals(RecipeLearning.class)) {
+		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
+	}
+	RecipeLearning innerState = (RecipeLearning) currState.getCurrentState(); 
+	boolean iState = innerState.equals(RecipeLearning.RL_ASK_NEXT_INGREDIENT) || innerState.equals(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
+	boolean tState = innerState.equals(RecipeLearning.RL_ASK_FIRST_TOOL) || innerState.equals(RecipeLearning.RL_ASK_NEXT_TOOL);
+	boolean sState = innerState.equals(RecipeLearning.RL_ASK_FIRST_STEP) || innerState.equals(RecipeLearning.RL_ASK_NEXT_STEP) || innerState.equals(RecipeLearning.RL_ASK_LAST_STEP);
+	
 	if (keywords.isEmpty()) {
 		return false;
 	}
+	//if in country and country type then don't jump (ask ingredient)
+	if (innerState.equals(RecipeLearning.RL_ASK_COUNTRY_OF_ORIGIN)) {
+		for (Keyword keyword: keywords) {
+			if (keyword.getKeywordData().getType().equals(KeywordType.COUNTRY)) {
+				return false;
+			}
+		}
+	}
+	//if in ingred and ingred type then don't jump (ask tool)
+	if (iState) {
+		for (Keyword keyword: keywords) {
+			if (keyword.getKeywordData().getType().equals(KeywordType.INGREDIENT)) {
+				return false;
+			}
+		}
+	}
+	//if in tool and tool type then don't jump
+	if (tState) {
+		for (Keyword keyword: keywords) {
+			if (keyword.getKeywordData().getType().equals(KeywordType.TOOL)) {
+				return false;
+			}
+		}
+	}
+	//if in step, don't change
+	if (sState) {
+		return false;
+	}
 	//Check if all keywords pointing to same state
+	
+	//if there is one reference to this state in any keyword stay here
+	boolean allHaveRef = true;
+	boolean hasOneRef = false;
+	for (Keyword kw : keywords) {
+		for (DialogState ds : kw.getKeywordData().getDialogState()) {
+			if (ds.getCurrentState().equals(innerState)) {
+				hasOneRef = true;
+			}
+		}
+		allHaveRef = allHaveRef && hasOneRef;
+	}
+	if (allHaveRef) {
+		System.out.println("ALL POINT TO ONE");//TEST
+		return true;
+	}
+	//go to the keyword with highest priority
 	else {
-		boolean sameRef = true;
-		boolean oneRef = false; //if there is one reference to the current state in all keywords, stay here
-		Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
+		System.out.println("POINT TO MANY");//TEST
+		int maxPrio = -1;
+		ArrayList<DialogState> maxPrioState = null;
 		for (Keyword kw : keywords) {
-			for (DialogState d : kw.getReference()) {
-				if (ref.equals(d)) {
-					oneRef = true; 
+			if (kw.getKeywordData().getPriority() > maxPrio && !kw.getKeywordData().getDialogState().isEmpty()) {
+				maxPrio = kw.getKeywordData().getPriority();
+				maxPrioState = kw.getKeywordData().getDialogState();
+			}
+		}
+		if (maxPrioState != null) {
+			//if it points to this mode stay here
+			for (DialogState ds : maxPrioState) {
+				System.out.println(ds.getCurrentState().getClass().getName());//TEST
+				if (ds.getCurrentState().getClass().getName().equals("dm.RecipeLearning")) { 
+					//setCurrentDialogState(ds);
+					return false;
 				}
 			}
-			sameRef = sameRef && oneRef;
-			oneRef = false;
+			//take by default the first one, problem -> json can't read out the class because attribut is of type dialogState ...
+			setCurrentDialogState(maxPrioState.get(0)); 
 		}
-		if (sameRef == true) {
-			getCurrentDialogState().setCurrentState(ref);
-			return true;
-		}
-		//If not go to keyword with highest priority
-		else {
-			int priorityMax = keywords.get(0).getKeywordData().getPriority();
-			Keyword curKW = keywords.get(0);
-			DialogState curRef = keywords.get(0).getReference().get(0);
-			for (Keyword kw : keywords) {
-				for (DialogState d : kw.getReference()) {
-				if (kw.getKeywordData().getPriority() > priorityMax) {
-					curKW = kw;
-					priorityMax = curKW.getKeywordData().getPriority();
-					curRef = d;
-				}
-				if (d.getCurrentState().getClass().getName().equals("dm.RecipeLearning")) {
-					if (kw.getKeywordData().getPriority() + 3 > priorityMax) {
-						curKW = kw;
-						priorityMax = curKW.getKeywordData().getPriority();
-						curRef = d;
-					}
-					}
-				}
-				}
-			getCurrentDialogState().setCurrentState(curRef.getCurrentState());
-			return true;
-			}
+		return true;
 		}
 }
 
@@ -202,6 +239,7 @@ private void updateStateStep(List<Keyword> keywords, List<String> terms) {
 		nextState = new RecipeLearningState(RecipeLearning.RL_EXIT);
 		setCurrentDialogState(nextState);
 		createRecipe();
+		return;
 	}
 	
 	if (terms.size() > 0) {
@@ -256,6 +294,7 @@ private void updateStateTool(List<Keyword> keywords, List<String> terms) {
 	if (userSaidEnd(keywords)) {
 		nextState = new RecipeLearningState(RecipeLearning.RL_ASK_FIRST_STEP);
 		setCurrentDialogState(nextState);
+		return;
 	}
 	
 	if (tools.isEmpty()) {
@@ -394,6 +433,7 @@ private void updateStateIngred(List<Keyword> keywords, List<String> terms) {
 	if (userSaidEnd(keywords)) {
 		nextState = new RecipeLearningState(RecipeLearning.RL_ASK_FIRST_TOOL);
 		setCurrentDialogState(nextState);
+		return;
 	}
 	
 	if (ingredients.isEmpty()) {
@@ -516,7 +556,9 @@ private void createRecipe() {
   	MealCategoryData mealCategory = new MealCategoryData("default"); //not in obligatory criteria
   	ArrayList<RecipeStep> rs = new ArrayList<RecipeStep>();
   	for (int i = 0; i < recipeSteps.length; i++) {
-  		rs.add(recipeSteps[i]);
+  		if (recipeSteps[i] != null) {
+  			rs.add(recipeSteps[i]);
+  		}
   	}
   	Recipe recipe = new Recipe(recipeName, ingredientsList, rs, toolsList,
   			creator ,countryOfOrigin, mealCategory);
@@ -528,7 +570,7 @@ private void createRecipe() {
 public static void main(String[] args) {
 	List<KeywordData> keywords = KeywordData.loadData();
 	for (KeywordData key : keywords) {
-		System.out.println(key.generateJSON());
+		System.out.println(key.getWordID()+ "      " + key.generateJSON());
 	}
 }
 }
