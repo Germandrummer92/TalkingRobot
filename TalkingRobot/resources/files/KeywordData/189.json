@@ -1,0 +1,1 @@
+{"wordID":189,"word":"ingredient","dialogState":[{"currentState":{"name":"RA_TELL_INGREDIENTS"}},{"currentState":{"name":"RL_ASK_NEXT_INGREDIENT"}},{"currentState":{"name":"RL_ASK_FIRST_TOOL"}},{"currentState":{"name":"RL_ASK_INGREDIENT_RIGHT"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}

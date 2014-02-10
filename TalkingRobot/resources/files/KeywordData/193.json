@@ -1,0 +1,1 @@
+{"wordID":193,"word":"steps","dialogState":[{"currentState":{"name":"RL_ASK_NEXT_STEP"}},{"currentState":{"name":"RA_TELL_STEPS"}},{"currentState":{"name":"RA_TELL_NUM_OF_STEPS"}},{"currentState":{"name":"RL_ASK_COUNTRY_OF_ORIGIN"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}
