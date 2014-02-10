@@ -41,9 +41,9 @@ public class OutputCreator {
 		//Add error keywords
 		if( DialogManager.giveDialogManager().isInErrorState()) {
 			String eOut = tempSentence;
-			if( dialogState.getOutputKeyword() != null ) {
+			//if( dialogState.getOutputKeyword() != null ) {
 				eOut = addEKeywords(tempSentence, dialogState.getOutputKeyword(), dialogState);
-			}
+			//}
 			return eOut;
 		}
 		String kw = dialogState.getOutputKeyword();
@@ -98,12 +98,12 @@ public class OutputCreator {
 	  		
 	  		for(int i = 0; i < keywordPhrases.length; i++) {
 	  			//String[] keywordArray = keywordPhrases[i].split(" ");
-	  			for (int j = 0; j < keywordPhrases.length; j++){
-		  			if( keywordPhrases[j].contains("<") && keywordPhrases[j].contains(">") ) {
-		  				objs[j] = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
+	  			//for (int j = 0; j < keywordPhrases.length; j++){
+		  			if( keywordPhrases[i].contains("<") && keywordPhrases[i].contains(">") ) {
+		  				objs[i] = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
 		  			}
-		  			if( keywordPhrases[j].contains("{") && keywordPhrases[j].contains("}")) {
-		  				compl = keywordPhrases[j].substring(1, keywordPhrases[j].length() - 2);
+		  			if( keywordPhrases[i].contains("{") && keywordPhrases[i].contains("}")) {
+		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
 		  				if(compl.contains("canteen")) {
 		  					compl = "Eating in canteen";
 		  				} 
@@ -114,7 +114,7 @@ public class OutputCreator {
 		  			}
 	  			}
 	  			
-	  		}
+	  	
 		  		
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			for(int j = 0; j < objs.length; j++) {
