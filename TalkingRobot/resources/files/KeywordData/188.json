@@ -1,1 +1,1 @@
-{"wordID":188,"word":"tools","dialogState":[{"currentState":{"name":"RA_TELL_TOOLS"}},{"currentState":{"name":"RL_ASK_NEXT_TOOL"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":188,"word":"tools","dialogState":[{"currentState":{"name":"RA_TELL_TOOLS"}},{"currentState":{"name":"RL_ASK_NEXT_TOOL"}},{"currentState":{"name":"RL_ASK_FIRST_STEP"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
