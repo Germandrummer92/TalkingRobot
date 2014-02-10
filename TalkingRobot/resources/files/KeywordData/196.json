@@ -1,1 +1,1 @@
-{"wordID":196,"word":"solirfdr","dialogState":[{"currentState":{"name":"RA_TELL_COUNTRY_OF_ORIGIN"}}],"priority":5,"dataReference":[{"recipeID":5,"recipeName":"","originalCountry":""}],"type":"COUNTRY"}
+{"wordID":196,"word":"end","dialogState":[{"currentState":{"name":"RL_ASK_FIRST_TOOL"}},{"currentState":{"name":"RL_ASK_FIRST_STEP"}},{"currentState":{"name":"RL_EXIT"}},{"currentState":{"name":"RA_EXIT"}},{"currentState":{"name":"KA_EXIT"}}],"priority":1,"dataReference":[],"type":"DEFAULT"}
