@@ -320,6 +320,10 @@ THIS
 
 #main
 [Main]
+	([Main_Kw])
+;
+
+[Main_Kw]
 	(restart)
 	(hello)
 ;
