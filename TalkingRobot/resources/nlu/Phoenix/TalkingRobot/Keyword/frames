@@ -7,7 +7,7 @@
 		[canteen_assistance]
 		[canteen_information]
 		[canteen_recommendation]
-		[Kitchen_assistance]		#kitchen_assistance: general kitchen assistance
+		[Kitchen_Assistance]		#kitchen_assistance: general kitchen assistance
 		[Recipe_assistance]
 		[recipe_learning]
 		[cooking_assistance]		#cooking_assistance: getting tools etc.
