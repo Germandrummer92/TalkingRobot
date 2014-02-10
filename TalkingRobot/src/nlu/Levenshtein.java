@@ -102,7 +102,6 @@ package nlu;
 	*/
     private int delete(int i, int j) {
 		//Mod. : Anlegen eines Char arrays zum besseren Ueberpruefen
-		//char[] cost = {'a', 'e', 'i', 'o', 'u', 'ä', 'ö', 'ü', 'A', 'E', 'I', 'O', 'U', 'Ä', 'Ö', 'Ü'};
 		
 	/*	if (j < 1) {
 			return Integer.MAX_VALUE;
@@ -137,8 +136,6 @@ package nlu;
     private int insert(int i, int j) {
 		//Mod. : Variable fuer das Zeichen vor der einzufuegenden Stelle und
 		//Mod. :Char array um das Zeichen einfacher zu ueberpruefen
-	//	char prev;
-	//	char[] cost = {'a', 'e', 'i', 'o', 'u', 'ä', 'ö', 'ü', 'A', 'E', 'I', 'O', 'U', 'Ä', 'Ö', 'Ü'}; 
 /*		if (i < 1) {
 			return Integer.MAX_VALUE;
 		}*/

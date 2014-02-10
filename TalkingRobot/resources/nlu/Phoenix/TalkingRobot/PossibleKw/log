@@ -1,6 +1,6 @@
 [greeting]  3 states  3 arcs
 [greeting2]  11 states  18 arcs
-[canteenLoc]  6 states  8 arcs
+[canteenloc]  6 states  8 arcs
 [kitchen]  25 states  32 arcs
 [kitchen2]  14 states  28 arcs
 [recipe_assistance]  9 states  13 arcs

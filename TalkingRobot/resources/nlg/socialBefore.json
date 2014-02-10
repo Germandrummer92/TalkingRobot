@@ -208,6 +208,9 @@
 			"CI_ADEN_SCHNITBAR_PRICE" : [
 				""
 			],
+			"CI_ADEN_TELL_ALL_MEALS" : [
+				""
+			],
 			"CI_ENTRY" : [
 				""
 			],
@@ -250,6 +253,9 @@
 			"CI_MOLTKE_SCHNITBAR_PRICE" : [
 				""
 			],
+			"CI_MOLTKE_TELL_ALL_MEALS" : [
+				""
+			],
 			"CI_TELL_LINE_NOT_EXIST" : [
 				"Sorry",
 				"Oops",
@@ -259,6 +265,9 @@
 				"Sorry",
 				"Oops",
 				"Well"
+			],
+			"CI_LINE_LOCATION_INFO" : [
+			    ""
 			]
 	},
 	"dm.CanteenRecommendationState" : {
@@ -299,6 +308,9 @@
 			"CR_EXIT" : [
 				""
 			],
+			"CR_MOLTKE_ACTTHEK_DISH" : [
+				""
+			],
 			"CR_MOLTKE_BUFFET_DISH" : [
 				"If you want to pick it yourself",
 				"If you want more choices"
@@ -320,11 +332,6 @@
 				""
 			],
 			"CR_TELL_MEAL_NOT_EXIST" : [
-				"Sorry",
-				"Oops",
-				"Well"
-			],
-			"CR_TELL_LINE_NOT_EXIST" : [
 				"Sorry",
 				"Oops",
 				"Well"

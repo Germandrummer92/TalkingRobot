@@ -1,1 +1,1 @@
-{"wordID":87,"word":"how make","dialogState":[{"currentState":{"name":"RA_ENTRY"}},{"currentState":{"name":"RL_ASK_RECIPE_NAME"}}],"priority":3,"dataReference":[],"type":"DEFAULT"}
+{"wordID":87,"word":"how make","dialogState":[{"currentState":{"name":"RA_TELL_WHOLE_RECIPE"}}],"priority":3,"dataReference":[],"type":"DEFAULT"}

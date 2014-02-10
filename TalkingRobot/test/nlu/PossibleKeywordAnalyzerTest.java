@@ -46,7 +46,7 @@ public class PossibleKeywordAnalyzerTest {
 	@Test
 	public void canteen() { 
 		setInput("I want to go to the cantean");
-		List<String> result = possibleKw.analyze("I want to go to the cantean");
+		List<String> result = possibleKw.analyze("i want to go to the cantean");	
 		LinkedList <String> compare = new LinkedList<String>();
 		compare.add("cantean;canteen;1");
 		assertTrue(result.containsAll(compare));
@@ -59,8 +59,9 @@ public class PossibleKeywordAnalyzerTest {
 	public void finish() { 
 		setInput("that is al");
 		List<String> result = possibleKw.analyze("that is al");
+		
 		List <String> compare = new LinkedList<String>();
-		compare.add("that is all;that is al;1");
+		compare.add("that is al;that is all;1");
 		assertTrue(result.containsAll(compare));
 	}
 	

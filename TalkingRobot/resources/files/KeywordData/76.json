@@ -1,1 +1,1 @@
-{"wordID":76,"word":"how cook","dialogState":[{"currentState":{"name":"RA_TELL_INGREDIENTS"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
+{"wordID":76,"word":"how cook","dialogState":[{"currentState":{"name":"RA_TELL_WHOLE_RECIPE"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}

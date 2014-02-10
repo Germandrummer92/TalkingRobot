@@ -32,8 +32,8 @@ public class CanteenRecommendationState extends DialogState {
     public String getOutputKeyword() {
     	Dialog currentDialog =(CanteenRecommendationDialog)DialogManager.giveDialogManager().getCurrentDialog();
     	//String time = ((CanteenRecommendationDialog) currentDialog).getWishDate();
-    	String wishMealCategory = ((CanteenRecommendationDialog) currentDialog).getWishmealCategory();
-    	String wishMeal = ((CanteenRecommendationDialog) currentDialog).getWishMeal().getMealData().getMealName();
+    	//String wishMealCategory = ((CanteenRecommendationDialog) currentDialog).getWishmealCategory();
+    	//String wishMeal = ((CanteenRecommendationDialog) currentDialog).getWishMeal().getMealData().getMealName();
 	  
     	switch((CanteenRecom)getCurrentState()) {
     	case CR_ENTRY:
@@ -60,7 +60,9 @@ public class CanteenRecommendationState extends DialogState {
     	case CR_MOLTKE_GG_DISH:
     	case CR_MOLTKE_BUFFET_DISH:
     		setQuestion(false);
-    		String output = "<" + wishMeal + ">" + " ,{" + wishMealCategory + "}";
+    		String wishMeal = ((CanteenRecommendationDialog) currentDialog).getWishMeal().getMealData().getMealName();
+    		String wishMealCategory = ((CanteenRecommendationDialog) currentDialog).getWishmealCategory();
+    		String output = "<" + wishMeal + ">" + ",{" + wishMealCategory + "}";
     		return output;
     	case CR_TELL_MEAL_NOT_EXIST:
     		setQuestion(false);

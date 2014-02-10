@@ -23,7 +23,7 @@
 
 #possible keyword: canteen
 #e.g. "i would like to go to the /canteen/"
-[canteenLoc]
+[canteenloc]
 	([want] [eat] *[time])
 	(*[time] [want] [eat])
 ;

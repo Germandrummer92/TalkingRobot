@@ -40,7 +40,6 @@ public class OutputCreator {
 		
 		//tempSentence contains the sentence obtained directly from the json file, without replacements. It's a raw sentence.
 		String tempSentence = findInFile(dialogStateClass, dialogState.getCurrentState().toString());
-		
 		//Add error keywords
 		if( DialogManager.giveDialogManager().isInErrorState()) {
 			String eOut = tempSentence;
@@ -49,10 +48,10 @@ public class OutputCreator {
 			}
 			return eOut;
 		}
-
+		String kw = dialogState.getOutputKeyword();
 		//FIXME here dialgoState.getOutputKeyword() is always null!!!!!!
-		if (dialogState.getOutputKeyword() != null) {
-			output = addKeyword(tempSentence, dialogState.getOutputKeyword());
+		if (kw != null) {
+			output = addKeyword(tempSentence, kw, dialogState);
 		} else {
 			output = tempSentence;
 		}
@@ -168,12 +167,16 @@ public class OutputCreator {
   			
   			JSONObject jsonState = (JSONObject) jsonObject.get(className);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(stateName);
+  			if (jsonSentences == null) {
+  				//Error!
+  				throw new NullPointerException("State " + stateName + " not found!");
+  			}
   			Integer size = jsonSentences.size();
   			
   			//Generates random number based on array size (number of sentences)
   			if(size > 1) {
 	  			Random rn = new Random();
-				Integer randomNum = rn.nextInt(size - 1);
+				Integer randomNum = rn.nextInt(size);
 				
 				return (String) jsonSentences.get(randomNum);
   			}
@@ -185,6 +188,8 @@ public class OutputCreator {
   			e.printStackTrace();
   		} catch (ParseException e) {
   			e.printStackTrace();
+  		} catch (NullPointerException e) {
+  			System.out.println(e.getMessage());
   		}
   		
   		return null;
@@ -213,30 +218,26 @@ public class OutputCreator {
   			JSONArray jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
   			Integer size = jsonSentences.size();
   			
-  			if(size == 0) {
+  			String temp;
+  			Random rn = new Random();
+  			Integer randomNum = rn.nextInt(size);
+			temp =  (String) jsonSentences.get(randomNum);
+			
+			if (temp.equals("")) {
   				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
   				addBefore = false;
   				jsonObject = (JSONObject) obj;
   	  			jsonState = (JSONObject) jsonObject.get(dialogStateClass);
   	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
-  	  			size = jsonSentences.size();
-  			}
-  			//Nothing Changes if both Social parts are empty
-  			if (size == 0) {
-  				return output;
-  			}
-  			String temp;
-  			
-  			//Generates random number based on array size (number of sentences)
-  			if(size < 2) {
-  				temp =  (String) jsonSentences.get(0);
-  			}
-  			else {
-  				Random rn = new Random();
-  				Integer randomNum = rn.nextInt(size - 1);
-			
-				temp =  (String) jsonSentences.get(randomNum);
-  			}
+  	  			
+	  			rn = new Random();
+	  			randomNum = rn.nextInt(size);
+				temp = (String) jsonSentences.get(randomNum);
+				
+				if (temp.equals("")) {
+					return output;
+				}
+			}
 			
 			if(addBefore) { // add social component before the 
 				output = temp + ". " + output; 
@@ -261,7 +262,7 @@ public class OutputCreator {
   	 * @param keyword keyword from dialogStates
   	 * @return a complete answer as string
   	 */
-  	private String addKeyword(String text, String keyword){
+  	private String addKeyword(String text, String keyword, DialogState s){
   		String answer = "";
   		String evaluationObj = "<o>";
   		String evaluationCompl = "{c}";
@@ -271,7 +272,22 @@ public class OutputCreator {
   	//	if(keyword != null) {
   		    
 	  		String[] sentences = null;
-	  		String[] keywordPhrases = keyword.split(","); 
+	  		String[] keywordPhrases = null;
+	  		
+	  		if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
+	  				|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
+		  		
+		  			keywordPhrases = new String[1];
+		  			keywordPhrases[0] = keyword; // nothing to split
+		  		
+	  		} else {
+	  			if(keyword.contains(",")) {
+	  				keywordPhrases = keyword.split(",");
+	  			} else {
+	  				keywordPhrases = new String[1];
+	  				keywordPhrases[0] = keyword;
+	  			}
+	  		}
 	  		String obj = "";
 	  		String compl = "";
 	  		
@@ -286,13 +302,21 @@ public class OutputCreator {
 	  		for(int i = 0; i < keywordPhrases.length; i++) {
 	  		//	String[] keywords = keywordPhrases[i].split(" ");
 	  			//for (int j = 0; j < keywords.length; j++){
-		  			if(keywordPhrases[i].contains("<") && keywordPhrases[i].contains(">")) {
+	  			/*
+	  			if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
+	  					|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
+	  				if(keywordPhrases[i].contains("{")) {
+	  					compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
+	  				}*/
+	  			//}else {
+		  			if(keywordPhrases[i].contains("<")) {
 		  				obj = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
-		  			if(keywordPhrases[i].contains("{") && keywordPhrases[i].contains("}")) {
+		  			if(keywordPhrases[i].contains("{") ) {
 		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
 	  			}
+	  		//}
 	  			
 	  		for(int i = 0; i < sentences.length; i++) {
 	  			if(sentences[i].contains(evaluationObj)) {
@@ -347,7 +371,7 @@ public class OutputCreator {
 		return dialogStateClass;
   	}
   	//Testing Why is there a null in front of the sentence if you run this? The Object can't be replaced since no robotData is loaded, but why is there the null????
-  /*	
+ /* 
   public static void main (String args[]) {
 	  	OutputCreator creator = new OutputCreator();
 	  	//StartState startState = new StartState();
@@ -358,6 +382,9 @@ public class OutputCreator {
 		Canteen c = new Canteen(cd);
 	  	CanteenInformationState ci = new CanteenInformationState();
 	  	Dialog cdia = new CanteenInformationDialog(s, ci, c);
+	  	((CanteenInformationDialog) cdia).setWishMeal(c.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName());
+	  	DialogManager.giveDialogManager().setCurrentDialog(cdia);
+	  	//ci.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_PRICE);
 	  	ci.setCurrentState(CanteenInfo.CI_ADEN_TELL_ALL_MEALS);
 	  	System.out.println(creator.createOutput(ci));
   	}*/

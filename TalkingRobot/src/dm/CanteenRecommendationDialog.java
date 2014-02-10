@@ -60,6 +60,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	public void updateState(List<Keyword> keywords, List<String> terms,
 			List<String> approval) throws WrongStateClassException {
 	
+		//updateStateKeywordJump(keywords);
 		if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
 			throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 		}
@@ -139,7 +140,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			int dateShift = 0; //0 for today, 1 for tomorrow, etc
 			int result = getRequestedWeekDay(keywords, date) - date.getDayOfWeek();
 			//Normalize the shift according to the days of the week.
-			if (result <= 0) { 
+			if (result < 0) { 
 				dateShift = 7 + result; //7 days in the week
 			} else {
 				dateShift = result;
@@ -152,7 +153,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			//Need to search in data then decide what's next state
 			ArrayList<Canteen> canteens = new ArrayList<Canteen>();
 			canteens.add(new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift)));
-			canteens.add(new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift)));
+//			canteens.add(new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift)));
 //			canteens.add(new Canteen(new CanteenData(CanteenNames.HOLZGARTEN, dateShift)));
 //			canteens.add(new Canteen(new CanteenData(CanteenNames.GOTTESAUE, dateShift)));
 //			canteens.add(new Canteen(new CanteenData(CanteenNames.TIEFENBRONNER, dateShift)));
@@ -173,7 +174,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			
 			
 			//Based on choosed wishMeal
-			this.setCurrentDialogState(selectNextState());
+			getCurrentDialogState().setCurrentState(selectNextState().getCurrentState());
 		}
 	}
 	
@@ -188,13 +189,15 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		//Not pretty at all!!
 		for (Canteen canteen : canteens) {
 			for (LineData lineData : canteen.getCanteenData().getLines()) {
-				for (MealData mealData : lineData.getTodayMeals()) {
-					for (MealCategoryData mealCategory : mealData.getMealCategory()) {
-						if (mealCategory.getMealCategoryName().equals(wishmealCategory)) {
-							//Category found
-							matchedMeals.add(new OneMealData(mealData, canteen.getCanteenData(), lineData));
-						}
-					}	
+				if (!lineData.getLineName().equals("nmtisch")) { //prevents future NullExceptions, since we're not using it
+					for (MealData mealData : lineData.getTodayMeals()) {
+						for (MealCategoryData mealCategory : mealData.getMealCategory()) {
+							if (mealCategory.getMealCategoryName().equals(wishmealCategory)) {
+								//Category found
+								matchedMeals.add(new OneMealData(mealData, canteen.getCanteenData(), lineData));
+							}
+						}	
+					}
 				}
 			}
 		}
@@ -209,30 +212,33 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	private DialogState selectNextState() {
 		DialogState nextState = new DialogState();
 		if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ADENAUERRING)) {
-			if (wishMeal.lineData.getLineName().equals("l1")) {
+			if (wishMeal.lineData.getLineName().equals("line one")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_1_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("l2")) { 
+			else if(wishMeal.lineData.getLineName().equals("line two")) { 
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_2_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("l3")) {
+			else if(wishMeal.lineData.getLineName().equals("line three")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_3_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("l45")) {
+			else if(wishMeal.lineData.getLineName().equals("line four")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_45_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("update")) {
+			else if(wishMeal.lineData.getLineName().equals("line six")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_LINE_6_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("schnitzelbar")) {
+			else if(wishMeal.lineData.getLineName().equals("schnitzel bar")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_SCHNITBAR_DISH);
 			}
-			else if(wishMeal.lineData.getLineName().equals("aktion")) {
+			else if(wishMeal.lineData.getLineName().equals("Curry Queen")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_CURRYQ_DISH);
 			} //curry queen
-			else if(wishMeal.lineData.getLineName().equals("heisstheke")) {
+			else if(wishMeal.lineData.getLineName().equals("theke")) {
 				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFE_DISH);
 			} //cafe
+//			else if(wishMeal.lineData.getLineName().equals("nmtisch")) {
+//				nextState.setCurrentState(CanteenRecom.CR_ADEN_CAFEABEND_DISH);
+//			} //cafe
 		}
 		//TODO not yet implemented to the other Canteens
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.MOLTKE)) { }
@@ -240,7 +246,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.GOTTESAUE)) { }
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.TIEFENBRONNER)) { }
 		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ERZBERGER)) { }
-		return null;
+		return nextState;
 	}
 
 	/**
@@ -343,30 +349,30 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		}
 	}
 	
-	public static void main(String[] args) throws WrongStateClassException {
-		ArrayList<Keyword> keywords = new ArrayList<Keyword>();
-		ArrayList<String> terms = new ArrayList<String>();
-		ArrayList<String> approval = new ArrayList<String>();
-		
-//		Keyword fish = new Keyword(new K));
-//		Keyword date = new Keyword(new KeywordData("today"));
-		keywords.add(new Keyword("pork", null, 0, null, null));
-		keywords.add(new Keyword("today", null, 0, null, null));
-		
-		User user = new User();
-		Robot robot = new Robot("Teddy", true);
-		Session s = new Session(user, robot);
-		Canteen c = new Canteen(null);
-		CanteenRecommendationState cstate = new CanteenRecommendationState();
-		cstate.setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
-		CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
-		dialog.updateStateAskPreference(keywords, terms, approval);
-		
-		String result = "No meal found!";
-		if (dialog.getWishmeal() != null) {
-			result = dialog.getWishMeal().getMealData().getMealName();
-		}
-		System.out.println(result);
-	}
+//	public static void main(String[] args) throws WrongStateClassException {
+//		ArrayList<Keyword> keywords = new ArrayList<Keyword>();
+//		ArrayList<String> terms = new ArrayList<String>();
+//		ArrayList<String> approval = new ArrayList<String>();
+//		
+////		Keyword fish = new Keyword(new K));
+////		Keyword date = new Keyword(new KeywordData("today"));
+//		keywords.add(new Keyword("pork", null, 0, null, null));
+//		keywords.add(new Keyword("today", null, 0, null, null));
+//		
+//		User user = new User();
+//		Robot robot = new Robot("Teddy", true);
+//		Session s = new Session(user, robot);
+//		Canteen c = new Canteen(null);
+//		CanteenRecommendationState cstate = new CanteenRecommendationState();
+//		cstate.setCurrentState(CanteenRecom.CR_ASK_PREFERENCE);
+//		CanteenRecommendationDialog dialog = new CanteenRecommendationDialog(s, cstate, c);
+//		dialog.updateStateAskPreference(keywords, terms, approval);
+//		
+//		String result = "No meal found!";
+//		if (dialog.getWishmeal() != null) {
+//			result = dialog.getWishMeal().getMealData().getMealName();
+//		}
+//		System.out.println(result);
+//	}
 
 }

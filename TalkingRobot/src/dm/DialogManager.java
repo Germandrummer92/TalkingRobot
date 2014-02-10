@@ -47,8 +47,9 @@ public class DialogManager {
  * @throws WrongStateClassException 
    */
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
-	  
-	  
+//	  for(int i = 0; i < keywords.size(); i++) {
+//		  System.out.println("working with: " + keywords.get(i));
+//	  }
 	  previousDialog = currentDialog;
 	   List<Keyword> kws = dictionary.findKeywords(keywords);
 	   do {
@@ -79,7 +80,11 @@ public class DialogManager {
 
 	   //?
 	   if (isInErrorState) {
-		   handleError(Main.giveMain().getNluResult().get(2));
+		   if(this.errorState != null && !Main.giveMain().getNluResult().get(3).isEmpty()) {
+			   handleError(Main.giveMain().getNluResult().get(3));
+		   } else {
+			   handleError(Main.giveMain().getNluResult().get(2));
+		   }
 	   } else {
 		   clearAllStrategies();
 	   }
@@ -91,7 +96,9 @@ public class DialogManager {
  * @return 
    */
   public void handleError(List<String> possibleKeywords) {
-	  
+//	  for(int i = 0; i < possibleKeywords.size(); i++) {
+//		  System.out.println(possibleKeywords.get(i));
+//	  }
 	  ErrorHandlingState dmResult = new ErrorHandlingState(true, ErrorHandling.REPEAT, "repeat");;
 	  boolean dialogIsUpdated = false;
 	  float avg = 10;
@@ -104,8 +111,11 @@ public class DialogManager {
 	  } else {
 		  lastPossibleKeywords = possibleKeywords;
 		  if(!possibleKeywords.isEmpty() && possibleKeywords.get(0).matches(".*;.*;[0-9]")) {
+//			  System.out.println("working with possible kw");
 	  			avg = this.getAverageDistance(possibleKeywords);
 		  } else if (!possibleKeywords.isEmpty()) {
+//			  System.out.println("working with approval");
+			  this.isInErrorState = false;
 		  	dialogIsUpdated = this.handleResponseToPreviousErrorHandling(possibleKeywords);
 		  		if(!dialogIsUpdated) {
 		  			//error could not be solved; start with repetition/rephrasing again
@@ -114,6 +124,7 @@ public class DialogManager {
 		  }  
 	  }
 	  
+//	  System.out.println(avg);
 	  //repeat || rephrase: more than 40% of the word is probably written wrong
 	  if(avg >= (float) 0.4){
 		  if(errorStrategy[0].getCounter() < 3) {
@@ -158,6 +169,7 @@ public class DialogManager {
 	  
 	  //ignore: the probability that we have a keyword is more than 85%
 	  if(avg < (float) 0.15){
+//		  System.out.println("ignoring the problem");
 		  LinkedList<String> assumedKeywords = new LinkedList<String>();
 		  for(int i = 0; i < possibleKeywords.size(); i++) {
 		  		if(possibleKeywords.get(i).matches(".*;.*;[0-9]")){
@@ -166,6 +178,7 @@ public class DialogManager {
 		  		}
 		  }
 		  
+		  this.isInErrorState = false;
 		  updateDialog(assumedKeywords, new LinkedList<String>(), new LinkedList<String>()); 
 		  dialogIsUpdated = true;
 	  }

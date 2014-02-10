@@ -214,6 +214,16 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 }
 
+public Canteen getCurCanteen() {
+	return curCanteen;
+}
+
+
+public void setCurCanteen(Canteen curCanteen) {
+	this.curCanteen = curCanteen;
+}
+
+
 /**
  * To update the state after give some informations
  * @param keywords list of keywords

@@ -1,4 +1,5 @@
 [approval]  2 states  1 arcs
+[_indifferent]  10 states  15 arcs
 [_yes]  14 states  43 arcs
 [disapproval]  2 states  1 arcs
 [_no]  22 states  53 arcs
