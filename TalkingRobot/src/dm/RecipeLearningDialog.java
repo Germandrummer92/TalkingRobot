@@ -320,6 +320,7 @@ private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 		if (terms.size() >  0) {
 			ArrayList<DialogState> states = new ArrayList<DialogState>();
 			states.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_COUNTRY_OF_ORIGIN));
+			states.add(new RecipeLearningState(RecipeLearning.RL_ASK_FIRST_INGREDIENT));
 			ArrayList<Data> refs = new ArrayList<Data>();
 			refs.add(recipe.getRecipeData());
 			KeywordData newCountry = new KeywordData(terms.get(terms.size() - 1), states, 5, refs, KeywordType.COUNTRY);
