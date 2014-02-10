@@ -39,9 +39,15 @@ public class DictionaryTest {
 	@Test
 	public void search1() {
 		ArrayList<String> input = new ArrayList<String>();
-		input.add("hi");
-		input.add("name");
+		input.add("that is all");
+		
 		ArrayList<Keyword> res = (ArrayList<Keyword>) dictionary.findKeywords(input);
+		
+//		for (int i = 0; i < res.size(); i++) {
+//		//TODO you can use this to find the id of a keywordData :)
+//			System.out.println(res.get(i).getWord() + " : " + res.get(i).getKeywordData().getWordID());
+//		}
+
 		ArrayList<String> comp = new ArrayList<String>();
 		for(int i = 0; i < res.size(); i++) {
 			comp.add(res.get(i).getWord());
