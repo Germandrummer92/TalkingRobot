@@ -13,6 +13,8 @@
 
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
+	(can *you [bring] me *[a])
+	(the next *COMPONENT [is])
 	(*for *now *[a] *recipe [person] [need] *[a]) 	# e.g. "for (recipe) you need _____"
 	([is] [need] *for)								# e.g. "____ is needed for (recipe)"
 	(for [need]) 									# e.g. "for (recipe) ______ is needed"
