@@ -148,6 +148,9 @@ public class TermAnalyzerTest {
 		assertEquals(compare, result);
 	}
 	
+	/**
+	 * checks the result for "the next tool is knife"
+	 */
 	@Test
 	public void testNext() { 
 		setInput("the next tool is knife");
@@ -158,6 +161,9 @@ public class TermAnalyzerTest {
 		assertEquals(compare, result);
 	}
 	
+	/**
+	 * checks the result for "can you bring me a knife"
+	 */
 	@Test
 	public void testBring() { 
 		setInput("can you bring me a knife");
@@ -165,7 +171,19 @@ public class TermAnalyzerTest {
 		List <String> compare = new LinkedList<String>();
 		compare.add("knife");
 		compare.add("can you bring me a knife");
-
+		assertEquals(compare, result);
+	}
+	
+	/**
+	 * checks the result for "we need tomatos"
+	 */
+	@Test
+	public void testNeed() { 
+		setInput("we need tomatos");
+		List <String> result = term.analyze("we need tomatos");
+		List <String> compare = new LinkedList<String>();
+		compare.add("tomatos");
+		compare.add("we need tomatos");
 		assertEquals(compare, result);
 	}
 	
