@@ -637,12 +637,12 @@ private void setDialogStateFromKeywordState(DialogState ds) {
 			kas.setCurrentState(ds.getCurrentState());
 			setCurrentDialogState(kas);
 			break;
-		case "CanteenRecom":
+		case "dm.CanteenRecom":
 			CanteenRecommendationState crs = new CanteenRecommendationState();
 			crs.setCurrentState(ds.getCurrentState());
 			setCurrentDialogState(crs);
 			break;
-		case "CanteenInfo":
+		case "dm.CanteenInfo":
 			CanteenInformationState cis = new CanteenInformationState();
 			cis.setCurrentState(ds.getCurrentState());
 			setCurrentDialogState(cis);
