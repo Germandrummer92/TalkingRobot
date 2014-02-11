@@ -148,6 +148,27 @@ public class TermAnalyzerTest {
 		assertEquals(compare, result);
 	}
 	
+	@Test
+	public void testNext() { 
+		setInput("the next tool is knife");
+		List <String> result = term.analyze("the next tool is knife");
+		List <String> compare = new LinkedList<String>();
+		compare.add("knife");
+		compare.add("the next tool is knife");
+		assertEquals(compare, result);
+	}
+	
+	@Test
+	public void testBring() { 
+		setInput("can you bring me a knife");
+		List <String> result = term.analyze("can you bring me a knife");
+		List <String> compare = new LinkedList<String>();
+		compare.add("knife");
+		compare.add("can you bring me a knife");
+
+		assertEquals(compare, result);
+	}
+	
 	@After
 	public void tearDown() {
 		this.term = null;
