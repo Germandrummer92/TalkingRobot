@@ -1,1 +1,1 @@
-{"wordID":163,"word":"chicken","dialogState":[{"currentState":{"name":"CR_ASK_PREFERENCE"}}],"priority":6,"dataReference":[],"type":"CATEGORY"}
+{"wordID":163,"word":"chicken","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":4,"dataReference":[{"ingredientID":4,"ingredientName":"chicken"}],"type":"INGREDIENT"}
