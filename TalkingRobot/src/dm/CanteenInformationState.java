@@ -57,7 +57,7 @@ public class CanteenInformationState extends DialogState {
           setQuestion(false);
           return null;
 	  case CI_ADEN_TELL_ALL_MEALS :
-		  //TODO
+		  
 		  setQuestion(false);
 		  String out = getAllMealsName( ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData());
@@ -70,6 +70,9 @@ public class CanteenInformationState extends DialogState {
 		 // int l1index = matchMealIndex(l1meals,wishMeal);
 		  
 		  price = l1meals.get(0).getPrice(); // at line one, all price are the same
+		  if( wishMeal.equals("")) {
+			  wishMeal = l1meals.get(0).getMealName().toString();
+		  }
 		  String  output = "<" + wishMeal+ ">";
 		  output =  output + " ,{ " + String.valueOf(price) + " }";	
 		  return output;
@@ -82,6 +85,9 @@ public class CanteenInformationState extends DialogState {
 		  int l2index = matchMealIndex(l2meals, wishMeal);
 		  
 		  price = l2meals.get(l2index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = l2meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal + ">";
 		  String output1 = output + ",{" + String.valueOf(price) + "}";	
 		  return output1;
@@ -93,6 +99,9 @@ public class CanteenInformationState extends DialogState {
 		  int l3index = matchMealIndex(l3meals, wishMeal);
 		  
 		  price = l3meals.get(l3index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = l3meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal + ">";
 		  output =  output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -104,6 +113,9 @@ public class CanteenInformationState extends DialogState {
 		  int l4index = matchMealIndex(l4meals, wishMeal);
 		  
 		  price = l4meals.get(l4index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = l4meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal + ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -115,6 +127,9 @@ public class CanteenInformationState extends DialogState {
 		  int l6index = matchMealIndex(l6meals, wishMeal);
 		  
 		  price = l6meals.get(l6index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = l6meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal + ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output; 
@@ -126,6 +141,9 @@ public class CanteenInformationState extends DialogState {
 		  int s_index = matchMealIndex(s_meals, wishMeal);
 		  
 		  price = s_meals.get(s_index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = s_meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal + ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -137,6 +155,9 @@ public class CanteenInformationState extends DialogState {
 		  int index = matchMealIndex(meals, wishMeal);
 		  
 		  price = meals.get(index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal+  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -148,12 +169,15 @@ public class CanteenInformationState extends DialogState {
 		  int curry_index = matchMealIndex(curry_meals, wishMeal);
 		  
 		  price = curry_meals.get(curry_index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = curry_meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal +  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
 	  
 	  case CI_MOLTKE_TELL_ALL_MEALS :
-		  //TODO
+		  
 		  setQuestion(false);
 		  String out1 = "{" + getAllMealsName( ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData()) + "}";
@@ -167,6 +191,9 @@ public class CanteenInformationState extends DialogState {
 		  int c1index = matchMealIndex(c1meals, wishMeal);
 		  
 		  price = c1meals.get(c1index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = c1meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal + " >";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -179,6 +206,9 @@ public class CanteenInformationState extends DialogState {
 		  int c2index = matchMealIndex(c2meals, wishMeal);
 		 
 		  price = c2meals.get(c2index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = c2meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal +  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -191,6 +221,9 @@ public class CanteenInformationState extends DialogState {
 		  int aindex = matchMealIndex(ameals, wishMeal);
 
 		  price = ameals.get(aindex).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = ameals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal +  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -203,6 +236,9 @@ public class CanteenInformationState extends DialogState {
 		  int sn_index = matchMealIndex(sn_meals, wishMeal);
 
 		  price = sn_meals.get(sn_index).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = sn_meals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal +  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -215,6 +251,9 @@ public class CanteenInformationState extends DialogState {
 		  int gindex = matchMealIndex(gmeals, wishMeal);
 
 		  price = gmeals.get(gindex).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = gmeals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal +  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
@@ -227,6 +266,9 @@ public class CanteenInformationState extends DialogState {
 		  int bindex = matchMealIndex(bmeals, wishMeal);
 		  
 		  price = bmeals.get(bindex).getPrice();
+		  if( wishMeal.equals("")) {
+			  wishMeal = bmeals.get(0).getMealName().toString();
+		  }
 		  output = "<" + wishMeal +  ">";
 		  output = output + ",{" + String.valueOf(price) + "}";	
 		  return output;
