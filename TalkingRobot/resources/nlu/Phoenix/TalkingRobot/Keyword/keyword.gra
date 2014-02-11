@@ -146,6 +146,14 @@
 	([Kitchen_Assistance_Kw])
 	([How])
 	([What])
+	([_creator])
+;
+
+[_creator]
+	(creator)
+	(who created)
+	(who saved)
+	(who)
 ;
 
 [Kitchen_Assistance_Kw]
