@@ -107,6 +107,37 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 }
 
+public User getCreator() {
+	return creator;
+}
+
+public String getCountryOfOrigin() {
+	return countryOfOrigin;
+}
+
+public ArrayList<Ingredient> getIngredientsList() {
+	return ingredientsList;
+}
+
+public ArrayList<Tool> getToolsList() {
+	return toolsList;
+}
+
+public String getRecipeName() {
+	return recipeName;
+}
+
+public RecipeStep[] getRecipeSteps() {
+	return recipeSteps;
+}
+
+public Integer getNumOfSteps() {
+	return numOfSteps;
+}
+
+public Recipe getRecipe() {
+	return recipe;
+}
 
 /**
  * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.

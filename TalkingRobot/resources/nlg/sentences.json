@@ -134,47 +134,70 @@
 	"dm.RecipeLearningState" : {
 	
 			"RL_ASK_INGREDIENT_RIGHT" : [
-			"Are you sure about this ingredient"
+			"Are you sure that <o> is needed to prepare {c}"
+			"Will I really need <o> to prepare {c}"
+			"Do I really have to buy <o> before I start cooking {c}"
 			],
 			"RL_ASK_COUNTRY_OF_ORIGIN" : [
-				"from what country does this recipe come from"
+				"Where does this recipe come from"
+				"I wonder where was this recipe invented"
+				"And where does this recipe has it's origins"
 			],
 			"RL_ASK_FIRST_INGREDIENT" : [
-				"tell me the first ingredient"
+				"Tell me the first ingredient for <o>"
+				"So what is the first thing needed in order to prepare <o>"
+				"What is the first ingredient needed to cook <o>"
 			],
 			"RL_ASK_FIRST_STEP" : [
-				"what is the first step for this recipe",
-				"what do i have to do first"
+				"what is the first step in order to preapre <o>",
+				"After the tools and ingredients, tell me what is the first step to prepare <o>"
+				"Tell me what should I do when i have this tools and ingredients so I can taste some delicious <o>"
 			],
 			"RL_ASK_FIRST_TOOL" : [
-				"what is the first tool"
+				"What is the first tool which I will need to prepare <o>"
+				"The ingredients for <o> sound nice but what is the first tool needed"
+				"Can you tell me what is the first tool needed to prepare <o>"
 			],
 			"RL_ASK_LAST_STEP" : [
-				"Wow this recipe has a lot of steps. Just tell me the last one"
+				"Wow <o> has a lot of steps. Just tell me the last one"
+				"<o> is such a long recipe, please just tell me the last step"
 			],
 			"RL_ASK_NEXT_INGREDIENT" : [
-				"And what is the next ingredient"
+				"And what is the next ingredient needed"
+				"Ok and what should I also buy"
+				"This recipe sounds so nice, what should be the next ingredinet"
 			],
 			"RL_ASK_NEXT_STEP" : [
-				"What is the next step then"
+				"What should I do next"
+				"What step should I remember next"
+				"Ok and what should I do then"
 			],
 			"RL_ASK_NEXT_TOOL" : [
 				"And what is the next tool"
+				"Ok and what should I also have for this recipe"
+				"Can you tell me the next tool"
 			],
 			"RL_ASK_RECIPE_NAME" : [
-				"what is the recipe called"
+				"How is this recipe called"
+				"What is the name of this recipe"
+				"How should I call this recipe"
 			],
 			"RL_ASK_STEP_RIGHT" : [
 				"Are you sure that this recipe step is right"
 			],
 			"RL_ASK_TOOL_RIGHT" : [
-				"Are you sure that this tool is right"
+				"Are you sure that <o> is really needed to prepare this recipe right"
+				"Do I really need <o> to cook this recipe"
+				"Do I really must have <o> to prepare this recipe"
 			],
 			"RL_ENTRY" : [
 				"oh, nice"
 			],
 			"RL_EXIT" : [
 				"This is a delicious recipe"
+				"Sound so yummy"
+				"You are such a good cook"
+				"I wish you cooked this more often"
 			]
 	},
 	"dm.KitchenAssistanceState" : {
