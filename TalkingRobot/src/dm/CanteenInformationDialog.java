@@ -271,6 +271,7 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 	
 	CanteenInformationState next = new CanteenInformationState();
 	next.setCurrentState(Start.S_USER_FOUND);
+	setCurrentDialogState(next);
 	
 }
 
@@ -315,6 +316,8 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 	} else { // user don't need anything from canteen info
 		CanteenInformationState  next = new CanteenInformationState();
 		next.setCurrentState(CanteenInfo.CI_EXIT);
+		setCurrentDialogState(next);
+		
 	}
 }
 

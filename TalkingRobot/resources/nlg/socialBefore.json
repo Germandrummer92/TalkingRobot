@@ -164,6 +164,9 @@
 			]
 	},
 	"dm.CanteenInformationState" : {
+			"CI_ADEN_TELL_ALL_MEALS" :[
+				""
+			],
 			"CI_ADEN_CAFE_DISH" : [
 				""
 			],
@@ -219,6 +222,9 @@
 				""
 			],
 			"CI_EXIT" : [
+				""
+			],
+			"CI_MOLTKE_TELL_ALL_MEALS" : [
 				""
 			],
 			"CI_MOLTKE_ACTTHEK_DISH" : [
