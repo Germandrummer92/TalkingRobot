@@ -348,6 +348,10 @@ THIS
 	([_hi])
 	([_name])
 	([User])
+	([Login_student])
+;
+
+[Login_student]
 	(student)
 	(employee)
 ;
