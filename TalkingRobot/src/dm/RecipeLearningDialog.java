@@ -123,6 +123,10 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 	boolean iState = innerState.equals(RecipeLearning.RL_ASK_NEXT_INGREDIENT) || innerState.equals(RecipeLearning.RL_ASK_FIRST_INGREDIENT);
 	boolean tState = innerState.equals(RecipeLearning.RL_ASK_FIRST_TOOL) || innerState.equals(RecipeLearning.RL_ASK_NEXT_TOOL);
 	boolean sState = innerState.equals(RecipeLearning.RL_ASK_FIRST_STEP) || innerState.equals(RecipeLearning.RL_ASK_NEXT_STEP) || innerState.equals(RecipeLearning.RL_ASK_LAST_STEP);
+	//if exit state is reached stay here so that exit routine is executed
+	if (innerState.equals(RecipeLearning.RL_EXIT)) {
+		return false;
+	}
 	
 	if (keywords.isEmpty()) {
 		return false;
@@ -205,17 +209,18 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 		}
 }
 
-private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-	for (Recipe recipe : this.getRecipeDatabase()) {
-		if (recipe.getRecipeData().getRecipeName().equals(recipeName)) {
-			return;
-		}
-	}
-	createRecipe();
+private void updateStateExit(List<Keyword> keywords, List<String> terms) throws WrongStateClassException {
 	StartState nextState;
 	nextState = new StartState();
 	nextState.setCurrentState(Start.S_USER_FOUND);
 	setCurrentDialogState(nextState);
+	for (Recipe recipe : this.getRecipeDatabase()) {
+		if (recipe.getRecipeData().getRecipeName().equals(recipeName)) {
+			throw new WrongStateClassException(nextState.getCurrentState().getClass().getName()); //go back to start dialog
+		}
+	}
+	createRecipe();
+	throw new WrongStateClassException(nextState.getCurrentState().getClass().getName()); //go back to start dialog
 }
 
 
@@ -243,7 +248,6 @@ private void updateStateLastStep(List<Keyword> keywords, List<String> terms) {
 }
 
 private void updateStateStep(List<Keyword> keywords, List<String> terms) {
-	
 	RecipeLearningState nextState;
 	if (userSaidEnd(keywords)) {
 		nextState = new RecipeLearningState(RecipeLearning.RL_EXIT);
