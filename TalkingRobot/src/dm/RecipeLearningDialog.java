@@ -127,6 +127,14 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 	if (keywords.isEmpty()) {
 		return false;
 	}
+	
+	if(innerState.equals(RecipeLearning.RL_ASK_RECIPE_NAME)) {
+		for (Keyword keyword: keywords) {
+			if (!keyword.getKeywordData().getType().equals(KeywordType.DEFAULT)) {
+				return false;
+			}
+		}
+	}
 	//if in country and country type then don't jump (ask ingredient)
 	if (innerState.equals(RecipeLearning.RL_ASK_COUNTRY_OF_ORIGIN)) {
 		for (Keyword keyword: keywords) {
@@ -204,6 +212,10 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 		}
 	}
 	createRecipe();
+	StartState nextState;
+	nextState = new StartState();
+	nextState.setCurrentState(Start.S_USER_FOUND);
+	setCurrentDialogState(nextState);
 }
 
 
@@ -562,6 +574,8 @@ private void createRecipe() {
   			creator ,countryOfOrigin, mealCategory);
   	recipe.getRecipeData().writeFile();
   	getRecipeDatabase().add(recipe);
+  	
+	addWord(recipe.getRecipeData().getRecipeName(), 3, new RecipeAssistanceState(RecipeAssistance.RA_TELL_WHOLE_RECIPE), recipe.getRecipeData(), KeywordType.RECIPE);
 }
 
 /**
