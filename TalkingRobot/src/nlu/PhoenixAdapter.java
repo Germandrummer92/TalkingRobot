@@ -61,9 +61,15 @@ public class PhoenixAdapter {
 			LinkedList<String> list, String phoenixLine) {
 		if(extractFlag == 1) {
 			if(phoenixLine.matches("Keyword:.+")) {
+				String keywords4 = "";
 				String[] keywords1 = phoenixLine.split("Keyword:");
 				String[] keywords3 = null;
 				String[] keywords2;
+				if(keywords1[keywords1.length - 1].contains("[Number]")) {
+					if(keywords1[keywords1.length - 1].contains("[Line]")) {
+						keywords4 = "line";
+					}
+				}
 				if(keywords1[keywords1.length - 1].matches(".+\\..+")) {
 					keywords2 = keywords1[keywords1.length - 1].split("[\\.]");
 					if(keywords2[keywords2.length - 1].matches(".+_.+")) {
@@ -82,7 +88,6 @@ public class PhoenixAdapter {
 						keywords3 = keywords1;
 					}
 				}
-				String keywords4 = "";
 				for(int i = 0; i < keywords3.length; i++) {
 					if(!keywords3[i].isEmpty() && !keywords3[i].equals(null)) {
 						keywords4 = keywords4 + " " + keywords3[i].trim();
