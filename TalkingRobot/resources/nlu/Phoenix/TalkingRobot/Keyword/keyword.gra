@@ -137,8 +137,8 @@
 	(recommendation)
 	(give me a recommendation)
 	(recommend)
-	(suggest [_meal])
-	(suggestion [_meal])
+	(suggest *[_meal])
+	(suggestion *[_meal])
 ;
 
 #kitchen assistance
