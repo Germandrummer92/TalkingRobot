@@ -390,11 +390,11 @@ THIS
 ;
 
 [Time_extend]
-	([Others])
+	([Other_times])
 	([Weekday])
 ;
 
-[Others]
+[Other_times]
 	(now)
 	(immediately)
 	(today)
@@ -405,11 +405,15 @@ THIS
 
 [Category]
 	([Meat])
+	([Category_others])
+;
+	
+[Category_others]
 	(vegetarian)
 	(vegan)
 	(fish)
 ;
-	
+
 [Meat]
 	(pork)
 	(chicken)
