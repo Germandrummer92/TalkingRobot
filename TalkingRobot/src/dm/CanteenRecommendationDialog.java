@@ -79,6 +79,22 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			case CR_EXIT:
 				updateStatExit(keywords, terms, approval);
 				break;
+	    	case CR_ADEN_LINE_1_DISH:
+	    	case CR_ADEN_LINE_2_DISH:
+	    	case CR_ADEN_LINE_3_DISH:
+	    	case CR_ADEN_LINE_45_DISH:
+	    	case CR_ADEN_LINE_6_DISH:
+	    	case CR_ADEN_SCHNITBAR_DISH:
+	    	case CR_ADEN_CURRYQ_DISH:
+	    	case CR_ADEN_CAFE_DISH:
+	    	case CR_MOLTKE_CHOICE_1_DISH:
+	    	case CR_MOLTKE_CHOICE_2_DISH:
+	    	case CR_MOLTKE_SCHNITBAR_DISH:
+	    	case CR_MOLTKE_CAFE_DISH:
+	    	case CR_MOLTKE_ACTTHEK_DISH:
+	    	case CR_MOLTKE_GG_DISH:
+	    	case CR_MOLTKE_BUFFET_DISH:
+	    		updateMealFound(keywords, terms, approval);
 			default:
 				break;
 		}
@@ -146,12 +162,25 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			} else {
 				dateShift = result;
 			}
-				
-			//The request type of food (MealCategory) is in keyword.
 			
-			this.setWishmealCategory(keywords.get(0).getWord());
 			
-			//Need to search in data then decide what's next state
+			//Find a keyword that represents the category
+			String category = "no_category";
+			for (Keyword kw : keywords) {
+				String possibleCategory = this.verifyCategories(kw.getWord());
+				if (!possibleCategory.equals("no_category")) {
+					category = possibleCategory;
+				}
+			}
+			//If no category found, there is a problem.
+			if (category.equals("no_category")) {
+				DialogManager.giveDialogManager().setInErrorState(true);
+				return;
+			}
+			//else
+			this.setWishmealCategory(category);
+			
+			//Fetching canteen data, in order to search the category
 			ArrayList<Canteen> canteens = new ArrayList<Canteen>();
 			canteens.add(new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift)));
 //			canteens.add(new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift)));
@@ -174,9 +203,33 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 			setWishMeal(chooseMeal(matchedMeals));
 			
 			
-			//Based on choosed wishMeal
+			//Based on chosen wishMeal
 			getCurrentDialogState().setCurrentState(selectNextState().getCurrentState());
 		}
+	}
+	
+	/**
+	 * When meal is found in the canteen.
+	 * @param keywords
+	 * @param terms
+	 * @param approval
+	 */
+	private void updateMealFound(List<Keyword> keywords, List<String> terms,
+			List<String> approval) {
+		//Since the user is asked for an approval, if he says yes, his history will be saved.
+		if (!approval.isEmpty()) {
+			if (approval.get(0).equals("yes")) {
+				//Save user history
+				//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+				Date date = new Date();
+				MealDatePair mealAndDate = new MealDatePair(date, wishMeal.getMealData());
+				this.getCurrentSession().getCurrentUser().getUserData().addAcceptedSuggestion(mealAndDate);
+			}
+		}
+		DialogState nextState = new DialogState();
+		nextState.setCurrentState(CanteenRecom.CR_EXIT);
+		getCurrentDialogState().setCurrentState(nextState.getCurrentState());
+		
 	}
 	
 	/**
@@ -286,18 +339,39 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		return today.getDayOfWeek();
 	}
 	
-	private void updateStatExit(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		if (!approval.isEmpty()) {
-			if (approval.get(0).equals("yes")) {
-				//Save user history
-				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-				Date date = new Date();
-				MealDatePair mealAndDate = new MealDatePair(date, wishMeal.getMealData());
-				this.getCurrentSession().getCurrentUser().getUserData().addAcceptedSuggestion(mealAndDate);
-			}
+	/**
+	 * It both checks if keyword is a meal category and returns the correct term for it.
+	 * @param keyword
+	 * @return
+	 */
+	private String verifyCategories(String keyword) {
+		switch (keyword) {
+		case "beef":
+		case "cow":
+			return "cow";
+		case "fish":
+			return keyword; // no changes
+		case "veg":
+		case "vegetarian":
+			return "veg";
+		case "vegan":
+		case "pork":
+			return keyword; // no changes
+		default:
+			return "no_category";
 		}
 	}
 	
+	private void updateStatExit(List<Keyword> keywords, List<String> terms, List<String> approval) {
+		//...
+	}
+	
+	/**
+	 * If meal wasn't found in the canteens for the given keywords.
+	 * @param keywords
+	 * @param terms
+	 * @param approval
+	 */
 	private void updateMealNotExist(List<Keyword> keywords, List<String> terms, List<String> approval) {
 		//Doesn't expect anything. Maybe that the user says something else?
 		if (!approval.isEmpty()) {
