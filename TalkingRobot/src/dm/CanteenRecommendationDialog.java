@@ -62,7 +62,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	
 		updateStateKeywordJump(keywords);
 		
-		if (getCurrentDialogState().getClass() != CanteenRecommendationState.class) {
+		if (getCurrentDialogState().getClass() != CanteenRecommendationState.class || getCurrentDialogState().getCurrentState().getClass() != CanteenRecom.class) {
 			throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 		}
 		

@@ -85,6 +85,7 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" + steps + ">,{" + recipeName + "}";
 		case RA_TELL_TOOLS:
 			setQuestion(false);
+			//System.out.println(tools);
 			return "<" + tools + ">,{" + recipeName + "}";
 		case RA_TELL_TOOL_FOUND:
 			setQuestion(false);

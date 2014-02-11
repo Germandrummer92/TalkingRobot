@@ -64,6 +64,7 @@ public class DialogManager {
 		if (e.getNewClassName().contains("Canteen")) {
 			currentCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
 		}
+		//System.out.println(e.getNewClassName());
 		//If not switching the class
 		switch (e.getNewClassName()) {
 		case "dm.Start" : currentDialog = new StartDialog(currentSession, new StartState((Start)currentDialogState)); break;

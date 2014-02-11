@@ -5,6 +5,7 @@ import java.util.List;
 import data.IngredientData;
 import data.KeywordType;
 import data.RecipeData;
+import data.ToolData;
 
 /**
  * This class represents a new recipe assistance dialog.
@@ -206,8 +207,21 @@ private void updateStateWaitingName(List<Keyword> keywords, List<String> terms) 
 			getCurrentDialogState().setCurrentState(RecipeAssistance.RA_RECIPE_NOT_FOUND);
 		}
 	}
-	//If there was a keyword something's wrong, and if there's no terms somethings wrong as well.
+	//If there was a keyword something's wrong, and if there's no terms somethings wrong as well, unless a keyword to this state was passed
+	else {
+		if (keywords != null && !keywords.isEmpty()) {
+			for (Keyword kw : keywords) {
+				for (DialogState d : kw.getReference()) {
+					if (d.getCurrentState().equals(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME)) {
+						getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
+						return;
+					}
+				}
+			}
+		}
 		DialogManager.giveDialogManager().setInErrorState(true);
+	}
+		
 
 	
 }
@@ -225,8 +239,18 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 			getCurrentDialogState().setCurrentState(RecipeAssistance.RA_RECIPE_NOT_FOUND);
 			return;
 		}
-		//if no terms have been passed something went wrong
+		//if no terms have been passed something went wrong or just recipe/other weird keyword passed
 		else {
+			if (keywords != null && !keywords.isEmpty()) {
+				for (Keyword kw : keywords) {
+					for (DialogState d : kw.getReference()) {
+						if (d.getCurrentState().equals(RecipeAssistance.RA_ENTRY)) {
+							getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
+							return;
+						}
+					}
+				}
+			}
 			DialogManager.giveDialogManager().setInErrorState(true);
 		}
 	}
@@ -432,6 +456,9 @@ private void updateStateTellTools(List<Keyword> keywords, List<String> terms) {
 			}
 		}
 	}
+
+			System.out.println(currRecipe.getRecipeData().getTools().size());
+
 	//If not, the recipe should've already been set, if not, we need a recipe Name.
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
 		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);

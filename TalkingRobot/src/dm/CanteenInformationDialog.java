@@ -70,7 +70,7 @@ public void setWishMeal(String wishMeal) {
 @Override
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
-	if (getCurrentDialogState().getClass() != CanteenInformationState.class) {
+	if (getCurrentDialogState().getClass() != CanteenInformationState.class || getCurrentDialogState().getCurrentState().getClass() != CanteenInfo.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
 	

@@ -51,7 +51,7 @@ private User creator;
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	RecipeLearningState currState;
-	if (getCurrentDialogState().getClass() != RecipeLearningState.class) {
+	if (getCurrentDialogState().getClass() != RecipeLearningState.class || getCurrentDialogState().getCurrentState().getClass() != RecipeLearning.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
 	else {
