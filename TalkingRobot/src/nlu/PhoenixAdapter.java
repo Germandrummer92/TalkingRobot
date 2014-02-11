@@ -61,15 +61,10 @@ public class PhoenixAdapter {
 			LinkedList<String> list, String phoenixLine) {
 		if(extractFlag == 1) {
 			if(phoenixLine.matches("Keyword:.+")) {
-				String keywords4 = "";
 				String[] keywords1 = phoenixLine.split("Keyword:");
 				String[] keywords3 = null;
 				String[] keywords2;
-				if(keywords1[keywords1.length - 1].contains("[Number]")) {
-					if(keywords1[keywords1.length - 1].contains("[Line]")) {
-						keywords4 = "line";
-					}
-				}
+				String keywords4 = "";
 				if(keywords1[keywords1.length - 1].matches(".+\\..+")) {
 					keywords2 = keywords1[keywords1.length - 1].split("[\\.]");
 					if(keywords2[keywords2.length - 1].matches(".+_.+")) {
@@ -96,7 +91,19 @@ public class PhoenixAdapter {
 				}
 				keywords4 = keywords4.toLowerCase();
 				if(!list.contains(keywords4) && !keywords4.isEmpty() && !keywords4.equals(null)) {
-					list.add(keywords4);
+					if(list.size() > 0) {
+						if(list.getLast().equals("line")) {
+							
+							if(keywords1[keywords1.length - 1].matches(".+[Number].+")) {
+								list.set(list.size() - 1, list.getLast().concat(" " + keywords4));System.out.println("mamamamamam");
+							}
+							else {
+								list.add(keywords4);
+							}
+						}
+					} else {
+						list.add(keywords4);
+					}
 				}
 			}
 			else{
