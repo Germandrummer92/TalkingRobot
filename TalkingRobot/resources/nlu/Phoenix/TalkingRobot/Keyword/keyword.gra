@@ -406,12 +406,7 @@ THIS
 	(pork)
 	(chicken)
 	(beef)
-	([_cow])
-;
-
-[_cow]
 	(cow)
-	(beef)
 ;
 
 [Country]
