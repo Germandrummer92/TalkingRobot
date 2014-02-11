@@ -237,12 +237,12 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 	
 	if( approval.size() == 1 && (approval.get(0).equals("yes"))) { 
 		if( keywords == null && (terms == null)) {// user is satisfied
-				DialogState next = new DialogState();
+				CanteenInformationState next = new CanteenInformationState();
 				next.setCurrentState(CanteenInfo.CI_EXIT);
 				finished = true;
 		} else { // user still has other requests
 			CanteenInfo subState = matchSubState(keywords, terms, inAden);
-			DialogState nextState = new DialogState();
+			CanteenInformationState nextState = new CanteenInformationState();
 			nextState.setCurrentState(subState);
 			setCurrentDialogState(nextState);
 			finished = true;
@@ -256,7 +256,7 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 	
 	if( !finished ){
 		CanteenInfo subState = matchSubState(keywords, terms, inAden);
-		DialogState nextState = new DialogState();
+		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
 	}
@@ -269,7 +269,7 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 	
-	DialogState next = new DialogState();
+	CanteenInformationState next = new CanteenInformationState();
 	next.setCurrentState(Start.S_USER_FOUND);
 	
 }
@@ -289,7 +289,7 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 		}
 		
 		CanteenInfo subState = matchSubState(keywords, terms, inAden);
-		DialogState nextState = new DialogState();
+		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
 		return;
@@ -307,13 +307,13 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 		}
 		
 		CanteenInfo subState = matchSubState(keywords, terms, inAden);
-		DialogState nextState = new DialogState();
+		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
 		return;
 		
 	} else { // user don't need anything from canteen info
-		DialogState  next = new DialogState();
+		CanteenInformationState  next = new CanteenInformationState();
 		next.setCurrentState(CanteenInfo.CI_EXIT);
 	}
 }
@@ -336,7 +336,7 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 	}
 	
 	CanteenInfo subState = matchSubState(keywords, terms, inAden);
-	DialogState nextState = new DialogState();
+	CanteenInformationState nextState = new CanteenInformationState();
 	nextState.setCurrentState(subState);
 	setCurrentDialogState(nextState);
 }
