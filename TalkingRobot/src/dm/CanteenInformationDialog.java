@@ -389,7 +389,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		
 		if( index == -1) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
-				if( line.getWord().contains("line")) { // we found a line keyword
+				//if( line.getWord().contains("line")) { // we found a line keyword
 					//List<DialogState> refs = new ArrayList<DialogState>();
 										//refs = line.getReference();
 					if(inAden) {
@@ -408,7 +408,8 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
  							return (CanteenInfo) ref.getCurrentState();
                   	   	}
                       }
-					}
+				//	}
+				
 				}
 			}
 		}
@@ -516,39 +517,87 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 		if(inAden) {
 			switch (index) {
 			case 0:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(0).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_LINE_1_PRICE;
 			case 1:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(1).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_LINE_2_PRICE;
 			case 2:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(2).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_LINE_3_PRICE;
 			case 3:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(3).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_LINE_45_PRICE;
 			case 4:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(4).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_SCHNITBAR_PRICE;
 			case 5:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(5).getLineName().toString();
+				}
 				return CanteenInfo.CI_EXIT; // we don't have the enum and it doesn't that meaningful to have it
 			case 6:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(6).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_CAFE_PRICE;
 			case 7:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(7).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_CAFEABEND_PRICE;
 			case 8:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(8).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_LINE_6_PRICE;
 			case 9:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(9).getLineName().toString();
+				}
 				return CanteenInfo.CI_ADEN_CURRYQ_PRICE;
 			}
 		}else {
 			switch (index) {
 			case 0:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(0).getLineName().toString();
+				}
 				return CanteenInfo.CI_MOLTKE_CHOICE_1_PRICE;
 			case 1:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(1).getLineName().toString();
+				}
 				return CanteenInfo.CI_MOLTKE_CHOICE_2_PRICE;
 			case 2:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(2).getLineName().toString();
+				}
 				return CanteenInfo.CI_MOLTKE_ACTTHEK_PRICE;
 			case 3:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(3).getLineName().toString();
+				}
 				return CanteenInfo.CI_MOLTKE_GG_PRICE;
 			case 4:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(4).getLineName().toString();
+				}
 				return CanteenInfo.CI_MOLTKE_BUFFET_PRICE;
 			case 5:
+				if(wishMeal == null) {
+					this.wishMeal = curCanteen.getCanteenData().getLines().get(5).getLineName().toString();
+				}
 				return CanteenInfo.CI_MOLTKE_SCHNITBAR_PRICE;
 			}
 		}	

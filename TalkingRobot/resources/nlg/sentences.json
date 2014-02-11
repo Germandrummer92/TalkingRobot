@@ -378,15 +378,15 @@
 				"you can get <o> in cafeteria {c}"
 			],
 			"CI_ADEN_CAFE_PRICE" : [
-				"The price for <o> it's {c}",
-				"The price for wanted meal it's {c}"
+				"The price for <o> it's {c} in cafeteria",
+				"The price for wanted meal it's {c} in cafeteria"
 			],
 			"CI_ADEN_CURRYQ_DISH" : [
-				"In curry queen there's <o> {c}",
-				"You can find <o> {c} there",
+				"In curry queen there's <o> {c} in curry queen",
+				"You can find <o> {c} there in curry queen",
 				"{c} <o> will be provided in curry queen",
-				"{c} in curry queen there's <o>",
-				"you can get <o> in curry queen {c}"
+				"{c} in curry queen there's <o> in curry queen",
+				"you can get <o> in curry queen {c} in curry queen"
 			],
 			"CI_ADEN_CURRYQ_PRICE" : [
 				"The price for <o> it's {c}",
