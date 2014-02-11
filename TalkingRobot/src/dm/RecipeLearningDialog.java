@@ -205,7 +205,7 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 			setDialogStateFromKeywordState(maxPrioState.get(0));
 		//	setCurrentDialogState(maxPrioState.get(0)); 
 		}
-		return true;
+		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName()); //go to another state
 		}
 }
 
