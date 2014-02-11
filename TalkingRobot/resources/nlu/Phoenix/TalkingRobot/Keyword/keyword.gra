@@ -382,13 +382,17 @@ THIS
 ;
 
 [Time_extend]
+	([Others])
+	([Weekday])
+;
+
+[Others]
 	(now)
 	(immediately)
 	(today)
 	(tomorrow)
 	(day after tomorrow)
 	(next week)
-	([Weekday])
 ;
 
 [Category]
@@ -401,6 +405,12 @@ THIS
 [Meat]
 	(pork)
 	(chicken)
+	(beef)
+	([_cow])
+;
+
+[_cow]
+	(cow)
 	(beef)
 ;
 
