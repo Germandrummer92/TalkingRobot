@@ -221,8 +221,8 @@ private int nextID() {
 }
 
 /*public static void main(String[] args) {
-	new ToolData("knife", "silverware drawer", new ArrayList<RecipeData>()).writeFile();
-	new ToolData("spoon", "silverware drawer", new ArrayList<RecipeData>()).writeFile();
-	new ToolData("oven", "under the stove", new ArrayList<RecipeData>()).writeFile();
+	for (ToolData t : loadData()) {
+		System.out.println(t.getLocation());
+	}
 }*/
 }

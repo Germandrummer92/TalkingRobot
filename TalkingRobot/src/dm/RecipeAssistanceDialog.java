@@ -187,6 +187,7 @@ private void updateStateFound(List<Keyword> keywords, List<String> terms) {
 			if (kw.getKeywordData().getType().equals(KeywordType.RECIPE)) {
 				//First Reference is the Recipe for recipe keywords
 				currRecipe = new Recipe((RecipeData)kw.getKeywordData().getDataReference().get(0));
+				recipeName = currRecipe.getRecipeData().getRecipeName();
 			}
 		}
 	}
