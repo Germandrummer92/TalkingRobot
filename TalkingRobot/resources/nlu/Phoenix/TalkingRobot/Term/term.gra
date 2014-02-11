@@ -89,6 +89,11 @@ NEED
 	(present)
 ;
 
+[bring]
+	(bring)
+	(get)
+;
+
 [person]
 	(you)
 	(me)
