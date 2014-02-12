@@ -98,7 +98,11 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		}
 	}
 
-	//NOT IN USE AT THE MOMENT.
+	/**
+	 * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
+	 * @param keywords
+	 * @return if the jump was completed
+	 */
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
 		if (keywords == null || keywords.isEmpty()) {
 			return false;
