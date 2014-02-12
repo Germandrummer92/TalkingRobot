@@ -129,6 +129,7 @@ private String getTools(RecipeData recipe) {
 		res += tool.getToolName() + " ";
 	}
 	res += last.getToolName();
+	tools.add(last);
 	return res;
 }
 
@@ -167,6 +168,7 @@ private String getIngredients(RecipeData recipe) {
 		res += ing.getIngredientName() + " ";
 	}
 	res += last.getIngredientName();
+	ingreds.add(last);
 	return res;
 }
 
