@@ -7,6 +7,8 @@
 	(what is *[a] price of)
 	(can [person] tell me *[a] price of)
 	(it [named])
+	(*[person] *can call it)
+	(*[a] name of the recipe is)
 	(*[a] recipe [named])
 	(*[a] recipe name is)
 	(*[a] recipes name is)
@@ -15,14 +17,21 @@
 
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
-	(can *you [bring] me *[a])
-	(the next *COMPONENT [is])
-	(*for *now *[a] *recipe [person] [need] *[a]) 	# e.g. "for (recipe) you need _____"
-	([is] [need] *for)								# e.g. "____ is needed for (recipe)"
-	(for [need]) 									# e.g. "for (recipe) ______ is needed"
+	(*[person] *should *also *[need] buy *[a])
+	(can *you *also [bring] me *[a])
+	(the POSITION *COMPONENT [is] *[a])
+	(*for *now *[a] *recipe [person] *also [need] *[a]) 	# e.g. "for (recipe) you need _____"
+	([is] *also [need] *for)								# e.g. "____ is needed for (recipe)"
+	(for [need]) 	
+	(*please buy *[a])
+	(it is)							# e.g. "for (recipe) ______ is needed"
 	(for)
 	([is] *also *[a] COMPONENT *of *it *too)
 	(and *also *[a])
+POSITION
+	(first)
+	(next)
+	(last)
 COMPONENT
 	(ingredient)
 	(ingredients)
