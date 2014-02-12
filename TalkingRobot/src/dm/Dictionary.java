@@ -104,8 +104,8 @@ public class Dictionary {
 	}
 	 if (pw != null) {
 		 try {
-			 pw.append("\n");
-			pw.append("\t\t(" + keyword + ")");
+			pw.append("\n");
+			pw.append("\t(" + keyword + ")");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -148,9 +148,9 @@ public class Dictionary {
 	try {
 		temp = File.createTempFile("file", ".txt", f.getParentFile());
 	  String charset = "UTF-8";
-	  String delete = kwToDelete.getWord();
+	  String delete = "(" + kwToDelete.getWord() + ")";
 	  
-	  reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
+	  reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), charset));
 	
 	  writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(temp), charset));
 	
@@ -171,9 +171,8 @@ public class Dictionary {
 	keywordList.remove(kwToDelete);
   }
   
- /* Test: public static void main(String[] args) {
+ /* public static void main(String[] args) {
 	  Dictionary d = new Dictionary();
-	  for (User u : DialogManager.giveDialogManager().getUserList())
-	  d.addKeyword(u.getUserData().getUserName(), 100, new StartState(Start.S_USER_FOUND), u.getUserData());
+	  d.removeKeyword("fries");
   }*/
 }
