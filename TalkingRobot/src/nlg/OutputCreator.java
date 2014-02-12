@@ -161,7 +161,7 @@ public class OutputCreator {
   			JSONObject jsonObject = (JSONObject) obj;
   			
   			//TODO Remove this print!
-  			System.out.println(className);
+  			//System.out.println(className);
   			
   			JSONObject jsonState = (JSONObject) jsonObject.get(className);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(stateName);
@@ -299,7 +299,7 @@ public class OutputCreator {
   		for(int i = 0; i < keywordPhrases.length; i++) {
   			if(keywordPhrases[i].contains("<")) {
   				//obj. = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
-  				objs.add(keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1));
+  				objs.add(keywordPhrases[i].substring(1, keywordPhrases[i].length() -1));
   			}
   			if(keywordPhrases[i].contains("{") ) {
   				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
