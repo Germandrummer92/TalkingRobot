@@ -100,10 +100,10 @@ public class OutputCreator {
 	  			//String[] keywordArray = keywordPhrases[i].split(" ");
 	  			//for (int j = 0; j < keywordPhrases.length; j++){
 		  			if( keywordPhrases[i].contains("<") && keywordPhrases[i].contains(">") ) {
-		  				objs[i] = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
+		  				objs[i] = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  			}
 		  			if( keywordPhrases[i].contains("{") && keywordPhrases[i].contains("}")) {
-		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 2);
+		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
 		  				if(compl.contains("canteen")) {
 		  					compl = "Eating in canteen";
 		  				} 
