@@ -474,13 +474,16 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 	CanteenInfo matched = CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	Integer id = 0;
 	for(String mealName : terms) {
-		for( LineData line : curCanteen.getCanteenData().getLines()) {
-			for( MealData meal : line.getTodayMeals()) {
-				String str = meal.getMealName().toString().toLowerCase();
-				if(str.contains(mealName)) { // match a line
-					id = line.getLineID();
-					this.wishMeal = str;
-					return matched = findLineEnum(inAden, id);
+		String[] tms = mealName.split(" ");
+		for( int i = 0; i < tms.length; i++) {
+			for( LineData line : curCanteen.getCanteenData().getLines()) {
+				for( MealData meal : line.getTodayMeals()) {
+					String str = meal.getMealName().toString().toLowerCase();
+					if(str.contains(tms[i])) { // match a line
+						id = line.getLineID();
+						this.wishMeal = str;
+						return matched = findLineEnum(inAden, id);
+					}
 				}
 			}
 		}
