@@ -205,8 +205,20 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) throws WrongState
 	boolean hasOneRef = false;
 	for (Keyword kw : keywords) {
 		for (DialogState ds : kw.getKeywordData().getDialogState()) {
-			if (ds.getCurrentState().equals(innerState)) {
+			Enum<?> dsEnum = ds.getCurrentState();
+			boolean iStateDS = dsEnum.equals(RecipeLearning.RL_ASK_FIRST_INGREDIENT) || dsEnum.equals(RecipeLearning.RL_ASK_NEXT_INGREDIENT) ||
+					dsEnum.equals(RecipeLearning.RL_ASK_INGREDIENT_RIGHT);
+			boolean tStateDS = dsEnum.equals(RecipeLearning.RL_ASK_FIRST_TOOL) || dsEnum.equals(RecipeLearning.RL_ASK_NEXT_TOOL) ||
+					dsEnum.equals(RecipeLearning.RL_ASK_TOOL_RIGHT);
+			if (dsEnum.equals(innerState)) {
 				hasOneRef = true;
+			}
+			//if in tool or ingredient state and a keyword points to iState execute the separate routines updateStateIngred and updateStateTool 
+			if (iState && iStateDS ) {
+				return false;
+			}
+			if (tState && tStateDS) {
+				return false;
 			}
 		}
 		allHaveRef = allHaveRef && hasOneRef;
@@ -655,7 +667,10 @@ private void setDialogStateFromKeywordState(DialogState ds) {
 public static void main(String[] args) {
 	List<KeywordData> keywords = KeywordData.loadData();
 	for (KeywordData key : keywords) {
-		System.out.println(key.getWordID()+ "      " + key.generateJSON());
+		//if (key.getWord().equals("next")) {
+			System.out.println(key.getWordID()+ "      " + key.generateJSON());
+		//}
+	
 	}
 }
 }
