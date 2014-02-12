@@ -307,7 +307,8 @@
 				"When you don't know what to have. I can suggest some meals"
 			],
 			"CR_EXIT" : [
-				"Nice! Have a nice meal"
+				"Ok. Can I do something else for you?",
+				"Got it. What else can I do for you?"
 			],
 			"CR_MOLTKE_ACTTHEK_DISH" : [
 				"I will suggest to try <o> at action counter, if you want {c}",
