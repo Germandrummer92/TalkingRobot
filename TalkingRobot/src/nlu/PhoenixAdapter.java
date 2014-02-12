@@ -91,19 +91,7 @@ public class PhoenixAdapter {
 				}
 				keywords4 = keywords4.toLowerCase();
 				if(!list.contains(keywords4) && !keywords4.isEmpty() && !keywords4.equals(null)) {
-					if(list.size() > 0) {
-						if(list.getLast().equals("line")) {
-							
-							if(keywords1[keywords1.length - 1].matches(".+[Number].+")) {
-								list.set(list.size() - 1, list.getLast().concat(" " + keywords4));System.out.println("mamamamamam");
-							}
-							else {
-								list.add(keywords4);
-							}
-						}
-					} else {
-						list.add(keywords4);
-					}
+					list.add(keywords4);
 				}
 			}
 			else{
