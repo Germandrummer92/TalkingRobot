@@ -265,7 +265,7 @@ public class KeywordData implements Data {
 	}
 
 	public void deleteFile() {
-		String dirPath = "resources/files/KeywordData/" + wordID + ".json";
+		String dirPath = "resources/files/KeywordData/";
 		File currFile = new File(dirPath + wordID + ".json");
 		currFile.delete();
 		
