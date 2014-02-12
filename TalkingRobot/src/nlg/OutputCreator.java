@@ -269,78 +269,66 @@ public class OutputCreator {
   		String evaluationCompl = "{c}";
   		ArrayList<String> objs = new ArrayList<String>();
   		String compl = "";
+	
+  		String[] sentences = null;
+  		String[] keywordPhrases = null;
   		
-	  		String[] sentences = null;
-	  		String[] keywordPhrases = null;
+  		if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
+  				|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
 	  		
-	  		if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
-	  				|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
-		  		
-		  			keywordPhrases = new String[1];
-		  			keywordPhrases[0] = keyword; // nothing to split
-		  		
-	  		} else {
-	  			if(keyword.contains(",")) {
-	  				keywordPhrases = keyword.split(",");
-	  			} else {
-	  				keywordPhrases = new String[1];
-	  				keywordPhrases[0] = keyword;
-	  			}
-	  		}
+	  			keywordPhrases = new String[1];
+	  			keywordPhrases[0] = keyword; // nothing to split
 	  		
-	  		//Critical point! From now on, dots (".") should only be used to separate sentences!!
-	  		if(text.contains(".")) {
-	  			sentences = text.split("\\.");
-	  		} else {
-	  			sentences = new String[1]; // nothing to split
-	  			sentences[0] = text;
-	  		}
-	  		
-	  		for(int i = 0; i < keywordPhrases.length; i++) {
-	  		//	String[] keywords = keywordPhrases[i].split(" ");
-	  			//for (int j = 0; j < keywords.length; j++){
-	  			/*
-	  			if(s.getCurrentState().equals(CanteenInfo.CI_ADEN_TELL_ALL_MEALS) 
-	  					|| s.getCurrentState().equals(CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS)) {
-	  				if(keywordPhrases[i].contains("{")) {
-	  					compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
-	  				}*/
-	  			//}else {
-		  			if(keywordPhrases[i].contains("<")) {
-		  				//obj. = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
-		  				objs.add(keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1));
-		  			}
-		  			if(keywordPhrases[i].contains("{") ) {
-		  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
-		  			}
-	  			}
-	  		//}
-	  			
-	  		for(int i = 0; i < sentences.length; i++) {
-	  			//int j = 0;
-	  			for (String evalObj : evaluationObjs) {
-	  				if(sentences[i].contains(evalObj)) {
-	  					if (!objs.isEmpty()) //So that it doesnt throws a NullPointerException
-	  						sentences[i] = sentences[i].replace(evalObj, objs.remove(0));
-	  				}
-	  			}
-	  			if(sentences[i].contains(evaluationCompl)) {
-	  				sentences[i] = sentences[i].replace(evaluationCompl, compl);
-	  			}	
-	  			
-	  			//sentences[i] = sentences[i] + ". "; // blank between 2 sentences
-	  		}
-	  		
-	  		for(int i = 0; i < sentences.length; i++) {
-	  			if (answer.equals("")) {
-	  				answer = sentences[i];
-	  			}
-	  			else {
-	  				answer = answer + ". " + sentences[i];
-	  			}
-	  		}
-  	//	} else {answer = text;} // don't need to add keywords
+  		} else {
+  			if(keyword.contains(",")) {
+  				keywordPhrases = keyword.split(",");
+  			} else {
+  				keywordPhrases = new String[1];
+  				keywordPhrases[0] = keyword;
+  			}
+  		}
   		
+  		//Critical point! From now on, dots (".") should only be used to separate sentences!!
+  		if(text.contains(".")) {
+  			sentences = text.split("\\.");
+  		} else {
+  			sentences = new String[1]; // nothing to split
+  			sentences[0] = text;
+  		}
+  		
+  		for(int i = 0; i < keywordPhrases.length; i++) {
+  			if(keywordPhrases[i].contains("<")) {
+  				//obj. = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
+  				objs.add(keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1));
+  			}
+  			if(keywordPhrases[i].contains("{") ) {
+  				compl = keywordPhrases[i].substring(1, keywordPhrases[i].length() - 1);
+  			}
+  		}
+  			
+  		for(int i = 0; i < sentences.length; i++) {
+  			//int j = 0;
+  			for (String evalObj : evaluationObjs) {
+  				if(sentences[i].contains(evalObj)) {
+  					if (!objs.isEmpty()) //So that it doesnt throws a NullPointerException
+  						sentences[i] = sentences[i].replace(evalObj, objs.remove(0));
+  				}
+  			}
+  			if(sentences[i].contains(evaluationCompl)) {
+  				sentences[i] = sentences[i].replace(evaluationCompl, compl);
+  			}	
+  			
+  			//sentences[i] = sentences[i] + ". "; // blank between 2 sentences
+  		}
+  		
+  		for(int i = 0; i < sentences.length; i++) {
+  			if (answer.equals("")) {
+  				answer = sentences[i];
+  			}
+  			else {
+  				answer = answer + ". " + sentences[i];
+  			}
+  		}
   		
   		return answer;
   	}
