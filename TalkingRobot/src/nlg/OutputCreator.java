@@ -86,7 +86,7 @@ public class OutputCreator {
 	  		String evaluationCompl = "{c}";
 	  		    
 	  		String[] sentences = null;
-	  		String[] keywordPhrases = keywords.split(","); 
+	  		String[] keywordPhrases = keywords.split(";"); 
 	  		String[] objs = { "", "", "" };
 	  		String compl = "";
 	  		if(text.contains(".")) {
@@ -280,8 +280,8 @@ public class OutputCreator {
 	  			keywordPhrases[0] = keyword; // nothing to split
 	  		
   		} else {
-  			if(keyword.contains(",")) {
-  				keywordPhrases = keyword.split(",");
+  			if(keyword.contains(";")) {
+  				keywordPhrases = keyword.split(";");
   			} else {
   				keywordPhrases = new String[1];
   				keywordPhrases[0] = keyword;

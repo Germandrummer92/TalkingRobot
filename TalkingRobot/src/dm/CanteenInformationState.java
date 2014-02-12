@@ -74,7 +74,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = l1meals.get(0).getMealName().toString();
 		  }
 		  String  output = "<" + wishMeal+ "  >";
-		  output =  output + ",{ " + String.valueOf(price) + " }";	
+		  output =  output + ";{ " + String.valueOf(price) + " }";	
 		  return output;
 		  
 	  case CI_ADEN_LINE_2_PRICE:
@@ -89,7 +89,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = l2meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal + "  >";
-		  String output1 = output + ",{" + String.valueOf(price) + "}";	
+		  String output1 = output + ";{" + String.valueOf(price) + "}";	
 		  return output1;
 		  
 	  case CI_ADEN_LINE_3_PRICE:
@@ -103,7 +103,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = l3meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal + "  >";
-		  output =  output + ",{" + String.valueOf(price) + "}";	
+		  output =  output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		  
 	  case CI_ADEN_LINE_45_PRICE:
@@ -117,7 +117,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = l4meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal + "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
  	  
 	  case CI_ADEN_LINE_6_PRICE:
@@ -131,7 +131,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = l6meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal + "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output; 
 		  
 	  case CI_ADEN_SCHNITBAR_PRICE:
@@ -145,7 +145,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = s_meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal + "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
 	  case CI_ADEN_CAFE_PRICE:
@@ -159,7 +159,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal+  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		  
 	  case CI_ADEN_CURRYQ_PRICE :
@@ -173,7 +173,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = curry_meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal +  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 	  
 	  case CI_MOLTKE_TELL_ALL_MEALS :
@@ -195,7 +195,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = c1meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal + "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
 	  case CI_MOLTKE_CHOICE_2_PRICE :
@@ -210,7 +210,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = c2meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal +  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		  
 	  case CI_MOLTKE_ACTTHEK_PRICE:
@@ -225,7 +225,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = ameals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal +  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
 	  case CI_MOLTKE_SCHNITBAR_PRICE:
@@ -240,7 +240,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = sn_meals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal +  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 
 	  case CI_MOLTKE_GG_PRICE:
@@ -255,7 +255,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = gmeals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal +  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
 
@@ -270,7 +270,7 @@ public class CanteenInformationState extends DialogState {
 			  wishMeal = bmeals.get(0).getMealName().toString();
 		  }
 		  output = "<" + wishMeal +  "  >";
-		  output = output + ",{" + String.valueOf(price) + "}";	
+		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
 		  
@@ -414,7 +414,7 @@ public class CanteenInformationState extends DialogState {
 			  return output;
 		  }
 		  output = "<" + wishMeal +"  >";
-		  output = output + ",{" + time + "}";	
+		  output = output + ";{" + time + "}";	
 		  return output;
 	  case CI_TELL_LINE_NOT_EXIST:
 		  setQuestion(false);

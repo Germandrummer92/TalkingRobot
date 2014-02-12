@@ -49,7 +49,7 @@ public class RecipeLearningState extends DialogState {
 			case RL_ASK_INGREDIENT_RIGHT:
 				int indexIngred = cd.getIngredientsList().size() - 1;
 				String lastIngred = cd.getIngredientsList().get(indexIngred).getIngredientData().getIngredientName();
-				return "<" + lastIngred + ">,{" + recipeName + "}";
+				return "<" + lastIngred + ">;{" + recipeName + "}";
 			case RL_ASK_LAST_STEP:
 				return "<"+ recipeName + ">";
 			case RL_ASK_NEXT_INGREDIENT:

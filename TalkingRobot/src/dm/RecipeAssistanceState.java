@@ -64,10 +64,10 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" + recipeName + ">";
 		case RA_TELL_COUNTRY_OF_ORIGIN:
 			setQuestion(false);
-			return "<" + recipe.getOriginalCountry() + ">,{" + recipeName + "}";
+			return "<" + recipe.getOriginalCountry() + ">;{" + recipeName + "}";
 		case RA_TELL_CREATOR:
 			setQuestion(false);
-			return "<" + recipe.getCreator().getUserName() + ">,{" + recipeName + "}";
+			return "<" + recipe.getCreator().getUserName() + ">;{" + recipeName + "}";
 		case RA_TELL_INGREDIENTS:
 			setQuestion(false);
 			return "<" + ingreds + ">";
@@ -82,11 +82,11 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" + Integer.toString(recipe.getNumOfSteps()) + ">";
 		case RA_TELL_STEPS:
 			setQuestion(false);
-			return "<" + steps + ">,{" + recipeName + "}";
+			return "<" + steps + ">;{" + recipeName + "}";
 		case RA_TELL_TOOLS:
 			setQuestion(false);
 			//System.out.println(tools);
-			return "<" + tools + ">,{" + recipeName + "}";
+			return "<" + tools + ">;{" + recipeName + "}";
 		case RA_TELL_TOOL_FOUND:
 			setQuestion(false);
 			return "<" +recipeName + ">";
@@ -95,7 +95,7 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" +recipeName + ">";
 		case RA_TELL_WHOLE_RECIPE:
 			setQuestion(false);
-			return "<" + ingreds + " " + tools +">,{" + steps + "}";
+			return "<" + ingreds + " " + tools +">;{" + steps + "}";
 		case RA_WAITING_FOR_RECIPE_NAME:
 			setQuestion(true);
 			break;

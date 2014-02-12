@@ -9,10 +9,8 @@ import org.joda.time.LocalDate;
 
 import data.CanteenData;
 import data.CanteenNames;
-import data.KeywordData;
 import data.LineData;
 import data.MealData;
-import data.MealDatePair;
 
 /**
  * This class represents a dialog about canteen information
@@ -70,6 +68,8 @@ public void setWishMeal(String wishMeal) {
 @Override
 public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
+	
+	updateStateKeywordJump(keywords);
 	if (getCurrentDialogState().getClass() != CanteenInformationState.class || getCurrentDialogState().getCurrentState().getClass() != CanteenInfo.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
@@ -344,6 +344,44 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 	setCurrentDialogState(nextState);
 }
 
+private boolean updateStateKeywordJump(List<Keyword> keywords) {
+	if (keywords == null || keywords.isEmpty()) {
+		return false;
+	}
+	//Check if all keywords pointing to same state
+	else {
+		boolean sameRef = true;
+		Enum<?> ref = keywords.get(0).getReference().get(0).getCurrentState();
+		for (Keyword kw : keywords) {
+			for (DialogState d : kw.getReference()) {
+				if (!ref.equals(d.getCurrentState())) {
+					sameRef = false;
+				}
+			}
+		}
+		if (sameRef == true) {
+			getCurrentDialogState().setCurrentState(ref);
+			return true;
+		}
+		//If not go to keyword with highest priority
+		else {
+			int priorityMax = keywords.get(0).getKeywordData().getPriority();
+			Keyword curKW = keywords.get(0);
+			DialogState curRef = keywords.get(0).getReference().get(0);
+			for (Keyword kw : keywords) {
+				for (DialogState d : kw.getReference()) {
+					if (kw.getKeywordData().getPriority() > priorityMax) {
+						curKW = kw;
+						priorityMax = curKW.getKeywordData().getPriority();
+						curRef = d;
+					}
+				}
+			}
+			getCurrentDialogState().setCurrentState(curRef.getCurrentState());
+			return true;
+		}
+	}
+}
 
 /**
  * This method helps to match substate 
