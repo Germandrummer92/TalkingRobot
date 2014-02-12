@@ -375,6 +375,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		CanteenInfo matchedLine = mealMatched(keywords, terms, inAden);
 		if( !matchedLine.equals(CanteenInfo.CI_TELL_MEAL_NOT_EXIST)) {
 			mealMatched = true;
+			return matchedLine;
 		}
 		/*for( String name : terms) {
 			for( LineData line : curCanteen.getCanteenData().getLines()) {
