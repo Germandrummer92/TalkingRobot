@@ -476,12 +476,12 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 	Integer id = 0;
 	for(String mealName : terms) {
 		String[] tms = mealName.split(" ");
-		for( int i = 0; i < tms.length; i++) {
+		for( int i = tms.length -1; i >= 0; i--) {
 			for( LineData line : curCanteen.getCanteenData().getLines()) {
 				for( MealData meal : line.getTodayMeals()) {
 					String str = meal.getMealName().toString().toLowerCase();
 					if(str.contains(tms[i])) { // match a line
-						id = line.getLineID();
+						id = curCanteen.getCanteenData().getLines().indexOf(line);
 						this.wishMeal = str;
 						return matched = findLineEnum(inAden, id);
 					}
