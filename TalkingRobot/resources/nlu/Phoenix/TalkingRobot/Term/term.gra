@@ -4,7 +4,9 @@
 #Recipe Name
 [recipe_name]
 	(*[want] [teach] *[you] *[a] *recipe *[named])
-	(*[want] [teach] *[you] *[a] *recipe *[named])
+	(what is *[a] price of)
+	(can [person] tell me *[a] price of)
+	(it [named])
 	(*[a] recipe [named])
 	(*[a] recipe name is)
 	(*[a] recipes name is)
@@ -19,7 +21,7 @@
 	([is] [need] *for)								# e.g. "____ is needed for (recipe)"
 	(for [need]) 									# e.g. "for (recipe) ______ is needed"
 	(for)
-	([is] *[a] COMPONENT *of)
+	([is] *also *[a] COMPONENT *of *it *too)
 	(and *also *[a])
 COMPONENT
 	(ingredient)
