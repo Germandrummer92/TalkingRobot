@@ -422,6 +422,14 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		else { // the user is asking meals in lines
 			
 			for( Keyword line : keywords) {
+				if( line.getWord().contains("canteen")) {
+					if(inAden) {
+						return CanteenInfo.CI_ADEN_TELL_ALL_MEALS;
+					}else {
+						return CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS;
+					}
+				}
+				
 				if( !line.getWord().contains("price") ) { // we found a line keyword
 					// ArrayList<DialogState> refs = line.getReference();
 					 if(inAden) {
@@ -441,13 +449,9 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	                  	   	}
 	                  }
 
-				} else { // the user ask the meals in whole canteen
-					if(inAden) {
-						return CanteenInfo.CI_ADEN_TELL_ALL_MEALS;
-					}else {
-						return CanteenInfo.CI_MOLTKE_TELL_ALL_MEALS;
-					}
-				}
+				} //else { // the user ask the meals in whole canteen
+					
+				//}
 			}
 		}
 	
@@ -472,7 +476,7 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 	for(String mealName : terms) {
 		for( LineData line : curCanteen.getCanteenData().getLines()) {
 			for( MealData meal : line.getTodayMeals()) {
-				String str = meal.getMealName().toString();
+				String str = meal.getMealName().toString().toLowerCase();
 				if(str.contains(mealName)) { // match a line
 					id = line.getLineID();
 					this.wishMeal = str;
