@@ -458,7 +458,7 @@ private void updateStateTellTools(List<Keyword> keywords, List<String> terms) {
 		}
 	}
 
-			System.out.println(currRecipe.getRecipeData().getTools().size());
+			//System.out.println(currRecipe.getRecipeData().getTools().size());
 
 	//If not, the recipe should've already been set, if not, we need a recipe Name.
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
