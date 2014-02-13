@@ -9,8 +9,8 @@ import data.ToolData;
 
 /**
  * This class represents a new recipe assistance dialog.
- * @author Aleksandar Andonov
- * @version 1.0
+ * @author Aleksandar Andonov Daniel Draper
+ * @version 2.3
  */
 public class RecipeAssistanceDialog extends KitchenDialog {
 
@@ -509,6 +509,7 @@ private void updateStateDelete(List<Keyword> keywords, List<String> terms) {
 		else {
 			//Remove keyword:
 			DialogManager.giveDialogManager().getDictionary().removeKeyword(currRecipe.getRecipeData().getRecipeName());
+			getRecipeDatabase().remove(currRecipe);
 			currRecipe.getRecipeData().deleteFile();
 			
 		}

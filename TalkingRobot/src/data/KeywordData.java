@@ -24,6 +24,7 @@ import dm.StartState;
 /**
  * 
  * @author Luiz Henrique Soares Silva
+ * @author Daniel Draper
  * @version 1.0
  * 
  * This class describes and implements a Keyword Data.
