@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 /**
 * @author Meng Meng Yan
-* @version 1.0
+* @version 1.5
 * This Class represents the data for a meal.
 * @see Data
 */
@@ -22,7 +22,8 @@ public class MealData implements Data {
 	private Integer mealID;
 	private String mealName;
 	private ArrayList<MealCategoryData> mealCategory;
-	private Float price;
+	private Float s_price;
+	private Float e_price;
 	
 	/**
         * Creates a new MealData object.
@@ -31,11 +32,12 @@ public class MealData implements Data {
         * @param mealCategory mealCategory of the new Meal
         * @param price Price of the new Meal
         */
-	public MealData(String mealName, ArrayList<MealCategoryData> mealCategory, float price) {
+	public MealData(String mealName, ArrayList<MealCategoryData> mealCategory, float s_price, float e_price) {
 		this.mealID = nextID();
 		this.mealName = mealName;
 		this.mealCategory = mealCategory;
-		this.price = price;
+		this.s_price = s_price;
+		this.e_price = e_price;
 	}
 
 	 /**
@@ -67,7 +69,8 @@ public class MealData implements Data {
 	         mealID = newData.getMealID();
 	         mealName = newData.getMealName();
 	         mealCategory = newData.getMealCategory();
-	         price = newData.getPrice();
+	         s_price = newData.getS_price();
+	         e_price = newData.getE_price();
 	}
 
 	@Override
@@ -132,9 +135,10 @@ public class MealData implements Data {
 	/**
 	* @return the price
 	*/
+        /*
         public Float getPrice() {
                 return price;
-        }
+        }*/
         
         /**
 	* @param mealID the mealID to set
@@ -159,9 +163,25 @@ public class MealData implements Data {
         
         /**
 	* @param price the price to set
-	*/
+	*/ /*
         public void setPrice (float price) {
                 this.price = price;
-        }
+        }*/
+
+		public Float getS_price() {
+			return s_price;
+		}
+
+		public void setS_price(Float s_price) {
+			this.s_price = s_price;
+		}
+
+		public Float getE_price() {
+			return e_price;
+		}
+
+		public void setE_price(Float e_price) {
+			this.e_price = e_price;
+		}
 
 }

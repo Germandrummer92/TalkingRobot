@@ -18,7 +18,8 @@ import data.RecipeData;
 /**
  * 
  * @author Meng Meng Yan
- * @version 1.0
+ * @author Xizhe Lian
+ * @version 1.2
  */
 public class RestartStrategyTest {
 	
@@ -49,13 +50,13 @@ public class RestartStrategyTest {
 	@Test
 	public void testRestartCIDialog() {
 		ArrayList<MealData> todayMeal1 = new ArrayList<MealData>();
-		todayMeal1.add(new MealData("chicken drum sticks", null, (float) 0.1));
-		todayMeal1.add(new MealData("pizza", null, (float) 0.1));
+		todayMeal1.add(new MealData("chicken drum sticks", null, (float) 0.1, (float) 0.2));
+		todayMeal1.add(new MealData("pizza", null, (float) 0.1, (float)0.2));
 		
 		ArrayList<MealData> todayMeal2 = new ArrayList<MealData>();
-		todayMeal1.add(new MealData("borek", null, (float) 0.1));
-		todayMeal1.add(new MealData("spaghetti napoli", null, (float) 0.1));
-		todayMeal1.add(new MealData("pancakes", null, (float) 0.1));
+		todayMeal1.add(new MealData("borek", null, (float) 0.1, (float) 0.2));
+		todayMeal1.add(new MealData("spaghetti napoli", null, (float) 0.1, (float)0.2));
+		todayMeal1.add(new MealData("pancakes", null, (float) 0.1, (float) 0.2));
 		
 		ArrayList<LineData> lines = new ArrayList<LineData>();
 		lines.add(new LineData("line 1", todayMeal1));

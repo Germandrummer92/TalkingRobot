@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 /**
 *
 * @author Aleksandar Andonov, Meng Meng Yan
-* @version 2.5
+* @version 3.0
 * This Class represents the data of a canteen of a canteen and offers means to automatically load data for the canteens from
 * there json representation.
 * @see Data
@@ -511,11 +511,12 @@ public class CanteenData implements Data{
 	private MealData getMeal(JSONObject meal) {
 		MealData result = null;
 		try {
-			float price = (float) meal.getDouble("price_1");//for students
+			float s_price = (float) meal.getDouble("price_1");//for students
+			float e_price = (float) meal.getDouble("price_2");
 			String name = meal.getString("meal"); //dish???
 			String dish = meal.getString("dish");
 			name = name + " " + dish;
-			result = new MealData(name, getCategories(meal), price);
+			result = new MealData(name, getCategories(meal), s_price, e_price);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch 
 			e.printStackTrace();
