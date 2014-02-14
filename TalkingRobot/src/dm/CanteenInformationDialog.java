@@ -20,7 +20,7 @@ import data.MealData;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 1.5
+ * @version 2.0
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	// TODO wishDate is not today
@@ -520,8 +520,9 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, boolean inAden) {
 	
 	//boolean matched = false;
-	TreeMap<MealData, Integer> map = new TreeMap<MealData, Integer>();
-	Map<MealData, LineData> meals = new HashMap<MealData, LineData>();
+	TreeMap<String, Integer> map = new TreeMap<String, Integer>();
+	//Map<MealData, LineData> meals = new HashMap<MealData, LineData>();
+	List<MealNode> nodes = new ArrayList<MealNode>();
 	
 	CanteenInfo matched = CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	Integer id = 0;
@@ -534,14 +535,19 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 					
 					if(str.contains(tms[i])) { // go through the terms and analyse which is the most possible meal
 						Integer value = new Integer(1);
-						//FIXME mealData is not compareble...
-						if(map.containsKey(meal)) {
-							value = map.get(meal);
+						//FIXME it doesn't work perfectly
+						if(map.containsKey(str)) {
+							value = map.get(str);
 							value ++;
 							map.remove(str);
 						}
-						map.put(meal, value);
-						meals.put(meal, line);
+						map.put(str, value);
+						//meals.put(meal, line);
+						MealNode node = new MealNode();
+						node.setName(str);
+						node.setMealData(meal);
+						node.setLineData(line);
+						nodes.add(node);
 					}
 				}
 			}
@@ -549,11 +555,25 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 		
 		
 	}
-	MealData meal = map.lastKey();
-	LineData l = meals.get(meal);
-	id = curCanteen.getCanteenData().getLines().indexOf(l);
-	String str = meal.getMealName().toString().toLowerCase();
-	String[] names = str.split(","); // because in json data, a meal name also includes sideDishes
+	if(map.lastKey() == null) {
+		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
+	}
+	
+	String meal = map.lastKey();
+	//LineData l;
+	
+	
+	for( MealNode n : nodes) {
+		if (n.getName().equals(meal)) {
+			LineData l = n.getLineData();
+			id = curCanteen.getCanteenData().getLines().indexOf(l);
+			break;
+		}
+	}
+	//LineData l = meals.get(meal);
+	
+	//String str = meal.getMealName().toString().toLowerCase();
+	String[] names = meal.split(","); // because in json data, a meal name also includes sideDishes
 	this.wishMeal = names[0]; 
 	matched = findLineEnum(inAden, id);
 	return matched;
@@ -570,11 +590,11 @@ private int getRequestedWeekDay(List<Keyword> keywords, LocalDate date) {
 		}
 		else if (dateOfWeek.getWord().equals("tomorrow")) {
 			this.wishDate = dateOfWeek.getWord();
-			return  date.getDayOfWeek() + 1;
+			return  (date.getDayOfWeek() + 1);
 		}
 		else if (dateOfWeek.getWord().equals("day after tomorrow")) {
 			this.wishDate = dateOfWeek.getWord();
-			return date.getDayOfWeek() + 2;
+			return (date.getDayOfWeek() + 2);
 		}
 		else if (dateOfWeek.getWord().equals("sunday")) {
 			this.wishDate = "on sunday";
@@ -707,6 +727,40 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 			}
 		}	
 	return CanteenInfo.CI_EXIT;
+}
+
+private class MealNode {
+	private String name;
+	private MealData md;
+	private LineData l;
+	
+private MealNode() {}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public MealData getMealData() {
+	return md;
+}
+
+public void setMealData(MealData md) {
+	this.md = md;
+}
+
+public LineData getLineData() {
+	return l;
+}
+
+public void setLineData(LineData l) {
+	this.l = l;
+}
+
+
 }
 
 /*
