@@ -73,7 +73,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = l1meals.get(0).getMealName().toString();
 		  }
-		  String  output = "<" + wishMeal+ "  >";
+		  String  output = "<" + wishMeal+ " >";
 		  output =  output + ";{ " + String.valueOf(price) + " }";	
 		  return output;
 		  
@@ -88,7 +88,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = l2meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal + "  >";
+		  output = "<" + wishMeal + " >";
 		  String output1 = output + ";{" + String.valueOf(price) + "}";	
 		  return output1;
 		  
@@ -102,7 +102,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = l3meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal + "  >";
+		  output = "<" + wishMeal + " >";
 		  output =  output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		  
@@ -116,7 +116,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = l4meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal + "  >";
+		  output = "<" + wishMeal + " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
  	  
@@ -130,7 +130,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = l6meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal + "  >";
+		  output = "<" + wishMeal + " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output; 
 		  
@@ -144,7 +144,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = s_meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal + "  >";
+		  output = "<" + wishMeal + " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
@@ -158,7 +158,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal+  "  >";
+		  output = "<" + wishMeal+  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		  
@@ -172,7 +172,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = curry_meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal +  "  >";
+		  output = "<" + wishMeal +  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 	  
@@ -194,7 +194,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = c1meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal + "  >";
+		  output = "<" + wishMeal + " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
@@ -209,7 +209,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = c2meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal +  "  >";
+		  output = "<" + wishMeal +  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		  
@@ -224,7 +224,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = ameals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal +  "  >";
+		  output = "<" + wishMeal +  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
@@ -239,7 +239,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = sn_meals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal +  "  >";
+		  output = "<" + wishMeal +  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 
@@ -254,7 +254,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = gmeals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal +  "  >";
+		  output = "<" + wishMeal +  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
@@ -269,7 +269,7 @@ public class CanteenInformationState extends DialogState {
 		  if( wishMeal.equals("")) {
 			  wishMeal = bmeals.get(0).getMealName().toString();
 		  }
-		  output = "<" + wishMeal +  "  >";
+		  output = "<" + wishMeal +  " >";
 		  output = output + ";{" + String.valueOf(price) + "}";	
 		  return output;
 		 
@@ -292,7 +292,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(1).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_ADEN_LINE_3_DISH :
 		  
@@ -303,7 +303,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		 
 	  case CI_ADEN_LINE_45_DISH :
 		  setQuestion(false);
@@ -313,7 +313,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(3).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		
 	  case CI_ADEN_LINE_6_DISH :
 		  setQuestion(false);
@@ -323,7 +323,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(8).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_GG_DISH:
 		  setQuestion(false);
@@ -333,8 +333,8 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(3).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
-	
+		 return "<" + wishMeal +" >";
+
 	  case CI_ADEN_CURRYQ_DISH :
 		  setQuestion(false);
 		  
@@ -343,7 +343,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(9).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		 
 	  case CI_ADEN_CAFE_DISH :
 		  setQuestion(false);
@@ -353,7 +353,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(6).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_ADEN_SCHNITBAR_DISH :
 		  setQuestion(false);
@@ -363,7 +363,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(4).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_CHOICE_1_DISH:
 		  setQuestion(false);
@@ -373,7 +373,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(0).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_CHOICE_2_DISH :
 		  setQuestion(false);
@@ -383,7 +383,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(1).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_SCHNITBAR_DISH :
 		  setQuestion(false);
@@ -393,7 +393,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(5).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_ACTTHEK_DISH :
 		  setQuestion(false);
@@ -403,7 +403,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
 		  }
-		 return "<" + wishMeal +"  >";
+		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_BUFFET_DISH:
 		  setQuestion(false);
@@ -413,7 +413,7 @@ public class CanteenInformationState extends DialogState {
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
 		  }
-		  output = "<" + wishMeal +"  >";
+		  output = "<" + wishMeal +" >";
 		  output = output + ";{" + time + "}";	
 		  return output;
 	  case CI_TELL_LINE_NOT_EXIST:

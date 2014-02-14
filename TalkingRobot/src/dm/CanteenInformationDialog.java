@@ -1,7 +1,12 @@
 package dm;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -505,10 +510,18 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	return next;
 }
 
-
+/**
+ * Helps to match a wish meal from user 
+ * @param keywords list of keywords
+ * @param terms list of terms
+ * @param inAden boolean, if current is in canteen Adennaurring, then it's true
+ * @return enum of CanteenInfo
+ */ 
 private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, boolean inAden) {
 	
 	//boolean matched = false;
+	TreeMap<MealData, Integer> map = new TreeMap<MealData, Integer>();
+	Map<MealData, LineData> meals = new HashMap<MealData, LineData>();
 	
 	CanteenInfo matched = CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	Integer id = 0;
@@ -518,15 +531,31 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 			for( LineData line : curCanteen.getCanteenData().getLines()) {
 				for( MealData meal : line.getTodayMeals()) {
 					String str = meal.getMealName().toString().toLowerCase();
-					if(str.contains(tms[i])) { // match a line
-						id = curCanteen.getCanteenData().getLines().indexOf(line);
-						this.wishMeal = str;
-						return matched = findLineEnum(inAden, id);
+					
+					if(str.contains(tms[i])) { // go through the terms and analyse which is the most possible meal
+						Integer value = new Integer(1);
+						//FIXME mealData is not compareble...
+						if(map.containsKey(meal)) {
+							value = map.get(meal);
+							value ++;
+							map.remove(str);
+						}
+						map.put(meal, value);
+						meals.put(meal, line);
 					}
 				}
 			}
 		}
+		
+		
 	}
+	MealData meal = map.lastKey();
+	LineData l = meals.get(meal);
+	id = curCanteen.getCanteenData().getLines().indexOf(l);
+	String str = meal.getMealName().toString().toLowerCase();
+	String[] names = str.split(","); // because in json data, a meal name also includes sideDishes
+	this.wishMeal = names[0]; 
+	matched = findLineEnum(inAden, id);
 	return matched;
 	
 }
