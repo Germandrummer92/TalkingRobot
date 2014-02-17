@@ -46,6 +46,7 @@ public class CanteenInformationState extends DialogState {
 			  this, null);
 	   currentDialog = (CanteenInformationDialog)DialogManager.giveDialogManager().getCurrentDialog();
 	   currentDialog.setCurCanteen(currentDialog.getCurCanteen());
+	   currentDialog.setCurrentCanteen(currentDialog.getCurCanteen());
 	 // currentDialog.setCurrentDialogState(new CanteenInformationDialog(null, null, null));
 	  String time =  ((CanteenInformationDialog) currentDialog).getWishDate();
 	  String wishMeal =  ((CanteenInformationDialog) currentDialog).getWishMeal();

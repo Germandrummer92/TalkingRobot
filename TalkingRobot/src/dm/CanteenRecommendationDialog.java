@@ -17,7 +17,7 @@ import data.MealDatePair;
 /**
  * This class represents a dialog about canteen recommendation
  * @author Xizhe Lian, Luiz Henrique S. Silva
- * @version 0.5
+ * @version 1.0
  */
 public class CanteenRecommendationDialog extends CanteenDialog {
 	

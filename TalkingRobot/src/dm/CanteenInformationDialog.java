@@ -1,8 +1,6 @@
 package dm;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 import org.joda.time.LocalDate;
 
 import data.CanteenData;
@@ -13,16 +11,15 @@ import data.MealData;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 2.0
+ * @version 2.5
  */
 public class CanteenInformationDialog extends CanteenDialog {
-	// TODO wishDate is not today
+	
 	private String wishDate;
 	
 	private String wishMeal;
 	
 	private Canteen curCanteen; // current canteen with wished date
-	
 	
 /**
 	 * @param session
@@ -329,9 +326,9 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
  */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden) {
 	 
-	//boolean error = false;
+	
 	if(keywords.isEmpty() && ( terms.isEmpty())) {
-		//error = true;
+	
 		DialogManager.giveDialogManager().setInErrorState(true);
 		return;
 	}
@@ -342,7 +339,12 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 	setCurrentDialogState(nextState);
 }
 
+/**
+ * @author Daniel 
+ * @see StartDialog#updateState(List, List, List);
+ */
 private boolean updateStateKeywordJump(List<Keyword> keywords) {
+	
 	if (keywords == null || keywords.isEmpty()) {
 		return false;
 	}
@@ -407,8 +409,9 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		boolean mealMatched = false;
 	if( askPrice ) {
 		// now to find out the required meal's name
-		
+		//FIXME
 		CanteenInfo matchedLine = mealMatched(keywords, terms, inAden);
+		
 		if( !matchedLine.equals(CanteenInfo.CI_TELL_MEAL_NOT_EXIST)) {
 			mealMatched = true;
 			return matchedLine;
@@ -432,9 +435,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		
 		if( !mealMatched ) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
-				//if( line.getWord().contains("line")) { // we found a line keyword
-					//List<DialogState> refs = new ArrayList<DialogState>();
-										//refs = line.getReference();
+		
 					if(inAden) {
 						
                        for( DialogState ref : line.getReference()) {
@@ -451,8 +452,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
  							return (CanteenInfo) ref.getCurrentState();
                   	   	}
                       }
-				//	}
-				
 				}
 			}
 		}
@@ -468,7 +467,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 				}
 				
 				if( !line.getWord().contains("price") ) { // we found a line keyword
-					// ArrayList<DialogState> refs = line.getReference();
+				
 					 if(inAden) {
 							
 	                       for( DialogState ref : line.getReference()) {
@@ -486,9 +485,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	                  	   	}
 	                  }
 
-				} //else { // the user ask the meals in whole canteen
-					
-				//}
+				} 
 			}
 		}
 	
@@ -496,9 +493,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	if (!mealMatched && (askPrice)) { // when we are here, then it's nothing matched
 		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	}
-	
-	/* find the matched enum */ // do we need it?
-	//next = findLineEnum(inAden, index);
 		
 	return next;
 }
@@ -512,68 +506,47 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
  */ 
 private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, boolean inAden) {
 	
-	//boolean matched = false;
-	TreeMap<String, Integer> map = new TreeMap<String, Integer>();
-	//Map<MealData, LineData> meals = new HashMap<MealData, LineData>();
-	List<MealNode> nodes = new ArrayList<MealNode>();
+	
+	//TreeMap<String, Integer> map = new TreeMap<String, Integer>();
+
+	//List<MealNode> nodes = new ArrayList<MealNode>();
 	
 	CanteenInfo matched = CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	Integer id = 0;
-	for(String mealName : terms) {
-		String[] tms = mealName.split(" ");
-		for( int i = tms.length -1; i >= 0; i--) {
-			for( LineData line : curCanteen.getCanteenData().getLines()) {
-				for( MealData meal : line.getTodayMeals()) {
-					String str = meal.getMealName().toString().toLowerCase();
-					
-					if(str.contains(tms[i])) { // go through the terms and analyse which is the most possible meal
-						Integer value = new Integer(1);
-						//FIXME it doesn't work perfectly
-						if(map.containsKey(str)) {
-							value = map.get(str);
-							value ++;
-							map.remove(str);
-						}
-						map.put(str, value);
-						//meals.put(meal, line);
-						MealNode node = new MealNode();
-						node.setName(str);
-						node.setMealData(meal);
-						node.setLineData(line);
-						nodes.add(node);
-					}
-				}
+	
+	String[] tms = terms.get(0).split("of ");
+	String name = tms[1];
+	
+	MealNode node = new MealNode();
+	for( LineData line : curCanteen.getCanteenData().getLines()) {
+		for( MealData meal : line.getTodayMeals()) {
+			String str = meal.getMealName().toString().toLowerCase();
+	
+			if(str.contains(name)) { 
+				
+				node.setName(str);
+				node.setMealData(meal);
+				node.setLineData(line);
+				//nodes.add(node);
 			}
 		}
-		
-		
-	}
-	if(map.lastKey() == null) {
-		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	}
 	
-	String meal = map.lastKey();
-	//LineData l;
+	LineData l = node.getLineData();
+	id = curCanteen.getCanteenData().getLines().indexOf(l);
 	
-	
-	for( MealNode n : nodes) {
-		if (n.getName().equals(meal)) {
-			LineData l = n.getLineData();
-			id = curCanteen.getCanteenData().getLines().indexOf(l);
-			break;
-		}
-	}
-	//LineData l = meals.get(meal);
-	
-	//String str = meal.getMealName().toString().toLowerCase();
-	String[] names = meal.split(","); // because in json data, a meal name also includes sideDishes
+	String[] names = node.getName().split(","); // because in json data, a meal name also includes sideDishes
 	this.wishMeal = names[0]; 
 	matched = findLineEnum(inAden, id);
 	return matched;
 	
 }
 
-
+/**
+ * @param keywords, list of keywords
+ * @param date, local time
+ * @return int dayshift
+ */
 private int getRequestedWeekDay(List<Keyword> keywords, LocalDate date) {
 	//int i = 0;
 	for (Keyword dateOfWeek : keywords) {
@@ -760,16 +733,17 @@ public void setLineData(LineData l) {
 public static void main(String[] args) throws WrongStateClassException {
 	List<Keyword> keywords = new ArrayList<Keyword>();
 	List<String> terms = new ArrayList<String>();
+	terms.add("The price of spaghetti napoli");
 	List<String> approval = new ArrayList<String>();
 	
 	ArrayList<DialogState> ld = new ArrayList<DialogState>();
 	DialogState s1 = new DialogState();
-	s1.setCurrentState(CanteenInfo.CI_ADEN_LINE_2_DISH);
+	s1.setCurrentState(CanteenInfo.CI_ADEN_LINE_1_PRICE);
 	ld.add(s1);
-	DialogState s2 = new DialogState();
-	s2.setCurrentState(CanteenInfo.CI_ADEN_LINE_2_PRICE);
-	ld.add(s2);
-	KeywordData l = new KeywordData("line2",ld , 0, null, null);
+	//DialogState s2 = new DialogState();
+//	s2.setCurrentState(CanteenInfo.CI_ADEN_LINE_2_PRICE);
+	//ld.add(s2);
+	KeywordData l = new KeywordData("line1",ld , 0, null, null);
 	
 	Keyword line = new Keyword(l);
 	
