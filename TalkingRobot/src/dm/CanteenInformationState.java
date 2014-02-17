@@ -75,16 +75,6 @@ public class CanteenInformationState extends DialogState {
 		  ArrayList<MealData> l1meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(0).getTodayMeals();
 		  
-		 // int l1index = matchMealIndex(l1meals,wishMeal);
-		  /*if(isStudent) {
-				  price = l1meals.get(0).getS_price();
-		  } else price = l1meals.get(0).getE_price();
-		   // at line one, all price are the same
-		  if( wishMeal.equals("")) {
-			  wishMeal = l1meals.get(0).getMealName().toString();
-		  }
-		  String  output = "<" + wishMeal+ ">";*/
-		 	
 		  return generateOutputWithPrice(l1meals, 0, wishMeal, isStudent);
 		 // return output;
 		  
@@ -95,92 +85,48 @@ public class CanteenInformationState extends DialogState {
 		  
 		  int l2index = matchMealIndex(l2meals, wishMeal);
 		  
-		  if( isStudent) {
-			  price = l2meals.get(l2index).getS_price();
-		  }else price = l2meals.get(l2index).getE_price();
-		  
-		  if( wishMeal.equals("")) {
-			  wishMeal = l2meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal + ">";
-		  String output1 = output + ";{" + String.valueOf(price) + "}";	
-		  return output1;
+		  return generateOutputWithPrice(l2meals, l2index, wishMeal, isStudent);
 		  
 	  case CI_ADEN_LINE_3_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> l3meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(2).getTodayMeals();
-		  int l3index = matchMealIndex(l3meals, wishMeal);
 		  
-		  price = l3meals.get(l3index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = l3meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal + ">";
-		  output =  output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  int l3index = matchMealIndex(l3meals, wishMeal);
+
+		  return generateOutputWithPrice(l3meals, l3index, wishMeal, isStudent);
 		  
 	  case CI_ADEN_LINE_45_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> l4meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(3).getTodayMeals();
 		  int l4index = matchMealIndex(l4meals, wishMeal);
-		  
-		  if( isStudent ){
-			  price = l4meals.get(l4index).getS_price();
-		  } else price = l4meals.get(l4index).getE_price();
-		  
-		  if( wishMeal.equals("")) {
-			  wishMeal = l4meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal + ">";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+	
+		  return generateOutputWithPrice(l4meals, l4index, wishMeal, isStudent);
  	  
 	  case CI_ADEN_LINE_6_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> l6meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(8).getTodayMeals();
 		  int l6index = matchMealIndex(l6meals, wishMeal);
-		  
-		  if( isStudent ){
-			  price = l6meals.get(l6index).getS_price();
-		  }else price = l6meals.get(l6index).getE_price();
-		  
-		  if( wishMeal.equals("")) {
-			  wishMeal = l6meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal + ">";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output; 
+	
+		  return generateOutputWithPrice(l6meals, l6index, wishMeal, isStudent);
 		  
 	  case CI_ADEN_SCHNITBAR_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> s_meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(4).getTodayMeals();
 		  int s_index = matchMealIndex(s_meals, wishMeal);
-		  
-		  price = s_meals.get(s_index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = s_meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal + " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+
+		  return generateOutputWithPrice(s_meals, s_index, wishMeal, isStudent);
 		 
 	  case CI_ADEN_CAFE_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
 				  .getCanteenData().getLines().get(6).getTodayMeals();
 		  int index = matchMealIndex(meals, wishMeal);
-		  
-		  price = meals.get(index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal+  " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+	
+		  return generateOutputWithPrice(meals, index, wishMeal, isStudent);
 		  
 	  case CI_ADEN_CURRYQ_PRICE :
 		  setQuestion(false);
@@ -188,13 +134,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(6).getTodayMeals();
 		  int curry_index = matchMealIndex(curry_meals, wishMeal);
 		  
-		  price = curry_meals.get(curry_index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = curry_meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal +  " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  return generateOutputWithPrice(curry_meals, curry_index, wishMeal, isStudent);
 	  
 	  case CI_MOLTKE_TELL_ALL_MEALS :
 		  
@@ -210,13 +150,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(0).getTodayMeals();
 		  int c1index = matchMealIndex(c1meals, wishMeal);
 		  
-		  price = c1meals.get(c1index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = c1meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal + " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  return generateOutputWithPrice(c1meals, c1index, wishMeal, isStudent);
 		 
 	  case CI_MOLTKE_CHOICE_2_PRICE :
 
@@ -225,13 +159,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(1).getTodayMeals();
 		  int c2index = matchMealIndex(c2meals, wishMeal);
 		 
-		  price = c2meals.get(c2index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = c2meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal +  " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  return generateOutputWithPrice(c2meals, c2index, wishMeal, isStudent);
 		  
 	  case CI_MOLTKE_ACTTHEK_PRICE:
 
@@ -240,13 +168,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(2).getTodayMeals();
 		  int aindex = matchMealIndex(ameals, wishMeal);
 
-		  price = ameals.get(aindex).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = ameals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal +  " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  return generateOutputWithPrice(ameals, aindex, wishMeal, isStudent);
 		 
 	  case CI_MOLTKE_SCHNITBAR_PRICE:
 
@@ -255,13 +177,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(5).getTodayMeals();
 		  int sn_index = matchMealIndex(sn_meals, wishMeal);
 
-		  price = sn_meals.get(sn_index).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = sn_meals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal +  " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  return generateOutputWithPrice(sn_meals, sn_index, wishMeal, isStudent);
 
 	  case CI_MOLTKE_GG_PRICE:
 
@@ -270,13 +186,7 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(3).getTodayMeals();
 		  int gindex = matchMealIndex(gmeals, wishMeal);
 
-		  price = gmeals.get(gindex).getS_price();
-		  if( wishMeal.equals("")) {
-			  wishMeal = gmeals.get(0).getMealName().toString();
-		  }
-		  output = "<" + wishMeal +  " >";
-		  output = output + ";{" + String.valueOf(price) + "}";	
-		  return output;
+		  return generateOutputWithPrice(gmeals, gindex, wishMeal, isStudent);
 		 
 
 	  case CI_MOLTKE_BUFFET_PRICE:
@@ -451,8 +361,16 @@ public class CanteenInformationState extends DialogState {
   
   }
  
+  /**
+   * Help to generate a sentence answering with price
+   * @param meals the mealData from canteen
+   * @param i index of meal
+   * @param wishMeal name of wished meal from user
+   * @param isStudent true if user a student
+   * @return a sentence that answering the requirement of asking price
+   */
   private String generateOutputWithPrice(ArrayList<MealData> meals, int i, String wishMeal, boolean isStudent) {
-	//String out = "<"; 
+	 
 	float price;
 	if(isStudent) {
 		  price = meals.get(0).getS_price();
