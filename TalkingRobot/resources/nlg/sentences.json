@@ -460,9 +460,9 @@
 				"The price for wanted meal it's {c}"
 			],
 			"CI_ENTRY" : [
-				"So, what do you want to eat?",
-				"What do you prefer to eat?",
-				"Do you have some special preferences?"
+				"So, what kind of information do you want to know?",
+				"What do you want to know about canteen meals?",
+				"What kind of information do you need?"
 			],
 			"CI_EXIT" : [
 				"Have a good meal"
