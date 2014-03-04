@@ -421,8 +421,10 @@ public class CanteenData implements Data{
 	 */
 	private String manageTime(JSONObject canteen, int timeOffset) {
 		// TODO Auto-generated method stub
-		Iterator iterator = canteen.keys();
-		DateTime now = new DateTime(new Date());
+	//	Iterator iterator = canteen.keys();
+		String[] names = JSONObject.getNames(canteen);
+		
+		DateTime now = new DateTime(new Date());		
 		if (timeOffset > 0 && timeOffset <= 7) {
 			now = now.plusDays(timeOffset);
 		}
@@ -444,14 +446,16 @@ public class CanteenData implements Data{
 		//} it's complicated, when are differentLines open ... for lines separate method -> is open in lineData, file with opening times...
 		
 		Date time = null;
-		String unixTime;
-		do {
-			unixTime = (String) iterator.next();
+		String unixTime = "";
+		for (int i = 0; i < names.length; i++) {
+			unixTime = names[i];
 			long timeStamp = Long.parseLong(unixTime);
-			time = new java.util.Date((long)timeStamp*1000);
-			
+			time = new java.util.Date((long)timeStamp*1000L);
+			DateTime dt = new DateTime(time);	
+			if (now.getDayOfMonth() == dt.getDayOfMonth()) {
+				i = names.length + 1; //break
+			}
 		}
-		while(Days.daysBetween(now, new DateTime(time)).getDays() != 0 && iterator.hasNext());
 		return unixTime;
 	}
 	
@@ -602,8 +606,8 @@ public class CanteenData implements Data{
 	public static void main(String[] args) {
 		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 0);
 		System.out.println(aden.generateJSON());
-		CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 0);
-		System.out.println(moltke.generateJSON());
+	//	CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 0);
+	//	System.out.println(moltke.generateJSON());
 	}
 	
 }
