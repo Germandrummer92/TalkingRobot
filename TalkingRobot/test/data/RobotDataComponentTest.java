@@ -5,7 +5,11 @@ import java.io.File;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
+/**
+ * This class tests the RobotData class by applying the abstract tests defined in DataComponentTest.
+ * @author Aleksandar Andonov
+ * @version 1.0
+ */
 public class RobotDataComponentTest extends DataComponentTest {
 
 	@BeforeClass

@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
+/**
+ * This class tests the recipeData class and applies the abstract tests defined in DataComponentTest.
+ * @author Aleksandar Andonov
+ * @version 1.0
+ */
 public class RecipeDataComponentTest extends DataComponentTest {
 
 	@BeforeClass
