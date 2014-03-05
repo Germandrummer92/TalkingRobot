@@ -41,7 +41,6 @@ public class NLUPhase extends Phase {
   	 */
   	public void setPhaseResult(Main main) {
   		String userInput = main.getAsrResult();
-	  
   		//write given input in file input
   		File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
   		PrintWriter writer;

@@ -11,7 +11,10 @@ public enum KitchenAssistance {
 
   KA_TELL_INGREDIENT_NOT_FOUND,
 
-  KA_EXIT;
+  KA_EXIT,
+  
+  KA_WAITING_FOR_TYPE,
 
+  KA_WAITING_FOR_LOCATION;
   
 }

@@ -53,6 +53,12 @@ public class KitchenAssistanceState extends DialogState {
 	case KA_TELL_TOOL_NOT_FOUND:
 		setQuestion(false);
 		return "<" + ((KitchenAssistanceDialog)currentDialog).getRequestedObjectName() + ">";
+	case KA_WAITING_FOR_TYPE:
+		setQuestion(true);
+		return "<" + ((KitchenAssistanceDialog)currentDialog).getRequestedObjectName() + ">";
+	case KA_WAITING_FOR_LOCATION:
+		setQuestion(true);
+		return "<" + ((KitchenAssistanceDialog)currentDialog).getRequestedObjectName() + ">";
 	default:
 		return null;
 	  	

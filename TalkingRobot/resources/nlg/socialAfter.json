@@ -157,6 +157,12 @@
 			"KA_TELL_TOOL_NOT_FOUND" : [
 				"I'm a failure",
 				"I feel so bad"	
+			],
+			"KA_WAITING_FOR_LOCATION" : [
+				""
+			],
+			"KA_WAITING_FOR_TYPE" : [
+				""
 			]
 	},
 	"dm.CanteenInformationState" : {

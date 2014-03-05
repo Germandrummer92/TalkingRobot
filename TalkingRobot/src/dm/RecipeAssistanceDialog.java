@@ -188,9 +188,15 @@ private void updateStateFound(List<Keyword> keywords, List<String> terms) {
 				//First Reference is the Recipe for recipe keywords
 				currRecipe = new Recipe((RecipeData)kw.getKeywordData().getDataReference().get(0));
 				recipeName = currRecipe.getRecipeData().getRecipeName();
+				return;
 			}
 		}
 	}
+	if ((keywords == null || keywords.isEmpty()) && (terms == null || terms.isEmpty()) && currRecipe != null && currRecipe.getRecipeData() != null) {
+		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_INGREDIENTS);
+		return;
+	}
+	DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
 

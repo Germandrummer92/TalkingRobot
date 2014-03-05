@@ -161,7 +161,13 @@
 			"KA_TELL_TOOL_NOT_FOUND" : [
 				"Sorry",
 				"I feel so bad, but"
-			]
+			],
+			"KA_WAITING_FOR_TYPE" : [
+				"So,"
+			],
+			"KA_WAITING_FOR_LOCATION" : [
+				"So,"
+			]	
 	},
 	"dm.CanteenInformationState" : {
 			"CI_ADEN_TELL_ALL_MEALS" :[

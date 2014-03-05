@@ -3,6 +3,7 @@ package asr;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * InputGetter is responsible for communicating with the JRTK to retrieve the next User Input.
@@ -25,10 +26,12 @@ public class InputGetter extends One4AllAdapter {
 	 * @return the parsed input by the user.
 	 */
   public String getInput() {
+	//  Scanner in = new Scanner(System.in);
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
  	System.out.print("Your next Input:");
  	try {
-		return br.readLine();
+ 		return br.readLine();
+
 	} catch (IOException e) {
 		e.printStackTrace();
 	}

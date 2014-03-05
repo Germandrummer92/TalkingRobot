@@ -2,10 +2,12 @@ package dm;
 
 import generalControl.Main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import data.Data;
 import data.IngredientData;
+import data.KeywordType;
 import data.ToolData;
 
 /**
@@ -19,6 +21,7 @@ public class KitchenAssistanceDialog extends KitchenDialog {
 	private AssistanceState stateOfAssistance;
 	private Object requestedObject;
 	private String requestedObjectName;
+	private Class newObjectClass = null;
 	
   /**
 	 * @param session the Current Session
@@ -57,8 +60,13 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateToolFound(keywords, terms);
 		break;
 	case KA_TELL_TOOL_NOT_FOUND:
-		updateStateToolNotFound(keywords, terms);
+		updateStateToolNotFound(keywords, approval, terms);
 		break;
+	case KA_WAITING_FOR_TYPE:
+		updateStateWaiting(keywords, terms);
+		break;
+	case KA_WAITING_FOR_LOCATION:
+		updateStateLocation(keywords, terms);
 	default:
 		break;
 	}
@@ -121,9 +129,19 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
  * @param keywords keywords passed
  * @param terms terms passed
  */
-private void updateStateToolNotFound(List<Keyword> keywords, List<String> terms) {
+private void updateStateToolNotFound(List<Keyword> keywords, List <String> approval, List<String> terms) {
+	if (approval != null && !approval.isEmpty()) {
+		if (approval.get(0).equals("yes")) {
+			getCurrentDialogState().setCurrentState(KitchenAssistance.KA_WAITING_FOR_TYPE);
+			return;
+		}
+		else {
+			getCurrentDialogState().setCurrentState(KitchenAssistance.KA_ENTRY);
+		}
+	}
 	if ( terms != null && !terms.isEmpty()) {
 		requestedObjectName = terms.get(0);
+		
 	}
 	else {
 		DialogManager.giveDialogManager().setInErrorState(true);
@@ -146,6 +164,9 @@ private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
 		}
 		}
 	}
+	}
+	if (requestedObject != null) {
+		return;
 	}
 	DialogManager.giveDialogManager().setInErrorState(true);
 	
@@ -178,6 +199,9 @@ private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
 		}
 	}
 	}
+	if (requestedObject != null) {
+		return;
+	}
 	DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
@@ -208,6 +232,65 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
 	
 	
 	
+}
+/**
+ * Updates the state if its in the Waiting for Type state.
+ * @param keywords keywords passed
+ * @param terms terms passed
+ */
+private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
+	if (keywords!= null && !keywords.isEmpty()) {
+		for (Keyword kw : keywords) {
+			if (kw.getWord().equals("ingredient") || kw.getWord().equals("ingredients")) {
+				newObjectClass = Ingredient.class;
+			}
+			if (kw.getWord().equals("tool") || kw.getWord().equals("tools")) {
+				newObjectClass = Tool.class;
+			}
+		}
+		if (newObjectClass != null) {
+			getCurrentDialogState().setCurrentState(KitchenAssistance.KA_WAITING_FOR_LOCATION);
+		}
+	}
+	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
+}
+
+private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
+	if (keywords == null || keywords.isEmpty()) {
+		if (terms != null && !terms.isEmpty()) {
+			if (newObjectClass.equals(Tool.class)) {
+				ToolData d = new ToolData(requestedObjectName, terms.get(0), null);
+				d.writeFile();
+				requestedObject = new Tool(d);
+				getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_TOOL_FOUND);
+				ArrayList<DialogState> ds = new ArrayList<DialogState>();
+				ds.add(new KitchenAssistanceState(KitchenAssistance.KA_TELL_TOOL_FOUND));
+				ArrayList<Data> refs = new ArrayList<Data>();
+				refs.add(((Tool)requestedObject).getToolData());
+				DialogManager.giveDialogManager().getDictionary().addKeyword(requestedObjectName, 10, ds, refs, KeywordType.TOOL);
+				
+			}
+			else {
+				IngredientData d = new IngredientData(requestedObjectName, terms.get(0));
+				d.writeFile();
+				requestedObject = new Ingredient(d);
+				getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_INGREDIENT_FOUND);
+				ArrayList<DialogState> ds = new ArrayList<DialogState>();
+				ds.add(new RecipeLearningState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT));
+				ds.add(new KitchenAssistanceState(KitchenAssistance.KA_TELL_INGREDIENT_FOUND));
+				ds.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_INGREDIENT_FOUND));
+				ArrayList<Data> refs = new ArrayList<Data>();
+				refs.add(((Ingredient)requestedObject).getIngredientData());
+				DialogManager.giveDialogManager().getDictionary().addKeyword(requestedObjectName, 4, ds, refs, KeywordType.INGREDIENT);
+			}
+			
+		}
+	}
+	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
 }
 
 /**

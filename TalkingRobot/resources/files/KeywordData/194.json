@@ -1,1 +1,1 @@
-{"wordID":194,"word":"tool","dialogState":[{"currentState":{"name":"RA_TELL_TOOLS"}},{"currentState":{"name":"RL_ASK_NEXT_TOOL"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":194,"word":"tool","dialogState":[{"currentState":{"name":"RA_TELL_TOOLS"}},{"currentState":{"name":"RL_ASK_NEXT_TOOL"}},{"currentState":{"name":"KA_WAITING_FOR_TYPE"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
