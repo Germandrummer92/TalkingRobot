@@ -123,6 +123,16 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateWaitingEmployee(List<Keyword> keywords,
 			List<String> terms, List<String> approval) {
+		if ((keywords == null || keywords.isEmpty()) && (terms == null || terms.isEmpty() && (approval == null || approval.isEmpty()))) {
+			getCurrentSession().getCurrentUser().getUserData().setStudent(true);
+			getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
+			getCurrentSession().getCurrentUser().getUserData().writeFile();	
+			ArrayList<DialogState> states = new ArrayList<DialogState>();
+			ArrayList<Data> refs = new ArrayList<Data>();
+			states.add(new StartState(Start.S_USER_FOUND));
+			refs.add(getCurrentSession().getCurrentUser().getUserData());
+			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
+		}
 		if ((keywords == null || keywords.isEmpty()) && approval.size() == 1) {
 			if (approval.get(0).equals("yes")) {
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
