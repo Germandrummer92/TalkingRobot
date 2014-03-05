@@ -227,9 +227,9 @@
 				"Here you go, it's located here: {c}"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
-				"I can't seem to locate <o>",
-				"I don't know where <o> is",
-				"Sorry, can't find <o>"
+				"I can't seem to locate <o>, or I don't know how to do that",
+				"I don't know where <o> is, or I don't know how to do that",
+				"Sorry, can't find <o>, or don't know how to do that"
 			]
 	},
 	"dm.CanteenRecommendationState" : {
