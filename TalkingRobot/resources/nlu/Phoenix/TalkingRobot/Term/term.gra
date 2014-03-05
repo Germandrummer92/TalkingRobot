@@ -17,8 +17,10 @@
 
 #Recipe Ingredient or Tool
 [recipe_ingredient_or_tool]
+	(*please *can *you help me *to find *[a])
+	(where [is] *[a])
 	(*[person] *should *also *[need] buy *[a])
-	(can *you *also [bring] me *[a])
+	(*can *you *also [bring] me *[a])
 	(the POSITION *COMPONENT [is] *[a])
 	(*for *now *[a] *recipe [person] *also [need] *[a]) 	# e.g. "for (recipe) you need _____"
 	([is] *also [need] *for)								# e.g. "____ is needed for (recipe)"
