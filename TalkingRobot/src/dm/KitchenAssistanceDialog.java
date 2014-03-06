@@ -7,6 +7,7 @@ import java.util.List;
 
 import data.Data;
 import data.IngredientData;
+import data.KeywordData;
 import data.KeywordType;
 import data.ToolData;
 
@@ -160,6 +161,9 @@ private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
 		if (ref.getClass().getName().equals("data.ToolData")) {
 			requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference().get(0));
 			requestedObjectName = ((Tool)requestedObject).getToolData().getToolName();
+			if (((Tool)requestedObject).getToolData().getLocation() == null || ((Tool)requestedObject).getToolData().getLocation().isEmpty()) {
+				getCurrentDialogState().setCurrentState(KitchenAssistance.KA_WAITING_FOR_LOCATION);
+			}
 			return;
 		}
 		}
@@ -194,6 +198,9 @@ private void updateStateIngFound(List<Keyword> keywords, List<String> terms) {
 			if (ref.getClass().getName().equals("data.IngredientData")) {
 			requestedObject = new Ingredient((IngredientData)kw.getKeywordData().getDataReference().get(0));
 			requestedObjectName = ((Ingredient)requestedObject).getIngredientData().getIngredientName();
+			if (((Ingredient)requestedObject).getIngredientData().getIngredientLocation() == null || ((Ingredient)requestedObject).getIngredientData().getIngredientLocation().isEmpty()) {
+				getCurrentDialogState().setCurrentState(KitchenAssistance.KA_WAITING_FOR_LOCATION);
+			}
 			return;
 		}
 		}
@@ -260,7 +267,7 @@ private void updateStateWaiting(List<Keyword> keywords, List<String> terms) {
 private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
 	if (keywords == null || keywords.isEmpty()) {
 		if (terms != null && !terms.isEmpty()) {
-			if (newObjectClass.equals(Tool.class)) {
+			if (newObjectClass != null && newObjectClass.equals(Tool.class)) {
 				ToolData d = new ToolData(requestedObjectName, terms.get(0), null);
 				d.writeFile();
 				requestedObject = new Tool(d);
@@ -273,6 +280,29 @@ private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
 				
 			}
 			else {
+				if (newObjectClass == null && requestedObject != null && terms != null && !terms.isEmpty()) {
+					if (requestedObject.getClass().equals(Tool.class)) {
+						((Tool)requestedObject).getToolData().setLocation(terms.get(0));
+						((Tool)requestedObject).getToolData().writeFile();
+						ArrayList<String> tool = new ArrayList<String>();
+						tool.add(requestedObjectName);
+						KeywordData toolData = DialogManager.giveDialogManager().getDictionary().findKeywords(tool).get(0).getKeywordData();
+						((ToolData)toolData.getDataReference().get(0)).setLocation(terms.get(0));
+						toolData.writeFile();
+					}
+					if (requestedObject.getClass().equals(Ingredient.class)) {
+						((Ingredient)requestedObject).getIngredientData().setIngredientLocation(terms.get(0));
+						((Ingredient)requestedObject).getIngredientData().writeFile();
+						ArrayList<String> ing = new ArrayList<String>();
+						ing.add(requestedObjectName);
+						KeywordData ingData = DialogManager.giveDialogManager().getDictionary().findKeywords(ing).get(0).getKeywordData();
+						((IngredientData)ingData.getDataReference().get(0)).setIngredientLocation(terms.get(0));
+						ingData.writeFile();
+					}
+					getCurrentDialogState().setCurrentState(KitchenAssistance.KA_ENTRY);
+					return;
+				}
+				
 				IngredientData d = new IngredientData(requestedObjectName, terms.get(0));
 				d.writeFile();
 				requestedObject = new Ingredient(d);
@@ -287,6 +317,7 @@ private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
 			}
 			
 		}
+		getCurrentDialogState().setCurrentState(KitchenAssistance.KA_ENTRY);
 	}
 	else {
 		DialogManager.giveDialogManager().setInErrorState(true);
