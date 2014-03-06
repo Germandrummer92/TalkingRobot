@@ -278,12 +278,12 @@ private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
 				requestedObject = new Ingredient(d);
 				getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_INGREDIENT_FOUND);
 				ArrayList<DialogState> ds = new ArrayList<DialogState>();
-				ds.add(new RecipeLearningState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT));
 				ds.add(new KitchenAssistanceState(KitchenAssistance.KA_TELL_INGREDIENT_FOUND));
+				ds.add(new RecipeLearningState(RecipeLearning.RL_ASK_INGREDIENT_RIGHT));
 				ds.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_INGREDIENT_FOUND));
 				ArrayList<Data> refs = new ArrayList<Data>();
 				refs.add(((Ingredient)requestedObject).getIngredientData());
-				DialogManager.giveDialogManager().getDictionary().addKeyword(requestedObjectName, 4, ds, refs, KeywordType.INGREDIENT);
+				DialogManager.giveDialogManager().getDictionary().addKeyword(requestedObjectName, 10, ds, refs, KeywordType.INGREDIENT);
 			}
 			
 		}
