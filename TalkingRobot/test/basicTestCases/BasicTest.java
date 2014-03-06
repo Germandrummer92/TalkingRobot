@@ -1,6 +1,7 @@
 package basicTestCases;
 
 
+
 import generalControl.Main;
 
 import java.io.File;
@@ -29,30 +30,79 @@ abstract public class BasicTest {
 	public LinkedList<String> userInput;
 	public ArrayList<String> removableFiles; //new keywords which need to be deleted after the test
 	
+	public int userDataCount;
+	public int recipeDataCount;
+	public int ingredientDataCount;
+	public int toolDataCount;
+	
 	@Before
 	public void setUp() {
 		userInput = new LinkedList<String>();
 		removableFiles = new ArrayList<String>();
+		
+		userDataCount = new File("resources/files/UserData/").listFiles().length;
+		recipeDataCount = new File("resources/files/RecipeData/").listFiles().length;
+		ingredientDataCount = new File("resources/files/IngredientData/").listFiles().length;
+		toolDataCount = new File("resources/files/ToolData/").listFiles().length;
+		
 	}
 	
 	@After
 	public void tearDown() {
 		userInput = null;
 		
-		File newFile = new File("resources/files/UserData/6.json");
-		int i = 7;
+		//deleting new userData
+		File newFile = new File("resources/files/UserData/" + userDataCount + ".json");
+		userDataCount++;
 		while(newFile.exists()) {
 //			System.out.println("deleting");
 			newFile.delete();
-			newFile = new File("resources/files/UserData/" + i + ".json");
-			i++;
+			newFile = new File("resources/files/UserData/" + userDataCount + ".json");
+			userDataCount++;
 		}
+		userDataCount = 0;
 		
+		//deleting new recipeData
+		newFile = new File("resources/files/RecipeData/" + recipeDataCount + ".json");
+		recipeDataCount++;
+		while(newFile.exists()) {
+//			System.out.println("deleting");
+			newFile.delete();
+			newFile = new File("resources/files/RecipeData/" + recipeDataCount + ".json");
+			recipeDataCount++;
+		}
+		recipeDataCount = 0;
+		
+		//deleting new ingredientData
+		newFile = new File("resources/files/IngredientData/" + ingredientDataCount + ".json");
+		ingredientDataCount++;
+		while(newFile.exists()) {
+//			System.out.println("deleting");
+			newFile.delete();
+			newFile = new File("resources/files/IngredientData/" + ingredientDataCount + ".json");
+			ingredientDataCount++;
+		}
+		ingredientDataCount = 0;
+		
+		//deleting new toolData
+		newFile = new File("resources/files/ToolData/" + toolDataCount + ".json");
+		toolDataCount++;
+		while(newFile.exists()) {
+//			System.out.println("deleting");
+			newFile.delete();
+			newFile = new File("resources/files/ToolData/" + toolDataCount + ".json");
+			toolDataCount++;
+		}
+		toolDataCount = 0;
+		
+		
+		//deleting new keywordData
 		ArrayList<Keyword> kwList = 
 				(ArrayList<Keyword>) DialogManager.giveDialogManager().getDictionary().findKeywords(removableFiles);
 		
 		for(int j = 0; j < kwList.size(); j++) {
 			System.out.println(kwList.get(j).getKeywordData().getWordID());
+			
 			newFile = new File("resources/files/KeywordData/" 
 					+ kwList.get(j).getKeywordData().getWordID() + ".json");
 			newFile.delete();
