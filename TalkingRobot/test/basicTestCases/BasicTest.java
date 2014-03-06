@@ -13,6 +13,7 @@ import nlu.NLUPhase;
 import org.junit.After;
 import org.junit.Before;
 
+import tts.TTSPhase;
 import asr.ASRPhase;
 import dm.DMPhase;
 import dm.DialogManager;
@@ -134,6 +135,10 @@ abstract public class BasicTest {
 			} else {
 				Main.giveMain().getPhase().setPhaseResult(Main.giveMain());
 				Main.giveMain().setPhase(Main.giveMain().getPhase().nextPhase(Main.giveMain()));
+			}
+			
+			if(Main.giveMain().getPhase() instanceof TTSPhase) {
+				nlgResults.add(Main.giveMain().getNlgResult());
 			}
 			
 		 }

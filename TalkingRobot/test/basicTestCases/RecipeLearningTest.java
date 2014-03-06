@@ -21,7 +21,7 @@ public class RecipeLearningTest extends BasicTest {
 		removableFiles.add("lol");
 		
 		userInput.add("it is from the moon");
-		removableFiles.add("moon");
+		removableFiles.add("it is from the moon");
 		
 		userInput.add("the first ingredient is haha");
 		removableFiles.add("haha");
@@ -43,7 +43,7 @@ public class RecipeLearningTest extends BasicTest {
 		
 		File newRecipe = new File("resources/files/RecipeData/" + recipeDataCount + ".json");
 		assertTrue(newRecipe.exists() 
-				&& Main.giveMain().getNlgResult().contains("to prepare this recipe") );
+				&& Main.giveMain().getNlgResult().contains("To prepare this recipe") );
 	}
 
 }
