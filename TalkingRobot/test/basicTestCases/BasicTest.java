@@ -29,6 +29,7 @@ abstract public class BasicTest {
 	
 	public LinkedList<String> userInput;
 	public ArrayList<String> removableFiles; //new keywords which need to be deleted after the test
+	public ArrayList<String> nlgResults;
 	
 	public int userDataCount;
 	public int recipeDataCount;
@@ -39,6 +40,7 @@ abstract public class BasicTest {
 	public void setUp() {
 		userInput = new LinkedList<String>();
 		removableFiles = new ArrayList<String>();
+		nlgResults = new ArrayList<String>();
 		
 		userDataCount = new File("resources/files/UserData/").listFiles().length;
 		recipeDataCount = new File("resources/files/RecipeData/").listFiles().length;
@@ -50,6 +52,7 @@ abstract public class BasicTest {
 	@After
 	public void tearDown() {
 		userInput = null;
+		nlgResults = null;
 		
 		//deleting new userData
 		File newFile = new File("resources/files/UserData/" + userDataCount + ".json");
