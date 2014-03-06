@@ -1,2 +1,1 @@
 {"wordID":174,"word":"tomato","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RL_ASK_INGREDIENT_RIGHT"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":7,"dataReference":[{"ingredientID":3,"ingredientName":"tomato","ingredientLocation":"Top Cabinet"}],"type":"INGREDIENT"}
-
