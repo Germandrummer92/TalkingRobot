@@ -42,11 +42,11 @@ public class CanteenInformationState extends DialogState {
    * @see DialogState#getOutputKeyword()
    */
   public String getOutputKeyword() {
-	  CanteenInformationDialog currentDialog = new CanteenInformationDialog(DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession(), 
-			  this, null);
-	   currentDialog = (CanteenInformationDialog)DialogManager.giveDialogManager().getCurrentDialog();
-	   currentDialog.setCurCanteen(currentDialog.getCurCanteen());
-	   currentDialog.setCurrentCanteen(currentDialog.getCurCanteen());
+	 // CanteenInformationDialog currentDialog = new CanteenInformationDialog(DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession(), 
+		//	  this, null);
+	   Dialog currentDialog = (CanteenInformationDialog)DialogManager.giveDialogManager().getCurrentDialog();
+	//   ((CanteenInformationDialog) currentDialog).setCurCanteen(((CanteenInformationDialog) currentDialog).getCurCanteen());
+	   ((CanteenDialog) currentDialog).setCurrentCanteen(((CanteenInformationDialog) currentDialog).getCurCanteen());
 	 // currentDialog.setCurrentDialogState(new CanteenInformationDialog(null, null, null));
 	  String time =  ((CanteenInformationDialog) currentDialog).getWishDate();
 	  String wishMeal =  ((CanteenInformationDialog) currentDialog).getWishMeal();
@@ -60,7 +60,7 @@ public class CanteenInformationState extends DialogState {
 	  float price;
 	  String output = "";
 	  
-	  switch ((CanteenInfo)currentDialog.getCurrentDialogState().getCurrentState()) {
+	  switch ((CanteenInfo)getCurrentState()) {
 	  case CI_ENTRY:
           setQuestion(false);
           return null;

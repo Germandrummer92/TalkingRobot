@@ -65,6 +65,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	
 	updateStateKeywordJump(keywords);
+	
 	if (getCurrentDialogState().getClass() != CanteenInformationState.class || getCurrentDialogState().getCurrentState().getClass() != CanteenInfo.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
@@ -79,7 +80,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	int dateShift = 0; //0 for today, 1 for tomorrow, etc
 	int result = getRequestedWeekDay(keywords, date) - date.getDayOfWeek();
 	//Normalize the shift according to the days of the week.
-	if (result <= 0) { 
+	if (result < 0) { 
 		dateShift = 7 + result; //7 days in the week
 	} else {
 		dateShift = result;
@@ -397,7 +398,8 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	/* find out first what the user wants to know */
 	
 		for( Keyword toDo : keywords ) {
-			if( toDo.getWord().equals("price")) {
+			if( toDo.getWord().equals("price") || toDo.getWord().contains("how much") 
+					|| toDo.getWord().contains("money") || toDo.getWord().contains("cost")) {
 				askPrice = true;
 				break;
 			}
@@ -405,7 +407,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	
 	
 	
-	//int index = -1;
 		boolean mealMatched = false;
 	if( askPrice ) {
 		// now to find out the required meal's name
@@ -416,22 +417,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 			mealMatched = true;
 			return matchedLine;
 		}
-		/*for( String name : terms) {
-			for( LineData line : curCanteen.getCanteenData().getLines()) {
-				for( MealData meal : line.getTodayMeals()) {
-					Pattern p = Pattern.compile(name); // for comparing with json data
-					Matcher m = p.matcher(meal.getMealName());
-					if(m.find()) {
-					//	meal.getMealName().equals(name);
-						index = curCanteen.getCanteenData().getLines().indexOf(line);
-						//next = getLineEnum(line, askPrice);
-						setWishMeal(name);
-						break;
-					}
-				}
-			}
-			
-		}*/
+		
 		
 		if( !mealMatched ) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
@@ -514,7 +500,14 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 	CanteenInfo matched = CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 	Integer id = 0;
 	
-	String[] tms = terms.get(0).split("of ");
+	String[] tms = terms.get(0).split("of "); // what's the price of ...
+	if(tms.length == 1) {
+		if(tms[0].contains("does")) {
+			tms = terms.get(0).split("does"); // original sentence : how much does ... cost
+		}else if(tms[0].contains("costs")) { // how much costs ...
+			tms = terms.get(0).split("costs"); 
+		}
+	}
 	String name = tms[1];
 	
 	MealNode node = new MealNode();
