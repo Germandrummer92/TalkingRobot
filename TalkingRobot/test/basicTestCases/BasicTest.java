@@ -52,11 +52,13 @@ abstract public class BasicTest {
 				(ArrayList<Keyword>) DialogManager.giveDialogManager().getDictionary().findKeywords(removableFiles);
 		
 		for(int j = 0; j < kwList.size(); j++) {
-//			System.out.println(kwList.get(j).getKeywordData().getWordID());
+			System.out.println(kwList.get(j).getKeywordData().getWordID());
 			newFile = new File("resources/files/KeywordData/" 
 					+ kwList.get(j).getKeywordData().getWordID() + ".json");
 			newFile.delete();
 		}
+		
+		removableFiles = null;
 	}
 	
 	public void runMainActivityWithTestInput(LinkedList<String> userInput) {

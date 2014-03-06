@@ -28,7 +28,7 @@ import asr.ASRPhase;
 public class UserDataInitAndRemoval extends BasicTest{
 	
 	@Test
-	public void userInitTest() {
+	public void studentUserInitTest() {
 		
 		userInput.add("hello");
 		userInput.add("abcd");
@@ -41,8 +41,54 @@ public class UserDataInitAndRemoval extends BasicTest{
 		
 		assertTrue(Main.giveMain().getNlgResult().contains("know you") 
 				|| Main.giveMain().getNlgResult().contains("profile has been saved"));
-		
 	}
 	
+	@Test
+	public void studentUserInitTest2() {
+		
+		userInput.add("hello");
+		userInput.add("abcd");
+		removableFiles.add("abcd");
+		
+		userInput.add("yes");
+		userInput.add("student");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue(Main.giveMain().getNlgResult().contains("know you") 
+				|| Main.giveMain().getNlgResult().contains("profile has been saved"));
+	}
+	
+	@Test
+	public void employeeUserInitTest() {
+		
+		userInput.add("hello");
+		userInput.add("abcd");
+		removableFiles.add("abcd");
+		
+		userInput.add("yes");
+		userInput.add("no");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue(Main.giveMain().getNlgResult().contains("know you") 
+				|| Main.giveMain().getNlgResult().contains("profile has been saved"));
+	}
+	
+	@Test
+	public void employeeUserInitTest2() {
+		
+		userInput.add("hello");
+		userInput.add("my name is abcd");
+		removableFiles.add("abcd");
+		
+		userInput.add("yes");
+		userInput.add("i am an employee");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue(Main.giveMain().getNlgResult().contains("know you") 
+				|| Main.giveMain().getNlgResult().contains("profile has been saved"));
+	}
 	
 }
