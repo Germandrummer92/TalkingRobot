@@ -68,9 +68,13 @@ public class StartDialog extends Dialog {
 	 * @return if the jump was completed
 	 */
 	private boolean updateStateKeywordJump(List<Keyword> keywords) {
+		boolean employee = false;
 		if (((Start)getCurrentDialogState().getCurrentState()).equals(Start.S_ENTRY)) {
 			getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_USERNAME);
 			return true;
+		}
+		if (((Start)getCurrentDialogState().getCurrentState()).equals(Start.S_WAITING_FOR_EMPLOYEE_STATUS)) {
+			employee = true;
 		}
 		if (keywords == null || keywords.isEmpty()) {
 			return false;
@@ -88,7 +92,6 @@ public class StartDialog extends Dialog {
 			}
 			if (sameRef == true) {
 				getCurrentDialogState().setCurrentState(ref);
-				return true;
 			}
 			//If not go to keyword with highest priority
 			else {
@@ -112,9 +115,19 @@ public class StartDialog extends Dialog {
 					}
 					}
 				getCurrentDialogState().setCurrentState(curRef.getCurrentState());
-				return true;
 				}
 			}
+		if (employee && !getCurrentDialogState().getCurrentState().equals(Start.S_WAITING_FOR_EMPLOYEE_STATUS)) {
+			getCurrentSession().getCurrentUser().getUserData().setStudent(true);
+			getCurrentSession().getCurrentUser().getUserData().writeFile();	
+			ArrayList<DialogState> states = new ArrayList<DialogState>();
+			ArrayList<Data> refs = new ArrayList<Data>();
+			states.add(new StartState(Start.S_USER_FOUND));
+			refs.add(getCurrentSession().getCurrentUser().getUserData());
+			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
+			Main.giveMain().setUserLoggedIn(true);
+		}
+		return true;
 	}
 	/**
 	 * Updates the state if its in the waitingForEmployeeStatus state.
