@@ -20,7 +20,11 @@ public class RecipeAssistanceTest extends BasicTest{
 		userInput.add("can you tell me something about hamburger");
 		userInput.add("which country is it from");
 		userInput.add("which ingredients do i need");
+		userInput.add("what is the first ingredient");
 		userInput.add("what tools are needed for hamburgers");
+		userInput.add("what is the first step for hamburger");
+		userInput.add("what is the next one");
+		
 		
 		this.runMainActivityWithTestInput(userInput);
 
@@ -28,7 +32,7 @@ public class RecipeAssistanceTest extends BasicTest{
 				&& nlgResults.get(4).contains("Ground beef")
 				&& nlgResults.get(4).contains("Lettuce")
 				&& nlgResults.get(4).contains("Buns")
-				);
+				&& nlgResults.get(6).contains("knife"));
 	}
 	
 //	/**
