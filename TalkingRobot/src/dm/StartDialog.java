@@ -125,32 +125,35 @@ public class StartDialog extends Dialog {
 			List<String> terms, List<String> approval) {
 		if ((keywords == null || keywords.isEmpty()) && (terms == null || terms.isEmpty() && (approval == null || approval.isEmpty()))) {
 			getCurrentSession().getCurrentUser().getUserData().setStudent(true);
-			getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
-			getCurrentSession().getCurrentUser().getUserData().writeFile();	
-			ArrayList<DialogState> states = new ArrayList<DialogState>();
-			ArrayList<Data> refs = new ArrayList<Data>();
-			states.add(new StartState(Start.S_USER_FOUND));
-			refs.add(getCurrentSession().getCurrentUser().getUserData());
-			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
 		}
-		if ((keywords == null || keywords.isEmpty()) && approval.size() == 1) {
+		else if ((keywords == null || keywords.isEmpty()) && approval.size() == 1) {
 			if (approval.get(0).equals("yes")) {
 				getCurrentSession().getCurrentUser().getUserData().setStudent(true);
 			}
 			else {
 				getCurrentSession().getCurrentUser().getUserData().setStudent(false);
 			}
-			getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
-			getCurrentSession().getCurrentUser().getUserData().writeFile();	
-			ArrayList<DialogState> states = new ArrayList<DialogState>();
-			ArrayList<Data> refs = new ArrayList<Data>();
-			states.add(new StartState(Start.S_USER_FOUND));
-			refs.add(getCurrentSession().getCurrentUser().getUserData());
-			DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
+		}
+		else if ((keywords != null && !keywords.isEmpty())) {
+			for (Keyword kw: keywords) {
+				if (kw.getWord().equals("student")) {
+					getCurrentSession().getCurrentUser().getUserData().setStudent(true);
+				}
+				if (kw.getWord().equals("employee")) {
+					getCurrentSession().getCurrentUser().getUserData().setStudent(false);
+				}
+			}
 		}
 		else {
 			DialogManager.giveDialogManager().setInErrorState(true);
 		}
+		getCurrentDialogState().setCurrentState(Start.S_USER_SAVED);
+		getCurrentSession().getCurrentUser().getUserData().writeFile();	
+		ArrayList<DialogState> states = new ArrayList<DialogState>();
+		ArrayList<Data> refs = new ArrayList<Data>();
+		states.add(new StartState(Start.S_USER_FOUND));
+		refs.add(getCurrentSession().getCurrentUser().getUserData());
+		DialogManager.giveDialogManager().getDictionary().addKeyword(getCurrentSession().getCurrentUser().getUserData().getUserName(), 10, states , refs, KeywordType.USER);
 		Main.giveMain().setUserLoggedIn(true);
 		
 	}
@@ -247,6 +250,26 @@ public class StartDialog extends Dialog {
 			if (terms != null && !terms.isEmpty()) {
 				getCurrentSession().setCurrentUser(new User(terms.get(0), false));
 				getCurrentDialogState().setCurrentState(Start.S_USER_NOT_FOUND);
+			}
+		}
+		if (keywords != null && !keywords.isEmpty()) {
+			int allkws = 0;
+			for (Keyword kw: keywords) {
+				boolean refInc = false;
+				for (DialogState ref : kw.getReference()) {
+					if (ref.getCurrentState().equals(Start.S_WAITING_FOR_USERNAME)) {
+						refInc = true;
+					}
+				}
+				if (refInc) {
+					allkws++;
+				}
+			}
+			if (allkws == keywords.size()) {
+				if (terms != null && !terms.isEmpty()) {
+					getCurrentSession().setCurrentUser(new User(terms.get(0), false));
+					getCurrentDialogState().setCurrentState(Start.S_USER_NOT_FOUND);
+				}
 			}
 		}
 	}
