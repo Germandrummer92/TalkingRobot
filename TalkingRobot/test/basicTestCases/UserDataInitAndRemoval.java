@@ -38,17 +38,17 @@ public class UserDataInitAndRemoval extends BasicTest{
 			i++;
 		}
 		
-		System.out.println("doing smth");
-		ArrayList<Keyword> kwList = (ArrayList<Keyword>) DialogManager.giveDialogManager().getDictionary().getKeywordList();
+		ArrayList<String> toBeDeleted = new ArrayList<String>();
+		toBeDeleted.add("abcd");
+		ArrayList<Keyword> kwList = (ArrayList<Keyword>) DialogManager.giveDialogManager().getDictionary().findKeywords(toBeDeleted);
+		
 		for(int j = 0; j < kwList.size(); j++) {
-			if(kwList.get(i).getKeywordData().getWord().equals("abcd")) {
-				System.out.println("doing smth");
-				newFile = new File("resources/files/KeywordData/" 
-						+ kwList.get(i).getKeywordData().getWordID()
-						+ ".json");
-				newFile.delete();
-			}
+			System.out.println(kwList.get(j).getKeywordData().getWordID());
+			newFile = new File("resources/files/KeywordData/" 
+					+ kwList.get(j).getKeywordData().getWordID() + ".json");
+			newFile.delete();
 		}
+	
 	}
 	
 	
