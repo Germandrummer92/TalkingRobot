@@ -37,7 +37,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 	 */
 	public List<String> analyze(String input) {
 		 LinkedList<String> result = phoenix.operatePhoenix(this.runParse, this.extractFlag, this.compile);
-		  
+
 		 LinkedList<String> possibleKeywords = this.cleanInput(input, result);
 		 LinkedList<String> possibleKeywords2 = this.checkForKeywordsConsistingOfSeveralWords(possibleKeywords, result);
 		 possibleKeywords = checkForKeywordsConsistingOfOneWord(possibleKeywords); 
@@ -156,10 +156,10 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		LinkedList<String> output = new LinkedList<String>();
 		output.add(input);
 		
+		//splits the sentence into parts which only contain words which were not found by phoenix
 		for(int i = 0; i < result.size(); i++) {
 			LinkedList<String> nextRound = new LinkedList<String>();
 			for(int j = 0; j < output.size(); j++) {
-			
 				String[] help = output.get(j).split(result.get(i));
 					
 				for(int k = 0; k < help.length; k++) {
@@ -172,6 +172,7 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 			output = nextRound;
 		}
 		
+		//splits the parts into single words
 		LinkedList<String> singleWords = new LinkedList<String>();
 		for(int i= 0; i < output.size(); i++) {
 			String[] help = output.get(i).split(" ");
@@ -182,7 +183,19 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 				}
 			}
 		}
-		return singleWords;
+		
+		LinkedList<String> wordOfSentence = new LinkedList<String>();
+		input = " " + input + " ";
+
+		//checks if words are actual words of a sentence and not just a part of a word
+		for(int i = 0; i < singleWords.size(); i++) {
+			String regex = ".* " + singleWords.get(i) + " .*" ;
+			if(input.matches(regex)) {
+				wordOfSentence.add(singleWords.get(i));
+			}
+		}
+		
+		return wordOfSentence;
 	}
 
 	/**
@@ -246,11 +259,12 @@ public class PossibleKeywordAnalyzer extends InputAnalyzer {
 		  for(int i = 0; i < result.size(); i++) {
 			  String[] triple = result.get(i).split(";");
 			  int distance = Integer.parseInt(triple[2]);
-			  if(distance / (float) triple[1].length() <= (float) 0.5) {
+			  if(distance / (float) triple[1].length() <= (float) 0.5
+					  && distance / (float) triple[1].length() >= 0.0001) {
 				  finalResult.add(result.get(i));
 			  }
 		  }
-		  return result;
+		  return finalResult;
 	  }
 	
 }
