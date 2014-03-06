@@ -27,36 +27,13 @@ import asr.ASRPhase;
  */
 public class UserDataInitAndRemoval extends BasicTest{
 	
-	@After
-	public void tearDown2() {
-		File newFile = new File("resources/files/UserData/6.json");
-		int i = 7;
-		while(newFile.exists()) {
-			System.out.println("deleting");
-			newFile.delete();
-			newFile = new File("resources/files/UserData/" + i + ".json");
-			i++;
-		}
-		
-		ArrayList<String> toBeDeleted = new ArrayList<String>();
-		toBeDeleted.add("abcd");
-		ArrayList<Keyword> kwList = (ArrayList<Keyword>) DialogManager.giveDialogManager().getDictionary().findKeywords(toBeDeleted);
-		
-		for(int j = 0; j < kwList.size(); j++) {
-			System.out.println(kwList.get(j).getKeywordData().getWordID());
-			newFile = new File("resources/files/KeywordData/" 
-					+ kwList.get(j).getKeywordData().getWordID() + ".json");
-			newFile.delete();
-		}
-	
-	}
-	
-	
 	@Test
 	public void userInitTest() {
 		
 		userInput.add("hello");
 		userInput.add("abcd");
+		removableFiles.add("abcd");
+		
 		userInput.add("yes");
 		userInput.add("yes");
 		

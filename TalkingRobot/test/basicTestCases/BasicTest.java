@@ -3,6 +3,8 @@ package basicTestCases;
 
 import generalControl.Main;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import nlu.NLUPhase;
@@ -12,6 +14,8 @@ import org.junit.Before;
 
 import asr.ASRPhase;
 import dm.DMPhase;
+import dm.DialogManager;
+import dm.Keyword;
 
 /**
  * 
@@ -23,15 +27,36 @@ import dm.DMPhase;
 abstract public class BasicTest {
 	
 	public LinkedList<String> userInput;
+	public ArrayList<String> removableFiles; //new keywords which need to be deleted after the test
 	
 	@Before
 	public void setUp() {
 		userInput = new LinkedList<String>();
+		removableFiles = new ArrayList<String>();
 	}
 	
 	@After
 	public void tearDown() {
 		userInput = null;
+		
+		File newFile = new File("resources/files/UserData/6.json");
+		int i = 7;
+		while(newFile.exists()) {
+//			System.out.println("deleting");
+			newFile.delete();
+			newFile = new File("resources/files/UserData/" + i + ".json");
+			i++;
+		}
+		
+		ArrayList<Keyword> kwList = 
+				(ArrayList<Keyword>) DialogManager.giveDialogManager().getDictionary().findKeywords(removableFiles);
+		
+		for(int j = 0; j < kwList.size(); j++) {
+//			System.out.println(kwList.get(j).getKeywordData().getWordID());
+			newFile = new File("resources/files/KeywordData/" 
+					+ kwList.get(j).getKeywordData().getWordID() + ".json");
+			newFile.delete();
+		}
 	}
 	
 	public void runMainActivityWithTestInput(LinkedList<String> userInput) {
