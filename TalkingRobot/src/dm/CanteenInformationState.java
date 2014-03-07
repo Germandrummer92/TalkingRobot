@@ -207,145 +207,103 @@ public class CanteenInformationState extends DialogState {
 	  case CI_ADEN_LINE_1_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(0).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +">";
 		 
 	  case CI_ADEN_LINE_2_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(1).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_ADEN_LINE_3_DISH :
 		  
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		 
 	  case CI_ADEN_LINE_45_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(3).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		
 	  case CI_ADEN_LINE_6_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(8).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_GG_DISH:
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(3).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 
 	  case CI_ADEN_CURRYQ_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(9).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		 
 	  case CI_ADEN_CAFE_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(6).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_ADEN_SCHNITBAR_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(4).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
-		  
+		
 	  case CI_MOLTKE_CHOICE_1_DISH:
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(0).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_CHOICE_2_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(1).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_SCHNITBAR_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(5).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_ACTTHEK_DISH :
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
-		  }
-		 return "<" + wishMeal +" >";
 		  
 	  case CI_MOLTKE_BUFFET_DISH:
 		  setQuestion(false);
 		  
-		  if(wishMeal.isEmpty()){
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
-		  }
-		  output = "<" + wishMeal +" >";
-		  output = output + ";{" + time + "}";	
-		  return output;
+		 // output = output + ";{" + time + "}";	
+		//  return output;
 	  case CI_TELL_LINE_NOT_EXIST:
 		  setQuestion(false);
 		  return null;
