@@ -574,6 +574,11 @@
 			],
             "CI_LINE_LOCATION_INFO" : [
     			""	
+			],
+			"CI_TELL_CANTEEN_CLOSED" : [
+				"Canteen is closed at {c}",
+				"Sorry to tell you that canteen is closed during weekends",
+				"There's no available information about canteen at weekends because it's closed"
 			]
 		},
 			

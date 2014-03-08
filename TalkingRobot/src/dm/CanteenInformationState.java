@@ -17,9 +17,7 @@ import data.MealData;
  *
  */
 public class CanteenInformationState extends DialogState {
-	//private String output;
- 
-
+	
     /**
      * Creates a new CanteenInformationState in the ENTRY state.
      */
@@ -302,14 +300,21 @@ public class CanteenInformationState extends DialogState {
 			  output = packMeals(((CanteenDialog) currentDialog).getCurrentCanteen()
 					  .getCanteenData().getLines().get(2).getTodayMeals());
 			  return output;
-		 // output = output + ";{" + time + "}";	
-		//  return output;
+		
 	  case CI_TELL_LINE_NOT_EXIST:
 		  setQuestion(false);
 		  return null;
 	  case CI_TELL_MEAL_NOT_EXIST:
 		  setQuestion(false);
 		  return null;
+	  case CI_TELL_CANTEEN_CLOSED:
+		  setQuestion(false);
+		  
+		  if(time != null) {
+			  output = "{" + time + "}";
+		  }else output = "";
+		  
+		  return output;
 	  case CI_EXIT :
 		  setQuestion(false);
 		  return null;
@@ -394,14 +399,7 @@ private String packMeals(ArrayList<MealData> meals) {
   */
   private int matchMealIndex(ArrayList<MealData> meals, String wishMeal) {
 	  if( wishMeal != null) {
-		  /*Pattern p = Pattern.compile(wishMeal); // compares string and json string
-		  for(MealData wish : meals) {
-			  Matcher matcher = p.matcher(wish.getMealName()); 
-			  if(matcher.find()) {
-				  return meals.indexOf(wish);
-				  
-			  }
-		  }*/
+		
 		  for(MealData wish : meals) {
 			  String str = wish.getMealName().toString().toLowerCase();
 			  if( str.contains(wishMeal)) {

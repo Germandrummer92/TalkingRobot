@@ -79,17 +79,26 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	
 	LocalDate date = LocalDate.now();
 	int dateShift = 0; //0 for today, 1 for tomorrow, etc
-	int result = getRequestedWeekDay(keywords, date) - date.getDayOfWeek();
+	int requestedWeekDay = getRequestedWeekDay(keywords, date);
+	
+	if( (requestedWeekDay % 7) == 0 
+			|| (requestedWeekDay % 7) == 6) { // 0 is Sunday, 6 is Saturday
+		getCurrentDialogState().setCurrentState(CanteenInfo.CI_TELL_CANTEEN_CLOSED);
+	}
+	
+	dateShift = (requestedWeekDay - date.getDayOfWeek()) % 7;
 	//Normalize the shift according to the days of the week.	
+	/*
 	if (result < 0) { 
 		dateShift = 7 + result; //7 days in the week
 	} else {
 		dateShift = result;
-	}
+	}*/
 	
-	if (terms.get(0).contains("next")) {
+	if (terms.get(0).contains("next") || terms.get(0).contains("coming")) {
 		dateShift = dateShift + 7;
 	} 
+	
 	
 	if(inAden) { // so far we just consider canteen at adenauerring and moltke street
 		curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
@@ -205,6 +214,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		break;
 	case  CI_EXIT:
 		updateStateExit(keywords, terms);
+		break;
+	case CI_TELL_CANTEEN_CLOSED:
+		// do nothing just output
 		break;
 	default:
 		
