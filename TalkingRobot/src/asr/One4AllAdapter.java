@@ -1,4 +1,6 @@
 package asr;
+import java.net.*;
+import java.io.*;
 /**
  * 
  * @author Daniel Draper
@@ -33,4 +35,22 @@ public class One4AllAdapter {
   public void closeOne4All() {
   }
 
+  public static void main(String[] args) {
+	  try {
+		  Socket sock = new Socket("127.0.0.1", 1917);
+		  InputStream in = sock.getInputStream();
+		  OutputStream out = sock.getOutputStream();
+		  PrintWriter print = new PrintWriter(out);
+		  BufferedReader bin = new BufferedReader(new InputStreamReader(in));
+		  print.println("(init)");
+		  String line; 
+			  while ((line = bin.readLine()) != null) {
+				  System.out.println(line);
+			  }
+		  sock.close();
+	  }
+	  catch (IOException ioe) {
+		  System.err.println();
+	  }
+  }
 }
