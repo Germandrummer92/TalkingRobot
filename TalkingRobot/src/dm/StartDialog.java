@@ -3,6 +3,7 @@ package dm;
 import generalControl.Main;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import data.Data;
@@ -242,6 +243,7 @@ public class StartDialog extends Dialog {
 			for (DialogState d : kw.getReference()) {
 				if (d.getCurrentState() == Start.S_USER_FOUND) {
 					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference().get(0))));
+					getCurrentSession().getCurrentUser().getUserData().setLastAccess(new Date());
 					Main.giveMain().setUserLoggedIn(true);
 					return;
 				}
