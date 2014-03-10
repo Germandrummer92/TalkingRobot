@@ -47,9 +47,9 @@ public class DialogManager {
  * @throws WrongStateClassException 
    */
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
-//	  for(int i = 0; i < keywords.size(); i++) {
-//		  System.out.println("working with: " + keywords.get(i));
-//	  }
+	 /* for(int i = 0; i < keywords.size(); i++) {
+		  System.out.println("working with: " + keywords.get(i));
+	  }*/
 	  previousDialog = currentDialog;
 	   List<Keyword> kws = dictionary.findKeywords(keywords);
 	   do {

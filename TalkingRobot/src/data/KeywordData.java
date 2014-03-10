@@ -272,7 +272,7 @@ public class KeywordData implements Data {
 		
 	}
 
-	/*public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		for (KeywordData d : loadData()) {
 			System.out.println(d.word + " " + d.wordID);
 		}

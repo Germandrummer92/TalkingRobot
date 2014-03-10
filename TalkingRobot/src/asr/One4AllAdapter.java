@@ -42,7 +42,7 @@ public class One4AllAdapter {
 		  OutputStream out = sock.getOutputStream();
 		  PrintWriter print = new PrintWriter(out);
 		  BufferedReader bin = new BufferedReader(new InputStreamReader(in));
-		  print.println("(init)");
+		  print.println("MESSAGE {message inform :sender java :receiver one4all :language one4all :reply-with receiver-msg-1 :content {(subscribe nlin)}}");
 		  String line; 
 			  while ((line = bin.readLine()) != null) {
 				  System.out.println(line);

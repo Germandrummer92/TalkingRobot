@@ -104,12 +104,12 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 			Keyword curKW = keywords.get(0);
 			DialogState curRef = keywords.get(0).getReference().get(0);
 			for (Keyword kw : keywords) {
-				for (DialogState d : kw.getReference()) {
 				if (kw.getKeywordData().getPriority() > priorityMax) {
 					curKW = kw;
 					priorityMax = curKW.getKeywordData().getPriority();
-					curRef = d;
+					curRef = kw.getReference().get(0);
 				}
+				for (DialogState d : kw.getReference()) {
 				if (d.getCurrentState().getClass().getName().equals("dm.KitchenAssistance")) {
 					if (kw.getKeywordData().getPriority() + 3 > priorityMax) {
 						curKW = kw;
@@ -228,8 +228,31 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
  * @param terms terms passed
  */
 private void updateStateEntry(List<Keyword> keywords, List<String> terms) {
-	//only invoked if not already jumped to TOOL_" or ING_FOUND
-	if (!terms.isEmpty()) {
+	//only invoked if not already jumped to TOOL_" or ING_FOUND or specifically came here
+	boolean bring = false;
+	boolean something = false;
+	
+	if (keywords != null && !keywords.isEmpty()) {
+		for (Keyword kw : keywords) {
+			for (DialogState ds : kw.getReference()) {
+				
+				if (kw.getWord().equals("bring")) {
+					bring = true;
+				}
+				else if (kw.getWord().equals("something")) {
+					something = true;
+				}
+				else if (ds.getCurrentState().equals(KitchenAssistance.KA_ENTRY)) {
+					return;
+				}
+			}
+			
+		}
+	}
+	if (something) {
+		return;
+	}
+	else if (terms != null && !terms.isEmpty()) {
 		requestedObjectName = terms.get(0);
 		getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_TOOL_NOT_FOUND);
 	}
