@@ -244,6 +244,7 @@ public class StartDialog extends Dialog {
 				if (d.getCurrentState() == Start.S_USER_FOUND) {
 					getCurrentSession().setCurrentUser(new User((UserData)(kw.getKeywordData().getDataReference().get(0))));
 					getCurrentSession().getCurrentUser().getUserData().setLastAccess(new Date());
+					getCurrentSession().getCurrentUser().getUserData().writeFile();
 					Main.giveMain().setUserLoggedIn(true);
 					return;
 				}
