@@ -11,7 +11,11 @@ import data.RecipeData;
 import data.RecipeStepData;
 import data.ToolData;
 import data.UserData;
-
+/**
+ * This class represents a dialogue to learn a new recipe.
+ * @author Aleksandar Andonov
+ * 
+ */
 public class RecipeLearningDialog extends KitchenDialog {
 
 private User creator;

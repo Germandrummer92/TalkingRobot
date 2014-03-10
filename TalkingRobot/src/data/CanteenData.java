@@ -10,6 +10,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.json.*;
@@ -60,40 +62,35 @@ public class CanteenData implements Data{
 		categories = MealCategoryData.loadData();
 		String dirPath = "resources/files/CanteenMenu/www.studentenwerk-karlsruhe.de/json_external" +
 				"/kit_edu/canteen/";
-		String jsonString = getJsonString(dirPath + canteenName.toString().toLowerCase() + ".json");
+		updateMenu(canteenName.toString().toLowerCase());
+		String jsonString = getJsonString(dirPath + canteenName.toString().toLowerCase());
 		switch(canteenName) {
 			case ADENAUERRING:
-				updateMenu("adenauerring");
 				setAdenauerringLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = "Adenauerring 7";
 				break;
 			case MOLTKE:
-				updateMenu("moltke");
 				setMoltkeLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = ""; //unknown
 				break;
 			case  ERZBERGER:
-				updateMenu("erzberger");
 				setErzbergerLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = "";//unknown
 				break;
 			case GOTTESAUE:
-				updateMenu("gottesaue");
 				setGottesaueLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = "";//unknown
 				break;
 			case TIEFENBRONNER:
-				updateMenu("tiefenbronner");
 				setTiefenbronnerLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address = "";//unknown
 				break;
 			case HOLZGARTEN:
-				updateMenu("holzgarten");
 				setHolzgartenLines(jsonString, timeOffset);
 				this.canteenName = canteenName;
 				address ="";//unknown
@@ -102,14 +99,21 @@ public class CanteenData implements Data{
 	}
 	
 	private void updateMenu(String mensaName) {
-		String[] name = {mensaName};
+		System.out.println(mensaName);
 		try {
-			Process proc = Runtime.getRuntime().exec("resources/files/CanteenMenu/updateMenu.sh",
-					name);
+			ProcessBuilder pb = new ProcessBuilder("./mensaUpdate.sh", mensaName);
+			String path = System.getProperty("user.dir");
+			path += "/resources/files/CanteenMenu/";
+			pb.directory(new File(path));
+			Process process = pb.start();
+			process.waitFor();
 		} catch (IOException e) {
 			// TODO 
 				//do nothing
-			//e.printStackTrace();
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -604,10 +608,35 @@ public class CanteenData implements Data{
 	
 	//TEST
 	public static void main(String[] args) {
-		CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 0);
-		System.out.println(aden.generateJSON());
+	//	CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 0);
+	//	System.out.println(aden.generateJSON());
 	//	CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 0);
 	//	System.out.println(moltke.generateJSON());
+	//	CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 0);
+	//	String[] name = {"./mensaUpdate.sh", "adenauerring"};
+	//	ProcessBuilder pb = new ProcessBuilder("./mensaUpdate.sh", "adenauerring");
+		//File dir = new File("resources/files/CanteenMenu/");
+		//System.out.println(dir.exists());
+	//	String path = System.getProperty("user.dir");
+	//	path += "/resources/files/CanteenMenu/";
+	//	pb.directory(new File(path));
+		//System.out.println(path);
+		
+	//	try {
+	//		Process proc = pb.start();
+	//		Process proc2 = Runtime.getRuntime().exec("./mensaUpdate.sh", name);
+	//		List<String> com = pb.command();
+	//		for (int i = 0; i < com.size(); i++) {
+	//			System.out.println(com.get(i));
+	//		}
+	//		System.out.println(pb.directory());
+		//	System.out.println(System.getProperty("user.dir"));
+	//	} catch (IOException e) {
+			// TODO Auto-generated catch block
+	//		e.printStackTrace();
+	//	}
+		CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 0);
+		System.out.println("Done");
 	}
 	
 }
