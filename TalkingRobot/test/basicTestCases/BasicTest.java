@@ -2,12 +2,14 @@ package basicTestCases;
 
 
 
+
 import generalControl.Main;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import nlg.NLGPhase;
 import nlu.NLUPhase;
 
 import org.junit.After;
@@ -24,13 +26,14 @@ import dm.Keyword;
  * @author Meng Meng Yan
  * @version 1.0
  * 
- * A template for the test cases.
+ * useful functions for the test cases.
  */
 abstract public class BasicTest {
 	
 	public LinkedList<String> userInput;
 	public ArrayList<String> removableFiles; //new keywords which need to be deleted after the test
 	public ArrayList<String> nlgResults;
+	public ArrayList<String> dmResults;
 	
 	public int userDataCount;
 	public int recipeDataCount;
@@ -42,6 +45,7 @@ abstract public class BasicTest {
 		userInput = new LinkedList<String>();
 		removableFiles = new ArrayList<String>();
 		nlgResults = new ArrayList<String>();
+		dmResults = new ArrayList<String>();
 		
 		userDataCount = new File("resources/files/UserData/").listFiles().length;
 		recipeDataCount = new File("resources/files/RecipeData/").listFiles().length;
@@ -54,6 +58,7 @@ abstract public class BasicTest {
 	public void tearDown() {
 		userInput = null;
 		nlgResults = null;
+		dmResults = null;
 		
 		//deleting new userData
 		File newFile = new File("resources/files/UserData/" + userDataCount + ".json");
@@ -113,6 +118,44 @@ abstract public class BasicTest {
 		removableFiles = null;
 	}
 	
+	public void runMainActivityWithoutConsoleOutput(LinkedList<String> userInput) {
+		
+		int inputCounter = 0;
+		boolean run = true;
+		Main.giveMain().setDmPhase(new DMPhase());
+		
+		do {
+			if(Main.giveMain().getPhase() instanceof ASRPhase) {		
+				Main.giveMain().setAsrResult(userInput.get(inputCounter));
+				inputCounter++;
+				
+				if(inputCounter == userInput.size()) {
+					run = false;
+				}
+				
+				Main.giveMain().setPhase(new NLUPhase());
+				
+			} else if (Main.giveMain().getPhase() instanceof TTSPhase){
+				
+				Main.giveMain().setPhase(Main.giveMain().getPhase().nextPhase(Main.giveMain()));
+				
+			} else {
+				
+				Main.giveMain().getPhase().setPhaseResult(Main.giveMain());
+				Main.giveMain().setPhase(Main.giveMain().getPhase().nextPhase(Main.giveMain()));
+				
+			}
+			
+			if (Main.giveMain().getPhase() instanceof NLGPhase) {
+				
+				dmResults.add(Main.giveMain().getDmResult().getOutputKeyword());
+				
+			}
+			
+		 }
+		 while(run || !(Main.giveMain().getPhase() instanceof ASRPhase));
+	}
+
 	public void runMainActivityWithTestInput(LinkedList<String> userInput) {
 		
 		int inputCounter = 0;
@@ -139,10 +182,21 @@ abstract public class BasicTest {
 			
 			if(Main.giveMain().getPhase() instanceof TTSPhase) {
 				nlgResults.add(Main.giveMain().getNlgResult());
+			} else if (Main.giveMain().getPhase() instanceof NLGPhase) {
+				dmResults.add(Main.giveMain().getDmResult().getOutputKeyword());
 			}
 			
 		 }
 		 while(run || !(Main.giveMain().getPhase() instanceof ASRPhase));
+	}
+	
+	/**
+	 * returns random number between 0 and the limit (limit excluded)
+	 * @param limit the limit
+	 * @return a random number
+	 */
+	public int getRandomNum(int limit) {
+		return (int) (Math.random() * (limit));
 	}
 
 }
