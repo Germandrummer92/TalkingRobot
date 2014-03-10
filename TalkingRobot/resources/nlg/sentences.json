@@ -212,9 +212,9 @@
 				"Bye bye"
 			],
 			"KA_TELL_INGREDIENT_FOUND" : [
-				"I have found <o> it's located in or on the {c}",
-				"I have found <o> at the location: {c}",
-				"Here you go, it's located here: {c}"
+				"I can't bring you <o> but I have found it, it's located in or on the {c}",
+				"Can't get <o> but I have found it at the location: {c}",
+				"Can't get you <o>, it's located here: {c}"
 			],
 			"KA_TELL_INGREDIENT_NOT_FOUND" : [
 				"I can't seem to locate <o>",
@@ -222,9 +222,9 @@
 				"Sorry, can't find <o>"
 			],
 			"KA_TELL_TOOL_FOUND" : [
-				"I have found <o> it's located in or on the {c}",
-				"I have found <o> at the location: {c}",
-				"Here you go, it's located here: {c}"
+				"I can't bring you <o> but I have found it, it's located in or on the {c}",
+				"Can't get <o> but I have found it at the location: {c}",
+				"Can't get you <o>, it's located here: {c}"
 			],
 			"KA_TELL_TOOL_NOT_FOUND" : [
 				"I can't seem to locate <o>, or I don't know how to do that, would you like to teach me?",
