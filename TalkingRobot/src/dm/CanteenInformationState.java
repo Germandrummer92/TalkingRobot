@@ -48,6 +48,7 @@ public class CanteenInformationState extends DialogState {
 	 // currentDialog.setCurrentDialogState(new CanteenInformationDialog(null, null, null));
 	  String time =  ((CanteenInformationDialog) currentDialog).getWishDate();
 	  String wishMeal =  ((CanteenInformationDialog) currentDialog).getWishMeal();
+	  String loca = ((CanteenInformationDialog) currentDialog).getLocation();
 	  User user = DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession().getCurrentUser();
 	  
 	  boolean isStudent = true;
@@ -315,6 +316,11 @@ public class CanteenInformationState extends DialogState {
 		  }else output = "";
 		  
 		  return output;
+	  case CI_LINE_LOCATION_INFO :
+		  setQuestion(false);
+		  String direction ="<" + loca + ">"; 
+		  direction = direction + " ; "	+  tellLoca(loca);
+		  return direction;
 	  case CI_EXIT :
 		  setQuestion(false);
 		  return null;
@@ -325,6 +331,50 @@ public class CanteenInformationState extends DialogState {
   }
  
   /**
+   * private method to generate the direction for lines in canteen adennauerring
+   * @param lineName name of line, which location needs to be pointed
+   * @return a description about location of line
+   */
+  private String tellLoca(String lineName) {
+	String direct = "{";
+	switch (lineName) {
+		case "line one" : 
+			direct = direct + "turn left from canteen main entrance, and use the farrest stairs to go up";
+			break;
+		case "line two" :
+			direct = direct + "turn left from canteen main entrance, and use the nearer stairs to go up";
+			break;
+		case "line three":
+		case "line four" :
+			direct = direct + "turn right from main entrance, use the stairs on left hand side and go up";
+			break;
+		case "line five" :
+		    direct = direct + "turn right from main entrance, use the stairs on right hand side and go up"	;
+		    break;
+		case "line six" :
+			direct = direct + "use the entrance on right hand side from main entrance, and use the stairs there to go up";
+			break;
+		case "schnitzelbar" :
+			direct = direct + "there's another entrance with turnstile, use the stairs before turnstile to go up,";
+			direct = direct + "then enter the bigger dinning hall, schnitzel bar is on your right hand side";
+			break;
+		case "cafeteria" :
+			direct = direct + "turn right from main entrance, go and pass by the two stairs and reach another door, ";
+			direct = direct + "after enter the door and ten steps more, then is cafeteria";
+			break;
+		case "curry queen" :
+			direct = direct + "turn left from main entrance, there is a long confusing abrupt slope to curry queen,";
+			direct = direct + "moreover , the slope turned a corner";
+			break;
+			default: 
+				direct = direct + " ";
+	}
+
+	direct = direct + "}";
+	return direct;
+}
+
+/**
    * Help to generate a sentence answering with price
    * @param meals the mealData from canteen
    * @param i index of meal

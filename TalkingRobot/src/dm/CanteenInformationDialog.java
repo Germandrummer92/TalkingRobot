@@ -19,7 +19,7 @@ public class CanteenInformationDialog extends CanteenDialog {
 	
 	private String wishMeal;
 	
-	private String wishLoca;
+	private String location;
 	
 	private Canteen curCanteen; // current canteen with wished date
 	
@@ -35,7 +35,7 @@ public class CanteenInformationDialog extends CanteenDialog {
 		this.dialogModus = DialogModus.CANTEEN_INFORMATION;
 		this.wishDate = "";
 		this.wishMeal = "";
-		this.wishLoca = "";
+		this.location = "";
 	}
 
 
@@ -63,13 +63,13 @@ public void setWishMeal(String wishMeal) {
 
 
 
-public String getWishLoca() {
-	return wishLoca;
+public String getLocation() {
+	return location;
 }
 
 
-public void setWishLoca(String wishLoca) {
-	this.wishLoca = wishLoca;
+public void setLocation(String wishLoca) {
+	this.location = wishLoca;
 }
 
 
@@ -102,7 +102,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 			}
 		}
 		
-		if(! askPrice){
+		if( !askPrice ){
 				LocalDate date = LocalDate.now();
 				int dateShift = 0; //0 for today, 1 for tomorrow, etc
 				int requestedWeekDay = getRequestedWeekDay(keywords, date);
@@ -234,7 +234,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_LINE_LOCATION_INFO :
-		updateStateLoca(keywords, terms);
+		updateStateLocation(keywords, terms);
 		break;
 	case  CI_EXIT:
 		updateStateExit(keywords, terms);
@@ -251,12 +251,23 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 }
 
 /**
- * help method to update tell location state, default is in canteen adennauerring
- * @param keywords  
- * @param terms
+ * help method to update tell location state,  in canteen adennauerring
  */
-private void updateStateLoca(List<Keyword> keywords, List<String> terms) {
-	// TODO Auto-generated method stub
+private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
+	// assume that we are in canteen adennauerring, others can't be implemented because of lack of infomations
+	
+	for( Keyword kw : keywords ) { // toString: normal string cannot be compared with json string
+		if (kw.getWord().toString().contains("line") || kw.getWord().toString().contains("cafe")
+				|| kw.getWord().toString().contains("curry queen") || kw.getWord().toString().contains("schnitzelbar")) {
+			this.location = kw.getWord().toString();
+			break;
+		}
+	} 
+	if( this.location.isEmpty() ) {
+		CanteenInformationState nextState = new CanteenInformationState();
+		nextState.setCurrentState(CanteenInfo.CI_TELL_LINE_NOT_EXIST);
+		setCurrentDialogState(nextState);
+	}
 	
 }
 
@@ -447,23 +458,34 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
  */
 private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) {
 	CanteenInfo next = CanteenInfo.CI_ENTRY;
+	boolean mayAskLoca = false;
+	boolean existLineKW = false;
 	
+	Dialog prev = DialogManager.giveDialogManager().getPreviousDialog();
+	// in case that the user ask dish info about a line then ask location
+	if(prev.getCurrentDialogState().getCurrentState().name().contains("LINE") 
+			|| prev.getCurrentDialogState().getCurrentState().name().contains("CAFE") 
+			|| prev.getCurrentDialogState().getCurrentState().name().contains("CURRYQ")
+			|| prev.getCurrentDialogState().getCurrentState().name().contains("SCHNITBAR")) {
+		existLineKW = true;
+	}
 	
-	//boolean askPrice = false;
+	for( Keyword kw : keywords ) {
+		if (kw.getWord().contains("where")) {
+			mayAskLoca = true;
+		}
+		if(kw.getWord().contains("line") || kw.getWord().contains("cafe") 
+				|| kw.getWord().contains("curry queen") || kw.getWord().contains("schnitzelbar")) {
+			existLineKW = true;
+		}
+		
+	}
 	
+	if(inAden && mayAskLoca && existLineKW) {
+		return CanteenInfo.CI_LINE_LOCATION_INFO;
+	}
 	
-	/* find out first what the user wants to know */
-	/*
-		for( Keyword toDo : keywords ) {
-			if( toDo.getWord().equals("price") || toDo.getWord().contains("how much") 
-					|| toDo.getWord().contains("money") || toDo.getWord().contains("cost")) {
-				askPrice = true;
-				break;
-			}
-		}*/
-	
-	
-		boolean mealMatched = false;
+	boolean mealMatched = false;
 	if( askPrice ) {
 		this.curCanteen = ((CanteenDialog) DialogManager.giveDialogManager().getPreviousDialog()).getCurrentCanteen();
 		super.setCurrentCanteen(curCanteen);
