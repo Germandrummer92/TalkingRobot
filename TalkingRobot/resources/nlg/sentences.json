@@ -573,7 +573,7 @@
 				"I can't find the information about wished line. Do you want information about other lines?"	
 			],
             "CI_LINE_LOCATION_INFO" : [
-    			""	
+    			"To <o>, you need to {c}"	
 			],
 			"CI_TELL_CANTEEN_CLOSED" : [
 				"Canteen is closed at {c}",

@@ -19,6 +19,8 @@ public class CanteenInformationDialog extends CanteenDialog {
 	
 	private String wishMeal;
 	
+	private String wishLoca;
+	
 	private Canteen curCanteen; // current canteen with wished date
 	
 /**
@@ -33,6 +35,7 @@ public class CanteenInformationDialog extends CanteenDialog {
 		this.dialogModus = DialogModus.CANTEEN_INFORMATION;
 		this.wishDate = "";
 		this.wishMeal = "";
+		this.wishLoca = "";
 	}
 
 
@@ -58,6 +61,16 @@ public void setWishMeal(String wishMeal) {
 	this.wishMeal = wishMeal;
 }
 
+
+
+public String getWishLoca() {
+	return wishLoca;
+}
+
+
+public void setWishLoca(String wishLoca) {
+	this.wishLoca = wishLoca;
+}
 
 
 @Override
@@ -220,6 +233,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case CI_TELL_MEAL_NOT_EXIST:
 		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
 		break;
+	case CI_LINE_LOCATION_INFO :
+		updateStateLoca(keywords, terms);
+		break;
 	case  CI_EXIT:
 		updateStateExit(keywords, terms);
 		break;
@@ -233,6 +249,17 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	
 }
+
+/**
+ * help method to update tell location state, default is in canteen adennauerring
+ * @param keywords  
+ * @param terms
+ */
+private void updateStateLoca(List<Keyword> keywords, List<String> terms) {
+	// TODO Auto-generated method stub
+	
+}
+
 
 public Canteen getCurCanteen() {
 	return curCanteen;
