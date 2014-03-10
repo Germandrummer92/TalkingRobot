@@ -77,140 +77,148 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		inAden = false;
 	}
 	
-	LocalDate date = LocalDate.now();
-	int dateShift = 0; //0 for today, 1 for tomorrow, etc
-	int requestedWeekDay = getRequestedWeekDay(keywords, date);
-	
-	if( (requestedWeekDay % 7) == 0 
-			|| (requestedWeekDay % 7) == 6) { // 0 is Sunday, 6 is Saturday
-		getCurrentDialogState().setCurrentState(CanteenInfo.CI_TELL_CANTEEN_CLOSED);
-	}
-	
-	dateShift = (requestedWeekDay - date.getDayOfWeek()) % 7;
-	//Normalize the shift according to the days of the week.	
-	/*
-	if (result < 0) { 
-		dateShift = 7 + result; //7 days in the week
-	} else {
-		dateShift = result;
-	}*/
-	
-	if (terms.get(0).contains("next") || terms.get(0).contains("coming")) {
-		dateShift = dateShift + 7;
-	} 
+	boolean askPrice = false;
 	
 	
-	if(inAden) { // so far we just consider canteen at adenauerring and moltke street
-		curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
-	   
-	} else {
-		curCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift));
-	}
-	 super.setCurrentCanteen(curCanteen);
+	/* find out first what the user wants to know */
 	
+		for( Keyword toDo : keywords ) {
+			if( toDo.getWord().equals("price") ) {
+				askPrice = true;
+				break;
+			}
+		}
+		
+		if(! askPrice){
+				LocalDate date = LocalDate.now();
+				int dateShift = 0; //0 for today, 1 for tomorrow, etc
+				int requestedWeekDay = getRequestedWeekDay(keywords, date);
+				
+				if( (requestedWeekDay % 7) == 0 
+						|| (requestedWeekDay % 7) == 6) { // 0 is Sunday, 6 is Saturday
+					if( !askPrice ) {
+						getCurrentDialogState().setCurrentState(CanteenInfo.CI_TELL_CANTEEN_CLOSED);
+					}
+				}
+				
+				dateShift = (requestedWeekDay - date.getDayOfWeek()) % 7;
+				
+				if (terms.get(0).contains("next") || terms.get(0).contains("coming")) {
+					dateShift = dateShift + 7;
+				} 
+				
+				
+				if(inAden) { // so far we just consider canteen at adenauerring and moltke street
+					curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
+				   
+				} else {
+					curCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, dateShift));
+				}
+				 super.setCurrentCanteen(curCanteen);
+		}
 	
 	switch ((CanteenInfo)getCurrentDialogState().getCurrentState()) {
 	case CI_ENTRY:
-		updateStateEntry(keywords, terms, inAden);
+		updateStateEntry(keywords, terms, inAden, askPrice);
 		break;
 	case CI_ADEN_TELL_ALL_MEALS:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 		
 	case CI_MOLTKE_TELL_ALL_MEALS:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 		
 	case CI_ADEN_LINE_1_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);	
 		break;
 	case CI_ADEN_LINE_2_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_3_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_45_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_1_DISH:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_2_DISH:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_3_DISH:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_45_DISH:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_6_DISH:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_LINE_6_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_SCHNITBAR_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_SCHNITBAR_DISH:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_CAFE_PRICE:
-		generalUpdate(keywords, terms, approval, inAden);
+		generalUpdate(keywords, terms, approval, inAden, askPrice);
 		break;
 	case CI_ADEN_CURRYQ_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_ADEN_CURRYQ_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_ADEN_CAFE_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_CHOICE_1_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_CHOICE_1_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_CHOICE_2_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_CHOICE_2_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_ACTTHEK_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_ACTTHEK_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_SCHNITBAR_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_SCHNITBAR_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_GG_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_GG_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_BUFFET_PRICE:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_MOLTKE_BUFFET_DISH:
-		generalUpdate(keywords, terms, approval,inAden);
+		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
 	
 	case CI_TELL_LINE_NOT_EXIST:
-		updateStateTellNotExist(keywords, terms, approval,inAden);
+		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_TELL_MEAL_NOT_EXIST:
-		updateStateTellNotExist(keywords, terms, approval,inAden);
+		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
 		break;
 	case  CI_EXIT:
 		updateStateExit(keywords, terms);
@@ -241,9 +249,10 @@ public void setCurCanteen(Canteen curCanteen) {
  * @param keywords list of keywords
  * @param terms list of Strings
  * @param approval list of approval
+ * @param askPrice 
  */
 private void generalUpdate(List<Keyword> keywords, List<String> terms,
-		List<String> approval, boolean inAden) {
+		List<String> approval, boolean inAden, boolean askPrice) {
 	 
 	boolean finished = false;
 	
@@ -253,7 +262,7 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 				next.setCurrentState(CanteenInfo.CI_EXIT);
 				finished = true;
 		} else { // user still has other requests
-			CanteenInfo subState = matchSubState(keywords, terms, inAden);
+			CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
 			CanteenInformationState nextState = new CanteenInformationState();
 			nextState.setCurrentState(subState);
 			setCurrentDialogState(nextState);
@@ -267,7 +276,7 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 	}
 	
 	if( !finished ){
-		CanteenInfo subState = matchSubState(keywords, terms, inAden);
+		CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
 		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
@@ -292,8 +301,9 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
  * @param keywords 
  * @param terms
  * @param approval
+ * @param askPrice 
  */
-private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden) {
+private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden, boolean askPrice) {
 	
 	if( approval.isEmpty()) {
 		if( keywords.isEmpty() && (terms.isEmpty())) {
@@ -301,7 +311,7 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 			return;
 		}
 		
-		CanteenInfo subState = matchSubState(keywords, terms, inAden);
+		CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
 		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
@@ -319,7 +329,7 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 			return;
 		}
 		
-		CanteenInfo subState = matchSubState(keywords, terms, inAden);
+		CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
 		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
@@ -340,8 +350,9 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
  * To update the entry state
  * @param keywords list of Keyword
  * @param terms list of Strings
+ * @param askPrice 
  */
-private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden) {
+private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) {
 	 
 	
 	if(keywords.isEmpty() && ( terms.isEmpty())) {
@@ -350,7 +361,7 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 		return;
 	}
 	
-	CanteenInfo subState = matchSubState(keywords, terms, inAden);
+	CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
 	CanteenInformationState nextState = new CanteenInformationState();
 	nextState.setCurrentState(subState);
 	setCurrentDialogState(nextState);
@@ -404,29 +415,35 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
  * This method helps to match substate 
  * @param keywords list of keyword
  * @param terms list of string
+ * @param askPrice2 
  * @return canteenInfo
  */
-private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, boolean inAden) {
+private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) {
 	CanteenInfo next = CanteenInfo.CI_ENTRY;
-	boolean askPrice = false;
+	
+	
+	//boolean askPrice = false;
 	
 	
 	/* find out first what the user wants to know */
-	
+	/*
 		for( Keyword toDo : keywords ) {
 			if( toDo.getWord().equals("price") || toDo.getWord().contains("how much") 
 					|| toDo.getWord().contains("money") || toDo.getWord().contains("cost")) {
 				askPrice = true;
 				break;
 			}
-		}
-	
+		}*/
 	
 	
 		boolean mealMatched = false;
 	if( askPrice ) {
+		this.curCanteen = ((CanteenDialog) DialogManager.giveDialogManager().getPreviousDialog()).getCurrentCanteen();
+		super.setCurrentCanteen(curCanteen);
+		
 		// now to find out the required meal's name
 		CanteenInfo matchedLine = mealMatched(keywords, terms, inAden);
+		
 		
 		if( !matchedLine.equals(CanteenInfo.CI_TELL_MEAL_NOT_EXIST)) {
 			mealMatched = true;
@@ -533,12 +550,20 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 		String[] tms = terms.get(0).split("of "); // what's the price of ...
 		if(tms.length == 1) {
 			if(tms[0].contains("does")) {
-				tms = terms.get(0).split("does"); // original sentence : how much does ... cost
+				tms = terms.get(0).split("does "); // original sentence : how much does ... cost
 			}else if(tms[0].contains("costs")) { // how much costs ...
-				tms = terms.get(0).split("costs"); 
-			}
+				tms = terms.get(0).split("costs "); 
+			}else if(tms[0].contains("is")) {// how much is...
+				tms = terms.get(0).split("is "); 
+			}else tms[1] = terms.get(0);
 		}
 		String name = tms[1];
+		name = name.toLowerCase();
+		/* if the name starts with empty char, match won't be succeed */
+		if(name.startsWith(" ")){
+			String temp = name.substring(1, name.length() - 1);
+			name = temp;
+		} 
 		
 		MealNode node = new MealNode();
 		for( LineData line : curCanteen.getCanteenData().getLines()) {
