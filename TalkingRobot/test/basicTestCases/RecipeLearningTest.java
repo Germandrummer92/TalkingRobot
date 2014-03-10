@@ -1,6 +1,7 @@
 package basicTestCases;
 
 
+
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -11,6 +12,10 @@ import org.junit.Test;
 
 public class RecipeLearningTest extends BasicTest {
 	
+	/**
+	 * tests recipe learning dialog and checks if a recipe was created with the
+	 * recipe assistance dialog afterwards.
+	 */
 	@Test
 	public void newRecipeTest() {
 		

@@ -26,8 +26,9 @@
 	([is] *also [need] *for)								# e.g. "____ is needed for (recipe)"
 	(for [need]) 	
 	(*please buy *[a])
-	(it is)							# e.g. "for (recipe) ______ is needed"
-	(for)
+	(it is *on *[a])
+	(it is *in *[a])							
+	(for)							# e.g. "for (recipe) ______ is needed"
 	([is] *also *[a] COMPONENT *of *it *too)
 	(and *also *[a])
 POSITION

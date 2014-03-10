@@ -1,6 +1,7 @@
 package basicTestCases;
 
 
+
 import static org.junit.Assert.assertTrue;
 import generalControl.Main;
 
@@ -9,8 +10,7 @@ import org.junit.Test;
 public class RecipeAssistanceTest extends BasicTest{
 	
 	/**
-	 * tests recipe learning dialog.
-	 * uses recipe assistance afterwards to check if the recipe was created.
+	 * tests recipe assistance dialog about existing recipe.
 	 */
 	@Test
 	public void askForExistingRecipeTest() {
@@ -36,8 +36,7 @@ public class RecipeAssistanceTest extends BasicTest{
 	}
 	
 //	/**
-//	 * tests recipe learning dialog.
-//	 * uses recipe assistance afterwards to check if the recipe was created.
+//	 * tests recipe assistance dialog about a non existing recipe.
 //	 */
 //	@Test
 //	public void askForNonExistingRecipeTest() {
