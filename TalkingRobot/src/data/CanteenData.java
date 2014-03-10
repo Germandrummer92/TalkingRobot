@@ -99,7 +99,6 @@ public class CanteenData implements Data{
 	}
 	
 	private void updateMenu(String mensaName) {
-		System.out.println(mensaName);
 		try {
 			ProcessBuilder pb = new ProcessBuilder("./mensaUpdate.sh", mensaName);
 			String path = System.getProperty("user.dir");
@@ -110,10 +109,10 @@ public class CanteenData implements Data{
 		} catch (IOException e) {
 			// TODO 
 				//do nothing
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -636,6 +635,7 @@ public class CanteenData implements Data{
 	//		e.printStackTrace();
 	//	}
 		CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 0);
+		System.out.println(cd.generateJSON());
 		System.out.println("Done");
 	}
 	
