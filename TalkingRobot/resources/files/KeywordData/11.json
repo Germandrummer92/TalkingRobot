@@ -1,1 +1,1 @@
-{"wordID":11,"word":"cafeteria","dialogState":[{"currentState":{"name":"CI_ADEN_CAFE_PRICE"}},{"currentState":{"name":"CI_ADEN_CAFE_DISH"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":11,"word":"cafeteria","dialogState":[{"currentState":{"name":"CI_ADEN_CAFE_PRICE"}},{"currentState":{"name":"CI_LINE_LOCATION_INFO"}},{"currentState":{"name":"CI_ADEN_CAFE_DISH"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
