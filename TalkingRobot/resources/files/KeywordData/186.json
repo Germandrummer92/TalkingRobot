@@ -1,1 +1,1 @@
-{"wordID":186,"word":"curry queen","dialogState":[{"currentState":{"name":"CI_ADEN_CURRYQ_PRICE"}},{"currentState":{"name":"CR_ADEN_CURRYQ_DISH"}},{"currentState":{"name":"CI_ADEN_CURRYQ_DISH"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}
+{"wordID":186,"word":"curry queen","dialogState":[{"currentState":{"name":"CI_ADEN_CURRYQ_PRICE"}},{"currentState":{"name":"CI_LINE_LOCATION_INFO"}},{"currentState":{"name":"CR_ADEN_CURRYQ_DISH"}},{"currentState":{"name":"CI_ADEN_CURRYQ_DISH"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}

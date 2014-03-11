@@ -1,1 +1,1 @@
-{"wordID":180,"word":"six","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_6_DISH"}},{"currentState":{"name":"CR_ADEN_LINE_6_DISH"}},{"currentState":{"name":"CI_ADEN_LINE_6_PRICE"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
+{"wordID":180,"word":"six","dialogState":[{"currentState":{"name":"CI_ADEN_LINE_6_DISH"}},{"currentState":{"name":"CI_LINE_LOCATION_INFO"}},{"currentState":{"name":"CR_ADEN_LINE_6_DISH"}},{"currentState":{"name":"CI_ADEN_LINE_6_PRICE"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
