@@ -78,6 +78,10 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		List<String> approval) throws WrongStateClassException {
 	
 	updateStateKeywordJump(keywords);
+	/*
+	if(terms.get(0).contains("where")) {
+		getCurrentDialogState().setCurrentState(CanteenInfo.CI_ENTRY);
+	}*/
 	
 	if (getCurrentDialogState().getClass() != CanteenInformationState.class || getCurrentDialogState().getCurrentState().getClass() != CanteenInfo.class) {
 		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
@@ -471,17 +475,18 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	}
 	
 	for( Keyword kw : keywords ) {
-		if (kw.getWord().contains("where")) {
+		if (kw.getWord().toString().contains("where")) {
 			mayAskLoca = true;
 		}
-		if(kw.getWord().contains("line") || kw.getWord().contains("cafe") 
-				|| kw.getWord().contains("curry queen") || kw.getWord().contains("schnitzelbar")) {
+		if(kw.getWord().toString().contains("line") || kw.getWord().toString().contains("cafe") 
+				|| kw.getWord().toString().contains("curry queen") || kw.getWord().toString().contains("schnitzelbar")) {
 			existLineKW = true;
 		}
 		
 	}
 	
 	if(inAden && mayAskLoca && existLineKW) {
+		updateStateLocation(keywords, terms);
 		return CanteenInfo.CI_LINE_LOCATION_INFO;
 	}
 	

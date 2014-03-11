@@ -13,7 +13,7 @@ import data.MealData;
 /**
  * This Class represents a state of an Canteen Information Dialog.
  * @author Daniel Draper, Xizhe Lian
- * @version 1.5
+ * @version 2.0
  *
  */
 public class CanteenInformationState extends DialogState {
@@ -318,8 +318,11 @@ public class CanteenInformationState extends DialogState {
 		  return output;
 	  case CI_LINE_LOCATION_INFO :
 		  setQuestion(false);
-		  String direction ="<" + loca + ">"; 
-		  direction = direction + " ; "	+  tellLoca(loca);
+		  String direction = "<";
+		  if( loca != null){
+			  direction = direction + loca + ">"; 
+			  direction = direction + ";"	+  tellLoca(loca);
+		  }//else direction = direction + findLoca();
 		  return direction;
 	  case CI_EXIT :
 		  setQuestion(false);
@@ -331,6 +334,17 @@ public class CanteenInformationState extends DialogState {
   }
  
   /**
+   * help method to find the wished location
+   * @return 
+   */
+  private String findLoca() {
+	String loca = "";
+	//DialogManager.giveDialogManager().
+	//currentDialog
+	return loca;
+}
+
+/**
    * private method to generate the direction for lines in canteen adennauerring
    * @param lineName name of line, which location needs to be pointed
    * @return a description about location of line
@@ -472,7 +486,7 @@ public static void main(String[] args) {
 	 //Dialog cd =  (CanteenDialog)DialogManager.giveDialogManager().getCurrentDialog();
 	  Canteen curC = new Canteen(new CanteenData(CanteenNames.MOLTKE, 0));
 	 CanteenInformationDialog c = new CanteenInformationDialog(null, s, curC);
-	 // c.setWishMeal("Makkaroni mit Gem¨¹sebolognese, auf Wunsch mit Reibek?se und Salat");
+	 // c.setWishMeal("Makkaroni mit Gemï¿½ï¿½sebolognese, auf Wunsch mit Reibek?se und Salat");
 	  DialogManager.giveDialogManager().setCurrentDialog(c);
 	  System.out.println(s.getOutputKeyword());
 	//  System.out.println(curC.getCanteenData().getLines().get(0).getTodayMeals().get(1).getMealName());
