@@ -48,6 +48,8 @@ public class KitchenAssistanceTest extends BasicTest{
 		assertTrue(this.nlgResults.get(nlgResults.size() - 1).contains("don't know"));
 	}
 	
+	
+	
 	/**
 	 * tests the kitchen assistance about teaching a location.
 	 */
@@ -66,5 +68,20 @@ public class KitchenAssistanceTest extends BasicTest{
 		
 		assertTrue(this.nlgResults.get(nlgResults.size() - 1).contains("desk"));
 	}
-
+	
+	/**
+	 * Provoking question about the objection.
+	 */
+	@Test
+	public void toolAssistanceTest4() {
+		
+		userInput.add("hello");
+		userInput.add("my name is meng meng");	
+		userInput.add("can you bring me something");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue(nlgResults.get(2).contains("What"));
+	}
+	
 }
