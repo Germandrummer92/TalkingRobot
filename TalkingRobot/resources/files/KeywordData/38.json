@@ -1,1 +1,1 @@
-{"wordID":38,"word":"schnitzelbar","dialogState":[{"currentState":{"name":"CI_ADEN_SCHNITBAR_PRICE"}},{"currentState":{"name":"CI_LINE_LOCATION_INFO"}},{"currentState":{"name":"CI_ADEN_SCHNITBAR_DISH"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
+{"wordID":38,"word":"schnitzelbar","dialogState":[{"currentState":{"name":"CI_ADEN_SCHNITBAR_PRICE"}},{"currentState":{"name":"CI_ADEN_SCHNITBAR_DISH"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}

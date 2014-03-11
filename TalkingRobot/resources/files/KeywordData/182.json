@@ -1,1 +1,1 @@
-{"wordID":182,"word":"eight","dialogState":[{"currentState":{"name":"CI_TELL_LINE_NOT_EXIST"}},{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}
+{"wordID":182,"word":"eight","dialogState":[{"currentState":{"name":"CI_LINE_LOCATION_INFO"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":7,"dataReference":[],"type":"DEFAULT"}

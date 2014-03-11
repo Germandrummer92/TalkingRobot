@@ -1,1 +1,1 @@
-{"wordID":35,"word":"where is","dialogState":[{"currentState":{"name":"KA_ENTRY"}},{"currentState":{"name":"CI_LINE_LOCATION_INFO"}},{"currentState":{"name":"CI_TELL_LINE_NOT_EXIST"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
+{"wordID":35,"word":"where is","dialogState":[{"currentState":{"name":"KA_ENTRY"}},{"currentState":{"name":"CI_LINE_LOCATION_INFO"}}],"priority":6,"dataReference":[],"type":"DEFAULT"}
