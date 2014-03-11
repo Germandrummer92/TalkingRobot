@@ -17,7 +17,7 @@ public class RecipeAssistanceTest extends BasicTest{
 		
 		userInput.add("hello");
 		userInput.add("my name is meng meng");	
-		userInput.add("can you tell me something about hamburger");
+		userInput.add("can you help me with hamburger");
 		userInput.add("which country is it from");
 		userInput.add("which ingredients do i need");
 		userInput.add("what is the first ingredient");
@@ -35,21 +35,36 @@ public class RecipeAssistanceTest extends BasicTest{
 				&& nlgResults.get(6).contains("knife"));
 	}
 	
-//	/**
-//	 * tests recipe assistance dialog about a non existing recipe.
-//	 */
-//	@Test
-//	public void askForNonExistingRecipeTest() {
-//		
-//		userInput.add("hello");
-//		userInput.add("my name is meng meng");	
-//		userInput.add("can you tell me something about cheeseburger");
-//		userInput.add("which country is it from");
-//		userInput.add("which ingredients do i need");
-////		userInput.add("what tools are needed for hamburgers");
-//		
-//		this.runMainActivityWithTestInput(userInput);
-//
-//		assertTrue(true);
-//	}
+	/**
+	 * tests recipe assistance dialog about a non existing recipe.
+	 */
+	@Test
+	public void askForNonExistingRecipeTest() {
+		
+		userInput.add("hello");
+		userInput.add("my name is meng meng");	
+		userInput.add("can you help me with cheeseburger");
+		
+		this.runMainActivityWithTestInput(userInput);
+
+		assertTrue(nlgResults.get(2).contains("again")
+				|| nlgResults.get(2).contains("repeat"));
+	}
+	
+	/**
+	 * tests recipe assistance dialog about a non existing recipe.
+	 */
+	@Test
+	public void askForRecipeHelpTest() {
+		
+		userInput.add("hello");
+		userInput.add("my name is meng meng");	
+		userInput.add("can you help me with a recipe");
+		userInput.add("i want to cook something with tomato");
+		
+		this.runMainActivityWithTestInput(userInput);
+
+		assertTrue(nlgResults.get(2).contains("What")
+				&& nlgResults.get(3).contains("hamburger"));
+	}
 }
