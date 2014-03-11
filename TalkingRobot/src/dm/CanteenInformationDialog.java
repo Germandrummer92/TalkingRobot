@@ -232,7 +232,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		break;
 	
 	case CI_TELL_LINE_NOT_EXIST:
-		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
+	//	updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
 		break;
 	case CI_TELL_MEAL_NOT_EXIST:
 		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
@@ -259,15 +259,32 @@ public void updateState(List<Keyword> keywords, List<String> terms,
  */
 private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
 	// assume that we are in canteen adennauerring, others can't be implemented because of lack of infomations
+	String[] lines = {"one", "two", "three", "four", "five", "six"}; 
+	
+	String ln = null;
+	if(terms.get(0).contains("line")) {
+		String[] strs = terms.get(0).split("line ");
+		ln = strs[1]; // get line index
+	}
+	
+	if(ln != null) {
+		for(int i = 0 ; i < lines.length; i++) {
+			if(ln.equals(lines[i])) {
+				this.location = "line " + lines[i];
+				break;
+			}
+		}
+	}
 	
 	for( Keyword kw : keywords ) { // toString: normal string cannot be compared with json string
-		if (kw.getWord().toString().contains("line") || kw.getWord().toString().contains("cafe")
+		if ( kw.getWord().toString().contains("cafe")
 				|| kw.getWord().toString().contains("curry queen") || kw.getWord().toString().contains("schnitzelbar")) {
 			this.location = kw.getWord().toString();
 			break;
 		}
 	} 
-	if( this.location.isEmpty() ) {
+	
+	if( this.location.equals("")) {
 		CanteenInformationState nextState = new CanteenInformationState();
 		nextState.setCurrentState(CanteenInfo.CI_TELL_LINE_NOT_EXIST);
 		setCurrentDialogState(nextState);
