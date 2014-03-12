@@ -148,27 +148,7 @@ public boolean equals(Object obj) {
 }
 */
 
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	IngredientData other = (IngredientData) obj;
-	if (ingredientID == null) {
-		if (other.ingredientID != null)
-			return false;
-	} else if (!ingredientID.equals(other.ingredientID))
-		return false;
-	if (ingredientName == null) {
-		if (other.ingredientName != null)
-			return false;
-	} else if (!ingredientName.equals(other.ingredientName))
-		return false;
-	return true;
-}
+
 
 
 /**
@@ -197,6 +177,28 @@ public static ArrayList <IngredientData> loadData() {
 	  	res.add(read);
 	}
 	return res;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	IngredientData other = (IngredientData) obj;
+	if (ingredientLocation == null) {
+		if (other.ingredientLocation != null)
+			return false;
+	} else if (!ingredientLocation.equals(other.ingredientLocation))
+		return false;
+	if (ingredientName == null) {
+		if (other.ingredientName != null)
+			return false;
+	} else if (!ingredientName.equals(other.ingredientName))
+		return false;
+	return true;
 }
 
 /**
