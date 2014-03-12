@@ -76,7 +76,7 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" + recipeName + ">";
 		case RA_TELL_INGREDIENT_NOT_FOUND:
 			setQuestion(false);
-			return "<" + recipeName + ">";
+			break;
 		case RA_TELL_NUM_OF_STEPS:
 			setQuestion(false);
 			return "<" + Integer.toString(recipe.getNumOfSteps()) + ">";
@@ -92,7 +92,7 @@ public class RecipeAssistanceState extends DialogState {
 			return "<" +recipeName + ">";
 		case RA_TELL_TOOL_NOT_FOUND:
 			setQuestion(false);
-			return "<" +recipeName + ">";
+			break;
 		case RA_TELL_WHOLE_RECIPE:
 			setQuestion(false);
 			return "<" + ingreds + " " + tools +">;{" + steps + "}";

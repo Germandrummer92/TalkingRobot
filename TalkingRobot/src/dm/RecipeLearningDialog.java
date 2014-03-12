@@ -554,9 +554,11 @@ private void addWord(String name, int priority,
 	ArrayList<DialogState> states = new ArrayList<DialogState>();
 	if (type.equals(KeywordType.INGREDIENT)) {
 		states.add(new KitchenAssistanceState(KitchenAssistance.KA_TELL_INGREDIENT_FOUND));
+		states.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_INGREDIENT_FOUND));
 	}
 	if (type.equals(KeywordType.TOOL)) {
 		states.add(new KitchenAssistanceState(KitchenAssistance.KA_TELL_TOOL_FOUND));
+		states.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_TOOL_FOUND));
 	}
 	states.add(state);
 	DialogManager.giveDialogManager().getDictionary().addKeyword(name, priority, states, dataRefs, type);

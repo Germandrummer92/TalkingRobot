@@ -350,8 +350,10 @@ private void updateStateTellWholeRecipe(List<Keyword> keywords,
 */
 private void updateStateTellToolNotFound(List<Keyword> keywords,
 		List<String> terms) {
-	//State is not used
-	
+	//If we came here, keyword for ingredients and unknown ingredient must have been passed
+	if (terms == null || terms.isEmpty()) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}	
 }
 
 /**
@@ -360,7 +362,31 @@ private void updateStateTellToolNotFound(List<Keyword> keywords,
 * @param terms
 */
 private void updateStateTellToolFound(List<Keyword> keywords, List<String> terms) {
-	//State is not used
+	//We came here due to a jump, so the Ingredient should have been passed, if not there's an error
+		if (keywords != null && !keywords.isEmpty()) {
+			for (Keyword kw : keywords) {
+				if (kw.getKeywordData().getType().equals(KeywordType.TOOL)) {
+					for (Recipe r : getRecipeDatabase()) {
+						if (r.getRecipeData().getTools() != null) {
+							for (ToolData t : r.getRecipeData().getTools()) {
+								if (t.getToolName().equals(kw.getWord())) {
+									currRecipe = r;
+									return;
+								}
+							}
+					}
+					}
+					getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_TOOL_NOT_FOUND);
+					return;
+					}
+				}
+			if (currRecipe == null || currRecipe.getRecipeData() == null) {
+				DialogManager.giveDialogManager().setInErrorState(true);
+			}
+			}
+		else {
+			DialogManager.giveDialogManager().setInErrorState(true);
+		}
 	
 }
 
@@ -377,16 +403,21 @@ private void updateStateTellIngredientFound(List<Keyword> keywords,
 			if (kw.getKeywordData().getType().equals(KeywordType.INGREDIENT)) {
 				for (Recipe r : getRecipeDatabase()) {
 					if (r.getRecipeData().getIngredients() != null) {
-					if (r.getRecipeData().getIngredients().contains((IngredientData)kw.getKeywordData().getDataReference().get(0)));
-						currRecipe = r;
-					}
+						for (IngredientData i : r.getRecipeData().getIngredients()) {
+							if (i.getIngredientName().equals(kw.getWord())) {
+								currRecipe = r;
+								return;
+							}
+						}
 				}
+				}
+				getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_INGREDIENT_NOT_FOUND);
 				}
 			}
 		if (currRecipe == null || currRecipe.getRecipeData() == null) {
 			DialogManager.giveDialogManager().setInErrorState(true);
 		}
-		}
+	}
 	else {
 		DialogManager.giveDialogManager().setInErrorState(true);
 	}
