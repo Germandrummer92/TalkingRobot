@@ -94,6 +94,7 @@ public class StartDialogTest {
 		}
 		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(Start.S_USER_SAVED) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().getUserName().equals("Benjamin")
 				&& DialogTest.currentDialog.getCurrentSession().getCurrentUser().getUserData().isStudent() == true);
+		deleteKeyword("benjamin");
 	}
 	/**
 	 * Tests, if the StartDialog jumps correctly, if passed "Yes" While waiting for the employee status of the user.
@@ -138,10 +139,10 @@ public class StartDialogTest {
 		try {
 			DialogTest.currentDialog.updateState(kw3, null, null);
 		} catch (WrongStateClassException e) {
-			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(CanteenInfo.CI_ENTRY) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().equals(daniel));	
+			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(CanteenInfo.CI_ADEN_CAFE_DISH) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().equals(daniel));	
 			}
 		//Not Reachable due to WrongStateClassException as state is switched
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(CanteenInfo.CI_ENTRY) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().equals(daniel));
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(CanteenInfo.CI_ADEN_CAFE_DISH) && DialogTest.currentDialog.getCurrentSession().getCurrentUser().equals(daniel));
 	}
 	/**
 	 * Loads and returns the keyword specified by the ID passed as a parameter
@@ -185,5 +186,9 @@ public class StartDialogTest {
 		DialogTest.currentDialog = new StartDialog(new Session(new User(), Robot.loadRobots().get(0)));
 	}
 	
+	private void deleteKeyword(String keyword) {
+		Dictionary dic = new Dictionary();
+		dic.removeKeyword(keyword);
+	}
 
 }

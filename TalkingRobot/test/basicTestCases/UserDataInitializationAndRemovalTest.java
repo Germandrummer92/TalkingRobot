@@ -69,7 +69,7 @@ public class UserDataInitializationAndRemovalTest {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void userInitializationTest() {
 		MainActivity main = new MainActivity();
 		
@@ -84,6 +84,6 @@ public class UserDataInitializationAndRemovalTest {
 		test.run();
 		
 		main.stop();
-	}
+	}*/
 
 }
