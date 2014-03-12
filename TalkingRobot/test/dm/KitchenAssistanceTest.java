@@ -45,17 +45,17 @@ public class KitchenAssistanceTest {
 	@Test
 	public void ToolTest() {
 		ArrayList<Keyword> tool = new ArrayList<Keyword>();
-		tool.add(loadKeyword(171)); //oven
-		//tool.add(loadKeyword(172)); //knife
+		//tool.add(loadKeyword(171)); //oven
+		tool.add(loadKeyword(172)); //knife
 		//tool.add(loadKeyword(173)); //spoon
 		try {
 			DialogTest.currentDialog.updateState(tool, null, null);
 		} catch (WrongStateClassException e) {
 			//never Reached
 		}
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(KitchenAssistance.KA_TELL_TOOL_FOUND) 
-				&& ((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObjectName().equals("oven")
-				&& ((Tool)((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObject()).getToolData().getToolName().equals("oven"));
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(KitchenAssistance.KA_TELL_TOOL_FOUND)
+				&& ((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObjectName().equals("knife")
+				&& ((Tool)((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObject()).getToolData().getToolName().equals("knife"));
 	}
 	
 	/**
@@ -71,8 +71,8 @@ public class KitchenAssistanceTest {
 			//never Reached
 		}
 		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(KitchenAssistance.KA_TELL_INGREDIENT_FOUND) 
-				&& ((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObjectName().equals("Tomato")
-				&& ((Ingredient)((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObject()).getIngredientData().getIngredientName().equals("Tomato"));
+				&& ((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObjectName().equals("tomato")
+				&& ((Ingredient)((KitchenAssistanceDialog)DialogTest.currentDialog).getRequestedObject()).getIngredientData().getIngredientName().equals("tomato"));
 	}
 	
 	/**
