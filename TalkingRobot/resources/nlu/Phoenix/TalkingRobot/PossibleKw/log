@@ -35,9 +35,9 @@
 [meal]  2 states  3 arcs
 [canteen]  39 states  104 arcs
 [is]  2 states  2 arcs
-[recipe]  2 states  1 arcs
-[tool]  2 states  3 arcs
-[ingredient]  2 states  1 arcs
+[recipe]  3 states  3 arcs
+[tool]  2 states  4 arcs
+[ingredient]  2 states  3 arcs
 [menu]  5 states  5 arcs
 [_anytime]  6 states  10 arcs
 [_am]  3 states  3 arcs

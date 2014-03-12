@@ -63,6 +63,7 @@ public class KitchenAssistanceTest extends BasicTest{
 		userInput.add("it is a tool");
 		userInput.add("it is on the desk");
 		userInput.add("can you bring me a scissor");
+		this.removableFiles.add("scissor");
 		
 		this.runMainActivityWithTestInput(userInput);
 		

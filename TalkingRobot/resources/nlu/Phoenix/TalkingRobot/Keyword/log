@@ -15,9 +15,10 @@
 [_price]  8 states  10 arcs
 [_where_is]  9 states  12 arcs
 [canteen_recommendation]  2 states  6 arcs
-[_recommendation]  7 states  10 arcs
-[Kitchen_Assistance]  2 states  3 arcs
-[Kitchen_Assistance_Kw]  3 states  4 arcs
+[_recommendation]  7 states  12 arcs
+[Kitchen_Assistance]  2 states  4 arcs
+[_creator]  4 states  6 arcs
+[Kitchen_Assistance_Kw]  3 states  6 arcs
 [What]  13 states  14 arcs
 [How]  8 states  8 arcs
 [Recipe_assistance]  2 states  10 arcs
@@ -43,16 +44,35 @@
 [_bring]  2 states  6 arcs
 [Main]  2 states  1 arcs
 [Main_Kw]  2 states  2 arcs
-[Login]  2 states  5 arcs
+[Login]  2 states  4 arcs
+[Login_student]  2 states  2 arcs
 [_name]  5 states  6 arcs
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
 [User]  3 states  7 arcs
 [_hi]  6 states  7 arcs
 [Logout]  2 states  1 arcs
 [_bye]  10 states  14 arcs
 [Weekday]  2 states  7 arcs
-[Time_extend]  5 states  10 arcs
-[Category]  2 states  4 arcs
-[Meat]  2 states  3 arcs
+[Time_extend]  2 states  2 arcs
+[Other_times]  5 states  9 arcs
+[Category]  2 states  2 arcs
+[Category_others]  2 states  3 arcs
+[Meat]  2 states  6 arcs
 [Country]  2 states  4 arcs
 [_anytime]  6 states  10 arcs
 [_am]  3 states  3 arcs
