@@ -1,0 +1,1 @@
+{"wordID":211,"word":"ground beef","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":4,"dataReference":[{"ingredientID":6,"ingredientName":"ground beef","recipes":[{"recipeID":4,"recipeName":"hamburger","originalCountry":"usa"}]}],"type":"INGREDIENT"}

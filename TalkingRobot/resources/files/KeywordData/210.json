@@ -1,0 +1,1 @@
+{"wordID":210,"word":"usa","dialogState":[{"currentState":{"name":"RA_ENTRY"}},{"currentState":{"name":"RA_TELL_COUNTRY_FOUND"}},{"currentState":{"name":"RL_ASK_FIRST_INGREDIENT"}}],"priority":5,"dataReference":[{"recipes":[{"recipeID":4,"recipeName":"hamburger","originalCountry":"usa"}]}],"type":"COUNTRY"}
