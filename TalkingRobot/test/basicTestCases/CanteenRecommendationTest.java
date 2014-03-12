@@ -28,6 +28,7 @@ public class CanteenRecommendationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
+		this.setDifferentLines();
 		assertTrue(mealNotFound(3) || containsLine(3));
 		
 	}
@@ -44,6 +45,7 @@ public class CanteenRecommendationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
+		this.setDifferentLines();
 		assertTrue(mealNotFound(3) || containsLine(3));
 	}
 	
@@ -59,6 +61,7 @@ public class CanteenRecommendationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
+		this.setDifferentLines();
 		assertTrue(mealNotFound(3) || containsLine(3));
 	}
 	
@@ -92,11 +95,12 @@ public class CanteenRecommendationTest extends BasicTest{
 	}
 	
 	private boolean containsLine(int position) {
+		boolean containsALine = false;
 		for(int i = 0; i < differentLines.size(); i++) {
 			if(nlgResults.get(position).contains(differentLines.get(i))) {
-				return true;
+				containsALine = true;
 			}
 		}
-		return false;
+		return containsALine;
 	}
 }
