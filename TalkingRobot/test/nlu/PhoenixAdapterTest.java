@@ -133,6 +133,7 @@ public class PhoenixAdapterTest {
 				new File("resources/nlu/Phoenix/TalkingRobot/Keyword/"));
 		LinkedList <String> compare = new LinkedList<String>();
 		compare.add("recommendation");
+		compare.add("something");
 		compare.add("canteen");
 		assertEquals(compare, result);
 	}
