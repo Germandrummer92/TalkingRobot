@@ -48,6 +48,7 @@ public class KeywordAnalyzerTest {
 		LinkedList <String> result = (LinkedList<String>) keyword.analyze("Could you recommend me something to eat at the canteen");
 		LinkedList <String> compare = new LinkedList<String>();
 		compare.add("recommendation");
+		compare.add("something");
 		compare.add("canteen");
 		assertEquals(compare, result);
 	}
