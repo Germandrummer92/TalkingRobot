@@ -16,6 +16,8 @@ public class RecipeAssistanceDialog extends KitchenDialog {
 
 	private Recipe currRecipe;
 	private String recipeName;
+	private int curNumIngredient = 0;
+	private IngredientData currIngredient;
 
 	
 	/**
@@ -107,6 +109,12 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case RA_EXIT:
 		updateStateExit(keywords, terms);
 		break;
+	case RA_TELL_ONE_INGREDIENT:
+		updateStateOneIngredient(keywords, terms);
+		break;
+	case RA_TELL_INGREDIENTS_DONE:
+		updateStateDone(keywords, terms);
+		break;
 	default:	
 	}
 	
@@ -115,7 +123,46 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 
 
 
+/**
+ * Updates the RA_TELL_INGREDIENTS_DONE state
+ */
+private void updateStateDone(List<Keyword> keywords, List<String> terms) {
+	currIngredient = null;
+	curNumIngredient = 0;
+	
+}
 
+/**
+ * Updates the RA_TELL_ONE_INGREDIENT state
+ * @param keywords
+ * @param terms
+ */
+private void updateStateOneIngredient(List<Keyword> keywords, List<String> terms) {
+	if (keywords != null && !keywords.isEmpty()) {
+		for (Keyword kw : keywords) {
+			for (DialogState ref : kw.getReference()) {
+				if (ref.getCurrentState().equals(RecipeAssistance.RA_TELL_ONE_INGREDIENT)) {
+					if (currRecipe != null && currRecipe.getRecipeData() != null) {
+						if (curNumIngredient < currRecipe.getRecipeData().getIngredients().size()) {
+							 currIngredient = currRecipe.getRecipeData().getIngredients().get(curNumIngredient);
+							 curNumIngredient++;
+						}
+						else {
+							getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_INGREDIENTS_DONE);
+						}
+					}
+					else {
+						getCurrentDialogState().setCurrentState(RecipeAssistance.RA_RECIPE_NOT_FOUND);
+					}
+					
+			}
+		}
+	}
+	}
+	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
+}
 
 /**
 * Updates the State according to the keywords passed. Jumps to Reference with highest Priority.
@@ -530,6 +577,22 @@ private void updateStateRNF(List<Keyword> keywords, List<String> terms) {
 	//Should jump due to keywords, if not something's wrong
 	DialogManager.giveDialogManager().setInErrorState(true);
 	
+}
+
+/**
+ * 
+ * @return the currIngredient
+ */
+public IngredientData getCurrIngredient() {
+	return currIngredient;
+}
+
+/**
+ * 
+ * @param currIngredient the IngredientData to set
+ */
+public void setCurrIngredient(IngredientData currIngredient) {
+	this.currIngredient = currIngredient;
 }
 
 }

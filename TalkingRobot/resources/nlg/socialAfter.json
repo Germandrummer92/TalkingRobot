@@ -83,6 +83,12 @@
 			],
 			"RA_DELETE_RECIPE" : [
 				""
+			],
+			"RA_TELL_ONE_INGREDIENT" : [
+				""
+			],
+			"RA_TELL_INGREDIENTS_DONE" : [
+				""
 			]
 	},
 	"dm.RecipeLearningState" : {

@@ -105,7 +105,13 @@ public class RecipeAssistanceState extends DialogState {
 		case RA_RECIPE_FOUND:
 			setQuestion(true);
 			return "<" + recipeName + ">";
-		default:
+		case RA_TELL_ONE_INGREDIENT:
+			setQuestion(false);
+			return "<" + recipeName + ">;{" + dialog.getCurrIngredient().getIngredientName() + "}";
+		case RA_TELL_INGREDIENTS_DONE:
+			setQuestion(false);
+			break;
+			default:
 			break;
 		  }
 		  

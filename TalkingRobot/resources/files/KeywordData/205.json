@@ -1,1 +1,1 @@
-{"wordID":205,"word":"first","dialogState":[{"currentState":{"name":"RL_ASK_NEXT_STEP"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}
+{"wordID":205,"word":"first","dialogState":[{"currentState":{"name":"RL_ASK_NEXT_STEP"}},{"currentState":{"name":"RA_TELL_ONE_INGREDIENT"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}

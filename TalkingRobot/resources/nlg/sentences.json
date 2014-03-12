@@ -129,6 +129,14 @@
 				"I've deleted <o> now, what else can I do for you?",
 				"<o> deleted, what's next?",
 				"Done. Next Task?"
+			],
+			"RA_TELL_ONE_INGREDIENT" : [
+				"The next ingredient for <o> is: {c}",
+				"Next up for <o> is {c}"
+			],
+			"RA_TELL_INGREDIENTS_DONE" : [
+				"You should have all Ingredients now!",
+				"Told you all the ingredients I knew!"
 			]
 	},
 	"dm.RecipeLearningState" : {

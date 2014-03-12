@@ -85,6 +85,12 @@
 			"RA_DELETE_RECIPE" : [
 				"Didn't taste good, huh?",
 				"I got you!"
+			],
+			"RA_TELL_ONE_INGREDIENT" : [
+				""
+			],
+			"RA_TELL_INGREDIENTS_DONE" : [
+				""
 			]
 	},
 	"dm.RecipeLearningState" : {

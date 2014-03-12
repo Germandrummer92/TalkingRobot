@@ -33,7 +33,11 @@ public enum RecipeAssistance  {
   
   RA_DELETE_RECIPE,
   
-  RA_EXIT;
+  RA_EXIT, 
+  
+  RA_TELL_ONE_INGREDIENT, 
+  
+  RA_TELL_INGREDIENTS_DONE;
 
   
 }
