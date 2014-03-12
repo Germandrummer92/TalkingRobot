@@ -226,6 +226,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 				Date date = new Date();
 				MealDatePair mealAndDate = new MealDatePair(date, wishMeal.getMealData());
 				this.getCurrentSession().getCurrentUser().getUserData().addAcceptedSuggestion(mealAndDate);
+				getCurrentSession().getCurrentUser().getUserData().writeFile();
 			}
 		}
 		DialogState nextState = new DialogState();
