@@ -34,15 +34,14 @@
 	},
 	"dm.RecipeAssistanceState" : {
 			"RA_ENTRY" : [
-				"Blabla",
-				"Bleble"
+				""
 			],
 			"RA_EXIT" : [
 				"i hope you have a good appetite",
 				"Enjoy your meal"
 			],
 			"RA_RECIPE_NOT_FOUND" : [
-				
+				""
 			],
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
 				"Wow, I haven't been there"

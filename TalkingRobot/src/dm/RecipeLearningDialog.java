@@ -569,7 +569,15 @@ private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 	RecipeLearningState nextState;
 	//TODO recipe already exists
 	if (terms.size() > 0) {
-		recipeName = terms.get(0);
+		if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(RecipeAssistanceDialog.class)) {
+			if (((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName() != null) {
+				recipeName = ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName();
+			}
+			else {
+				recipeName = terms.get(0);
+			}
+		}
+		
 		nextState = new RecipeLearningState();
 		nextState.setCurrentState(RecipeLearning.RL_ASK_COUNTRY_OF_ORIGIN);
 		setCurrentDialogState(nextState);

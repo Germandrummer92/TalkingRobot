@@ -82,6 +82,12 @@
 				"<o> can be prepared properly only when you have this ingredient"
 				
 			],
+			"RA_TELL_INGREDIENT_NOT_FOUND" : [
+				"No, as far as I know this ingredient is not needed in order to prepare anything",
+				"Well, I do not really use this when I prepare anything i know",
+				"What a strange request, I do not think anybody uses this ingredient when preparing a recipe"
+				
+			],
 			"RA_TELL_NUM_OF_STEPS" : [
 				"This ingredient has <o> steps",
 				"You will have to go through <o> steps to prepare this recipe",
@@ -105,9 +111,9 @@
 				"This tool is needed for cooking <o>"
 			],
 			"RA_TELL_TOOL_NOT_FOUND" : [
-				"No, as far as I know this tool is not needed in order to prepare <o>",
-				"Well, I do not really use this when I prepare <o>",
-				"What a strange request, I do not think anybody uses this tool when preparing <o>"
+				"No, as far as I know this tool is not needed in order to prepare anything",
+				"Well, I do not really use this when I prepare anything i know",
+				"What a strange request, I do not think anybody uses this tool when preparing a recipe"
 			],
 			"RA_TELL_WHOLE_RECIPE" : [
 				"To prepare this recipe you will need the following ingredients and tools <o>. When you have them follow the following steps {c}"

@@ -62,7 +62,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateEntry(keywords, terms);
 		break;
 	case RA_RECIPE_NOT_FOUND:
-		updateStateRNF(keywords, terms);
+		updateStateRNF(keywords, approval, terms);
 		break;
 	case RA_TELL_INGREDIENTS:
 		updateStateTellIngredients(keywords, terms);
@@ -116,6 +116,9 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 		updateStateDone(keywords, terms);
 		break;
 	default:	
+	}
+	if (getCurrentDialogState().getClass() != RecipeAssistanceState.class || getCurrentDialogState().getCurrentState().getClass() != RecipeAssistance.class) {
+		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 	}
 	
 }
@@ -604,7 +607,18 @@ private void updateStateDelete(List<Keyword> keywords, List<String> terms) {
 * @param keywords
 * @param terms
 */
-private void updateStateRNF(List<Keyword> keywords, List<String> terms) {
+private void updateStateRNF(List<Keyword> keywords, List<String> approval, List<String> terms) {
+	
+	if (approval != null && !approval.isEmpty()) {
+		if (approval.get(0).equals("yes")) {
+			getCurrentDialogState().setCurrentState(RecipeLearning.RL_ENTRY);
+			return;
+		}
+		else {
+			getCurrentDialogState().setCurrentState(RecipeAssistance.RA_ENTRY);
+			return;
+		}
+	}
 	//Should jump due to keywords, if not something's wrong
 	DialogManager.giveDialogManager().setInErrorState(true);
 	
