@@ -24,11 +24,11 @@ public class SenarioCanteenInfoAndRecommendation  extends basicTestCases.BasicTe
 	public void CIandCRTest() {
 		userInput.add("hi");
 		userInput.add("xixi");
-		userInput.add("what's in line one today");
-		userInput.add("well, i don't like these meals. is there any suggestions?");
+		userInput.add("whatis at line one today");
+		userInput.add("well i do not like these meals is there any suggestion");
 		userInput.add("i want to have fish");
 		userInput.add("yes i will take that");
-		userInput.add("where is line three?");
+		userInput.add("where is line three");
 		
 		runMainActivityWithoutConsoleOutput(userInput);
 		
