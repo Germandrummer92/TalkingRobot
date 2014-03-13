@@ -180,15 +180,44 @@ public class RestartKitchenTest extends BasicTest{
 		userInput.add("handle the error somehow");
 		userInput.add("handle this error");
 		userInput.add("no");
+		userInput.add("i want to go to the canteen");
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-//		assertTrue((nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
-//				&& (nlgResults.get(8).contains("again") || nlgResults.get(8).contains("repeat"))
-//				&& nlgResults.get(9).contains("rephrase")
-//				&& nlgResults.get(11).contains("rephrase")
-//				&& (nlgResults.get(12).contains("teach") || nlgResults.get(12).contains("tell"))
-//				&& (nlgResults.get(13).contains("again") || nlgResults.get(13).contains("repeat")));
+		assertTrue((nlgResults.get(4).contains("again") || nlgResults.get(4).contains("repeat"))
+				&& (nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+				&& nlgResults.get(7).contains("rephrase")
+				&& nlgResults.get(9).contains("rephrase")
+				&& nlgResults.get(10).contains("tools")
+				&& nlgResults.get(11).contains(""));
+	}
+	
+	/**
+	 * Testing restart, rephrase and restart strategy in KA
+	 */
+	@Test
+	public void reTest7() {
+		userInput.add("hi");
+		userInput.add("my name is meng meng");
+		userInput.add("can you bring me something");
+		userInput.add("knife");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("handle the error");
+		userInput.add("handle the error somehow");
+		userInput.add("handle this error");
+		userInput.add("bring me a knife");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue((nlgResults.get(4).contains("again") || nlgResults.get(4).contains("repeat"))
+				&& (nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+				&& nlgResults.get(7).contains("rephrase")
+				&& nlgResults.get(9).contains("rephrase")
+				&& nlgResults.get(10).contains("tools")
+				&& nlgResults.get(11).contains("silverware drawer"));
 	}
 
 }
