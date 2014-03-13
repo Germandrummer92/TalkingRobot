@@ -419,7 +419,7 @@ private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 	if (countries.size() == 0) {
 		if (terms.size() >  0) {
 			ArrayList<DialogState> states = new ArrayList<DialogState>();
-			states.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_COUNTRY_OF_ORIGIN));
+			states.add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_COUNTRY_FOUND));
 			states.add(new RecipeLearningState(RecipeLearning.RL_ASK_FIRST_INGREDIENT));
 			ArrayList<Data> refs = new ArrayList<Data>();
 			refs.add(recipe.getRecipeData());
@@ -437,6 +437,7 @@ private void updateStateAskOrigin(List<Keyword> keywords, List<String> terms) {
 	else if(countries.size() == 1) {
 		countryOfOrigin = countries.get(0).getWord();
 		countries.get(0).getKeywordData().getDataReference().add(recipe.getRecipeData());
+		countries.get(0).getKeywordData().getDialogState().add(new RecipeAssistanceState(RecipeAssistance.RA_TELL_COUNTRY_FOUND));
 		countries.get(0).getKeywordData().writeFile();
 	}
 	else {
