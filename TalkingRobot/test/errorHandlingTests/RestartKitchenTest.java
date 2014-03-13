@@ -1,5 +1,6 @@
 package errorHandlingTests;
 
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -128,6 +129,66 @@ public class RestartKitchenTest extends BasicTest{
 				&& nlgResults.get(11).contains("rephrase")
 				&& (nlgResults.get(12).contains("teach") || nlgResults.get(12).contains("tell"))
 				&& (nlgResults.get(13).contains("again") || nlgResults.get(13).contains("repeat")));
+	}
+	
+	/**
+	 * Testing restart, rephrase and restart strategy in RL
+	 */
+	@Test
+	public void reTest5() {
+		userInput.add("hi");
+		userInput.add("my name is meng meng");
+		userInput.add("can i teach you a recipe");
+		userInput.add("french fries");
+//		removableFiles.add("french fries");
+		userInput.add("france");
+		removableFiles.add("france");
+		userInput.add("you need potatoes");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("handle the error");
+		userInput.add("handle the error somehow");
+		userInput.add("handle this error");
+		userInput.add("yes");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue((nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+				&& (nlgResults.get(8).contains("again") || nlgResults.get(8).contains("repeat"))
+				&& nlgResults.get(9).contains("rephrase")
+				&& nlgResults.get(11).contains("rephrase")
+				&& (nlgResults.get(12).contains("new recipe") || nlgResults.get(12).contains("teach me")) 
+				&& (nlgResults.get(13).contains("name") || nlgResults.get(13).contains("recipe")));
+	}
+	
+	/**
+	 * Testing restart, rephrase and restart strategy in KA
+	 */
+	@Test
+	public void reTest6() {
+		userInput.add("hi");
+		userInput.add("my name is meng meng");
+		userInput.add("can you bring me something");
+		userInput.add("knife");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("errorhandling");
+		userInput.add("handle the error");
+		userInput.add("handle the error somehow");
+		userInput.add("handle this error");
+		userInput.add("no");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+//		assertTrue((nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+//				&& (nlgResults.get(8).contains("again") || nlgResults.get(8).contains("repeat"))
+//				&& nlgResults.get(9).contains("rephrase")
+//				&& nlgResults.get(11).contains("rephrase")
+//				&& (nlgResults.get(12).contains("teach") || nlgResults.get(12).contains("tell"))
+//				&& (nlgResults.get(13).contains("again") || nlgResults.get(13).contains("repeat")));
 	}
 
 }
