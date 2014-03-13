@@ -572,15 +572,17 @@ private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 	if (terms.size() > 0) {
 		//I doubt that this code will work, what if last dialog was RA but the user just wants to teach the robot
 		//a new recipe -> further modification needed here. I reset it to last stable version.
-	//	if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(RecipeAssistanceDialog.class)) {
-	//		if (((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName() != null) {
-	//			recipeName = ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName();
-	//		}
+		//Bla, working now, more flags added, yay hacks
+		if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(RecipeAssistanceDialog.class)
+				&& ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).isTeaching()) {
+		if (((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName() != null) {
+				recipeName = ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName();
+		}
 
-	//	}
-	//	else {
+		}
+		else {
 			recipeName = terms.get(0);
-	//	}
+		}
 		
 		
 		nextState = new RecipeLearningState();

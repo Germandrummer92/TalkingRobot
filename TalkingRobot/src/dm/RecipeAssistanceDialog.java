@@ -18,6 +18,7 @@ public class RecipeAssistanceDialog extends KitchenDialog {
 	private String recipeName;
 	private int curNumIngredient = 0;
 	private IngredientData currIngredient;
+	private boolean teaching = false;
 
 	
 	/**
@@ -691,6 +692,7 @@ private void updateStateRNF(List<Keyword> keywords, List<String> approval, List<
 	if (approval != null && !approval.isEmpty()) {
 		if (approval.get(0).equals("yes")) {
 			getCurrentDialogState().setCurrentState(RecipeLearning.RL_ENTRY);
+			teaching = true;
 			return;
 		}
 		else {
@@ -717,6 +719,20 @@ public IngredientData getCurrIngredient() {
  */
 public void setCurrIngredient(IngredientData currIngredient) {
 	this.currIngredient = currIngredient;
+}
+
+/**
+ * @return the teaching
+ */
+public boolean isTeaching() {
+	return teaching;
+}
+
+/**
+ * @param teaching the teaching to set
+ */
+public void setTeaching(boolean teaching) {
+	this.teaching = teaching;
 }
 
 }
