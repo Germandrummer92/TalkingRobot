@@ -33,7 +33,8 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 		runMainActivityWithTestInput(userInput);
 		
 		String dmResultMeals = dmResults.get(2);
-		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
+		System.out.println(dmResultMeals);
+		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split("and");
 		
 		ArrayList<String> mealsAtLineOne = new ArrayList<String>();
 		for(int i = 0; i < meals.length; i++) {
@@ -47,7 +48,7 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 
 				date.getDayOfWeek()));
 		
-		System.out.println(meals[0]);
+//		System.out.println(meals[0]);
 		
 		
 		String suggestion = nlgResults.get(4);
@@ -61,11 +62,11 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 				}
 			}
 		}
-		
+		System.out.println(meals[0]);
 		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
 				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
-		
-		assertTrue(dmResults.get(4) == null || dmResults.get(4).contains("vegetarian"));
+
+		assertTrue(dmResults.get(4) == null || dmResults.get(4).contains("veg"));
 		
 		assertTrue(nlgResults.get(6).contains("line three") && nlgResults.get(6).contains("turn right"));
 		
