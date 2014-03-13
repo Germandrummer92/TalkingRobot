@@ -21,7 +21,10 @@ public class CanteenInformationTest extends BasicTest{
 		userInput.add("hello");
 		userInput.add("i am bettina");
 		userInput.add("what can i eat at line one in canteen adenauerring");
-//		userInput.add("how much does it cost");
+		userInput.add("how much is Scharfe Sombreropfanne mit Kalbfleischbällchen und Vanillepudding");
+		
+		//TODO das menue ist jetzt von hand reinkopiert. koennte man vllt automatisieren. und die assertion mit abfrage
+		//nach "line xy" funktioniert nicht so großartig, weil es manchmal nicht im output ist
 		
 		this.runMainActivityWithTestInput(userInput);
 		
@@ -37,8 +40,10 @@ public class CanteenInformationTest extends BasicTest{
 		userInput.add("hello");
 		userInput.add("i am bettina");
 		userInput.add("what can i eat at line one in canteen Moltke");
-//		userInput.add("how much does it cost");
+		userInput.add("whats the price of Scharfe Sombreropfanne mit Kalbfleischbällchen und Vanillepudding");
 		
+		//TODO das menue ist jetzt von hand reinkopiert. koennte man vllt automatisieren. und die assertion mit abfrage
+		//nach "line xy" funktioniert nicht so großartig, weil es manchmal nicht im output ist
 		this.runMainActivityWithTestInput(userInput);
 		
 		assertTrue(nlgResults.get(2).toLowerCase().contains("at choice one") || nlgResults.get(2).toLowerCase().contains("at line one"));
@@ -53,8 +58,9 @@ public class CanteenInformationTest extends BasicTest{
 		userInput.add("hello");
 		userInput.add("i am bettina");
 		userInput.add("what can i eat at line one in canteen adenauerring next monday");
-//		userInput.add("how much does it cost");
-		
+		userInput.add("whats the price of Oberländer Bratwurst mit Pommes frites");
+		//TODO das menue ist jetzt von hand reinkopiert. koennte man vllt automatisieren. und die assertion mit abfrage
+		//nach "line xy" funktioniert nicht so großartig, weil es manchmal nicht im output ist
 		this.runMainActivityWithTestInput(userInput);
 		
 		assertTrue(nlgResults.get(2).toLowerCase().contains("at line one"));
@@ -68,12 +74,12 @@ public class CanteenInformationTest extends BasicTest{
 	public void lineOneNextMondayMoltkeExpl() {
 		userInput.add("hello");
 		userInput.add("i am bettina");
-		userInput.add("what can i eat at line one in canteen Moltke next monday");
-//		userInput.add("how much does it cost");
+		userInput.add("what can i eat at line one in canteen moltke next monday");
+		userInput.add("how much is Hähnchenbrust im Knuspermantel Bratensoße");
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).toLowerCase().contains("makkaroni mit") || nlgResults.get(2).toLowerCase().contains("bratwurst mit pommes frites"));
+		assertTrue(nlgResults.get(2).toLowerCase().contains("hähnchenbrust im knuspermantel bratensoße") || nlgResults.get(2).toLowerCase().contains("langkornreis"));
 	}
 	
 	/**
