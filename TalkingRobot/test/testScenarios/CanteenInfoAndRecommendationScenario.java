@@ -54,20 +54,18 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 				}
 			}
 		}
-<<<<<<< HEAD
-		System.out.println(mealsAtLineOne.get(0));
-		System.out.println(mealsAtLineOne.get(1));
+
+		//System.out.println(mealsAtLineOne.get(0));
+		//System.out.println(mealsAtLineOne.get(1));
 		
 		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
 				&& nlgResults.get(2).contains(mealsAtLineOne.get(1)));
 		
 		assertTrue( dmResults.get(4).contains("veg"));
-=======
 //		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
 //				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
 //		
-		assertTrue(dmResults.get(4) == null || dmResults.get(4).contains("veg"));
->>>>>>> FETCH_HEAD
+		
 		
 		assertTrue(nlgResults.get(5).contains("line six") && nlgResults.get(5).contains("right"));
 		
