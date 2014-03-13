@@ -2,6 +2,7 @@ package dm;
 
 
 
+
 import generalControl.Main;
 
 import java.util.LinkedList;
@@ -245,6 +246,7 @@ public class DialogManager {
   				}
   			} else {
   				ErrorHandlingState dmResult = errorStrategy[5].handleError(null);
+  				currentDialog = new StartDialog(this.currentDialog.getCurrentSession(), new StartState(Start.S_EXIT));
   				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
   			}
   		}

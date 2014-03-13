@@ -1,6 +1,7 @@
 package dm;
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,13 @@ public class RestartStrategy extends ErrorStrategy {
 	@Override
 	public ErrorHandlingState handleError(List<String> errorWords) {
 		this.riseCounter();
-		Dialog currentDialog = DialogManager.giveDialogManager().getCurrentDialog();
-		ErrorHandlingState errorState = decideDialogBasedErrorHandling(currentDialog);
+		ErrorHandlingState errorState = null;
+		if(errorWords != null) {
+			Dialog currentDialog = DialogManager.giveDialogManager().getCurrentDialog();
+			errorState = decideDialogBasedErrorHandling(currentDialog);
+		} else {
+			errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, null);
+		}
 		return errorState;
 	}
 
