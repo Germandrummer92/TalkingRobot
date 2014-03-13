@@ -116,6 +116,7 @@ abstract public class BasicTest {
 		}
 		
 		removableFiles = null;
+		DialogManager.giveDialogManager().refresh();
 	}
 	
 	public void runMainActivityWithoutConsoleOutput(LinkedList<String> userInput) {

@@ -284,6 +284,13 @@ public class DialogManager {
   }
 
   /**
+   * refreshes the DialogManager
+   */
+  public void refresh() {
+	  uniqueDM = new DialogManager();
+	  
+  }
+  /**
    * Creation and access of singleton DialogManager.
    * @return the unique instance of DialogManager
    */
