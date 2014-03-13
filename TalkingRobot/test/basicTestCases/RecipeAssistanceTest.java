@@ -64,7 +64,7 @@ public class RecipeAssistanceTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 
-		assertTrue(nlgResults.get(2).contains("What")
+		assertTrue(nlgResults.get(2).contains("what") || nlgResults.get(2).contains("What")
 				&& nlgResults.get(3).contains("hamburger"));
 	}
 }
