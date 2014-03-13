@@ -31,7 +31,7 @@ public class ExplicitVerificationStrategyTest {
 		
 		ErrorHandlingState errorHandleState =exVerify.handleError(example);
 		ErrorHandlingState comparison = new ErrorHandlingState(
-				true, ErrorHandling.Explicit_Verification, "{teach you}");
+				true, ErrorHandling.Explicit_Verification, "<teach you>");
 		
 		System.out.println(errorHandleState.getOutputKeyword());
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
@@ -48,7 +48,7 @@ public class ExplicitVerificationStrategyTest {
 		exVerify.handleError(example);
 		ErrorHandlingState errorHandleState = exVerify.handleError(null);
 		ErrorHandlingState comparison = new ErrorHandlingState(
-				true, ErrorHandling.Explicit_Verification, "{canteen}");
+				true, ErrorHandling.Explicit_Verification, "<canteen>");
 		
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
 		assertEquals(comparison.getOutputKeyword(), errorHandleState.getOutputKeyword());
