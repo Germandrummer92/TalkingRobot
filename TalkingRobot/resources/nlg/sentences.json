@@ -527,17 +527,6 @@
 				"The price for <o> it's {c}",
 				"The price for wanted meal it's {c}"
 			],
-			"CI_MOLTKE_CAFE_DISH" : [
-				"In cafeteria there's <o> {c}",
-				"You can find <o> {c} there",
-				"{c} <o> will be provided in cafeteria",
-				"{c} in cafeteria there's <o>",
-				"you can get <o> in cafeteria {c}"
-			],
-			"CI_MOLTKE_CAFE_PRICE" : [
-				"The price for <o> it's {c}",
-				"The price for wanted meal it's {c}"
-			],
 			"CI_MOLTKE_CHOICE_1_DISH" : [
 				"At choice one there's <o> {c}",
 				"You can find <o> {c} there",

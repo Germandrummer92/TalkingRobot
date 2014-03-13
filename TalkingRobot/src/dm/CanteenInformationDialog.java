@@ -91,7 +91,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	boolean inAden = true;
 	if( currentCanteen.getCanteenData().getCanteenName()
 			.equals(currentCanteen.getCanteenData().getCanteenName().MOLTKE) ||
-			terms.get(0).contains("moltke")) {
+			terms.get(0).contains("moltke") || terms.get(0).contains("Moltke")) {
 		inAden = false;
 	}
 	
