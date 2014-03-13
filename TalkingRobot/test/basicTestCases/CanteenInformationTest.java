@@ -73,7 +73,7 @@ public class CanteenInformationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).toLowerCase().contains("at choice one") || nlgResults.get(2).toLowerCase().contains("at line one"));
+		assertTrue(nlgResults.get(2).toLowerCase().contains("makkaroni mit") || nlgResults.get(2).toLowerCase().contains("bratwurst mit pommes frites"));
 	}
 	
 	/**
@@ -83,11 +83,12 @@ public class CanteenInformationTest extends BasicTest{
 	public void whereLineOneAdenExpl() {
 		userInput.add("hello");
 		userInput.add("i am bettina");
-		userInput.add("where is line six in canteen adenauerring");
+		userInput.add("where is line six");
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).contains("line one"));
+		assertTrue(nlgResults.get(2).contains("the entrance on right hand side from main entrance")
+				&& nlgResults.get(2).contains("stairs there to go up"));
 	}
 
 }
