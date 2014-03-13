@@ -1,5 +1,6 @@
 package dm;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
 
@@ -11,7 +12,7 @@ import data.MealData;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 2.5
+ * @version 3.0
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	
@@ -428,6 +429,7 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 
 /**
  * @author Daniel 
+ * @author Xizhe
  * @see StartDialog#updateState(List, List, List);
  */
 private boolean updateStateKeywordJump(List<Keyword> keywords) {
@@ -455,15 +457,33 @@ private boolean updateStateKeywordJump(List<Keyword> keywords) {
 			int priorityMax = keywords.get(0).getKeywordData().getPriority();
 			Keyword curKW = keywords.get(0);
 			DialogState curRef = keywords.get(0).getReference().get(0);
+			ArrayList<DialogState> possibleStates = new ArrayList<DialogState>();
+			
+			
 			for (Keyword kw : keywords) {
 				for (DialogState d : kw.getReference()) {
-					if (kw.getKeywordData().getPriority() > priorityMax) {
+					if (kw.getKeywordData().getPriority() >= priorityMax) {// sometimes different keywords have the same priority
 						curKW = kw;
 						priorityMax = curKW.getKeywordData().getPriority();
+						possibleStates.add(d);
 						curRef = d;
 					}
 				}
 			}
+			
+			if( priorityMax == keywords.get(0).getKeywordData().getPriority()) { 
+				possibleStates.addAll(keywords.get(0).getReference());
+			}
+			
+			if(curRef.getCurrentState().getClass() != CanteenInfo.class) {
+				for( DialogState d : possibleStates) { // match a state from CI, to avoid set in error state later
+					if(d.getCurrentState().getClass() == CanteenInfo.class) {
+						curRef = d;
+						break;
+					}
+				}
+			}
+			
 			getCurrentDialogState().setCurrentState(curRef.getCurrentState());
 			return true;
 		}
