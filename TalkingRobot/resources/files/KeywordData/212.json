@@ -1,0 +1,1 @@
+{"wordID":212,"word":"lettuce","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":4,"dataReference":[{"ingredientID":7,"ingredientName":"lettuce","recipes":[{"recipeID":4,"recipeName":"hamburger","originalCountry":"usa"}]}],"type":"INGREDIENT"}

@@ -48,6 +48,12 @@
 			"RA_TELL_COUNTRY_OF_ORIGIN" : [
 				"Wow, I haven't been there"
 			],
+			"RA_TELL_COUNTRY_FOUND" : [
+				""
+			],
+			"RA_TELL_COUNTRY_NOT_FOUND" : [
+				""
+			],
 			"RA_TELL_CREATOR" : [
 				""
 			],

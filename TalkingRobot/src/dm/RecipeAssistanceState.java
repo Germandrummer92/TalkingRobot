@@ -65,6 +65,12 @@ public class RecipeAssistanceState extends DialogState {
 		case RA_TELL_COUNTRY_OF_ORIGIN:
 			setQuestion(false);
 			return "<" + recipe.getOriginalCountry() + ">;{" + recipeName + "}";
+		case RA_TELL_COUNTRY_FOUND:
+			setQuestion(false);
+			return "<" +recipeName + ">";
+		case RA_TELL_COUNTRY_NOT_FOUND:
+			setQuestion(false);
+			break;
 		case RA_TELL_CREATOR:
 			setQuestion(false);
 			return "<" + recipe.getCreator().getUserName() + ">;{" + recipeName + "}";
