@@ -1,5 +1,6 @@
 package dm;
 
+
 import java.util.List;
 
 import generalControl.Main;
@@ -36,7 +37,7 @@ public class DMPhase extends Phase {
 //	  		i++;
 //	  	}
 	  	if (dialogManager.getErrorState() != ErrorState.ZERO 
-	  			&& main.getNluResult().get(0).isEmpty() 
+	  			&& (main.getNluResult().get(0).isEmpty() || main.getNluResult().get(0).contains("first"))
 	  			&& !main.getNluResult().get(3).isEmpty()) {
 	  		/* in this case the system gave the user a choice or used a method of verification
 	  		 * and expects an answer. Though, if the user answers with a sentence which contains
