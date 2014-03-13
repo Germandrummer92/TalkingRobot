@@ -19,7 +19,6 @@ import data.ToolData;
 */
 public class KitchenAssistanceDialog extends KitchenDialog {
 
-private AssistanceState stateOfAssistance;
 private Object requestedObject;
 private String requestedObjectName;
 private Class newObjectClass = null;
@@ -360,20 +359,6 @@ return requestedObject;
 */
 public void setRequestedObject(Object requestedObject) {
 this.requestedObject = requestedObject;
-}
-
-/**
-* @return the stateOfAssistance
-*/
-public AssistanceState getStateOfAssistance() {
-return stateOfAssistance;
-}
-
-/**
-* @param stateOfAssistance the stateOfAssistance to set
-*/
-public void setStateOfAssistance(AssistanceState stateOfAssistance) {
-this.stateOfAssistance = stateOfAssistance;
 }
 
 /**
