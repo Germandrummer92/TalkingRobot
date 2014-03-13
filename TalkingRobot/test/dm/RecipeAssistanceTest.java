@@ -100,9 +100,9 @@ public class RecipeAssistanceTest {
 			DialogTest.currentDialog.updateState(keywords, null, null);
 		}
 		catch (WrongStateClassException e) {
-			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(RecipeAssistance.RA_TELL_INGREDIENT_FOUND));
+			assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(RecipeAssistance.RA_TELL_INGREDIENT_NOT_FOUND));
 		}
-		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(RecipeAssistance.RA_TELL_INGREDIENT_FOUND));
+		assertTrue(DialogTest.currentDialog.getCurrentDialogState().getCurrentState().equals(RecipeAssistance.RA_TELL_INGREDIENT_NOT_FOUND));
 	}
 	
 	/**
