@@ -32,7 +32,7 @@ public class SenarioCanteenInfoAndRecommendation  extends basicTestCases.BasicTe
 		
 		runMainActivityWithoutConsoleOutput(userInput);
 		
-		String dmResultMeals = dmResults.get(0);
+		String dmResultMeals = dmResults.get(2);
 		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
 		int randomMeal = this.getRandomNum(meals.length);
 		String[] chosenMeal = meals[randomMeal].split(" at ");
