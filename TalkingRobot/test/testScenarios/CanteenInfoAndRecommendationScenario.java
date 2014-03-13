@@ -23,24 +23,32 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 	@Test
 	public void CIandCRTest() {
 		userInput.add("hi");
-		userInput.add("xixi");
+		userInput.add("xizhe");
 		userInput.add("what is at line one today");
 		userInput.add("well i do not like these meals is there any suggestion");
 		userInput.add("i want to have something vegetarian");
-		userInput.add("yes i will take that");
-		userInput.add("where is line three");
+	//	userInput.add("yes i will take that");
+		userInput.add("where is line six");
 		
 		runMainActivityWithTestInput(userInput);
 		
 		String dmResultMeals = dmResults.get(2);
-		System.out.println("meals:" + dmResultMeals);
-		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split("and");
+		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
 		
 		ArrayList<String> mealsAtLineOne = new ArrayList<String>();
+		for(int i = 0; i < meals.length; i++) {
+			if(meals[i].contains("one")) {
+				String[] mealAtLineOne = meals[i].split(" at ");
+				mealsAtLineOne.add(mealAtLineOne[0]);
+			}
+		}
 		
 		LocalDate date = LocalDate.now();
 		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 
 				date.getDayOfWeek()));
+		
+		System.out.println(meals[0]);
+		
 		
 		String suggestion = nlgResults.get(4);
 		ArrayList<LineData> ld = new ArrayList<LineData>();
@@ -53,14 +61,13 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 				}
 			}
 		}
-		System.out.println(meals[0]);
-		for (int i = 0; i < meals.length; i++) {
-			assertTrue(nlgResults.get(2).contains(meals[i]));
-		}
-
+		System.out.println(mealsAtLineOne.size());
+//		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
+//				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
+//		
 		assertTrue(dmResults.get(4) == null || dmResults.get(4).contains("veg"));
 		
-//		assertTrue(nlgResults.get(6).contains("line three") && nlgResults.get(6).contains("turn right"));
+		assertTrue(nlgResults.get(5).contains("line six") && nlgResults.get(5).contains("right"));
 		
 
 	}
