@@ -145,19 +145,32 @@ private void updateStateDone(List<Keyword> keywords, List<String> terms) {
 private void updateStateOneIngredient(List<Keyword> keywords, List<String> terms) {
 	if (keywords != null && !keywords.isEmpty()) {
 		for (Keyword kw : keywords) {
+			if (kw.getKeywordData().getType().equals(KeywordType.RECIPE)) {
+				currRecipe = new Recipe((RecipeData)kw.getKeywordData().getDataReference().get(0));
+				recipeName = currRecipe.getRecipeData().getRecipeName();
+			}
+		}
+		for (Keyword kw : keywords) {
 			for (DialogState ref : kw.getReference()) {
 				if (ref.getCurrentState().equals(RecipeAssistance.RA_TELL_ONE_INGREDIENT)) {
 					if (currRecipe != null && currRecipe.getRecipeData() != null) {
 						if (curNumIngredient < currRecipe.getRecipeData().getIngredients().size()) {
 							 currIngredient = currRecipe.getRecipeData().getIngredients().get(curNumIngredient);
 							 curNumIngredient++;
+							 return;
 						}
 						else {
 							getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_INGREDIENTS_DONE);
+							return;
 						}
 					}
 					else {
+						if (currRecipe == null) {
+							getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
+							return;
+						}
 						getCurrentDialogState().setCurrentState(RecipeAssistance.RA_RECIPE_NOT_FOUND);
+						return;
 					}
 					
 			}
@@ -385,7 +398,7 @@ private void updateStateTellCountryFound(List<Keyword> keywords, List<String> te
 							}
 					}
 					}
-					getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_TOOL_NOT_FOUND);
+					getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_COUNTRY_NOT_FOUND);
 					return;
 					}
 				}
