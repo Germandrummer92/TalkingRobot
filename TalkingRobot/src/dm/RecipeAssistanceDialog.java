@@ -41,12 +41,6 @@ public String getRecipeName() {
 	return recipeName;
 }
 
-/**
- * @param recipeName the recipeName to set
- */
-public void setRecipeName(String recipeName) {
-	this.recipeName = recipeName;
-}
 
 @Override
 
