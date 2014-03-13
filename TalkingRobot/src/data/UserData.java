@@ -311,12 +311,21 @@ public class UserData implements Data {
 		  	UserData read = null;
 		  		try {
 					read = loader.fromJson(br.readLine(), UserData.class);
+					res.add(read);
 				} catch (JsonSyntaxException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-		  	res.add(read);
+		  		finally {
+					if(br != null) {
+						try {
+							br.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 		}
 		return res;
 	}

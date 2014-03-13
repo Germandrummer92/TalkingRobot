@@ -196,8 +196,9 @@ public class RecipeData implements Data {
 		File f = new File(dirPath);
 		int lastID = f.listFiles().length - 1; //with 2 files, last ID 1 -> -1
 		File lastFile = new File("resources/files/RecipeData/" + lastID + ".json");
+		BufferedReader reader = null;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(lastFile));
+			reader = new BufferedReader(new FileReader(lastFile));
 			
 			String lastReadLine = reader.readLine();
 			while (lastReadLine != null) {
@@ -215,6 +216,15 @@ public class RecipeData implements Data {
 		}
 		catch (IOException e){
 			e.printStackTrace();
+		}
+		finally {
+			if(reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

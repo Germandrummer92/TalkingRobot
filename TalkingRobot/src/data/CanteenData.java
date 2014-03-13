@@ -9,11 +9,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.json.*;
 
 import com.google.gson.Gson;
@@ -495,22 +492,30 @@ public class CanteenData implements Data{
 	private String getJsonString(String path) {
 		File currFile = new File(path);
 		String jsonString = ""; //the json String representation of the File
-		
+		BufferedReader reader = null;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(currFile));
+			reader = new BufferedReader(new FileReader(currFile));
 			
 			String lastReadLine = reader.readLine();
 			while (lastReadLine != null) {
 				jsonString += lastReadLine;
 				lastReadLine = reader.readLine();
 			} //Get the json String representation of the File
-			reader.close();
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		catch (IOException e){
 			e.printStackTrace();
+		}
+		finally {
+			if(reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return jsonString;
 	}
