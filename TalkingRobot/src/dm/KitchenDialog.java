@@ -40,25 +40,16 @@ public List<Tool> getToolDatabase() {
 	return toolDatabase;
 }
 
-public void setToolDatabase(List<Tool> toolDatabase) {
-	this.toolDatabase = toolDatabase;
-}
 
 public List<Ingredient> getIngredientDatabase() {
 	return ingredientDatabase;
 }
 
-public void setIngredientDatabase(List<Ingredient> ingredientDatabase) {
-	this.ingredientDatabase = ingredientDatabase;
-}
 
 public List<Recipe> getRecipeDatabase() {
 	return recipeDatabase;
 }
 
-public void setRecipeDatabase(List<Recipe> recipeDatabase) {
-	this.recipeDatabase = recipeDatabase;
-}
   
 
 }
