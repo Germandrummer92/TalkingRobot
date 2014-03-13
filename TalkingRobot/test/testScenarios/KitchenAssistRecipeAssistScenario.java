@@ -1,0 +1,33 @@
+package testScenarios;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+/**
+ * 
+ * @author Bettina Weller
+ * @version 1.0
+ * test scenario 9.1.b from the functional spec
+ */
+public class KitchenAssistRecipeAssistScenario extends basicTestCases.BasicTest{
+
+	@Test
+	public void KitchenRecipeAssist() {
+		userInput.add("hi");
+		userInput.add("bettina");
+		userInput.add("could you help me cook");
+		userInput.add("a recipe from the usa");
+		userInput.add("tell me the ingredients");
+		userInput.add("what kitchen tools are needed");
+		userInput.add("where can i find a knife");
+		
+		runMainActivityWithTestInput(userInput);
+		
+		assertTrue(nlgResults.get(4).contains("hamburger"));
+		assertTrue(nlgResults.get(5).contains("ground beef") && nlgResults.get(5).contains("lettuce") 
+				&& nlgResults.get(5).contains("buns"));
+		assertTrue(nlgResults.get(6).contains("knife"));
+		assertTrue(nlgResults.get(7).contains("silverware drawer"));
+	}
+}

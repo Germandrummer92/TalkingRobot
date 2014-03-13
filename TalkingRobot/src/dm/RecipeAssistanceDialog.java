@@ -371,14 +371,12 @@ private void updateStateTellToolNotFound(List<Keyword> keywords,
 * @param terms
 */
 private void updateStateTellCountryFound(List<Keyword> keywords, List<String> terms) {
-	
 	//We came here due to a jump, so the Ingredient should have been passed, if not there's an error
 		if (keywords != null && !keywords.isEmpty()) {
 			for (Keyword kw : keywords) {
-				if (kw.getKeywordData().getType().equals(KeywordType.COUNTRY)) {System.out.println(kw.getWord());
+				if (kw.getKeywordData().getType().equals(KeywordType.COUNTRY)) {
 					for (Recipe r : getRecipeDatabase()) {
-						if (r.getRecipeData().getOriginalCountry() != null) {System.out.println("country2");
-						System.out.println(r.getRecipeData().getOriginalCountry());
+						if (r.getRecipeData().getOriginalCountry() != null) {
 							if (r.getRecipeData().getOriginalCountry().equalsIgnoreCase(kw.getWord())) {
 								currRecipe = r;
 								return;
