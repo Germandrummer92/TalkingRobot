@@ -1,5 +1,6 @@
 package dm;
 
+
 import java.util.List;
 
 /**
@@ -44,7 +45,7 @@ public class ExplicitVerificationStrategy extends ErrorStrategy {
 		if(this.possibleWords == null) { return null; }
 		else {
 			return new ErrorHandlingState(true, ErrorHandling.Explicit_Verification,
-					"{" + this.questionableWord + "}");
+					"<" + this.questionableWord + ">");
 		}
 	}
 

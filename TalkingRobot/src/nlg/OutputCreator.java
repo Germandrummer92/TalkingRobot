@@ -1,6 +1,7 @@
 package nlg;
 
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -215,37 +216,40 @@ public class OutputCreator {
   			JSONObject jsonObject = (JSONObject) obj;
   			JSONObject jsonState = (JSONObject) jsonObject.get(dialogStateClass);
   			JSONArray jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
-  			Integer size = jsonSentences.size();
   			
-  			//selects social component randomly
-  			String temp;
-  			Random rn = new Random();
-  			Integer randomNum = rn.nextInt(size);
-			temp =  (String) jsonSentences.get(randomNum);
-			
-			//search for a social component to be added after, in case there's no social component.
-			if (temp.equals("")) {
-  				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
-  				addBefore = false;
-  				jsonObject = (JSONObject) obj;
-  	  			jsonState = (JSONObject) jsonObject.get(dialogStateClass);
-  	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
-  	  			
-	  			rn = new Random();
-	  			randomNum = rn.nextInt(size);
-				temp = (String) jsonSentences.get(randomNum);
-				
+  			if(jsonSentences != null) {
+	  			Integer size = jsonSentences.size();
+	  			
+	  			//selects social component randomly
+	  			String temp;
+	  			Random rn = new Random();
+	  			Integer randomNum = rn.nextInt(size);
+				temp =  (String) jsonSentences.get(randomNum);
+  			
+				//search for a social component to be added after, in case there's no social component.
 				if (temp.equals("")) {
-					return output;
+	  				obj = parser.parse(new FileReader("resources/nlg/socialAfter.json"));
+	  				addBefore = false;
+	  				jsonObject = (JSONObject) obj;
+	  	  			jsonState = (JSONObject) jsonObject.get(dialogStateClass);
+	  	  			jsonSentences = (JSONArray) jsonState.get(dialogState.getCurrentState().toString());
+	  	  			
+		  			rn = new Random();
+		  			randomNum = rn.nextInt(size);
+					temp = (String) jsonSentences.get(randomNum);
+					
+					if (temp.equals("")) {
+						return output;
+					}
 				}
-			}
-			
-			if(addBefore) { // add social component before the 
-				output = temp + ". " + output; 
-			} else {
-				output = output + ". " + temp;
-			}
+				
+				if(addBefore) { // add social component before the 
+					output = temp + ". " + output; 
+				} else {
+					output = output + ". " + temp;
+				}
   		
+  			}
   		} catch (FileNotFoundException e) {
   			e.printStackTrace();
   		} catch (IOException e) {

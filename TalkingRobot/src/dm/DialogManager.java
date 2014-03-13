@@ -1,6 +1,7 @@
 package dm;
 
 
+
 import generalControl.Main;
 
 import java.util.LinkedList;
@@ -47,6 +48,7 @@ public class DialogManager {
  * @throws WrongStateClassException 
    */
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
+//	  System.out.println("errorstate " + isInErrorState);
 //	  for(int i = 0; i < keywords.size(); i++) {
 //		  System.out.println("working with: " + keywords.get(i));
 //	  }
@@ -79,6 +81,7 @@ public class DialogManager {
 	}
 	   } while(true);
 
+//	   System.out.println("errorstate " + isInErrorState);
 	   //?
 	   if (isInErrorState) {
 		   if(this.errorState != null && !Main.giveMain().getNluResult().get(3).isEmpty()) {
@@ -117,11 +120,8 @@ public class DialogManager {
 		  } else if (!possibleKeywords.isEmpty()) {
 //			  System.out.println("working with approval");
 			  this.isInErrorState = false;
-		  	dialogIsUpdated = this.handleResponseToPreviousErrorHandling(possibleKeywords);
-		  		if(!dialogIsUpdated) {
-		  			//error could not be solved; start with repetition/rephrasing again
-		  			this.clearAllStrategies();
-		  		} 
+		  	  dialogIsUpdated = this.handleResponseToPreviousErrorHandling(possibleKeywords);
+		  	  this.clearAllStrategies();
 		  }  
 	  }
 	  
@@ -133,6 +133,8 @@ public class DialogManager {
 		  } else if (errorStrategy[1].getCounter() < 3) {
 			  dmResult = errorStrategy[1].handleError(possibleKeywords);
 		  } else {
+//			  System.out.println("dialog " + this.getCurrentDialog().getClass());
+//			  System.out.println("dialogstate " + this.getCurrentDialog().getCurrentDialogState().getClass());
 			  if(this.getCurrentDialog().getCurrentDialogState().isQuestion()) {
 				  Main.giveMain().setDmResult(this.getCurrentDialog().getCurrentDialogState());
 				  dialogIsUpdated = true;
@@ -180,7 +182,9 @@ public class DialogManager {
 		  }
 		  
 		  this.isInErrorState = false;
-		  updateDialog(assumedKeywords, new LinkedList<String>(), new LinkedList<String>()); 
+		  LinkedList<String> terms = new LinkedList<String>();
+		  terms.add("");
+		  updateDialog(assumedKeywords, terms, new LinkedList<String>()); 
 		  dialogIsUpdated = true;
 	  }
 	  
@@ -197,7 +201,9 @@ public class DialogManager {
   			if(possibleKeywords.get(i).equals("second")) {	
   				ChoiceStrategy strategy = (ChoiceStrategy)errorStrategy[2];
   				keyword.add(strategy.getSecondChoice());
-  				this.updateDialog(keyword, new LinkedList<String>(), new LinkedList<String>());
+  				LinkedList<String> terms = new LinkedList<String>();
+  				terms.add("");
+  				this.updateDialog(keyword, terms, new LinkedList<String>());
   			} else if(possibleKeywords.get(i).equals("first")) {
   				ErrorHandlingState dmResult = errorStrategy[2].handleError(null);
   				if(dmResult != null) { Main.giveMain().setDmResult(dmResult); }	
@@ -216,7 +222,7 @@ public class DialogManager {
   	} else if(this.errorState == ErrorState.INDIRECT_VERIFICATION) {
   		for(int i = 0; i < possibleKeywords.size(); i++) {
   			if(possibleKeywords.get(i).equals("yes")) {
-  				IndirectVerificationStrategy strategy = (IndirectVerificationStrategy)errorStrategy[3];
+  				IndirectVerificationStrategy strategy = (IndirectVerificationStrategy)errorStrategy[4];
   				keyword.add(strategy.getQuestionableWords());
   			} else if(possibleKeywords.get(i).equals("no")) {
   				ErrorHandlingState dmResult = errorStrategy[4].handleError(null);
@@ -233,7 +239,9 @@ public class DialogManager {
   				} else if(restart.getErrorHandling() == ErrorHandling.RESTART_RA) {
   					keyword.add(restart.getRecipe().getRecipeName());
   				} else if(restart.getErrorHandling() == ErrorHandling.RESTART_RL) {
+  					currentDialog = new StartDialog(this.currentDialog.getCurrentSession(), new StartState(Start.S_EXIT));
   					keyword.add("teach you");
+  					keyword.add("recipe");
   				}
   			} else {
   				ErrorHandlingState dmResult = errorStrategy[5].handleError(null);
@@ -243,7 +251,11 @@ public class DialogManager {
   	}
 	
 	if(!keyword.isEmpty()) {
-		this.updateDialog(keyword, new LinkedList<String>(), new LinkedList<String>());
+		this.isInErrorState = false;
+		this.errorState = ErrorState.ZERO;
+		LinkedList<String> terms = new LinkedList<>();
+		terms.add("");
+		this.updateDialog(keyword, terms, new LinkedList<String>());
 		return true;
 	} else {
 		return false;
