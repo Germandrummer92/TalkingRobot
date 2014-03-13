@@ -225,11 +225,13 @@ public class StartDialog extends Dialog {
 		if (approval.size() == 1) {
 			if (approval.get(0).equals("yes") || approval.get(0).equals("Yes")) {
 				getCurrentDialogState().setCurrentState(Start.S_WAITING_FOR_EMPLOYEE_STATUS);
+				return;
 				
 			}
 			else {
 				getCurrentDialogState().setCurrentState(Start.S_USER_DOESNT_WANT_TO_BE_SAVED);
 				getCurrentSession().setCurrentUser(new User());
+				return;
 			}
 		}
 		DialogManager.giveDialogManager().setInErrorState(true);
