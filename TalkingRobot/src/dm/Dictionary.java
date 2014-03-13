@@ -40,15 +40,17 @@ public class Dictionary {
   public Dictionary() {
 	  loadKeywords();
   }
-  /**
-   * Loads the List of the keywords.
-   */
+  /** 
+   * Loads the List of the keywords. 
+   */ 
   private void loadKeywords() {
 	  keywordList = new ArrayList<Keyword>();
 	  for (KeywordData d : KeywordData.loadData()) {
-		  keywordList.add(new Keyword(d));
+		  if(d.getWord() != null) {
+			  keywordList.add(new Keyword(d));
+			  }
+		  }
 	  }
-  }
 
   /**
    * Find possible Keywords matching the UserInput
