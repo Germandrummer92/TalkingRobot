@@ -29,7 +29,7 @@ public class CanteenInformationScenario extends basicTestCases.BasicTest {
 		
 		runMainActivityWithoutConsoleOutput(userInput);
 		
-		userInput.add("i want to eat in the canteen tomorrow");
+		userInput.add("i want to eat in the canteen next monday");
 		
 		String dmResultMeals = dmResults.get(3);
 		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
@@ -48,20 +48,12 @@ public class CanteenInformationScenario extends basicTestCases.BasicTest {
 		
 		runMainActivityWithTestInput(userInput);
 		
-		LocalDate date = LocalDate.now();
-		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 
-				date.getDayOfWeek()));
-		String tomorrowMeal1 = 
-				curCanteen.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName();
-		String tomorrowMeal2 = 
-				curCanteen.getCanteenData().getLines().get(3).getTodayMeals().get(0).getMealName();
-		
-		System.out.println(meals[0]);
 		assertTrue(nlgResults.get(3).contains(meals[0])
 				&& nlgResults.get(3).contains(meals[meals.length - 1]));
 		assertTrue(nlgResults.get(4).contains(mealsAtLineFour.get(0))
 				&& nlgResults.get(4).contains(mealsAtLineFour.get(mealsAtLineFour.size() - 1)));
-		assertTrue(nlgResults.get(5).contains(tomorrowMeal1)
-				&& nlgResults.get(5).contains(tomorrowMeal2));
+		assertTrue(nlgResults.get(5).contains(
+				"Makkaroni mit Gemüsebolognese")
+				&& nlgResults.get(5).contains("Schweineschnitzel Toskana"));
 	}
 }
