@@ -35,7 +35,7 @@ public class ErrorHandlingTest extends BasicTest{
 				&& (nlgResults.get(4).contains("again") || nlgResults.get(4).contains("repeat"))
 				&& nlgResults.get(5).contains("rephrase")
 				&& nlgResults.get(7).contains("rephrase")
-				&& nlgResults.get(8).contains("help"));
+				&& (nlgResults.get(8).contains("help") || nlgResults.get(8).contains("can I do")));
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class ErrorHandlingTest extends BasicTest{
 				&& (nlgResults.get(8).contains("again") || nlgResults.get(8).contains("repeat"))
 				&& nlgResults.get(9).contains("rephrase")
 				&& nlgResults.get(11).contains("rephrase")
-				&& nlgResults.get(12).contains("new recipe") 
+				&& (nlgResults.get(12).contains("new recipe") || nlgResults.get(12).contains("teach me")) 
 				&& (nlgResults.get(13).contains("name") || nlgResults.get(13).contains("recipe")));
 	}
 
