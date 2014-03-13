@@ -12,7 +12,7 @@ import data.MealData;
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 3.0
+ * @version 2.5
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	
@@ -522,7 +522,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 		
 	}
 	
-	if(inAden && mayAskLoca && existLineKW) {
+	if(mayAskLoca && existLineKW) {
 		updateStateLocation(keywords, terms);
 		return CanteenInfo.CI_LINE_LOCATION_INFO;
 	}
@@ -637,18 +637,25 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 		matched = findLineEnum(inAden, id);
 		
 	} else {
-	
-		String[] tms = terms.get(0).split("of "); // what's the price of ...
-		if(tms.length == 1) {
-			if(tms[0].contains("does")) {
-				tms = terms.get(0).split("does "); // original sentence : how much does ... cost
-			}else if(tms[0].contains("costs")) { // how much costs ...
-				tms = terms.get(0).split("costs "); 
-			}else if(tms[0].contains("is")) {// how much is...
-				tms = terms.get(0).split("is "); 
-			}else tms[1] = terms.get(0);
+		String name = "";
+		if(terms.get(0).length() < terms.get(1).length()) { // is already splitet 
+			name = terms.get(0);
+		}else if (terms.get(0).length() > terms.get(1).length()) {
+			name = terms.get(1);
+		}else {
+			String[] tms = terms.get(0).split("of "); // what's the price of ...
+			if(tms.length <= 1) {
+				if(tms[0].contains("does")) {
+					tms = terms.get(0).split("does "); // original sentence : how much does ... cost
+				}else if(tms[0].contains("costs")) { // how much costs ...
+					tms = terms.get(0).split("costs "); 
+				}else if(tms[0].contains("is")) {// how much is...
+					tms = terms.get(0).split("is "); 
+				}else tms[1] = terms.get(0);
+			}
+			name = tms[1];
 		}
-		String name = tms[1];
+		
 		name = name.toLowerCase();
 		/* if the name starts with empty char, match won't be succeed */
 		if(name.startsWith(" ")){
