@@ -25,7 +25,7 @@ public class CanteenInformationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).contains("at line one"));
+		assertTrue(nlgResults.get(2).toLowerCase().contains("at line one"));
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class CanteenInformationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).contains("at choice one") || nlgResults.get(2).contains("at line one"));
+		assertTrue(nlgResults.get(2).toLowerCase().contains("at choice one") || nlgResults.get(2).toLowerCase().contains("at line one"));
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class CanteenInformationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).contains("at line one"));
+		assertTrue(nlgResults.get(2).toLowerCase().contains("at line one"));
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class CanteenInformationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).contains("at choice one") || nlgResults.get(2).contains("at line one"));
+		assertTrue(nlgResults.get(2).toLowerCase().contains("at choice one") || nlgResults.get(2).toLowerCase().contains("at line one"));
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class CanteenInformationTest extends BasicTest{
 	public void whereLineOneAdenExpl() {
 		userInput.add("hello");
 		userInput.add("i am bettina");
-		userInput.add("where is line one in canteen adenauerring");
+		userInput.add("where is line six in canteen adenauerring");
 		
 		this.runMainActivityWithTestInput(userInput);
 		
