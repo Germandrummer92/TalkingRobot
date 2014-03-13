@@ -34,8 +34,6 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 		
 		String dmResultMeals = dmResults.get(2);
 		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
-		int randomMeal = this.getRandomNum(meals.length);
-		String[] chosenMeal = meals[randomMeal].split(" at ");
 		
 		ArrayList<String> mealsAtLineOne = new ArrayList<String>();
 		for(int i = 0; i < meals.length; i++) {
@@ -63,11 +61,11 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 				}
 			}
 		}
-		System.out.println(mealsAtLineOne.size());
+		
 		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
 				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
 		
-		assertTrue(category.equals("vegetarian"));
+		assertTrue(dmResults.get(4) == null || dmResults.get(4).contains("vegetarian"));
 		
 		assertTrue(nlgResults.get(6).contains("line three") && nlgResults.get(6).contains("turn right"));
 		
