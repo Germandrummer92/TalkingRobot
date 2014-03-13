@@ -16,7 +16,7 @@ import dm.Canteen;
 /**
  * Test scenario based on functional specification 9.1.C, mainly about CanteenInformation and Recommandation
  * @author Xizhe Lian
- * @version 1.0
+ * @version 1.5
  */
 public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicTest {
 	
@@ -27,28 +27,21 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 		userInput.add("what is at line one today");
 		userInput.add("well i do not like these meals is there any suggestion");
 		userInput.add("i want to have something vegetarian");
-	//	userInput.add("yes i will take that");
 		userInput.add("where is line six");
 		
 		runMainActivityWithTestInput(userInput);
 		
-		String dmResultMeals = dmResults.get(2);
-		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
 		
 		ArrayList<String> mealsAtLineOne = new ArrayList<String>();
-		for(int i = 0; i < meals.length; i++) {
-			if(meals[i].contains("one")) {
-				String[] mealAtLineOne = meals[i].split(" at ");
-				mealsAtLineOne.add(mealAtLineOne[0]);
-			}
+		
+		
+		//LocalDate date = LocalDate.now();
+		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		
+		//System.out.println(meals[0]);
+		for( MealData m : curCanteen.getCanteenData().getLines().get(0).getTodayMeals()) {
+			mealsAtLineOne.add(m.getMealName());
 		}
-		
-		LocalDate date = LocalDate.now();
-		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 
-				date.getDayOfWeek()));
-		
-		System.out.println(meals[0]);
-		
 		
 		String suggestion = nlgResults.get(4);
 		ArrayList<LineData> ld = new ArrayList<LineData>();
@@ -61,11 +54,13 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 				}
 			}
 		}
-		System.out.println(mealsAtLineOne.size());
-//		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
-//				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
-//		
-		assertTrue(dmResults.get(4) == null || dmResults.get(4).contains("veg"));
+		System.out.println(mealsAtLineOne.get(0));
+		System.out.println(mealsAtLineOne.get(1));
+		
+		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
+				&& nlgResults.get(2).contains(mealsAtLineOne.get(1)));
+		
+		assertTrue( dmResults.get(4).contains("veg"));
 		
 		assertTrue(nlgResults.get(5).contains("line six") && nlgResults.get(5).contains("right"));
 		
