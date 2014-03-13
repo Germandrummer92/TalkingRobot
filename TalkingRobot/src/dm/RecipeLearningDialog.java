@@ -570,15 +570,17 @@ private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 	RecipeLearningState nextState;
 	//TODO recipe already exists
 	if (terms.size() > 0) {
-		if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(RecipeAssistanceDialog.class)) {
-			if (((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName() != null) {
-				recipeName = ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName();
-			}
+		//I doubt that this code will work, what if last dialog was RA but the user just wants to teach the robot
+		//a new recipe -> further modification needed here. I reset it to last stable version.
+	//	if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(RecipeAssistanceDialog.class)) {
+	//		if (((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName() != null) {
+	//			recipeName = ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName();
+	//		}
 
-		}
-	else {
-		recipeName = terms.get(0);
-	}
+	//	}
+	//	else {
+			recipeName = terms.get(0);
+	//	}
 		
 		
 		nextState = new RecipeLearningState();
