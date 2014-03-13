@@ -67,6 +67,18 @@
 				"You really do not know that {c} comes from <o>. Good that you have bought me"
 				
 			],
+				"RA_TELL_COUNTRY_NOT_FOUND" : [
+				"I do not know any recipe from this country",
+				"I have never hears of a recipe from this country",
+				"I can not remember any recipe from this country"
+				
+			],
+			"RA_TELL_COUNTRY_FOUND" : [
+				"<o> is from that country",
+				"That is the origin of <o>",
+				"According to that country you could try <o>"
+				
+			],
 			"RA_TELL_CREATOR" : [
 				"I learned preparing {c} from <o>",
 				"{c} used to be a secret recipe which <o> told me about",

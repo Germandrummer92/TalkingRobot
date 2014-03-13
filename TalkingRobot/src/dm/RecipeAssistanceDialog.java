@@ -76,6 +76,12 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case RA_TELL_COUNTRY_OF_ORIGIN:
 		updateStateTellOrigin(keywords, terms);
 		break;
+	case RA_TELL_COUNTRY_FOUND:
+		updateStateTellCountryFound(keywords, terms);
+		break;
+	case RA_TELL_COUNTRY_NOT_FOUND:
+		updateStateTellCountryNotFound(keywords, terms);
+		break;
 	case RA_TELL_CREATOR:
 		updateStateTellCreator(keywords, terms);
 		break;
@@ -360,6 +366,40 @@ private void updateStateTellToolNotFound(List<Keyword> keywords,
 }
 
 /**
+* Updates the country found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
+private void updateStateTellCountryFound(List<Keyword> keywords, List<String> terms) {
+	
+	//We came here due to a jump, so the Ingredient should have been passed, if not there's an error
+		if (keywords != null && !keywords.isEmpty()) {
+			for (Keyword kw : keywords) {
+				if (kw.getKeywordData().getType().equals(KeywordType.COUNTRY)) {System.out.println(kw.getWord());
+					for (Recipe r : getRecipeDatabase()) {
+						if (r.getRecipeData().getOriginalCountry() != null) {System.out.println("country2");
+						System.out.println(r.getRecipeData().getOriginalCountry());
+							if (r.getRecipeData().getOriginalCountry().equalsIgnoreCase(kw.getWord())) {
+								currRecipe = r;
+								return;
+							}
+					}
+					}
+					getCurrentDialogState().setCurrentState(RecipeAssistance.RA_TELL_TOOL_NOT_FOUND);
+					return;
+					}
+				}
+			if (currRecipe == null || currRecipe.getRecipeData() == null) {
+				DialogManager.giveDialogManager().setInErrorState(true);
+			}
+			}
+		else {
+			DialogManager.giveDialogManager().setInErrorState(true);
+		}
+	
+}
+
+/**
 * Updates the Tool found state according to parsed keywords/terms
 * @param keywords
 * @param terms
@@ -422,6 +462,20 @@ private void updateStateTellIngredientFound(List<Keyword> keywords,
 		}
 	}
 	else {
+		DialogManager.giveDialogManager().setInErrorState(true);
+	}
+	
+}
+
+/**
+* Updates the country not found state according to parsed keywords/terms
+* @param keywords
+* @param terms
+*/
+private void updateStateTellCountryNotFound(List<Keyword> keywords,
+		List<String> terms) {
+	//If we came here, keyword for ingredients and unknown ingredient must have been passed
+	if (terms == null || terms.isEmpty()) {
 		DialogManager.giveDialogManager().setInErrorState(true);
 	}
 	
