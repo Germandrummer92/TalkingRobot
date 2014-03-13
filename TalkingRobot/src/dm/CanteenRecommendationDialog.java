@@ -366,7 +366,10 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 	}
 	
 	private void updateStatExit(List<Keyword> keywords, List<String> terms, List<String> approval) {
-		//...
+		if (keywords.isEmpty()) {
+			//Didn't get any keyword
+			DialogManager.giveDialogManager().setInErrorState(true);
+		}
 	}
 	
 	/**
