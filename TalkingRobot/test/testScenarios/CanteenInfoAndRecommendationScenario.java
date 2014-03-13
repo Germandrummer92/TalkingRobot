@@ -14,17 +14,17 @@ import data.MealData;
 import dm.Canteen;
 
 /**
- * Test senario based on functional specification 9.1.C, mainly about CanteenInformation and Recommandation
+ * Test scenario based on functional specification 9.1.C, mainly about CanteenInformation and Recommandation
  * @author Xizhe Lian
  * @version 1.0
  */
-public class SenarioCanteenInfoAndRecommendation  extends basicTestCases.BasicTest {
+public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicTest {
 	
 	@Test
 	public void CIandCRTest() {
 		userInput.add("hi");
 		userInput.add("xixi");
-		userInput.add("whatis at line one today");
+		userInput.add("what is at line one today");
 		userInput.add("well i do not like these meals is there any suggestion");
 		userInput.add("i want to have something vegetarian");
 		userInput.add("yes i will take that");
