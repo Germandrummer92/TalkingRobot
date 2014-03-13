@@ -26,10 +26,9 @@ public class CanteenRecommendationTest extends BasicTest{
 		userInput.add("could you recommend me something to eat");
 		userInput.add("i want pork");
 		
-		this.runMainActivityWithTestInput(userInput);
-		
-		this.setDifferentLines();
-		assertTrue(mealNotFound(3) || containsLine(3));
+		this.runMainActivityWithTestInput(userInput);;
+
+		assertTrue(dmResults.get(3) == null || dmResults.get(3).contains("pork"));
 		
 	}
 	
@@ -45,8 +44,7 @@ public class CanteenRecommendationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		this.setDifferentLines();
-		assertTrue(mealNotFound(3) || containsLine(3));
+		assertTrue(dmResults.get(3) == null || dmResults.get(3).contains("fish"));
 	}
 	
 	/**
@@ -61,46 +59,7 @@ public class CanteenRecommendationTest extends BasicTest{
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		this.setDifferentLines();
-		assertTrue(mealNotFound(3) || containsLine(3));
+		assertTrue(dmResults.get(3) == null || dmResults.get(3).contains("cow"));
 	}
 	
-	private boolean mealNotFound(int position) {
-		if(nlgResults.get(position).contains("no") || nlgResults.get(position).contains("not")
-				|| nlgResults.get(position).contains("can't")) {
-			return true;
-		}
-			return false;
-	}
-	
-	/*
-	 * Many tests use this as a reference. If there are new lines added to the system or old 
-	 * lines are deleted this method needs to be changed accordingly.
-	 */
-	private void setDifferentLines() {
-		differentLines = new LinkedList<String>();
-		differentLines.add("cafeteria");
-		differentLines.add("curry queen");
-		differentLines.add("line one");
-		differentLines.add("line two");
-		differentLines.add("line three");
-		differentLines.add("line four and five");
-		differentLines.add("line six");
-		differentLines.add("schnitzel bar");
-		differentLines.add("action counter");
-		differentLines.add("buffet");
-		differentLines.add("choice one");
-		differentLines.add("choice two");
-		differentLines.add("good and cheap");
-	}
-	
-	private boolean containsLine(int position) {
-		boolean containsALine = false;
-		for(int i = 0; i < differentLines.size(); i++) {
-			if(nlgResults.get(position).contains(differentLines.get(i))) {
-				containsALine = true;
-			}
-		}
-		return containsALine;
-	}
 }
