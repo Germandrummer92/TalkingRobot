@@ -58,6 +58,12 @@ public class RestartKitchenTest extends BasicTest{
 		userInput.add("handle this error");
 		
 		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue((nlgResults.get(4).contains("again") || nlgResults.get(4).contains("repeat"))
+				&& (nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+				&& nlgResults.get(7).contains("rephrase")
+				&& nlgResults.get(9).contains("rephrase")
+				&& nlgResults.get(10).contains("hamburger"));
 	}
 	
 	/**
@@ -88,7 +94,7 @@ public class RestartKitchenTest extends BasicTest{
 				&& (nlgResults.get(8).contains("again") || nlgResults.get(8).contains("repeat"))
 				&& nlgResults.get(9).contains("rephrase")
 				&& nlgResults.get(11).contains("rephrase")
-				&& nlgResults.get(12).contains("teach")
+				&& (nlgResults.get(12).contains("teach") || nlgResults.get(12).contains("tell"))
 				&& (nlgResults.get(13).contains("again") || nlgResults.get(13).contains("repeat")));
 	}
 
