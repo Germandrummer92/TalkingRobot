@@ -50,10 +50,6 @@ public class RestartStrategy extends ErrorStrategy {
 	
 					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, result);
 					break;
-		case CANTEEN:
-					result = handleCanteen(currentDialog);
-					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, result);
-					break;
 		case CANTEEN_INFORMATION:
 					result = handleCanteenInformation(currentDialog);
 					this.errorHandling = ErrorHandling.RESTART_CI;
@@ -63,10 +59,6 @@ public class RestartStrategy extends ErrorStrategy {
 					result = handleCanteenInformation(currentDialog);
 					this.errorHandling = ErrorHandling.RESTART_CR;
 					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_CR, result);
-					break;
-		case KITCHEN:
-					result = handleKitchen(currentDialog);
-					errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, result);
 					break;
 		case KITCHEN_ASSISTANCE:
 					result = handleKitchenAssistance(currentDialog);
@@ -96,10 +88,6 @@ public class RestartStrategy extends ErrorStrategy {
 		return null;
 	}
 	
-	private String handleCanteen(Dialog currentDialog) {
-		return null;
-	}
-	
 	private String handleCanteenInformation(Dialog currentDialog) {
 		CanteenDialog dialog = (CanteenDialog) currentDialog;
 		CanteenData canteenData = dialog.getCurrentCanteen().getCanteenData();
@@ -122,6 +110,11 @@ public class RestartStrategy extends ErrorStrategy {
 		String output = "<" + meal.getMealName() + ">;";
 		output = output + "<" + line.getLineName() + ">;";
 		output = output + "<" + canteenData.getCanteenName().toString().toLowerCase() + ">";
+		
+		DialogManager.giveDialogManager().setCurrentDialog(new CanteenRecommendationDialog(
+				DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession(), 
+				new CanteenRecommendationState(CanteenRecom.CR_ADEN_CAFE_DISH), new Canteen(canteenData)));
+		DialogManager.giveDialogManager().getCurrentDialog().getCurrentDialogState().setQuestion(false);
 		return output;
 	}
 
@@ -129,10 +122,6 @@ public class RestartStrategy extends ErrorStrategy {
 //		//  Auto-generated method stub
 //		return null;
 //	}
-	
-	private String handleKitchen(Dialog currentDialog) {
-		return null;
-	}
 
 	private String handleKitchenAssistance(Dialog currentDialog) {
 		return null;
@@ -145,7 +134,6 @@ public class RestartStrategy extends ErrorStrategy {
 			this.randomRecipe = dialog.getCurrRecipe().getRecipeData();
 			return "<" + dialog.getCurrRecipe().getRecipeData().getRecipeName() + ">";
 		} else {
-			Dictionary dictionary = new Dictionary();
 			ArrayList<RecipeData> recipes = RecipeData.loadData();
 			RecipeData recipe = recipes.get(this.getRandomNum(recipes.size()));
 			this.randomRecipe = recipe;
