@@ -159,14 +159,23 @@ public static ArrayList <MealCategoryData> loadData() {
 			e.printStackTrace();
 		}
 	  	MealCategoryData read = null;
-	  		try {
-				read = loader.fromJson(br.readLine(), MealCategoryData.class);
-			} catch (JsonSyntaxException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+	  	try {
+			read = loader.fromJson(br.readLine(), MealCategoryData.class);
+			res.add(read);
+		} catch (JsonSyntaxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	  	finally {
+			if(br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-	  	res.add(read);
+		}
 	}
 	return res;
 }

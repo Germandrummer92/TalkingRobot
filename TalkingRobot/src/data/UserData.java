@@ -309,14 +309,23 @@ public class UserData implements Data {
 				e.printStackTrace();
 			}
 		  	UserData read = null;
-		  		try {
-					read = loader.fromJson(br.readLine(), UserData.class);
-				} catch (JsonSyntaxException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+		  	try {
+				read = loader.fromJson(br.readLine(), UserData.class);
+				res.add(read);
+			} catch (JsonSyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		  	finally {
+				if(br != null) {
+					try {
+						br.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-		  	res.add(read);
+			}
 		}
 		return res;
 	}

@@ -196,8 +196,9 @@ public class RecipeData implements Data {
 		File f = new File(dirPath);
 		int lastID = f.listFiles().length - 1; //with 2 files, last ID 1 -> -1
 		File lastFile = new File("resources/files/RecipeData/" + lastID + ".json");
+		BufferedReader reader = null;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(lastFile));
+			reader = new BufferedReader(new FileReader(lastFile));
 			
 			String lastReadLine = reader.readLine();
 			while (lastReadLine != null) {
@@ -215,6 +216,15 @@ public class RecipeData implements Data {
 		}
 		catch (IOException e){
 			e.printStackTrace();
+		}
+		finally {
+			if(reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
@@ -280,20 +290,38 @@ public class RecipeData implements Data {
 		ArrayList <RecipeData> res = new ArrayList <RecipeData>();
 		for (File f : load.listFiles()) {
 			BufferedReader br = null;
+			FileReader fi = null;
 			try {
-				br = new BufferedReader(new FileReader(f));
+				fi = new FileReader(f);
+				br = new BufferedReader(fi);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 		  	RecipeData read = null;
-		  		try {
-					read = loader.fromJson(br.readLine(), RecipeData.class);
-				} catch (JsonSyntaxException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		  	res.add(read);
+		  	try {
+				read = loader.fromJson(br.readLine(), RecipeData.class);
+				res.add(read);
+			} catch (JsonSyntaxException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		  	finally {
+		  		if(br != null) {
+		  			try {
+						br.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+		  		}
+		  		if(fi != null) {
+		  			try {
+						br.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+		  		}
+		  	}
 		}
 		return res;
 	}

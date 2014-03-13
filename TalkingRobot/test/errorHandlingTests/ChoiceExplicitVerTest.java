@@ -36,14 +36,35 @@ public class ChoiceExplicitVerTest extends BasicTest{
 	}
 	
 	/**
-	 * Testing choice strategy in main dialog
+	 * Testing explicit verification + choice strategy in main dialog
 	 */
 	@Test
 	public void cevTest2() {
 		userInput.add("hi");
 		userInput.add("my name is meng meng");
 		userInput.add("cavideria");
-		userInput.add("i meant cavideria");
+		userInput.add("cavideria");
+		userInput.add("cavideria");
+		userInput.add("cavideria");
+		userInput.add("no");
+		
+		this.runMainActivityWithTestInput(userInput);
+		
+		assertTrue((nlgResults.get(2).contains("cavideria") || nlgResults.get(2).contains("cafeteria"))
+				&& (nlgResults.get(4).contains("cavideria") || nlgResults.get(4).contains("cafeteria"))
+				&& nlgResults.get(5).contains("cafeteria")
+				&& (nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat")));
+	}
+	
+	/**
+	 * Testing choice strategy in main dialog
+	 */
+	@Test
+	public void cTest2() {
+		userInput.add("hi");
+		userInput.add("my name is meng meng");
+		userInput.add("cavideria");
+		userInput.add("i meant the first");
 		
 		this.runMainActivityWithTestInput(userInput);
 		
@@ -55,7 +76,7 @@ public class ChoiceExplicitVerTest extends BasicTest{
 	 * Testing choice strategy in main dialog
 	 */
 	@Test
-	public void cevTest3() {
+	public void cTest3() {
 		userInput.add("hi");
 		userInput.add("my name is meng meng");
 		userInput.add("cavideria");

@@ -172,12 +172,21 @@ public class RobotData implements Data {
 		  	RobotData read = null;
 		  		try {
 					read = loader.fromJson(br.readLine(), RobotData.class);
+					res.add(read);
 				} catch (JsonSyntaxException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-		  	res.add(read);
+		  		finally {
+					if(br != null) {
+						try {
+							br.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 		}
 		return res;
 	}
