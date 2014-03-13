@@ -1,5 +1,6 @@
 package errorHandlingTests;
 
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -15,7 +16,7 @@ import basicTestCases.BasicTest;
 public class IndirectVerTest extends BasicTest{
 	
 	/**
-	 * Testing explicit verification strategy in main dialog
+	 * Testing indirect verification strategy in main dialog
 	 */
 	@Test
 	public void ivTest1() {
@@ -31,7 +32,7 @@ public class IndirectVerTest extends BasicTest{
 	}
 	
 	/**
-	 * Testing explicit verification strategy in main dialog
+	 * Testing indirect verification strategy in main dialog
 	 */
 	@Test
 	public void ivTest2() {

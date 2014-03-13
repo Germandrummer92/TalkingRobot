@@ -26,12 +26,10 @@ public class KitchenAssistRecipeAssistScenario extends basicTestCases.BasicTest{
 		runMainActivityWithTestInput(userInput);
 		
 		assertTrue(nlgResults.get(3).contains("hamburger"));
-		assertTrue(nlgResults.get(4).contains("Ground beef") && nlgResults.get(4).contains("Lettuce") 
-				&& nlgResults.get(4).contains("Buns")
-				&& nlgResults.get(5).contains("knife")
-				&& nlgResults.get(6).contains("can I"));
+		assertTrue(nlgResults.get(4).contains("ground beef") && nlgResults.get(4).contains("lettuce") 
+				&& nlgResults.get(4).contains("buns"));
+		assertTrue(nlgResults.get(5).contains("knife"));
+		assertTrue(nlgResults.get(6).contains("can I"));
 		assertTrue(nlgResults.get(7).contains("silverware drawer"));
-		//TODO does not change from RA to KA
-//		assertTrue(nlgResults.get(6).contains("silverware drawer"));
 	}
 }
