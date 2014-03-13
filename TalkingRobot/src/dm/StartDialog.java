@@ -179,6 +179,7 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 		//State never Reached
+		DialogManager.giveDialogManager().setInErrorState(true);
 		
 	}
 
@@ -201,7 +202,7 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateWantsSave(List<Keyword> keywords, List<String> terms) {
 		//State never Reached
-		
+		DialogManager.giveDialogManager().setInErrorState(true);
 	}
 
 	/**
@@ -211,6 +212,7 @@ public class StartDialog extends Dialog {
 	 */
 	private void updateStateSaved(List<Keyword> keywords, List<String> terms) {
 		//Nothing needed, Jumping due to Keyword.
+		DialogManager.giveDialogManager().setInErrorState(true);
 		}
 		
 
@@ -230,6 +232,7 @@ public class StartDialog extends Dialog {
 				getCurrentSession().setCurrentUser(new User());
 			}
 		}
+		DialogManager.giveDialogManager().setInErrorState(true);
 		
 	}
 
@@ -288,6 +291,7 @@ public class StartDialog extends Dialog {
 				}
 			}
 		}
+		//DialogManager.giveDialogManager().setInErrorState(true);
 	}
 
 	/**

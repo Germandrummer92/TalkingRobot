@@ -182,7 +182,7 @@ DialogManager.giveDialogManager().setInErrorState(true);
 * @param terms terms passed
 */
 private void updateStateIngNotFound(List<Keyword> keywords, List<String> terms) {
-//Not needed, only one State not found needed
+	DialogManager.giveDialogManager().setInErrorState(true);
 
 }
 
@@ -220,6 +220,7 @@ DialogManager.giveDialogManager().setInErrorState(true);
 */
 private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 //State should never be reached
+	DialogManager.giveDialogManager().setInErrorState(true);
 }
 
 /**

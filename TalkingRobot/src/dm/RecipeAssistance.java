@@ -12,6 +12,10 @@ public enum RecipeAssistance  {
   RA_TELL_STEPS,
 
   RA_TELL_COUNTRY_OF_ORIGIN,
+  
+  RA_TELL_COUNTRY_FOUND,
+  
+  RA_TELL_COUNTRY_NOT_FOUND,
 
   RA_TELL_CREATOR,
 

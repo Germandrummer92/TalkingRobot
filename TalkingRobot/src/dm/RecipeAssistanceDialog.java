@@ -350,7 +350,6 @@ private void updateStateTellWholeRecipe(List<Keyword> keywords,
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
 		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
 	}
-	DialogManager.giveDialogManager().setInErrorState(true);
 }
 
 /**
@@ -363,10 +362,7 @@ private void updateStateTellToolNotFound(List<Keyword> keywords,
 	//If we came here, keyword for ingredients and unknown ingredient must have been passed
 	if (terms == null || terms.isEmpty()) {
 		DialogManager.giveDialogManager().setInErrorState(true);
-	}
-	else {
-		DialogManager.giveDialogManager().setInErrorState(true);
-	}
+	}	
 }
 
 /**
@@ -375,14 +371,12 @@ private void updateStateTellToolNotFound(List<Keyword> keywords,
 * @param terms
 */
 private void updateStateTellCountryFound(List<Keyword> keywords, List<String> terms) {
-	
 	//We came here due to a jump, so the Ingredient should have been passed, if not there's an error
 		if (keywords != null && !keywords.isEmpty()) {
 			for (Keyword kw : keywords) {
-				if (kw.getKeywordData().getType().equals(KeywordType.COUNTRY)) {System.out.println(kw.getWord());
+				if (kw.getKeywordData().getType().equals(KeywordType.COUNTRY)) {
 					for (Recipe r : getRecipeDatabase()) {
-						if (r.getRecipeData().getOriginalCountry() != null) {System.out.println("country2");
-						System.out.println(r.getRecipeData().getOriginalCountry());
+						if (r.getRecipeData().getOriginalCountry() != null) {
 							if (r.getRecipeData().getOriginalCountry().equalsIgnoreCase(kw.getWord())) {
 								currRecipe = r;
 								return;
@@ -517,9 +511,7 @@ private void updateStateTellNumOfSteps(List<Keyword> keywords, List<String> term
 	//If not, the recipe should've already been set, if not, we need a recipe Name.
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
 		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
-		return;
 	}
-	DialogManager.giveDialogManager().setInErrorState(true);
 }
 
 /**
@@ -540,9 +532,7 @@ private void updateStateTellCreator(List<Keyword> keywords, List<String> terms) 
 	//If not, the recipe should've already been set, if not, we need a recipe Name.
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
 		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
-		return;
 	}
-	//DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
 
@@ -564,9 +554,7 @@ private void updateStateTellOrigin(List<Keyword> keywords, List<String> terms) {
 	//If not, the recipe should've already been set, if not, we need a recipe Name.
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
 		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
-		return;
 	}
-	//DialogManager.giveDialogManager().setInErrorState(true);
 	
 }
 
@@ -638,7 +626,7 @@ private void updateStateTellIngredients(List<Keyword> keywords,
 	if (currRecipe == null || currRecipe.getRecipeData() == null) {
 		getCurrentDialogState().setCurrentState(RecipeAssistance.RA_WAITING_FOR_RECIPE_NAME);
 	}
-	//DialogManager.giveDialogManager().setInErrorState(true);
+	
 }
 
 private void updateStateDelete(List<Keyword> keywords, List<String> terms) {
