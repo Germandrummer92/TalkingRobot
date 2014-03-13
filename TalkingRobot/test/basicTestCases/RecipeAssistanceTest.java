@@ -59,8 +59,8 @@ public class RecipeAssistanceTest extends BasicTest{
 		
 		userInput.add("hello");
 		userInput.add("my name is meng meng");	
-		userInput.add("can you help me with a recipe");
-		userInput.add("i want to cook something with tomato");
+		userInput.add("can you help me with cooking");
+		userInput.add("what recipe uses lettuce");
 		
 		this.runMainActivityWithTestInput(userInput);
 

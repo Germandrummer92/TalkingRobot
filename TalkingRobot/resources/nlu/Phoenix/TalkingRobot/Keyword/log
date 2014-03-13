@@ -25,9 +25,9 @@
 [Ra_Kw]  6 states  18 arcs
 [_how_cook]  5 states  5 arcs
 [_delete]  2 states  4 arcs
-[Recipe]  3 states  3 arcs
+[Recipe]  3 states  4 arcs
 [Tool]  2 states  4 arcs
-[Ingredient]  2 states  3 arcs
+[Ingredient]  3 states  7 arcs
 [Menu]  5 states  5 arcs
 [_meal]  2 states  3 arcs
 [recipe_learning]  2 states  6 arcs
@@ -47,7 +47,15 @@
 [Login]  2 states  4 arcs
 [Login_student]  2 states  2 arcs
 [_name]  5 states  6 arcs
-[User]  3 states  7 arcs
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+WARNING: In <[User]> NonTerm AB not rewritten
+WARNING: In <[User]> NonTerm Benjamin not rewritten
+[User]  3 states  8 arcs
 [_hi]  6 states  7 arcs
 [Logout]  2 states  1 arcs
 [_bye]  10 states  14 arcs
