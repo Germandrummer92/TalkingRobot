@@ -574,10 +574,12 @@ private void updateStateRecipeName(List<Keyword> keywords, List<String> terms) {
 			if (((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName() != null) {
 				recipeName = ((RecipeAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).getRecipeName();
 			}
-			else {
-				recipeName = terms.get(0);
-			}
+
 		}
+	else {
+		recipeName = terms.get(0);
+	}
+		
 		
 		nextState = new RecipeLearningState();
 		nextState.setCurrentState(RecipeLearning.RL_ASK_COUNTRY_OF_ORIGIN);
