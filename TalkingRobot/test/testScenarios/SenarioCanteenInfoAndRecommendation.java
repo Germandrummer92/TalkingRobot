@@ -26,11 +26,11 @@ public class SenarioCanteenInfoAndRecommendation  extends basicTestCases.BasicTe
 		userInput.add("xixi");
 		userInput.add("whatis at line one today");
 		userInput.add("well i do not like these meals is there any suggestion");
-		userInput.add("i want to have fish");
+		userInput.add("i want to have something vegetarian");
 		userInput.add("yes i will take that");
 		userInput.add("where is line three");
 		
-		runMainActivityWithoutConsoleOutput(userInput);
+		runMainActivityWithTestInput(userInput);
 		
 		String dmResultMeals = dmResults.get(2);
 		String[] meals = ((String) dmResultMeals.subSequence(1, dmResultMeals.length() - 1)).split(";");
@@ -63,11 +63,11 @@ public class SenarioCanteenInfoAndRecommendation  extends basicTestCases.BasicTe
 				}
 			}
 		}
-		
+		System.out.println(mealsAtLineOne.size());
 		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
 				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
 		
-		assertTrue(category.equals("fish"));
+		assertTrue(category.equals("vegetarian"));
 		
 		assertTrue(nlgResults.get(6).contains("line three") && nlgResults.get(6).contains("turn right"));
 		
