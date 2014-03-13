@@ -155,25 +155,30 @@ DialogManager.giveDialogManager().setInErrorState(true);
 */
 private void updateStateToolFound(List<Keyword> keywords, List<String> terms) {
 if (keywords != null && !keywords.isEmpty()) {
-for (Keyword kw : keywords) {
-for (Data ref: kw.getKeywordData().getDataReference()) {
-if (ref.getClass().getName().equals("data.ToolData")) {
-requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference().get(0));
-requestedObjectName = ((Tool)requestedObject).getToolData().getToolName();
-if (((Tool)requestedObject).getToolData().getLocation() == null || ((Tool)requestedObject).getToolData().getLocation().isEmpty()) {
-getCurrentDialogState().setCurrentState(KitchenAssistance.KA_WAITING_FOR_LOCATION);
-}
-return;
-}
-}
-}
-}
-if (requestedObject != null) {
-return;
-}
-DialogManager.giveDialogManager().setInErrorState(true);
+	for (Keyword kw : keywords) {
+			for (Data ref: kw.getKeywordData().getDataReference()) {
+					if (ref.getClass().getName().equals("data.ToolData")) {
+							requestedObject = new Tool((ToolData)kw.getKeywordData().getDataReference().get(0));
+							requestedObjectName = ((Tool)requestedObject).getToolData().getToolName();
+							if (((Tool)requestedObject).getToolData().getLocation() == null || ((Tool)requestedObject).getToolData().getLocation().isEmpty()) {
+								getCurrentDialogState().setCurrentState(KitchenAssistance.KA_WAITING_FOR_LOCATION);
+							}
+							return;
+					}
+	}
+	}
+	}
+	if (requestedObject != null) {
+		if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(KitchenAssistanceDialog.class)) {
+			if (((KitchenAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).requestedObjectName.equals(this.requestedObjectName)) {
+				DialogManager.giveDialogManager().setInErrorState(true);
+			}
+		}
+		return;
+	}
+		DialogManager.giveDialogManager().setInErrorState(true);
 
-}
+	}	
 
 /**
 * Updates the state if its in the IngredientNotFound state.
@@ -206,6 +211,12 @@ return;
 }
 }
 if (requestedObject != null) {
+	if (DialogManager.giveDialogManager().getPreviousDialog().getClass().equals(KitchenAssistanceDialog.class)) {
+
+		if (((KitchenAssistanceDialog)DialogManager.giveDialogManager().getPreviousDialog()).requestedObjectName.equals(this.requestedObjectName)) {
+			DialogManager.giveDialogManager().setInErrorState(true);
+		}
+	}
 return;
 }
 DialogManager.giveDialogManager().setInErrorState(true);
