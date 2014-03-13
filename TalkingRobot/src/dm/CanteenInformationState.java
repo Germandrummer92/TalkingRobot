@@ -398,11 +398,27 @@ public class CanteenInformationState extends DialogState {
    */
   private String generateOutputWithPrice(ArrayList<MealData> meals, int i, String wishMeal, boolean isStudent) {
 	 
+	float priceS = 0;
+	float priceE = 0;
 	float price;
+	boolean found = false;
+	if( wishMeal != null ) {
+		for (MealData m : meals) {
+			if( m.getMealName().toString().toLowerCase().contains(wishMeal) ) {
+				priceS = m.getS_price();
+				priceE = m.getE_price();
+				found = true;
+				break;
+			}
+		}
+	}
+	if(!found) {
+		priceS = meals.get(0).getS_price();
+		priceE = meals.get(0).getE_price();  // when corresponding meal not found, return the first as default
+	}
 	if(isStudent) {
-		  price = meals.get(0).getS_price();
-	} else price = meals.get(0).getE_price();// at line one, all price are the same
-	
+		  price = priceS;
+	} else price = priceE;
 	if( wishMeal.equals("")) {
 	  wishMeal = meals.get(0).getMealName().toString(); // the first meal as default
    }
