@@ -2,6 +2,7 @@ package dm;
 
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +30,12 @@ public class RestartStrategy extends ErrorStrategy {
 	public ErrorHandlingState handleError(List<String> errorWords) {
 		this.riseCounter();
 		ErrorHandlingState errorState = null;
-		if(errorWords != null) {
+//		if(errorWords != null) {
 			Dialog currentDialog = DialogManager.giveDialogManager().getCurrentDialog();
 			errorState = decideDialogBasedErrorHandling(currentDialog);
-		} else {
-			errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, null);
-		}
+//		} else {
+//			errorState = new ErrorHandlingState(true, ErrorHandling.RESTART_START, null);
+//		}
 		return errorState;
 	}
 

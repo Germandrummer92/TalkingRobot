@@ -1,5 +1,6 @@
 package dm;
 
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -140,7 +141,10 @@ public class RestartStrategyTest {
 		ErrorHandlingState comparison = new ErrorHandlingState(
 				true, ErrorHandling.RESTART_RL, null);
 
-
+		System.out.println(errorHandleState.getCurrentState());
+		System.out.println(errorHandleState.getOutputKeyword());
+		System.out.println(comparison.getOutputKeyword());
+		System.out.println(errorHandleState.isQuestion());
 		assertEquals(comparison.getCurrentState(), errorHandleState.getCurrentState());
 		assertEquals(comparison.getOutputKeyword(), errorHandleState.getOutputKeyword());
 		assertEquals(comparison.isQuestion(), errorHandleState.isQuestion());
