@@ -303,11 +303,11 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 //			} //cafe
 		}
 		//TODO not yet implemented to the other Canteens
-		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.MOLTKE)) { }
-		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.HOLZGARTEN)) { }
-		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.GOTTESAUE)) { }
-		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.TIEFENBRONNER)) { }
-		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ERZBERGER)) { }
+//		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.MOLTKE)) { }
+//		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.HOLZGARTEN)) { }
+//		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.GOTTESAUE)) { }
+//		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.TIEFENBRONNER)) { }
+//		else if (wishMeal.canteenData.getCanteenName().equals(CanteenNames.ERZBERGER)) { }
 		return nextState;
 	}
 
@@ -363,6 +363,7 @@ public class CanteenRecommendationDialog extends CanteenDialog {
 		case "vegetarian":
 			return "veg";
 		case "vegan":
+			return keyword; // no changes
 		case "pork":
 			return keyword; // no changes
 		default:
