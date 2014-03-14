@@ -35,10 +35,8 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 		ArrayList<String> mealsAtLineOne = new ArrayList<String>();
 		
 		
-		//LocalDate date = LocalDate.now();
-		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));// 0 for "today"
 		
-		//System.out.println(meals[0]);
 		for( MealData m : curCanteen.getCanteenData().getLines().get(0).getTodayMeals()) {
 			mealsAtLineOne.add(m.getMealName());
 		}
@@ -54,18 +52,11 @@ public class CanteenInfoAndRecommendationScenario  extends basicTestCases.BasicT
 				}
 			}
 		}
-
-		//System.out.println(mealsAtLineOne.get(0));
-		//System.out.println(mealsAtLineOne.get(1));
 		
 		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
 				&& nlgResults.get(2).contains(mealsAtLineOne.get(1)));
 		
 		assertTrue( dmResults.get(4).contains("veg"));
-//		assertTrue(nlgResults.get(2).contains(mealsAtLineOne.get(0))
-//				&& nlgResults.get(2).contains(mealsAtLineOne.get(mealsAtLineOne.size() - 1)));
-//		
-		
 		
 		assertTrue(nlgResults.get(5).contains("line six") && nlgResults.get(5).contains("right"));
 		
