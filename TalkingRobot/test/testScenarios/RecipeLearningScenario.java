@@ -40,7 +40,7 @@ public class RecipeLearningScenario extends basicTestCases.BasicTest  {
 		userInput.add("pepper");
 		userInput.add("yes");//confirm
 		userInput.add("that was the last one");
-		userInput.add("glass bowl");
+		userInput.add("flamingo");
 		userInput.add("yes");
 		userInput.add("the next tool is a knife");
 		userInput.add("that was the last one"); //last on
@@ -71,7 +71,7 @@ public class RecipeLearningScenario extends basicTestCases.BasicTest  {
 			if (toolDatabase.get(i).getToolName().equals("knife")) {
 				knife = toolDatabase.get(i);
 			}
-			if (toolDatabase.get(i).getToolName().equals("glass bowl")) {
+			if (toolDatabase.get(i).getToolName().equals("flamingo")) {
 				bowl = toolDatabase.get(i);
 			}
 		}
@@ -129,7 +129,7 @@ public class RecipeLearningScenario extends basicTestCases.BasicTest  {
 		removableFiles.add("lemon juice");
 		removableFiles.add("red onion");
 		removableFiles.add("pepper");
-		removableFiles.add("glass bowl");
+		removableFiles.add("flamingo");
 
 		assertTrue(recFromDialog.equals(rec));
 		assertTrue(nlgResults.get(0).contains("greecetest") && nlgResults.get(1).contains("marinated greek chicken skewers"));
