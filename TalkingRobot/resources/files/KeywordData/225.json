@@ -1,0 +1,1 @@
+{"wordID":225,"word":"whip","dialogState":[{"currentState":{"name":"KA_TELL_TOOL_FOUND"}},{"currentState":{"name":"RA_TELL_TOOL_FOUND"}},{"currentState":{"name":"RA_TELL_TOOL_FOUND"}}],"priority":0,"dataReference":[{"toolID":4,"toolName":"whip","location":"","recipes":[{"recipeID":5,"recipeName":"","originalCountry":""}]}],"type":"TOOL"}

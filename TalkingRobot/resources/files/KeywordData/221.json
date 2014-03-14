@@ -1,0 +1,1 @@
+{"wordID":221,"word":"egg","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":5,"dataReference":[{"ingredientID":13,"ingredientName":"egg","ingredientLocation":""}],"type":"INGREDIENT"}

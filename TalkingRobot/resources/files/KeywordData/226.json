@@ -1,0 +1,1 @@
+{"wordID":226,"word":"bowl","dialogState":[{"currentState":{"name":"KA_TELL_TOOL_FOUND"}},{"currentState":{"name":"RA_TELL_TOOL_FOUND"}},{"currentState":{"name":"RA_TELL_TOOL_FOUND"}}],"priority":0,"dataReference":[{"toolID":5,"toolName":"bowl","location":"","recipes":[{"recipeID":5,"recipeName":"","originalCountry":""}]}],"type":"TOOL"}

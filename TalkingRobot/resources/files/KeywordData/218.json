@@ -1,0 +1,1 @@
+{"wordID":218,"word":"baking powder","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":5,"dataReference":[{"ingredientID":10,"ingredientName":"baking powder","ingredientLocation":""}],"type":"INGREDIENT"}

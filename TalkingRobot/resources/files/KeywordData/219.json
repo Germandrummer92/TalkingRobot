@@ -1,0 +1,1 @@
+{"wordID":219,"word":"salt","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":5,"dataReference":[{"ingredientID":11,"ingredientName":"salt","ingredientLocation":""}],"type":"INGREDIENT"}

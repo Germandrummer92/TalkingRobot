@@ -1,0 +1,1 @@
+{"wordID":217,"word":"flour","dialogState":[{"currentState":{"name":"KA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}},{"currentState":{"name":"RA_TELL_INGREDIENT_FOUND"}}],"priority":5,"dataReference":[{"ingredientID":9,"ingredientName":"flour","ingredientLocation":""}],"type":"INGREDIENT"}
