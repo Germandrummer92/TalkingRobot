@@ -178,7 +178,14 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-		//TODO
+		for (Keyword kw: keywords) {
+			for (DialogState d : kw.getReference()) {
+				if (d.getCurrentState() == Start.S_EXIT) {
+					Main.giveMain().setUserLoggedIn(false);
+					return;
+				}
+			}
+		}
 	}
 
 	/**
