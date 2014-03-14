@@ -18,7 +18,7 @@ import dm.Canteen;
  * @author Xizhe Lian
  * @version 1.0
  */
-public class CICoverageTest1 extends basicTestCases.BasicTest {
+public class CICoverageTest extends basicTestCases.BasicTest {
 	
 	/**
 	 * test ouput when user ask for generall informations about canteen

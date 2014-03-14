@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import data.CanteenData;
@@ -96,7 +97,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		assertTrue(matched);
 		
 		/* test line six */
-		ArrayList<String> lineSixMeals = new ArrayList<String>();
+	    ArrayList<String> lineSixMeals = new ArrayList<String>();
 		for( MealData m : curCanteen.getCanteenData().getLines().get(8).getTodayMeals()) {
 			lineSixMeals.add(m.getMealName());
 		}
@@ -109,7 +110,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		assertTrue(matched);
 		
 		/* test line cafeteria */
-		ArrayList<String> cafeMeals = new ArrayList<String>();
+    	ArrayList<String> cafeMeals = new ArrayList<String>();
 		for( MealData m : curCanteen.getCanteenData().getLines().get(6).getTodayMeals()) {
 			cafeMeals.add(m.getMealName());
 		}
@@ -124,10 +125,153 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		
 		}
 	
-	    
+	/**
+	 * test ask student price function of each line
+	 */
+	@Test
+	public void AdenAskStudentPriceTest(){
+		LocalDate date = LocalDate.now();
+		int dayOfWeek = date.getDayOfWeek();
+		boolean weekend = false;
+		
+		Canteen c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		int dayShift = (dayOfWeek + 2) % 7;
+		if(dayOfWeek == 0 || (dayOfWeek == 6)) { // weekends
+			c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
+			weekend = true;
+		}
+		
+		userInput.add("hi");
+		userInput.add("xizhe");
+		
+		if( !weekend ){
+			userInput.add("what's in canteen today");
+		}else {
+			if(dayShift == 1) {
+				userInput.add("what's in canteen next monday");
+			}else userInput.add("what's in canteen next tuesday");
+		}
+		
+		
+		String meal = c.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName(); // line one
+		userInput.add("how much is " + meal);
+		// line two is closed now
+		meal = c.getCanteenData().getLines().get(2).getTodayMeals().get(0).getMealName();// line three
+		userInput.add("how much costs " + meal);
+		meal = c.getCanteenData().getLines().get(3).getTodayMeals().get(0).getMealName();// line four
+		userInput.add("what's the price of " + meal);
+		meal = c.getCanteenData().getLines().get(8).getTodayMeals().get(0).getMealName();// line six
+		userInput.add("what is the price of " + meal);
+		ArrayList<MealData> cafeMeals = c.getCanteenData().getLines().get(6).getTodayMeals(); // cafeteria
+		for( MealData m : cafeMeals ){
+			meal = m.getMealName();
+			userInput.add("how much is " + meal);
+		}
+		/* side dish test */
+		userInput.add("how much is blattSalat");
+		userInput.add("how much costs currywurst");
+		userInput.add("what's the price of belgische pommes");
+		userInput.add("what is the price of country potatoes");
+		
+		runMainActivityWithTestInput(userInput);
+		
+		String strAmount = String.valueOf(2.50);
+		assertTrue(nlgResults.get(3).contains(strAmount));// line one price
+		
+		float price = c.getCanteenData().getLines().get(2).getTodayMeals().get(0).getS_price();
+		strAmount = String.valueOf(price);
+		assertTrue( nlgResults.get(4).contains(strAmount) );
+		
+		price = c.getCanteenData().getLines().get(3).getTodayMeals().get(0).getS_price();
+		strAmount = String.valueOf(price);
+		assertTrue(nlgResults.get(5).contains(strAmount));
+		
+		
+		price = c.getCanteenData().getLines().get(8).getTodayMeals().get(0).getS_price();
+		strAmount = String.valueOf(price);
+		assertTrue(nlgResults.get(6).contains(strAmount));
+		
+		boolean correct = false;
+		
+		for(int i = 1; i <= cafeMeals.size(); i++) {
+			price = cafeMeals.get(i - 1).getS_price();
+			strAmount = String.valueOf(price);
+			if(nlgResults.get(i + 6).contains(strAmount)){
+				correct = true;
+			}else correct = false;
+		}
+		assertTrue(correct);
+		
+		strAmount = String.valueOf(0.75);
+		//System.out.println(nlgResults.get(7 + cafeMeals.size()));
+		assertTrue(nlgResults.get(7 + cafeMeals.size()).contains(strAmount)); // blatsalat is always 0.75
+		
+		strAmount = String.valueOf(1.7);
+		assertTrue(nlgResults.get(8 + cafeMeals.size()).contains(strAmount));
+		
+		strAmount = String.valueOf(1.15);
+		assertTrue(nlgResults.get(9 + cafeMeals.size()).contains(strAmount));
+		
+		strAmount = String.valueOf(0.9);
+		assertTrue(nlgResults.get(10 + cafeMeals.size()).contains(strAmount));
+
+	}
 	
-	
-	
+	/**
+	 * test ask line location function
+	 */
+	@Test 
+	public void LineLocationTest() {
+		LocalDate date = LocalDate.now();
+		int dayOfWeek = date.getDayOfWeek();
+		boolean weekend = false;
+		
+		Canteen c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		int dayShift = (dayOfWeek + 2) % 7;
+		if(dayOfWeek == 0 || (dayOfWeek == 6)) { // weekends
+			c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
+			weekend = true;
+		}
+		
+		userInput.add("hi");
+		userInput.add("xizhe");
+		
+		if( !weekend ){
+			userInput.add("what's in canteen today");
+		}else {
+			if(dayShift == 1) {
+				userInput.add("what's in canteen next monday");
+			}else userInput.add("what's in canteen next tuesday");
+		}
+		
+		userInput.add("where is line one");
+		userInput.add("where is line two");
+		userInput.add("where is line three");
+		userInput.add("where is line four");
+		userInput.add("where is line five");
+		userInput.add("where is line six");
+		userInput.add("where is schnitzelbar");
+		userInput.add("where is cafeteria");
+		userInput.add("where is curry queen");
+		
+		runMainActivityWithTestInput(userInput);
+		
+		assertTrue(nlgResults.get(3).contains("line one") && nlgResults.get(3).contains("left"));
+		assertTrue(nlgResults.get(4).contains("line two") && nlgResults.get(4).contains("left"));
+		assertTrue(nlgResults.get(5).contains("line three") && nlgResults.get(5).contains("right"));
+		assertTrue(nlgResults.get(6).contains("line four") && nlgResults.get(6).contains("right"));
+		assertTrue(nlgResults.get(7).contains("line five") && nlgResults.get(7).contains("right"));
+		assertTrue(nlgResults.get(8).contains("line six") && nlgResults.get(8).contains("right"));
+		assertTrue(nlgResults.get(9).contains("schnitzelbar") && nlgResults.get(9).contains("dinning hall"));
+		assertTrue(nlgResults.get(10).contains("cafeteria") && nlgResults.get(10).contains("pass by"));
+		assertTrue(nlgResults.get(11).contains("curry queen") && nlgResults.get(11).contains("slope"));
+
+
+
+
+		
+		
+	}
 	
 	
 	
