@@ -282,6 +282,115 @@ public class CICoverageTest1 extends basicTestCases.BasicTest {
 
 	}
 	
+	/**
+	 * general informations in canteen moltke street
+	 */
+	@Test
+	public void MolteGeneralMealsInfoTest() {
+		userInput.add("hi");
+		userInput.add("xizhe");
+		userInput.add("what's in canteen moltke today");
+		userInput.add("what's in canteen moltke tomorrow");
+		userInput.add("what's in canteen moltke the day after tomorrow");
+		
+		runMainActivityWithTestInput(userInput);
+		
+		ArrayList<String> meals = new ArrayList<String>();
+		Canteen curCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, 0)); // 0 is for "today"
+		Canteen tmrCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, 1)); // 1 for "tomorrow"
+		Canteen datCanteen = new Canteen(new CanteenData(CanteenNames.MOLTKE, 2)); // 2 for "the day after tomorrow"
+		
+		ArrayList<LineData> lines = new ArrayList<LineData>();
+		ArrayList<MealData> mls = new ArrayList<MealData>();
+		LocalDate date = LocalDate.now();
+		int dayOfWeek = date.getDayOfWeek();
+		if(dayOfWeek == 6 || dayOfWeek == 0) {// it's weekend
+			assertTrue(nlgResults.get(2).contains("closed") 
+					||nlgResults.get(2).contains("weekend"));
+		}else { // normal working day
+			for( LineData l : curCanteen.getCanteenData().getLines()) {
+				lines.add(l);
+			}
+			
+			for( LineData l : lines) {
+				for( MealData m : l.getTodayMeals()) {
+					mls.add(m);
+				} 
+			}
+			
+			for(MealData m : mls) {
+				meals.add(m.getMealName());
+				
+			}
+			
+			boolean mealMatched = false;
+			for(String str : meals) {
+				if(nlgResults.get(2).contains(str)){
+					mealMatched = true;
+				}else mealMatched = false;
+			}
+			assertTrue(mealMatched);
+			
+		}
+		
+		if((dayOfWeek + 1) % 7 == 6 
+				|| (dayOfWeek + 1) % 7 == 0) { // "tomorrow" is weekend
+			assertTrue(nlgResults.get(3).contains("closed") 
+					||nlgResults.get(3).contains("weekend"));
+		}else { // normal working day
+			for( LineData l : tmrCanteen.getCanteenData().getLines()) {
+				lines.add(l);
+			}
+			
+			for( LineData l : lines) {
+				for( MealData m : l.getTodayMeals()) {
+					mls.add(m);
+				} 
+			}
+			
+			for(MealData m : mls) {
+				meals.add(m.getMealName());
+				
+			}
+			
+			boolean mealMatched = false;
+			for(String str : meals) {
+				if(nlgResults.get(3).contains(str)){
+					mealMatched = true;
+				}else mealMatched = false;
+			}
+			assertTrue(mealMatched);
+		}
+		
+		if((dayOfWeek + 2) % 7 == 6 
+				|| (dayOfWeek + 2) % 7 == 0) { // "the day after tomorrow" is weekend
+			assertTrue(nlgResults.get(4).contains("closed") 
+					||nlgResults.get(4).contains("weekend"));
+		}else { // normal working day
+			for( LineData l : datCanteen.getCanteenData().getLines()) {
+				lines.add(l);
+			}
+			
+			for( LineData l : lines) {
+				for( MealData m : l.getTodayMeals()) {
+					mls.add(m);
+				} 
+			}
+			
+			for(MealData m : mls) {
+				meals.add(m.getMealName());
+				
+			}
+			
+			boolean mealMatched = false;
+			for(String str : meals) {
+				if(nlgResults.get(4).contains(str)){
+					mealMatched = true;
+				}else mealMatched = false;
+			}
+			assertTrue(mealMatched);
+		}
+	}
 		
 
 }
