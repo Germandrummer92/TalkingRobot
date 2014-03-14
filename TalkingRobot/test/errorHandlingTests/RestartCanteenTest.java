@@ -8,6 +8,11 @@ import org.junit.Test;
 
 import basicTestCases.BasicTest;
 
+/**
+ * 
+ * @author Meng Meng Yan
+ * @version 1.2
+ */
 public class RestartCanteenTest extends BasicTest {
 
 	/**
@@ -66,7 +71,6 @@ public class RestartCanteenTest extends BasicTest {
 		userInput.add("errorhandling");
 		userInput.add("errorhandling");
 		userInput.add("errorhandling");
-		userInput.add("errorhandling");
 		userInput.add("handle the error");
 		userInput.add("handle the error somehow");
 		userInput.add("handle this error");
@@ -79,7 +83,10 @@ public class RestartCanteenTest extends BasicTest {
 				&& (nlgResults.get(5).contains("again") || nlgResults.get(5).contains("repeat"))
 				&& nlgResults.get(6).contains("rephrase")
 				&& nlgResults.get(8).contains("rephrase")
-				&& (nlgResults.get(9).contains("would you like") || nlgResults.get(9).contains("prefer")));
+				&& (nlgResults.get(9).contains("you like") || nlgResults.get(9).contains("prefer")
+						|| nlgResults.get(9).contains("you mean") || nlgResults.get(9).contains("you want")
+						|| nlgResults.get(9).contains("try"))
+				&& nlgResults.get(10).contains("else"));
 	}
 	
 	/**
@@ -103,11 +110,12 @@ public class RestartCanteenTest extends BasicTest {
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-//		assertTrue((nlgResults.get(3).contains("again") || nlgResults.get(3).contains("repeat"))
-//				&& (nlgResults.get(5).contains("again") || nlgResults.get(5).contains("repeat"))
-//				&& nlgResults.get(6).contains("rephrase")
-//				&& nlgResults.get(8).contains("rephrase")
-//				&& (nlgResults.get(9).contains("would you like") || nlgResults.get(9).contains("prefer")));
+		assertTrue((nlgResults.get(4).contains("again") || nlgResults.get(4).contains("repeat"))
+				&& (nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+				&& nlgResults.get(7).contains("rephrase")
+				&& nlgResults.get(9).contains("rephrase")
+				&& (nlgResults.get(10).contains("you like") || nlgResults.get(10).contains("prefer")
+						|| nlgResults.get(10).contains("you mean")));
 	}
 	
 	/**
@@ -122,7 +130,6 @@ public class RestartCanteenTest extends BasicTest {
 		userInput.add("errorhandling");
 		userInput.add("errorhandling");
 		userInput.add("errorhandling");
-		userInput.add("errorhandling");
 		userInput.add("handle the error");
 		userInput.add("handle the error somehow");
 		userInput.add("handle this error");
@@ -132,13 +139,14 @@ public class RestartCanteenTest extends BasicTest {
 		
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue((nlgResults.get(5).contains("again") || nlgResults.get(5).contains("repeat"))
-				&& (nlgResults.get(7).contains("again") || nlgResults.get(7).contains("repeat"))
-				&& nlgResults.get(8).contains("rephrase")
-				&& nlgResults.get(10).contains("rephrase")
-				&& (nlgResults.get(11).contains("you mean") || nlgResults.get(11).contains("you like"))
-				&& (nlgResults.get(12).contains("again") || nlgResults.get(12).contains("repeat"))
-				&& (nlgResults.get(13).contains("would you like") || nlgResults.get(13).contains("prefer")));
+		assertTrue((nlgResults.get(4).contains("again") || nlgResults.get(4).contains("repeat"))
+				&& (nlgResults.get(6).contains("again") || nlgResults.get(6).contains("repeat"))
+				&& nlgResults.get(7).contains("rephrase")
+				&& nlgResults.get(9).contains("rephrase")
+				&& (nlgResults.get(10).contains("you like") || nlgResults.get(10).contains("prefer")
+						|| nlgResults.get(10).contains("you mean"))
+				&& (nlgResults.get(11).contains("again") || nlgResults.get(12).contains("repeat"))
+				&& (nlgResults.get(12).contains("you like") || nlgResults.get(12).contains("prefer")));
 	}
 	
 }
