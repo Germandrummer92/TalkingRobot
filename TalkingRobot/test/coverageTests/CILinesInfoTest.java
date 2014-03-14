@@ -24,7 +24,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 	 * Ask meals information about each lines 
 	 */
 	@Test
-   public void AdenAskMeals() {
+   public void adenAskMeals() {
 		userInput.add("hi");
 		userInput.add("xizhe");
 		userInput.add("what's at line one today");
@@ -129,7 +129,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 	 * test ask student price function of each line
 	 */
 	@Test
-	public void AdenAskStudentPriceTest(){
+	public void adenAskStudentPriceTest(){
 		LocalDate date = LocalDate.now();
 		int dayOfWeek = date.getDayOfWeek();
 		boolean weekend = false;
@@ -221,7 +221,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 	 * test ask employee price function of each line
 	 */
 	@Test
-	public void AdenAskEmployeePriceTest(){
+	public void adenAskEmployeePriceTest(){
 		LocalDate date = LocalDate.now();
 		int dayOfWeek = date.getDayOfWeek();
 		boolean weekend = false;
@@ -316,7 +316,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 	 * test ask line location function
 	 */
 	@Test 
-	public void LineLocationTest() {
+	public void lineLocationTest() {
 		LocalDate date = LocalDate.now();
 		int dayOfWeek = date.getDayOfWeek();
 		boolean weekend = false;

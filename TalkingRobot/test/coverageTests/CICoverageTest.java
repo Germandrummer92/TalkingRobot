@@ -24,7 +24,7 @@ public class CICoverageTest extends basicTestCases.BasicTest {
 	 * test ouput when user ask for generall informations about canteen
 	 */
 	@Test
-	public void AdenGeneralMealsInfoTest() {
+	public void adenGeneralMealsInfoTest() {
 		userInput.add("hi");
 		userInput.add("xizhe");
 		userInput.add("what's in canteen adennauerring today");
@@ -134,7 +134,7 @@ public class CICoverageTest extends basicTestCases.BasicTest {
 	 * test output when user asks info about meals in next week
 	 */
 	@Test
-	public void AdenGeneralMealsForNextWeekInfoTest() {
+	public void adenGeneralMealsForNextWeekInfoTest() {
 		userInput.add("hi");
 		userInput.add("xizhe");
 		userInput.add("what's in canteen adennauerring next monday");
@@ -286,7 +286,7 @@ public class CICoverageTest extends basicTestCases.BasicTest {
 	 * general informations in canteen moltke street
 	 */
 	@Test
-	public void MolteGeneralMealsInfoTest() {
+	public void molteGeneralMealsInfoTest() {
 		userInput.add("hi");
 		userInput.add("xizhe");
 		userInput.add("what's in canteen moltke today");
