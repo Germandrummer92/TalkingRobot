@@ -101,21 +101,46 @@ public class Dictionary {
 	  FileWriter pw = null;
 	  try {
 		  pw = new FileWriter(new File("resources/nlu/Phoenix/TalkingRobot/Keyword/" + file), true);
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-	 if (pw != null) {
+	  } catch (IOException e) {
+		  e.printStackTrace();
+	  }
+	  if (pw != null) {
+		  try {
+			  pw.append("\n");
+			  pw.append("\t(" + keyword + ")");
+		  } catch (IOException e) {
+			  e.printStackTrace();
+		  }
+		  finally {
+			  try {
+				pw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		  }
+	  }
+	 if (file.equals("ingredient") || file.equals("tool") || file.equals("recipe")) {
+		 pw = null;
 		 try {
-			pw.append("\n");
-			pw.append("\t(" + keyword + ")");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	 try {
-		pw.close();
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
+			 pw = new FileWriter(new File("resources/nlu/Phoenix/TalkingRobot/PossibleKw/" + file), true);
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+		 if (pw != null) {
+			 try {
+				 pw.append("\n");
+				 pw.append("\t(" + keyword + ")");
+			 } catch (IOException e) {
+				 e.printStackTrace();
+			 }
+			 finally {
+				 try {
+					pw.close();
+				 } catch (IOException e) {
+					e.printStackTrace();
+				 }
+			 }
+		 }
 	 }
 	  
   }
