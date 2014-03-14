@@ -40,7 +40,7 @@ public class CanteenInformationTest extends BasicTest{
 		userInput.add("hello");
 		userInput.add("i am bettina");
 		userInput.add("what can i eat at line one in canteen Moltke");
-		userInput.add("whats the price of Scharfe Sombreropfanne mit Kalbfleischbällchen und Vanillepudding");
+		userInput.add("what's the price of Calamares Ringe");
 		
 		//TODO das menue ist jetzt von hand reinkopiert. koennte man vllt automatisieren. und die assertion mit abfrage
 		//nach "line xy" funktioniert nicht so großartig, weil es manchmal nicht im output ist
@@ -63,7 +63,8 @@ public class CanteenInformationTest extends BasicTest{
 		//nach "line xy" funktioniert nicht so großartig, weil es manchmal nicht im output ist
 		this.runMainActivityWithTestInput(userInput);
 		
-		assertTrue(nlgResults.get(2).toLowerCase().contains("at line one"));
+		
+		assertTrue(nlgResults.get(2).toLowerCase().contains("at line one") );
 	}
 	
 	/**

@@ -51,7 +51,7 @@ public class CRCoverageTest extends basicTestCases.BasicTest {
 		runMainActivityWithTestInput(userInput);
 
 		assertTrue(nlgResults.get(5).contains("to have")
-				&& nlgResults.get(6).contains("at"));
+				&& (nlgResults.get(6).contains("at") || nlgResults.get(6).contains("from")));
 		
 	}
 	
