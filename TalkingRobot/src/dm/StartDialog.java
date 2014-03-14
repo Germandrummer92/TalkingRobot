@@ -178,9 +178,7 @@ public class StartDialog extends Dialog {
 	 * @param terms terms passed
 	 */
 	private void updateStateExit(List<Keyword> keywords, List<String> terms) {
-		//State never Reached
-		DialogManager.giveDialogManager().setInErrorState(true);
-		
+		//TODO
 	}
 
 	/**
