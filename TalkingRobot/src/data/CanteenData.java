@@ -16,10 +16,11 @@ import org.json.*;
 import com.google.gson.Gson;
 
 /**
-* This Class represents a canteen. It offers means to automatically load data for the canteens from
-* there json representation formatted as in the KIT canteen files.
+*
 * @author Aleksandar Andonov, Meng Meng Yan
-* @version 3.5
+* @version 3.0
+* This Class represents the data of a canteen of a canteen and offers means to automatically load data for the canteens from
+* there json representation.
 * @see Data
 */
 public class CanteenData implements Data{
@@ -29,7 +30,7 @@ public class CanteenData implements Data{
 	private String address;
   	private ArrayList<LineData> lines;
   	private ArrayList<MealCategoryData> categories;
-  	boolean isOpen; //flag signals weather the mensa is open. Is false only on weekends.
+  	boolean isOpen; //mensa is open when one of it lines is open
   	
   
 	/**
@@ -48,18 +49,11 @@ public class CanteenData implements Data{
 	}
 	
 	/**
-	 * Constructs the canteen object from the canteen file for the day today+offset. The lines are named then as follows:
-	 * Adenauerring: line one, line two, line three, line four, schnitzelbar, theke (this is for cafeteria), nmtisch (cafeteria after 14:30),
-	 * Curry Queen, line six
-	 * Moltke: line one (stands for Wahlessen 1), line two (Wahlessen 2), aktion, gut und gunstig (stands for gut und günstig), buffet, schnitzelbar
-	 * Erzberger: line one(stands for Wahlessen 1), line two (Wahlessen 2)
-	 * Gottesaue: line one(stands for Wahlessen 1), line two (Wahlessen 2)
-	 * Tiefenbronner: line one (stands for Wahl 1), line two (Wahl 2), gut und gunstig (gut und günstig), buffet
-	 * Holzgarten: gut und gunstig (stands for gut und günstig), gut und gunstig 2 (gut und günstig 2)  
-	 * @param canteenName The name of the canteen wanted
+	 * Constructs
+	 * @param canteenName
 	 * @param timeOffset The time offset from the current time in days. For example
 	 * 1 for tommorow, -1 for yesterday and so on. Must be an integer between -3 and
-	 * 13.
+	 * 13
 	 */
 	public CanteenData(CanteenNames canteenName, int timeOffset) {
 		this.canteenName = canteenName;
@@ -80,7 +74,56 @@ public class CanteenData implements Data{
 		
 	}
 	
-
+	private boolean setLines(String dirPath, int timeOffset) {
+		String jsonString = getJsonString(dirPath + canteenName.toString().toLowerCase());
+		boolean linesSet = false;
+		switch(canteenName) {
+			case ADENAUERRING:
+				linesSet = setAdenauerringLines(jsonString, timeOffset);
+				address = "Adenauerring 7";
+				break;
+			case MOLTKE:
+				linesSet = setMoltkeLines(jsonString, timeOffset);
+				address = ""; //unknown
+				break;
+			case  ERZBERGER:
+				linesSet = setErzbergerLines(jsonString, timeOffset);
+				address = "";//unknown
+				break;
+			case GOTTESAUE:
+				linesSet = setGottesaueLines(jsonString, timeOffset);
+				address = "";//unknown
+				break;
+			case TIEFENBRONNER:
+				linesSet = setTiefenbronnerLines(jsonString, timeOffset);
+				address = "";//unknown
+				break;
+			case HOLZGARTEN:
+				linesSet = setHolzgartenLines(jsonString, timeOffset);
+				address ="";//unknown
+				break;
+		}	
+		return linesSet;
+	}
+	
+	private void updateMenu() {
+		String mensaName = canteenName.toString().toLowerCase();
+		try {
+			ProcessBuilder pb = new ProcessBuilder("./mensaUpdate.sh", mensaName);
+			String path = System.getProperty("user.dir");
+			path += "/resources/files/CanteenMenu/";
+			pb.directory(new File(path));
+			Process process = pb.start();
+			process.waitFor();
+		} catch (IOException e) {
+			// TODO 
+				//do nothing
+			//e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+	}
 
 	@Override
 	 /**
@@ -174,69 +217,37 @@ public class CanteenData implements Data{
 	}
 
 	/**
-	 * Set the lines of this canteen using the file located in the folder with path dirPath for the day
-	 * specified by today+offset
-	 * @param dirPath The path to the directory holding the canteen file
-	 * @param timeOffset The offset from the current file
-	 * @return true if the lines were set successfully
-	 */
-	private boolean setLines(String dirPath, int timeOffset) {
-		String jsonString = getJsonString(dirPath + canteenName.toString().toLowerCase());
-		boolean linesSet = false;
-		switch(canteenName) {
-			case ADENAUERRING:
-				linesSet = setAdenauerringLines(jsonString, timeOffset);
-				address = "Adenauerring 7";
-				break;
-			case MOLTKE:
-				linesSet = setMoltkeLines(jsonString, timeOffset);
-				address = ""; //unknown
-				break;
-			case  ERZBERGER:
-				linesSet = setErzbergerLines(jsonString, timeOffset);
-				address = "";//unknown
-				break;
-			case GOTTESAUE:
-				linesSet = setGottesaueLines(jsonString, timeOffset);
-				address = "";//unknown
-				break;
-			case TIEFENBRONNER:
-				linesSet = setTiefenbronnerLines(jsonString, timeOffset);
-				address = "";//unknown
-				break;
-			case HOLZGARTEN:
-				linesSet = setHolzgartenLines(jsonString, timeOffset);
-				address ="";//unknown
-				break;
-		}	
-		return linesSet;
+         * @param canteenID the canteenID to set
+         */
+	public void setCanteenID (Integer canteenID) {
+		this.canteenID = canteenID;
 	}
 	
 	/**
-	 * Updates the menu of this canteen.
-	 */
-	private void updateMenu() {
-		String mensaName = canteenName.toString().toLowerCase();
-		try {
-			ProcessBuilder pb = new ProcessBuilder("./mensaUpdate.sh", mensaName);
-			String scriptPath = System.getProperty("user.dir");
-			scriptPath += "/resources/files/CanteenMenu/";
-			pb.directory(new File(scriptPath));
-			Process process = pb.start();
-			process.waitFor();
-		} catch (IOException e) {
-				//do nothing
-			//e.printStackTrace();
-		} catch (InterruptedException e) {
-			//e.printStackTrace();
-		}
+         * @param canteenName the canteenName to set
+         */
+	public void setCanteenName (CanteenNames canteenName) {
+		this.canteenName = canteenName;
+	}
+	
+	/**
+         * @param adress the adress to set
+         */
+	public void setAddress (String address) {
+		this.address = address;
+	}
+	
+	/**
+         * @param lines the lines to set
+         */
+	public void setLines (ArrayList<LineData> lines) {
+		this.lines = lines;
 	}
 	
 	/**
 	 * Sets the lines of an Adenauerring type mensa (where the lines are named the same way as in the Adenauerring canteen).
 	 * @param jsonString The json String containing the description of the Adenauerring canteen.
 	 * @param timeOffset The time offset from the current time.
-	 * @return true if the lines were set successfully
 	 */
 	private boolean setAdenauerringLines(String jsonString, int timeOffset) {
 		try {
@@ -262,7 +273,7 @@ public class CanteenData implements Data{
 			lines.add(new LineData("line four", getMeals(mealArray)));
 			//SchnitzelBar
 			mealArray = day.getJSONArray("schnitzelbar");
-			lines.add(new LineData("schnitzelbar", getMeals(mealArray)));
+			lines.add(new LineData("schnitzel bar", getMeals(mealArray)));
 			//abend
 			mealArray = day.getJSONArray("abend");
 			lines.add(new LineData("dinner", getMeals(mealArray)));
@@ -298,7 +309,7 @@ public class CanteenData implements Data{
 			JSONObject day = canteen.getJSONObject(unixTime);
 			//Wahlessen 1
 			JSONArray mealArray = day.getJSONArray("wahl1");
-			lines.add(new LineData("line one", getMeals(mealArray)));
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
 			//Wahlessen 2
 			mealArray = day.getJSONArray("wahl2");
 			lines.add(new LineData("line two", getMeals(mealArray)));
@@ -307,7 +318,7 @@ public class CanteenData implements Data{
 			lines.add(new LineData("aktion", getMeals(mealArray)));
 			//Gut und gunstig
 			mealArray = day.getJSONArray("gut");
-			lines.add(new LineData("gut und gunstig", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig", getMeals(mealArray)));
 			//Buffet
 			mealArray = day.getJSONArray("buffet");
 			lines.add(new LineData("buffet", getMeals(mealArray)));
@@ -334,7 +345,7 @@ public class CanteenData implements Data{
 			JSONObject day = canteen.getJSONObject(unixTime);
 			//Wahlessen 1
 			JSONArray mealArray = day.getJSONArray("wahl1");
-			lines.add(new LineData("line one", getMeals(mealArray)));
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
 			//Wahlessen 2
 			mealArray = day.getJSONArray("wahl2");
 			lines.add(new LineData("line two", getMeals(mealArray)));
@@ -358,7 +369,7 @@ public class CanteenData implements Data{
 			JSONObject day = canteen.getJSONObject(unixTime);
 			//Wahlessen 1
 			JSONArray mealArray = day.getJSONArray("wahl1");
-			lines.add(new LineData("line one", getMeals(mealArray)));
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
 			//Wahlessen 2
 			mealArray = day.getJSONArray("wahl2");
 			lines.add(new LineData("line two", getMeals(mealArray)));
@@ -382,13 +393,13 @@ public class CanteenData implements Data{
 			JSONObject day = canteen.getJSONObject(unixTime);
 			//Wahlessen 1
 			JSONArray mealArray = day.getJSONArray("wahl1");
-			lines.add(new LineData("line one", getMeals(mealArray)));
+			lines.add(new LineData("line one", getMeals(mealArray)));//choice one?
 			//Wahlessen 2
 			mealArray = day.getJSONArray("wahl2");
 			lines.add(new LineData("line two", getMeals(mealArray)));
 			//Gut und gunstig
 			mealArray = day.getJSONArray("gut");
-			lines.add(new LineData("gut und gunstig", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig", getMeals(mealArray)));
 			//Buffet
 			mealArray = day.getJSONArray("buffet");
 			lines.add(new LineData("buffet", getMeals(mealArray)));
@@ -413,10 +424,10 @@ public class CanteenData implements Data{
 			
 			//Gut und gunstig
 			JSONArray mealArray = day.getJSONArray("gut");
-			lines.add(new LineData("gut und gunstig", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig", getMeals(mealArray)));
 			//Gut und Gunstig 2
 			mealArray = day.getJSONArray("gut2");
-			lines.add(new LineData("gut und gunstig two", getMeals(mealArray)));
+			lines.add(new LineData("Gut und gunstig two", getMeals(mealArray)));
 			return true;
 		} catch (JSONException e) {
 			
@@ -426,16 +437,15 @@ public class CanteenData implements Data{
 	}
 	
 	/**
-	 * Extract the unixTime stamp from the JSONObject canteen. The time stamp must be for the same day as today + offset(in days).
-	 * If canteen is closed on that day (now+offset) then the isOpen flag is set to false and null is returned.
-	 * If a stamp matching now + offset wasn#t found in the JSON object canteen (formatted like the canteen file of the KIT), then return null
-	 * @param canteen The JSON object representing a canteen formatted as in the canteen file of the KIT
+	 * Get the unixTime stamp from the JSONObject Canteen with the given offset, if mensa is closed on that day (now+offset)
+	 * or if now+ offset wasn't found return null
+	 * @param canteen
 	 * @param timeOffset An integer between -3 and 13
-	 * @return The unix time stamp in the canteen JSONObject for today+offset or null if the day is saturday or sunday or if the today+offset
-	 * is out of the bounds of the canteen file
+	 * @return
 	 */
 	private String manageTime(JSONObject canteen, int timeOffset) {
-	
+		// TODO Auto-generated method stub
+	//	Iterator iterator = canteen.keys();
 		String[] names = JSONObject.getNames(canteen);
 		
 		DateTime now = new DateTime(new Date());		
@@ -446,7 +456,7 @@ public class CanteenData implements Data{
 			now = now.minusDays(timeOffset);
 		}
 		else {
-			return null;
+			//will not work correctly -> Exception??? when time offset is unacceptable
 		}
 		
 		String currWeekDay = now.dayOfWeek().getAsText(); //1 for Monday
@@ -474,10 +484,10 @@ public class CanteenData implements Data{
 	}
 	
 	/**
-	 * Extract the json String from the file with the path specified.
-	 * @param path The path to the file
-	 * @return The String which was read from the file
-	 * @throws FileNotFoundException When the file specified by path wasn't found
+	 * Get the jsons String from file with path specified by parameter
+	 * @param path The path of the file
+	 * @return the read string
+	 * @throws FileNotFoundException 
 	 */
 	private String getJsonString(String path) {
 		File currFile = new File(path);
@@ -485,12 +495,12 @@ public class CanteenData implements Data{
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(currFile));
-			//Get the json String representation of the File
+			
 			String lastReadLine = reader.readLine();
 			while (lastReadLine != null) {
 				jsonString += lastReadLine;
 				lastReadLine = reader.readLine();
-			} 
+			} //Get the json String representation of the File
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -511,10 +521,10 @@ public class CanteenData implements Data{
 	}
 
 	/**
-	 * Extracts the list of meals from a JSONArray containing objects which represent meals in the canteen file.
-	 * @param mealsArray the array containing object which represent meals as in the canteen file
-	 * @return A list of MealData object representing the meals in this system.
-	 * @throws JSONException when the array is not formated accordingly to the canteen file
+	 * Extracts the list of meals from an JSONArray containing meals descriptions
+	 * @param mealsArray
+	 * @return
+	 * @throws JSONException when array is not formated accordingly to mensa style
 	 */
 	private ArrayList<MealData> getMeals(JSONArray mealsArray) throws JSONException {
 		if (mealsArray.length() <= 1) {
@@ -530,20 +540,21 @@ public class CanteenData implements Data{
 	}
 
 	/**
-	 * Extract the MealData from a JSON object (which represents meal in the canteen file)
-	 * @param meal the JSON object representing a valid meal from the canteen file
-	 * @return the MealData object constructed from the JSON object
+	 * Extract the MealData from a meal mensa JSON object
+	 * @param meal
+	 * @return
 	 */
 	private MealData getMeal(JSONObject meal) {
 		MealData result = null;
 		try {
 			float s_price = (float) meal.getDouble("price_1");//for students
-			float e_price = (float) meal.getDouble("price_2");//for employees
-			String name = meal.getString("meal");
+			float e_price = (float) meal.getDouble("price_2");
+			String name = meal.getString("meal"); //dish???
 			String dish = meal.getString("dish");
 			name = name + " " + dish;
 			result = new MealData(name, getCategories(meal), s_price, e_price);
 		} catch (JSONException e) {
+			// TODO Auto-generated catch 
 			e.printStackTrace();
 		} 
 		return result;
@@ -551,9 +562,9 @@ public class CanteenData implements Data{
 	
 	/**
 	 * Returns a list with the categories to which the meal described by
-	 * the JSONObject meal is part of.
-	 * @param meal The json object meal
-	 * @return A list of the meal categories to which the meal is part of
+	 * the JSONObject is part of.
+	 * @param meal
+	 * @return
 	 */
 	private ArrayList<MealCategoryData> getCategories(JSONObject meal) {
 		ArrayList<MealCategoryData> mealCat = new ArrayList<MealCategoryData>();
@@ -584,7 +595,7 @@ public class CanteenData implements Data{
 			}
 		}
 		catch(JSONException e) {
-			e.printStackTrace();
+			
 		}
 		return mealCat;
 	}
@@ -630,8 +641,29 @@ public class CanteenData implements Data{
 	//	CanteenData moltke = new CanteenData(CanteenNames.MOLTKE, 0);
 	//	System.out.println(moltke.generateJSON());
 	//	CanteenData aden = new CanteenData(CanteenNames.ADENAUERRING, 0);
-
-		CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 2);
+	//	String[] name = {"./mensaUpdate.sh", "adenauerring"};
+	//	ProcessBuilder pb = new ProcessBuilder("./mensaUpdate.sh", "adenauerring");
+		//File dir = new File("resources/files/CanteenMenu/");
+		//System.out.println(dir.exists());
+	//	String path = System.getProperty("user.dir");
+	//	path += "/resources/files/CanteenMenu/";
+	//	pb.directory(new File(path));
+		//System.out.println(path);
+		
+	//	try {
+	//		Process proc = pb.start();
+	//		Process proc2 = Runtime.getRuntime().exec("./mensaUpdate.sh", name);
+	//		List<String> com = pb.command();
+	//		for (int i = 0; i < com.size(); i++) {
+	//			System.out.println(com.get(i));
+	//		}
+	//		System.out.println(pb.directory());
+		//	System.out.println(System.getProperty("user.dir"));
+	//	} catch (IOException e) {
+			// TODO Auto-generated catch block
+	//		e.printStackTrace();
+	//	}
+		CanteenData cd = new CanteenData(CanteenNames.ADENAUERRING, 0);
 		System.out.println(cd.generateJSON());
 		System.out.println("Done");
 	}
