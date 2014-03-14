@@ -134,10 +134,10 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		int dayOfWeek = date.getDayOfWeek();
 		boolean weekend = false;
 		
-		Canteen c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		Canteen c3 = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
 		int dayShift = (dayOfWeek + 2) % 7;
 		if(dayOfWeek == 0 || (dayOfWeek == 6)) { // weekends
-			c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
+			c3 = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
 			weekend = true;
 		}
 		
@@ -153,16 +153,16 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		}
 		
 		
-		String meal = c.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName(); // line one
+		String meal = c3.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName(); // line one
 		userInput.add("how much is " + meal);
 		// line two is closed now
-		meal = c.getCanteenData().getLines().get(2).getTodayMeals().get(0).getMealName();// line three
+		meal = c3.getCanteenData().getLines().get(2).getTodayMeals().get(0).getMealName();// line three
 		userInput.add("how much costs " + meal);
-		meal = c.getCanteenData().getLines().get(3).getTodayMeals().get(0).getMealName();// line four
+		meal = c3.getCanteenData().getLines().get(3).getTodayMeals().get(0).getMealName();// line four
 		userInput.add("what's the price of " + meal);
-		meal = c.getCanteenData().getLines().get(8).getTodayMeals().get(0).getMealName();// line six
+		meal = c3.getCanteenData().getLines().get(8).getTodayMeals().get(0).getMealName();// line six
 		userInput.add("what is the price of " + meal);
-		ArrayList<MealData> cafeMeals = c.getCanteenData().getLines().get(6).getTodayMeals(); // cafeteria
+		ArrayList<MealData> cafeMeals = c3.getCanteenData().getLines().get(9).getTodayMeals(); // cafeteria
 		for( MealData m : cafeMeals ){
 			meal = m.getMealName();
 			userInput.add("how much is " + meal);
@@ -170,24 +170,24 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		/* side dish test */
 		userInput.add("how much is blattSalat");
 		userInput.add("how much costs currywurst");
-		userInput.add("what's the price of belgische pommes");
-		userInput.add("what is the price of country potatoes");
+		userInput.add("how much is belgische pommes");
+		userInput.add("how much is country potatoes");
 		
 		runMainActivityWithTestInput(userInput);
 		
 		String strAmount = String.valueOf(2.50);
 		assertTrue(nlgResults.get(3).contains(strAmount));// line one price
 		
-		float price = c.getCanteenData().getLines().get(2).getTodayMeals().get(0).getS_price();
+		float price = c3.getCanteenData().getLines().get(2).getTodayMeals().get(0).getS_price();
 		strAmount = String.valueOf(price);
 		assertTrue( nlgResults.get(4).contains(strAmount) );
 		
-		price = c.getCanteenData().getLines().get(3).getTodayMeals().get(0).getS_price();
+		price = c3.getCanteenData().getLines().get(3).getTodayMeals().get(0).getS_price();
 		strAmount = String.valueOf(price);
 		assertTrue(nlgResults.get(5).contains(strAmount));
 		
 		
-		price = c.getCanteenData().getLines().get(8).getTodayMeals().get(0).getS_price();
+		price = c3.getCanteenData().getLines().get(8).getTodayMeals().get(0).getS_price();
 		strAmount = String.valueOf(price);
 		assertTrue(nlgResults.get(6).contains(strAmount));
 		
@@ -226,10 +226,10 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		int dayOfWeek = date.getDayOfWeek();
 		boolean weekend = false;
 		
-		Canteen c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		Canteen c2 = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
 		int dayShift = (dayOfWeek + 2) % 7;
 		if(dayOfWeek == 0 || (dayOfWeek == 6)) { // weekends
-			c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
+			c2 = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
 			weekend = true;
 		}
 		
@@ -247,20 +247,21 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		}
 		
 		
-		String meal = c.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName(); // line one
+		String meal = c2.getCanteenData().getLines().get(0).getTodayMeals().get(0).getMealName(); // line one
 		userInput.add("how much is " + meal);
 		// line two is closed now
-		meal = c.getCanteenData().getLines().get(2).getTodayMeals().get(0).getMealName();// line three
+		meal = c2.getCanteenData().getLines().get(2).getTodayMeals().get(0).getMealName();// line three
 		userInput.add("how much costs " + meal);
-		meal = c.getCanteenData().getLines().get(3).getTodayMeals().get(0).getMealName();// line four
+		meal = c2.getCanteenData().getLines().get(3).getTodayMeals().get(0).getMealName();// line four
 		userInput.add("what's the price of " + meal);
-		meal = c.getCanteenData().getLines().get(8).getTodayMeals().get(0).getMealName();// line six
+		meal = c2.getCanteenData().getLines().get(8).getTodayMeals().get(0).getMealName();// line six
 		userInput.add("what is the price of " + meal);
-		ArrayList<MealData> cafeMeals = c.getCanteenData().getLines().get(6).getTodayMeals(); // cafeteria
+		
+		/*ArrayList<MealData> cafeMeals = c2.getCanteenData().getLines().get(6).getTodayMeals(); // cafeteria
 		for( MealData m : cafeMeals ){
 			meal = m.getMealName();
 			userInput.add("how much is " + meal);
-		}
+		}*/
 		/* side dish test */
 		userInput.add("how much is blattSalat");
 		//userInput.add("how much costs currywurst");
@@ -272,20 +273,20 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		String strAmount = String.valueOf(3.65);
 		assertTrue(nlgResults.get(5).contains(strAmount));// line one price
 		
-		float price = c.getCanteenData().getLines().get(2).getTodayMeals().get(0).getE_price();
+		float price = c2.getCanteenData().getLines().get(2).getTodayMeals().get(0).getE_price();
 		strAmount = String.valueOf(price);
 		assertTrue( nlgResults.get(6).contains(strAmount) );
 		
-		price = c.getCanteenData().getLines().get(3).getTodayMeals().get(0).getE_price();
+		price = c2.getCanteenData().getLines().get(3).getTodayMeals().get(0).getE_price();
 		strAmount = String.valueOf(price);
 		assertTrue(nlgResults.get(7).contains(strAmount));
 		
 		
-		price = c.getCanteenData().getLines().get(8).getTodayMeals().get(0).getE_price();
+		price = c2.getCanteenData().getLines().get(8).getTodayMeals().get(0).getE_price();
 		strAmount = String.valueOf(price);
 		assertTrue(nlgResults.get(8).contains(strAmount));
 		
-		boolean correct = false;
+		/*boolean correct = false;
 		
 		for(int i = 1; i <= cafeMeals.size(); i++) {
 			price = cafeMeals.get(i - 1).getE_price();
@@ -295,10 +296,10 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 			}else correct = false;
 		}
 		assertTrue(correct);
-		
+		*/
 		strAmount = String.valueOf(0.95); 
 		//System.out.println(nlgResults.get(7 + cafeMeals.size()));
-		assertTrue(nlgResults.get(9 + cafeMeals.size()).contains(strAmount)); // blattsalat is always 0.75
+		assertTrue(nlgResults.get(9).contains(strAmount)); // blattsalat is always 0.75
 		
 		/*// no record for curry wurst employee price
 		strAmount = String.valueOf(1.7);
@@ -308,7 +309,7 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		assertTrue(nlgResults.get(10 + cafeMeals.size()).contains(strAmount));*/
 		
 		strAmount = String.valueOf(1.1);// country potatoes
-		assertTrue(nlgResults.get(10 + cafeMeals.size()).contains(strAmount));
+		assertTrue(nlgResults.get(10).contains(strAmount));
 
 	}
 	
@@ -321,10 +322,10 @@ public class CILinesInfoTest extends basicTestCases.BasicTest {
 		int dayOfWeek = date.getDayOfWeek();
 		boolean weekend = false;
 		
-		Canteen c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+		Canteen c1 = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
 		int dayShift = (dayOfWeek + 2) % 7;
 		if(dayOfWeek == 0 || (dayOfWeek == 6)) { // weekends
-			c = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
+			c1 = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dayShift)); 
 			weekend = true;
 		}
 		

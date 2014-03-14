@@ -235,6 +235,13 @@
 			"CI_ADEN_SCHNITBAR_PRICE" : [
 				""
 			],
+			"CI_ADEN_CAFEABEND_PRICE" : [
+			 	""
+			 ],
+  
+			 "CI_ADEN_CAFEABEND_DISH" : [
+			 	""
+			 ],
 			"CI_ENTRY" : [
 				""
 			],

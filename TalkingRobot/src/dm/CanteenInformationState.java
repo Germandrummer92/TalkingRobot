@@ -122,7 +122,7 @@ public class CanteenInformationState extends DialogState {
 	  case CI_ADEN_CAFE_PRICE:
 		  setQuestion(false);
 		  ArrayList<MealData> meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
-				  .getCanteenData().getLines().get(6).getTodayMeals();
+				  .getCanteenData().getLines().get(9).getTodayMeals();
 		  int index = matchMealIndex(meals, wishMeal);
 	
 		  return generateOutputWithPrice(meals, index, wishMeal, isStudent);
@@ -130,7 +130,7 @@ public class CanteenInformationState extends DialogState {
 	  case CI_ADEN_CURRYQ_PRICE :
 		  setQuestion(false);
 		  ArrayList<MealData> curry_meals = ((CanteenDialog) currentDialog).getCurrentCanteen()
-				  .getCanteenData().getLines().get(6).getTodayMeals();
+				  .getCanteenData().getLines().get(9).getTodayMeals();
 		  int curry_index = matchMealIndex(curry_meals, wishMeal);
 		  
 		  return generateOutputWithPrice(curry_meals, curry_index, wishMeal, isStudent);

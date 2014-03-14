@@ -187,7 +187,7 @@
 			"CI_ADEN_CAFE_DISH" : [
 				""
 			],
-			"CI_DEN_CAFE_PRICE" : [
+			"CI_ADEN_CAFE_PRICE" : [
 				""
 			],
 			"CI_ADEN_CURRYQ_DISH" : [
@@ -232,6 +232,14 @@
 			"CI_ADEN_SCHNITBAR_PRICE" : [
 				""
 			],
+			 "CI_ADEN_CAFEABEND_PRICE" : [
+			 	""
+			 ],
+  
+			 "CI_ADEN_CAFEABEND_DISH" : [
+			 	""
+			 ],
+			
 			"CI_ENTRY" : [
 				""
 			],
