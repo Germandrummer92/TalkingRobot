@@ -1,1 +1,1 @@
-{"wordID":150,"word":"friday","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":8,"dataReference":[],"type":"DEFAULT"}
+{"wordID":150,"word":"friday","dialogState":[{"currentState":{"name":"CI_ENTRY"}},{"currentState":{"name":"CR_ENTRY"}}],"priority":5,"dataReference":[],"type":"DEFAULT"}
