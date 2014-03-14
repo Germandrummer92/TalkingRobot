@@ -430,7 +430,7 @@
 			],
 			"CI_ADEN_LINE_1_DISH" : [
 				"At line one there's <o> {c}",
-				"You can find <o> {c}",
+				"You can find <o> {c} at line one",
 				"{c} <o> will be provided at line one",
 				"{c} at line one there's <o>",
 				"you can get <o> at line one {c}"
@@ -536,10 +536,10 @@
 			],
 			"CI_MOLTKE_CHOICE_1_DISH" : [
 				"At choice one there's <o> {c}",
-				"You can find <o> {c} there",
+				"You can find <o> {c} at choice one",
 				"{c} <o> will be provided at choice one",
 				"{c} at choice one there's <o>",
-				"you can get <o> at choice two {c}"
+				"you can get <o> at choice one {c}"
 			],
 			"CI_MOLTKE_CHOICE_1_PRICE" : [
 				"The price for <o> it's {c}",
