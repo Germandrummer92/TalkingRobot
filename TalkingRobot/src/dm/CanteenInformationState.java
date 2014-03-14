@@ -437,11 +437,13 @@ public class CanteenInformationState extends DialogState {
 	try {
 		for( LineData ld : canteenData.getLines()) {
 			for( MealData md : ld.getTodayMeals()) {
-				if(( ld.getLineID() == (canteenData.getLines().size() - 1)) 
-						&& ( md.getMealID() == (ld.getTodayMeals().size() - 1))) {
-					meals = meals.toString() + " and " + md.getMealName().toString() + " at " + ld.getLineName().toString();
+				if( !ld.getTodayMeals().isEmpty()) {
+					if(( ld.getLineID() == (canteenData.getLines().size() - 1)) 
+							&& ( md.getMealID() == (ld.getTodayMeals().size() - 1))) {
+						meals = meals.toString() + " and " + md.getMealName().toString() + " at " + ld.getLineName().toString();
+					}
+					meals = meals + md.getMealName().toString() + " at " + ld.getLineName().toString() + ";";
 				}
-				meals = meals + md.getMealName().toString() + " at " + ld.getLineName().toString() + ";";
 			}
 		}
 		meals = meals + "}";
