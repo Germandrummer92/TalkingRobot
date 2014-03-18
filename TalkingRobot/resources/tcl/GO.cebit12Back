@@ -1,0 +1,537 @@
+#!/usr/bin/wish
+# ======================================================================
+#
+# Author  : Christian Fuegen
+#           fuegen@ira.uka.de
+# Date    : 16.07.02
+# Remarks : Startup script of One4All on Linux
+#
+# $Id: GO.cebit12,v 1.3 2012/02/28 18:52:24 rsaam Exp $
+#
+# ----------------------------------------------------------------------
+#
+# $Log: GO.cebit12,v $
+# Revision 1.3  2012/02/28 18:52:24  rsaam
+#
+# manual merge with david schiebeners GO.KitchenKK.tcl.
+# Got segmenter
+# some whitespace
+# correct host ip for iaim tamer laptop
+#
+# Revision 1.2  2012/02/28 14:20:42  rsaam
+# now uses the regular one4all-ext-cepstral dir
+#
+# Revision 1.1  2012/02/28 14:19:19  rsaam
+# a new start script for the cebit12 demo
+#
+# Revision 1.2  2010/06/01 11:36:21  rsaam
+# content only once
+#
+# Revision 1.11  2009/03/05 15:12:00  hartwig
+# mod on armar
+#
+# Revision 1.10  2009/01/28 13:25:04  hartwig
+# doc
+#
+# Revision 1.9  2008/02/15 13:22:21  hartwig
+# demos/begehung_feb08/tapas_namerec.jar
+#
+# Revision 1.7  2008/01/23 09:17:42  hartwig
+# create tmpDir if it doesn't exist
+#
+# Revision 1.6  2008/01/21 12:46:58  hartwig
+# dynamic vocab
+#
+# Revision 1.5  2008/01/03 12:29:54  hartwig
+# fix receiver collectDir param
+#
+# Revision 1.4  2007/12/20 12:47:54  hartwig
+# small fixes at IAIM
+#
+# Revision 1.3  2007/11/21 07:17:43  hartwig
+# *** empty log message ***
+#
+# Revision 1.2  2007/11/20 08:45:41  hartwig
+# fix
+#
+# Revision 1.1  2007/11/19 13:24:42  hartwig
+# begehung feb08 files
+#
+# Revision 1.9  2007/04/23 17:05:08  hartwig
+# some distant speech stuff
+#
+# Revision 1.8  2006/11/28 16:56:48  hartwig
+# enable tapas
+#
+# Revision 1.7  2006/11/27 15:03:59  hartwig
+# fixed comport params
+#
+# Revision 1.6  2006/11/27 15:03:09  hartwig
+# fixed comport params
+#
+# Revision 1.5  2006/11/27 14:50:16  hartwig
+# receiver ports and cleaning
+#
+# Revision 1.4  2006/11/27 13:36:33  hartwig
+# modified startup params
+#
+# Revision 1.3  2006/11/27 13:21:37  hartwig
+# add port parameter
+#
+# Revision 1.2  2006/11/26 02:47:46  hartwig
+# new tapas libs without kogAgent
+#
+# Revision 1.1  2006/11/22 14:16:12  hartwig
+# fundamentals for humanoids demo
+#
+#
+#
+# ======================================================================
+
+set sfbDir [file dirname [info script]]
+#set o4aDir [file dirname [info script]]
+set demoDir "[file dirname [info script]]/../one4all-base"
+set segDir  "[file dirname [info script]]/../one4all-distseg"
+source $demoDir/scripts/version.tcl
+source $demoDir/scripts/settings.tcl
+set tapas(tmppath) "$sfbDir/demos/cebit12/tapasData/tmp"
+set tapas(grammar) "robbi-grammar-generated"
+
+
+# local: overwrite settings
+# janus binary:
+# - Suse 
+set janus $execDir/ibis-v5_1.SuSE-NX.gcc 
+# - ubuntu 7.1
+set janus $execDir/ibis-v5_1.ubuntu.gcc 
+# - Debian - SFB
+#set janus $execDir/janus-debian.gcc 
+#set janus $execDir/ibis-v5_1.debian-NX.gcc
+
+#if system is used by different users:
+#this will only work on linux!
+set tmpDir /tmp/${location}_[exec whoami]
+set audiofile $tmpDir/recording.adc
+if { ![file exists $tmpDir] } { file mkdir $tmpDir }
+catch {file delete [glob ${audiofile}*]}
+
+#set swift-env
+set env(SWIFT_HOME) "$demoDir/../one4all-ext-cepstral/swift"
+
+set env(LD_LIBRARY_PATH) "$env(LD_LIBRARY_PATH):$demoDir/lib/$system"
+set env(LD_LIBRARY_PATH) "$env(LD_LIBRARY_PATH):$env(SWIFT_HOME)/lib"
+set env(JACK_START_SERVER) "true"
+puts "LD_LIBRARY_PATH = $env(LD_LIBRARY_PATH)"
+
+# system specific
+switch $system {
+    Linux {
+    source $demoDir/scripts/process_ctl.lin.tcl
+    }
+    Windows {
+    puts "ERROR - not configured for windows"
+    source $demoDir/scripts/process_ctl.win.tcl
+    }
+}
+
+# ======================================================================
+# one4all settings
+# ======================================================================
+
+# if set to 0, don't show process control window, and use file loggin
+set interactive              1  ;# interactive mode
+
+set collect                   1 ;# enables data collection in $collectDir
+set RUN(communication)        1 ;# start the communication server
+set RUN(recognition)          1 ;# start the default recognizer
+set RUN(receiver)             1 ;# start the default receiver
+set RUN(tts)                  1 ;# start the default tts
+set RUN(tapas)                0 ;# start default tapas dlm and kogAgent
+set RUN(segmentation)         1 ;# start default segmentation
+set RUN(recording)            0 ;# start default segmentation
+
+# available languages
+set LANGUAGES(e)     [list english "American English"]
+set LANGUAGES(g)     [list german  "German"]
+set language         e
+#set language         g
+set langtapas       english
+
+#ASR_MODE : CLOSE or DISTANT
+set ASR_MODE "CLOSE"
+
+# number of channels for recording
+set CHANNEL(mono)    [list mono   "mono"]
+set channel          mono
+
+# commserver host
+#~~~~
+# change to localhost
+set COMMHOST         "localhost"
+#set COMMHOST         127.0.0.1
+#set COMMHOST         192.168.1.140
+
+# commserver port - changed for armar demos
+set COMMPORT         1917
+
+set RECPATH          /tmp/TMP_One4All_demo-distant
+set RECFILE          demo.wav
+# ======================================================================
+# parse argv
+# ======================================================================
+set process(cnt) 0
+set geometry     -10-100
+
+proc help { prg } {
+    global DISPLAYS ENVIRONS LANGUAGES TLENGTH MSIZE CHANNEL
+
+    set path [file dirname $prg]
+    set prg  [file tail $prg]
+
+#    showVersion
+
+    puts "\nHelp for $path/$prg"
+    puts "$prg is the startup-script for the One4all-Demo"
+    puts "\nUsage: $prg -h"
+    puts "       $prg \[-interactive] \[-lang LANGUAGE\]"
+    puts "\nOptions:"
+    puts "  -h\t\t\tthis help"
+    puts "  -batch\t\tstart in batch mode. If not set, the control window is active"
+    puts "  -logToConsole \tshow logs on console. If not set, log to file"
+    puts "  -lang LANGUAGE\tdefines input language"
+    puts "  -channel CHANNEL\tdefines the usage of mono or stereo"
+    puts "  -ASR_MODE ASR_MODE\tdefines CLOSE or DISTANT speech"
+    puts ""
+#    puts "  DISPLAY\tcan be a specific display address or"
+    puts ""
+    puts "  LANGUAGE\tcan be"
+
+    foreach name [lsort [array names LANGUAGES]] {
+    puts "\t\t\t$name\tfor [lindex $LANGUAGES($name) 1]"
+    }
+
+    puts ""
+    puts "  CHANNEL\tcan be"
+
+    foreach name [lsort [array names CHANNEL]] {
+    puts "\t\t\t$name\tfor [lindex $CHANNEL($name) 1] recording"
+    }
+
+    puts ""
+}
+
+proc shift {ls} {
+    upvar 1 $ls LIST
+    if {[llength $LIST]} {
+      set ret [lindex $LIST 0]
+      set LIST [lreplace $LIST 0 0]
+      return $ret
+    } else {
+      error "Ran out of list elements."
+    }
+  }
+
+proc getArgVal {name ls} {
+    upvar 1 $ls LIST
+    if {[llength $LIST]} {
+      set ret [lindex $LIST 0]
+      set LIST [lreplace $LIST 0 0]
+	if{[regexp {^-.+} $ret]} {
+	    error "No value for arg $name"
+	} else {
+	    return $ret
+	}
+    } else {
+      error "No value for arg $name"
+    }
+  }
+
+set orgArgv $argv
+set fileOut 1
+set interactive 1
+
+
+while {[regexp {^-.+} $argv]} {
+    set arg [shift argv]
+
+    if { $arg == "-h" || $arg == "--help" } {
+	help $argv0
+	exit 0
+    }
+
+    if { $arg == "-batch" } {
+	set interactive 0
+	continue
+    }
+    if { $arg == "-logToConsole" } {
+	set fileOut 0
+	continue
+    }
+
+    
+
+    if { $arg == "-lang" } {
+	set language [getArgVal $arg argv]
+	continue
+    }
+
+    if { $arg == "-channel" } {
+	set channel [getArgVal $arg argv]
+	continue
+    }
+
+    if { $arg == "-ASR_MODE" } {
+        set ASR_MODE [getArgVal $arg argv]
+        continue
+    }
+
+    error "Unrecognized command line option $arg.\nUse $argv0 -h for help."
+}
+
+# change to demoDir
+#if { [catch {cd $demoDir} msg] } {
+#    error "Can't change to $demoDir\n$msg"
+#}
+
+# -------------------------------------------------------------------------
+# post settings
+# -------------------------------------------------------------------------
+
+# data collection
+if { $collect } {
+    set collectDir $tmpDir/DataCollection
+} else {
+    set collectDir ""
+}
+
+# demo environment and language
+set iLang   [lindex $LANGUAGES($language) 0]
+set oLang   [lindex $LANGUAGES($language) 0]
+
+# -------------------------------------------------------------------------
+# show settings
+# -------------------------------------------------------------------------
+putsInfo $FP "use [lindex $LANGUAGES($language) 1] as input language"
+putsInfo $FP "use $tmpDir as directory for temporary files"
+if { $interactive } {
+    putsInfo $FP "start in interactive mode"
+} else {
+    putsInfo $FP "start in batch mode"
+}
+if { $fileOut } {
+    putsInfo $FP "log to file"
+} else {
+    putsInfo $FP "log to console"
+}
+foreach name [lsort [array names RUN]] {
+    putsInfo $FP [format "run %-15s: %d" $name $RUN($name)]
+}
+
+
+# ======================================================================
+# processes
+# ======================================================================
+
+# -------------------------------------------------- COMSERVER
+add_process comServer "\
+	$tclsh $demoDir/Communication/comServer.tcl \
+		-logFile $tmpDir/logfile.server -host $COMMHOST -port $COMMPORT" \
+    . $RUN(communication)
+
+# -------------------------------------------------- JANUS
+
+if { $iLang == "english" } {
+# -------------------------------------------------- JANUS_Robbi - EN
+
+if { $ASR_MODE == "CLOSE" } {
+puts "=========janus binary: $janus"
+add_process "Janus_Begehung_MT"  "\
+    $janus $demoDir/Recognition/janus.tcl \
+        -language english -audiofile $audiofile \
+        -desc $sfbDir/demos/cebit12/janus/desc.MT.std.feb08.tcl \
+        -recogInit $sfbDir/demos/cebit12/janus/recogInit.ext.tcl \
+        -comhost $COMMHOST -comport $COMMPORT \
+        -tapasTmp $tapas(tmppath) -tapasGram $tapas(grammar) \
+        -runon 0" \
+    . 1
+
+#    . $RUN(recognition)
+ 
+# ------------------------------- Java
+add_process "java" "\
+	$wish $demoDir/JavaTCl/javatcl.tcl" \
+	. 1
+#---------------------------------
+add_process "Janus_Begehung_EN.2007"  "\
+    $janus $demoDir/Recognition/janus.tcl \
+        -language english -audiofile $audiofile \
+        -desc $sfbDir/demos/cebit12/janus/desc.EN2007.std.feb08.tcl \
+        -recogInit $demoDir/Recognition/recog_init.MT.tcl \
+        -comhost $COMMHOST -comport $COMMPORT \
+        -tapasTmp $tapas(tmppath) -tapasGram $tapas(grammar) \
+		-runon 0" \
+    . 0
+
+} else {
+
+add_process "janus_robbiMT-distant"  "\
+	$janus $demoDir/Recognition/janus-distant.tcl \
+		-language english -audiofile $RECPATH/recording.adc \
+		-desc $sfbDir/demos/humanoids06/janus/desc.MT.robbi.tcl \
+		-recogInit $demoDir/Recognition/recog_init.MT.tcl \
+        -comhost $COMMHOST -comport $COMMPORT \
+		-runon 0" \
+    . $RUN(recognition)
+
+}
+# end ASR_MODE
+
+# -------------------------------------------------- JANUS_Robbi (OOV) - EN
+#add_process "janus_OOV_robbiMT"  "\
+#	$janus $demoDir/Recognition/janus.tcl \
+#		-language english -audiofile $audiofile \
+#		-desc $demoDir/Data/MT.6000/desc.OOV-MT.robbi.tcl \
+#		-recogInit $demoDir/Recognition/recog_init.OOV-MT.tcl \
+#		-runon 0" \
+#    . 0
+
+} 
+#end english
+
+if { $iLang == "german" } {
+
+# -------------------------------------------------- JANUS_Robbi-GSST - DE
+add_process "janus_robbiGSST"  "\
+	$janus $demoDir/Recognition/janus.tcl \
+		-language german -audiofile $audiofile \
+		-desc $demoDir/Data/GSST/desc.GSST.robbi.tcl \
+		-recogInit $demoDir/Recognition/recog_init.GSST.tcl \
+		-runon 0" \
+    . $RUN(recognition)
+
+} 
+#end $iLang == german
+
+# -------------------------------------------------- RECEIVER
+add_process "receiver" "\
+	$wish $demoDir/Receiver/receiver.tcl \
+		-language $iLang -audiofile $audiofile \
+                -commHost $COMMHOST -commPort $COMMPORT \
+                -collectDir $collectDir" \
+    . $RUN(receiver)
+
+# -------------------------------------------------- TTS
+if {0} {
+add_process "festival-tts" "\
+	$wish $demoDir/../one4all-ext-festival/TTS/tts.tcl \
+		-tmpDir $tmpDir" \
+    . $RUN(tts)
+}
+set MAPPINGS "german=German,english=US English"
+
+if { 0 } {
+if {$oLang=="german"} {
+add_process "cepstral-tts" "\
+        $cepstral -voice Katrin -host $COMMHOST -port $COMMPORT -resolve $MAPPINGS" \
+    . $RUN(tts)
+} else {
+add_process "cepstral-tts" "\
+        $cepstral -voice David -host $COMMHOST -port $COMMPORT -resolve $MAPPINGS" \
+x    . $RUN(tts)
+
+}
+}
+
+add_process "cepstral-tts" "\
+        $cepstral -host $COMMHOST -port $COMMPORT -resolve \"$MAPPINGS\" -language $oLang" \
+    . $RUN(tts)
+
+# -------------------------------------------------- TAPAS
+#   -conf ../one4all-sfb/demos/cebit06/tapasData/tapas_cebit_EN.properties 
+#   $java -Do4a.commserver.host=$COMMHOST -cp $tapaspath 
+
+if { $iLang=="german" } {
+set L "DE"
+} else {
+set L "EN"
+}
+
+add_process "Tapas_cebit12_${L}" "\
+    $java -Do4a.commserver.host=$COMMHOST -Do4a.commserver.port=$COMMPORT \
+    -cp $demoDir/lib/tapas/tapas.jar:$sfbDir/demos/cebit12/tapas_namerec.jar:$sfbDir/demos/cebit12/tapasData/tmp/ext \
+    tapas.app.sfbtest.MainSFB \
+    -gui -conf $sfbDir/demos/cebit12/tapasData/tapas_begehung08_EN.properties" \
+    . $RUN(tapas)
+
+#add_process "logging" "\
+#	logger" \
+#    . $RUN(tapas)
+
+# -------------------------------------------------- Logging
+
+add_process "Logging-New" "\
+    $java -cp $sfbDir/demos/cebit12/contactbot.jar:$demoDir/lib/tapas/tapas.jar \
+        -Do4a.commserver.encoding=ISO-8859-1 \
+            contactbot.recording.SystemLogger \
+            $COMMHOST $COMMPORT ./logs" \
+        . 1
+
+
+
+# -------------------------------------------------- Segmentation
+
+add_process "jack-Meter (jack client)" "\
+        meterbridge -t dpm alsa_pcm:capture_1 alsa_pcm:capture_2"\
+    . 0
+
+# ------ Segmentation ---- close speech
+if { $ASR_MODE == "CLOSE" } {
+
+
+add_process "segmenter-configurable (arecord)" "\
+    $demoDir/bin/Linux/segmenter.bin -language $iLang -audio $audiofile \
+        -host $COMMHOST -port $COMMPORT -cfg $demoDir/bin/Linux/segment_ecasound.cfg" \
+    . $RUN(segmentation)
+
+add_process "segmenter-tcp (iphone/ipod)" "\
+    $demoDir/bin/Linux/segmenter_tcp.bin -language $iLang -audio $audiofile \
+        -host $COMMHOST -port $COMMPORT -cfg $demoDir/bin/Linux/segment_ecasound.cfg -lport 6666" \
+    . 0
+
+} else {
+
+# ------ Segmentation ---- distant speech
+add_process "segmentation-distant"  "\
+	$segDir/janus $segDir/segmenter.tcl \
+		-waitAfterCycle 50 -writeHypData 1 -targetfile $RECPATH/recording.adc.eng \
+		-ttsExclusion 1 -timeStartRecFile timeStartRecFile -one4allBaseDir $demoDir \
+		-comhost $COMMHOST -comport $COMMPORT -server one4all -srcfilepath $RECPATH -srcfilename $RECFILE -numChannels 1 -usedChannel 1" \
+    . $RUN(segmentation)
+
+}
+# ---------------------------------------------------DEBUG AUDIO
+add_process "Debug sound (alsa required)" "\
+    aplay -f S16_LE -c1 -r 16000 $audiofile.[string range $iLang 0 2]"\
+    . 0
+
+
+
+# end ASR_MODE
+
+# -------------------------------------------------- Recording
+
+add_process "recording"  "\
+	$janus $segDir/rec.tcl $RECPATH $RECFILE" \
+    . $RUN(recording)
+	
+# -------------------------------------------------------------------------
+# display process control
+# -------------------------------------------------------------------------
+
+if { $interactive } {
+    BuildControlWindow
+    StartProcesses
+} else {
+    StartProcesses
+}
+
