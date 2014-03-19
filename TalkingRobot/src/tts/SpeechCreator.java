@@ -1,4 +1,6 @@
 package tts;
+import java.io.IOException;
+
 import one4all.fipa.net.BasicMessage;
 import asr.One4AllAdapter;
 
@@ -24,9 +26,9 @@ public class SpeechCreator  {
  * @return if the output was successful.
  */
   public Boolean sendOutput(String output) {
-	  System.out.print("The robot says: ");
+	 System.out.print("The robot says: ");
 	  System.out.println(output);
-	  return true;
+	//  return true;
 	 /* '(inform
 	  :sender TapasDialog
 	  :receiver tts
@@ -35,15 +37,24 @@ public class SpeechCreator  {
 	  :content #149 "(speak :val (Hello! My name is Armar the third. I am a little robot who can help you in the kitchen. What do you want me to do?) :language (english))"
 	)*/
 	  //o4aAgent.sendContentMessage("(msg :X (some value))", "example2");
-	 /* BasicMessage basic = new BasicMessage(null);
+	  	String str;
+
+	      str = getContentMsg(output);
+
+	    System.out.println("Sent to o4a: " + str);
+
+	      one4all.getOne4all().sendContentMessage(str, "tts");
+
+	  
+	/*  BasicMessage basic = new BasicMessage(null);
 	  basic.setType("inform");
 	  basic.addAttribute("sender", "TalkingRobotDM");
 	  basic.addAttribute("receiver", "tts");
 	  basic.addAttribute("language", "one4all");
-	  basic.addAttribute("reply-with", "TalkingRobotDM-msg-1");
-	  basic.addAttribute("content", "\"(speak :val (" + output + ") " + ":language (english))\"");
-	  one4all.getOne4all().sendFormattedMessage(basic);
-	  return true;*/
+	  basic.addAttribute("reply-with", "TapasDialog-msg-3");
+	  basic.addAttribute("content", "#149 \"(speak :val (" + output + ") " + ":language (english))\"");
+	  one4all.getOne4all().sendFormattedMessage(basic);*/
+	  return true;
   }
 
   //Not needed for Stub
@@ -51,6 +62,12 @@ public class SpeechCreator  {
    * private method to handle communication with Cepstral
    */
   private void operateCepstral() {
+  }
+
+
+  public static String getContentMsg(String paramString)
+  {
+    return "(speak :val (" + paramString + "))";
   }
 
 }

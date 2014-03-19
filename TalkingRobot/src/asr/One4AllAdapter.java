@@ -84,13 +84,14 @@ public class One4AllAdapter {
 
 		public void messageArrived(BasicMessage m) {
 			if (m.getType().equals("query")) {
-				System.out.println("got message: "+m);
-				System.out.println("message type: "+m.getType());
+			//	System.out.println("got message: "+m);
+			//	System.out.println("message type: "+m.getType());
 				System.out.println("attribute text: "+m.getAttribute("text"));
 				String asrString = m.getAttribute("text").toString();
 				asrString = asrString.replace("(", "");
 				asrString = asrString.replace(")", "");
 				asrString = asrString.toLowerCase();
+				//asrString = asrString.replace(" ", "");
 				System.out.println("passed to asr: " + asrString);
 				Main.giveMain().setAsrResult(asrString);
 				Main.giveMain().setAsrReceived(true);
