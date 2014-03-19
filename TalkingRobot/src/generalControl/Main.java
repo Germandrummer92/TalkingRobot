@@ -38,6 +38,8 @@ public class Main {
   private static Main uniqueMain = null;
 
   private boolean isRunning;
+  
+  private boolean asrReceived;
 
  
 
@@ -295,6 +297,14 @@ private void checkFiles() {
 		 }
 		 while(true);
 	  }
+
+	public boolean isAsrReceived() {
+		return asrReceived;
+	}
+
+	public void setAsrReceived(boolean asrReceived) {
+		this.asrReceived = asrReceived;
+	}
 }
 	
 

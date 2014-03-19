@@ -88,7 +88,8 @@
 ;
 
 [Line]
-	(*line [Number])
+	(line [Number])
+	([Number])
 ;
 	
 [_where_eat]
@@ -137,8 +138,8 @@
 	(recommendation)
 	(give me a recommendation)
 	(recommend)
-	(suggest [_meal])
-	(suggestion [_meal])
+	(suggest *[_meal])
+	(suggestion *[_meal])
 ;
 
 #kitchen assistance
@@ -146,12 +147,22 @@
 	([Kitchen_Assistance_Kw])
 	([How])
 	([What])
+	([_creator])
+;
+
+[_creator]
+	(creator)
+	(who created)
+	(who saved)
+	(who)
 ;
 
 [Kitchen_Assistance_Kw]
 	(recipe)
 	(cooking)
 	(kitchen tool)
+	(kitchen)
+	(something)
 ;
 
 [What]
@@ -340,6 +351,10 @@ THIS
 	([_hi])
 	([_name])
 	([User])
+	([Login_student])
+;
+
+[Login_student]
 	(student)
 	(employee)
 ;
@@ -382,26 +397,37 @@ THIS
 ;
 
 [Time_extend]
+	([Other_times])
+	([Weekday])
+;
+
+[Other_times]
 	(now)
 	(immediately)
 	(today)
 	(tomorrow)
 	(day after tomorrow)
 	(next week)
-	([Weekday])
 ;
 
 [Category]
 	([Meat])
+	([Category_others])
+;
+	
+[Category_others]
 	(vegetarian)
 	(vegan)
 	(fish)
 ;
-	
+
 [Meat]
 	(pork)
 	(chicken)
 	(beef)
+	(cow)
+	(chickens)
+	(cows)
 ;
 
 [Country]

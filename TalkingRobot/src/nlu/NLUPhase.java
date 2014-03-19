@@ -60,6 +60,7 @@ public class NLUPhase extends Phase {
   		nluResult.add(approvalAnalyzer.analyze(userInput));
 
   		main.setNluResult(nluResult);
+  		main.setAsrReceived(false);
   	}
 
   	/**

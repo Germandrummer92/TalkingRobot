@@ -17,6 +17,7 @@ _where_is
 canteen_recommendation
 _recommendation
 Kitchen_Assistance
+_creator
 Kitchen_Assistance_Kw
 What
 How
@@ -44,6 +45,7 @@ _bring
 Main
 Main_Kw
 Login
+Login_student
 _name
 User
 _hi
@@ -51,7 +53,9 @@ Logout
 _bye
 Weekday
 Time_extend
+Other_times
 Category
+Category_others
 Meat
 Country
 _anytime

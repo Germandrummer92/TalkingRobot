@@ -1,5 +1,7 @@
 package asr;
 
+import generalControl.Main;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,13 +14,13 @@ import java.util.Scanner;
  * 
  */
 	//Currently a STUB!
-public class InputGetter extends One4AllAdapter {
+public class InputGetter {
 
 	/**
 	 * Default Constructor
 	 */
 	public InputGetter() {
-		super();
+		One4AllAdapter.giveOne4AllAdapter();
 	}
   
 	/**
@@ -26,7 +28,7 @@ public class InputGetter extends One4AllAdapter {
 	 * @return the parsed input by the user.
 	 */
   public String getInput() {
-	//  Scanner in = new Scanner(System.in);
+	/*//  Scanner in = new Scanner(System.in);
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
  	System.out.print("Your next Input:");
  	try {
@@ -35,7 +37,20 @@ public class InputGetter extends One4AllAdapter {
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
- 	return null;
+ 	return null;*/
+	  do {
+		  if (Main.giveMain().isAsrReceived() == false) {
+			  try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  }
+		  else {
+			  return Main.giveMain().getAsrResult();
+		  }
+	  } while (true);
   }
 
   //Not used by the stub

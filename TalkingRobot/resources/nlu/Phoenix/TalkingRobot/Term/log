@@ -1,5 +1,5 @@
-[recipe_name]  21 states  39 arcs
-[recipe_ingredient_or_tool]  18 states  37 arcs
+[recipe_name]  35 states  57 arcs
+[recipe_ingredient_or_tool]  51 states  108 arcs
 [recipe_origin]  6 states  7 arcs
 [user_name]  8 states  10 arcs
 [is]  2 states  2 arcs
@@ -7,7 +7,8 @@
 [need]  6 states  14 arcs
 [you]  3 states  4 arcs
 [teach]  2 states  3 arcs
-[person]  2 states  5 arcs
+[bring]  2 states  2 arcs
+[person]  2 states  6 arcs
 [a]  2 states  6 arcs
 [named]  4 states  6 arcs
 [time]  2 states  3 arcs

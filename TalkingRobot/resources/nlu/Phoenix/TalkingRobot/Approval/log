@@ -5,6 +5,7 @@
 [_no]  22 states  53 arcs
 [_first]  5 states  7 arcs
 [_second]  7 states  11 arcs
+[_unknown]  10 states  15 arcs
 [_anytime]  6 states  10 arcs
 [_am]  3 states  3 arcs
 [anyday]  6 states  10 arcs
