@@ -40,7 +40,7 @@ public class NLUPhase extends Phase {
   	 * @param main: the main class of this system
   	 */
   	public void setPhaseResult(Main main) {
-  		String userInput = main.getAsrResult();
+  		String userInput = main.getAsrResult().toLowerCase();
   		//write given input in file input
   		File file = new File("resources/nlu/Phoenix/TalkingRobot/input");
   		PrintWriter writer;
