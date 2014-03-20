@@ -121,8 +121,7 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 				if (terms.get(0).contains("next") || terms.get(0).contains("coming")) {
 					dateShift = dateShift + 7;
 				} 
-				
-				
+						
 				if(inAden) { // so far we just consider canteen at adenauerring and moltke street
 					curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
 				   
@@ -228,9 +227,8 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	case CI_MOLTKE_BUFFET_DISH:
 		generalUpdate(keywords, terms, approval,inAden, askPrice);
 		break;
-	
 	case CI_TELL_LINE_NOT_EXIST:
-	//	updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
+	    // do nothing just output
 		break;
 	case CI_TELL_MEAL_NOT_EXIST:
 		updateStateTellNotExist(keywords, terms, approval,inAden, askPrice);
@@ -313,7 +311,6 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 	
 	if(keywords.isEmpty() && (approval.isEmpty())) {
 		DialogManager.giveDialogManager().setInErrorState(true);
-		//throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 		return;
 	}
 	if( approval.size() == 1 && (approval.get(0).equals("yes"))) { 
@@ -341,7 +338,6 @@ private void generalUpdate(List<Keyword> keywords, List<String> terms,
 		nextState.setCurrentState(subState);
 		setCurrentDialogState(nextState);
 	}
-	
 }
 
 
@@ -369,7 +365,6 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 	if( approval.isEmpty()) {
 		if( keywords.isEmpty() ) {
 			DialogManager.giveDialogManager().setInErrorState(true);
-			//throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 			return;
 		}
 		
@@ -400,8 +395,7 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 	} else { // user don't need anything from canteen info
 		CanteenInformationState  next = new CanteenInformationState();
 		next.setCurrentState(CanteenInfo.CI_EXIT);
-		setCurrentDialogState(next);
-		
+		setCurrentDialogState(next);	
 	}
 }
 
@@ -415,16 +409,38 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
  * @param askPrice 
  * @throws WrongStateClassException 
  */
-private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) throws WrongStateClassException {
-	 
+private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) {	 
 	
 	if(keywords.isEmpty()) {
-	
 		DialogManager.giveDialogManager().setInErrorState(true);
-		//throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 		return;
 	}
+	//Dialog prevDialog = DialogManager.giveDialogManager().getPreviousDialog();\
 	
+	/* if prev dialog is error dialog...*/
+	
+	
+		//getCurrentDialogState().setCurrentState(CanteenInfo.CI_ENTRY);
+	
+	/*if( keywords.size() == 1 && (terms.size() == 1)){
+		getCurrentDialogState().setCurrentState(CanteenInfo.CI_ENTRY);
+	}*/
+	int k_count = 0;
+	int t_count = 0;
+	for( Keyword kw : keywords) {
+		if(kw.getKeywordData().getWord().contains("price")){
+			k_count ++;
+		}
+	}
+	for( String str : terms) {
+		if( str.equals("price")){
+			t_count ++;
+		}
+	}
+	
+	if( k_count == keywords.size() && ( t_count == terms.size())) {
+		return; // this means the previous dialog state was error handling
+	}
 	CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
 	CanteenInformationState nextState = new CanteenInformationState();
 	nextState.setCurrentState(subState);
@@ -509,8 +525,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	Map<CanteenInfo, Integer> adenEnumMap = new TreeMap<CanteenInfo, Integer>();
 	adenEnumMap = initMap();
 	
-	
-	
 	Dialog prev = DialogManager.giveDialogManager().getPreviousDialog();
 	// in case that the user ask dish info about a line then ask location
 	if(prev.getCurrentDialogState().getCurrentState().name().contains("LINE") 
@@ -540,6 +554,10 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	if( askPrice ) {
 		this.curCanteen = ((CanteenDialog) DialogManager.giveDialogManager().getPreviousDialog()).getCurrentCanteen();
 		super.setCurrentCanteen(curCanteen);
+		
+		
+		
+	
 		
 		// now to find out the required meal's name
 		CanteenInfo matchedLine = mealMatched(keywords, terms, inAden);
@@ -593,8 +611,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 							
 	                       for( DialogState ref : line.getReference()) {
 	                    	   if(ref.getCurrentState().name().contains("ADEN") 
-	   								&& ref.getCurrentState().name().contains("DISH")) {
-	                    		  // LineData l = new LineData("");
+	   								&& ref.getCurrentState().name().contains("DISH") && ref.getCurrentState().name().contains("CI")) {
 	                    		   
 	                    		   ArrayList<MealData> todayMeals = new ArrayList<MealData>();
 	                    		   MealNode node = new MealNode();
@@ -625,7 +642,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 				} 
 			}
 		}
-	
 	
 	if (!mealMatched && (askPrice)) { // when we are here, then it's nothing matched
 		return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
@@ -668,32 +684,49 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 	
 	/* if the use ask a price of recommended meal */
 	if( DialogManager.giveDialogManager().getPreviousDialog().getClass() == CanteenRecommendationDialog.class) {
-		Dialog recom = DialogManager.giveDialogManager().getPreviousDialog();
-		MealData wish = ((CanteenRecommendationDialog) recom).getWishMeal().getMealData();
-		this.wishMeal = wish.getMealName();
-		LineData line =  ((CanteenRecommendationDialog) recom).getWishMeal().getLineData();
-		CanteenData cur = ((CanteenRecommendationDialog) recom).getWishMeal().getCanteenData();
-		id = cur.getLines().indexOf(line);
-		matched = findLineEnum(inAden, id);
-		
+		boolean directAsk = false;
+		for(int i = 0; i < terms.size(); i++) {
+			if(terms.get(i).contains("it")) { // how much is it, direct ask price after canteen recommendationn
+				directAsk = true;
+				break;
+			}
+		}   if( directAsk ){
+			Dialog recom = DialogManager.giveDialogManager().getPreviousDialog();
+			MealData wish = ((CanteenRecommendationDialog) recom).getWishMeal().getMealData();
+			this.wishMeal = wish.getMealName();
+			LineData line =  ((CanteenRecommendationDialog) recom).getWishMeal().getLineData();
+			CanteenData cur = ((CanteenRecommendationDialog) recom).getWishMeal().getCanteenData();
+			id = cur.getLines().indexOf(line);
+			matched = findLineEnum(inAden, id);
+		}
 	} else {
 		String name = "";
 		if(terms.get(0).length() < terms.get(1).length()) { // is already splitet 
 			name = terms.get(0);
 		}else if (terms.get(0).length() > terms.get(1).length()) {
 			name = terms.get(1);
-		}else {
+		}else { // it's not separated by nlu
 			String[] tms = terms.get(0).split("of "); // what's the price of ...
+			//name = tms[1];
 			if(tms.length <= 1) {
 				if(tms[0].contains("does")) {
 					tms = terms.get(0).split("does "); // original sentence : how much does ... cost
+					String str = tms[1];
+					if( str.contains("cost")) {
+						str.replace("cost", "");
+						str = str.trim();
+						tms[1] = str;
+					}
+					//name = tms[1];
 				}else if(tms[0].contains("costs")) { // how much costs ...
 					tms = terms.get(0).split("costs "); 
+					//name = tms[1];
 				}else if(tms[0].contains("is")) {// how much is...
-					tms = terms.get(0).split("is "); 
-				}else tms[1] = terms.get(0);
+					tms = terms.get(0).split("is ");
+					//name = tms[1];
+				}//else name = terms.get(0);
 			}
-			name = tms[1];
+			name = tms[tms.length - 1];
 		}
 		
 		name = name.toLowerCase().trim();
@@ -706,7 +739,6 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 		MealNode node = new MealNode();
 		int shortestDistance = 100;
 		
-		
 		for( LineData line : curCanteen.getCanteenData().getLines()) {
 			for( MealData meal : line.getTodayMeals()) {
 				String str = meal.getMealName().toString().toLowerCase();
@@ -717,8 +749,7 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 					 node.setLineData(line);
 					 shortestDistance = 0;
 					 break;
-				}
-				
+				}		
 				
 				if( shortestDistance != 0) {
 					if( ns.length <= 3) {
@@ -760,9 +791,7 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 		if( shortestDistance <= 10) {
 			matched = findLineEnum(inAden, id);
 		}
-	}
-	
-	    
+	}   
 		return matched;
 }
 
@@ -772,7 +801,6 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
  * @return int dateshift, how many 'days' between 'now' and wished time
  */
 private int getRequestedWeekDay(List<Keyword> keywords, LocalDate date) {
-	//int i = 0;
 	
 	for (Keyword dateOfWeek : keywords) {
 		if (dateOfWeek.getWord().equals("today")) {
@@ -826,9 +854,8 @@ private int getRequestedWeekDay(List<Keyword> keywords, LocalDate date) {
  * Find out the enum with given index 
  * @param inAden if the current canteen in Adennaurring, then true
  * @param index the index of lines in
- * @return
+ * @return corresponding CanteenInfo
  */
-
 private CanteenInfo findLineEnum(boolean inAden, int index) {
 		if(inAden) {
 			switch (index) {
@@ -922,7 +949,6 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 				return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 			}
 		}	
-
 }
 
 private class MealNode {
