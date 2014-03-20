@@ -9,6 +9,7 @@ import data.Data;
 import data.IngredientData;
 import data.KeywordData;
 import data.KeywordType;
+import data.RecipeData;
 import data.ToolData;
 
 /**
@@ -302,7 +303,7 @@ private void updateStateLocation(List<Keyword> keywords, List<String> terms) {
 if (keywords == null || keywords.isEmpty()) {
 if (terms != null && !terms.isEmpty()) {
 if (newObjectClass != null && newObjectClass.equals(Tool.class)) {
-ToolData d = new ToolData(requestedObjectName, terms.get(0), null);
+ToolData d = new ToolData(requestedObjectName, terms.get(0), new ArrayList<RecipeData>());
 d.writeFile();
 requestedObject = new Tool(d);
 getCurrentDialogState().setCurrentState(KitchenAssistance.KA_TELL_TOOL_FOUND);
