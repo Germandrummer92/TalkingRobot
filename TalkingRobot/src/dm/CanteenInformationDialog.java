@@ -1,6 +1,7 @@
 package dm;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import org.joda.time.LocalDate;
 
@@ -9,10 +10,12 @@ import data.CanteenNames;
 import data.LineData;
 import data.MealData;
 
+import nlu.Levenshtein;;
+
 /**
  * This class represents a dialog about canteen information
  * @author Xizhe Lian, Daniel Draper
- * @version 2.5
+ * @version 3.0
  */
 public class CanteenInformationDialog extends CanteenDialog {
 	
@@ -89,11 +92,24 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 	}
 	
 	boolean inAden = true;
-	if( currentCanteen.getCanteenData().getCanteenName()
-			.equals(currentCanteen.getCanteenData().getCanteenName().MOLTKE) ||
-			terms.get(0).contains("moltke") || terms.get(0).contains("Moltke")) {
+	
+	
+	CanteenNames cur = currentCanteen.getCanteenData().getCanteenName();
+	if( cur.equals(CanteenNames.MOLTKE) ) {
 		inAden = false;
 	}
+	for( String str : terms) {
+		if(str.toLowerCase().contains("moltke")) {
+			inAden = false;
+			break;
+		}
+		if( str.toLowerCase().contains("aden")){ // sometimes the current canteen is the one from previous dialog
+			inAden = true;
+			break;
+		}
+	}
+	
+	
 	
 	boolean askPrice = false;
 	
@@ -366,7 +382,7 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
 private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden, boolean askPrice) {
 	
 	if( approval.isEmpty()) {
-		if( keywords.isEmpty() && (terms.isEmpty())) {
+		if( keywords.isEmpty() ) {
 			DialogManager.giveDialogManager().setInErrorState(true);
 			return;
 		}
@@ -411,14 +427,16 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
  * @param keywords list of Keyword
  * @param terms list of Strings
  * @param askPrice 
+ * @throws WrongStateClassException 
  */
-private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) {
+private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) throws WrongStateClassException {
 	 
 	
 	if(keywords.isEmpty() && ( terms.isEmpty())) {
 	
 		DialogManager.giveDialogManager().setInErrorState(true);
-		return;
+		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
+		//return;
 	}
 	
 	CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
@@ -656,38 +674,89 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 			name = tms[1];
 		}
 		
-		name = name.toLowerCase();
-		/* if the name starts with empty char, match won't be succeed */
-		if(name.startsWith(" ")){
-			String temp = name.substring(1, name.length() - 1);
-			name = temp;
-		} 
+		name = name.toLowerCase().trim();
+		String[] ns = name.split(" ");
+		
+		if((ns[0].trim().equals( "curry")) && (ns[1].trim().equals("wurst"))){
+			name = "currywurst"; 
+		}
 		
 		MealNode node = new MealNode();
+		//String mostProbableKeyword = "";
+		int shortestDistance = 100;
+		
+		
 		for( LineData line : curCanteen.getCanteenData().getLines()) {
 			for( MealData meal : line.getTodayMeals()) {
+			//	boolean done = false;
 				String str = meal.getMealName().toString().toLowerCase();
-		
+				int distance = 0;
+				if (str.contains(name)){
+					 node.setName(str);
+					 node.setMealData(meal);
+					 node.setLineData(line);
+					 shortestDistance = 0;
+				//	 done = true;
+					 break;
+				}
+				
+				//FIXME levenstein
+				if( shortestDistance != 0) {
+				if( ns.length <= 3) {
+					
+					String[] strs = str.split(","); // because in canteen data, sometimes there are side dishes append main dish
+					String realStr = strs[0];
+					String[] ss = realStr.split(" ");
+					int length = ns.length <= ss.length? ns.length : ss.length;
+					for(int i = 0; i < length; i++) {
+						Levenshtein levenDistance = new Levenshtein(ns[i], ss[i]);
+						distance += levenDistance.getDistance();
+						
+					}
+					
+										
+				}else { // user use main dish name to ask price
+					//String str = meal.getMealName().toString().toLowerCase();
+					String[] strs = str.split(" ");
+					int length = ns.length <= strs.length? ns.length : strs.length;
+					for(int i = 0; i < length; i++) {
+						Levenshtein levenDistance = new Levenshtein(ns[i], strs[i]);
+						distance += levenDistance.getDistance();
+						  
+					}
+					
+				}
+					  
+				if(distance < shortestDistance) {
+					 node.setName(str);
+					 node.setMealData(meal);
+					 node.setLineData(line);
+					 shortestDistance = distance;
+				 }
+				}
+		/*
 				if(str.contains(name)) { 
 					
 					node.setName(str);
 					node.setMealData(meal);
 					node.setLineData(line);
 					//nodes.add(node);
-				}
+				}*/
 			}
 		}
 		
 		LineData l = node.getLineData();
 		id = curCanteen.getCanteenData().getLines().indexOf(l);
 		
-		String[] names = node.getName().split(","); // because in json data, a meal name also includes sideDishes
-		this.wishMeal = names[0]; 
-		matched = findLineEnum(inAden, id);
+		//String[] names = node.getName().split(","); // because in json data, a meal name also includes sideDishes
+		this.wishMeal = node.getName().toString().toLowerCase(); 
+		if( shortestDistance <= 10) {
+			matched = findLineEnum(inAden, id);
+		}
 	}
 	
-	return matched;
-	
+	    
+		return matched;
 }
 
 /**
@@ -784,7 +853,7 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 			case 5:
 				if(wishMeal.equals("")) {
 					this.wishMeal = curCanteen.getCanteenData().getLines().get(5).getLineName().toString();
-				}
+				}                           // actually we don't exactly know which line is that        
 				return CanteenInfo.CI_EXIT; // we don't have the enum and it doesn't that meaningful to have it
 			case 6:
 				if(wishMeal.equals("")) {
@@ -806,6 +875,8 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 					this.wishMeal = curCanteen.getCanteenData().getLines().get(9).getLineName().toString();
 				}
 				return CanteenInfo.CI_ADEN_CURRYQ_PRICE;
+			default : 
+				return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 			}
 		}else {
 			switch (index) {
@@ -839,9 +910,12 @@ private CanteenInfo findLineEnum(boolean inAden, int index) {
 					this.wishMeal = curCanteen.getCanteenData().getLines().get(5).getLineName().toString();
 				}
 				return CanteenInfo.CI_MOLTKE_SCHNITBAR_PRICE;
+			
+			default:
+				return CanteenInfo.CI_TELL_MEAL_NOT_EXIST;
 			}
 		}	
-	return CanteenInfo.CI_EXIT;
+	//return CanteenInfo.CI_EXIT;
 }
 
 private class MealNode {

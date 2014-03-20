@@ -495,11 +495,11 @@
 				"The price for wanted meal it's {c}"
 			],
 			"CI_ADEN_CAFEABEND_PRICE" : [
-			 	""
+			 	"The price for <o> is's {c}"
 			 ],
   
 			 "CI_ADEN_CAFEABEND_DISH" : [
-			 	""
+			 	"you can get <o> at cafeteria afternoons"
 			 ],
 			"CI_ENTRY" : [
 				"So, what kind of information do you want to know?",
