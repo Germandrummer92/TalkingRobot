@@ -218,6 +218,7 @@ public class KeywordData implements Data {
 		DataDeserializer d = new DataDeserializer();
 		Gson loader = new GsonBuilder().registerTypeAdapter(java.lang.Enum.class, des).registerTypeAdapter(data.Data.class, d).create();
 		ArrayList <KeywordData> res = new ArrayList <KeywordData>();
+		FileReader fileR = null;
 		for (File f : load.listFiles()) {
 			/*BufferedReader br = null;
 			try {
@@ -227,12 +228,22 @@ public class KeywordData implements Data {
 			}*/
 		  	KeywordData read = null;
 		  		try {
-					read = loader.fromJson(new FileReader(f), KeywordData.class);
+		  			fileR = new FileReader(f);
+					read = loader.fromJson(fileR, KeywordData.class);
 				} catch (JsonSyntaxException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				finally {
+		  			if (fileR != null) {
+		  				try {
+							fileR.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+		  			}
+		  		}
 		  	res.add(read);
 		}
 		return res;
