@@ -304,14 +304,20 @@ public void setCurCanteen(Canteen curCanteen) {
  * @param terms list of Strings
  * @param approval list of approval
  * @param askPrice 
+ * @throws WrongStateClassException 
  */
 private void generalUpdate(List<Keyword> keywords, List<String> terms,
-		List<String> approval, boolean inAden, boolean askPrice) {
+		List<String> approval, boolean inAden, boolean askPrice) throws WrongStateClassException {
 	 
 	boolean finished = false;
 	
+	if(keywords.isEmpty() && (approval.isEmpty())) {
+		DialogManager.giveDialogManager().setInErrorState(true);
+		//throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
+		return;
+	}
 	if( approval.size() == 1 && (approval.get(0).equals("yes"))) { 
-		if( keywords == null && (terms == null)) {// user is satisfied
+		if( keywords.isEmpty() ) {// user is satisfied
 				CanteenInformationState next = new CanteenInformationState();
 				next.setCurrentState(CanteenInfo.CI_EXIT);
 				finished = true;
@@ -356,12 +362,14 @@ private void updateStateExit(List<Keyword> keywords, List<String> terms) {
  * @param terms
  * @param approval
  * @param askPrice 
+ * @throws WrongStateClassException 
  */
-private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden, boolean askPrice) {
+private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms, List<String> approval, boolean inAden, boolean askPrice) throws WrongStateClassException {
 	
 	if( approval.isEmpty()) {
 		if( keywords.isEmpty() ) {
 			DialogManager.giveDialogManager().setInErrorState(true);
+			//throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
 			return;
 		}
 		
@@ -410,11 +418,11 @@ private void updateStateTellNotExist(List<Keyword> keywords, List<String> terms,
 private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolean inAden, boolean askPrice) throws WrongStateClassException {
 	 
 	
-	if(keywords.isEmpty() && ( terms.isEmpty())) {
+	if(keywords.isEmpty()) {
 	
 		DialogManager.giveDialogManager().setInErrorState(true);
-		throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
-		//return;
+		//throw new WrongStateClassException(getCurrentDialogState().getCurrentState().getClass().getName());
+		return;
 	}
 	
 	CanteenInfo subState = matchSubState(keywords, terms, inAden, askPrice);
