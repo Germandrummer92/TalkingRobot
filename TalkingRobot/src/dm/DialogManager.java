@@ -3,6 +3,7 @@ package dm;
 
 
 
+
 import generalControl.Main;
 
 import java.util.LinkedList;
@@ -50,8 +51,8 @@ public class DialogManager {
    */
   public void updateDialog(List<String> keywords, List<String> terms, List<String> approval){
 //	  System.out.println("errorstate " + isInErrorState);
-//	  for(int i = 0; i < keywords.size(); i++) {
-//		  System.out.println("working with: " + keywords.get(i));
+//	  for(int i = 0; i < approval.size(); i++) {
+//		  System.out.println("working with: " + approval.get(i));
 //	  }
 	  previousDialog = currentDialog;
 	   List<Keyword> kws = dictionary.findKeywords(keywords);
@@ -195,7 +196,8 @@ public class DialogManager {
   }
 
   private boolean handleResponseToPreviousErrorHandling(List<String> possibleKeywords) {
-	LinkedList<String> keyword = new LinkedList<String>();  
+	LinkedList<String> keyword = new LinkedList<String>();
+	LinkedList<String> approval = new LinkedList<String>();
 	  
 	if(this.errorState == ErrorState.CHOICE) {
 		for(int i = 0; i < possibleKeywords.size(); i++) {
@@ -236,7 +238,9 @@ public class DialogManager {
   			if(possibleKeywords.get(i).equals("yes")) {
   				if(restart.getErrorHandling() == ErrorHandling.RESTART_CI
   						|| restart.getErrorHandling() == ErrorHandling.RESTART_CR) {
-  					keyword.add(restart.getMeal().getMealName());
+  					
+  					this.currentDialog = restart.getRestartedDialog();
+  					approval.add("yes");
   				} else if(restart.getErrorHandling() == ErrorHandling.RESTART_RA) {
   					keyword.add(restart.getRecipe().getRecipeName());
   				} else if(restart.getErrorHandling() == ErrorHandling.RESTART_RL) {
@@ -252,12 +256,12 @@ public class DialogManager {
   		}
   	}
 	
-	if(!keyword.isEmpty()) {
+	if(!keyword.isEmpty() || !approval.isEmpty()) {
 		this.isInErrorState = false;
 		this.errorState = ErrorState.ZERO;
 		LinkedList<String> terms = new LinkedList<>();
 		terms.add("");
-		this.updateDialog(keyword, terms, new LinkedList<String>());
+		this.updateDialog(keyword, terms, approval);
 		return true;
 	} else {
 		return false;

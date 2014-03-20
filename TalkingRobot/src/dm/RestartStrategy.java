@@ -3,6 +3,7 @@ package dm;
 
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import data.CanteenData;
 import data.LineData;
 import data.MealData;
 import data.RecipeData;
+import dm.CanteenRecommendationDialog.OneMealData;
 
 /**
  * 
@@ -22,6 +24,7 @@ public class RestartStrategy extends ErrorStrategy {
 	private ErrorHandling errorHandling;
 	private MealData randomMeal;
 	private RecipeData randomRecipe;
+	private CanteenRecommendationDialog restartedCanteen;
 
 	/**
 	 * @see ErrorStrategy#handleError(List)
@@ -116,6 +119,9 @@ public class RestartStrategy extends ErrorStrategy {
 				DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession(), 
 				new CanteenRecommendationState(CanteenRecom.CR_ADEN_CAFE_DISH), new Canteen(canteenData)));
 		DialogManager.giveDialogManager().getCurrentDialog().getCurrentDialogState().setQuestion(false);
+		
+		restartedCanteen = new CanteenRecommendationDialog(currentDialog.getCurrentSession(), new CanteenRecommendationState(CanteenRecom.CR_ADEN_CURRYQ_DISH), dialog.currentCanteen);
+		restartedCanteen.setWishMeal(restartedCanteen.new OneMealData(randomMeal, canteenData, line));
 		return output;
 	}
 
@@ -161,6 +167,10 @@ public class RestartStrategy extends ErrorStrategy {
 	
 	public RecipeData getRecipe() {
 		return this.randomRecipe;
+	}
+	
+	public CanteenRecommendationDialog getRestartedDialog() {
+		return this.restartedCanteen;
 	}
 
 }
