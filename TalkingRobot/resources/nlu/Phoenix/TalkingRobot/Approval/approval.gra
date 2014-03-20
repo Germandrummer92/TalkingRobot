@@ -5,74 +5,32 @@
 [approval]
 	([_yes])
 ;
-	
+
+# disapproval
+[disapproval]
+	([_no])
+;
+
+#first choice
+
+[_first]
+	(the first *one)
+	(number one)
+	(first)
+;
+
+#indifferent
+
 [_indifferent]
 	(do not care)
-	(dont care)
-	(doesnt matter)
+	(don't care)
+	(doesn't matter)
 	(does not matter)
 	(whatever)
 	(both fine)
 	(both ok)
 ;
 
-[_yes]
-	(sure)
-	(yes)
-	(*THATIS FINE)
-	(I *do THINK *SO)
-	(certainly)
-	(exactly)
-	(of course)
-	(yep)
-	(do SO)
-	(indeed)
-	(THAT WOULDNOT be *so BAD)
-	(right)
-
-THAT
-	(that)
-	(this)
-	
-WOULDNOT
-	(would not)
-	(wouldnt)
-	
-BAD
-	(bad)
-
-FINE
-	(ok)
-	(fine)
-	(good)
-	(okay)
-	(right)
-	
-THATIS
-	(that is)
-	(thats)	
-	(sounds)
-	(want)
-
-I
-	(i)
-	(we)
-	
-SO
-	(so)
-	(this)
-	(that)
-	
-THINK
-	(think)
-	(want)
-;
-
-# disapproval
-[disapproval]
-	([_no])
-;
-	
 [_no]
 	(no)
 	(never)
@@ -97,7 +55,7 @@ THAT
 
 WOULDNOT
 	(would not)
-	(wouldnt)
+	(wouldn't)
 	
 FINE
 	(good)
@@ -108,7 +66,7 @@ FINE
 
 THATIS
 	(that is)
-	(thats)
+	(that's)
 	(this)
 	
 I
@@ -117,7 +75,7 @@ I
 	
 DONOT
 	(do not)
-	(dont)
+	(don't)
 
 THINK
 	(think)
@@ -130,14 +88,6 @@ SO
 
 NOT
 	(not)
-;
-
-#first choice
-
-[_first]
-	(the first *one)
-	(number one)
-	(first)
 ;
 
 #second choice
@@ -154,10 +104,62 @@ NOT
 
 [_unknown]
 	(i do not know)
-	(i dont know)
+	(i don't know)
 	(who knows)
 	(no idea)
 	(unknown)
-	(somwhere)
+	(somewhere else)
 	(not here)
+;
+
+[_yes]
+	(sure)
+	(yes)
+	(*THATIS FINE)
+	(I *do THINK *SO)
+	(certainly)
+	(exactly)
+	(of course)
+	(yep)
+	(do SO)
+	(indeed)
+	(THAT WOULDNOT be *so BAD)
+	(right)
+
+THAT
+	(that)
+	(this)
+	
+WOULDNOT
+	(would not)
+	(wouldn't)
+	
+BAD
+	(bad)
+
+FINE
+	(ok)
+	(fine)
+	(good)
+	(okay)
+	(right)
+	
+THATIS
+	(that is)
+	(that's)	
+	(sounds)
+	(want)
+
+I
+	(i)
+	(we)
+	
+SO
+	(so)
+	(this)
+	(that)
+	
+THINK
+	(think)
+	(want)
 ;
