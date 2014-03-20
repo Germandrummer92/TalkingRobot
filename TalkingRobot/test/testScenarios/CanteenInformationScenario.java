@@ -53,7 +53,7 @@ public class CanteenInformationScenario extends basicTestCases.BasicTest {
 		assertTrue(nlgResults.get(4).contains(mealsAtLineFour.get(0))
 				&& nlgResults.get(4).contains(mealsAtLineFour.get(mealsAtLineFour.size() - 1)));
 		assertTrue(nlgResults.get(5).contains(
-				"Makkaroni mit Gemüsebolognese")
-				&& nlgResults.get(5).contains("Schweineschnitzel Toskana"));
+				"chicken cordon bleu with turkey ham")
+				&& nlgResults.get(5).contains("escalope with bread"));
 	}
 }
