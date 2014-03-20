@@ -303,6 +303,10 @@
 			"CI_LINE_LOCATION_INFO" : [
 			    ""
 			],
+			"CI_TELL_LINE_CLOSED" : [
+				"Well ",
+				"Oops"
+			],
 			"CI_TELL_CANTEEN_CLOSED" : [
 				"Well",
 				"No one goes to canteen at weekend"

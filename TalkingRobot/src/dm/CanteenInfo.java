@@ -74,6 +74,8 @@ public enum CanteenInfo {
   CI_LINE_LOCATION_INFO,
   
   CI_TELL_CANTEEN_CLOSED,
+  
+  CI_TELL_LINE_CLOSED,
 
   CI_EXIT;
 

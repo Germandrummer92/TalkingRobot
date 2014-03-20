@@ -13,7 +13,7 @@ import data.MealData;
 /**
  * This Class represents a state of an Canteen Information Dialog.
  * @author Daniel Draper, Xizhe Lian
- * @version 2.0
+ * @version 3.0
  *
  */
 public class CanteenInformationState extends DialogState {
@@ -40,12 +40,10 @@ public class CanteenInformationState extends DialogState {
    * @see DialogState#getOutputKeyword()
    */
   public String getOutputKeyword() {
-	 // CanteenInformationDialog currentDialog = new CanteenInformationDialog(DialogManager.giveDialogManager().getCurrentDialog().getCurrentSession(), 
-		//	  this, null);
+
 	   Dialog currentDialog = (CanteenInformationDialog)DialogManager.giveDialogManager().getCurrentDialog();
-	//   ((CanteenInformationDialog) currentDialog).setCurCanteen(((CanteenInformationDialog) currentDialog).getCurCanteen());
-	   ((CanteenDialog) currentDialog).setCurrentCanteen(((CanteenInformationDialog) currentDialog).getCurCanteen());
-	 // currentDialog.setCurrentDialogState(new CanteenInformationDialog(null, null, null));
+		   ((CanteenDialog) currentDialog).setCurrentCanteen(((CanteenInformationDialog) currentDialog).getCurCanteen());
+	 
 	  String time =  ((CanteenInformationDialog) currentDialog).getWishDate();
 	  String wishMeal =  ((CanteenInformationDialog) currentDialog).getWishMeal();
 	  String loca = ((CanteenInformationDialog) currentDialog).getLocation();
@@ -75,7 +73,6 @@ public class CanteenInformationState extends DialogState {
 				  .getCanteenData().getLines().get(0).getTodayMeals();
 		  
 		  return generateOutputWithPrice(l1meals, 0, wishMeal, isStudent);
-		 // return output;
 		  
 	  case CI_ADEN_LINE_2_PRICE:
 		  setQuestion(false);
@@ -338,8 +335,15 @@ public class CanteenInformationState extends DialogState {
 		  if( loca != null){
 			  direction = direction + loca + ">"; 
 			  direction = direction + ";"	+  tellLoca(loca);
-		  }//else direction = direction + findLoca();
+		  }
 		  return direction;
+	  case CI_TELL_LINE_CLOSED : 
+		  setQuestion(false);
+		  String op = "<";
+		  if( loca != null){
+			  op = op + loca + ">";
+		  }
+		  return op;
 	  case CI_EXIT :
 		  setQuestion(false);
 		  return null;
@@ -349,17 +353,6 @@ public class CanteenInformationState extends DialogState {
   
   }
  
-  /**
-   * help method to find the wished location
-   * @return 
-   */
-  private String findLoca() {
-	String loca = "";
-	//DialogManager.giveDialogManager().
-	//currentDialog
-	return loca;
-}
-
 /**
    * private method to generate the direction for lines in canteen adennauerring
    * @param lineName name of line, which location needs to be pointed

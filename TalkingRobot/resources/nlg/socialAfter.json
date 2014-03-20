@@ -295,6 +295,9 @@
 			"CI_TELL_MEAL_NOT_EXIST" : [
 				""
 			],
+			"CI_TELL_LINE_CLOSED" : [
+				" Maybe try another line?"
+			],
 			"CI_TELL_CANTEEN_CLOSED" : [
 				"Maybe try another day?",
 				"I'm sure you can get food from somewhere else"

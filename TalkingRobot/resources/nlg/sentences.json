@@ -596,6 +596,9 @@
             "CI_LINE_LOCATION_INFO" : [
     			"To <o>, you need to {c}"	
 			],
+			"CI_TELL_LINE_CLOSED" : [
+				"<o> is closed currently"
+			],
 			"CI_TELL_CANTEEN_CLOSED" : [
 				"Canteen is closed at {c}",
 				"Sorry to tell you that canteen is closed during weekends",
