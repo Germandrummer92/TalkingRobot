@@ -1,0 +1,1702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.1" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="asr.ASRPhase" project="TalkingRobot" file="/TalkingRobot/src/asr/ASRPhase.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1485" y="-55"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="asr.InputGetter" project="TalkingRobot" 
+    file="/TalkingRobot/src/asr/InputGetter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-203" y="1641"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="asr.One4AllAdapter" project="TalkingRobot" 
+    file="/TalkingRobot/src/asr/One4AllAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="17" y="1647"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="data.CanteenData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/CanteenData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1578" y="106"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="5" language="java" name="data.CanteenNames" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/CanteenNames.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1930" y="42"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <interface id="6" language="java" name="data.Data" project="TalkingRobot" file="/TalkingRobot/src/data/Data.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1217" y="-13"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="data.DataDeserializer" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/DataDeserializer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="858" y="-42"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="data.IngredientData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/IngredientData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1160" y="1250"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="data.EnumSerializer" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/EnumSerializer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="857" y="70"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="data.EnumDeserializer" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/EnumDeserializer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="864" y="190"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="data.KeywordData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/KeywordData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="540" width="454" x="1387" y="1235"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="12" language="java" name="data.KeywordType" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/KeywordType.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2000" y="1244"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="13" language="java" name="data.LineData" project="TalkingRobot" file="/TalkingRobot/src/data/LineData.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1538" y="508"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="data.MealCategoryData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/MealCategoryData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1846" y="502"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="data.MealData" project="TalkingRobot" file="/TalkingRobot/src/data/MealData.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1572" y="948"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="data.MealDatePair" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/MealDatePair.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1934" y="812"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="data.RecipeData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/RecipeData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="676" width="363" x="967" y="349"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="data.RecipeDatePair" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/RecipeDatePair.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1260" y="1608"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="data.RecipeStepData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/RecipeStepData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1018" y="1626"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="data.RobotData" project="TalkingRobot" 
+    file="/TalkingRobot/src/data/RobotData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="776" y="540"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="data.ToolData" project="TalkingRobot" file="/TalkingRobot/src/data/ToolData.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="738" y="1012"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="data.UserData" project="TalkingRobot" file="/TalkingRobot/src/data/UserData.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="682" y="1584"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="generalControl.Main" project="TalkingRobot" 
+    file="/TalkingRobot/src/generalControl/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1522" y="331"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="generalControl.Phase" project="TalkingRobot" 
+    file="/TalkingRobot/src/generalControl/Phase.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1765" y="295"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="dm.DialogManager" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/DialogManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1181" y="310"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="dm.CanteenDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-502" y="98"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="dm.Canteen" project="TalkingRobot" file="/TalkingRobot/src/dm/Canteen.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-462" y="-77"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="dm.KitchenAssistanceDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/KitchenAssistanceDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1138" y="1286"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="dm.RecipeAssistanceDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RecipeAssistanceDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-215" y="839"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="dm.RecipeLearningDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RecipeLearningDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-786" y="1282"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="dm.StartDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/StartDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-857" y="-88"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="dm.Dialog" project="TalkingRobot" file="/TalkingRobot/src/dm/Dialog.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-837" y="134"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="33" language="java" name="dm.CanteenInfo" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="288" x="-272" y="-121"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="34" language="java" name="dm.CanteenRecom" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenRecom.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="305" x="38" y="-120"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="35" language="java" name="dm.CanteenInformationDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenInformationDialog.java" binary="false" corner="TOP_RIGHT">    
+    <position height="300" width="339" x="-278" y="0"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="dm.CanteenInformationState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenInformationState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="200" y="53"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="dm.CanteenRecommendationDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenRecommendationDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="352" x="-652" y="187"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="dm.CanteenRecommendationState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/CanteenRecommendationState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-473" y="481"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="dm.ChoiceStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/ChoiceStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1651" y="909"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="40" language="java" name="dm.DialogModus" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/DialogModus.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-847" y="399"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="41" language="java" name="dm.DialogState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/DialogState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-911" y="677"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="dm.Dictionary" project="TalkingRobot" file="/TalkingRobot/src/dm/Dictionary.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1208" y="882"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="dm.DMPhase" project="TalkingRobot" file="/TalkingRobot/src/dm/DMPhase.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1244" y="707"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="44" language="java" name="dm.ErrorHandling" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/ErrorHandling.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="74" width="217" x="-2040" y="813"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="45" language="java" name="dm.ErrorHandlingState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/ErrorHandlingState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1165" y="1088"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="46" language="java" name="dm.ErrorState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/ErrorState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="234" x="-1573" y="1065"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="47" language="java" name="dm.ErrorStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/ErrorStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1722" y="1142"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="dm.ExplicitVerificationStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/ExplicitVerificationStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1795" y="716"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="dm.IndirectVerificationStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/IndirectVerificationStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1723" y="1344"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="dm.Ingredient" project="TalkingRobot" file="/TalkingRobot/src/dm/Ingredient.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-406" y="1371"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="dm.Keyword" project="TalkingRobot" file="/TalkingRobot/src/dm/Keyword.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-261" y="1068"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="52" language="java" name="dm.KitchenAssistance" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/KitchenAssistance.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="307" x="-1295" y="1411"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="53" language="java" name="dm.KitchenAssistanceState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/KitchenAssistanceState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-622" y="622"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="dm.KitchenDialog" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/KitchenDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-796" y="910"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="dm.Recipe" project="TalkingRobot" file="/TalkingRobot/src/dm/Recipe.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="94" y="1354"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="56" language="java" name="dm.RecipeAssistance" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RecipeAssistance.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="71" width="346" x="-473" y="614"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="57" language="java" name="dm.RecipeAssistanceState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RecipeAssistanceState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-569" y="752"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="58" language="java" name="dm.RecipeLearning" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RecipeLearning.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="77" width="306" x="-1295" y="1510"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="59" language="java" name="dm.RecipeLearningState" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RecipeLearningState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-830" y="1538"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="dm.RecipeStep" project="TalkingRobot" file="/TalkingRobot/src/dm/RecipeStep.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-582" y="1545"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="dm.RepeatStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RepeatStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1722" y="1486"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="dm.RestartStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RestartStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1720" y="1643"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="dm.RephraseStrategy" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/RephraseStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1716" y="1800"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="dm.Robot" project="TalkingRobot" file="/TalkingRobot/src/dm/Robot.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="566" y="310"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="dm.Session" project="TalkingRobot" file="/TalkingRobot/src/dm/Session.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="183" y="554"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="66" language="java" name="dm.Start" project="TalkingRobot" file="/TalkingRobot/src/dm/Start.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="78" width="299" x="-1340" y="-146"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="67" language="java" name="dm.StartState" project="TalkingRobot" file="/TalkingRobot/src/dm/StartState.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1131" y="3"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="dm.Tool" project="TalkingRobot" file="/TalkingRobot/src/dm/Tool.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="83" y="1119"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="dm.User" project="TalkingRobot" file="/TalkingRobot/src/dm/User.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="129" y="810"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="dm.WrongStateClassException" project="TalkingRobot" 
+    file="/TalkingRobot/src/dm/WrongStateClassException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1764" y="114"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="nlg.NLGPhase" project="TalkingRobot" file="/TalkingRobot/src/nlg/NLGPhase.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1226" y="1706"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="nlg.OutputCreator" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlg/OutputCreator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-994" y="1708"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="nlu.NLUPhase" project="TalkingRobot" file="/TalkingRobot/src/nlu/NLUPhase.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1220" y="1853"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="nlu.ApprovalAnalyzer" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/ApprovalAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-752" y="1922"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="nlu.InputAnalyzer" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/InputAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-984" y="1874"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="nlu.KeywordAnalyzer" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/KeywordAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-747" y="1772"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="nlu.Levenshtein" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/Levenshtein.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-541" y="1773"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="nlu.PhoenixAdapter" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/PhoenixAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1058" y="2036"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="nlu.PossibleKeywordAnalyzer" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/PossibleKeywordAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1322" y="1977"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="nlu.TermAnalyzer" project="TalkingRobot" 
+    file="/TalkingRobot/src/nlu/TermAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1564" y="1943"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="tts.SpeechCreator" project="TalkingRobot" 
+    file="/TalkingRobot/src/tts/SpeechCreator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="13" y="1796"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="tts.TTSPhase" project="TalkingRobot" file="/TalkingRobot/src/tts/TTSPhase.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-214" y="1799"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="false"/>    
+    </display>  
+  </class>  
+  <association id="83">    
+    <bendpoint x="-778" y="990"/>    
+    <bendpoint x="128" y="978"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="84" name="creator"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <bendpoint x="536" y="1121"/>    
+    <bendpoint x="581" y="1121"/>    
+    <end type="SOURCE" refId="68" navigable="false">      
+      <attribute id="87" name="toolData"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="89">    
+    <bendpoint x="-1120" y="1973"/>    
+    <bendpoint x="-1119" y="1922"/>    
+    <bendpoint x="-1082" y="1922"/>    
+    <end type="SOURCE" refId="79"/>    
+    <end type="TARGET" refId="75"/>  
+  </generalization>  
+  <association id="90">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="91" name="outputCreator"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <bendpoint x="221" y="904"/>    
+    <bendpoint x="222" y="1036"/>    
+    <bendpoint x="220" y="1208"/>    
+    <bendpoint x="564" y="1210"/>    
+    <bendpoint x="565" y="1266"/>    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="94" name="userData"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="97" name="possibleKwAnalyzer"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="99">    
+    <bendpoint x="-1308" y="1861"/>    
+    <bendpoint x="-2050" y="1864"/>    
+    <bendpoint x="-2052" y="841"/>    
+    <bendpoint x="-2048" y="292"/>    
+    <end type="SOURCE" refId="73"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="100">    
+    <bendpoint x="-1039" y="100"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="101" name="currentDialog"/>      
+      <multiplicity id="102" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <bendpoint x="-603" y="1216"/>    
+    <bendpoint x="-398" y="1217"/>    
+    <bendpoint x="-48" y="1220"/>    
+    <bendpoint x="-52" y="1256"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="104" name="recipe"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="106">    
+    <bendpoint x="-1520" y="1704"/>    
+    <bendpoint x="-1520" y="1892"/>    
+    <bendpoint x="-2059" y="1894"/>    
+    <bendpoint x="-2058" y="1024"/>    
+    <bendpoint x="-2054" y="294"/>    
+    <end type="SOURCE" refId="71"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="107">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="108" name="canteenName"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <bendpoint x="-1044" y="128"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="111" name="previousDialog"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="114" name="robotData"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <bendpoint x="1622" y="702"/>    
+    <bendpoint x="1906" y="696"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="117" name="mealCategory"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="120" name="mealCategory"/>      
+      <multiplicity id="121" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="122">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <association id="123">    
+    <bendpoint x="189" y="309"/>    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="124" name="currentRobot"/>      
+      <multiplicity id="125" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <bendpoint x="-594" y="1394"/>    
+    <bendpoint x="-539" y="1392"/>    
+    <bendpoint x="-484" y="1394"/>    
+    <bendpoint x="-480" y="1397"/>    
+    <bendpoint x="-504" y="1393"/>    
+    <bendpoint x="-496" y="1394"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="127" name="ingredientsList"/>      
+      <multiplicity id="128" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="129">    
+    <bendpoint x="-970" y="1538"/>    
+    <bendpoint x="-962" y="781"/>    
+    <end type="SOURCE" refId="59"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <realization id="130">    
+    <bendpoint x="940" y="1522"/>    
+    <bendpoint x="938" y="314"/>    
+    <bendpoint x="1210" y="316"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="131">    
+    <bendpoint x="-1148" y="1153"/>    
+    <bendpoint x="-987" y="1150"/>    
+    <bendpoint x="-987" y="998"/>    
+    <bendpoint x="-919" y="1000"/>    
+    <bendpoint x="-922" y="986"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="54"/>  
+  </generalization>  
+  <association id="132">    
+    <bendpoint x="-1660" y="784"/>    
+    <bendpoint x="-1539" y="792"/>    
+    <bendpoint x="-1470" y="805"/>    
+    <end type="SOURCE" refId="48" navigable="false">      
+      <attribute id="133" name="dictionary"/>      
+      <multiplicity id="134" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="135">    
+    <bendpoint x="216" y="704"/>    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="136" name="currentUser"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="138">    
+    <bendpoint x="-662" y="192"/>    
+    <bendpoint x="-662" y="549"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="139" name="currentSession"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="141">    
+    <bendpoint x="-496" y="838"/>    
+    <bendpoint x="-499" y="1236"/>    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="142" name="currIngredient"/>      
+      <multiplicity id="143" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="144">    
+    <bendpoint x="1366" y="656"/>    
+    <bendpoint x="1348" y="-8"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="145">    
+    <bendpoint x="-1876" y="1626"/>    
+    <bendpoint x="-1916" y="1626"/>    
+    <bendpoint x="-1902" y="1168"/>    
+    <bendpoint x="-1863" y="1169"/>    
+    <end type="SOURCE" refId="62"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <association id="146">    
+    <bendpoint x="-1010" y="188"/>    
+    <bendpoint x="-1022" y="189"/>    
+    <bendpoint x="-1022" y="598"/>    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="147" name="currentState"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="149">    
+    <bendpoint x="-367" y="1302"/>    
+    <bendpoint x="-366" y="1250"/>    
+    <bendpoint x="-132" y="1252"/>    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="150" name="ingredientData"/>      
+      <multiplicity id="151" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="152">    
+    <end type="SOURCE" refId="53"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <association id="153">    
+    <bendpoint x="-1588" y="1278"/>    
+    <bendpoint x="-1332" y="1278"/>    
+    <bendpoint x="-1328" y="980"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="154" name="dictionary">        
+        <position height="18" width="61" x="-1399" y="967"/>      
+      </attribute>      
+      <multiplicity id="155" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="156">    
+    <bendpoint x="-1700" y="1008"/>    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <association id="157">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="158" name="dialogModus"/>      
+      <multiplicity id="159" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="160">    
+    <bendpoint x="-216" y="2133"/>    
+    <bendpoint x="-1932" y="2128"/>    
+    <bendpoint x="-2054" y="2128"/>    
+    <bendpoint x="-2051" y="2104"/>    
+    <bendpoint x="-2047" y="1492"/>    
+    <bendpoint x="-2051" y="672"/>    
+    <bendpoint x="-2052" y="282"/>    
+    <bendpoint x="-1871" y="282"/>    
+    <end type="SOURCE" refId="82"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="161">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="162" name="tools"/>      
+      <multiplicity id="163" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="164">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="165" name="currentCanteen"/>      
+      <multiplicity id="166" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="167">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="168" name="type"/>      
+      <multiplicity id="169" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="170">    
+    <bendpoint x="-1647" y="705"/>    
+    <bendpoint x="-1644" y="326"/>    
+    <bendpoint x="-1664" y="329"/>    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <realization id="171">    
+    <bendpoint x="768" y="286"/>    
+    <bendpoint x="1228" y="284"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="172">    
+    <bendpoint x="-279" y="85"/>    
+    <bendpoint x="-327" y="84"/>    
+    <bendpoint x="-327" y="-2"/>    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="173" name="curCanteen"/>      
+      <multiplicity id="174" minimum="0" maximum="1">        
+        <position height="16" width="25" x="-345" y="26"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="175">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <association id="176">    
+    <bendpoint x="-1336" y="1173"/>    
+    <bendpoint x="-1331" y="1026"/>    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="177" name="dictionary">        
+        <position height="18" width="61" x="-1289" y="989"/>      
+      </attribute>      
+      <multiplicity id="178" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="179">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="180">    
+    <bendpoint x="182" y="110"/>    
+    <bendpoint x="181" y="405"/>    
+    <bendpoint x="-172" y="404"/>    
+    <bendpoint x="-663" y="406"/>    
+    <bendpoint x="-664" y="521"/>    
+    <bendpoint x="-914" y="525"/>    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <realization id="181">    
+    <bendpoint x="1844" y="688"/>    
+    <bendpoint x="1348" y="684"/>    
+    <bendpoint x="1360" y="50"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="182">    
+    <bendpoint x="1318" y="1526"/>    
+    <bendpoint x="1312" y="1096"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="183" name="data"/>      
+      <multiplicity id="184" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="185">    
+    <bendpoint x="844" y="1352"/>    
+    <bendpoint x="932" y="1352"/>    
+    <bendpoint x="938" y="300"/>    
+    <bendpoint x="1218" y="300"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="186">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="187" name="termAnalyzer"/>      
+      <multiplicity id="188" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="189">    
+    <bendpoint x="-1519" y="898"/>    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="190" name="dictionary"/>      
+      <multiplicity id="191" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="192">    
+    <bendpoint x="-1803" y="984"/>    
+    <bendpoint x="-1806" y="1034"/>    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <realization id="193">    
+    <bendpoint x="1622" y="1176"/>    
+    <bendpoint x="1334" y="1178"/>    
+    <bendpoint x="1350" y="96"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="194">    
+    <bendpoint x="-1352" y="1484"/>    
+    <bendpoint x="-1351" y="1245"/>    
+    <bendpoint x="-1322" y="1244"/>    
+    <bendpoint x="-1324" y="1128"/>    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="195" name="repeatState"/>      
+      <multiplicity id="196" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="197">    
+    <bendpoint x="-676" y="976"/>    
+    <bendpoint x="82" y="988"/>    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="198" name="toolDatabase"/>      
+      <multiplicity id="199" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="200">    
+    <bendpoint x="976" y="1028"/>    
+    <bendpoint x="972" y="1286"/>    
+    <bendpoint x="840" y="1286"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="201" name="creator"/>      
+      <multiplicity id="202" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="203">    
+    <bendpoint x="-264" y="1216"/>    
+    <bendpoint x="-171" y="1216"/>    
+    <bendpoint x="30" y="1218"/>    
+    <bendpoint x="365" y="1221"/>    
+    <bendpoint x="948" y="1226"/>    
+    <bendpoint x="950" y="1486"/>    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="204" name="keywordData"/>      
+      <multiplicity id="205" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="206">    
+    <bendpoint x="-1095" y="550"/>    
+    <bendpoint x="-1094" y="624"/>    
+    <bendpoint x="-1096" y="797"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="207" name="dictionary"/>      
+      <multiplicity id="208" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="209">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="210">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <association id="211">    
+    <bendpoint x="-1166" y="545"/>    
+    <bendpoint x="-67" y="552"/>    
+    <bendpoint x="49" y="552"/>    
+    <bendpoint x="50" y="698"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="212" name="userList"/>      
+      <multiplicity id="213" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="214">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="54"/>  
+  </generalization>  
+  <association id="215">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="216" name="data"/>      
+      <multiplicity id="217" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="218">    
+    <bendpoint x="508" y="1553"/>    
+    <bendpoint x="506" y="1928"/>    
+    <bendpoint x="1020" y="1929"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="219" name="recipeStepData"/>      
+      <multiplicity id="220" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="221">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="222" name="todayMeals"/>      
+      <multiplicity id="223" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="224">    
+    <bendpoint x="-616" y="1160"/>    
+    <bendpoint x="-416" y="1158"/>    
+    <bendpoint x="-28" y="1156"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="225" name="toolsList"/>      
+      <multiplicity id="226" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="227">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <generalization id="228">    
+    <bendpoint x="-1854" y="1805"/>    
+    <bendpoint x="-1888" y="1804"/>    
+    <bendpoint x="-1884" y="1184"/>    
+    <end type="SOURCE" refId="63"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <association id="229">    
+    <bendpoint x="-1383" y="300"/>    
+    <bendpoint x="-1386" y="472"/>    
+    <bendpoint x="-1388" y="778"/>    
+    <bendpoint x="-1456" y="782"/>    
+    <bendpoint x="-1455" y="797"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="230" name="errorState"/>      
+      <multiplicity id="231" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="46" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="232">    
+    <end type="SOURCE" refId="74"/>    
+    <end type="TARGET" refId="75"/>  
+  </generalization>  
+  <association id="233">    
+    <bendpoint x="-1343" y="1797"/>    
+    <bendpoint x="-1344" y="1146"/>    
+    <end type="SOURCE" refId="63" navigable="false">      
+      <attribute id="234" name="rephraseState"/>      
+      <multiplicity id="235" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="236">    
+    <bendpoint x="-286" y="-138"/>    
+    <bendpoint x="868" y="-140"/>    
+    <bendpoint x="1568" y="-140"/>    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="237" name="canteenData"/>      
+      <multiplicity id="238" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="239">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="240" name="recipes"/>      
+      <multiplicity id="241" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="242">    
+    <bendpoint x="26" y="1241"/>    
+    <bendpoint x="928" y="1249"/>    
+    <bendpoint x="929" y="964"/>    
+    <bendpoint x="960" y="966"/>    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="243" name="recipeData"/>      
+      <multiplicity id="244" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="245">    
+    <bendpoint x="-1428" y="622"/>    
+    <bendpoint x="-1054" y="626"/>    
+    <bendpoint x="-1011" y="628"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="246" name="dmResult"/>      
+      <multiplicity id="247" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="248">    
+    <bendpoint x="-796" y="1000"/>    
+    <bendpoint x="-580" y="1000"/>    
+    <bendpoint x="-580" y="1369"/>    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="249" name="ingredientDatabase"/>      
+      <multiplicity id="250" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="251">    
+    <bendpoint x="-1250" y="648"/>    
+    <bendpoint x="-1252" y="548"/>    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="252" name="dialogManager"/>      
+      <multiplicity id="253" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="254">    
+    <bendpoint x="1216" y="1070"/>    
+    <bendpoint x="1218" y="1044"/>    
+    <bendpoint x="1374" y="1046"/>    
+    <bendpoint x="1372" y="-26"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="255">    
+    <bendpoint x="920" y="1456"/>    
+    <bendpoint x="924" y="362"/>    
+    <bendpoint x="926" y="260"/>    
+    <bendpoint x="1130" y="258"/>    
+    <bendpoint x="1136" y="122"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="256" name="dataReference"/>      
+      <multiplicity id="257" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="258">    
+    <bendpoint x="-544" y="845"/>    
+    <bendpoint x="-648" y="849"/>    
+    <bendpoint x="-667" y="844"/>    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="54"/>  
+  </generalization>  
+  <generalization id="259">    
+    <bendpoint x="-1016" y="1065"/>    
+    <bendpoint x="-959" y="1066"/>    
+    <bendpoint x="-958" y="796"/>    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <generalization id="260">    
+    <bendpoint x="-1379" y="-62"/>    
+    <bendpoint x="-1379" y="-215"/>    
+    <bendpoint x="-1578" y="-215"/>    
+    <bendpoint x="-1580" y="22"/>    
+    <bendpoint x="-1647" y="20"/>    
+    <bendpoint x="-1647" y="190"/>    
+    <bendpoint x="-1764" y="193"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <realization id="261">    
+    <bendpoint x="906" y="766"/>    
+    <bendpoint x="916" y="266"/>    
+    <bendpoint x="1226" y="266"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="262">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="263">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="264" name="approvalAnalyzer"/>      
+      <multiplicity id="265" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="266">    
+    <bendpoint x="-1030" y="-8"/>    
+    <bendpoint x="-1030" y="606"/>    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <association id="267">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="268" name="categories"/>      
+      <multiplicity id="269" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="270">    
+    <bendpoint x="1336" y="506"/>    
+    <bendpoint x="1348" y="-60"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="271">    
+    <bendpoint x="-1880" y="1480"/>    
+    <bendpoint x="-1876" y="1144"/>    
+    <end type="SOURCE" refId="61"/>    
+    <end type="TARGET" refId="47"/>  
+  </generalization>  
+  <generalization id="272">    
+    <bendpoint x="-620" y="530"/>    
+    <bendpoint x="-898" y="532"/>    
+    <bendpoint x="-899" y="573"/>    
+    <bendpoint x="-900" y="561"/>    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="41"/>  
+  </generalization>  
+  <realization id="273">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="274">    
+    <bendpoint x="-1376" y="301"/>    
+    <bendpoint x="-1378" y="408"/>    
+    <bendpoint x="-1375" y="513"/>    
+    <bendpoint x="-1378" y="784"/>    
+    <bendpoint x="-1502" y="788"/>    
+    <bendpoint x="-1503" y="1029"/>    
+    <bendpoint x="-1680" y="1033"/>    
+    <bendpoint x="-1680" y="1056"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="275" name="errorStrategy"/>      
+      <multiplicity id="276" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="277">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="278" name="phase"/>      
+      <multiplicity id="279" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="280">    
+    <bendpoint x="-495" y="838"/>    
+    <bendpoint x="-499" y="1238"/>    
+    <bendpoint x="-175" y="1241"/>    
+    <bendpoint x="-142" y="1249"/>    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="281" name="currRecipe"/>      
+      <multiplicity id="282" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="283">    
+    <bendpoint x="846" y="1862"/>    
+    <bendpoint x="1858" y="1866"/>    
+    <bendpoint x="1862" y="904"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="284" name="acceptedSuggestions"/>      
+      <multiplicity id="285" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="286">    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="287" name="kwAnalyzer"/>      
+      <multiplicity id="288" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="289">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="290" name="ingredients"/>      
+      <multiplicity id="291" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="292">    
+    <bendpoint x="-1563" y="2116"/>    
+    <bendpoint x="-875" y="2116"/>    
+    <bendpoint x="-874" y="1928"/>    
+    <end type="SOURCE" refId="80"/>    
+    <end type="TARGET" refId="75"/>  
+  </generalization>  
+  <association id="293">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="294" name="phoenix"/>      
+      <multiplicity id="295" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="296">    
+    <bendpoint x="-982" y="956"/>    
+    <bendpoint x="-987" y="1076"/>    
+    <bendpoint x="-483" y="1078"/>    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="297" name="keywordList"/>      
+      <multiplicity id="298" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="51" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="299">    
+    <bendpoint x="-1418" y="613"/>    
+    <bendpoint x="-1418" y="702"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="300" name="dmPhase"/>      
+      <multiplicity id="301" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="302">    
+    <bendpoint x="-748" y="1625"/>    
+    <bendpoint x="-1330" y="1622"/>    
+    <bendpoint x="-1326" y="965"/>    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="303" name="currentDictionary">        
+        <position height="18" width="101" x="-1440" y="992"/>      
+      </attribute>      
+      <multiplicity id="304" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="305">    
+    <end type="SOURCE" refId="81"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="306">    
+    <end type="SOURCE" refId="76"/>    
+    <end type="TARGET" refId="75"/>  
+  </generalization>  
+  <association id="307">    
+    <bendpoint x="1010" y="1090"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="308" name="steps"/>      
+      <multiplicity id="309" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="310">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="311" name="lines"/>      
+      <multiplicity id="312" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="313">    
+    <bendpoint x="848" y="1776"/>    
+    <bendpoint x="1258" y="1778"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="314" name="requestedRecipes"/>      
+      <multiplicity id="315" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="316">    
+    <bendpoint x="-1932" y="1644"/>    
+    <bendpoint x="-1922" y="897"/>    
+    <bendpoint x="-1916" y="898"/>    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="317" name="errorHandling"/>      
+      <multiplicity id="318" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="44" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="319">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <association id="320">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="321" name="recipeSteps"/>      
+      <multiplicity id="322" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="60" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="323">    
+    <bendpoint x="-795" y="986"/>    
+    <bendpoint x="-579" y="984"/>    
+    <bendpoint x="-582" y="1273"/>    
+    <bendpoint x="-492" y="1272"/>    
+    <bendpoint x="-259" y="1280"/>    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="324" name="recipeDatabase"/>      
+      <multiplicity id="325" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="326">    
+    <bendpoint x="-791" y="813"/>    
+    <bendpoint x="-796" y="540"/>    
+    <bendpoint x="-674" y="537"/>    
+    <bendpoint x="-676" y="276"/>    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <classifier-display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="false"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
