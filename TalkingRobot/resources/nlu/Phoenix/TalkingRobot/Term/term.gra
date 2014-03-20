@@ -13,6 +13,11 @@
 	(*[a] recipe name is)
 	(*[a] recipes name is)
 	(*for [time])
+	(what's the price of)
+	(what is the price of)
+	(how much does)
+	(how much is)
+	(cost)
 ;
 
 #Recipe Ingredient or Tool
