@@ -543,8 +543,14 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	
 	boolean mealMatched = false;
 	if( askPrice ) {
-		this.curCanteen = ((CanteenDialog) DialogManager.giveDialogManager().getPreviousDialog()).getCurrentCanteen();
-		super.setCurrentCanteen(curCanteen);
+		Dialog d = DialogManager.giveDialogManager().getPreviousDialog();
+		if(d.getClass() == CanteenDialog.class) {
+			this.curCanteen = ((CanteenDialog) DialogManager.giveDialogManager().getPreviousDialog()).getCurrentCanteen();
+			super.setCurrentCanteen(curCanteen);
+		}else {
+			this.curCanteen  = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, 0));
+			super.setCurrentCanteen(curCanteen);
+		}
 			
 		// now to find out the required meal's name
 		CanteenInfo matchedLine = mealMatched(keywords, terms, inAden);
