@@ -415,16 +415,7 @@ private void updateStateEntry(List<Keyword> keywords, List<String> terms, boolea
 		DialogManager.giveDialogManager().setInErrorState(true);
 		return;
 	}
-	//Dialog prevDialog = DialogManager.giveDialogManager().getPreviousDialog();\
 	
-	/* if prev dialog is error dialog...*/
-	
-	
-		//getCurrentDialogState().setCurrentState(CanteenInfo.CI_ENTRY);
-	
-	/*if( keywords.size() == 1 && (terms.size() == 1)){
-		getCurrentDialogState().setCurrentState(CanteenInfo.CI_ENTRY);
-	}*/
 	int k_count = 0;
 	int t_count = 0;
 	for( Keyword kw : keywords) {
@@ -554,11 +545,7 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	if( askPrice ) {
 		this.curCanteen = ((CanteenDialog) DialogManager.giveDialogManager().getPreviousDialog()).getCurrentCanteen();
 		super.setCurrentCanteen(curCanteen);
-		
-		
-		
-	
-		
+			
 		// now to find out the required meal's name
 		CanteenInfo matchedLine = mealMatched(keywords, terms, inAden);
 		
@@ -567,7 +554,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 			mealMatched = true;
 			return matchedLine;
 		}
-		
 		
 		if( !mealMatched ) { // then maybe the user ask the price of a line
 			for( Keyword line : keywords) {
@@ -638,7 +624,6 @@ private CanteenInfo matchSubState(List<Keyword> keywords, List<String> terms, bo
 	 							return (CanteenInfo) ref.getCurrentState();
 	                  	   	}
 	                  }
-
 				} 
 			}
 		}
@@ -707,7 +692,7 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 			name = terms.get(1);
 		}else { // it's not separated by nlu
 			String[] tms = terms.get(0).split("of "); // what's the price of ...
-			//name = tms[1];
+	
 			if(tms.length <= 1) {
 				if(tms[0].contains("does")) {
 					tms = terms.get(0).split("does "); // original sentence : how much does ... cost
@@ -717,14 +702,11 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 						str = str.trim();
 						tms[1] = str;
 					}
-					//name = tms[1];
 				}else if(tms[0].contains("costs")) { // how much costs ...
 					tms = terms.get(0).split("costs "); 
-					//name = tms[1];
 				}else if(tms[0].contains("is")) {// how much is...
 					tms = terms.get(0).split("is ");
-					//name = tms[1];
-				}//else name = terms.get(0);
+				}
 			}
 			name = tms[tms.length - 1];
 		}
@@ -769,8 +751,7 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 						int length = ns.length <= strs.length? ns.length : strs.length;
 						for(int i = 0; i < length; i++) {
 							Levenshtein levenDistance = new Levenshtein(ns[i], strs[i]);
-							distance += levenDistance.getDistance();
-							  
+							distance += levenDistance.getDistance();				  
 						}			
 					}
 						  
@@ -956,33 +937,31 @@ private class MealNode {
 	private MealData md;
 	private LineData l;
 	
-private MealNode() {}
-
-public String getName() {
-	return name;
-}
-
-public void setName(String name) {
-	this.name = name;
-}
-
-public MealData getMealData() {
-	return md;
-}
-
-public void setMealData(MealData md) {
-	this.md = md;
-}
-
-public LineData getLineData() {
-	return l;
-}
-
-public void setLineData(LineData l) {
-	this.l = l;
-}
-
-
+	private MealNode() {}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public MealData getMealData() {
+		return md;
+	}
+	
+	public void setMealData(MealData md) {
+		this.md = md;
+	}
+	
+	public LineData getLineData() {
+		return l;
+	}
+	
+	public void setLineData(LineData l) {
+		this.l = l;
+	}
 }
 
 /*
