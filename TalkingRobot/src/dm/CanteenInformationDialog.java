@@ -775,7 +775,7 @@ private CanteenInfo mealMatched(List<Keyword> keywords, List<String> terms, bool
 		id = curCanteen.getCanteenData().getLines().indexOf(l);
 		
 		this.wishMeal = node.getName().toString().toLowerCase(); 
-		if( shortestDistance <= 10) {
+		if( shortestDistance <= 5) {
 			matched = findLineEnum(inAden, id);
 		}
 	}   
