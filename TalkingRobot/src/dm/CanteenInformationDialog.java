@@ -121,6 +121,10 @@ public void updateState(List<Keyword> keywords, List<String> terms,
 				if (terms.get(0).contains("next") || terms.get(0).contains("coming")) {
 					dateShift = dateShift + 7;
 				} 
+				
+				if(dateShift < 0) {
+					dateShift += 7;
+				}
 						
 				if(inAden) { // so far we just consider canteen at adenauerring and moltke street
 					curCanteen = new Canteen(new CanteenData(CanteenNames.ADENAUERRING, dateShift));
